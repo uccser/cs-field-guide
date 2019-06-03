@@ -134,9 +134,9 @@ For example if you owned a library and purchased a new book you wouldn't do a Se
 ## Quicksort
 
 Insertion and selection sort may seem like logical ways to sort things into order, but they both take far too many comparisons when they are used for large amounts of data.
-Remember computers often have to search through HUGE amounts of data, so even if they use a good searching algorithm like Binary Search to look through their data, if they use a bad sorting algorithm to first sort that data into order then finding anything will take far too long!
+Remember computers often have to search through HUGE amounts of data, so even if they use a good searching algorithm like binary search to look through their data, if they use a bad sorting algorithm to first sort that data into order then finding anything will take far too long!
 
-A much better sorting algorithm is {glossary-link term="quicksort"}Quicksort{glossary-link end}! (the name is a bit of a giveaway)
+A much better sorting algorithm is {glossary-link term="quicksort"}quicksort{glossary-link end}! (the name is a bit of a giveaway)
 
 {interactive slug="sorting-algorithms" type="whole-page" text="true" parameters="method=quick"}
 
@@ -173,7 +173,7 @@ Eventually each subgroup will contain only one item and at this stage the items 
 
 The following files will run selection sort and quicksort in various languages; you can use them to generate random lists of values and measure how long they take to be sorted.
 Note how long these take for various amounts of input (*n*), and show it in a table or graph.
-You should notice that the time taken by Quicksort is quite different to that taken by selection sort.
+You should notice that the time taken by quicksort is quite different to that taken by selection sort.
 - [Scratch](files/selection-quicksort-scratch.zip) - [Download Scratch here](https://scratch.mit.edu/scratch2download/)
 - [Python (Version 2)](files/selection-quicksort-python2.py) - [Download Python 2 here](https://www.python.org/downloads/)
 - [Python (Version 3)](files/selection-quicksort-python3.py) - [Download Python 3 here](https://www.python.org/downloads/)

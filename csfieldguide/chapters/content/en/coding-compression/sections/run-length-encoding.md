@@ -197,7 +197,9 @@ Just to ensure that we can reverse the compression process, have a go at finding
 1, 15, 2
 ```
 
-What is the image of? How many pixels were there in the original image? How many numbers were used to represent those pixels?
+What is the image of?
+How many pixels were there in the original image?
+How many numbers were used to represent those pixels?
 
 {panel type="spoiler"}
 
@@ -209,7 +211,7 @@ This image is from the [CS Unplugged image representation activity](http://csunp
 
 The following interactive allows you to experiment further with run length encoding.
 
-{interactive slug="run-length-encoding" type="whole-page" text="Run Length Encoding interactive"}
+{interactive slug="run-length-encoding" type="whole-page" alt="Run length encoding interactive"}
 
 ## Analysing run length encoding
 
@@ -221,7 +223,7 @@ This is the number of characters required to represent the image with the new re
 
 Assuming you got the new image representation correct, and counted correctly, you should have found there are 121 characters in the new image (double check if your number differs).
 This means that the new representation only requires around 54% as many characters to represent (calculated using 121/225).
-This is a significant reduction in the amount of space required to store the image — it's about half the size.
+This is a significant reduction in the amount of space required to store the image &ndash; it's about half the size.
 The new representation is a *compressed* form of the old one.
 
 {panel type="curiosity"}

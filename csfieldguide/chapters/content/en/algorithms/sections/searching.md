@@ -90,7 +90,7 @@ If you don't have replacement books available, you can still proceed by just hol
 Throw away the half that can't contain the name, pointing out that hundreds of pages have been eliminated by one decision.
 Repeat this on the remaining half, ripping that in half, then half again, and so on.
 On the board you can work out the number of pages left; for example, if there were 512 pages in the phone book, after the first rip there are 256, then 128, then 64, 32, 16, 89, 4, 2 and finally just one page.
-That's  9 pages that were examined to get down to the desired page.
+That's 9 pages that were examined to get down to the desired page.
 Note that it's easiest to pick numbers that are powers of 2 i.e. 512, 1024, 2048, otherwise you have to deal with halving odd numbers, which works fine, but is a bit distracting.
 
 The power of binary search becomes obvious when you ask how long it would take to search a book twice as large.
