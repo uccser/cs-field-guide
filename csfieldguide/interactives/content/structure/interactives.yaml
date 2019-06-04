@@ -203,10 +203,6 @@ lzw-compression:
   languages:
     en: interactives/lzw-compression.html
   is_interactive: true
-# md5-hash:
-#   languages:
-#     en: interactives/md5-hash.html
-#   is_interactive: true
 menu-keystrokes:
   languages:
     en: interactives/menu-keystrokes.html
