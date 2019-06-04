@@ -86,20 +86,22 @@ function updateEncodingGrid() {
   var $encodingFeedback = $('#encoding-text-feedback');
   var $encodingGrid = $('#encoding-grid');
   var encodingData = $encodingText.val().split('\n');
-  for(row = 0; row < $gridSize; row++) {
-      encodingData[row] = encodingData[row].replace(/\s/g, '').split(',').map(Number);
+  var row = 0;
+  while(row < encodingData.length) {
+    encodingData[row] = encodingData[row].replace(/\s/g, '').split(',').map(Number);
+    row++;
   }
 
   var is_valid_data = true;
 
-  for (var row = 0; row < encodingData.length; row++) {
+  for (row = 0; row < encodingData.length; row++) {
     var row_total = 0
     for (var col = 0; col < encodingData[row].length; col++) {
       row_total += encodingData[row][col];
     }
     // Wrong total for row
     if (row_total != $gridSize) {
-      $encodingFeedback.text(gettext('Your numbers add up to a different number than the grid requires!'));
+      $encodingFeedback.text(interpolate(gettext('Your numbers on row %s add up to a different number than the grid requires!'), [row + 1]));
       is_valid_data = false;
     }
   }
@@ -175,5 +177,5 @@ function updateEncodingText() {
 
 String.prototype.repeat = function( num )
 {
-    return new Array( num + 1 ).join( this );
+  return new Array( num + 1 ).join( this );
 }

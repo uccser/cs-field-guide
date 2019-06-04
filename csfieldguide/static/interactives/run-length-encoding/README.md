@@ -1,7 +1,7 @@
 # Run Length Encoding Interactive
 
 **Original Author:** Hannah Taylor  
-**Modified By:** Jack Morgan
+**Modified By:** Jack Morgan, Alasdair Smith
 
 This interactive is created for showing users how basic images can be stored with the run length encoding compression method. Encoding numbers should be separated with commas (and spaces if desired) and each row on a new line.
 
