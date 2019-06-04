@@ -49,29 +49,42 @@ Interactive Configuration Files
 
 - **Required Fields:**
 
-  - ``interactives:`` A dictionary of all interactive data, where each key is a slug for an interacive.
+  - ``interactives:`` A dictionary of all interactive data, where each key is a slug for an interacive. 
+TODO: Check below wording
+  - The dictionary of interactive data must include:
+
+    - ``languages:`` A dictionary of all languages the interactive is available in, where each key is the locale.
+
+    - ``is_interactive:`` A boolean value indicating if the interactive is interactable. This field was introduced
+      so that we could translate images that contain text. Therefore, if the ``is_interactive`` field is set to ``false``,
+      it means it is just an image and the user cannot interact with the content. 
+END OF CHECK
 
 A complete interactive structure file may look like the following:
 
 .. code-block:: yaml
 
-    sorting-algorithm-comparison:
+    colour-matcher:
       languages:
-        en: interactives/sorting-algorithm-comparison.html
-        de: interactives/sorting-algorithm-comparison.html
-    high-score-boxes:
+        en: interactives/colour-matcher.html
+      is_interactive: true
+    compression-comparer:
       languages:
-        en: interactives/high-score-boxes.html
-        de: interactives/high-score-boxes-de.html
-    caesar-cipher:
+        en: interactives/compression-comparer.html
+        de: interactives/compression-comparer.html
+      is_interactive: true
+    confused-buttons:
       languages:
-        en: interactives/caesar-cipher.html
+        en: interactives/confused-buttons.html
+        de: interactives/confused-buttons.html
+        es: interactives/confused-buttons.html
+      is_interactive: false
 
 Every interactive must also have a YAML file within each locale containing the names of the interactives, in the language for that particular locale.
 
 The translation YAML file:
 
-- **Is in:** ``topics/content/<locale>/``
+- **Is in:** ``interactives/content/<locale>/``
 - **Is called:** ``interactives.yaml``
 - **Contains:** Provides names of all interactives.
   Every interactive slug present in the interactive structure file must be present in each locale's translation file.
@@ -80,12 +93,12 @@ The translation YAML file:
 
   .. code-block:: yaml
 
-    sorting-algorithm-comparison:
-      name: Sorting Algorithm Comparison
-    high-score-boxes:
-      name: High Score Boxes
-    caesar-cipher:
-      name: Caesar Cipher
+    colour-matcher:
+      name: Colour Matcher
+    compression-comparer:
+      name: Compression Comparer
+    confused-buttons:
+      name: Confused Buttons
 
 .. _developing-interactives:
 
