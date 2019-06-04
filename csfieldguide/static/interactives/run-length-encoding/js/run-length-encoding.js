@@ -1,34 +1,43 @@
+
+var urlParameters = require('../../../js/third-party/url-parameters.js');
+
 $(document).ready(function(){
+  var initialGridSize = urlParameters.getUrlParameter('grid-size') || '5';
+  var initialEncoding = urlParameters.getUrlParameter('encoding') || '5\n5\n5\n5\n5';
+
   // Switch all pixels to black on clear click
   $('#clear-all').on('click', function(){
-     $('.pixel').removeClass('black');
-     updateEncodingText();
+    $('.pixel').removeClass('black');
+    updateEncodingText();
   });
 
   // Toggle all pixels to black on toggle click
   $('#invert').on('click', function(){
-     $('.pixel').toggleClass('black');
-     updateEncodingText();
+    $('.pixel').toggleClass('black');
+    updateEncodingText();
   });
 
   // On key up, update squares (delegated)
   $('#encoding-text').bind('input propertychange', function(){
-     updateEncodingGrid();
+    updateEncodingGrid();
   });
 
   // Toggle pixel on pixel click
   $('#encoding-grid').on('click', '.pixel', function(event) {
-      $(this).toggleClass('black');
-      updateEncodingText();
+    $(this).toggleClass('black');
+    updateEncodingText();
   })
 
   // Change grid size on value change
   $('#grid-size').on('change', function(){
-      setup_grid();
+    setup_grid();
   });
 
   // Create the grid on load
+  $('#grid-size').val(initialGridSize);
   setup_grid();
+  $('#encoding-text').val(initialEncoding);
+  updateEncodingGrid();
 });
 
 function setup_grid(){
@@ -56,26 +65,26 @@ function setup_grid(){
     var grid = $('#encoding-grid');
     grid.empty();
     for(row = 0; row < $gridSize; row++) {
-        var gridRow = $('<div class="flex-container">');
-        grid.append(gridRow);
-        runText += $gridSize;
-        for(col = 0; col < $gridSize; col++) {
-            gridRow.append($('<div class="flex-item pixel"></div>'));
-        }
-        grid.append('</div>');
-        if (row < $gridSize - 1) {
-          runText += '\n';
-        }
+      var gridRow = $('<div class="flex-container">');
+      grid.append(gridRow);
+      runText += $gridSize;
+      for(col = 0; col < $gridSize; col++) {
+          gridRow.append($('<div class="flex-item pixel"></div>'));
+      }
+      grid.append('</div>');
+      if (row < $gridSize - 1) {
+        runText += '\n';
+      }
     }
     $('#encoding-text').val(runText);
 
     // Set suitable font size
     if ($gridSize <= 8) {
-        fontSize = 25;
+      fontSize = 25;
     } else if ($gridSize <= 12) {
-        fontSize = 19;
+      fontSize = 19;
     } else {
-        fontSize = 14;
+      fontSize = 14;
     }
     $('#encoding-text').css('font-size',fontSize);
   }
@@ -167,7 +176,7 @@ function updateEncodingText() {
     // Add text to encoding text
     var text = $encodingText.val() + row_counts.join(', ');
     if (row_index < $gridSize - 1) {
-         text += '\n';
+      text += '\n';
     }
     $encodingText.val(text);
   });
