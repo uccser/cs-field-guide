@@ -244,7 +244,7 @@ We can derive our users' needs from this persona.
 Bevan is frustrated that he goes to bed too late only to then have poor quality sleep, which then impacts his mood and productivity the next day.
 Instead he wants to wake up with more energy that he can sustain throughout the day.
 In short, Bevan needs better quality sleep.
-It can be useful to turn these needs into user stories, which are very simple outlines of a requirement of the app.
+It can be useful to turn these needs into {glossary-link term="user-story" reference-text="definition"}user stories{glossary-link end}, which are very simple outlines of a requirement of the app.
 They should contain just enough information in order for the developers creating the product to determine a reasonable estimate of the time required to produce that feature, and this makes them a very useful and commonly used tool in agile software development.
 
 For example, here are a couple of user stories for our sleep habits app:
