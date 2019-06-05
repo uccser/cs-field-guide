@@ -5,7 +5,7 @@ var PERSONAS = {
   bevan: {
     carousel_id: 'bevan',
     name: 'Bevan',
-    age: 20,
+    age: 21,
     title: gettext('Accounting student at university'),
     about: gettext('Bevan is a busy undergraduate student.\
       He gets good grades and plays in a social football league.\
@@ -78,10 +78,10 @@ function buildCarouselItem(persona) {
   displayHtml += '  </div>\n'
   displayHtml += '</div>\n'
   displayHtml += '<div class="row">\n'
-  displayHtml += '  <div id="' + persona.carousel_id + '-goals" class="col-12 col-lg-6">\n'
+  displayHtml += '  <div id="' + persona.carousel_id + '-goals" class="col-12 col-lg-6 bottom-row">\n'
   displayHtml += goals;
   displayHtml += '  </div>\n'
-  displayHtml += '  <div id="' + persona.carousel_id + '-frustrations" class="col-12 col-lg-6">\n'
+  displayHtml += '  <div id="' + persona.carousel_id + '-frustrations" class="col-12 col-lg-6 bottom-row">\n'
   displayHtml += frustrations;
   displayHtml += '  </div>\n'
   displayHtml += '</div>\n'
