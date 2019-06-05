@@ -68,22 +68,21 @@ function buildCarouselItem(persona) {
     frustrations += '&ndash; ' + persona.frustrations[y] + '<br>';
   }
 
-  var displayHtml = '';
-  displayHtml += '<div class="row">\n'
-  displayHtml += '  <div class="col-12 col-lg-6">\n'
-  displayHtml += '    <img src="' + base + 'interactives/persona-carousel/img/' + persona.carousel_id + '.jpg" class="persona-portrait">\n'
-  displayHtml += '  </div>\n'
-  displayHtml += '  <div id="' + persona.carousel_id + '-about" class="col-12 col-lg-6">\n'
-  displayHtml += '    <b>' + persona.name + '</b>, ' + persona.age + '<br><sup>' + persona.title + '</sup><br>' + persona.about + '\n'
-  displayHtml += '  </div>\n'
-  displayHtml += '</div>\n'
-  displayHtml += '<div class="row">\n'
-  displayHtml += '  <div id="' + persona.carousel_id + '-goals" class="col-12 col-lg-6 bottom-row">\n'
-  displayHtml += goals;
-  displayHtml += '  </div>\n'
-  displayHtml += '  <div id="' + persona.carousel_id + '-frustrations" class="col-12 col-lg-6 bottom-row">\n'
-  displayHtml += frustrations;
-  displayHtml += '  </div>\n'
-  displayHtml += '</div>\n'
+  var displayHtml = '<div class="row">\n'
+                  + '  <div class="col-12 col-lg-6">\n'
+                  + '    <img src="' + base + 'interactives/persona-carousel/img/' + persona.carousel_id + '.jpg" class="persona-portrait">\n'
+                  + '  </div>\n'
+                  + '  <div id="' + persona.carousel_id + '-about" class="col-12 col-lg-6">\n'
+                  + '    <b>' + persona.name + '</b>, ' + persona.age + '<br><sup>' + persona.title + '</sup><br>' + persona.about + '\n'
+                  + '  </div>\n'
+                  + '</div>\n'
+                  + '<div class="row">\n'
+                  + '  <div id="' + persona.carousel_id + '-goals" class="col-12 col-lg-6 bottom-row">\n'
+                  + '    ' + goals + '\n'
+                  + '  </div>\n'
+                  + '  <div id="' + persona.carousel_id + '-frustrations" class="col-12 col-lg-6 bottom-row">\n'
+                  + '    ' + frustrations + '\n';
+                  + '  </div>\n'
+                  + '</div>\n';
   $('#' + persona.carousel_id).html(displayHtml);
 }

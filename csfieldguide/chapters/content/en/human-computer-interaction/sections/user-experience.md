@@ -197,7 +197,19 @@ We’ve created a very basic one below to help us develop a persona for the targ
 | **Does**<br>What actions does the user do?<br><br>*Always hits “snooze” on the alarm.<br>Drinks coffee first thing in the morning.*                     	| **Feels**<br>Consider the tone they use in an interview and/or survey answers.<br><br>*Tired.<br>Annoyed.<br>Frustrated.*                                                                                                                	|
 
 Using our empathy map we are able to derive the target users' needs and from here we created a persona representative of our target user.
-Meet Bevan:
+Meet some students representing our target audience, though for this example we'll just focus on Bevan:
+
+{panel type="curiosity"}
+
+# Be inclusive
+
+The three examples below are possible users for this application.
+When performing your own user studies, you should list and research their gender, age, culture, etc.
+Then when you go to build your persona, try to include the most important aspects of everyone in just one.
+If it really isn't working out, expand to two personas, perhaps that would be a better fit for your product.
+For example: Elderly people across different cultures behave differently.
+
+{panel end}
 
 {interactive slug="persona-carousel" type="in-page" alt="Slideshow of example personas"}
 
