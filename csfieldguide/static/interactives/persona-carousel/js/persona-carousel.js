@@ -82,18 +82,3 @@ function buildCarouselItem(persona) {
   console.log(displayHtml);
   $('#' + persona.carousel_id).html(displayHtml);
 }
-
-/*
-<div class="row">
-  <div class="col-12 col-md-6">
-    <img src="{% static 'interactives/persona-carousel/img/bevan.jpg' %}" class="persona-portrait" alt="Photo of Bevan for persona.">
-  </div>
-  <div id="bevan-about" class="col-12 col-md-6">
-  </div>
-  </div>
-  <div class="row">
-  <div id="bevan-goals" class="col-12 col-md-6">
-  </div>
-  <div id="bevan-frustrations" class="col-12 col-md-6">
-</div>
-*/
