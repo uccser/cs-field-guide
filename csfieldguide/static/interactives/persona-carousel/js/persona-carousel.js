@@ -39,19 +39,25 @@ var PERSONAS = {
       gettext('Wakes up multiple times a night for the baby.'),
       gettext('Never knows how many hours of sleep she has actually had.'),
     ]
-  }
+  },
 }
 
 $( document ).ready(function() {
   buildCarousel();
 });
 
+/**
+ * Adds each persona to the carousel. Assumes the HTML file is formatted appropriately
+ */
 function buildCarousel() {
   for (persona in PERSONAS) {
     buildCarouselItem(PERSONAS[persona]);
   }
 }
 
+/**
+ * Adds the given persona to the carousel. Assumes the HTML file is formatted appropriately
+ */
 function buildCarouselItem(persona) {
   var goals = '<b>' + gettext('Goals:') + '</b><br>';
   var frustrations = '<b>' + gettext('Frustrations:') + '</b><br>';
@@ -79,6 +85,5 @@ function buildCarouselItem(persona) {
   displayHtml += frustrations;
   displayHtml += '  </div>\n'
   displayHtml += '</div>\n'
-  console.log(displayHtml);
   $('#' + persona.carousel_id).html(displayHtml);
 }
