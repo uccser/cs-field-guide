@@ -110,6 +110,8 @@ parity:
   name: Parity
 payment-interface:
   name: Payment Interface
+persona-carousel:
+  name: Persona Slideshow
 pixel-grid:
   name: Pixel Grid
 pixel-viewer:

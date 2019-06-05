@@ -199,32 +199,7 @@ We’ve created a very basic one below to help us develop a persona for the targ
 Using our empathy map we are able to derive the target users' needs and from here we created a persona representative of our target user.
 Meet Bevan:
 
-**Bevan, 22, accounting student at university**
-
-{image file-path="img/chapters/bevan.jpg" alt="Photo of Bevan for persona."}
-
-*__About__*
-
-*Bevan is a busy undergraduate student.
-He gets good grades and plays in a social football league.
-He is aware that he probably isn’t getting enough sleep, particularly as the exam period is coming up and he’s staying up late most nights to study.
-He knows that if he could improve the quality of the sleep that he is getting he would be more productive when studying and have more energy for his football games and training.*
-
-*__Goals__*
-
-*- Wake up feeling rested.*
-
-*- Be more productive during the day rather than feeling slow and sluggish.*
-
-*__Frustrations__*
-
-*- Feels that most nights when he finally gets to bed he lies awake for a while.*
-
-*- Often wakes up more than once in the night.*
-
-*- Doesn’t know where to start with improving his sleep habits.*
-
-*- Feels that he has to choose between sleep and good grades.*
+{interactive slug="persona-carousel" type="in-page" alt="Slideshow of example personas"}
 
 User Personas are commonly used in software development.
 The idea is that they help you to step out of yourself and think from the character's perspective instead, serving as a reminder that everyone has different needs and expectations.
@@ -235,8 +210,8 @@ Since Bevan is a fictional character, compiled of data from multiple different u
 
 # User persona tips
 
-For most projects it makes sense to create multiple user personas.
-We’re keeping things simple here by just using one, but if your students are struggling to come up with one specific persona, suggest that they try and split it into two and see if that is a better fit for their product.
+It doesn't always make sense to create multiple user personas.
+Three examples are given here to get students to think more broadly about their target users, but they should try to stick to just one specific persona. If they are stuggling, allow them to try and split it into two and see if that is a better fit for their product.
 
 {panel end}
 
