@@ -16,7 +16,7 @@ Any jargon used needs to be clearly explained and should be considered as a glos
 
 Capitalisation Rules
 ------------------------------------------------------------------------------
-
+TODO: Check capitalisation rules (I don't think we capitalise computer science) also these are CSU terms
 In the majority of cases capitalisation should not be used for keywords and titles, with the following exceptions, where the phrase refers to a commonly used term that is often capitilised in the literature:
 
 - Computer Science.
@@ -37,6 +37,6 @@ Glossary
 
 The following are added to the glossary and linked to where the words are used:
 
-- All Computer Science, programming, and Computational Thinking jargon.
+- All computer science, programming, and mathematical jargon.
 - All education jargon.
 - All curriculum language that is not broadly used internationally.
