@@ -88,8 +88,6 @@ lzw-compression:
   name: LZW Compression
 lzss-compression:
   name: LZSS Compression
-md5-hash:
-  name: md5-hash (broken)
 menu-keystrokes:
   name: Menu Keystrokes
 mips-assembler:
