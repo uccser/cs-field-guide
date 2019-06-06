@@ -50,11 +50,11 @@ Searching Boxes - Part 2
 
 Now that you have played through the whole game (and hopefully found all of the target numbers!) you may have noticed that even though you had less lives in the second part of the game, and lots of boxes to search through, you were still able to find the target number. Why was this possible?
 
-## Linear Search
+## Linear search
 
 Since the boxes in the first game were in a random order there really wasn't any strategy you could have used to find the target number, except simply keep opening boxes one by one until you found the target number.
-This is essentially the *Linear Search* algorithm (sometimes called a sequential search).
-In simpler terms, Linear Search algorithm is as follows:
+This is essentially the *linear search* algorithm (sometimes called a sequential search).
+In simpler terms, linear search algorithm is as follows:
 
 - Check if the first item in a list is the item you are searching for, if it is the one you are looking for, you are done.
 
@@ -67,17 +67,18 @@ For a list of 10 items this means on average you would only have to look at 5 it
 
 {panel type="curiosity"}
 
-# How is Bozo search different from Linear search?
+# How is bozo search different from linear search?
 
-If you watched the video at the beginning of the chapter you might be thinking that what you did in the box searching game sounds more like Bozo Search than Linear Search, but actually Bozo Search is even sillier than this!
-If you were doing a Bozo Search then after opening a box and finding the wrong number, you would close the box back up and try another one at random!
+If you watched the video at the beginning of the chapter you might be thinking that what you did in the box searching game sounds more like bozo search than linear search, but actually bozo search is even sillier than this!
+If you were doing a bozo search then after opening a box and finding the wrong number, you would close the box back up and try another one at random!
 This means you might end up checking the same box again and again and again and you might never find the target number, even with a small number of boxes!
 
 {panel end}
 
 ## Binary search
 
-A much better algorithm to use is called Binary Search. In the second part of the box searching game the boxes were in order, which meant you were able to be more clever when you were searching for the target number, and you might have been using a Binary Search without realising!
+A much better algorithm to use is called binary search.
+In the second part of the box searching game the boxes were in order, which meant you were able to be more clever when you were searching for the target number, and you might have been using a binary search without realising!
 
 {panel type="teacher-note"}
 
@@ -87,8 +88,10 @@ The binary search algorithm can be demonstrated with a phone book or dictionary:
 If you can spare the book, rip it in half at the chosen page, and ask the class which of the two halves contains the name (the ones before the middle, or the ones after).
 If you don't have replacement books available, you can still proceed by just holding up the chosen half, but it will be more memorable for students when they see the problem literally divided in half.
 Throw away the half that can't contain the name, pointing out that hundreds of pages have been eliminated by one decision.
-Repeat this on the remaining half, ripping that in half, then half again, and so on. On the board you can work out the number of pages left; for example, if there were 512 pages in the phone book, after the first rip there are 256, then 128, then 64, 32, 16, 89, 4, 2 and finally just one page.
-That's  9 pages that were examined to get down to the desired page. (Note that it's easiest to pick numbers that are powers of 2 i.e. 512, 1024, 2048, otherwise you have to deal with halving odd numbers, which works fine, but is a bit distracting).
+Repeat this on the remaining half, ripping that in half, then half again, and so on.
+On the board you can work out the number of pages left; for example, if there were 512 pages in the phone book, after the first rip there are 256, then 128, then 64, 32, 16, 89, 4, 2 and finally just one page.
+That's 9 pages that were examined to get down to the desired page.
+Note that it's easiest to pick numbers that are powers of 2 i.e. 512, 1024, 2048, otherwise you have to deal with halving odd numbers, which works fine, but is a bit distracting.
 
 The power of binary search becomes obvious when you ask how long it would take to search a book twice as large.
 The first rip on the larger book will reduce it to the original problem, so, for example, a book of 1024 pages requires 10 rips instead of the 9 used for 512 pages.
@@ -100,8 +103,8 @@ The catch? They need to be in sorted order, but sorting things into order is eas
 
 {panel end}
 
-If you used a Binary Search on each of the levels then you would have always had enough lives to find the target number!
-Informally, the Binary Search algorithm is as follows:
+If you used a binary search on each of the levels then you would have always had enough lives to find the target number!
+Informally, the binary search algorithm is as follows:
 
 - Look at the item in the centre of the list and compare it to what you are searching for
 
@@ -113,19 +116,19 @@ Informally, the Binary Search algorithm is as follows:
 
 - Now repeat the algorithm on the remaining half of the list, checking the middle of the list and choosing one of the halves, until you find the item you are searching for.
 
-Binary Search is a very powerful algorithm.
-If you had 1000 boxes to search through it would take you at most 10 checks for Binary search to find something and Linear search would take at most 1000 checks, but if you doubled the number of boxes to search through how would this change the number of checks made by Binary Search and Linear search?
+Binary search is a very powerful algorithm.
+If you had 1000 boxes to search through it would take you at most 10 checks for binary search to find something and linear search would take at most 1000 checks, but if you doubled the number of boxes to search through how would this change the number of checks made by binary search and linear search?
 
 {panel type="spoiler"}
 
 # How does doubling the number of boxes affect the number of checks required?
 
-The answer to the above question is that the maximum number of checks for Linear Search would double, but the maximum number for Binary Search would only increase by one.
+The answer to the above question is that the maximum number of checks for linear search would double, but the maximum number for binary search would only increase by one.
 
 {panel end}
 
-It is important to remember that you can only perform a Binary Search if the items you are searching through are sorted into order.
-This makes the sorting algorithms we will look at next even more important because without sorting algorithms we wouldn't be able to use Binary Search to quickly look through data!
+It is important to remember that you can only perform a binary search if the items you are searching through are sorted into order.
+This makes the sorting algorithms we will look at next even more important because without sorting algorithms we wouldn't be able to use binary search to quickly look through data!
 
 {panel type="project"}
 
