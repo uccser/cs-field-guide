@@ -18,5 +18,5 @@ sitemap:
 
 # 'Releases' page should redirect to documentation.
 # 'Included Files' page should redirect to LICENSE.
-# 'Glossary' page is within 'topics' application
+# 'Glossary' page is within 'chapters' application
 # 'Interactives' page is within 'interactives' application
