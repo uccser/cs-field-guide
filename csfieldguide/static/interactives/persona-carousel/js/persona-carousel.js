@@ -106,6 +106,5 @@ function buildCarouselItem(persona) {
                   + '    ' + frustrations + '\n';
                   + '  </div>\n'
                   + '</div>\n';
-  console.log(displayHtml);
   $('#' + persona.carousel_id).html(displayHtml);
 }
