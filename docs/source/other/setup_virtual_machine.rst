@@ -7,7 +7,7 @@ virtual machines.
 
 1. Download and install `Oracle VirtualBox`_.
 2. Download installation of preferred Linux operating system.
-   A common choice is `Ubuntu 16.04.2 LTS`_.
+   A common choice is `Ubuntu 18.04.2 LTS`_.
 3. Open VirtualBox and click ``New``.
 4. Enter a name for your virtual machine, for example "CS Field Guide".
    Also select the type and version of your operating system.
@@ -48,4 +48,4 @@ virtual machines.
     installation guide.
 
 .. _Oracle VirtualBox: https://www.virtualbox.org/
-.. _Ubuntu 16.04.2 LTS: https://www.ubuntu.com/download/desktop
+.. _Ubuntu 18.04.2 LTS: https://www.ubuntu.com/download/desktop
