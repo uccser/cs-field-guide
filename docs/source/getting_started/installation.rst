@@ -225,8 +225,8 @@ To check the project works, open a terminal in the project root directory,
 which is the ``cs-field-guide/`` directory (should contain a file called
 ``csfg``).
 
-Type the following command into the terminal (we will cover this command
-in more detail on the next page):
+Type the following command into the terminal (we cover this command
+in more detail on the helper commands page):
 
 .. code-block:: bash
 
