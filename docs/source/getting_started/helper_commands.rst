@@ -64,6 +64,11 @@ familiar with the following commands:
 
 Running ``./csfg build`` will build or rebuild the Docker images that are
 required for the CS Field Guide system.
+When you run this command for the first time it can take roughly 15 to 30 
+minutes depending on your computer and internet speed.
+
+Images are only required to be built once, unless the image specifications
+change.
 
 -----------------------------------------------------------------------------
 
@@ -196,7 +201,7 @@ run the tests for checking the index view of the resources application.
 -----------------------------------------------------------------------------
 
 Running ``./csfg updatedata`` runs the custom ``updatedata`` command to
-load the topics content into the database.
+load the chapters content into the database.
 
 -----------------------------------------------------------------------------
 
@@ -240,13 +245,8 @@ More details for each command can be found on this page.
 ==============================================================================
 
 Running ``./csfg start`` starts the development environment.
-When you run this command for the first time on a computer it will also run
-``./csfg build`` to build the system Docker images.
-This can take some time, roughly 15 to 30 minutes, depending on your computer
-and internet speed.
-Images are only required to be built once, unless the image specifications
-change (you can rebuild the images with ``./csfg build``).
-Once the images are built, the script will run these images in containers.
+If this is the first time you're running this script it may take roughly 15 to 
+30 minutes, depending on your computer and internet speed.
 
 Once the development environment is operational, the script will perform the
 following tasks:
@@ -254,13 +254,9 @@ following tasks:
 - Start the Django website system
 - Start the Nginx server to display the website and static files
 - Start the database server
-- Update the database with the required structure (known as the schema)
-- Load the CS Field Guide content into the database
-- Create the required static files
 
-Once the script has performed all these tasks, the script will let you know
-the website is ready.
-Open your preferred web browser to the URL ``localhost`` to view the website.
+Once the script has performed all these tasks, the script will tell you to
+run the `update` command.
 
 -----------------------------------------------------------------------------
 
@@ -271,10 +267,12 @@ Open your preferred web browser to the URL ``localhost`` to view the website.
 
 Running ``./csfg update`` runs the Django ``makemigratations`` and ``migrate``
 commands for updating the database schema, and then runs the custom
-``updatedata`` command to load the topics content into the database.
-It also runs the ``static`` command to generate static files.
+``updatedata`` command to load the chapters content into the database.
+It also runs the ``static`` command to generate static files and the
+`make_interactive_thumbnails` command which generates the thumbnails for the
+interactive links.
 
-If changes are made to the topics content when the system is running, this
+If changes are made to the chapters content when the system is running, this
 command needs to be run to view the new changes on the website.
 
 -----------------------------------------------------------------------------

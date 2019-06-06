@@ -232,20 +232,20 @@ in more detail on the next page):
 
     $ ./csfg start
 
-If this is the first time you're running this script, it will need to build
-system images.
-This can take some time, roughly 15 to 30 minutes, depending on your computer
-and internet speed (we recommend grabbing a cup of tea and watching an episode
-of Brooklyn Nine-Nine on Netflix).
+If this is the first time you're running this script it may take roughly 15 to 30 minutes, 
+depending on your computer and internet speed.
 
-After the helper script builds the system images, it will automatically start
-the system, and will let you know when the system is ready.
+Once the `./csfg start` command has completed, you will need to run the 
+update command. Type the following into your terminal:
 
-TODO: Mention ./csfg update and explain what it does
+    .. code-block:: bash
 
+        $ ./csfg update
 
-You should then be able to open your preferred web browser to the URL
-``localhost`` and see the CS Field Guide homepage.
+You can find information about this command on the helper commands page.
+
+Once the update command has completed you should then be able to open your 
+preferred web browser to the URL ``localhost`` and see the CS Field Guide homepage.
 
 Congratulations if you made it this far and everything is working,
 you're all set to contribute to the CS Field Guide project.
