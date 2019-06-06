@@ -7,7 +7,7 @@ They think about everything from a user’s first encounter with a product to th
 How it affects their job or life, and even how they feel about it.
 In contrast, HCI tends to focus on specific tasks and elements of the interface.
 
-User experience is all about *how* the user interacts with the device or application.
+{glossary-link term="user-experience" reference-text="definition"}User experience{glossary-link end} is all about *how* the user interacts with the device or application.
 Is it intuitive, or is it confusing?
 Do the interactions feel natural, or are they unfamiliar?
 Is it easy to use, or does the user feel like they are struggling?
@@ -379,7 +379,7 @@ Things to watch out for include:
 
 We’ll use this feedback to make a few final tweaks to our design (and we could even test again if we had to make substantial changes to the design).
 
-### Step 10: Build and yest
+### Step 10: Build and test
 
 **UX method: User interviews**
 
