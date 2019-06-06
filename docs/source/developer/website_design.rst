@@ -8,7 +8,7 @@ In summary:
 
 - We use Bootstrap 4 for the underlying framework for responsive design.
 - We use SCSS for style sheets where possible.
-- We wrap translatable strings in {% trans %} or {% blocktrans %} tags.
+- We wrap translatable strings in `{% trans %}` or `{% blocktrans %}` tags.
 
 Setting Custom Converter Templates
 ==============================================================================

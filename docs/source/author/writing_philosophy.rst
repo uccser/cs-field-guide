@@ -7,4 +7,3 @@ Writing Philosophy
         - always end with 'the whole story' section which is a summary of the chapter and a further reading section which contains links/book references 
           where students can read further about the topic
     
-    - Interactives 

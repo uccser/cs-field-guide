@@ -201,3 +201,11 @@ A completed interactive requires the following to be included into the repositor
 - Abides by the repository contribution style guidelines.
 - Must work in browsers updated within the last year.
   Therefore try and avoid experimental features but don't worry about supporting older browsers (but it's great if it can!).
+
+Uninteractives
+------------------------------------------------------------------------------
+
+Uninteractives follow the exact same structure as interactives, the only difference is that the user cannot interact with them in the browser.
+They are most commonly used when an image contains text and that text needs to be translated. Uninteractives are distinguished from interactives 
+by setting the `is_interactive:` attribute to `false` in the `interactives.yaml` configuration file.
+
