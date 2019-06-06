@@ -41,6 +41,27 @@ var PERSONAS = {
       gettext('Never knows how many hours of sleep she has actually had.')
     ]
   },
+
+  kate: {
+    carousel_id: 'kate',
+    name: 'Kate',
+    age: 19,
+    title: gettext('Building Apprentice'),
+    about: gettext('Kate is doing an apprenticeship in construction with a local polytechnic.\
+      They also love singing and have organised a choir, practicing on Sunday evenings.\
+      Sometimes the choir practice runs late into the night, but Kate needs to get up early for work the next morning.\
+      Sometimes Kate goes home too late, and has trouble concentrating at her apprenticeship.\
+      But other times they go home too early and can\'t get to sleep.\
+      Kate needs a product that can help them keep a consistent sleep schedule.'),
+    goals: [
+      gettext('Consistently get a good night\'s sleep'),
+      gettext('Be able to time her departure from choir so that she gets just the right amount of practice and the right amount of sleep.')
+    ],
+    frustrations: [
+      gettext('Gets so engrossed in their singing that they forget to go home on time.'),
+      gettext('But if they go home early they lie in bed thinking about singing and the choir.')
+    ]
+  },
 }
 
 $( document ).ready(function() {

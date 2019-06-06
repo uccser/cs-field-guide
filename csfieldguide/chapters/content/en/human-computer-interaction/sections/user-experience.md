@@ -38,7 +38,7 @@ Instead, we will use the following questions to help us narrow the scope of this
 
 - What assumptions can we make about them?
 
-For our sleep habits app we decide our target users will be high school and university students.
+For our sleep habits app we decide our target users will be high school students and those in higher education (university, institute of technology etc).
 We assume that they have trouble managing their sleep due to demands from their studies.
 In order to truly improve their sleep habits, they want to know how much sleep they really need and what the flow on effects of a good or poor quality sleep are.
 
