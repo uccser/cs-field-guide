@@ -196,7 +196,7 @@ We’ve created a very basic one below to help us develop a persona for the targ
 | **Says**<br>Things the user says out loud in an interview or wrote in their survey.<br><br>*I am so tired.<br>I think I stayed up too late last night.* 	| **Thinks**<br>What do they think about? What are their needs, goals and motivations?<br><br>*I wish I could get more sleep.<br>Maybe I should go to bed earlier.<br>How many hours of sleep do I actually need?<br>Why am I always tired?* 	|
 | **Does**<br>What actions does the user do?<br><br>*Always hits “snooze” on the alarm.<br>Drinks coffee first thing in the morning.*                     	| **Feels**<br>Consider the tone they use in an interview and/or survey answers.<br><br>*Tired.<br>Annoyed.<br>Frustrated.*                                                                                                                	|
 
-Using our empathy map we are able to derive the target users' needs and from here we created a persona representative of our target user.
+Using our empathy map we are able to derive the target users' needs and from here we created persona representatives of our target user.
 Meet some students representing our target audience, though for this example we'll just focus on Bevan:
 
 {panel type="curiosity"}
@@ -205,9 +205,10 @@ Meet some students representing our target audience, though for this example we'
 
 The three examples below are possible users for this application.
 When performing your own user studies, you should list and research their gender, age, culture, etc.
-Then when you go to build your persona, try to include the most important aspects of everyone in just one.
-If it really isn't working out, expand to two personas, perhaps that would be a better fit for your product.
 For example: Elderly people across different cultures behave differently.
+
+Then when you go to build your persona, try to include the most important aspects of everyone.
+If it really isn't working out, expand to two personas &ndash; perhaps that would be a better fit for your product.
 
 {panel end}
 
@@ -220,10 +221,11 @@ Since Bevan is a fictional character, compiled of data from multiple different u
 
 {panel type="teacher-note"}
 
-# User persona tips
+# User persona tip
 
 It doesn't always make sense to create multiple user personas.
-Three examples are given here to get students to think more broadly about their target users, but they should try to stick to just one specific persona. If they are stuggling, allow them to try and split it into two and see if that is a better fit for their product.
+Three examples are given here to get students to think more broadly about their target users, but they should try to stick to just one specific persona.
+If they are stuggling, allow them to try and split it into two and see if that is a better fit for their product.
 
 {panel end}
 

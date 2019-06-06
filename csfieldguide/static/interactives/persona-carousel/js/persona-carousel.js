@@ -17,9 +17,9 @@ var PERSONAS = {
     ],
     frustrations: [
       gettext('Feels that most nights when he finally gets to bed he lies awake for a while.'),
-      gettext('Often wakes up more than once in the night.'),
+      gettext('His exhaustion is affecting his performance in sport and education.'),
       gettext('Doesn’t know where to start with improving his sleep habits.'),
-      gettext('Feels that he has to choose between sleep and good grades.')
+      gettext('Feels that he can only have two out of sleep, football and good grades.')
     ]
   },
 
@@ -29,15 +29,16 @@ var PERSONAS = {
     age: 29,
     title: gettext('University student and new mother'),
     about: gettext('Sam is a mature student and also a new mother.\
-      Being a new mother, her sleep schedule is not consistent and she needs to get sleep whenever she can.'),
+      Being a new mother, her sleep schedule is not consistent and she needs to get sleep whenever she can.\
+      However, she doesn\'t want to abandon her studies and chances of work in her favourite field.'),
     goals: [
-      gettext('Get at least 7 hours of sleep in a 24hr period / enough sleep to feel rested ?'),
-      gettext('Stay on top of uni work')
+      gettext('Get enough sleep to work efficiently in her studies.'),
+      gettext('Stay on top of uni work but also spend as much time as she can with her child.')
     ],
     frustrations: [
-      gettext('If she naps for too long she wakes up feeling sluggish.'),
       gettext('Wakes up multiple times a night for the baby.'),
-      gettext('Never knows how many hours of sleep she has actually had.'),
+      gettext('Sometimes falls asleep druing lectures and has to spend extra time making up for it.'),
+      gettext('Never knows how many hours of sleep she has actually had.')
     ]
   },
 }
@@ -64,7 +65,7 @@ function buildCarouselItem(persona) {
   for (var x=0; x < persona.goals.length; x++) {
     goals += '&ndash; ' + persona.goals[x] + '<br>';
   }
-  for (var y=0; y < persona.goals.length; y++) {
+  for (var y=0; y < persona.frustrations.length; y++) {
     frustrations += '&ndash; ' + persona.frustrations[y] + '<br>';
   }
 
@@ -84,5 +85,6 @@ function buildCarouselItem(persona) {
                   + '    ' + frustrations + '\n';
                   + '  </div>\n'
                   + '</div>\n';
+  console.log(displayHtml);
   $('#' + persona.carousel_id).html(displayHtml);
 }
