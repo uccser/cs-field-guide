@@ -240,6 +240,10 @@ of Brooklyn Nine-Nine on Netflix).
 
 After the helper script builds the system images, it will automatically start
 the system, and will let you know when the system is ready.
+
+TODO: Mention ./csfg update and explain what it does
+
+
 You should then be able to open your preferred web browser to the URL
 ``localhost`` and see the CS Field Guide homepage.
 
