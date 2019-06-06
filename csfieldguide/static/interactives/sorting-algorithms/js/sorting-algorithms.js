@@ -130,7 +130,7 @@ function checkOrder() {
     var ordered_boxes_row = document.getElementById('sorting-algorithms-interactive-item-sorted-row');
     if (ordered_boxes_row.getElementsByTagName("img").length != 8) {
         s = gettext('You need to sort all the boxes before checking!');
-        document.getElementById('check-order-result-text-feedback').innerText = s;
+        $('#check-order-result-text-feedback').html(s);
     } else {
         var ordered_boxes = ordered_boxes_row.children;
         var sorted = true;
@@ -142,11 +142,11 @@ function checkOrder() {
             }
         }
         if (sorted) {
-            s = gettext('The boxes are in order!');
-            document.getElementById('check-order-result-text-feedback').innerText = s;
+            s = colour(gettext('The boxes are in order, congratulations!'), true);
+            $('#check-order-result-text-feedback').html(s);
         } else {
-            s = gettext('The boxes are not in order!');
-            document.getElementById('check-order-result-text-feedback').innerText = s;
+            s = colour(gettext('The boxes are not in order, try again!'), false);
+            $('#check-order-result-text-feedback').html(s);
         }
     }
 }
@@ -178,4 +178,9 @@ function getDataWeight(element) {
         data_weight = element.children[0].dataset.weight;
     }
     return data_weight;
+}
+
+
+function colour(text, isGood) {
+    return '<span class="' + ((isGood)? 'correct':'incorrect') + '">' + text + '</span>';
 }
