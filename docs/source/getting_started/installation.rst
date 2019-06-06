@@ -232,11 +232,13 @@ in more detail on the next page):
 
     $ ./csfg start
 
-If this is the first time you're running this script it may take roughly 15 to 30 minutes, 
-depending on your computer and internet speed.
+If this is the first time you're running this script it will need to build system 
+images. 
+This may take roughly 15 to 30 minutes, depending on your computer and internet speed.
 
 Once the `./csfg start` command has completed, you will need to run the 
-update command. Type the following into your terminal:
+update command.
+Type the following into your terminal:
 
     .. code-block:: bash
 
