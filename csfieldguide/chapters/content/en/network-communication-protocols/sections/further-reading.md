@@ -18,13 +18,13 @@ How the internet works in 5 minutes
 
 {video url="https://www.youtube.com/embed/7_LPdttKXPc"}
 
-## Extra Activities
+## Extra activities
 
 - CS Unplugged Routing &ndash; Why do packets get delayed? [http://csunplugged.org/routing-and-deadlock](http://csunplugged.org/routing-and-deadlock)
 - Snail Mail &ndash; [http://www.cs4fn.org/internet/realsnailmail.php](http://www.cs4fn.org/internet/realsnailmail.php)
 - Code.org &ndash; The Internet [https://code.org/curriculum/course3/18/Teacher](https://code.org/curriculum/course3/18/Teacher)
 
-## Useful Links
+## Useful links
 
 - [http://simple.wikipedia.org/wiki/TCP/IP](http://simple.wikipedia.org/wiki/TCP/IP)
 - [https://en.wikipedia.org/wiki/Internet_protocol_suite](https://en.wikipedia.org/wiki/Internet_protocol_suite)

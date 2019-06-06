@@ -66,7 +66,7 @@ The key ideas to notice from this are:
 
 All this probably sounds really obvious, but it is worth thinking about consciously, because binary numbers have the same properties.
 
-## Representing whole numbers in Binary
+## Representing whole numbers in binary
 
 {panel type="teacher-note"}
 
@@ -99,7 +99,7 @@ Because there are only 2 digits, this means that each digit is **2** times the v
 
 {panel type="curiosity"}
 
-# The Denary number system
+# The denary number system
 
 The base 10 (decimal) system is sometimes called denary, which is more consistent with the name binary for the base 2 system.
 The word "denary" also refers to the Roman denarius coin, which was worth ten asses (an "as" was a copper or bronze coin).
@@ -447,7 +447,7 @@ In practice, we will want to be able to represent negative numbers as well, such
 In our normal representation of base 10 numbers, we represent negative numbers by putting a minus sign in front of the number.
 But in binary, is it this simple?
 
-We will look at two possible approaches: Adding a simple sign bit, much like we do for decimal, and then a more useful system called Two's Complement.
+We will look at two possible approaches: Adding a simple sign bit, much like we do for decimal, and then a more useful system called two's complement.
 
 ### Using a simple sign bit
 
@@ -525,12 +525,12 @@ Instead, computers usually use a more sophisticated representation for negative 
 
 There's an alternative representation called *Two's Complement*, which avoids having two representations for 0, and more importantly, makes it easier to do arithmetic with negative numbers.
 
-***Representing positive numbers with Two's Complement***
+***Representing positive numbers with two's complement***
 
 Representing positive numbers is the same as the method you have already learnt.
 Using **8 bits**,the leftmost bit is a zero and the other 7 bits are the usual binary representation of the number; for example, **1** would be **00000001**, and **50** would be **00110010**.
 
-***Representing negative numbers with Two's Complement***
+***Representing negative numbers with two's complement***
 
 This is where things get more interesting.
 In order to convert a negative number to its two's complement representation, use the following process.
@@ -538,13 +538,13 @@ In order to convert a negative number to its two's complement representation, us
 2. Invert all the digits (i.e. change 0's to 1's and 1's to 0's).
 3. Add 1 to the result (Adding 1 is easy in binary; you could do it by converting to decimal first, but think carefully about what happens when a binary number is incremented by 1 by trying a few; there are more hints in the panel below).
 
-For example, assume we want to convert **-118** to its Two's Complement representation.
+For example, assume we want to convert **-118** to its two's complement representation.
 We would use the process as follows.
 1. The binary number for **118** is **01110110**.
 2. **01110110** with the digits inverted is **10001001**.
 3. **10001001 + 1** is **10001010**.
 
-Therefore, the Two's Complement representation for **-118** is **10001010**.
+Therefore, the two's complement representation for **-118** is **10001010**.
 
 {panel type="challenge"}
 
@@ -607,14 +607,14 @@ Follow the process given in this section, and remember that you do not need to d
 
 {panel end}
 
-***Converting a Two's Complement number back to decimal***
+***Converting a two's complement number back to decimal***
 
 In order to reverse the process, we need to know whether the number we are looking at is positive or negative.
 For positive numbers, we can simply convert the binary number back to decimal.
 But for negative numbers, we first need to convert it back to a normal binary number.
 
 So how do we know if the number is positive or negative?
-It turns out (for reasons you will understand later in this section) that Two's Complement numbers that are negative always start in a 1, and positive numbers always start in a 0.
+It turns out (for reasons you will understand later in this section) that two's complement numbers that are negative always start in a 1, and positive numbers always start in a 0.
 Have a look back at the previous examples to double check this.
 
 So, if the number starts with a 1, use the following process to convert the number back to a negative decimal number.
@@ -635,7 +635,7 @@ So if we needed to convert 11100010 back to decimal, we would do the following.
 
 # Reversing Two's Complement
 
-Convert the following Two's Complement numbers to decimal.
+Convert the following two's complement numbers to decimal.
 
 1. 00001100
 2. 10001100
@@ -653,7 +653,7 @@ Convert the following Two's Complement numbers to decimal.
 
 {panel end}
 
-***How many numbers can be represented using Two's Complement?***
+***How many numbers can be represented using two's complement?***
 
 While it might initially seem that there is no bit allocated as the sign bit, the left-most bit behaves like one.
 With 8 bits, you can still only make 256 possible patterns of 0's and 1's.
@@ -661,7 +661,7 @@ If you attempted to use 8 bits to represent positive numbers up to 255, and nega
 Obviously, this will make it impossible to know what number is actually being represented!
 
 In practice, numbers within the following ranges can be represented.
-**Unsigned Range** is how many numbers you can represent if you only allow positive numbers (no sign is needed), and **Two's Complement Range** is how many numbers you can represent if you require both positive and negative numbers.
+**Unsigned Range** is how many numbers you can represent if you only allow positive numbers (no sign is needed), and **two's complement Range** is how many numbers you can represent if you require both positive and negative numbers.
 You can work these out because the range of 8-bit values if they are stored using unsigned numbers will be from 00000000 to 11111111 (i.e. 0 to 255 in decimal), while the signed two's complement range is from 10000000 (the lowest number, -128 in decimal) to 01111111 (the highest number, 127 in decimal).
 This might seem a bit weird, but it works out really well because normal binary addition can be used if you use this representation even if you're adding a negative number.
 
@@ -727,13 +727,13 @@ Which is **-2**.
 
 One way we could solve the problem is to use column subtraction instead.
 But this would require giving the computer a hardware circuit which could do this.
-Luckily this is unnecessary, because addition with negative numbers works automatically using Two's Complement!
+Luckily this is unnecessary, because addition with negative numbers works automatically using two's complement!
 
-***Adding negative numbers with Two's Complement***
+***Adding negative numbers with two's complement***
 
-For the above addition (+11 + -7), we can start by converting the numbers to their 5-bit Two's Complement form.
+For the above addition (+11 + -7), we can start by converting the numbers to their 5-bit two's complement form.
 Because **01011 (+11)** is a positive number, it does not need to be changed.
-But for the negative number, **00111 (-7)** (sign bit from before removed as we don't use it for Two's Complement), we need to invert the digits and then add 1, giving **11001**.
+But for the negative number, **00111 (-7)** (sign bit from before removed as we don't use it for two's complement), we need to invert the digits and then add 1, giving **11001**.
 
 Adding these two numbers works like this:
 
@@ -751,7 +751,7 @@ If we are subtracting a positive number from a positive number, we would need to
 Then we should add the two numbers.
 This is the same as for decimal numbers, for example 5 - 2 = 3 is the same as 5 + (-2) = 3.
 
-This property of Two's Complement is very useful.
+This property of two's complement is very useful.
 It means that positive numbers and negative numbers can be handled by the same computer circuit, and addition and subtraction can be treated as the same operation.
 
 {panel type="curiosity"}
@@ -777,6 +777,6 @@ Working out complements in binary is way easier because there are only two digit
 We have now looked at two different ways of representing negative numbers on a computer.
 In practice, a simple sign bit is rarely used, because of having two different representations of zero, and requiring a different computer circuit to handle negative and positive numbers, and to do addition and subtraction.
 
-Two's Complement is widely used, because it only has one representation for zero, and it allows positive numbers and negative numbers to be treated in the same way, and addition and subtraction to be treated as one operation.
+Two's complement is widely used, because it only has one representation for zero, and it allows positive numbers and negative numbers to be treated in the same way, and addition and subtraction to be treated as one operation.
 
-There are other systems such as "One's Complement" and "Excess-k", but Two's Complement is by far the most widely used in practice.
+There are other systems such as "One's Complement" and "Excess-k", but two's complement is by far the most widely used in practice.
