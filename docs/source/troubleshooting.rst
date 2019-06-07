@@ -35,8 +35,6 @@ Firstly check the image is located in the ``staticfiles/`` directory.
 If the image isn't located within the directory, check the original image is
 located within the ``static`` directory.
 
-**Normal Images (not Scratch block images)**
-
 If the image is located within the ``static/`` directory, check the
 filepath is correct.
 When running ``./csfg update``, the script will report an error if an image

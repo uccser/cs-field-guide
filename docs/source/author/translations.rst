@@ -76,6 +76,4 @@ Translation notes
 
   The only text to translate is 'The parity magic trick'.
 
-- Text within Scratch tags should be translated using Scratchblocks syntax.
-
 If you are unsure how to translate a line, please leave it for another translator.
