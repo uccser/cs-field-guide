@@ -16,15 +16,7 @@ Any jargon used needs to be clearly explained and should be considered as a glos
 
 Capitalisation Rules
 ------------------------------------------------------------------------------
-TODO: Check capitalisation rules (I don't think we capitalise computer science) also these are CSU terms
-In the majority of cases capitalisation should not be used for keywords and titles, with the following exceptions, where the phrase refers to a commonly used term that is often capitilised in the literature:
-
-- Computer Science.
-- Computational Thinking.
-- Digital Technologies (note that this is the correct form to refer to the subject area in NZ, with caps and plural; if it's referring to something other than the subject then use lower case e.g. "smartphones and other digital technologies", or even better, avoid the phrase e.g. "smartphones and other digital devices").
-- Sorting Network.
-- Numeracy.
-- Literacy.
+In the majority of cases capitalisation should not be used for keywords and titles.
 
 The following wouldn't be capitalised:
 binary number(s), digits, binary digits

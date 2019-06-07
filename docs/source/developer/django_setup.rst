@@ -29,6 +29,10 @@ Database Structure
 The following image shows the relationships between models across all
 applications within the database.
 
+.. The following image can copied for be edits here: https://docs.google.com/drawings/d/1jXwstn-QNVd_WOy15_6TW4IR-p7W4khwQVNvdBnCu7w/edit?usp=sharing
+.. image:: ../_static/img/database_overview_diagram.png
+  :alt: A diagram detailing the general structure of the database
+
 The rest of the :doc:`index` will inform you of how to develop the
 applications and other components of the CS Field Guide project.
 

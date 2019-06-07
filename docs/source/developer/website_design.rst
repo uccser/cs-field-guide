@@ -9,6 +9,7 @@ In summary:
 - We use Bootstrap 4 for the underlying framework for responsive design.
 - We use SCSS for style sheets where possible.
 - We wrap translatable strings in `{% trans %}` or `{% blocktrans %}` tags.
+- When interactives are viewed in whole page mode they should be centered.
 
 Setting Custom Converter Templates
 ==============================================================================
