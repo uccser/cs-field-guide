@@ -9,34 +9,18 @@ For example, the following text:
 
 .. code-block:: none
 
-  # Scratch Programming Exercise
+  {panel type="teacher-note"}
 
-  Try using the following blocks to create a program to display numbers 1, 2,
-  4, 8 and 16 on the screen, one at a time.
+  # This section contains extension material
 
-
-  ```scratch
-  when flag clicked
-
-  say [Hello] for [2] secs
-  ```
-
-  Your program should look like the following:
-
-  {iframe link="http://scratch.mit.edu/projects/embed/148423714/?autostart=false"}
-
-  {panel type="note" title="Tips"}
-
-  - Make sure all your blocks are “snapped” together in a line like a
-    jigsaw puzzle.
+  This section is an extension aimed at keen students.
+  Primary school kids have been able to understand many of these ideas, although it really depends on how engaged the students are with the material.
 
   {panel end}
 
-  {button-link link="exercise/scratch-solution.html" text="Scratch Solution"}
-
 will display as the following on the website:
 
-.. image:: ../_static/img/markdown_example_rendered.png
+.. image:: ../_static/img/teacher_note.png
   :alt: An image showing the above Markdown syntax rendered as HTML
 
 .. note::
