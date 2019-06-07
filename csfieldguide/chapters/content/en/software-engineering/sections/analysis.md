@@ -159,7 +159,7 @@ If so, how would you go about resolving them?
 
 {panel type="teacher-note"}
 
-# Choosing a good topic for the project"}
+# Choosing a good topic for the project
 
 This project will work best if the students pick reasonably complex projects with a number of different stakeholders and requirements.
 A simple customer database for a business is unlikely to generate a lot of interesting requirements.

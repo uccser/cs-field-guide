@@ -93,7 +93,7 @@ Being comfortable with such structures is a useful skill for computer scientists
 
 {panel type="jargon-buster"}
 
-# Finite State Automaton
+# Finite state automaton
 
 The name
 {glossary-link term="finite-state-automaton" reference-text="Formal languages"}finite state automaton{glossary-link end} (FSA) might seem strange, but each word is quite simple.
