@@ -10,6 +10,7 @@ In summary:
 - We use SCSS for style sheets where possible.
 - We wrap translatable strings in `{% trans %}` or `{% blocktrans %}` tags.
 - When interactives are viewed in whole page mode they should be centered.
+- We aim for the website to be as accessible as possible via accessible features.
 
 Setting Custom Converter Templates
 ==============================================================================
