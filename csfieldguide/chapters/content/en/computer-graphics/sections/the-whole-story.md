@@ -18,7 +18,7 @@ Graphics processing units (GPUs) in modern desktop computers are particularly go
 
 {panel type="curiosity"}
 
-# Moebius strips and GPUs
+# Möbius strips and GPUs
 
 Homogeneous coordinate systems, which are fundamental to modern computer graphics systems,
 were first introduced in 1827 by a German mathematician called

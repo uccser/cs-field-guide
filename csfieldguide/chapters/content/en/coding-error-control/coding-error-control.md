@@ -1,4 +1,4 @@
-# Coding - Error Control
+# Coding - Error control
 
 {panel type="teacher-note"}
 
