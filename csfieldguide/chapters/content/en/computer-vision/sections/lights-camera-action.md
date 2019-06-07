@@ -1,4 +1,4 @@
-# Lights, Camera, Action!
+# Lights, camera, action!
 
 
 Digital cameras and human eyes fulfill largely the same function: images come in through a lens and are focused onto a light sensitive surface, which converts them into electrical impulses that can be processed by the brain or a computer respectively.
