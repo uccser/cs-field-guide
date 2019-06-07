@@ -29,7 +29,7 @@ Here are some Big O examples:
 
 {panel end}
 
-Big O Notation however requires some advanced mathematics to explore thoroughly so has been intentionally left out of this main chapter, but if you want to learn more check out the Useful Links section.
+Big O Notation however requires some advanced mathematics to explore thoroughly so has been intentionally left out of this main chapter, but if you want to learn more check out the Useful links section.
 These topics are looked at in more depth in the Complexity and Tractability chapter.
 
 To make things even more complicated, theoretical analysis techniques such as Big O Notation are extremely useful when designing and predicting performance but empirical analysis such as stopwatch timing shows that in practice algorithm performance can vary greatly due to hardware and operating system design.
