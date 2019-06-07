@@ -25,7 +25,9 @@ window.onload = function() {
     }
 }
 
-// shuffle function adapted from https://bost.ocks.org/mike/shuffle
+/** 
+ * shuffle function adapted from https://bost.ocks.org/mike/shuffle
+ */
 function shuffle(array) {
     var element_index = array.length;
     var random_index;
@@ -44,6 +46,9 @@ function shuffle(array) {
     return array;
 }
 
+/**
+ * Defines draging and button handlers
+ */
 $(function() {
     var image_list = $('.dashed-box').toArray();
     var drake = dragula(image_list);
@@ -66,6 +71,9 @@ $(function() {
     });
 });
 
+/**
+ * Swaps the image in the target container and the image in the source container
+ */
 function swap(image, target_container, source_container) {
     // save the original image in target_container to a temp var
     temp = target_container.children[0];
@@ -74,6 +82,9 @@ function swap(image, target_container, source_container) {
     source_container.appendChild(temp);
 }
 
+/**
+ * Does the comparison between items in the two weight containers
+ */
 function compareWeights() {
     var left_weight_div = document.getElementById('left-weight-content');
     var right_weight_div = document.getElementById('right-weight-content');
@@ -95,7 +106,9 @@ function compareWeights() {
     }
 }
 
-
+/**
+ * Rotates the arrow appropriately
+ */
 function rotateIndicator(direction) {
     // point to the heaviest box
     indicator = document.getElementById('scale');
@@ -114,7 +127,9 @@ function rotateIndicator(direction) {
     }
 }
 
-
+/**
+ * Increases the number of comparisons by 1 if it isn't the comparison made immediately previous
+ */
 function countComparisons() {
     left_image = document.getElementById('left-weight-content').children[0];
     right_image = document.getElementById('right-weight-content').children[0];
@@ -128,7 +143,9 @@ function countComparisons() {
     }
 }
 
-
+/**
+ * Displays a message depending on the order of images in the sorted image row
+ */
 function checkOrder() {
     var ordered_boxes_row = document.getElementById('sorting-algorithms-interactive-item-sorted-row');
     if (ordered_boxes_row.getElementsByTagName("img").length != 8) {
@@ -154,7 +171,9 @@ function checkOrder() {
     }
 }
 
-
+/**
+ * Toggles the display of a second row of boxes, useful for quick/merge sort etc
+ */
 function toggleSecondRow() {
     var row = document.getElementById('sorting-algorithms-interactive-item-unsorted-row-2');
     var button = document.getElementById('toggle-second-row');
@@ -173,7 +192,9 @@ function toggleSecondRow() {
     button.innerText = s;
 }
 
-
+/**
+ * Returns the weight associated with the given element(image)
+ */
 function getDataWeight(element) {
     var data_weight = empty_weight;
     // If the box is not empty
@@ -183,11 +204,18 @@ function getDataWeight(element) {
     return data_weight;
 }
 
-
+/**
+ * Returns text, but included in a <span> element with class=correct or incorrect
+ * depending on the boolean isGood
+ */
 function colour(text, isGood) {
     return '<span class="' + ((isGood)? 'correct':'incorrect') + '">' + text + '</span>';
 }
 
+/**
+ * Returns all images to their original locations, weights intact, and resets
+ * the number of comparisons made
+ */
 function reset() {
     resetRow = document.getElementById('sorting-algorithms-interactive-item-unsorted-row-1').children;
     for (var i=0; i < resetRow.length; i++) {
