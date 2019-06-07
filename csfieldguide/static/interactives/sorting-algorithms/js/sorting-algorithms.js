@@ -5,10 +5,10 @@ var comparisons = 0;
 var last_left_image;
 var last_right_image;
 var empty_weight = -1;
+const data_weights = [0, 1, 2, 3, 4, 5, 6, 7]; // weights of the images, used for comparisons
 
 window.onload = function() {
     var images_to_sort = document.getElementsByClassName('sorting-boxes');
-    const data_weights = [0, 1, 2, 3, 4, 5, 6, 7]; // weights of the images, used for comparisons
     // shuffle the weights and assign them to each image
     var shuffled_weights = shuffle(data_weights);
     for (var i = 0; i < images_to_sort.length; i++) {
@@ -60,6 +60,9 @@ $(function() {
     });
     $('#toggle-second-row').on('click', function () {
         toggleSecondRow();
+    });
+    $('#reset-button').on('click', function () {
+        reset();
     });
 });
 
@@ -183,4 +186,19 @@ function getDataWeight(element) {
 
 function colour(text, isGood) {
     return '<span class="' + ((isGood)? 'correct':'incorrect') + '">' + text + '</span>';
+}
+
+function reset() {
+    resetRow = document.getElementById('sorting-algorithms-interactive-item-unsorted-row-1').children;
+    for (var i=0; i < resetRow.length; i++) {
+        $("#img-" + i).appendTo(resetRow[i]);
+    }
+
+    comparisons = 0;
+    last_left_image = null;
+    last_right_image = null;
+    var fmts = gettext('Number Of Comparisons: %(comparisons)s');
+    var s = interpolate(fmts, {comparisons: comparisons}, true);
+    document.getElementById('comparison-counter-text').innerText = s;
+    $('#check-order-result-text-feedback').html('<br>');
 }
