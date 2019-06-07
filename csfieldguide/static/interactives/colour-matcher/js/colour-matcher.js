@@ -49,9 +49,6 @@ $(document).ready(function () {
         decimals: 0
       })
     });
-
-    // Bind the color changing function to the slide event.
-    ColourMatcher.bit_24.sliders[i].noUiSlider.on('slide', update24BitPanel);
   }
 
   // Setup 8 bit sliders
@@ -83,9 +80,6 @@ $(document).ready(function () {
 		    stepped: true
     	}
     });
-
-    // Bind the color changing function to the slide event.
-    ColourMatcher.bit_8.sliders[i].noUiSlider.on('slide', update8BitPanel);
   }
 
   // Create data bits for representations
@@ -144,6 +138,17 @@ $(document).ready(function () {
     }
     updateSlidersFromRepresentation();
   });
+
+  // Bind the color changing function to the update event.
+  // Fires immediately so has to be outside for-loop and ran last.
+  ColourMatcher.bit_24.sliders[0].noUiSlider.on('update', update24BitPanel);
+  ColourMatcher.bit_24.sliders[1].noUiSlider.on('update', update24BitPanel);
+  ColourMatcher.bit_24.sliders[2].noUiSlider.on('update', update24BitPanel);
+  // Bind the color changing function to the update event.
+  // Fires immediately so has to be outside for-loop and ran last.
+  ColourMatcher.bit_8.sliders[0].noUiSlider.on('update', update8BitPanel);
+  ColourMatcher.bit_8.sliders[1].noUiSlider.on('update', update8BitPanel);
+  ColourMatcher.bit_8.sliders[2].noUiSlider.on('update', update8BitPanel);
 
 });
 
