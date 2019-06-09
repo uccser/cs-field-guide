@@ -4,11 +4,11 @@ Translations
 Getting Started
 ==============================================================================
 
-It's really easy to start contributing translations using CS Field Guide
+It's really easy to start contributing translations using the CS Field Guide
 
 1. Read this documentation page, especially the `Translation Notes`_ section.
 2. Create an account on `Crowdin <https://crowdin.com/join>`__.
-3. Visit the `CS Unplugged Crowdin page <https://crowdin.com/project/cs-field-guide>`__.
+3. Visit the `CS Field Guide Crowdin page <https://crowdin.com/project/cs-field-guide>`__.
 4. Start translating!
 
 .. note::

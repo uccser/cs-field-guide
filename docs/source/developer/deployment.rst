@@ -55,7 +55,7 @@ Production deployment
 Deployment of the ``master`` branch occurs automatically with new commits to
 the ``master`` branch, and is deployed by Travis CI.
 
-The system is deployed to: https://www.csfieldguide.org/.
+The system is deployed to: https://www.csfieldguide.org.nz/.
 
 Manual deployment
 ==============================================================================

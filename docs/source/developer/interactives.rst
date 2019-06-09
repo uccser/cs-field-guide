@@ -55,9 +55,10 @@ Interactive Configuration Files
 
     - ``languages:`` A dictionary of all languages the interactive is available in, where each key is the locale.
 
-    - ``is_interactive:`` A boolean value indicating if the interactive is interactable. This field was introduced
+    - ``is_interactive:`` A boolean value indicating if the interactive can be interacted with. This field was introduced
       so that we could translate images that contain text. Therefore, if the ``is_interactive`` field is set to ``false``,
-      it means it is just an image and the user cannot interact with the content. 
+      it means the user cannot interact with the content and it is not displayed in the interactives appendix. We call these
+      'Uninteractives'.
 
 A complete interactive structure file may look like the following:
 
@@ -184,7 +185,7 @@ Items of interest from this diagram:
       <!-- The JavaScript of your interactive goes here -->
     {% endblock js %}
 
-  The first line ``{% extends interactive_mode_template %}`` is required for all interactives. The second line ``{% load i18n %}`` is needed if you are translating any text in your template.
+  The first line ``{% extends interactive_mode_template %}`` is required for all interactives. The second line ``{% load i18n %}`` is needed if you have translatable text in your template.
   The third line ``{% load static %}`` allows us to serve additional files such as images, JavaScript or CSS. These are referred to as "static files" in Django.
 
 We recommend looking at existing interactives and how their files are organised to become familiar with developing your own interactive.
@@ -205,6 +206,6 @@ Uninteractives
 ------------------------------------------------------------------------------
 
 Uninteractives follow the exact same structure as interactives, the only difference is that the user cannot interact with them in the browser.
-They are most commonly used when an image contains text and that text needs to be translated. Uninteractives are distinguished from interactives 
+They are most commonly used as a replacement for images with text we want translated. Uninteractives are distinguished from interactives 
 by setting the `is_interactive:` attribute to `false` in the `interactives.yaml` configuration file.
 
