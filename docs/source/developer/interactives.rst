@@ -50,7 +50,7 @@ Interactive Configuration Files
 - **Required Fields:**
 
   - ``interactives:`` A dictionary of all interactive data, where each key is a slug for an interacive. 
-TODO: Check below wording
+
   - The dictionary of interactive data must include:
 
     - ``languages:`` A dictionary of all languages the interactive is available in, where each key is the locale.
@@ -58,7 +58,6 @@ TODO: Check below wording
     - ``is_interactive:`` A boolean value indicating if the interactive is interactable. This field was introduced
       so that we could translate images that contain text. Therefore, if the ``is_interactive`` field is set to ``false``,
       it means it is just an image and the user cannot interact with the content. 
-END OF CHECK
 
 A complete interactive structure file may look like the following:
 

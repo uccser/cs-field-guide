@@ -56,4 +56,5 @@ following (or similar):
     author/index
     developer/index
     other/index
+    troubleshooting
     changelog
