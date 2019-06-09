@@ -51,17 +51,15 @@ Translation notes
 
 .. note::
 
-  On Crowdin, Markdown files are translated on a per-sentence basis. There may
-  be some cases where this is not desirable, and some paragraph level restructuring
-  is required to convey a concept in a given language.
+  On Crowdin, Markdown files are translated on a per-sentence basis. 
+  There may be some cases where this is not desirable, and some paragraph level restructuring is required to convey a concept in a given language.
 
   In these cases, it could be possible to work around this with tricks such as
 
   - translating one sentence into the translation box for another.
   - translating a sentence into a blank string.
 
-  These techniques are highly discouraged as they fight against many aspects of
-  the Crowdin system including
+  These techniques are highly discouraged as they fight against many aspects of the Crowdin system including
 
   - QA checks that ensure translations match the structure of the source strings.
   - Translation memory.
@@ -75,5 +73,12 @@ Translation notes
     {image file-path="img/chapters/parity-trick-cartoon.jpg" alt="The parity magic trick"}
 
   The only text to translate is 'The parity magic trick'.
+
+  One example of a Verto tag that should not be translated is the comment tag. 
+  For example none of the following text should be translated:
+
+  .. code-block:: none
+
+    {comment This is a comment}
 
 If you are unsure how to translate a line, please leave it for another translator.

@@ -8,7 +8,8 @@ Translation Infrastructure
 
 Crowdin
 ==============================================================================
-We use a localisation management platform called `Crowdin <https://crowdin.com/project/cs-unplugged>`_ for translation of CS Field Guide. The project is public, meaning that anyone can create an account and contribute translations.
+We use a localisation management platform called `Crowdin <https://crowdin.com/project/cs-unplugged>`_ for translation of CS Field Guide.
+The project is public, meaning that anyone can create an account and contribute translations.
 
 Translatable Files
 ==============================================================================
@@ -19,14 +20,12 @@ There are 3 types of files that contain translatable content:
 - ``django.po`` file containing translatable system strings
 
 Translatable source files must always reside under an ``en`` directory tree.
-Translated files are downloaded into a directory named with the language's
-locale code, and with the same structure as the source tree.
+Translated files are downloaded into a directory named with the language's locale code, and with the same structure as the source tree.
 
 .. note::
 
-  The locale code differs from the language code in format - where a language
-  code is of form ``ab-cd``, the locale code will be ``ab_CD``. Directories must be named
-  using the locale code recognised by django for that language.
+  The locale code differs from the language code in format - where a language code is of form ``ab-cd``, the locale code will be ``ab_CD``.
+  Directories must be named using the locale code recognised by django for that language.
 
   For more information, see
 
@@ -42,7 +41,8 @@ Review Process
 For a translation of any given string to make it to production release, it must pass the following stages of review:
 
 1. (Crowdin) Translation Proofread - Review by a second translator with 'proofreader' status in the target language.
-2. (GitHub) Technical Review - Review by a member of the CS Field Guide technical team to catch technical errors (i.e. with Verto tags, links, Markdown syntax etc). Automated testing on travis will also occur at this stage.
+2. (GitHub) Technical Review - Review by a member of the CS Field Guide technical team to catch technical errors (i.e. with Verto tags, links, Markdown syntax etc). 
+   Automated testing on travis will also occur at this stage.
 
 Translation Pipeline
 ==============================================================================

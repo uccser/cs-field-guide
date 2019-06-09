@@ -21,10 +21,8 @@ This documentation contains:
 :doc:`Author Documentation <author/index>`
 ==============================================================================
 
-This documentation is for those who want to help write content for the CS
-Field Guide project, specifically text content.
-This is the documentation to read if you want to do any of the
-following (or similar):
+This documentation is for those who want to help write content for the CS Field Guide project, specifically text content.
+This is the documentation to read if you want to do any of the following (or similar):
 
 - Add a new chapter or chapter section
 - Add a translation
@@ -34,10 +32,8 @@ following (or similar):
 :doc:`Developer Documentation <developer/index>`
 ==============================================================================
 
-This documentation is for those who want to contribute to developing the
-Django system for delivering the CS Field Guide content.
-This is the documentation to read if you want to do any of the
-following (or similar):
+This documentation is for those who want to contribute to developing the Django system for delivering the CS Field Guide content.
+This is the documentation to read if you want to do any of the following (or similar):
 
 - Edit HTML templates used to render webpages
 - Edit CSS used for styling the website

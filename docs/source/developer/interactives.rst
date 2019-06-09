@@ -206,6 +206,5 @@ Uninteractives
 ------------------------------------------------------------------------------
 
 Uninteractives follow the exact same structure as interactives, the only difference is that the user cannot interact with them in the browser.
-They are most commonly used as a replacement for images with text we want translated. Uninteractives are distinguished from interactives 
-by setting the `is_interactive:` attribute to `false` in the `interactives.yaml` configuration file.
+They are most commonly used as a replacement for images with text we want translated. Uninteractives are distinguished from interactives  by setting the `is_interactive:` attribute to `false` in the `interactives.yaml` configuration file.
 

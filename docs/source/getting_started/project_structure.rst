@@ -19,8 +19,7 @@ The repository directory (or root directory) contains the following:
 
 - ``docs/``
 
-  - This directory contains the documentation for the repository (which includes
-    the file you are reading now).
+  - This directory contains the documentation for the repository (which includes the file you are reading now).
 
 - ``subtitles/``
 
@@ -28,8 +27,7 @@ The repository directory (or root directory) contains the following:
 
 - ``README.md``
 
-  - This file contains an introduction and important information for the
-    repository.
+  - This file contains an introduction and important information for the repository.
 
 - ``LICENCE.md``
 
@@ -40,19 +38,16 @@ The repository directory (or root directory) contains the following:
 csfieldguide Directory
 =================================================
 
-The ``csfieldguide/`` directory holds the Django web system and is split across
-the following directories:
+The ``csfieldguide/`` directory holds the Django web system and is split across the following directories:
 
 - ``config/``
 
   - This directory holds the settings used by the Django system.
-    It's unlikely you'll edit the contents of this directory unless you are
-    changing the Django configuration (for example: adding a new application).
+    It's unlikely you'll edit the contents of this directory unless you are changing the Django configuration (for example: adding a new application).
 
 .. _django-applications:
 
-Django contains 'applications' which are Python packages that provide
-some set of features.
+Django contains 'applications' which are Python packages that provide some set of features.
 Each large part/chunk of the CS Field Guide is a separate application.
 The project currently contains the following applications:
 
@@ -69,30 +64,24 @@ The project currently contains the following applications:
 
   - This application stores all data related to interactives in the CS Field Guide.
 
-Details on how to modify an application can be found within their relavent
-author and developer documentation pages.
+Details on how to modify an application can be found within their relavent author and developer documentation pages.
 
 The following directories are also required by the Django system:
 
 - ``static/``
 
-  - This directory contains non-user-generated media assets (for example:
-    images, JavaScript, CSS/SCSS, etc).
+  - This directory contains non-user-generated media assets (for example: images, JavaScript, CSS/SCSS, etc).
 
 - ``templates/``
 
   - This directory contains all the HTML templates for the Django system.
 
-The following directories are used when the server is running (for example:
-a script compiles the SCSS to CSS and saves it to the ``build/`` directory for
-serving on a webpage).
-You should never save anything in these directories, as the contents are often
-overwritten and cleared.
+The following directories are used when the server is running (for example: a script compiles the SCSS to CSS and saves it to the ``build/`` directory for serving on a webpage).
+You should never save anything in these directories, as the contents are often overwritten and cleared.
 
 - ``build/``
 
-  - Contains the generated output of the front-end script (for example:
-    compiled and minified CSS and JavaScript, compressed images, etc).
+  - Contains the generated output of the front-end script (for example: compiled and minified CSS and JavaScript, compressed images, etc).
 
 The ``csfieldguide/`` directory also contains the following files:
 

@@ -1,9 +1,7 @@
 Chapter Content
 ##############################################################################
 
-The chapters application (see :ref:`what-is-an-application`) is the main focus of
-the CS Field Guide website, as it contains the majority of educational material
-for the project.
+The chapters application (see :ref:`what-is-an-application`) is the main focus of the CS Field Guide website, as it contains the majority of educational material for the project.
 
 .. contents:: Contents
   :local:
@@ -52,11 +50,9 @@ Configuration Files
 ==============================================================================
 
 This section details configuration files within the ``content/structure`` directory.
-These files are in YAML format. If you are not familiar with YAML, see
-:doc:`understanding_configuration_files`.
+These files are in YAML format. If you are not familiar with YAML, see :doc:`understanding_configuration_files`.
 
-The diagram below shows an example of YAML file locations for the
-``content/structure/`` language directory, where:
+The diagram below shows an example of YAML file locations for the ``content/structure/`` language directory, where:
 
 - Blue is directories.
 - Red is YAML configuration files.
@@ -68,9 +64,7 @@ In the following sections, each configuration file is exaplained in more detail.
 
 .. note::
 
-  - Some of the keys (:ref:`what-is-a-key`) have angle brackets around them,
-    ``<like so>``. This means that they are variables and you can call them
-    whatever you like in your configuration file (without the angle brackets).
+  - Some of the keys (:ref:`what-is-a-key`) have angle brackets around them, ``<like so>``. This means that they are variables and you can call them whatever you like in your configuration file (without the angle brackets).
 
 .. _application-structure-file:
 

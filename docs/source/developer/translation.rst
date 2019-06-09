@@ -69,7 +69,7 @@ Django Package - ``modeltranslation``
 ******************************************************************************
 The Django modeltranslation package is utilised to stored translated content on a model.
 The basic idea is that for each translatable field, an extra database column is added for every language defined in the Django settings file.
-When the base field is accessed, ``modeltranslation`` performs some magic to retrieve the translation for the users language
+When the base field is accessed, ``modeltranslation`` performs some magic to retrieve the translation for the users language.
 
 
 To register translation fields for a given TranslatableModel, add a TranslationOptions subclass to the ``translations.py`` file in the relevant application.
@@ -93,12 +93,12 @@ The ``TranslatableModel`` base class includes a mechanism to determine whether a
 
 This mechanism consists of
 
-- The ``languages`` field, which is an array field storing the Django language codes for languages in which the model is available
-- The ``translation_available`` property, which returns true if the model is available in the current language
+- The ``languages`` field, which is an array field storing the Django language codes for languages in which the model is available.
+- The ``translation_available`` property, which returns true if the model is available in the current language.
 
 When creating the ``TranslatableModel`` instance, the list of available languages should be determined.
 This will likely be decided using a list of required fields, where the presence of translations for all required fields leads to the model being marked as available.
-The `TranslatableModelLoader <TranslatableModelLoader_>`_ base class includes functions to assist with this task
+The `TranslatableModelLoader <TranslatableModelLoader_>`_ base class includes functions to assist with this task.
 
 In view and template code, the ``translation_available`` property can be checked to determine the presentation of translated content (or lack thereof) on the front end.
 
@@ -119,10 +119,10 @@ Utility Functions
 
 The following utility functions are available:
 
-- ``get_yaml_translations`` - Load translations for model fields from a given YAML file
-- ``get_markdown_translations`` - Load translations for a given Markdown file
-- ``populate_translations`` - Populate translation fields on a model using values in a given dictionary
-- ``mark_translation_availability`` - Modify ``languages`` field to contain all languages for which all required translation fields are populated
+- ``get_yaml_translations`` - Load translations for model fields from a given YAML file.
+- ``get_markdown_translations`` - Load translations for a given Markdown file.
+- ``populate_translations`` - Populate translation fields on a model using values in a given dictionary.
+- ``mark_translation_availability`` - Modify ``languages`` field to contain all languages for which all required translation fields are populated.
 
 Refer to the function docstrings for more detailed documentation.
 It may also be useful to refer to existing loader implementations to understand how these functions can be used.

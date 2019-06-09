@@ -99,7 +99,7 @@ We have listed major changes for each release below.
 
 **Notable changes:**
 
-This release adds a JPEG compression interactive, along with many bug fixes, corrections, and.
+This release adds a JPEG compression interactive, along with many bug fixes, and corrections.
 
 The version numbering scheme now does not start with the `v` character (so `v2.9.1` is `2.9.1`).
 This to make the numbering consistent with our other projects (CS Unplugged and cs4teachers).

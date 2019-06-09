@@ -23,4 +23,5 @@ Module files can be required by other JavaScript files to be included.
 
 If NPM modules are added, modified, or deleted, the Docker images will need to be rebuilt using ``./csfg dev build``.
 
-Django's `JavaScript translation catalog <https://docs.djangoproject.com/en/1.11/topics/i18n/translation/#internationalization-in-javascript-code>`_ enables the use of gettext() in JavaScript files to translate text. The JavaScript translation files are prepared before server start.
+Django's `JavaScript translation catalog <https://docs.djangoproject.com/en/1.11/topics/i18n/translation/#internationalization-in-javascript-code>`_ enables the use of gettext() in JavaScript files to translate text.
+The JavaScript translation files are prepared before server start.
