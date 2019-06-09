@@ -1,7 +1,7 @@
 # Sorting Algorithms Interactive
 
 **Original Author:** Jack Morgan
-**Modified by:** Alasdair Smith
+**Modified by:** Hayley van Waas, Alasdair Smith
 
 This interactive is created for teaching sorting algorithms, mostly selection, quick, and merge sort.
 
