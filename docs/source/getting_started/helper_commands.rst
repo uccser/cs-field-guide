@@ -38,7 +38,7 @@ Where ``[COMMAND]`` is a word from the list below:
 - :ref:`static`
 - :ref:`static_prod`
 - :ref:`style`
-- :ref:`test`
+- :ref:`test_suite`
 - :ref:`test_backwards`
 - :ref:`test_coverage`
 - :ref:`test_specific`
@@ -157,12 +157,12 @@ Running ``./csfg style`` will run the ``flake8`` and ``pydocstyle`` commands
 to check the style of the project.
 If the output is ``0`` for a check, then there are zero errors.
 
-.. _test:
+.. _test_suite:
 
-``test``
+``test_suite``
 -----------------------------------------------------------------------------
 
-Running ``./csfg test`` will run the test suite, and create a report
+Running ``./csfg test_suite`` will run the test suite, and create a report
 detailing test code coverage.
 The code coverage report can be displayed by running
 ``./csfg test_coverage``.

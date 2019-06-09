@@ -1,4 +1,4 @@
-Welcome to CS Field Guide
+Welcome to the CS Field Guide
 ##############################################################################
 
 Welcome to the documentation for the CS Field Guide project.
@@ -43,7 +43,7 @@ following (or similar):
 - Edit CSS used for styling the website
 - Edit the static files (images, CSS, JavaScript, etc) used within the website
 - Add an interactive to the website
-- Contribute to test suite for checking database models
+- Contribute to the test suite for checking database models
 - Alter URL routing for views
 
 ------------------------------------------------------------------------------

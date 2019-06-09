@@ -40,6 +40,9 @@ filepath is correct.
 When running ``./csfg update``, the script will report an error if an image
 cannot be found.
 
+Currently ``./csfg update_static`` removes thumbnail images and is a known issue.
+To get them back run ``./csfg update``.
+
 Changed CSS/SCSS styles are not updated when I view the website
 ------------------------------------------------------------------------------
 
@@ -52,7 +55,7 @@ SCSS compilation errors.
 The website isn't displaying when I open ``localhost`` in a browser
 ----------------------------------------------------------------------------------------------
 
-Check you have run the ``./csfg start`` command, and that it hasn't reported any
-errors.
+Check you have run both the ``./csfg start`` and ``./csfg update`` commands (in that order), 
+and that it hasn't reported any errors.
 
 .. _issue tracker: https://github.com/uccser/cs-field-guide/issues
