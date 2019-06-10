@@ -18,6 +18,7 @@ Where ``[COMMAND]`` is a word from the list below:
 
 - :ref:`build`
 - :ref:`clean`
+- :ref:`docs`
 - :ref:`end`
 - :ref:`flush`
 - :ref:`help`
@@ -54,6 +55,18 @@ All users of the project (content and technical developers) should become famili
 ==============================================================================
 
 Running ``./csfg build`` will build or rebuild the Docker images that are required for the CS Field Guide system.
+When you run this command for the first time it can take roughly 15 to 30 minutes depending on your computer and internet speed.
+
+Images are only required to be built once, unless the image specifications change.
+
+-----------------------------------------------------------------------------
+
+.. docs:
+
+``docs``
+==============================================================================
+
+Running ``./csfg docs`` will build or rebuild the Docker images that are required for the CS Field Guide system.
 When you run this command for the first time it can take roughly 15 to 30 minutes depending on your computer and internet speed.
 
 Images are only required to be built once, unless the image specifications change.
