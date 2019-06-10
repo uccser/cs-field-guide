@@ -22,10 +22,10 @@
             <canvas id="pixel-viewer-interactive-content" crossorigin="anonymous"></canvas>
             <div id="pixel-viewer-interactive-settings" class="menu-offscreen p-3">
                 <h3 id="pixel-viewer-interactive-title">
-                    {% trans "Pixel Value Interactive" %}
+                    {% trans "Pixel Viewer Interactive" %}
                 </h3>
-                <p>{% blocktrans %}This interactive allows you to see the pixels of an image, and details about those pixels. <strong>Zoom
-                        in</strong> to see details about individual pixels.{% endblocktrans %}</p>
+                <p>{% blocktrans %}This interactive allows you to see the pixels of an image, and details about those pixels. <strong>Click Zoom
+                        In</strong> to see details about individual pixels.{% endblocktrans %}</p>
 
                 <p id="pixel-viewer-extra-feature-description"></p>
 
@@ -39,6 +39,23 @@
                     <input id="pixel-viewer-interactive-show-pixel-fill" type="checkbox" checked="checked">
                     {% trans "Show pixel background" %}
                 </label>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="configSelector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {% trans 'Reload with a different configuration' %}
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="configSelector">
+                        <a class="dropdown-item" href="{% url 'interactives:interactive' 'pixel-viewer' %}">
+                            {% trans 'Default' %}</a>
+                        <a class="dropdown-item" href="{% url 'interactives:interactive' 'pixel-viewer' %}?mode=threshold&picturepicker">
+                            {% trans 'Colour Threshold' %}</a>
+                        <a class="dropdown-item" href="{% url 'interactives:interactive' 'pixel-viewer' %}?mode=thresholdgreyscale&picturepicker">
+                            {% trans 'Greyscale Threshold' %}</a>
+                        <a class="dropdown-item" href="{% url 'interactives:interactive' 'pixel-viewer' %}?mode=blur&picturepicker">
+                            {% trans 'Blur' %}</a>
+                        <a class="dropdown-item" href="{% url 'interactives:interactive' 'pixel-viewer' %}?mode=edgedetection&picturepicker">
+                            {% trans 'Edge Detection' %}</a>
+                    </div>
+                </div>
 
                 <hr>
 
