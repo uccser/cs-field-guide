@@ -76,6 +76,8 @@ function updatePatternsFound() {
   } else {
     $('#dot-combinations-complete').addClass('d-none');
   }
+
+  $('#dot-combinations-count').html(patternsFound.length);
 }
 
 /**
