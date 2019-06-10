@@ -53,10 +53,11 @@ function update_glossary_modal(data) {
   glossary_modal.attr("data-glossary-term", data.slug);
   $("#glossary-modal-term").text(data.term);
   $("#glossary-modal-definition").html(data.definition);
+  console.log(data);
   if (data.translated) {
-    $("#glossary-modal-translation-unavailable").css({ "display": "none"});
+    $("#glossary-modal-translation-unavailable").addClass("d-none");
   } else {
-    $("#glossary-modal-translation-unavailable").css({ "display": "block"});
+    $("#glossary-modal-translation-unavailable").removeClass("d-none");
   }
 }
 
