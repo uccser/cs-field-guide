@@ -53,7 +53,6 @@ function update_glossary_modal(data) {
   glossary_modal.attr("data-glossary-term", data.slug);
   $("#glossary-modal-term").text(data.term);
   $("#glossary-modal-definition").html(data.definition);
-  console.log(data);
   if (data.translated) {
     $("#glossary-modal-translation-unavailable").addClass("d-none");
   } else {

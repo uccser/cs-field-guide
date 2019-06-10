@@ -136,10 +136,12 @@ def glossary_json(request, **kwargs):
             GlossaryTerm,
             slug=glossary_slug
         )
+        is_translated = get_language() in glossary_item.languages
         data = {
             "slug": glossary_slug,
             "term": glossary_item.term,
-            "definition": render_html_with_load_tags(glossary_item.definition)
+            "definition": render_html_with_load_tags(glossary_item.definition),
+            "translated": is_translated
         }
         return JsonResponse(data)
     else:
