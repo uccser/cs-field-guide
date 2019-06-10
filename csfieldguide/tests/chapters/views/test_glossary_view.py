@@ -168,7 +168,7 @@ class GlossaryViewTest(BaseTestWithDB):
         url = reverse("chapters:glossary_json")
         response = self.client.get(url, {"word": "pixel"})
         self.assertEqual(404, response.status_code)
-    
+
     def test_chapters_glossary_view_json_no_translation(self):
         term = GlossaryTerm(
             slug="algorithm",
