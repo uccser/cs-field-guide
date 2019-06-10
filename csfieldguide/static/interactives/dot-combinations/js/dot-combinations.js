@@ -43,11 +43,19 @@ function updateNumberOfDots() {
   resetPatternsFound();
 }
 
+/**
+ * Resets the patterns found to be none, then calls updatePatternsFound()
+ */
 function resetPatternsFound() {
   patternsFound = [];
   updatePatternsFound();
 }
 
+/**
+ * If the current pattern is not in the list of already found patterns,
+ * adds it and calls displayPatternsFound().
+ * Also shows or hides the congratulations message depending on if all 2^x patterns have been found
+ */
 function updatePatternsFound() {
   var i = 0;
   $nextDot = $('#dot-' + i);
@@ -70,6 +78,9 @@ function updatePatternsFound() {
   }
 }
 
+/**
+ * Builds a formatted html string of the currently found patterns, and displays it appropriately
+ */
 function displayPatternsFound() {
   var displayHtml = '';
   $('#found-combinations').html('');
