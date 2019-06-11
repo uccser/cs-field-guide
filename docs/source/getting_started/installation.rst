@@ -85,6 +85,7 @@ Step 6: Install Docker
 
 We use a system called `Docker`_ to run the CS Field Guide system, both on local machine for development, and also when deployed to production.
 Download the latest version of the free Docker Community Edition for your operating system from the `Docker Store`_.
+You will need to `create an account`_ with Docker if you don't have one already.
 
 Once you have installed the software, run the following commands in a terminal to check Docker is working as intended (you don't need to enter the ``$`` character, this shows the start of your terminal prompt).
 
@@ -230,3 +231,4 @@ Congratulations if you made it this far and everything is working, you're all se
 .. _Visual Studio Code: https://code.visualstudio.com/
 .. _Atom: https://atom.io/
 .. _Sublime Text: https://www.sublimetext.com/
+.. _create an account: https://hub.docker.com/signup/
