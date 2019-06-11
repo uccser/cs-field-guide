@@ -290,7 +290,7 @@
               </button>
             </div>
             <div class="modal-body">
-              <div class="alert alert-danger" role="alert" id="glossary-modal-translation-unavailable">
+              <div class="alert alert-danger d-none" role="alert" id="glossary-modal-translation-unavailable">
                 {% blocktrans trimmed with language=current_language.name_local %}
                   This definition is not available in {{ language }}, sorry!
                 {% endblocktrans %}
