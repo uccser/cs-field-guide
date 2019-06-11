@@ -66,10 +66,7 @@ Images are only required to be built once, unless the image specifications chang
 ``docs``
 ==============================================================================
 
-Running ``./csfg docs`` will build or rebuild the Docker images that are required for the CS Field Guide system.
-When you run this command for the first time it can take roughly 15 to 30 minutes depending on your computer and internet speed.
-
-Images are only required to be built once, unless the image specifications change.
+Running ``./csfg docs`` will remove any existing documentation and build a fresh copy of the documentation for the CS Field Guide.
 
 -----------------------------------------------------------------------------
 
