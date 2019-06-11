@@ -98,10 +98,6 @@ body {
 .btn-chapter-section {
   max-width: 40%;
   white-space: normal;
-  @include media-breakpoint-down(md) {
-    max-width: 100%;
-    min-width: 100%;
-  }
 }
 
 ol, ul {
