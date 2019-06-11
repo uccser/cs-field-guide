@@ -219,3 +219,13 @@ a {
     color: #0034b4;
   }
 }
+
+.glossary-term {
+  color: #212529;
+  text-decoration-line: underline;
+  text-decoration-style: dotted;
+
+  &:hover {
+    color: #212529;
+  }
+}
