@@ -1,9 +1,9 @@
 # Pixel Viewer Interactive
 
 **Author:** Jack Morgan  
-**Updated by:** Andy Bell
+**Modified by:** Andy Bell, Courtney Bracefield, Alasdair Smith
 
-This interactive is created to allow users to see the values of each pixels of an image.
+This interactive is created to allow users to see the values of each pixel of an image.
 The user can zoom in and out of the image, and when close enough the pixel values are displayed.
 
 ## Usage
@@ -33,5 +33,5 @@ Its licence, and others, is listed in the `license.md` file.
 
 ## Future Plans
 
-- Investigate performance increases as the interactive is sluggish when zooming out and viewing many pixels. A possible option may include not creating image with pixels until the image is zoomed in, or use a magnifying glass approach to highlight the each being zoomed.
+- Investigate performance increases as the interactive is sluggish when zooming out and viewing many pixels. A possible option may include not creating image with pixels until the image is zoomed in, or use a magnifying glass approach to highlight just a few pixels at a time.
 - Investigate the original image sizing, as images are currently resized to a small amount to lower the number of pixels to create.
