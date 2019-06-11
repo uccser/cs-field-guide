@@ -61,7 +61,7 @@ Images are only required to be built once, unless the image specifications chang
 
 -----------------------------------------------------------------------------
 
-.. docs:
+.. _docs:
 
 ``docs``
 ==============================================================================
