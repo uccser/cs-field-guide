@@ -18,6 +18,7 @@ Where ``[COMMAND]`` is a word from the list below:
 
 - :ref:`build`
 - :ref:`clean`
+- :ref:`collect_static`
 - :ref:`docs`
 - :ref:`end`
 - :ref:`help`
@@ -75,6 +76,15 @@ Running ``./csfg docs`` will remove any existing documentation and build a fresh
 ==============================================================================
 
 Running ``./csfg clean`` deletes 'dangling' Docker images left over from builds, which will free up hard drive space.
+
+-----------------------------------------------------------------------------
+
+.. _collect_static:
+
+``collect_static``
+==============================================================================
+
+Running ``./csfg collect_static`` runs the Django ``collectstatic`` command to collect static files. It will copy files under the `static/` folder into the `staticfiles/` folder.
 
 -----------------------------------------------------------------------------
 
@@ -247,10 +257,7 @@ If changes are made to the chapters content when the system is running, this com
 ``update_static``
 ==============================================================================
 
-Running ``./csfg update_static`` runs the Django ``makemigratations`` and ``migrate`` commands for updating the database schema, and then runs the custom ``updatedata`` command to load the chapters content into the database.
-It also runs the ``static`` command to generate static files and the `make_interactive_thumbnails` command which generates the thumbnails for the interactive links.
-
-If changes are made to the chapters content when the system is running, this command needs to be run to view the new changes on the website.
+Running ``./csfg update_static`` updates and collects static files by running the ``./csfg static`` and ``./csfg collect_static`` commands.
 
 -----------------------------------------------------------------------------
 
