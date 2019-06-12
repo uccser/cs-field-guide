@@ -81,7 +81,7 @@ Running ``./csfg clean`` deletes 'dangling' Docker images left over from builds,
 ``collect_static``
 ==============================================================================
 
-Running ``./csfg collect_static`` runs the Django ``collectstatic`` command to collect static files. It will copy files under the `static/` folder into the `staticfiles/` folder.
+Running ``./csfg collect_static`` runs the Django ``collectstatic`` command to collect static files. It will copy files under the ``static/`` folder into the ``staticfiles/`` folder.
 
 -----------------------------------------------------------------------------
 
@@ -90,7 +90,7 @@ Running ``./csfg collect_static`` runs the Django ``collectstatic`` command to c
 ``_compilemessages``
 ==============================================================================
 
-Running ``./csfg _compilemessages`` runs the Django ``compilemessages`` command. This runs over `.po` files and creates `.mo` files which are optimised for use by `gettext`.
+Running ``./csfg _compilemessages`` runs the Django ``compilemessages`` command. This runs over ``.po`` files and creates ``.mo`` files which are optimised for use by ``gettext``.
 You will need to run this command after each time you create your message file or each time you make changes to it.
 
 -----------------------------------------------------------------------------
@@ -141,7 +141,7 @@ To follow logs as they output, enter ``docker-compose logs --follow``.
 ==============================================================================
 
 Running ``./csfg make_interactive_thumbnails`` generates the thumbnails for each interactive.
-`make_interactive_thumbnails` will take a screenshot of each interactive and save it under ``static/img/interactives/thumbnails/<interactive-slug>.png``.
+``make_interactive_thumbnails`` will take a screenshot of each interactive and save it under ``static/img/interactives/thumbnails/<interactive-slug>.png``.
 
 -----------------------------------------------------------------------------
 
@@ -150,7 +150,7 @@ Running ``./csfg make_interactive_thumbnails`` generates the thumbnails for each
 ``makemessages``
 ==============================================================================
 
-Running ``./csfg makemessages`` runs the Djanog `makemessages` command.
+Running ``./csfg makemessages`` runs the Djanog ``makemessages`` command.
 This will create message files where each message file represents a single language.
 Message files contain all available translation strings and how they should be represented in the given language.
 
@@ -188,7 +188,7 @@ Running ``./csfg reboot_django`` will rebuild the Django Docker container.
 ``rebuild_index``
 ==============================================================================
 
-Running ``./csfg rebuild_index`` will run the Django command `rebuild_index` which rebuilds the search index.
+Running ``./csfg rebuild_index`` will run the Django command ``rebuild_index`` which rebuilds the search index.
 
 -----------------------------------------------------------------------------
 
@@ -246,7 +246,7 @@ Once the development environment is operational, the script will perform the fol
 - Start the Nginx server to display the website and static files
 - Start the database server
 
-Once the script has performed all these tasks, the script will tell you to run the `update` command.
+Once the script has performed all these tasks, the script will tell you to run the ``update`` command.
 
 -----------------------------------------------------------------------------
 
@@ -327,7 +327,7 @@ The code coverage report can be displayed by running ``./csfg test_coverage``.
 ==============================================================================
 
 Running ``./csfg update`` runs the Django ``makemigratations`` and ``migrate`` commands for updating the database schema, and then runs the custom ``updatedata`` command to load the chapters content into the database.
-It also runs the ``static`` command to generate static files and the `make_interactive_thumbnails` command which generates the thumbnails for the interactive links.
+It also runs the ``static`` command to generate static files and the ``make_interactive_thumbnails`` command which generates the thumbnails for the interactive links.
 
 If changes are made to the chapters content when the system is running, this command needs to be run to view the new changes on the website.
 
