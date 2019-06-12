@@ -51,6 +51,7 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     "general.apps.GeneralConfig",
     "chapters.apps.ChaptersConfig",
+    "curriculum_guides.apps.CurriculumGuidesConfig",
     "appendices.apps.AppendicesConfig",
     "interactives.apps.InteractivesConfig",
     "search.apps.SearchConfig",

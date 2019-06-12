@@ -68,7 +68,6 @@ class CurriculumGuidesLoader(TranslatableModelLoader):
             slug=self.curriculum_guide_slug,
             number=self.curriculum_guide_number,
             icon=curriculum_guide_icon,
-            video=video
         )
 
         self.populate_translations(curriculum_guide, curriculum_guide_translations)
@@ -77,16 +76,10 @@ class CurriculumGuidesLoader(TranslatableModelLoader):
 
         self.log("Added curriculum guide: {}".format(curriculum_guide.name))
 
-        check_interactives(
-            introduction_translations[get_default_language()].required_files["interactives"],
-            self.structure_file_path,
-            curriculum_guide,
-        )
-
         # Load curriculum guide sections
         content_path, structure_filename = os.path.split(sections)
-        self.factory.create_curriculum guide_section_loader(
-            curriculum guide,
+        self.factory.create_curriculum_guide_section_loader(
+            curriculum_guide,
             base_path=self.base_path,
             content_path=os.path.join(self.content_path, content_path),
             structure_filename=structure_filename
