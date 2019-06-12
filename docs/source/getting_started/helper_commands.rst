@@ -19,26 +19,32 @@ Where ``[COMMAND]`` is a word from the list below:
 - :ref:`build`
 - :ref:`clean`
 - :ref:`collect_static`
+- :ref:`compilemessages`
 - :ref:`docs`
 - :ref:`end`
 - :ref:`help`
 - :ref:`logs`
+- :ref:`make_interactive_thumbnails`
+- :ref:`makemessages`
 - :ref:`makemigrations`
 - :ref:`migrate`
+- :ref:`reboot_django`
+- :ref:`rebuild_index`
 - :ref:`restart`
+- :ref:`restart_build`
 - :ref:`shell`
 - :ref:`start`
 - :ref:`static`
 - :ref:`static_prod`
 - :ref:`style`
-- :ref:`test_suite`
 - :ref:`test_backwards`
 - :ref:`test_coverage`
 - :ref:`test_specific`
+- :ref:`test_suite`
 - :ref:`update`
+- :ref:`update_static`
 - :ref:`updatedata`
 - :ref:`wipe`
-
 
 All users of the project (content and technical developers) should become familiar with the following commands:
 
@@ -91,7 +97,7 @@ Running ``./csfg collect_static`` runs the Django ``collectstatic`` command to c
 .. _logs:
 
 ``logs``
------------------------------------------------------------------------------
+==============================================================================
 
 Running ``./csfg logs`` will display the logs for the running systems.
 The output is for all logs until the time the command was run, therefore successive calls may display new logs.
@@ -103,87 +109,107 @@ To follow logs as they output, enter ``docker-compose logs --follow``.
 .. _makemigrations:
 
 ``makemigrations``
------------------------------------------------------------------------------
+==============================================================================
 
 Running ``./csfg makemigrations`` runs the Django ``makemigrations`` command to create migration files.
+
+-----------------------------------------------------------------------------
 
 .. _migrate:
 
 ``migrate``
------------------------------------------------------------------------------
+==============================================================================
 
 Running ``./csfg migrate`` runs the Django ``migrate`` command to apply migration files.
+
+-----------------------------------------------------------------------------
 
 .. _shell:
 
 ``shell``
------------------------------------------------------------------------------
+==============================================================================
 
 Running ``./csfg shell`` opens a bash terminal within the Django container (this requires the CS Field Guide system to be running).
 
 This is the equivalent to entering ``docker-compose run django bash``.
 
+-----------------------------------------------------------------------------
+
 .. _static:
 
 ``static``
------------------------------------------------------------------------------
+==============================================================================
 
 Running ``./csfg static`` runs the commands for generating the static files for the website.
 
 If changes are made to the static files (for example, a new image is added) when the system is running, this command needs to be entered to view the new files on the website.
 
+-----------------------------------------------------------------------------
+
 .. _static_prod:
 
 ``static_prod``
------------------------------------------------------------------------------
+==============================================================================
 
 Running ``./csfg static_prod`` runs the commands for generating production static files for the website.
 This produces compressed SASS files without sourcemaps.
 
+-----------------------------------------------------------------------------
+
 .. _style:
 
 ``style``
------------------------------------------------------------------------------
+==============================================================================
 
 Running ``./csfg style`` will run the ``flake8`` and ``pydocstyle`` commands to check the style of the project.
 If the output is ``0`` for a check, then there are zero errors.
 
+-----------------------------------------------------------------------------
+
 .. _test_suite:
 
 ``test_suite``
------------------------------------------------------------------------------
+==============================================================================
 
 Running ``./csfg test_suite`` will run the test suite, and create a report detailing test code coverage.
 The code coverage report can be displayed by running ``./csfg test_coverage``.
 
+-----------------------------------------------------------------------------
+
 .. _test_backwards:
 
 ``test_backwards``
------------------------------------------------------------------------------
+==============================================================================
 
 Running ``./csfg test_backwards`` will run the test suite in reverse.
 This is useful to check if any tests are influencing the result of each other.
 If this command if run on Travis CI, it will only run for a pull request.
 
+-----------------------------------------------------------------------------
+
 .. _test_coverage:
 
 ``test_coverage``
------------------------------------------------------------------------------
+==============================================================================
 
 Running ``./csfg test_coverage`` will display a table detailing test code coverage, from the report generated by ``./csfg test``.
+
+-----------------------------------------------------------------------------
 
 .. _test_specific:
 
 ``test_specific``
------------------------------------------------------------------------------
+==============================================================================
 
 Running ``./csfg test_specific [MODULE_PATH]`` will run a specific test module.
 For example, running ``./csfg test_specific tests.resources.views.test_index_view`` will only run the tests for checking the index view of the resources application.
 
+-----------------------------------------------------------------------------
+
 .. _updatedata:
 
 ``updatedata``
------------------------------------------------------------------------------
+==============================================================================
 
 Running ``./csfg updatedata`` runs the custom ``updatedata`` command to load the chapters content into the database.
 
