@@ -393,6 +393,15 @@ Video (Verto feature)
 
 ------------------------------------------------------------------------------
 
+Writing structure
+==============================================================================
+
+Chapters always contain an introduction page and several chapter sections that each cover a key sub topic of the main chapter topic.
+Chapters always end in the same two sections; 'The whole story!' and 'Further reading'.
+'The whole story!' is a summary of the chapter and 'Further reading' contains links and/or book references where students can read further about the topic.
+
+------------------------------------------------------------------------------
+
 .. _Verto: http://verto.readthedocs.io/en/latest/
 .. _submit a bug report: https://github.com/uccser/cs-field-guide/issues/new
 .. _Click here to read the documentation on how to box text: http://verto.readthedocs.io/en/latest/processors/boxed-text.html
