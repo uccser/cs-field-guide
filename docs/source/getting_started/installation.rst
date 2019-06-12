@@ -204,7 +204,7 @@ Type the following command into the terminal (we cover this command in more deta
 If this is the first time you're running this script it will need to build system images.
 This may take roughly 15 to 30 minutes, depending on your computer and internet speed.
 
-Once the `./csfg start` command has completed, you will need to run the update command.
+Once the ``./csfg start`` command has completed, you will need to run the update command.
 Type the following into your terminal:
 
     .. code-block:: bash
