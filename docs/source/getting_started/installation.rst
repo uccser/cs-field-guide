@@ -219,6 +219,17 @@ Once the update command has completed you should then be able to open your prefe
 
 Congratulations if you made it this far and everything is working, you're all set to contribute to the CS Field Guide project.
 
+Uninstallation
+=================================================
+
+If you would like to uninstall the guide you should run the following commands to clear hard drive space before deleting the ``cs-field-guide`` folder:
+
+    .. code-block:: bash
+
+        $ ./csfg end
+        $ ./csfg clean
+        $ ./csfg wipe
+
 .. _one: https://git-scm.com/docs/gittutorial
 .. _two: https://try.github.io/levels/1/challenges/1
 .. _virtualenvwrapper: https://virtualenvwrapper.readthedocs.io/en/latest/
