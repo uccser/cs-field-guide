@@ -67,15 +67,6 @@ Images are only required to be built once, unless the image specifications chang
 
 -----------------------------------------------------------------------------
 
-.. _docs:
-
-``docs``
-==============================================================================
-
-Running ``./csfg docs`` will remove any existing documentation and build a fresh copy of the documentation for the CS Field Guide.
-
------------------------------------------------------------------------------
-
 .. _clean:
 
 ``clean``
@@ -94,6 +85,44 @@ Running ``./csfg collect_static`` runs the Django ``collectstatic`` command to c
 
 -----------------------------------------------------------------------------
 
+.. _compilemessages:
+
+``_compilemessages``
+==============================================================================
+
+Running ``./csfg _compilemessages`` runs the Django ``compilemessages`` command. This runs over `.po` files and creates `.mo` files which are optimised for use by `gettext`.
+You will need to run this command after each time you create your message file or each time you make changes to it.
+
+-----------------------------------------------------------------------------
+
+.. _docs:
+
+``docs``
+==============================================================================
+
+Running ``./csfg docs`` will remove any existing documentation and build a fresh copy of the documentation for the CS Field Guide.
+
+-----------------------------------------------------------------------------
+
+.. _end:
+
+``end``
+==============================================================================
+
+Running ``./csfg end`` will stop any containers which are currently running, this usually takes 10 to 20 seconds.
+
+-----------------------------------------------------------------------------
+
+.. _help:
+
+``help``
+==============================================================================
+
+Running ``./csfg help`` displays brief help text for the script.
+More details for each command can be found on this page.
+
+-----------------------------------------------------------------------------
+
 .. _logs:
 
 ``logs``
@@ -103,6 +132,27 @@ Running ``./csfg logs`` will display the logs for the running systems.
 The output is for all logs until the time the command was run, therefore successive calls may display new logs.
 
 To follow logs as they output, enter ``docker-compose logs --follow``.
+
+-----------------------------------------------------------------------------
+
+.. _make_interactive_thumbnails:
+
+``make_interactive_thumbnails``
+==============================================================================
+
+Running ``./csfg make_interactive_thumbnails`` generates the thumbnails for each interactive.
+`make_interactive_thumbnails` will take a screenshot of each interactive and save it under ``static/img/interactives/thumbnails/<interactive-slug>.png``.
+
+-----------------------------------------------------------------------------
+
+.. _makemessages:
+
+``makemessages``
+==============================================================================
+
+Running ``./csfg makemessages`` runs the Djanog `makemessages` command.
+This will create message files where each message file represents a single language.
+Message files contain all available translation strings and how they should be represented in the given language.
 
 -----------------------------------------------------------------------------
 
@@ -124,6 +174,53 @@ Running ``./csfg migrate`` runs the Django ``migrate`` command to apply migratio
 
 -----------------------------------------------------------------------------
 
+.. _reboot_django:
+
+``reboot_django``
+==============================================================================
+
+Running ``./csfg reboot_django`` will rebuild the Django Docker container.
+
+-----------------------------------------------------------------------------
+
+.. _rebuild_index:
+
+``rebuild_index``
+==============================================================================
+
+Running ``./csfg rebuild_index`` will run the Django command `rebuild_index` which rebuilds the search index.
+
+-----------------------------------------------------------------------------
+
+.. _restart:
+
+``restart``
+==============================================================================
+
+Running ``./csfg restart`` is a shortcut for running:
+
+- ``./csfg end``
+- ``./csfg start``
+
+More details for each command can be found on this page.
+
+-----------------------------------------------------------------------------
+
+.. _restart_build:
+
+``restart_build``
+==============================================================================
+
+Running ``./csfg restart`` is a shortcut for running:
+
+- ``./csfg end``
+- ``./csfg build``
+- ``./csfg start``
+
+More details for each command can be found on this page.
+
+-----------------------------------------------------------------------------
+
 .. _shell:
 
 ``shell``
@@ -132,6 +229,24 @@ Running ``./csfg migrate`` runs the Django ``migrate`` command to apply migratio
 Running ``./csfg shell`` opens a bash terminal within the Django container (this requires the CS Field Guide system to be running).
 
 This is the equivalent to entering ``docker-compose run django bash``.
+
+-----------------------------------------------------------------------------
+
+.. _start:
+
+``start``
+==============================================================================
+
+Running ``./csfg start`` starts the development environment.
+If this is the first time you're running this script it may take roughly 15 to 30 minutes, depending on your computer and internet speed.
+
+Once the development environment is operational, the script will perform the following tasks:
+
+- Start the Django website system
+- Start the Nginx server to display the website and static files
+- Start the database server
+
+Once the script has performed all these tasks, the script will tell you to run the `update` command.
 
 -----------------------------------------------------------------------------
 
@@ -166,16 +281,6 @@ If the output is ``0`` for a check, then there are zero errors.
 
 -----------------------------------------------------------------------------
 
-.. _test_suite:
-
-``test_suite``
-==============================================================================
-
-Running ``./csfg test_suite`` will run the test suite, and create a report detailing test code coverage.
-The code coverage report can be displayed by running ``./csfg test_coverage``.
-
------------------------------------------------------------------------------
-
 .. _test_backwards:
 
 ``test_backwards``
@@ -206,63 +311,13 @@ For example, running ``./csfg test_specific tests.resources.views.test_index_vie
 
 -----------------------------------------------------------------------------
 
-.. _updatedata:
+.. _test_suite:
 
-``updatedata``
+``test_suite``
 ==============================================================================
 
-Running ``./csfg updatedata`` runs the custom ``updatedata`` command to load the chapters content into the database.
-
------------------------------------------------------------------------------
-
-.. _end:
-
-``end``
-==============================================================================
-
-Running ``./csfg end`` will stop any containers which are currently running, this usually takes 10 to 20 seconds.
-
------------------------------------------------------------------------------
-
-.. _help:
-
-``help``
-==============================================================================
-
-Running ``./csfg help`` displays brief help text for the script.
-More details for each command can be found on this page.
-
------------------------------------------------------------------------------
-
-.. _restart:
-
-``restart``
-==============================================================================
-
-Running ``./csfg restart`` is a shortcut for running:
-
-- ``./csfg end``
-- ``./csfg start``
-
-More details for each command can be found on this page.
-
------------------------------------------------------------------------------
-
-.. _start:
-
-``start``
-==============================================================================
-
-Running ``./csfg start`` starts the development environment.
-If this is the first time you're running this script it may take roughly 15 to 30 minutes, depending on your computer and internet speed.
-
-Once the development environment is operational, the script will perform the following tasks:
-
-- Start the Django website system
-- Start the Nginx server to display the website and static files
-- Start the database server
-
-Once the script has performed all these tasks, the script will tell you to run the `update` command.
+Running ``./csfg test_suite`` will run the test suite, and create a report detailing test code coverage.
+The code coverage report can be displayed by running ``./csfg test_coverage``.
 
 -----------------------------------------------------------------------------
 
@@ -284,6 +339,15 @@ If changes are made to the chapters content when the system is running, this com
 ==============================================================================
 
 Running ``./csfg update_static`` updates and collects static files by running the ``./csfg static`` and ``./csfg collect_static`` commands.
+
+-----------------------------------------------------------------------------
+
+.. _updatedata:
+
+``updatedata``
+==============================================================================
+
+Running ``./csfg updatedata`` runs the custom ``updatedata`` command to load the chapters content into the database.
 
 -----------------------------------------------------------------------------
 
