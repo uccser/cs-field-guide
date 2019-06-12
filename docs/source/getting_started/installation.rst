@@ -97,6 +97,8 @@ Once you have installed the software, run the following commands in a terminal t
     $ docker-compose version
     $ docker run hello-world
 
+Your docker version should be at least 18.0 or later.
+
 .. note::
 
     Depending on your operating system, if the above commands don't work you may need to set Docker to be able to run without ``sudo``.
