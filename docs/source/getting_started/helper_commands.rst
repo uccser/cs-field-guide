@@ -20,7 +20,6 @@ Where ``[COMMAND]`` is a word from the list below:
 - :ref:`clean`
 - :ref:`docs`
 - :ref:`end`
-- :ref:`flush`
 - :ref:`help`
 - :ref:`logs`
 - :ref:`makemigrations`
@@ -89,12 +88,7 @@ The output is for all logs until the time the command was run, therefore success
 
 To follow logs as they output, enter ``docker-compose logs --follow``.
 
-.. _flush:
-
-``flush``
 -----------------------------------------------------------------------------
-
-Running ``./csfg flush`` runs the Django ``flush`` command to flush the database.
 
 .. _makemigrations:
 
@@ -242,6 +236,18 @@ Once the script has performed all these tasks, the script will tell you to run t
 ==============================================================================
 
 Running ``./csfg update`` runs the Django ``makemigratations`` and ``migrate`` commands for updating the database schema, and then runs the custom ``updatedata`` command to load the chapters content into the database.
+It also runs the ``static`` command to generate static files and the `make_interactive_thumbnails` command which generates the thumbnails for the interactive links.
+
+If changes are made to the chapters content when the system is running, this command needs to be run to view the new changes on the website.
+
+-----------------------------------------------------------------------------
+
+.. _update_static:
+
+``update_static``
+==============================================================================
+
+Running ``./csfg update_static`` runs the Django ``makemigratations`` and ``migrate`` commands for updating the database schema, and then runs the custom ``updatedata`` command to load the chapters content into the database.
 It also runs the ``static`` command to generate static files and the `make_interactive_thumbnails` command which generates the thumbnails for the interactive links.
 
 If changes are made to the chapters content when the system is running, this command needs to be run to view the new changes on the website.

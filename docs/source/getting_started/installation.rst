@@ -18,7 +18,7 @@ If you aren't familiar with the following systems, we recommend reading tutorial
 - Entering terminal commands for your operating system
 - Git (here are two Git tutorials: `one`_ `two`_)
 
-Step 1: Setup Virtual Machine (optional)
+Step 1: Set up Virtual Machine (optional)
 =================================================
 
 For those working on a computer in a restricted environment (for example: a computer managed by an education insitution), then working in a **virtual machine** is recommended.

@@ -23,6 +23,7 @@ Before Submitting an Issue
 
 - `Search the issue tracker for the issue/suggestion`_ to see if it has already been logged.
   If it has, add a comment to the existing issue (even if the issue is closed) instead of opening a new one.
+  If the issue is closed and you think it is not resolved, please reopen it.
 
 How do I Submit a Good Issue or Suggestion?
 ------------------------------------------------------------------------------
@@ -37,7 +38,7 @@ For Reporting an Issue
 - **Clearly and concisely describe the issue** and provide screenshots if required.
 - **Link any related existing issues**.
 
-If the issues is a code related issue, also include the following:
+If the issue is a code related issue, also include the following:
 
 - **Describe the exact steps which reproduce the problem** in as many details as possible.
   For example, how you were generating a resource.
@@ -53,7 +54,7 @@ If the issues is a code related issue, also include the following:
 For Making a Suggestion
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Explain the suggestion and include additional details to help maintainers understand the changes:
+Explain the suggestion and include additional details to help maintainers understand the suggestion:
 
 - **Use a clear and descriptive title** for the issue to identify the suggestion.
 - **Clearly and concisely describe the suggestion** and provide screenshots if required.
