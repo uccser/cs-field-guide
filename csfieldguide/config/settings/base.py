@@ -272,6 +272,7 @@ HAYSTACK_SEARCH_RESULTS_PER_PAGE = 10
 DJANGO_PRODUCTION = env.bool("DJANGO_PRODUCTION")
 APPENDICES_CONTENT_BASE_PATH = os.path.join(str(ROOT_DIR.path("appendices")), "content")
 CHAPTERS_CONTENT_BASE_PATH = os.path.join(str(ROOT_DIR.path("chapters")), "content")
+CURRICULUM_GUIDES_CONTENT_BASE_PATH = os.path.join(str(ROOT_DIR.path("curriculum-guides")), "base")
 INTERACTIVES_CONTENT_BASE_PATH = os.path.join(str(ROOT_DIR.path("interactives")), "content")
 INTERACTIVES_BASE_TEMPLATES_PATH = os.path.join("interactives", "base")
 INTERACTIVES_LINK_TEMPLATE = "interactives/utils/interactive-link.html"
