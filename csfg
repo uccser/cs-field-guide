@@ -60,6 +60,12 @@ defhelp start 'Start development environment.'
 cmd_end() {
   echo "Stopping systems... (takes roughly 10 to 20 seconds)"
   docker-compose down
+  echo
+  echo "Deleting system volumes..."
+  volumes=($(docker volume ls -qf dangling=true ))
+  for volume in "${volumes[@]}"; do
+      docker volume rm "${volume}"
+  done
 }
 defhelp end 'Stop development environment.'
 
