@@ -1,6 +1,7 @@
 # Global Impact
 
 ## Overview
+
 - EU 7.1 Computing enhances communication, interaction, and cognition.
 - EU 7.2 Computing enables innovation in nearly every field.
 - EU 7.3 Computing has a global affect — both beneficial and harmful — on people and society.
@@ -11,9 +12,11 @@
 ## Reading from the Computer Science Field Guide
 
 ## Learning objectives
+
 The above chapter readings include specific knowledge for EK's marked in bold. Work to include unmarked learning objectives in the CS Field Guide is currently in progress.
 
 ### LO 7.1.1 Explain how computing innovations affect communication, interaction, and cognition.
+
 - EK 7.1.1A Email, SMS, and chat have fostered new ways to communicate and collaborate.
 - EK 7.1.1B Video conferencing and video chat have fostered new ways to communicate and collaborate.
 - EK 7.1.1C Social media continues to evolve and fosters new ways to communicate.
@@ -34,6 +37,7 @@ EXCLUSION STATEMENT (for EK 7.1.1C): Detailed knowledge of any social media site
 - EK 7.1.1O The Internet and the Web have impacted productivity, positively and negatively, in many areas.
 
 ### LO 7.1.2 Explain how people participate in a problem-solving process that scales.
+
 - EK 7.1.2A Distributed solutions must scale to solve some problems.
 - EK 7.1.2B Science has been impacted by using scale and "citizen science" to solve scienti c problems using home computers in scientific research.
 - EK 7.1.2C Human computation harnesses contributions from many humans to solve problems related to digital data and the Web.
@@ -43,6 +47,7 @@ EXCLUSION STATEMENT (for EK 7.1.1C): Detailed knowledge of any social media site
 - EK 7.1.2G The move from desktop computers to a proliferation of always-on mobile computers is leading to new applications.
 
 ### LO 7.2.1 Explain how computing has impacted innovations in other fields.
+
 - EK 7.2.1A Machine learning and data mining have enabled innovation in medicine, business, and science.
 - EK 7.2.1B Scientific computing has enabled innovation in science and business.
 - EK 7.2.1C Computing enables innovation by providing the ability to access and share information.
@@ -52,6 +57,7 @@ EXCLUSION STATEMENT (for EK 7.1.1C): Detailed knowledge of any social media site
 - EK 7.2.1G Advances in computing as an enabling technology have generated and increased the creativity in other fields.
 
 ### LO 7.3.1 Analyze the beneficial and harmful effects of computing.
+
 - EK 7.3.1A Innovations enabled by computing raise legal and ethical concerns.
 - EK 7.3.1B Commercial access to music and movie downloads and streaming raises legal and ethical concerns.
 - EK 7.3.1C Access to digital content via peer-to-peer networks raises legal and ethical concerns.
@@ -73,6 +79,7 @@ and aggregate levels.
 - EK 7.3.1Q Open source and free software have practical, business, and ethical impacts on widespread access to programs, libraries, and code.
 
 ### LO 7.4.1 Explain the connections between computing and real-world contexts, including economic, social, and cultural contexts.
+
 - EK 7.4.1A The innovation and impact of social media and online access varies in different countries and in different socioeconomic groups.
 - EK 7.4.1B Mobile, wireless, and networked computing have an impact on innovation throughout the world.
 - EK 7.4.1C The global distribution of computing resources raises issues of equity, access, and power.
@@ -80,11 +87,13 @@ and aggregate levels.
 - EK 7.4.1E Networks and infrastructure are supported by both commercial and governmental initiatives.
 
 ### LO 7.5.1 Access, manage, and attribute information using effective strategies.
+
 - EK 7.5.1A Online databases and libraries catalog and house secondary and some primary sources.
 - EK 7.5.1B Advance search tools, Boolean logic, and key words can refine the search focus, and/or limit their searches based on a variety of factors (e.g., data, peer-review status, type of publication).
 - EK 7.5.1C Plagiarism is a serious offense that occurs when a person present another’s ideas or words as his or her own. Plagiarism may be avoided by accurately acknowledging sources.
 
 ### LO 7.5.2 Evaluate online and print sources for appropriateness and credibility.
+
 - EK 7.5.2A Determining the credibility of a source requires considering and evaluating the reputation and credentials of the author(s), publisher(s), site owner(s), and/or sponsor(s).
 - EK 7.5.2B Information from a source is considered relevant when it supports an appropriate
 claim or the purpose of the investigation.

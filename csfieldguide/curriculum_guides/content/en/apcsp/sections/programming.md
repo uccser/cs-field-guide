@@ -9,6 +9,7 @@
 - EU 5.5 Programming uses mathematical and logical concepts.
 
 ## Reading from the Computer Science Field Guide
+
 Start by reading through:
 
 - [Programming Languages](chapters/programming-languages.html)
@@ -20,9 +21,11 @@ The AP CSP framework does not require a specific programming language but requir
 - [Programming Introduction](chapters/introduction.html#programming)
 
 ## Learning objectives
+
 The above chapter readings include specific knowledge for EK's marked in bold. Work to include unmarked learning objectives in the CS Field Guide is currently in progress.
 
 ### LO 5.1.1 Develop a program for creative expression, to satisfy personal curiosity, or to create new knowledge.
+
 - **EK 5.1.1A Programs are developed and used in a variety of ways by a wide range of people depending on the goals of the programmer.**
 - **EK 5.1.1B Programs developed for creative expression, to satisfy personal curiosity, or to create new knowledge may have visual, audible, or tactile inputs and outputs.**
 - **EK 5.1.1C Programs developed for creative expression, to satisfy personal curiosity, or to create new knowledge may be developed with different standards or methods than programs developed for widespread distribution.**
@@ -31,6 +34,7 @@ The above chapter readings include specific knowledge for EK's marked in bold. W
 - **EK 5.1.1F Advances in computing have generated and increased creativity in other fields.**
 
 ### LO 5.1.2 Develop a correct program to solve problems.
+
 - **EK 5.1.2A An iterative process of program development helps in developing a correct program to solve problems.**
 - EK 5.1.2B Developing correct program components and then combining them helps in creating correct programs.
 - EK 5.1.2C Incrementally adding tested program segments to correct working programs helps create large correct programs.
@@ -43,6 +47,7 @@ The above chapter readings include specific knowledge for EK's marked in bold. W
 - **EK 5.1.2J A programmer designs, implements, tests, debugs, and maintains programs when solving problems.**
 
 ### LO 5.1.3 Collaborate to develop a program.
+
 - EK 5.1.3A Collaboration can decrease the size and complexity of tasks required of individual programmers.
 - EK 5.1.3B Collaboration facilitates multiple perspectives in developing ideas for solving problems by programming.
 - EK 5.1.3C Collaboration in the iterative development of a program requires different skills than developing a program alone.
@@ -51,6 +56,7 @@ The above chapter readings include specific knowledge for EK's marked in bold. W
 - EK 5.1.3F Effective communication between participants is required for successful collaboration when developing programs.
 
 ### LO 5.2.1 Explain how programs implement algorithms.
+
 - **EK 5.2.1A Algorithms are implemented using program instructions that are processed during program execution.**
 - EK 5.2.1B Program instructions are executed sequentially.
 - EK 5.2.1C Program instructions may involve variables that are initialized and updated, read, and written.
@@ -64,6 +70,7 @@ The above chapter readings include specific knowledge for EK's marked in bold. W
 - EK 5.2.1K Improvements in algorithms, hardware, and software increase the kinds of problems and the size of problems solvable by programming.
 
 ### LO 5.3.1 Use abstraction to manage complexity in programs.
+
 - EK 5.3.1A Procedures are reusable programming abstractions.
 - EK 5.3.1B A procedure is a named grouping of programming instructions.
 - EK 5.3.1C Procedures reduce the complexity of writing and maintaining programs.
@@ -81,6 +88,7 @@ The above chapter readings include specific knowledge for EK's marked in bold. W
 - EK 5.3.1O APIs connect software components, allowing them to communicate.
 
 ### LO 5.4.1 Evaluate the correctness of a program.
+
 - EK 5.4.1A Program style can affect the determination of program correctness.
 - EK 5.4.1B Duplicated code can make it harder to reason about a program.
 - EK 5.4.1C Meaningful names for variables and procedures help people better understand programs.
@@ -97,16 +105,27 @@ The above chapter readings include specific knowledge for EK's marked in bold. W
 - EK 5.4.1N The functionality of a program is best described at a high level by what the program does, not at the lower level of how the program statements work to accomplish this.
 
 ### LO 5.5.1 Employ appropriate mathematical and logical concepts in programming.
+
 - **EK 5.5.1A Numbers and numerical concepts are fundamental to programming.**
 - **EK 5.5.1B Integers may be constrained in the maximum and minimum values that can be represented in a program because of storage limitations.**
-{panel type="teacher-note" summary="Exclusion EK 5.5.1B"}
-EXCLUSION STATEMENT (for EK 5.5.1B): Specific range limitations of all programming languages are beyond the scope of this course and the AP Exam.
+
+{panel type="teacher-note"}
+  # EXCLUSION STATEMENT (for EK 5.5.1B):
+  
+  Specific range limitations of all programming languages are beyond the scope of this course and the AP Exam.
+
 {panel end}
+
 - **EK 5.5.1C Real numbers are approximated by floating-point representations that do not necessarily have infinite precision.**
-{panel type="teacher-note" summary="Exclusion EK 5.5.1C"}
-EXCLUSION STATEMENT (for EK 5.5.1C): Specific sets of values that cannot be exactly represented by floating
-point numbers are beyond the scope of this course and the AP Exam.
+
+{panel type="teacher-note"}
+
+  # EXCLUSION STATEMENT (for EK 5.5.1C):
+  
+  Specific sets of values that cannot be exactly represented by floating point numbers are beyond the scope of this course and the AP Exam.
+
 {panel end}
+
 - EK 5.5.1D Mathematical expressions using arithmetic operators are part of most programming languages.
 - EK 5.5.1E Logical concepts and Boolean algebra are fundamental to programming.
 - EK 5.5.1F Compound expressions using and, or, and not are part of most programming languages.

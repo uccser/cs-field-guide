@@ -14,6 +14,7 @@ This "to-do" list includes general computer science topics and suggestions for h
 - edits to existing text content to use specific terminology
 
 ## Abstraction
+
 - floating point representation
  - **new section in data-representation** [Phase+]
 - bit representation of program instructions (not just data)
@@ -30,6 +31,7 @@ This "to-do" list includes general computer science topics and suggestions for h
  - **new chapter on models-simulations**
 
 ## Algorithms
+
 - sequencing, selection, iteration as building blocks for algorithms
  - **new sub-section with specific terms in section 2.4** [Phase1][draft]
 - algorithm correctness
@@ -46,6 +48,7 @@ This "to-do" list includes general computer science topics and suggestions for h
  - **additional paragraph in 2.1.2** [Phase2][draft]
 
 ## Creativity
+
 - collaborative tools (open source, github/google doc)
  - **new chapter on data analysis, visualization, processing, etc.**
 - computational artifacts as more than programs
@@ -54,6 +57,7 @@ This "to-do" list includes general computer science topics and suggestions for h
  - **new chapter on data analysis, visualization, processing, etc.**
 
 ## Data
+
 - large data sets (databases), queries, filtering
  - **new chapter on data analysis, visualization, processing, etc.**
 - data patterns (sequence analysis / cryptography?)
@@ -66,12 +70,14 @@ This "to-do" list includes general computer science topics and suggestions for h
  - **new chapter on data analysis, visualization, processing, etc.**
 
 ## Impact
+
 **Most AP curriculum include specific lesson plans to cover these topic by requiring
 the students to research online after/during reading of the Blown to Bits book (freely available online). A teaching guide on how to use Blown to Bits in the classroom along with discussion questions and essay/project ideas should be sufficient. No new CS Field Guide content is suggested for these.**
 - computer ethics
 - social computing
 
 ## Programming
+
 - program components (modularity)
  - **additional sub-section in software-engineering** [Phase2]
 - program documentation
@@ -96,6 +102,7 @@ the students to research online after/during reading of the Blown to Bits book (
  - **new chapter on logic**
 
 ## Internet
+
 **New chapter on Network Systems with sections for the below**
 - internet system model: hierarchy, redundancy, fault tolerance (addresses, protocols, services)
 - bandwidth, latency
