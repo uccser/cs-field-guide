@@ -192,6 +192,9 @@ Here are some things to try out:
   This line is also a separate paragraph, but...
   This line is only separated by a single newline, so it's a separate line in the *same paragraph*.
 
+.. raw:: html
+  :file: ../_static/html_snippets/markdown_example_line_break.html
+
 ------------------------------------------------------------------------------
 
 Links
