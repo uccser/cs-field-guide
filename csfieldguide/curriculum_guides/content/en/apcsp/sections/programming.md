@@ -110,9 +110,10 @@ The above chapter readings include specific knowledge for EK's marked in bold. W
 - **EK 5.5.1B Integers may be constrained in the maximum and minimum values that can be represented in a program because of storage limitations.**
 
 {panel type="teacher-note"}
-  # EXCLUSION STATEMENT (for EK 5.5.1B):
+
+# EXCLUSION STATEMENT (for EK 5.5.1B):
   
-  Specific range limitations of all programming languages are beyond the scope of this course and the AP Exam.
+Specific range limitations of all programming languages are beyond the scope of this course and the AP Exam.
 
 {panel end}
 
@@ -120,9 +121,9 @@ The above chapter readings include specific knowledge for EK's marked in bold. W
 
 {panel type="teacher-note"}
 
-  # EXCLUSION STATEMENT (for EK 5.5.1C):
+# EXCLUSION STATEMENT (for EK 5.5.1C):
   
-  Specific sets of values that cannot be exactly represented by floating point numbers are beyond the scope of this course and the AP Exam.
+Specific sets of values that cannot be exactly represented by floating point numbers are beyond the scope of this course and the AP Exam.
 
 {panel end}
 

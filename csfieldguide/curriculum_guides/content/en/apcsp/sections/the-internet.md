@@ -13,15 +13,16 @@
 
 ## Learning objectives
 
-The above chapter readings include specific knowledge for EK's marked in bold. Work to include unmarked learning objectives in the CS Field Guide is currently in progress.
+The above chapter readings include specific knowledge for EK's marked in bold.
+Work to include unmarked learning objectives in the CS Field Guide is currently in progress.
 
 ### LO 6.1.1 Explain the abstractions in the Internet and how the Internet functions.
 
-{panel type="teacher-note" summary="Exclusion LO 6.1.1"}
+{panel type="teacher-note"}
 
-  # EXCLUSION STATEMENT (for LO 6.1.1):
+# EXCLUSION STATEMENT (for LO 6.1.1):
   
-  Specific devices used to implement the abstractions in the Internet are beyond the scope of this course and the AP Exam.
+Specific devices used to implement the abstractions in the Internet are beyond the scope of this course and the AP Exam.
 
 {panel end}
 
@@ -34,9 +35,9 @@ The above chapter readings include specific knowledge for EK's marked in bold. W
 
 {panel type="teacher-note"}
 
-  # EXCLUSION STATEMENT (for EK 6.1.1F):
+# EXCLUSION STATEMENT (for EK 6.1.1F):
   
-  Specific details of any particular standard for addresses are beyond the scope of this course and the AP Exam.
+Specific details of any particular standard for addresses are beyond the scope of this course and the AP Exam.
 
 {panel end}
 
@@ -60,11 +61,11 @@ The above chapter readings include specific knowledge for EK's marked in bold. W
 - EK 6.2.2E Open standards fuel the growth of the Internet.
 - **EK 6.2.2F The Internet is a packet-switched system through which digital data is sent by breaking the data into blocks of bits called packets, which contain both the data being transmitted and control information for routing the data.**
 
-{panel type="teacher-note" summary="Exclusion EK 6.2.2F"}
+{panel type="teacher-note"}
 
-  # EXCLUSION STATEMENT (for EK 6.2.2F):
+# EXCLUSION STATEMENT (for EK 6.2.2F):
   
-  Specific details of any particular packet-switching system are beyond the scope of this course and the AP Exam.
+Specific details of any particular packet-switching system are beyond the scope of this course and the AP Exam.
 
 {panel end}
 
@@ -72,9 +73,9 @@ The above chapter readings include specific knowledge for EK's marked in bold. W
 
 {panel type="teacher-note"}
 
-  # EXCLUSION STATEMENT (for EK 6.2.2G):
+# EXCLUSION STATEMENT (for EK 6.2.2G):
   
-  Specific technical details of how TCP/IP works are beyond the scope of this course and the AP Exam.
+Specific technical details of how TCP/IP works are beyond the scope of this course and the AP Exam.
 
 {panel end}
 
@@ -82,9 +83,9 @@ The above chapter readings include specific knowledge for EK's marked in bold. W
 
 {panel type="teacher-note"}
 
-  # EXCLUSION STATEMENT (for EK 6.2.2H):
+# EXCLUSION STATEMENT (for EK 6.2.2H):
 
-  Understanding the technical aspects of how SSL/TLS works is beyond the scope of this course and the AP Exam.
+Understanding the technical aspects of how SSL/TLS works is beyond the scope of this course and the AP Exam.
 
 {panel end}
 
@@ -106,9 +107,9 @@ The above chapter readings include specific knowledge for EK's marked in bold. W
 
 {panel type="teacher-note"}
 
-  # EXCLUSION STATEMENT (for EK 6.3.1I):
+# EXCLUSION STATEMENT (for EK 6.3.1I):
 
-  Specific mathematical functions used in cryptography are beyond the scope of this course and the AP Exam.
+Specific mathematical functions used in cryptography are beyond the scope of this course and the AP Exam.
 
 {panel end}
 
@@ -117,9 +118,9 @@ The above chapter readings include specific knowledge for EK's marked in bold. W
 
 {panel type="teacher-note"}
 
-  # EXCLUSION STATEMENT (for EK 6.3.1K):
+# EXCLUSION STATEMENT (for EK 6.3.1K):
   
-  The methods used in encryption are beyond the scope of this course and the AP Exam.
+The methods used in encryption are beyond the scope of this course and the AP Exam.
 
 {panel end}
 
@@ -127,17 +128,18 @@ The above chapter readings include specific knowledge for EK's marked in bold. W
 
 {panel type="teacher-note"}
 
-  # EXCLUSION STATEMENT (for EK 6.3.1L):
+# EXCLUSION STATEMENT (for EK 6.3.1L):
   
-  The mathematical methods used in public key cryptography are beyond the scope of this course and the AP Exam.
+The mathematical methods used in public key cryptography are beyond the scope of this course and the AP Exam.
 
 {panel end}
 
 - EK 6.3.1M Certificate authorities (CAs) issue digital certificates that validate the ownership of encrypted keys used in secured communications and are based on a trust model.
 
 {panel type="teacher-note"}
-  # EXCLUSION STATEMENT (for EK 6.3.1M):
+
+# EXCLUSION STATEMENT (for EK 6.3.1M):
   
-  The technical details of the process CAs follow are beyond the scope of this course and the AP Exam.
-  
+The technical details of the process CAs follow are beyond the scope of this course and the AP Exam.
+
 {panel end}

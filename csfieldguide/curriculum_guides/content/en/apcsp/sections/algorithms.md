@@ -39,9 +39,9 @@ The above chapter readings include specific knowledge for EK's marked in bold. W
 
 {panel type="teacher-note"}
 
-  #EXCLUSION STATEMENT (for LO 4.2.1):
+# EXCLUSION STATEMENT (for LO 4.2.1):
   
-  Any discussion of nondeterministic polynomial (NP) is beyond the scope of this course and the AP Exam.
+Any discussion of nondeterministic polynomial (NP) is beyond the scope of this course and the AP Exam.
 
 {panel end}
 
@@ -50,9 +50,9 @@ The above chapter readings include specific knowledge for EK's marked in bold. W
 
 {panel type="teacher-note"}
 
-  # EXCLUSION STATEMENT (for EK 4.2.1B):
-  
-  Using nonpolynomial functions to describe relationships between the number of steps required by an algorithm and the input size is beyond the scope of this course and the AP Exam.
+# EXCLUSION STATEMENT (for EK 4.2.1B):
+
+Using nonpolynomial functions to describe relationships between the number of steps required by an algorithm and the input size is beyond the scope of this course and the AP Exam.
 
 {panel end}
 
@@ -62,11 +62,11 @@ find solutions in reasonable time.**
 
 ### LO 4.2.2 Explain the difference between solvable and unsolvable problems in computer science.
 
-{panel type="teacher-note" summary="Exclusion LO 4.2.2"}
+{panel type="teacher-note"}
 
-  # EXCLUSION STATEMENT (for LO 4.2.2):
+# EXCLUSION STATEMENT (for LO 4.2.2):
 
-  Determining whether a given problem is solvable or unsolvable is beyond the scope of this course and the AP Exam.
+Determining whether a given problem is solvable or unsolvable is beyond the scope of this course and the AP Exam.
 
 {panel end}
 
@@ -75,9 +75,9 @@ find solutions in reasonable time.**
 
 {panel type="teacher-note"}
 
-  # EXCLUSION STATEMENT (for EK 4.2.2B):
+# EXCLUSION STATEMENT (for EK 4.2.2B):
 
-  Specific heuristic solutions are beyond the scope of this course and the AP Exam.
+Specific heuristic solutions are beyond the scope of this course and the AP Exam.
 
 {panel end}
 
@@ -92,9 +92,9 @@ find solutions in reasonable time.**
 
 {panel type="teacher-note"}
 
-  # EXCLUSION STATEMENT (for EK 4.2.3C):
+# EXCLUSION STATEMENT (for EK 4.2.3C):
   
-  Determining whether a given problem is undecidable is beyond the scope of this course and the AP Exam.
+Determining whether a given problem is undecidable is beyond the scope of this course and the AP Exam.
 
 {panel end}
 
@@ -106,9 +106,9 @@ find solutions in reasonable time.**
 
 {panel type="teacher-note"}
 
-  # EXCLUSION STATEMENT (for EK 4.2.4C):
+# EXCLUSION STATEMENT (for EK 4.2.4C):
   
-  Formally proving program correctness is beyond the scope of this course and the AP Exam.
+Formally proving program correctness is beyond the scope of this course and the AP Exam.
 
 {panel end}
 
@@ -117,11 +117,11 @@ find solutions in reasonable time.**
 - **EK 4.2.4F Finding an efficient algorithm for a problem can help solve larger instances of the problem.**
 - EK 4.2.4G Efficiency includes both execution time and memory usage.
 
-{panel type="teacher-note}
+{panel type="teacher-note"}
 
-  # EXCLUSION STATEMENT (for EK 4.2.4G):
+# EXCLUSION STATEMENT (for EK 4.2.4G):
   
-  Formal analysis of algorithms (Big-O) and formal reasoning using mathematical formulas are beyond the scope of this course and the AP Exam.
+Formal analysis of algorithms (Big-O) and formal reasoning using mathematical formulas are beyond the scope of this course and the AP Exam.
 
 {panel end}
 

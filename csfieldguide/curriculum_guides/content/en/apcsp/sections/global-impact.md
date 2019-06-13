@@ -8,7 +8,6 @@
 - EU 7.4 Computing innovations influence and are influenced by the economic, social, and cultural contexts in which they are designed and used.
 - EU 7.5 An investigative process is aided by effective organization and selection of resources. Appropriate technologies and tools facilitate the accessing of information and enable the ability to evaluate the credibility of sources.
 
-
 ## Reading from the Computer Science Field Guide
 
 ## Learning objectives
@@ -20,9 +19,15 @@ The above chapter readings include specific knowledge for EK's marked in bold. W
 - EK 7.1.1A Email, SMS, and chat have fostered new ways to communicate and collaborate.
 - EK 7.1.1B Video conferencing and video chat have fostered new ways to communicate and collaborate.
 - EK 7.1.1C Social media continues to evolve and fosters new ways to communicate.
-{panel type="teacher-note" summary="Exclusion EK 7.1.1C"}
-EXCLUSION STATEMENT (for EK 7.1.1C): Detailed knowledge of any social media site is beyond the scope of this course and the AP Exam.
+
+{panel type="teacher-note"}
+
+# EXCLUSION STATEMENT (for EK 7.1.1C):
+  
+Detailed knowledge of any social media site is beyond the scope of this course and the AP Exam.
+
 {panel end}
+
 - EK 7.1.1D Cloud computing fosters new ways to communicate and collaborate.
 - EK 7.1.1E Widespread access to information facilitates the identification of problems, development of solutions, and dissemination of results.
 - EK 7.1.1F Public data provides widespread access and enables solutions to identified problems.

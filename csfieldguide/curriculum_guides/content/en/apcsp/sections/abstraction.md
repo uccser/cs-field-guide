@@ -28,9 +28,9 @@ The above chapter readings include specific knowledge for EK's marked in bold. W
 
 {panel type="teacher-note"}
 
-  # EXCLUSION STATEMENT (for EK 2.1.1E):
- 
-  Two’s complement conversions are beyond the scope of this course and the AP Exam.
+# EXCLUSION STATEMENT (for EK 2.1.1E):
+
+Two’s complement conversions are beyond the scope of this course and the AP Exam.
 
 {panel end}
 
@@ -42,19 +42,19 @@ The above chapter readings include specific knowledge for EK's marked in bold. W
 
 {panel type="teacher-note"}
 
-  #EXCLUSION STATEMENT (for EK 2.1.2A):
- 
-  Binary representations of scientific notation are beyond the scope of this course and the AP Exam.
+# EXCLUSION STATEMENT (for EK 2.1.2A):
+
+Binary representations of scientific notation are beyond the scope of this course and the AP Exam.
   
 {panel end}
 
 - **EK 2.1.2B In many programming languages, the fixed number of bits used to represent characters or integers limits the range of integer values and mathematical operations; this limitation can result in over flow or other errors.**
 
-{panel type="teacher-note" summary="Exclusion EK 2.1.2B"}
+{panel type="teacher-note"}
 
-  # EXCLUSION STATEMENT (for EK 2.1.2B):
+# EXCLUSION STATEMENT (for EK 2.1.2B):
   
-  Range limitations of any one language, compiler, or architecture are beyond the scope of this course and the AP Exam.
+Range limitations of any one language, compiler, or architecture are beyond the scope of this course and the AP Exam.
 
 {panel end}
 
@@ -68,8 +68,13 @@ The above chapter readings include specific knowledge for EK's marked in bold. W
 - EK 2.2.1A The process of developing an abstraction involves removing detail and generalizing functionality.
 - EK 2.2.1B An abstraction extracts common features from specific examples in order to generalize concepts.
 - EK 2.2.1C An abstraction generalizes functionality with input parameters that allow software reuse.
-{panel type="teacher-note" summary="Exclusion EK 2.2.1C"}
-EXCLUSION STATEMENT (for EK 2.2.1C): An understanding of the difference between value and reference parameters is beyond the scope of this course and the AP Exam.
+
+{panel type="teacher-note"}
+
+# EXCLUSION STATEMENT (for EK 2.2.1C):
+  
+An understanding of the difference between value and reference parameters is beyond the scope of this course and the AP Exam.
+
 {panel end}
 
 ### LO 2.2.2 Use multiple levels of abstraction to write programs.
@@ -80,18 +85,29 @@ EXCLUSION STATEMENT (for EK 2.2.1C): An understanding of the difference between 
 ### LO 2.2.3 Identify multiple levels of abstractions that are used when writing programs.
 
 - **EK 2.2.3A Different programming languages offer different levels of abstraction.**
-{panel type="teacher-note" summary="Exclusion EK 2.2.3A"}
-EXCLUSION STATEMENT (for EK 2.2.3A): Knowledge of the abstraction capabilities of all programming languages is beyond the scope of this course and the AP Exam.
+
+{panel type="teacher-note"}
+
+# EXCLUSION STATEMENT (for EK 2.2.3A):
+  
+Knowledge of the abstraction capabilities of all programming languages is beyond the scope of this course and the AP Exam.
+
 {panel end}
+
 - **EK 2.2.3B High-level programming languages provide more abstractions for the programmer and make it easier for people to read and write a program.**
 - **EK 2.2.3C Code in a programming language is often translated into code in another (lower level) language to be executed on a computer.**
 - **EK 2.2.3D In an abstraction hierarchy, higher levels of abstraction (the most general concepts) would be placed toward the top and lower level abstractions (the more specific concepts) toward the bottom.**
 - EK 2.2.3E Binary data is processed by physical layers of computing hardware, including gates, chips, and components.
 - EK 2.2.3F A logic gate is a hardware abstraction that is modeled by a Boolean function.
-{panel type="teacher-note" summary="Exclusion EK 2.2.3F"}
-EXCLUSION STATEMENT (for EK 2.2.3F): Memorization of specific gate visual representations is beyond
-the scope of this course and the AP Exam.
+
+{panel type="teacher-note"}
+
+# EXCLUSION STATEMENT (for EK 2.2.3F):
+  
+Memorization of specific gate visual representations is beyond the scope of this course and the AP Exam.
+
 {panel end}
+
 - EK 2.2.3G A chip is an abstraction composed of low-level components and circuits that perform a specific function.
 - EK 2.2.3H A hardware component can be low level like a transistor or high level like a video card.
 - EK 2.2.3I Hardware is built using multiple levels of abstractions, such as transistors, logic gates, chips, memory, motherboards, special purpose cards, and storage devices.

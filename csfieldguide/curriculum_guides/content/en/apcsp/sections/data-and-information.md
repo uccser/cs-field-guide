@@ -57,9 +57,15 @@ in data, and solving problems.
 - EK 3.2.1D Search tools are essential for efficiently finding information.
 - EK 3.2.1E Information filtering systems are important tools for finding information and recognizing patterns in the information.
 - EK 3.2.1F Software tools, including spreadsheets and databases, help to efficiently organize and find trends in information.
-{panel type="teacher-note" summary="Exclusion EK 3.2.1F"}
-EXCLUSION STATEMENT (for EK 3.2.1F): Students are not expected to know specific formulas or options available in spreadsheet or database software packages.
+
+{panel type="teacher-note"}
+
+# EXCLUSION STATEMENT (for EK 3.2.1F):
+  
+Students are not expected to know specific formulas or options available in spreadsheet or database software packages.
+
 {panel end}
+
 - EK 3.2.1G Metadata is data about data.
 - EK 3.2.1H Metadata can be descriptive data about an image, a Web page, or other complex objects.
 - EK 3.2.1I Metadata can increase the effective use of data or data sets by providing additional information about various aspects of that data.
