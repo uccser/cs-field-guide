@@ -60,7 +60,7 @@ The diagram below shows an example of YAML file locations for the ``content/stru
 .. raw:: html
   :file: ../_static/html_snippets/chapters_content_directory_tree_only_yaml.html
 
-In the following sections, each configuration file is exaplained in more detail.
+In the following sections, each configuration file is explained in more detail.
 
 .. note::
 

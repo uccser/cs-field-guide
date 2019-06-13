@@ -54,6 +54,9 @@ Blockquotes
 
   > Oh, you can *put* **Markdown** into a blockquote.
 
+.. raw:: html
+  :file: ../_static/html_snippets/markdown_example_blockquote.html
+
 ------------------------------------------------------------------------------
 
 Boxed Text (Verto feature)
@@ -119,7 +122,7 @@ Conditional (Verto feature)
 
 ------------------------------------------------------------------------------
 
-Embed iframe (Verto feature)
+Embedded iframe (Verto feature)
 ==============================================================================
 
 `Click here to read the documentation on how to embed with an iframe`_.

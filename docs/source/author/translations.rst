@@ -66,7 +66,7 @@ Translation notes
   - In context localisation.
 
 - Special Verto tags which are within curly braces ``{`` ``}`` should not be translated, except for text after ``alt`` in an ``image`` tag.
-  For example the text:
+  For example, the text:
 
   .. code-block:: none
 
