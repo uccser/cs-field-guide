@@ -28,9 +28,9 @@ class LoaderFactory:
         """Create curriculum guide loader."""
         return CurriculumGuidesLoader(self, **kwargs)
 
-    def create_curriculum_guide_section_loader(self, chapter, **kwargs):
+    def create_curriculum_guide_section_loader(self, curriculum_guide, **kwargs):
         """Create curriculum guide loader."""
-        return CurriculumGuideSectionsLoader(self, chapter, **kwargs)
+        return CurriculumGuideSectionsLoader(self, curriculum_guide, **kwargs)
 
     def create_interactives_loader(self, **kwargs):
         """Create interactive loader."""
