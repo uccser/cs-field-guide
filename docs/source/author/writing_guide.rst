@@ -328,13 +328,16 @@ To include math (either inline or as a block) use the following syntax while usi
 
 .. code-block:: none
 
-  This is inline math: ``\( 2 + 2 = 4 \)``
+  This is inline math: \( 2 + 2 = 4 \)
 
   This is block math:
 
-  ``\[ \begin{bmatrix} s & 0 \\ 0 & s \\ \end{bmatrix} \]``
+  \[ \begin{bmatrix} s & 0 \\ 0 & s \\ \end{bmatrix} \]
 
 Math equations are rendered in MathJax using the LaTeX syntax.
+
+.. image:: ../_static/img/math_markdown_example.png
+  :alt: An image showing the above Markdown syntax rendered as HTML
 
 ------------------------------------------------------------------------------
 
