@@ -323,7 +323,7 @@ Here are some challenges to try to create regular expressions for:
 
 {panel type="project"}
 
-# Converting Regular Expressions to FSAs
+# Converting regular expressions to FSAs
 
 For this project you will make up a regular expression, convert it to an FSA, and demonstrate how some strings are processed.
 

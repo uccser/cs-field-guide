@@ -68,7 +68,7 @@ Some of the language may not be suitable for use in class, so discretion is need
 
 {panel end}
 
-## Public Key Systems
+## Public key systems
 
 One of the remarkable discoveries in computer science in the 1970s was a method called *public key encryption*, where it's fine to tell everyone what the key is to encrypt any messages, but you need a special private key to decrypt it.
 Because Alice and Bob use different keys, this is called an *asymmetric* encryption system.

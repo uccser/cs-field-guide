@@ -1,4 +1,4 @@
-# Usability Heuristics
+# Usability heuristics
 
 {panel type="teacher-note"}
 

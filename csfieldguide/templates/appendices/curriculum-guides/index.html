@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "appendices/base.html" %}
 
 {% load i18n %}
 
@@ -6,9 +6,9 @@
   {% trans 'Curriculum Guides' %}
 {% endblock title %}
 
-{% block page_heading %}
-  <h1>{% trans 'Curriculum Guides' %}</h1>
-{% endblock page_heading %}
+{% block appendix_title %}
+  {% trans 'Curriculum Guides' %}
+{% endblock appendix_title %}
 
 {% block content %}
   <p>

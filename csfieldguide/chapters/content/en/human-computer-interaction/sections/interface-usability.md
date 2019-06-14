@@ -1,4 +1,4 @@
-# Interface Usability
+# Interface usability
 
 {panel type="teacher-note"}
 

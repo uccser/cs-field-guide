@@ -115,7 +115,7 @@ You will probably want to refer back to it later while working through the remai
 
 ### Decryption with Caesar cipher
 
-Before we looked at how to *crack* Casear cipher – getting the plaintext from the ciphertext without being told the key beforehand.
+Before, we looked at how to *crack* Casear cipher &ndash; getting the plaintext from the ciphertext without being told the key beforehand.
 It is even easier to *decrypt* Caesar cipher when we **do** have the key.
 In practice, a good encryption system ensures that the plaintext cannot be obtained from the ciphertext without the key, i.e. it can be *decrypted* but not *cracked*.
 
@@ -254,7 +254,7 @@ A substitution cipher simply means that each letter in the plaintext is substitu
 If the same letter occurs more than once in the plaintext then it appears the same at each occurrence in the ciphertext.
 For example the phrase "HELLO THERE" has multiple H's, E's, and L's.
 All the H's in the plaintext might change to "C" in the ciphertext for example.
-Casear Cipher is an example of a substitution cipher.
+Caesar cipher is an example of a substitution cipher.
 Other substitution ciphers improve on the Caesar cipher by not having all the letters in order, and some older written ciphers use different symbols for each symbol.
 However, substitution ciphers are easy to attack because a statistical attack is so easy: you just look for a few common letters and sequences of letters, and match that to common patterns in the language.
 

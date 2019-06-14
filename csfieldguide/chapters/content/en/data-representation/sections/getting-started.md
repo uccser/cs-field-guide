@@ -1,4 +1,4 @@
-# Getting Started
+# Getting started
 
 To begin with, we'll look at Braille.
 Braille is not actually a way that computers represent data, but is a great introduction to the topic.
@@ -23,8 +23,7 @@ Different numbers and letters can be made by using different patterns of raised 
 {interactive slug="braille-alphabet" type="in-page"}
 
 Let's work out how many different patterns can be made using the 6 dots in a Braille character.
-If braille used only 2 dots, there would be 4 patterns.
-And with 3 dots there would be 8 patterns.
+Use the interactive below to investigate how many patterns you can make with just 2 or 3 dots.
 
 {interactive slug="dot-combinations" type="in-page"}
 

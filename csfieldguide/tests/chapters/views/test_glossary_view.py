@@ -111,7 +111,8 @@ class GlossaryViewTest(BaseTestWithDB):
             {
                 "definition": "<p>Algorithms definition.</p>",
                 "slug": "algorithm",
-                "term": "Algorithms"
+                "term": "Algorithms",
+                "translated": True
             }
         )
 
@@ -139,7 +140,8 @@ class GlossaryViewTest(BaseTestWithDB):
             {
                 "definition": "<p>Pixel definition.</p>",
                 "slug": "pixel",
-                "term": "Pixel"
+                "term": "Pixel",
+                "translated": True
             }
         )
 
@@ -166,3 +168,25 @@ class GlossaryViewTest(BaseTestWithDB):
         url = reverse("chapters:glossary_json")
         response = self.client.get(url, {"word": "pixel"})
         self.assertEqual(404, response.status_code)
+
+    def test_chapters_glossary_view_json_no_translation(self):
+        term = GlossaryTerm(
+            slug="algorithm",
+            term="Algorithms",
+            definition="<p>Algorithms definition.</p>",
+            languages=["de"],
+        )
+        term.save()
+
+        url = reverse("chapters:glossary_json")
+        response = self.client.get(url, {"term": "algorithm"})
+        self.assertEqual(200, response.status_code)
+        self.assertJSONEqual(
+            str(response.content, encoding="utf8"),
+            {
+                "definition": "<p>Algorithms definition.</p>",
+                "slug": "algorithm",
+                "term": "Algorithms",
+                "translated": False
+            }
+        )

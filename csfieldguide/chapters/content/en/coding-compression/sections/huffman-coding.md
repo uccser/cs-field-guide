@@ -1,4 +1,4 @@
-# Huffman Coding
+# Huffman coding
 
 A common way to compress data is to give short codes to common symbols, and long codes to things that are rare.
 For example, Morse code represents the letter "e" with a single dot, whereas the letter "z" is two dashes followed by two dots.
@@ -84,7 +84,7 @@ try decoding the message "11001".
 
 {panel type="spoiler"}
 
-#Decoding 11001
+# Decoding 11001
 
 This message wasn't generated properly, and it can't be worked out because the original could have been "tgc" or "ttat".
 The clever thing about a Huffman code is that it won't let this happen.

@@ -19,7 +19,7 @@ If you want to search for someone by name it would help to first have the data s
 Like searching there are many different sorting algorithms, but some take much longer than others.
 In this section you will be introduced to two slower algorithms and one much better one.
 
-## Scales Interactive
+## Scales interactive
 
 Throughout this section you can use the sorting interactive to test out the algorithms we talk about.
 When you're using it make sure you take note of the comparisons at the bottom of the screen, each time you compare two boxes the algorithm is making 'one comparison' so the total number of comparisons you have to make with each algorithm is the cost of that algorithm for the 8 boxes.
@@ -38,7 +38,7 @@ Scales Interactive
 
 {comment link back to the unplugged activity}
 
-## Selection Sort
+## Selection sort
 
 One of the most intuitive ways to sort a group of boxes into order, from lightest to heaviest, is to start by first finding the lightest (or the heaviest) box and placing that to the side.
 Try this with the scales interactive.
@@ -87,7 +87,7 @@ There's a visual explanation in [this video](http://www.numberphile.com/videos/o
 
 {comment Include a spoiler so that students can see the answer (or an interactive), and additionally a curiosity about Gauss' trick }
 
-This algorithm is called Selection sort, because each time you look through the list you are 'selecting' the next lightest box and putting it into the correct position.
+This algorithm is called selection sort, because each time you look through the list you are 'selecting' the next lightest box and putting it into the correct position.
 If you go back to the algorithms racing interactive at the top of the page you might now be able to watch the selection sort list and understand what it is doing at each step.
 
 The selection sort algorithm can be described as follows:
@@ -97,7 +97,7 @@ The selection sort algorithm can be described as follows:
 
 You can swap the word 'smallest' for 'largest' and the algorithm will still work, as long as you are consistent it doesn't matter if you are looking for the smallest or the largest item each time.
 
-## Insertion Sort
+## Insertion sort
 
 {panel type="teacher-note"}
 
@@ -109,7 +109,7 @@ However, if you have time, it's worth looking at for extra examples.
 {panel end}
 
 This algorithm works by removing each box from the original group of boxes and inserting it into its correct position in a new sorted list.
-Like Selection Sort, it is very intuitive and people often perform it when they are sorting objects themselves, like cards in their hands.
+Like selection sort, it is very intuitive and people often perform it when they are sorting objects themselves, like cards in their hands.
 
 Try this with the scales interactive.
 Start by moving all the boxes to one side of the screen, this is your original, and unsorted, group.
@@ -119,7 +119,7 @@ To insert another box into the sorted group, compare it to the box that is alrea
 Then to add the next box compare it to these boxes (depending on the weight of the box you might only have to compare it to one!) and then arrange these three boxes in the correct order.
 Continue inserting boxes until the sorted list is complete. Don't forget to count how many comparisons you had to make!
 
-This algorithm is called Insertion Sort.
+This algorithm is called insertion sort.
 If you're not quite sure if you've got the idea of the algorithm yet then have a look at [this animation](https://upload.wikimedia.org/wikipedia/commons/0/0f/Insertion-sort-example-300px.gif) from [Wikipedia](https://en.wikipedia.org/wiki/Insertion_sort).
 
 Insertion sort can be described with informal instructions as follows:
@@ -133,10 +133,10 @@ For example if you owned a library and purchased a new book you wouldn't do a Se
 
 ## Quicksort
 
-Insertion and Selection Sort may seem like logical ways to sort things into order, but they both take far too many comparisons when they are used for large amounts of data.
-Remember computers often have to search through HUGE amounts of data, so even if they use a good searching algorithm like Binary Search to look through their data, if they use a bad sorting algorithm to first sort that data into order then finding anything will take far too long!
+Insertion and selection sort may seem like logical ways to sort things into order, but they both take far too many comparisons when they are used for large amounts of data.
+Remember computers often have to search through HUGE amounts of data, so even if they use a good searching algorithm like binary search to look through their data, if they use a bad sorting algorithm to first sort that data into order then finding anything will take far too long!
 
-A much better sorting algorithm is {glossary-link term="quicksort"}Quicksort{glossary-link end}! (the name is a bit of a giveaway)
+A much better sorting algorithm is {glossary-link term="quicksort"}quicksort{glossary-link end}! (the name is a bit of a giveaway)
 
 {interactive slug="sorting-algorithms" type="whole-page" text="true" parameters="method=quick"}
 
@@ -173,7 +173,7 @@ Eventually each subgroup will contain only one item and at this stage the items 
 
 The following files will run selection sort and quicksort in various languages; you can use them to generate random lists of values and measure how long they take to be sorted.
 Note how long these take for various amounts of input (*n*), and show it in a table or graph.
-You should notice that the time taken by Quicksort is quite different to that taken by selection sort.
+You should notice that the time taken by quicksort is quite different to that taken by selection sort.
 - [Scratch](files/selection-quicksort-scratch.zip) - [Download Scratch here](https://scratch.mit.edu/scratch2download/)
 - [Python (Version 2)](files/selection-quicksort-python2.py) - [Download Python 2 here](https://www.python.org/downloads/)
 - [Python (Version 3)](files/selection-quicksort-python3.py) - [Download Python 3 here](https://www.python.org/downloads/)

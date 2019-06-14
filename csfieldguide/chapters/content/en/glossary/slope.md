@@ -1,4 +1,4 @@
-#Slope
+# Slope
 
 This is a way of expressing the angle or gradient of a line.
 The slope is simply how far up the line goes for every unit we move to the right.

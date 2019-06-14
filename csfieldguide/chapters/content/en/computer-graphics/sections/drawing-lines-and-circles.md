@@ -193,7 +193,7 @@ Even worse, the numbers are floating point, which usually have slower arithmetic
 
 ## Bresenham's Line Algorithm
 
-A faster way for a computer to calculate which pixels to colour in is to use Bresenham's Line Algorithm.
+A faster way for a computer to calculate which pixels to colour in is to use Bresenham's line algorithm.
 It follows these simple rules.
 First, calculate these three values:
 
@@ -211,7 +211,7 @@ To draw the line, fill the starting pixel, and then for every position along the
 - If \( P \) was 0 or greater, draw the new pixel one line higher than the last pixel, and add \( B \) to \( P \).
 - Repeat this decision until we reach the end of the line.
 
-Without using a ruler, use Bresenham's Line Algorithm to draw a straight line from A to B:
+Without using a ruler, use Bresenham's line algorithm to draw a straight line from A to B:
 
 {interactive slug="pixel-grid" type="iframe" parameters="Ax=3&Ay=4&Bx=16&By=9"}
 
@@ -294,7 +294,7 @@ The following algorithm is much faster, and only involves simple arithmetic so i
 
 {comment could mention later that Bresenham didn't invent it, but idea comes from his line algorithm and is often named after him}
 
-Here are the rules for the Midpoint Circle Algorithm for a circle around (\( c_{x} \), \( c_{y} \)) with a radius of \( R \):
+Here are the rules for the midpoint circle algorithm for a circle around (\( c_{x} \), \( c_{y} \)) with a radius of \( R \):
 
 \[
 E = -R\\

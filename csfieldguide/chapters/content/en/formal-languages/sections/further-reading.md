@@ -11,7 +11,7 @@ Textbooks on formal languages will have considerably more advanced material and 
 
 Regular expressions and their relationship with FSAs is explained well in the book "Algorithms" by Robert Sedgewick.
 
-## Useful Links
+## Useful links
 
 - [https://en.wikipedia.org/wiki/Formal_language](https://en.wikipedia.org/wiki/Formal_language)
 - [https://en.wikipedia.org/wiki/Context-free_grammar#Examples](https://en.wikipedia.org/wiki/Context-free_grammar#Examples)

@@ -70,7 +70,7 @@ Like in TCP, the game supports packet ordering, checksums (shields), Acks and Na
 
 {panel type="teacher-note"}
 
-# Packet Attack spoilers
+# Packet attack spoilers
 
 **Level Overview**
 

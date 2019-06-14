@@ -200,7 +200,7 @@ It also has voice recognition, so you can talk to it rather than just typing to 
 
 # TED video introducing the Turing test
 
-There is a TED video that gives an overview of the Turing Test [on YouTube](https://www.youtube.com/watch?v=3wLqsRLvV-c).
+There is a TED video that gives an overview of the Turing test [on YouTube](https://www.youtube.com/watch?v=3wLqsRLvV-c).
 
 {panel end}
 
@@ -256,7 +256,7 @@ At the end the interrogator had to say which was the male and which was the fema
 
 # Run your own Turing test on a chatterbot
 
-This section will involve you actually carrying out the Turing Test.
+This section will involve you actually carrying out the Turing test.
 Read this entire section carefully (and the previous section if you haven’t done so already) before you start, and make sure you understand it all before starting.
 
 In science classes, such as biology, physics, and chemistry, carrying out experiments is commonly done.

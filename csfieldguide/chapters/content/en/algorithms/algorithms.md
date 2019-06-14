@@ -17,7 +17,7 @@ If you have read through the Introduction chapter you may remember that the spee
 If an application you create is too slow, people will get frustrated with it and won't use it.
 It doesn't matter if your software is amazing, if it takes too long they will simply give up and try something else!
 
-## Algorithms, Programs and Informal Instructions
+## Algorithms, programs and informal instructions
 
 At this stage you might be thinking that algorithms and computer programs kind of sound like the same thing, but they are actually two very distinct concepts.
 They are each different ways of describing how to do something, but at different levels of precision:
@@ -123,7 +123,7 @@ This means that if the time the program takes to complete is used to measure the
 The number of operations (such as comparisons of data items) that an algorithm makes however will not change depending on the speed of a computer, or the programming language the program using the algorithm is written in.
 Some algorithms will always make the same number of comparisons for a certain input size, while others might vary.
 
-## Algorithm Correctness
+## Algorithm correctness
 
 If we develop or are given an algorithm to solve a problem, how do we know that it works?
 Sometimes we create test cases to verify the algorithm produces correct output for specific input values.
@@ -148,9 +148,9 @@ If the search algorithm incorrectly chose a random person, the algorithm for ass
 As you will see in this chapter with searching and sorting there are multiple correct algorithms for the same problem.
 Often there are good reasons to know multiple correct algorithms because there are tradeoffs in simplicity, algorithm cost, and assumptions about inputs.
 
-## Searching and Sorting
+## Searching and sorting
 
-In this chapter we will look at two of the most common and important types of algorithms, Searching and Sorting. You probably come across these kinds of algorithms every time you use a computer without even realising!
+In this chapter we will look at two of the most common and important types of algorithms, searching and sorting. You probably come across these kinds of algorithms every time you use a computer without even realising!
 They also happen to be great for illustrating some of the key concepts that arise with algorithms.
 
 {glossary-link term="algorithm" reference-text="searching algorithms"}{glossary-link end}

@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "appendices/base.html" %}
 
 {% load i18n %}
 {% load static %}
@@ -8,9 +8,9 @@
   {% trans "Interactives" %}
 {% endblock title %}
 
-{% block page_heading %}
-  <h1 id="interactives" class="section-heading anchor-link">Interactives</h1>
-{% endblock page_heading %}
+{% block appendix_title %}
+  {% trans "Interactives" %}
+{% endblock appendix_title %}
 
 {% block content %}
   <h2>List of interactives by chapter</h2>
@@ -27,7 +27,7 @@
         {% endfor %}
       </div>
     {% else %}
-      <p>No interactives are available for {{ chapter.name }}.</p>
+      <p>{% trans 'No interactives are available for this chapter.' %}</p>
     {% endif %}
   {% endfor %}
 
@@ -43,6 +43,6 @@
       {% endfor %}
     </div>
   {% else %}
-    <p>No interactives are available.</p>
+    <p>{% trans 'No interactives are available.' %}</p>
   {% endif %}
 {% endblock content %}
