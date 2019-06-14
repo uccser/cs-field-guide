@@ -407,9 +407,9 @@ Writing structure
 
 Chapters always contain the following:
   
-  - An introduction page and several chapter sections that each cover a key sub topic of the main chapter topic.
-  - End in the same two sections; 'The whole story!' and 'Further reading'.
-    Where 'The whole story!' is a summary of the chapter and 'Further reading' contains links and/or book references where students can read further about the topic.
+- An introduction page and several chapter sections that each cover a key sub topic of the main chapter topic.
+- End in the same two sections; 'The whole story!' and 'Further reading'.
+  Where 'The whole story!' is a summary of the chapter and 'Further reading' contains links and/or book references where students can read further about the topic.
 
 ------------------------------------------------------------------------------
 
