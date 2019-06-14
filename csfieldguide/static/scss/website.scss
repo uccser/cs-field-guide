@@ -79,6 +79,14 @@ body {
   }
 }
 
+.heading-permalink {
+  @extend .no-text-decoration;
+  color: $text-color;
+}
+.section-heading-number {
+  @extend .text-muted;
+}
+
 .no-text-decoration {
   text-decoration: none !important;
 }
@@ -211,7 +219,7 @@ blockquote {
 
 .nav-link-colour {
   color: $csfg-light;
-  
+
   &:hover {
     color: #253589;
   }

@@ -1,5 +1,6 @@
-<{{ heading_type }} id="{{ title_slug }}">
-<span class="section_number">
+<div class="section-heading">
+{%- if heading_level < 4 -%}
+<div class="section-heading-number">
 {{ "{{ chapter.number }}.{{ chapter_section.number }}" }}
 {%- if heading_level >= 2 -%}
 .{{ level_2 }}
@@ -7,16 +8,12 @@
 {%- if heading_level >= 3 -%}
 .{{ level_3 }}
 {%- endif -%}
-{%- if heading_level >= 4 -%}
-.{{ level_4 }}
-{%- endif -%}
-{%- if heading_level >= 5 -%}
-.{{ level_5 }}
-{%- endif -%}
-{%- if heading_level >= 6 -%}
-.{{ level_6 }}
-{%- endif -%}
 .
-</span>
+</div>
+{%- endif -%}
+<{{ heading_type }} id="{{ title_slug }}">
+<a class="heading-permalink" href="#{{ title_slug }}">
 {{ title }}
+</a>
 </{{ heading_type }}>
+</div>
