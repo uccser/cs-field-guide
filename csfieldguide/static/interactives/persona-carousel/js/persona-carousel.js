@@ -26,18 +26,20 @@ var PERSONAS = {
   sam: {
     carousel_id: 'sam',
     name: 'Sam',
-    age: 29,
-    title: gettext('University student and new mother'),
-    about: gettext('Sam is a mature student and also a new mother.\
-      Being a new mother, her sleep schedule is not consistent and she needs to get sleep whenever she can.\
-      However, she doesn\'t want to abandon her studies and chances of work in her favourite field.'),
+    age: 17,
+    title: gettext('High school student'),
+    about: gettext('Sam forgot to look both ways, and her subsequent injury has left her largely bound to a wheelchair.\
+      She is still getting used to dealing with her new situation, and finds herself regularly exhausted from the effort.\
+      During her time off school she fell behind and now has to catch up.\
+      Her doctor suggested finding a sleep tracking app for her phone so she can manage good sleep while recovering, and best utilise her remaining time for study.'),
     goals: [
       gettext('Get enough sleep to work efficiently in her studies.'),
-      gettext('Stay on top of uni work but also spend as much time as she can with her child.')
+      gettext('Stay on top of shoolwork, but also spare time for extra rest and recovery.'),
+      gettext('Find a way to better organise her time, as suggested by her doctor.')
     ],
     frustrations: [
-      gettext('Wakes up multiple times a night for the baby.'),
-      gettext('Sometimes falls asleep druing lectures and has to spend extra time making up for it.'),
+      gettext('Wakes up multiple times a night in pain.'),
+      gettext('Sometimes she gets so exhausted she is forced to take time off school in the afternoon, and has to spend extra time at home making up for it.'),
       gettext('Never knows how many hours of sleep she has actually had.')
     ]
   },
@@ -50,16 +52,16 @@ var PERSONAS = {
     about: gettext('Kate is doing an apprenticeship in construction with a local polytechnic.\
       They also love singing and have organised a choir, practicing on Sunday evenings.\
       Sometimes the choir practice runs late into the night, but Kate needs to get up early for work the next morning.\
-      Sometimes Kate goes home too late, and has trouble concentrating at her apprenticeship.\
+      Sometimes Kate goes home too late, and has trouble concentrating at their apprenticeship.\
       But other times they go home too early and can\'t get to sleep.\
       Kate needs a product that can help them keep a consistent sleep schedule.'),
     goals: [
       gettext('Consistently get a good night\'s sleep'),
-      gettext('Be able to time her departure from choir so that she gets just the right amount of practice and the right amount of sleep.')
+      gettext('Be able to time their departure from choir so that they get just the right amount of practice and the right amount of sleep.')
     ],
     frustrations: [
       gettext('Gets so engrossed in their singing that they forget to go home on time.'),
-      gettext('But if they go home early they lie in bed thinking about singing and the choir.')
+      gettext('But if they go home early they get easily distracted, and find it hard to fall asleep.')
     ]
   },
 }

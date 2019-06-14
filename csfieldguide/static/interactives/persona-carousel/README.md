@@ -5,6 +5,8 @@ AKA Persona Slideshow
 **Author:** Alasdair Smith
 
 This interactive displays a slideshow of different personas, each with an image, an about, goals and frustrations.
+Example personas are aimed at teaching students about designing for the user, rather than themselves.
+As such they might lack some more advanced details used in industry personas.
 
 ## Adding/changing personas
 
@@ -21,3 +23,20 @@ Each persona in the dictionary must have the following items:
 - `about:` (str) A general description of the persona.
 - `goals:` (list of str) A list of goals for the persona - each item is listed on a new line and prefixed with an `&ndash;` automatically.
 - `frustrations:` (list of str) A list of frustrations for the persona - each item is listed on a new line and prefixed with an `&ndash;` automatically.
+
+## Images used
+
+`bevan.jpg`:
+
+- Photo by Johm Kan on Unsplash
+- Source: https://unsplash.com/photos/71NgiXcdTzE
+
+`kate.jpg`:
+
+- Image by Emily Heidt from Pixabay
+- Source: https://pixabay.com/photos/senior-photos-girl-high-school-2260604/
+
+`sam.jpg`:
+
+- Photo by Eugene Chystiakov on Unsplash
+- Source: https://unsplash.com/photos/cvqvLMVEfBY
