@@ -15,47 +15,18 @@ The following principles were used to guide the design of a translation system f
 
 Translatable Files
 =============================================================================
-Translatable content is stored in five types of files:
+Translatable content is stored in three types of files:
 
 - Markdown files, for content to be processed by Verto.
-- YAML files containg field translations for a given model type.
-- HTML templates.
 - Python code.
+- HTML templates.
 - JavaScript code.
 
-The first two types of file are stored inside the directory tree for a given language (ie. the directory named using the Django locale code).
-
-.. note::
-
-  YAML translation files must contain translations for only one model type, but may contain translations for multiple instances of that model, and for multiple fields.
-
-  They are structured as follows
-
-  .. code-block:: yaml
-
-    <object-slug-1>:
-        <field-1>: <translated value for field-1>
-        <field-2>: <translated value for field-2>
-    <object-slug-2>
-
-  For example, the following snippet is from the YAML translation file for all classroom resources
-
-  .. code-block:: yaml
-
-    pens:
-      description:  Pens
-    paper:
-      description:  Paper
-    number-line-0-20:
-      description:  Number line from 0 to 20
-
-  It is important to note that these YAML files are separate from `configuration files <understanding_configuration_files>`_, which are located in the ``structure`` directory.
-
-  These files can be parsed and loaded using a `utility function <UtilityFunctions_>`_ on the ``TranslatableModelLoader`` base class.
+Markdown files are stored inside the directory tree for a given language (ie. the directory named using the Django locale code).
 
 For the other three type of files, Django's built-in `translation support <https://docs.djangoproject.com/en/2.0/topics/i18n/>`_ is utilised to handle translatable strings.
 In Python code, text is wrapped in a ``ugettext`` function call (usually aliased to ``_``).
-In HTML templates, text is wrapped in ``{% trans %}``/``{% blocktrans trimmed %}`` tags.
+In HTML templates, text is wrapped in ``{% trans %}``/``{% blocktrans %}`` tags.
 In JavaScript code, text is wrapped in a ``gettext`` function call.
 
 

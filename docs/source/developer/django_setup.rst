@@ -6,7 +6,7 @@ This page covers the configuration of Django for this project.
 Django Overview
 ==============================================================================
 
-We aim to create and clear Django system for ease of development.
+We aim to create a clear Django system for ease of development.
 We are using some advised patterns and practices from `Two Scoops of Django - Best Practices for Django 1.8`_, which include (but is not limited to the following):
 
 - Locking versions of dependencies.
@@ -16,7 +16,7 @@ We are using some advised patterns and practices from `Two Scoops of Django - Be
 
 The Django system currently contains the following applications:
 
-- ``general/`` - For general website pages (for example: home, about, etc).
+- ``general/`` - For general website pages (for example: homepage).
 - ``chapters/`` - For chapter content
 - ``interactives/`` - For interactive content
 

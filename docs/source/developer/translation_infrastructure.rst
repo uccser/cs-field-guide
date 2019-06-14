@@ -13,13 +13,14 @@ The project is public, meaning that anyone can create an account and contribute 
 
 Translatable Files
 ==============================================================================
-There are 3 types of files that contain translatable content:
+There are 4 types of files that contain translatable content:
 
 - Content Markdown files
-- Content YAML files containg translatable model strings
+- HTML templates
+- JavaScript code
 - ``django.po`` file containing translatable system strings
 
-Translatable source files must always reside under an ``en`` directory tree.
+Content Markdown source files must always reside under an ``en`` directory tree.
 Translated files are downloaded into a directory named with the language's locale code, and with the same structure as the source tree.
 
 .. note::

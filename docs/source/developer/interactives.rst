@@ -55,10 +55,10 @@ Interactive Configuration Files
 
     - ``languages:`` A dictionary of all languages the interactive is available in, where each key is the locale.
 
-    - ``is_interactive:`` A boolean value indicating if the interactive can be interacted with. This field was introduced
-      so that we could translate images that contain text. Therefore, if the ``is_interactive`` field is set to ``false``,
-      it means the user cannot interact with the content and it is not displayed in the interactives appendix. We call these
-      'Uninteractives'.
+    - ``is_interactive:`` A boolean value indicating if the interactive can be interacted with.
+        This field was introduced so that we could translate images that contain text. 
+        Therefore, if the ``is_interactive`` field is set to ``false``, it means the user cannot interact with the content and it is not displayed in the interactives appendix.
+        We call these 'Uninteractives'.
 
 A complete interactive structure file may look like the following:
 
@@ -113,7 +113,7 @@ Directory Structure
   You should have an understanding of the following concepts before proceeding (*we won't teach you how to do these here, there are plenty of great guides online!*):
 
   - HTML
-  - CSS
+  - CSS/SCSS
   - JavaScript
   - Bootstrap
 
@@ -125,9 +125,9 @@ Every interactive will follow a very similar file structure as given below:
       ├── static/
       │   ├── interactives/
       │   │   └── <interactive-slug>/
-      │   │       ├── css/
+      │   │       ├── scss/
       │   │       │   ├── third-party/
-      │   │       │   └── <interactive-slug>.css
+      │   │       │   └── <interactive-slug>.scss
       │   │       ├── img/
       │   │       ├── js/
       │   │       │   ├── third-party/
@@ -135,7 +135,7 @@ Every interactive will follow a very similar file structure as given below:
       │   │       └── README.md
       │   ├── js/
       │   │   └── third-party/
-      │   └── css/
+      │   └── scss/
       │       └── third-party/
       └── templates/
           └── interactives/
@@ -147,7 +147,7 @@ Every interactive will follow a very similar file structure as given below:
 
 Items of interest from this diagram:
 
-- ``static/interactives/<interactive-slug>/`` - This is the directory where static files for the interactive are stored, which should be broken down into ``css``, ``js`` and ``img`` directories.
+- ``static/interactives/<interactive-slug>/`` - This is the directory where static files for the interactive are stored, which should be broken down into ``scss``, ``js`` and ``img`` directories.
 
 - ``static/interactives/<interactive-slug>/js/third-party/`` - Any third party JavaScript libraries specific to this interactive must be stored in this directory (unless you are using a CDN)
 
@@ -158,7 +158,8 @@ Items of interest from this diagram:
   Any third-party libraries you include must have a licence that allows them to be used in the CSFG.
   A summary of the library's licence must be added to ``LICENCE-THIRD-PARTY`` with the full licence file added to ``cs-field-guide/third-party-licences/``.
 
-- ``static/interactives/<interactive-slug>/README.md`` - This is a short file that that explains the interactive's purpose and links to any necessary wiki pages.
+- ``static/interactives/<interactive-slug>/README.md`` - This is a short file that that explains the interactive's purpose.
+  It can also include links to any documentation or websites that future developers may find useful.
 
 - ``templates/interactives/<interactive-slug>.html`` - This is the HTML template for the interactive for a specific locale, as defined in the interactive configuration file.
   Locale may or may not share a template for an interactive, allowing different versions of an interactive to be available (`see GitHub for more information <https://github.com/uccser/cs-field-guide/pull/710>`_).
@@ -195,7 +196,8 @@ Interactive Requirements
 
 A completed interactive requires the following to be included into the repository for release:
 
-- A ``README.md`` file explaining the interactive, linking to any necessary wiki pages.
+- A ``README.md`` file explaining the interactive, linking to any documentation or websites that future developers may find useful.
+  Uninteractives generally don't have a ``README.md`` file unless future developers may find it useful.
 - Extra libraries/scripts that have been used have been used and attributed correctly, see :ref:`licence-files`.
 - Be easily accessible on desktop and mobile, or show a disclaimer that it is suited for desktop use only.
 - Abides by the repository contribution style guidelines.
@@ -205,6 +207,6 @@ A completed interactive requires the following to be included into the repositor
 Uninteractives
 ------------------------------------------------------------------------------
 
-Uninteractives follow the exact same structure as interactives, the only difference is that the user cannot interact with them in the browser.
-They are most commonly used as a replacement for images with text we want translated. Uninteractives are distinguished from interactives  by setting the `is_interactive:` attribute to `false` in the `interactives.yaml` configuration file.
-
+Uninteractives follow the exact same structure as interactives, the biggest difference is that they are not designed to be interacted with.
+They are most commonly used as a replacement for images with text we want translated.
+Uninteractives are distinguished from interactives by setting the `is_interactive:` attribute to `false` in the `interactives.yaml` configuration file.
