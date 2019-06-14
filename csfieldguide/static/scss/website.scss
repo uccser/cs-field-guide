@@ -82,6 +82,12 @@ body {
 .heading-permalink {
   @extend .no-text-decoration;
   color: $text-color;
+  img {
+    visibility: hidden;
+  }
+  &:hover img {
+    visibility: visible;
+  }
 }
 .section-heading-number {
   @extend .text-muted;
