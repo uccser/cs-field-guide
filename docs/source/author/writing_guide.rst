@@ -1,6 +1,9 @@
 Writing Guide
 ##############################################################################
 
+The CS Field Guide is developed in English and is then translated into other languages.
+You can find more information about this on the translations page.
+
 The majority of our text content is written in Markdown, and we also developed
 a program called `Verto`_ to allow you to include HTML elements like images and
 videos with simple text tags.

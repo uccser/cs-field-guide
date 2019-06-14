@@ -66,19 +66,12 @@ Translation notes
   - In context localisation.
 
 - Special Verto tags which are within curly braces ``{`` ``}`` should not be translated, except for text after ``alt`` in an ``image`` tag.
-  For example, the text:
+  For example, for the following text:
 
   .. code-block:: none
 
     {image file-path="img/chapters/parity-trick-cartoon.jpg" alt="The parity magic trick"}
 
-  The only text to translate is 'The parity magic trick'.
-
-  One example of a Verto tag that should not be translated is the comment tag. 
-  For example none of the following text should be translated:
-
-  .. code-block:: none
-
-    {comment This is a comment}
+  the only text to translate is 'The parity magic trick'.
 
 If you are unsure how to translate a line, please leave it for another translator.
