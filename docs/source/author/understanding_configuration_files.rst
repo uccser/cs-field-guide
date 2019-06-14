@@ -32,7 +32,7 @@ The first key/value pair in this configuration file is explained below:
 - The key ``searching`` stores a dictionary of information about that chapter section.
   In this case, only information about the section number is stored.
 - Inside this dictionary, the key ``section-number`` stores an integer indicating the number order for this section.
-  For example searching will be the first section, sorting the second and so on.
+  For example **searching** will be the first section, **sorting** the second and so on.
 
 The majority of configuration files within this project only use dictionaries and lists to store their data.
 Here are some other useful tips:
