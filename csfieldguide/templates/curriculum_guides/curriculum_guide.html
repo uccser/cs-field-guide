@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% load static %}
+{% load render_html_field %}
+
+{% block title %}
+  {{ curriculum_guide.name }}
+{% endblock title %}
+
+{% block page_heading %}
+  {{ curriculum_guide.name }}
+{% endblock page_heading %}
+
+{% block content %}
+  {% if curriculum_guide.translation_available %}
+    {% render_html_field curriculum_guide.introduction %}
+  {% else %}
+    {% with model=curriculum_guide %}
+      {% include "generic/not-available-warning.html" %}
+    {% endwith %}
+  {% endif %}
+
+  <h2>{% trans 'Sections in this guide:' %}</h2>
+  <ul class="list-unstyled">
+    {% for curriculum_guide in curriculum_guide_sections %}
+      <li>
+        {{ curriculum_guide.number }}.{{ section.number }}.
+        <a href="{% url 'curriculum_guides:curriculum_guide_section' curriculum_guide.slug curriculum_guide.slug %}" class="ml-1{% if not section.translation_available %} text-muted{% endif %}">
+          {{ section.name }}
+        </a>
+        {% if not section.translation_available %}
+          {% include "generic/not-available-badge.html" %}
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+
+
+{% endblock content %}

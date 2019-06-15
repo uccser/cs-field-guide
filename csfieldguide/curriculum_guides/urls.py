@@ -16,13 +16,13 @@ urlpatterns = [
     # eg: /curriculum_guides/apcsp/
     url(
         r"^(?P<curriculum_guide_slug>[-\w]+)/$",
-        views.curriculum_guideView.as_view(),
+        views.CurriculumGuideView.as_view(),
         name="curriculum_guide"
     ),
     # eg: /curriculum_guides/apcsp/abstraction/
     url(
         r"^(?P<curriculum_guide_slug>[-\w]+)/(?P<curriculum_guide_section_slug>[-\w]+)/$",
-        views.curriculum_guidesectionView.as_view(),
+        views.CurriculumGuideSectionView.as_view(),
         name="curriculum_guide_section"
     ),
     # eg: redirect /curriculum_guides/index.html to /curriculum_guides/
