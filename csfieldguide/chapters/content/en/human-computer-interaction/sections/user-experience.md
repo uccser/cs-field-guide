@@ -201,13 +201,13 @@ Meet some students representing our target audience, though for this example we'
 
 {panel type="curiosity"}
 
-# Be aware of variety in your audience
+# Be aware of your audience
 
 The three examples below are possible users for this application.
 When performing your own user studies, you should list and research their gender, age, culture, etc.
 
-For example: Elderly people across different cultures behave differently.
-If your target users include the elderly, you should research how their cultures might impact how they interact with your product.
+For example: Elderly people generally have poorer levels of fine motor skills compared to young adults.
+If your target users include the elderly, you should research how this might impact how they interact with your product.
 
 Then when you go to build your persona, try to include the most important aspects of everyone.
 If it really isn't working out, expand to two personas &ndash; perhaps that would be a better fit for your product.
