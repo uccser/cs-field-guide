@@ -7,35 +7,35 @@ from . import views
 
 app_name = "curriculum_guides"
 urlpatterns = [
-    # eg: /curriculum_guides/
+    # eg: /curriculum-guides/
     url(
         r"^$",
         views.IndexView.as_view(),
         name="index"
     ),
-    # eg: /curriculum_guides/apcsp/
+    # eg: /curriculum-guides/apcsp/
     url(
         r"^(?P<curriculum_guide_slug>[-\w]+)/$",
         views.CurriculumGuideView.as_view(),
         name="curriculum_guide"
     ),
-    # eg: /curriculum_guides/apcsp/abstraction/
+    # eg: /curriculum-guides/apcsp/abstraction/
     url(
         r"^(?P<curriculum_guide_slug>[-\w]+)/(?P<curriculum_guide_section_slug>[-\w]+)/$",
         views.CurriculumGuideSectionView.as_view(),
         name="curriculum_guide_section"
     ),
-    # eg: redirect /curriculum_guides/index.html to /curriculum_guides/
+    # eg: redirect /curriculum-guides/index.html to /curriculum-guides/
     url(
         r"^index.html$",
-        RedirectView.as_view(permanent=True, url="/curriculum_guides/"),
+        RedirectView.as_view(permanent=True, url="/curriculum-guides/"),
     ),
-    # eg: redirect /curriculum_guides/apcsp.html to /curriculum_guides/apcsp/
+    # eg: redirect /curriculum-guides/apcsp.html to /curriculum-guides/apcsp/
     url(
         r"^(?P<curriculum_guide_slug>[-\w]+).html$",
         RedirectView.as_view(permanent=True, pattern_name="curriculum_guides:curriculum_guide"),
     ),
-    # eg: redirect /curriculum_guides/apcsp.html#abstraction to /curriculum_guides/apcsp/abstraction/
+    # eg: redirect /curriculum-guides/apcsp.html#abstraction to /curriculum-guides/apcsp/abstraction/
     url(
         r"^(?P<curriculum_guide_slug>[-\w]+).html#(?P<curriculum_guide_section_slug>[-\w]+)$",
         RedirectView.as_view(permanent=True, pattern_name="curriculum_guides:curriculum_guide:curriculum_guide_section"),

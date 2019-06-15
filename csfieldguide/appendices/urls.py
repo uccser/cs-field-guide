@@ -17,21 +17,6 @@ urlpatterns = [
         name="about"
     ),
     url(
-        r"^curriculum-guides/$",
-        views.CurriculumGuidesView.as_view(),
-        name="curriculum-guides"
-    ),
-    url(
-        r"^curriculum-guides/ncea/$",
-        views.NceaView.as_view(),
-        name="ncea"
-    ),
-    url(
-        r"^curriculum-guides/apcsp/$",
-        views.ApcspView.as_view(),
-        name="apcsp"
-    ),
-    url(
         r"^contributors/$",
         views.ContributorsView.as_view(),
         name="contributors"

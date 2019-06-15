@@ -42,15 +42,13 @@ urlpatterns = [
         r"^further-information/releases.html$",
         RedirectView.as_view(permanent=True, url="https://cs-field-guide.readthedocs.io/en/latest/changelog.html"),
     ),
-    # e.g redirect /curriculum-guides/ncea/index.html to /appendices/curriculum-guides/
-    # TODO: Remove '.*?' from BOTH regex expressions if we create more templates inside
-    # of /ncea/ or /apcsp/
+    # e.g redirect /curriculum-guides/ncea/index.html to /curriculum-guides/ncea/
     url(
-        r"^curriculum-guides/ncea/.*?$",
-        RedirectView.as_view(permanent=True, pattern_name="appendices:ncea"),
+        r"^curriculum-guides/ncea/$",
+        RedirectView.as_view(permanent=True, pattern_name="'curriculum_guides:curriculum_guide' ncea"),
     ),
     url(
-        r"^curriculum-guides/apcsp/.*?$",
-        RedirectView.as_view(permanent=True, pattern_name="appendices:apcsp"),
+        r"^curriculum-guides/apcsp/$",
+        RedirectView.as_view(permanent=True, pattern_name="'curriculum_guides:curriculum_guide' apcsp"),
     ),
 ]
