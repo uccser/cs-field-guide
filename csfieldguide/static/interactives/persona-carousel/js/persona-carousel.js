@@ -28,7 +28,7 @@ var PERSONAS = {
     name: 'Sam',
     age: 17,
     title: gettext('High school student'),
-    about: gettext('Sam forgot to look both ways, and her subsequent injury has left her largely bound to a wheelchair.\
+    about: gettext('Sam recently suffered a leg injury that left her largely bound to a wheelchair.\
       She is still getting used to dealing with her new situation, and finds herself regularly exhausted from the effort.\
       During her time off school she fell behind and now has to catch up.\
       Her doctor suggested finding a sleep tracking app for her phone so she can manage good sleep while recovering, and best utilise her remaining time for study.'),
