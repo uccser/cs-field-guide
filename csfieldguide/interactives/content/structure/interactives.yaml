@@ -255,6 +255,10 @@ payment-interface:
     de: interactives/payment-interface.html
     es: interactives/payment-interface.html
   is_interactive: true
+persona-carousel:
+  languages:
+    en: interactives/persona-carousel.html
+  is_interactive: false
 pixel-grid:
   languages:
     en: interactives/pixel-grid.html
