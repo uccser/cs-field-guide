@@ -1,0 +1,45 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <!-- Adapted from https://getbootstrap.com/docs/4.1/components/carousel/#with-indicators -->
+  <div class="my-3 container-fluid">
+    <div id="persona-carousel" class="carousel slide" data-ride="carousel" data-interval="false">
+      <ol class="carousel-indicators">
+        <!--
+          There should be one of these and one carousel-item for each persona
+          in the PERSONAS dict
+        -->
+        <li data-target="#persona-carousel" data-slide-to="0" class="active"></li>
+        <li data-target="#persona-carousel" data-slide-to="1"></li>
+        <li data-target="#persona-carousel" data-slide-to="2"></li>
+      </ol>
+      <div id="persona-carousel-items" class="carousel-inner">
+        <div id="bevan" class="carousel-item active"></div>
+        <div id="sam" class="carousel-item"></div>
+        <div id="kate" class="carousel-item"></div>
+      </div>
+      <a class="carousel-control-prev" href="#persona-carousel" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">{% trans 'Previous' %}</span>
+      </a>
+      <a class="carousel-control-next" href="#persona-carousel" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">{% trans 'Next' %}</span>
+      </a>
+    </div>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/persona-carousel/css/persona-carousel.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript">
+    var base = "{{ STATIC_URL }}";
+  </script>
+  <script type="text/javascript" src="{% static 'interactives/persona-carousel/js/persona-carousel.js' %}"></script>
+{% endblock js %}
