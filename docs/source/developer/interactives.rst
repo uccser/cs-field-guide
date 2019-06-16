@@ -103,15 +103,19 @@ Items of interest from this diagram:
     {% endblock html %}
 
     {% block css %}
-      <!-- The CSS of your interactive goes here -->
+      <!-- The CSS of your interactive goes here. Example of how to link to scss file below. -->
+      <link rel="stylesheet" href="{% static 'interactives/<interactive-slug>/scss/<interactive-slug>.scss' %}">
     {% endblock css %}
 
     {% block js %}
-      <!-- The JavaScript of your interactive goes here -->
+      <!-- The JavaScript of your interactive goes here. Example of how to link to js file below. -->
+      <script type="text/javascript" src="{% static 'interactives/<interactive-slug>/js/<interactive-slug>.js' %}"></script>
     {% endblock js %}
 
-  The first line ``{% extends interactive_mode_template %}`` is required for all interactives. The second line ``{% load i18n %}`` is needed if you have translatable text in your template.
-  The third line ``{% load static %}`` allows us to serve additional files such as images, JavaScript or CSS. These are referred to as "static files" in Django.
+  The first line ``{% extends interactive_mode_template %}`` is required for all interactives.
+  The second line ``{% load i18n %}`` is needed if you have translatable text in your template.
+  The third line ``{% load static %}`` allows us to serve additional files such as images, JavaScript or CSS.
+  These are referred to as "static files" in Django.
 
 We recommend looking at existing interactives and how their files are organised to become familiar with developing your own interactive.
 
