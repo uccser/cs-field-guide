@@ -43,7 +43,7 @@ class CurriculumGuideView(generic.DetailView):
         """
         context = super(CurriculumGuideView, self).get_context_data(**kwargs)
         context["curriculum_guides_sections"] = CurriculumGuideSection.objects.filter(
-            curriculum_guide__slug=self.object.slug
+            curriculum_guide_slug=self.object.slug
         )
         return context
 
@@ -56,7 +56,7 @@ class CurriculumGuideSectionView(generic.DetailView):
     context_object_name = "curriculum_guide_section"
 
     def get_object(self, **kwargs):
-        """Retrieve object for the curriculum_guide section view.
+        """Retrieve object for the curriculum guide section view.
 
         Returns:
             CurriculumGuideSection object (CurriculumGuideSection).
@@ -67,7 +67,7 @@ class CurriculumGuideSectionView(generic.DetailView):
         return get_object_or_404(
             self.model.objects.select_related(),
             slug=self.kwargs.get("curriculum_guide_section_slug", None),
-            curriculum_guide__slug=self.kwargs.get("curriculum_guide_slug", None)
+            curriculum_guide_slug=self.kwargs.get("curriculum_guide_slug", None)
         )
 
     def get_context_data(self, **kwargs):
