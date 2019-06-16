@@ -24,82 +24,6 @@ Interactives can be included on a page in three different modes, these are:
 
 An interactive could be displayed with any of the three modes, but generally an interactive is developed with ``in-page`` or ``whole-page`` as the target usage.
 
-Adding Interactives
-==============================================================================
-
-Once you have developed your interactive (see :ref:`developing-interactives`), it's time to add it to a page.
-This includes embedding the interactive in the chapter text see :ref:`writing-guide-interactive`.
-
-.. note::
-
-  When adding an interactive using the Verto syntax, note that Verto uses the term ``name``, this is actually referring to the ``slug`` of the interactive.
-
-The interactive will also need to be added to the list of interactives in the interactive configuration file (see below).
-
-.. _interactive-configuration-files:
-
-Interactive Configuration Files
-------------------------------------------------------------------------------
-
-- **File Name:** ``interactives.yaml``
-
-- **Location:** ``interactives/content/structure/``
-
-- **Purpose:** Defines the list of interactives in the Field Guide.
-
-- **Required Fields:**
-
-  - ``interactives:`` A dictionary of all interactive data, where each key is a slug for an interacive. 
-
-  - The dictionary of interactive data must include:
-
-    - ``languages:`` A dictionary of all languages the interactive is available in, where each key is the locale.
-
-    - ``is_interactive:`` A boolean value indicating if the interactive can be interacted with.
-        This field was introduced so that we could translate images that contain text. 
-        Therefore, if the ``is_interactive`` field is set to ``false``, it means the user cannot interact with the content and it is not displayed in the interactives appendix.
-        We call these 'Uninteractives'.
-
-A complete interactive structure file may look like the following:
-
-.. code-block:: yaml
-
-    colour-matcher:
-      languages:
-        en: interactives/colour-matcher.html
-      is_interactive: true
-    compression-comparer:
-      languages:
-        en: interactives/compression-comparer.html
-        de: interactives/compression-comparer.html
-      is_interactive: true
-    confused-buttons:
-      languages:
-        en: interactives/confused-buttons.html
-        de: interactives/confused-buttons.html
-        es: interactives/confused-buttons.html
-      is_interactive: false
-
-Every interactive must also have a YAML file within each locale containing the names of the interactives, in the language for that particular locale.
-
-The translation YAML file:
-
-- **Is in:** ``interactives/content/<locale>/``
-- **Is called:** ``interactives.yaml``
-- **Contains:** Provides names of all interactives.
-  Every interactive slug present in the interactive structure file must be present in each locale's translation file.
-
-  For example,
-
-  .. code-block:: yaml
-
-    colour-matcher:
-      name: Colour Matcher
-    compression-comparer:
-      name: Compression Comparer
-    confused-buttons:
-      name: Confused Buttons
-
 .. _developing-interactives:
 
 Developing Interactives
@@ -115,7 +39,7 @@ Directory Structure
   - HTML
   - CSS/SCSS
   - JavaScript
-  - Bootstrap
+  - `Bootstrap`_
 
 Every interactive will follow a very similar file structure as given below:
 
@@ -204,9 +128,91 @@ A completed interactive requires the following to be included into the repositor
 - Must work in browsers updated within the last year.
   Therefore try and avoid experimental features but don't worry about supporting older browsers (but it's great if it can!).
 
+.. _adding-interactives:
+
+Adding Interactives
+==============================================================================
+
+Once you have developed your interactive (see :ref:`developing-interactives`), it's time to add it to a page.
+This includes embedding the interactive in the chapter text see :ref:`writing-guide-interactive`.
+
+.. note::
+
+  When adding an interactive using the Verto syntax, note that Verto uses the term ``name``, this is actually referring to the ``slug`` of the interactive.
+
+The interactive will also need to be added to the list of interactives in the interactive configuration file (see below).
+
+.. _interactive-configuration-files:
+
+Interactive Configuration Files
+------------------------------------------------------------------------------
+
+- **File Name:** ``interactives.yaml``
+
+- **Location:** ``interactives/content/structure/``
+
+- **Purpose:** Defines the list of interactives in the Field Guide.
+
+- **Required Fields:**
+
+  - ``interactives:`` A dictionary of all interactive data, where each key is a slug for an interacive. 
+
+  - The dictionary of interactive data must include:
+
+    - ``languages:`` A dictionary of all languages the interactive is available in, where each key is the locale.
+
+    - ``is_interactive:`` A boolean value indicating if the interactive can be interacted with.
+      This field was introduced so we could distingush between interactives and `uninteractives`_.
+      if the ``is_interactive`` field is set to ``false``, it means the user cannot interact with the content and it is not displayed in the interactives appendix.
+
+A complete interactive structure file may look like the following:
+
+.. code-block:: yaml
+
+    colour-matcher:
+      languages:
+        en: interactives/colour-matcher.html
+      is_interactive: true
+    compression-comparer:
+      languages:
+        en: interactives/compression-comparer.html
+        de: interactives/compression-comparer.html
+      is_interactive: true
+    confused-buttons:
+      languages:
+        en: interactives/confused-buttons.html
+        de: interactives/confused-buttons.html
+        es: interactives/confused-buttons.html
+      is_interactive: false
+
+Every interactive must also have a YAML file within each locale containing the names of the interactives, in the language for that particular locale.
+
+The translation YAML file:
+
+- **Is in:** ``interactives/content/<locale>/``
+- **Is called:** ``interactives.yaml``
+- **Contains:** Provides names of all interactives.
+  Every interactive slug present in the interactive structure file must be present in each locale's translation file.
+
+  For example,
+
+  .. code-block:: yaml
+
+    colour-matcher:
+      name: Colour Matcher
+    compression-comparer:
+      name: Compression Comparer
+    confused-buttons:
+      name: Confused Buttons
+
+.. _uninteractives:
+
 Uninteractives
 ------------------------------------------------------------------------------
 
 Uninteractives follow the exact same structure as interactives, the biggest difference is that they are not designed to be interacted with.
 They are most commonly used as a replacement for images with text we want translated.
 Uninteractives are distinguished from interactives by setting the `is_interactive:` attribute to `false` in the `interactives.yaml` configuration file.
+Uninteractives are not displayed in the interactives appendix.
+
+.. _Bootstrap: https://getbootstrap.com/docs/4.1/getting-started/introduction/
