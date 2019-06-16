@@ -7,7 +7,10 @@ The static files (images, CSS, JavaScript, etc) used within the website go throu
 2. Files are processed with a Gulpfile into the ``build`` directory with ``./csfg dev static`` or ``./csfg dev static_prod``.
 3. Files are collected into the ``staticfiles`` directory with ``./csfg dev collect_static``.
 
-Every interactive and uninteractive has a generated thumbnail stored in ``static/img/interactives/thumbnails/``. These can be generated with ``./csfg make_interactive_thumbnails``
+Note that files under the ``static/`` folder are edited and the files under the ``staticfiles/`` folder are generated and should not be edited.
+Every interactive and uninteractive has a generated thumbnail stored in ``staticfiles/img/interactives/thumbnails/``.
+These can be created with ``./csfg make_interactive_thumbnails``.
+You will need to run the ``./csfg collect_static`` command after for them to appear in the ``staticfiles/`` directory.
 
 JavaScript Files
 ==============================================================================

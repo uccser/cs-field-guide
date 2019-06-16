@@ -56,6 +56,7 @@ Every interactive will follow a very similar file structure as given below:
       │   │       ├── js/
       │   │       │   ├── third-party/
       │   │       │   └── <interactive-slug>.js
+      │   │       ├── package.json
       │   │       └── README.md
       │   ├── js/
       │   │   └── third-party/
@@ -76,6 +77,23 @@ Items of interest from this diagram:
 - ``static/interactives/<interactive-slug>/js/third-party/`` - Any third party JavaScript libraries specific to this interactive must be stored in this directory (unless you are using a CDN)
 
 - ``third-party/`` - Any third party css or js libraries used in multiple interactives can be stored in ``static/css/third-party/`` and ``static/js/third-party/`` directories.
+
+- ``static/interactives/<interactive-slug>/package.json`` - The ``package.json`` file is npm's configuration file for projects and modules.
+  In these package.json files we include any dependencies the interacive has.
+  An example structure of a package.json file for an interactive is below:
+
+  .. code-block:: none
+
+    {
+      "name": "csfg-interactive-<interactive-slug>",
+      "version": "1.0.0",
+      "private": true,
+      "dependencies": {
+          "<module-name>": "<module-version>"
+      }
+    }
+  
+  You will need to make sure the path to this file is listed in the ``csfieldguide/package.json`` file.
 
 .. warning::
 
