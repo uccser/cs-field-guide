@@ -29,6 +29,22 @@ In Python code, text is wrapped in a ``ugettext`` function call (usually aliased
 In HTML templates, text is wrapped in ``{% trans %}``/``{% blocktrans %}`` tags.
 In JavaScript code, text is wrapped in a ``gettext`` function call.
 
+Sometimes when writing JavaScript code there may be a sentence that will need to be worded differently depending on the value of a variable.
+If the variable value is not included in the sentence you can simply use Django's ``ngettext`` function.
+However if the variable value is included in the sentence you will need to use both Django's ``ngettext`` function and Django's ``interpolate`` function.
+
+
+For example in the binary cards interactive the user can flip cards to show a number of dots.
+In the interactive we tell the user how many dots are showing, if there is only one dot showing we would like to display "1 dot is visible", otherwise display the plural version with the number of dots showing.
+To achieve this we use the following syntax, where ``dot_count`` is the number of dots showing.
+
+.. code-block:: javascript
+
+    var format = ngettext('1 dot is visible', '%(dot_count)s dots are visible', dotCount);
+    var dotCountText = interpolate(format, {"dot_count": dotCount}, true);
+
+Django provides further documentation on these funcitons and `translations in JavaScript here`_.
+
 
 Translatable Model
 =============================================================================
@@ -97,3 +113,5 @@ The following utility functions are available:
 
 Refer to the function docstrings for more detailed documentation.
 It may also be useful to refer to existing loader implementations to understand how these functions can be used.
+
+.. _translations in JavaScript here: https://docs.djangoproject.com/en/1.11/topics/i18n/translation/#using-the-javascript-translation-catalog
