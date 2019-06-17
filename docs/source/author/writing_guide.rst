@@ -214,33 +214,47 @@ Internal links
 
 These are links to pages within the CS Field Guide website.
 These links will not work when viewed in a Markdown renderer, however these will function properly when converted to HTML and viewed on the website.
-Note that links to chapter pages are referenced from the language directory within the ``content/`` directory (see the first example below).
 
 Link to Page Within Website (relative link - Verto feature)
 ------------------------------------------------------------------------------
 
-You can refer to a page by writing the page name with ``.html`` at the end.
-The name of a file is defined by it's slug in the configuration files, but it helps to have knowledge of the resulting URL path for a file.
-See the examples below:
+You can refer to a chapter page with the following syntax:
 
 .. code-block:: none
 
-  Check out [Data Representation](chapters/data-representation.html).
-  Check out the [about page](appendices/about.html).
+  [link text]('chapters:chapter' '<chapter-slug>')
+
+As an example, the following would link to the tractability chapter:
+
+.. code-block:: none
+
+  [tractability]('chapters:chapter' 'complexity-tractability')
+
+You can link to a chapter section with similar syntax:
+
+.. code-block:: none
+
+  [link text]('chapters:chapter-section' '<chapter-slug>' '<chapter-section-slug>')
+
+Links to an interactive follow the same syntax as a chapter link, except 'chapter' is replaced with 'interactive'.
+
+.. code-block:: none
+
+  [link text]('interactives:interactive' '<interactive-slug>')
+
+Slugs are defined in configuration files.
+
+Some examples:
+
+.. code-block:: none
+
+  Check out the chapter on [tractability]('chapters:chapter' 'complexity-tractability').
+  Check out [interface usability]('chapters:chapter-section' 'human-computer-interaction' 'interface-usability').
+  Check out the [about page]('appendices:about').
+  [Regular Expression Searcher]('interactives:interactive' 'regular-expression-search')
 
 `Click here to read the documentation on how to create a relative link`_.
 
-Link to Heading on Page Within Website
-------------------------------------------------------------------------------
-
-You can refer to a subsection on a page by following the same syntax as above and then adding the subsection name at the end with a ``#`` separator.
-All headers are subsections that have a link that can be linked to (called an anchor link).
-The anchor link can be determined by converting the header name to lowercase, with spaces replaced with dashes, and punctuation removed.
-In cases where duplicate headings exist on the same page, a number is appended on the end of the anchor link.
-
-.. code-block:: none
-
-  Check out [Interface Usability](chapters/human-computer-interaction.html#interface-usability).
 
 Link to a Page Outside of Website (external link)
 ------------------------------------------------------------------------------
