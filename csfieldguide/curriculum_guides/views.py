@@ -42,8 +42,8 @@ class CurriculumGuideView(generic.DetailView):
             Dictionary of context data.
         """
         context = super(CurriculumGuideView, self).get_context_data(**kwargs)
-        context["curriculum_guides_sections"] = CurriculumGuideSection.objects.filter(
-            curriculum_guide_slug=self.object.slug
+        context["curriculum_guide_sections"] = CurriculumGuideSection.objects.filter(
+            curriculum_guide__slug=self.object.slug
         )
         return context
 
@@ -67,7 +67,7 @@ class CurriculumGuideSectionView(generic.DetailView):
         return get_object_or_404(
             self.model.objects.select_related(),
             slug=self.kwargs.get("curriculum_guide_section_slug", None),
-            curriculum_guide_slug=self.kwargs.get("curriculum_guide_slug", None)
+            curriculum_guide__slug=self.kwargs.get("curriculum_guide_slug", None)
         )
 
     def get_context_data(self, **kwargs):

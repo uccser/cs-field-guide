@@ -21,20 +21,4 @@
     {% endwith %}
   {% endif %}
 
-  <h2>{% trans 'Sections in this guide:' %}</h2>
-  <ul class="list-unstyled">
-    {% for curriculum_guide in curriculum_guide_sections %}
-      <li>
-        {{ curriculum_guide.number }}.{{ section.number }}.
-        <a href="{% url 'curriculum_guides:curriculum_guide_section' curriculum_guide.slug curriculum_guide.slug %}" class="ml-1{% if not section.translation_available %} text-muted{% endif %}">
-          {{ section.name }}
-        </a>
-        {% if not section.translation_available %}
-          {% include "generic/not-available-badge.html" %}
-        {% endif %}
-      </li>
-    {% endfor %}
-  </ul>
-
-
 {% endblock content %}

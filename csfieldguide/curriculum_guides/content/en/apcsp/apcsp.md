@@ -31,14 +31,14 @@ We have developed guides for teachers for each concept with content knowledge an
 > Computing fosters the creation of artifacts and creative expression.
 Programming is a creative process.
 
-- [Introduction](curriculum-guides/apcsp/guide-creativity-introduction.html)
+- [Introduction]('curriculum_guides:curriculum_guide_section' 'apcsp' 'creativity')
 
 ### Abstraction
 
 > Multiple levels of abstraction are used in computation.
 Models and simulations use abstraction to raise and answer questions.
 
-- [Introduction](curriculum-guides/apcsp/guide-abstraction-introduction.html)
+- [Introduction]('curriculum_guides:curriculum_guide_section' 'apcsp' 'abstraction')
 
 ### Data and Information
 
@@ -47,14 +47,14 @@ People use computer programs to process information to gain insight and knowledg
 Computing facilitates exploration and the discovery of connections in information.
 Computational manipulation of information requires consideration of representation, storage, security and transmission.
 
-- [Introduction](curriculum-guides/apcsp/guide-data-and-information-introduction.html)
+- [Introduction]('curriculum_guides:curriculum_guide_section' 'apcsp' 'data-and-information')
 
 ### Algorithms
 
 > An algorithm is a precise sequence of instructions for a process that can be executed by a computer.
 They are expressed using languages, and can solve many, but not all, problems.
 
-- [Introduction](curriculum-guides/apcsp/guide-algorithms-introduction.html)
+- [Introduction]('curriculum_guides:curriculum_guide_section' 'apcsp' 'algorithms')
 
 ### Programming
 
@@ -62,7 +62,7 @@ They are expressed using languages, and can solve many, but not all, problems.
 It uses mathematical and logical concepts and is facilitated by appropriate abstractions.
 Programs are developed and used by people, and they are written to execute algorithms.
 
-- [Introduction](curriculum-guides/apcsp/guide-programming-introduction.html)
+- [Introduction]('curriculum_guides:curriculum_guide_section' 'apcsp' 'programming')
 
 ### The Internet
 
@@ -71,7 +71,7 @@ It is a network of autonomous systems.
 Characteristics of the Internet and the systems built on it influence their use.
 Cybersecurity is an important concern for the Internet and those systems.
 
-- [Introduction](curriculum-guides/apcsp/guide-the-internet-introduction.html)
+- [Introduction]('curriculum_guides:curriculum_guide_section' 'apcsp' 'the-internet')
 
 ### Global Impact
 
@@ -79,7 +79,7 @@ Cybersecurity is an important concern for the Internet and those systems.
 It enables innovation in nearly every field and has both beneficial and harmful effects.
 Computing is situated within economic, social and cultural contexts.
 
-- [Introduction](curriculum-guides/apcsp/guide-global-impact-introduction.html)
+- [Introduction]('curriculum_guides:curriculum_guide_section' 'apcsp' 'global-impact')
 
 ## Project and Course Unit recommendations
 
