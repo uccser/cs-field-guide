@@ -61,7 +61,9 @@ In the following sections, each configuration file is explained in more detail.
 
 .. note::
 
-  - Some of the keys (:ref:`what-is-a-key`) have angle brackets around them, ``<like so>``. This means that they are variables and you can call them whatever you like in your configuration file (without the angle brackets).
+  - Some of the keys (:ref:`what-is-a-key`) have angle brackets around them, ``<like so>``. 
+    This means that they are variables and you can call them whatever you like in your configuration file (without the angle brackets).
+    Key names should be consistent, i.e every instance of <chapter-key> should be replaced with the exact same key.
 
 .. _application-structure-file:
 
@@ -113,11 +115,16 @@ Chapter Configuration File
 
 - **Purpose:** Defines the attributes for a particular chapter.
 
-- **Required Fields:**
+- **Required fields:**
 
   - ``icon:`` File path to the icon for the chapter.
+    Icons must be SVG files.
 
   - ``sections:`` File path to the configuration files for sections in the chapter.
+
+- **Optional fields:**
+
+  - ``video:`` URL for the video that appears at the very beginning of the chapter introduction page.
 
 A complete chapter structure file may look like the following:
 
@@ -151,5 +158,6 @@ A complete chapter application structure file with multiple chapters may look li
 
     introduction-for-teachers:
       section-number: 1
+
     further-reading:
       section-number: 2
