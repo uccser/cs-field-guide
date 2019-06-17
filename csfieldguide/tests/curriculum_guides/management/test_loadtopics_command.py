@@ -8,7 +8,7 @@ from django.test import tag, override_settings
 from utils.errors.MissingRequiredFieldError import MissingRequiredFieldError
 from utils.errors.InvalidYAMLValueError import InvalidYAMLValueError
 
-CHAPTERS_PATH = "tests/curriculum_guides/management/assets/"
+CURRICULUM_GUIDES_PATH = "tests/curriculum_guides/management/assets/"
 
 
 @tag("management")
@@ -25,7 +25,7 @@ class LoadCurriculumGuidesCommandTest(BaseTestWithDB):
         return_value=True
     )
     @override_settings(
-        CHAPTERS_CONTENT_BASE_PATH=os.path.join(CHAPTERS_PATH, "curriculum_guides-valid")
+        CURRICULUM_GUIDES_CONTENT_BASE_PATH=os.path.join(CURRICULUM_GUIDES_PATH, "curriculum_guides-valid")
     )
     def test_loadcurriculumguides_curriculum_guides_valid(self, curriculum_guide_loader):
         management.call_command("loadcurriculumguides")
@@ -36,7 +36,7 @@ class LoadCurriculumGuidesCommandTest(BaseTestWithDB):
         return_value=True
     )
     @override_settings(
-        CHAPTERS_CONTENT_BASE_PATH=os.path.join(CHAPTERS_PATH, "curriculum_guides-missing")
+        CURRICULUM_GUIDES_CONTENT_BASE_PATH=os.path.join(CURRICULUM_GUIDES_PATH, "curriculum_guides-missing")
     )
     def test_loadcurriculumguides_curriculum_guides_missing(self, curriculum_guide_loader):
         self.assertRaises(
@@ -50,7 +50,7 @@ class LoadCurriculumGuidesCommandTest(BaseTestWithDB):
         return_value=True
     )
     @override_settings(
-        CHAPTERS_CONTENT_BASE_PATH=os.path.join(CHAPTERS_PATH, "curriculum_guides-empty")
+        CURRICULUM_GUIDES_CONTENT_BASE_PATH=os.path.join(CURRICULUM_GUIDES_PATH, "curriculum_guides-empty")
     )
     def test_loadcurriculumguides_curriculum_guides_empty(self, curriculum_guide_loader):
         self.assertRaises(
@@ -64,7 +64,7 @@ class LoadCurriculumGuidesCommandTest(BaseTestWithDB):
         return_value=True
     )
     @override_settings(
-        CHAPTERS_CONTENT_BASE_PATH=os.path.join(CHAPTERS_PATH, "curriculum_guides-number-missing")
+        CURRICULUM_GUIDES_CONTENT_BASE_PATH=os.path.join(CURRICULUM_GUIDES_PATH, "curriculum_guides-number-missing")
     )
     def test_loadcurriculumguides_curriculum_guides_number_missing(self, curriculum_guide_loader):
         self.assertRaises(
@@ -78,7 +78,7 @@ class LoadCurriculumGuidesCommandTest(BaseTestWithDB):
         return_value=True
     )
     @override_settings(
-        CHAPTERS_CONTENT_BASE_PATH=os.path.join(CHAPTERS_PATH, "curriculum_guides-number-invalid")
+        CURRICULUM_GUIDES_CONTENT_BASE_PATH=os.path.join(CURRICULUM_GUIDES_PATH, "curriculum_guides-number-invalid")
     )
     def test_loadcurriculumguides_curriculum_guides_number_invalid(self, curriculum_guide_loader):
         self.assertRaises(

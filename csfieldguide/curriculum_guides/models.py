@@ -16,10 +16,6 @@ class CurriculumGuide(TranslatableModel):
     number = models.SmallIntegerField(unique=True)
     introduction = models.TextField(default="")
     icon = models.CharField(max_length=100)
-    interactives = models.ManyToManyField(
-        Interactive,
-        related_name="curriculum_guide",
-    )
 
     def __str__(self):
         """Text representation of CurriculumGuide object.
