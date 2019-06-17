@@ -42,13 +42,4 @@ urlpatterns = [
         r"^further-information/releases.html$",
         RedirectView.as_view(permanent=True, url="https://cs-field-guide.readthedocs.io/en/latest/changelog.html"),
     ),
-    # e.g redirect /curriculum-guides/ncea/index.html to /curriculum-guides/ncea/
-    url(
-        r"^curriculum-guides/ncea/$",
-        RedirectView.as_view(permanent=True, pattern_name="'curriculum_guides:curriculum_guide' ncea"),
-    ),
-    url(
-        r"^curriculum-guides/apcsp/$",
-        RedirectView.as_view(permanent=True, pattern_name="'curriculum_guides:curriculum_guide' apcsp"),
-    ),
 ]
