@@ -20,7 +20,7 @@ Chapters Content Directory
 The ``content`` directory for the chapters application contains
 
 - a directory for each language in which content exists, named using the Django locale code. 
-  This directory contains content Markdown files, arranged into folders by language code.
+  This directory contains content Markdown files.
 
 - a special ``structure`` directory which contains all configuration YAML files
 
@@ -35,13 +35,13 @@ There are 2 different types of files used for adding content to the CS Field Gui
 - YAML configuration files
 
 All files live inside the ``chapters/content`` directory.
-The first two files are unique for each translation language, and are stored in a directory tree specific to that language.
+Content Markdown files are unique for each translation language, and are stored in a directory tree specific to that language.
 This directory is named using the languages Django locale code (for example: ``en`` or ``de``).
 Configuration files are shared amongst all languages, because the content structure is the same for all languages.
 These files live under a special ``structure`` directory.
 
 As a simple rule, structure files situated inside the ``structure`` directory contain **no** text a website user will see.
-Any user facing text lives in either a Markdown file or a YAML translation file inside the locale specific directories.
+Any user facing text lives in a Markdown file inside the locale specific directories.
 
 Configuration Files
 ==============================================================================
