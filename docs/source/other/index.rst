@@ -7,4 +7,3 @@ Other Documentation
 
     faq
     setup_virtual_machine
-    uninstallation

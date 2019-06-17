@@ -18,7 +18,7 @@ It's really easy to start contributing translations using the CS Field Guide
 
 Crowdin Overview
 ==============================================================================
-We use a localisation management platform called `Crowdin <https://crowdin.com/project/cs-field-guide>`__ for translation of CS Field Guide.
+We use a localisation management platform called `Crowdin <https://crowdin.com/project/cs-field-guide>`__ for translation of the CS Field Guide.
 Our project is public, meaning that anyone can create an account and contribute translations.
 
 Crowdin has excellent documentation for translators, and all translators should read the following documents:
@@ -28,7 +28,7 @@ Crowdin has excellent documentation for translators, and all translators should 
 
 Translation Phases
 ==============================================================================
-There are 3 phases translation phases used to ensure high quality translation of CS Field Guide content:
+There are 3 translation phases used to ensure high quality translation of CS Field Guide content:
 
 1. Translation
 2. Proofread

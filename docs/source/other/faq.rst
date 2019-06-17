@@ -1,7 +1,7 @@
 Frequently Asked Questions
 ##############################################################################
 
-The topics application is the main focus of the CS Field Guide website, as it contains the majority of educational material for the project.
+The chapters application is the main focus of the CS Field Guide website, as it contains the majority of educational material for the project.
 
 .. contents:: Contents
   :local:
@@ -52,7 +52,7 @@ What is a Virtual Environment?
 ==============================================================================
 
 A Virtual Environment is a tool to keep the dependencies required by different projects in separate places, by creating virtual Python environments for them.
-It solves the “Project X depends on version 1.x but, Project Y needs 4.x” dilemma, and keeps your global site-packages directory clean and manageable.
+It solves the “Project X depends on version 1.x but Project Y needs 4.x” dilemma, and keeps your global site-packages directory clean and manageable.
 
 See also:
 

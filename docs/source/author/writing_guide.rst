@@ -214,7 +214,7 @@ Internal links
 
 These are links to pages within the CS Field Guide website.
 These links will not work when viewed in a Markdown renderer, however these will function properly when converted to HTML and viewed on the website.
-Links to pages are referenced from the language directory within the ``content/`` directory (see examples below).
+Note that links to chapter pages are referenced from the language directory within the ``content/`` directory (see the first example below).
 
 Link to Page Within Website (relative link - Verto feature)
 ------------------------------------------------------------------------------
@@ -225,8 +225,8 @@ See the examples below:
 
 .. code-block:: none
 
-  Check out [binary numbers](topics/binary-numbers.html).
-  Check out the [about page](about.html).
+  Check out [Data Representation](chapters/data-representation.html).
+  Check out the [about page](appendices/about.html).
 
 `Click here to read the documentation on how to create a relative link`_.
 
@@ -240,7 +240,7 @@ In cases where duplicate headings exist on the same page, a number is appended o
 
 .. code-block:: none
 
-  Please [contact us](about/index.html#contact).
+  Check out [Interface Usability](chapters/human-computer-interaction.html#interface-usability).
 
 Link to a Page Outside of Website (external link)
 ------------------------------------------------------------------------------

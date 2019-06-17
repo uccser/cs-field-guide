@@ -40,4 +40,4 @@ Here is an example of the Markdown file for the glossary term 'unicode':
 
   # Unicode
 
-  Unicode an extension of ASCII; it supports characters from multiple languages, using 16 bits per character.
+  Unicode is an extension of ASCII; it supports characters from multiple languages, using 16 bits per character.
