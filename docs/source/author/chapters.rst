@@ -19,10 +19,8 @@ Chapters Content Directory
 
 The ``content`` directory for the chapters application contains
 
-- a directory for each language in which content exists, named using the Django locale code. This directory contains
-
-  - Content Markdown files
-  - YAML files containing translatable strings
+- a directory for each language in which content exists, named using the Django locale code. 
+  This directory contains content Markdown files, arranged into folders by language code.
 
 - a special ``structure`` directory which contains all configuration YAML files
 
