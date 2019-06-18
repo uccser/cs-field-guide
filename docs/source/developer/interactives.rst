@@ -94,9 +94,8 @@ Items of interest from this diagram:
   More information on npm modules can be found on the :ref:`static files` page.
 
 - ``static/interactives/<interactive-slug>/js/third-party/`` - Any third party JavaScript libraries specific to this interactive must be stored in this directory (unless you are using a CDN).
-  It is preferred to include JavaScript libraries in a ``package.json`` file (see above).
-  However sometimes the npm package manager will not have the package you need.
-  This is when to add third party JavaScript libraries to this directory.
+  Third-party JavaScript libraries should be loaded as modules through the ``package.json`` file (see above).
+  Add the source JS file to this directory only if that is not possible (for example, if the package is not available on npm).
 
 - ``third-party/`` - Any third party css or js libraries used in multiple interactives can be stored in ``static/css/third-party/`` and ``static/js/third-party/`` directories.
 
@@ -126,8 +125,8 @@ Items of interest from this diagram:
     {% endblock html %}
 
     {% block css %}
-      <!-- The CSS of your interactive goes here. Example of how to link to scss file below. -->
-      <link rel="stylesheet" href="{% static 'interactives/<interactive-slug>/scss/<interactive-slug>.scss' %}">
+      <!-- The CSS of your interactive goes here. Example of how to link to css file below. -->
+      <link rel="stylesheet" href="{% static 'interactives/<interactive-slug>/css/<interactive-slug>.css' %}">
     {% endblock css %}
 
     {% block js %}
@@ -136,7 +135,7 @@ Items of interest from this diagram:
     {% endblock js %}
 
   The first line ``{% extends interactive_mode_template %}`` is required for all interactives.
-  The second line ``{% load i18n %}`` is needed if you have translatable text in your template.
+  The second line ``{% load i18n %}`` is needed if there is translatable text in the template.
   The third line ``{% load static %}`` allows us to serve additional files such as images, JavaScript or CSS.
   These are referred to as "static files" in Django.
 
@@ -161,7 +160,7 @@ Adding Interactives
 ==============================================================================
 
 Once you have developed your interactive (see :ref:`developing-interactives`), it's time to add it to a page.
-This includes embedding the interactive in the chapter text see :ref:`writing-guide-interactive`.
+This includes embedding the interactive in the chapter text (see :ref:`writing-guide-interactive`).
 
 .. note::
 
@@ -190,7 +189,8 @@ Interactive Configuration Files
 
     - ``is_interactive:`` A boolean value indicating if the interactive can be interacted with.
       This field was introduced so we could distingush between interactives and `uninteractives`_.
-      if the ``is_interactive`` field is set to ``false``, it means the user cannot interact with the content and it is not displayed in the interactives appendix.
+      If the ``is interactive`` field is set to ``false``, it is not displayed in the interactives appendix.
+      It means the user cannot interact with it to the extent where it would be useful to have as a standalone feature.
 
 A complete interactive structure file may look like the following:
 
