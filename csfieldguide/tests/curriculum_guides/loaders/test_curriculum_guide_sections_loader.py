@@ -4,11 +4,10 @@ from django.core.exceptions import ValidationError
 from tests.BaseTestWithDB import BaseTestWithDB
 from tests.curriculum_guides.CurriculumGuidesTestDataGenerator import CurriculumGuidesTestDataGenerator
 from curriculum_guides.management.commands._CurriculumGuideSectionsLoader import CurriculumGuideSectionsLoader
-from curriculum_guides.models import CurriculumGuide, CurriculumGuideSection
+from curriculum_guides.models import CurriculumGuideSection
 from utils.errors.MissingRequiredFieldError import MissingRequiredFieldError
 from utils.errors.NoHeadingFoundInMarkdownFileError import NoHeadingFoundInMarkdownFileError
 from utils.errors.InvalidYAMLValueError import InvalidYAMLValueError
-from utils.errors.KeyNotFoundError import KeyNotFoundError
 
 
 class CurriculumGuideSectionsLoaderTest(BaseTestWithDB):

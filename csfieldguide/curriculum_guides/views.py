@@ -1,11 +1,7 @@
 """Views for the curriculum guides application."""
 
-from django.db.models import Q
 from django.shortcuts import get_object_or_404
 from django.views import generic
-from django.http import JsonResponse, Http404
-from django.utils.translation import get_language
-from utils.render_html_with_load_tags import render_html_with_load_tags
 from curriculum_guides.models import (
     CurriculumGuide,
     CurriculumGuideSection,

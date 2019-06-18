@@ -4,8 +4,6 @@ import os.path
 from django.db import transaction
 from utils.TranslatableModelLoader import TranslatableModelLoader
 from utils.errors.MissingRequiredFieldError import MissingRequiredFieldError
-from utils.language_utils import get_default_language
-from utils.check_required_files import check_interactives
 from curriculum_guides.models import CurriculumGuide
 
 

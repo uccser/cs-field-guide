@@ -7,7 +7,6 @@ from curriculum_guides.models import CurriculumGuide
 from utils.errors.MissingRequiredFieldError import MissingRequiredFieldError
 from utils.errors.NoHeadingFoundInMarkdownFileError import NoHeadingFoundInMarkdownFileError
 from utils.errors.EmptyMarkdownFileError import EmptyMarkdownFileError
-from utils.errors.KeyNotFoundError import KeyNotFoundError
 
 
 class CurriculumGuidesLoaderTest(BaseTestWithDB):
