@@ -224,11 +224,11 @@ You can refer to a chapter page with the following syntax:
 
   [link text]('chapters:chapter' '<chapter-slug>')
 
-As an example, the following would link to the tractability chapter:
+As an example, the following would link to the complexity and tractability chapter:
 
 .. code-block:: none
 
-  [tractability]('chapters:chapter' 'complexity-tractability')
+  [complexity and tractability]('chapters:chapter' 'complexity-and-tractability')
 
 You can link to a chapter section with similar syntax:
 
@@ -242,16 +242,29 @@ Links to an interactive follow the same syntax as a chapter link, except 'chapte
 
   [link text]('interactives:interactive' '<interactive-slug>')
 
+
+Examples:
+
+.. code-block:: none
+
+  Check out the chapter on [algorithms]('chapters:chapter' 'algorithms').
+  Check out [interface usability]('chapters:chapter-section' 'human-computer-interaction' 'interface-usability').
+  [Regular Expression Searcher]('interactives:interactive' 'regular-expression-search')
+
 Slugs are defined in configuration files.
+
+Some pages will not require slugs, such as appendix pages or the homepage.
+
+.. code-block:: none
+
+  [link text]('appendices:<url-pattern-name>')
 
 Some examples:
 
 .. code-block:: none
 
-  Check out the chapter on [tractability]('chapters:chapter' 'complexity-tractability').
-  Check out [interface usability]('chapters:chapter-section' 'human-computer-interaction' 'interface-usability').
   Check out the [about page]('appendices:about').
-  [Regular Expression Searcher]('interactives:interactive' 'regular-expression-search')
+  [Homepage]('general:index')
 
 `Click here to read the documentation on how to create a relative link`_.
 
