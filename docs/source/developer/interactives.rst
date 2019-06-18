@@ -93,8 +93,7 @@ Items of interest from this diagram:
   You will need to make sure the path to this file is listed in the ``csfieldguide/package.json`` file.
   More information on npm modules can be found on the :ref:`static files` page.
 
-- ``static/interactives/<interactive-slug>/js/third-party/`` - Any third party JavaScript libraries specific to this interactive must be stored in this directory (unless you are using a CDN).
-  Third-party JavaScript libraries should be loaded as modules through the ``package.json`` file (see above).
+- ``static/interactives/<interactive-slug>/js/third-party/`` - Third-party JavaScript libraries specific to this interactive should be loaded as modules through the ``package.json`` file (see above).
   Add the source JS file to this directory only if that is not possible (for example, if the package is not available on npm).
 
 - ``third-party/`` - Any third party css or js libraries used in multiple interactives can be stored in ``static/css/third-party/`` and ``static/js/third-party/`` directories.
