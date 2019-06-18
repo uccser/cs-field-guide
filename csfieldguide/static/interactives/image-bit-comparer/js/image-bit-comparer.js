@@ -6,8 +6,8 @@ var urlParameters = require('../../../js/third-party/url-parameters.js');
 var ImageBitComparer = {};
 
 // Setup sizing
-ImageBitComparer.BASE_WIDTH = 450;
-ImageBitComparer.BASE_HEIGHT = 300;
+ImageBitComparer.BASE_WIDTH = 300;
+ImageBitComparer.BASE_HEIGHT = 450;
 ImageBitComparer.scale_factor = 1;
 
 ImageBitComparer.INITAL_IMAGES = [
