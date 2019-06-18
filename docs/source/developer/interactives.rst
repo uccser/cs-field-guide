@@ -76,6 +76,7 @@ Items of interest from this diagram:
 
 - ``static/interactives/<interactive-slug>/package.json`` - The ``package.json`` file is npm's configuration file for projects and modules.
   Here we include any dependencies the interacive has.
+  This file should only be included if the interactive loads **at least 1** npm module.
   An example structure of a package.json file for an interactive is below:
 
   .. code-block:: none
@@ -90,7 +91,7 @@ Items of interest from this diagram:
     }
   
   You will need to make sure the path to this file is listed in the ``csfieldguide/package.json`` file.
-  More information on npm modules can be found on the static files page.
+  More information on npm modules can be found on the :ref:`static files` page.
 
 - ``static/interactives/<interactive-slug>/js/third-party/`` - Any third party JavaScript libraries specific to this interactive must be stored in this directory (unless you are using a CDN).
   It is preferred to include JavaScript libraries in a ``package.json`` file (see above).

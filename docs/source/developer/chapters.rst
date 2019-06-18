@@ -14,6 +14,6 @@ In general the chapters application is a standard Django application, however it
 
 Instead of creating and updating model objects through the website (for example: edited by an online editor), the objects are updated by a management script.
 The content for the chapters application is stored within the ``contents/`` directory, as is run for each deployment of the system.
-Storing the content within the Git repository gives us greater control on reviewing and accepted proposed changes to content.
+Storing the content within the Git repository gives us greater control over reviewing and accepting proposed changes to content.
 
 The management command for updating the applications data is ``loadchapters`` (which is automatically called when running ``updatedata``), and can be found at ``management/commands/loadchapters.py``.
