@@ -6,8 +6,8 @@ var urlParameters = require('../../../js/third-party/url-parameters.js');
 var ImageBitComparer = {};
 
 // Setup sizing
-ImageBitComparer.BASE_WIDTH = 300;
-ImageBitComparer.BASE_HEIGHT = 450;
+ImageBitComparer.BASE_WIDTH = 450;
+ImageBitComparer.BASE_HEIGHT = 300;
 ImageBitComparer.scale_factor = 1;
 
 ImageBitComparer.INITAL_IMAGES = [
@@ -229,6 +229,7 @@ function setupMode() {
 // Load and draw image for Canvas reference
 function loadImage() {
   var source_canvas = document.getElementById('interactive-image-bit-comparer-source-canvas');
+  //setDimensions(source_canvas);
   source_canvas.width = ImageBitComparer.BASE_WIDTH * ImageBitComparer.scale_factor;
   source_canvas.height = ImageBitComparer.BASE_HEIGHT * ImageBitComparer.scale_factor;
   var source_canvas_context = source_canvas.getContext('2d');
@@ -240,12 +241,14 @@ function loadImage() {
   }, false);
   image.onload = function() {
       $selected_image.data('data', image);
+      setDimensions($selected_image.data('data'));
       source_canvas_context.drawImage(image, 0, 0, source_canvas.width, source_canvas.height);
       // Update canvases from base image
       drawCanvases();
   }
   $selected_image = $("#interactive-image-bit-comparer-selected-image option:selected");
   if ($selected_image.data('data')) {
+    setDimensions($selected_image.data('data'));
     source_canvas_context.drawImage($selected_image.data('data'), 0, 0, source_canvas.width, source_canvas.height);
     // Update canvases from base image
     drawCanvases();
@@ -259,6 +262,7 @@ function loadImage() {
 // Load inital image data values
 function initialCanvasData() {
   var source_canvas = document.getElementById('interactive-image-bit-comparer-source-canvas');
+  //setDimensions(source_canvas);
   var source_canvas_context = source_canvas.getContext('2d');
   var source_image_data = source_canvas_context.getImageData(0,
                                                              0,
@@ -270,6 +274,7 @@ function initialCanvasData() {
 
 // Draw the image data to a canvas using the canvas max bit values
 function drawCanvas($canvas, source_image_data) {
+  //setDimensions(source_image_data)
   $canvas.attr('width', ImageBitComparer.BASE_WIDTH * ImageBitComparer.scale_factor + 'px');
   $canvas.attr('height', ImageBitComparer.BASE_HEIGHT * ImageBitComparer.scale_factor + 'px');
   var bit_values = $canvas.data('bit_values');
@@ -297,3 +302,27 @@ function drawCanvases() {
     drawCanvas($(this), source_image_data)
   });
 };
+
+function setDimensions(image) {
+  console.log('image');
+  console.log(image);
+  console.log('Height');
+  console.log(image.height);
+  console.log('Width');
+  console.log(image.width);
+  if (image.height > image.width) {
+    // portrait
+    ImageBitComparer.BASE_WIDTH = 300;
+    ImageBitComparer.BASE_HEIGHT = 450;
+  }
+  else if (image.height < image.width) {
+    // landscape
+    ImageBitComparer.BASE_WIDTH = 450;
+    ImageBitComparer.BASE_HEIGHT = 300;
+  }
+  else {
+    // square
+    ImageBitComparer.BASE_WIDTH = 300;
+    ImageBitComparer.BASE_HEIGHT = 300;
+  }
+}
