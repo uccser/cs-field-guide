@@ -13,7 +13,7 @@
 
 ## Learning objectives
 
-The above chapter readings include specific knowledge for EK's marked in bold.
+The above chapter readings include specific knowledge for EKs marked in bold.
 Work to include unmarked learning objectives in the CS Field Guide is currently in progress.
 
 ### LO 6.1.1 Explain the abstractions in the Internet and how the Internet functions.

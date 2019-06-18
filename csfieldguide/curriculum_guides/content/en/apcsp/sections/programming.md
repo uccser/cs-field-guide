@@ -20,7 +20,7 @@ The AP CSP framework does not require a specific programming language but does r
 
 ## Learning objectives
 
-The above chapter readings include specific knowledge for EK's marked in bold. Work to include unmarked learning objectives in the CS Field Guide is currently in progress.
+The above chapter readings include specific knowledge for EKs marked in bold. Work to include unmarked learning objectives in the CS Field Guide is currently in progress.
 
 ### LO 5.1.1 Develop a program for creative expression, to satisfy personal curiosity, or to create new knowledge.
 

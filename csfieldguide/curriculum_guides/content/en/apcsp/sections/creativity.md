@@ -14,7 +14,7 @@ Start by reading through:
 
 ## Learning objectives
 
-The above chapter readings include specific knowledge for EK's marked in bold.
+The above chapter readings include specific knowledge for EKs marked in bold.
 Work to include unmarked learning objectives in the CS Field Guide is currently in progress.
 
 ### LO 1.1.1 Apply a creative development process when creating computational artifacts.

@@ -19,7 +19,7 @@ Start by reading through:
 
 ## Learning objectives
 
-The above chapter readings include specific knowledge for EK's marked in bold. Work to include unmarked learning objectives in the CS Field Guide is currently in progress.
+The above chapter readings include specific knowledge for EKs marked in bold. Work to include unmarked learning objectives in the CS Field Guide is currently in progress.
 
 ### LO 3.1.1 Find patterns and test hypotheses about digitally processed information to gain insight and knowledge.
 

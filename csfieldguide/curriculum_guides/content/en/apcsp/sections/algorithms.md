@@ -14,7 +14,7 @@ Start by reading through:
 
 ## Learning objectives
 
-The above chapter readings include specific knowledge for EK's marked in bold. Work to include unmarked learning objectives in the CS Field Guide is currently in progress.
+The above chapter readings include specific knowledge for EKs marked in bold. Work to include unmarked learning objectives in the CS Field Guide is currently in progress.
 
 ### LO 4.1.1 Develop an algorithm for implementation in a program
 

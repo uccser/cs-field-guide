@@ -14,7 +14,7 @@
 
 ## Learning objectives
 
-The above chapter readings include specific knowledge for EK's marked in bold. Work to include unmarked learning objectives in the CS Field Guide is currently in progress.
+The above chapter readings include specific knowledge for EKs marked in bold. Work to include unmarked learning objectives in the CS Field Guide is currently in progress.
 
 ### LO 7.1.1 Explain how computing innovations affect communication, interaction, and cognition.
 

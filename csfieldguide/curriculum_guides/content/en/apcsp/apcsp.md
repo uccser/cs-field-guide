@@ -7,7 +7,7 @@ Descriptions of the big ideas, learning objectives, and essential knowledge stat
 
 > The major areas of study in the course are organized around seven big ideas, which encompass ideas foundational to studying computer science. These big ideas connect students to a curriculum scope that includes the art of programming but is not programming-centric.
 
-## Computational Thinking Practices
+## Computational thinking practices
 
 > The computational thinking practices help students coordinate and make sense of knowledge to accomplish a goal or task.
 They enable students to engage with the course content by developing computational artifacts and analyzing data, information, or knowledge represented for computational use.
@@ -19,7 +19,7 @@ They enable students to engage with the course content by developing computation
 - Communicating
 - Collaborating
 
-## Concepts (Big Ideas in Computer Science)
+## Concepts (big ideas in computer science)
 
 Each concept embodies specific essential questions and enduring understandings.
 The AP CSP curriculum framework answers these questions and builds the enduring understandings by targeting specific learning objectives (Students will be able to ... ) and essential knowledge (Students will know that ... ).
@@ -31,30 +31,30 @@ We have developed guides for teachers for each concept with content knowledge an
 > Computing fosters the creation of artifacts and creative expression.
 Programming is a creative process.
 
-- [Introduction]('curriculum_guides:curriculum_guide_section' 'apcsp' 'creativity')
+- [View the learning objectives for Creativity]('curriculum_guides:curriculum_guide_section' 'apcsp' 'creativity')
 
 ### Abstraction
 
 > Multiple levels of abstraction are used in computation.
 Models and simulations use abstraction to raise and answer questions.
 
-- [Introduction]('curriculum_guides:curriculum_guide_section' 'apcsp' 'abstraction')
+- [View the learning objectives for Abstraction]('curriculum_guides:curriculum_guide_section' 'apcsp' 'abstraction')
 
-### Data and Information
+### Data and information
 
 > Data and information facilitate the creation of knowledge.
 People use computer programs to process information to gain insight and knowledge.
 Computing facilitates exploration and the discovery of connections in information.
 Computational manipulation of information requires consideration of representation, storage, security and transmission.
 
-- [Introduction]('curriculum_guides:curriculum_guide_section' 'apcsp' 'data-and-information')
+- [View the learning objectives for Data and information]('curriculum_guides:curriculum_guide_section' 'apcsp' 'data-and-information')
 
 ### Algorithms
 
 > An algorithm is a precise sequence of instructions for a process that can be executed by a computer.
 They are expressed using languages, and can solve many, but not all, problems.
 
-- [Introduction]('curriculum_guides:curriculum_guide_section' 'apcsp' 'algorithms')
+- [View the learning objectives for Algorithms]('curriculum_guides:curriculum_guide_section' 'apcsp' 'algorithms')
 
 ### Programming
 
@@ -62,24 +62,24 @@ They are expressed using languages, and can solve many, but not all, problems.
 It uses mathematical and logical concepts and is facilitated by appropriate abstractions.
 Programs are developed and used by people, and they are written to execute algorithms.
 
-- [Introduction]('curriculum_guides:curriculum_guide_section' 'apcsp' 'programming')
+- [View the learning objectives for Programming]('curriculum_guides:curriculum_guide_section' 'apcsp' 'programming')
 
-### The Internet
+### The internet
 
 > The internet pervades modern computing.
 It is a network of autonomous systems.
 Characteristics of the Internet and the systems built on it influence their use.
 Cybersecurity is an important concern for the Internet and those systems.
 
-- [Introduction]('curriculum_guides:curriculum_guide_section' 'apcsp' 'the-internet')
+- [View the learning objectives for The internet]('curriculum_guides:curriculum_guide_section' 'apcsp' 'the-internet')
 
-### Global Impact
+### Global impact
 
 > Computing affects communication, interaction and cognition.
 It enables innovation in nearly every field and has both beneficial and harmful effects.
 Computing is situated within economic, social and cultural contexts.
 
-- [Introduction]('curriculum_guides:curriculum_guide_section' 'apcsp' 'global-impact')
+- [View the learning objectives for Global impact]('curriculum_guides:curriculum_guide_section' 'apcsp' 'global-impact')
 
 ## Project and Course Unit recommendations
 
