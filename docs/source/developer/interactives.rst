@@ -239,7 +239,7 @@ Uninteractives
 
 Uninteractives follow the exact same structure as interactives, the biggest difference is that they are not designed to be interacted with.
 They are most commonly used as a replacement for images with text we want translated.
-Uninteractives are distinguished from interactives by setting the `is_interactive:` attribute to `false` in the `interactives.yaml` configuration file.
+Uninteractives are distinguished from interactives by setting the ``is_interactive:`` attribute to ``false`` in the ``interactives.yaml`` configuration file.
 Uninteractives are not displayed in the interactives appendix.
 
 .. _Bootstrap: https://getbootstrap.com/docs/4.1/getting-started/introduction/
