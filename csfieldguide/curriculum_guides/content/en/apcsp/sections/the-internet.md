@@ -8,8 +8,8 @@
 
 ## Reading from the Computer Science Field Guide
 
-- [Network Communication Protocols](chapters/network-communication-protocols.html)
-- [Coding - Encryption](chapters/coding-encryption.html)
+- [Network Communication Protocols]('chapters:chapter' 'network-communication-protocols')
+- [Coding - Encryption]('chapters:chapter' 'coding-encryption')
 
 ## Learning objectives
 

@@ -10,9 +10,9 @@
 
 Start by reading through:
 
-- [Data Representation](chapters/data-representation.html)
-- [Software Engineering - Layers of Abstraction](chapters/software-engineering.html#design-how-do-we-build-it)
-- [Programming Languages](chapters/programming-languages.html)
+- [Data Representation]('chapters:chapter' 'data-representation')
+- [Software Engineering - Layers of Abstraction]('chapters:chapter_section' 'software-engineering' 'design')
+- [Programming Languages]('chapters:chapter' 'programming-languages')
 
 ## Learning objectives
 
@@ -38,6 +38,7 @@ Two’s complement conversions are beyond the scope of this course and the AP Ex
 - **EK 2.1.1G Numbers can be converted from any base to any other base.**
 
 ### LO 2.1.2 Explain how binary sequences are used to represent digital data.
+
 - **EK 2.1.2A A finite representation is used to model the infinite mathematical concept of a number.**
 
 {panel type="teacher-note"}

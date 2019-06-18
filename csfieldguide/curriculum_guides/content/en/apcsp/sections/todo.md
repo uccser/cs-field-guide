@@ -73,6 +73,7 @@ This "to-do" list includes general computer science topics and suggestions for h
 
 **Most AP curriculum include specific lesson plans to cover these topic by requiring
 the students to research online after/during reading of the Blown to Bits book (freely available online). A teaching guide on how to use Blown to Bits in the classroom along with discussion questions and essay/project ideas should be sufficient. No new CS Field Guide content is suggested for these.**
+
 - computer ethics
 - social computing
 

@@ -10,6 +10,8 @@
 
 ## Reading from the Computer Science Field Guide
 
+- CSFG content is not planned for these.
+
 ## Learning objectives
 
 The above chapter readings include specific knowledge for EK's marked in bold. Work to include unmarked learning objectives in the CS Field Guide is currently in progress.

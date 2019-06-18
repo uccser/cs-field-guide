@@ -396,7 +396,7 @@ Interviews are a great way to help us see exactly how users are interacting with
 As the designers of the interface we are experts in how to use it, which means it is easy for us to make the mistake of believing it is intuitive when maybe it is not.
 User interviews will quickly bring issues like this to light.
 
-We want to understand what the user is thinking and feeling in our interviews (recall “Think Aloud Protocol” in the section on [interface usability]('chapters:chapter-section' 'human-computer-interaction' 'interface-usability')).
+We want to understand what the user is thinking and feeling in our interviews (recall “Think Aloud Protocol” in the section on [interface usability]('chapters:chapter_section' 'human-computer-interaction' 'interface-usability')).
 At each step we want to encourage the user to explain what they are thinking as this will give us insight as to what is confusing and why.
 We’ll ask them what they are about to do and why, what made them choose that particular button, etc.
 It’s important to make sure they feel comfortable explaining what they are doing and therefore we make sure not to criticise their decisions.

@@ -10,12 +10,12 @@
 
 Start by reading through:
 
-- [Data Representation](chapters/data-representation.html)
-- [Coding](chapters/coding-introduction.html)
-- [Compression](chapters/coding-compression.html)
-- [Encryption](chapters/coding-encryption.html)
-- [Error Control](chapters/coding-error-control.html)
-- [Human Computer Interaction](chapters/human-computer-interaction.html)
+- [Data Representation]('chapters:chapter' 'data-representation')
+- [Coding]('chapters:chapter' 'coding-introduction')
+- [Compression]('chapters:chapter' 'coding-compression')
+- [Encryption]('chapters:chapter' 'coding-encryption')
+- [Error Control]('chapters:chapter' 'coding-error-control')
+- [Human Computer Interaction]('chapters:chapter' 'human-computer-interaction')
 
 ## Learning objectives
 

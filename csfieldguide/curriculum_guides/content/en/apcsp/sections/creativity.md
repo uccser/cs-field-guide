@@ -10,8 +10,7 @@
 
 Start by reading through:
 
-- Human Computer Interaction
- - [Interface Usability](chapters/human-computer-interaction.html#interface-usability)
+- [Human Computer Interaction - Interface Usability]('chapters:chapter_section' 'human-computer-interaction' 'interface-usability')
 
 ## Learning objectives
 

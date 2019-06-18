@@ -8,8 +8,9 @@
 ## Reading from the Computer Science Field Guide
 
 Start by reading through:
-- [Algorithms](chapters/algorithms.html)
-- [Complexity and Tractability](chapters/complexity-tractability.html)
+
+- [Algorithms]('chapters:chapter' 'algorithms')
+- [Complexity and Tractability]('chapters:chapter' 'complexity-and-tractability')
 
 ## Learning objectives
 

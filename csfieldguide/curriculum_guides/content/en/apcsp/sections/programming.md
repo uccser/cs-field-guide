@@ -12,13 +12,11 @@
 
 Start by reading through:
 
-- [Programming Languages](chapters/programming-languages.html)
-- [Software Engineering](chapters/software-engineering.html)
-- [Human Computer Interaction](chapters/human-computer-interaction.html)
+- [Programming Languages]('chapters:chapter' 'programming-languages')
+- [Software Engineering]('chapters:chapter' 'software-engineering')
+- [Human Computer Interaction]('chapters:chapter' 'human-computer-interaction')
 
-The AP CSP framework does not require a specific programming language but require students to learn programming. Choose one or more of the options from:
-
-- [Programming Introduction](chapters/introduction.html#programming)
+The AP CSP framework does not require a specific programming language but does require students to learn programming.
 
 ## Learning objectives
 
