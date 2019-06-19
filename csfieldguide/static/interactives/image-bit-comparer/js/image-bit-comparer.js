@@ -148,6 +148,7 @@ function getSubtitleText(bit_values) {
 
 // Setup interface for current mode
 function setupMode() {
+  console.log('set up mode');
   var $canvas_parent_container = $('#interactive-image-bit-comparer-canvas-parent-container');
   $canvas_parent_container.empty();
 
@@ -228,8 +229,9 @@ function setupMode() {
 
 // Load and draw image for Canvas reference
 function loadImage() {
+  console.log('load image');
   var source_canvas = document.getElementById('interactive-image-bit-comparer-source-canvas');
-  //setDimensions(source_canvas);
+  setDimensions(source_canvas);
   source_canvas.width = ImageBitComparer.BASE_WIDTH * ImageBitComparer.scale_factor;
   source_canvas.height = ImageBitComparer.BASE_HEIGHT * ImageBitComparer.scale_factor;
   var source_canvas_context = source_canvas.getContext('2d');
@@ -242,6 +244,8 @@ function loadImage() {
   image.onload = function() {
       $selected_image.data('data', image);
       setDimensions($selected_image.data('data'));
+      source_canvas.width = ImageBitComparer.BASE_WIDTH * ImageBitComparer.scale_factor;
+      source_canvas.height = ImageBitComparer.BASE_HEIGHT * ImageBitComparer.scale_factor;
       source_canvas_context.drawImage(image, 0, 0, source_canvas.width, source_canvas.height);
       // Update canvases from base image
       drawCanvases();
@@ -249,6 +253,8 @@ function loadImage() {
   $selected_image = $("#interactive-image-bit-comparer-selected-image option:selected");
   if ($selected_image.data('data')) {
     setDimensions($selected_image.data('data'));
+    source_canvas.width = ImageBitComparer.BASE_WIDTH * ImageBitComparer.scale_factor;
+    source_canvas.height = ImageBitComparer.BASE_HEIGHT * ImageBitComparer.scale_factor;
     source_canvas_context.drawImage($selected_image.data('data'), 0, 0, source_canvas.width, source_canvas.height);
     // Update canvases from base image
     drawCanvases();
@@ -261,8 +267,9 @@ function loadImage() {
 
 // Load inital image data values
 function initialCanvasData() {
+  console.log('initial canvas data');
   var source_canvas = document.getElementById('interactive-image-bit-comparer-source-canvas');
-  //setDimensions(source_canvas);
+  setDimensions(source_canvas);
   var source_canvas_context = source_canvas.getContext('2d');
   var source_image_data = source_canvas_context.getImageData(0,
                                                              0,
@@ -274,7 +281,7 @@ function initialCanvasData() {
 
 // Draw the image data to a canvas using the canvas max bit values
 function drawCanvas($canvas, source_image_data) {
-  //setDimensions(source_image_data)
+  console.log('draw canvas');
   $canvas.attr('width', ImageBitComparer.BASE_WIDTH * ImageBitComparer.scale_factor + 'px');
   $canvas.attr('height', ImageBitComparer.BASE_HEIGHT * ImageBitComparer.scale_factor + 'px');
   var bit_values = $canvas.data('bit_values');
@@ -285,6 +292,10 @@ function drawCanvas($canvas, source_image_data) {
   canvas_context = $canvas[0].getContext('2d');
   // Copy image data
   canvas_data = source_image_data;
+
+  // setDimensions(source_image_data);
+  // source_image_data.width = ImageBitComparer.BASE_WIDTH * ImageBitComparer.scale_factor;
+  // source_image_data.height = ImageBitComparer.BASE_HEIGHT * ImageBitComparer.scale_factor;
 
   for (var pixel_index = 0; pixel_index < canvas_data.data.length; pixel_index += 4) {
     canvas_data.data[pixel_index] = Math.round(canvas_data.data[pixel_index] / red_divisor) * red_divisor;
@@ -297,6 +308,7 @@ function drawCanvas($canvas, source_image_data) {
 
 // Draw all canvases with source data
 function drawCanvases() {
+  console.log('draw canvases');
   var source_image_data = initialCanvasData();
   $('#interactive-image-bit-comparer-canvas-parent-container canvas').each(function () {
     drawCanvas($(this), source_image_data)
@@ -304,12 +316,6 @@ function drawCanvases() {
 };
 
 function setDimensions(image) {
-  console.log('image');
-  console.log(image);
-  console.log('Height');
-  console.log(image.height);
-  console.log('Width');
-  console.log(image.width);
   if (image.height > image.width) {
     // portrait
     ImageBitComparer.BASE_WIDTH = 300;
