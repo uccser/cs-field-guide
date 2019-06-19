@@ -23,7 +23,7 @@
     <div class="row justify-content-start">
       {% for curriculum_guide in curriculum_guides %}
         <div class="col-12 col-md-6 col-lg-4 mb-4">
-          <a class="link-item{% if not chapter.translation_available %} unavailable{% endif %}" href="{% url 'curriculum_guides:curriculum_guide' curriculum_guide.slug %}">
+          <a class="link-item{% if not curriculum_guide.translation_available %} unavailable{% endif %}" href="{% url 'curriculum_guides:curriculum_guide' curriculum_guide.slug %}">
             <span class="icon chapter-icon">{% svg curriculum_guide.icon %}</span>
             <h2>{{ curriculum_guide.name }}</h2>
             {% if not curriculum_guide.translation_available %}
