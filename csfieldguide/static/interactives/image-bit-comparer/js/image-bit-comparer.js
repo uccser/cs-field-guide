@@ -306,6 +306,7 @@ function drawCanvases() {
   });
 };
 
+// Set base width and height depending on orientation of image
 function setDimensions(image) {
   if (image.height > image.width) {
     // portrait
