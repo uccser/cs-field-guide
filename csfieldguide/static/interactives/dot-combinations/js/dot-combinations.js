@@ -77,7 +77,8 @@ function updatePatternsFound() {
     $('#dot-combinations-complete').addClass('d-none');
   }
 
-  $('#dot-combinations-count').html(patternsFound.length);
+  var dotCombosFound = ngettext('You have found 1 combination.', 'You have found %(combos)s combinations.', patternsFound.length);
+  $('#dot-combinations-count').html(interpolate(dotCombosFound, {"combos": patternsFound.length}, true));
 }
 
 /**
