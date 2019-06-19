@@ -1,12 +1,9 @@
 <div class="section-heading">
-{%- if heading_level < 4 -%}
+{%- if heading_level < 3 -%}
 <div class="section-heading-number">
 {{ "{{ chapter.number }}.{{ chapter_section.number }}" }}
 {%- if heading_level >= 2 -%}
 .{{ level_2 }}
-{%- endif -%}
-{%- if heading_level >= 3 -%}
-.{{ level_3 }}
 {%- endif -%}
 .
 </div>
