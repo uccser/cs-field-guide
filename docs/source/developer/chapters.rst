@@ -10,7 +10,7 @@ The chapters application is the main focus of the CS Field Guide website, as it 
   - :doc:`../author/chapters` - Provides detail on content in chapters application
   - :doc:`django_setup` - Provides detail of database structure
 
-In general the chapters application is a standard Django application, however it does store and update it's associated data for it's models uniquely.
+In general the chapters application is a standard Django application, however it does store and update its associated data for its models uniquely.
 
 Instead of creating and updating model objects through the website (for example: edited by an online editor), the objects are updated by a management script.
 The content for the chapters application is stored within the ``contents/`` directory, as is run for each deployment of the system.

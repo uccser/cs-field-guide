@@ -94,7 +94,7 @@ Items of interest from this diagram:
   More information on npm modules can be found on the :ref:`static files` page.
 
 - ``static/interactives/<interactive-slug>/js/third-party/`` -- Third-party JavaScript libraries specific to this interactive should be loaded as modules through the ``package.json`` file (see above).
-  Add the source JS file to this directory only if that is not possible (for example, if the package is not available on npm).
+  Add the source JS file to this directory only if it is not possible to load the module through package.json.
 
 - ``third-party/`` -- Any third party css or js libraries used in multiple interactives can be stored in ``static/css/third-party/`` and ``static/js/third-party/`` directories.
 
