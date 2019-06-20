@@ -227,7 +227,7 @@ You can refer to a chapter page with the following syntax:
 
 .. code-block:: none
 
-  [link text]('chapters:chapter' '<chapter-slug>')
+  [link text]('chapters:chapter' '<chapter-key>')
 
 As an example, the following would link to the complexity and tractability chapter:
 
@@ -239,19 +239,19 @@ You can link to a chapter section with similar syntax:
 
 .. code-block:: none
 
-  [link text]('chapters:chapter-section' '<chapter-slug>' '<chapter-section-slug>')
+  [link text]('chapters:chapter-section' '<chapter-key>' '<chapter-section-key>')
 
 Links to an interactive follow the same syntax as a chapter link, except 'chapter' is replaced with 'interactive'.
 
 .. code-block:: none
 
-  [link text]('interactives:interactive' '<interactive-slug>')
+  [link text]('interactives:interactive' '<interactive-key>')
 
 To reference an interactive with URL parameters the syntax is:
 
 .. code-block:: none
 
-  [link text]('interactives:interactive' '<interactive-slug>'?<url-parameters>)
+  [link text]('interactives:interactive' '<interactive-key>'?<url-parameters>)
 
 
 Examples:
@@ -262,9 +262,9 @@ Examples:
   Check out [interface usability]('chapters:chapter-section' 'human-computer-interaction' 'interface-usability').
   [Regular Expression Searcher]('interactives:interactive' 'regular-expression-search')
 
-Slugs are defined in configuration files.
+Keys are defined in configuration files.
 
-Some pages will not require slugs, such as appendix pages or the homepage.
+Some pages will not require keys, such as appendix pages or the homepage.
 
 .. code-block:: none
 
@@ -334,7 +334,7 @@ Ordered list:
 2. Item 2
 3. Item 3
 
-Nested lists can be created by indenting each level by 2 spaces.
+Nested lists can be created by indenting each level by 4 spaces.
 
 .. code-block:: none
 
