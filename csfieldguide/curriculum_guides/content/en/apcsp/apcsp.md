@@ -84,9 +84,6 @@ Computing is situated within economic, social and cultural contexts.
 ## Project and Course Unit recommendations
 
 The AP CSP curriculum framework allows flexibility for projects and course units to address multiple concepts in one unit.
-We provide a guide for some common combinations and recommendations for implementation to achieve multiple learning objectives with the required level of competency.
-
-- [App Development]()
 
 ## Assessment
 
