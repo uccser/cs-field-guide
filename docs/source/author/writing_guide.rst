@@ -188,7 +188,7 @@ Here are some things to try out:
 
 .. code-block:: none
 
-  Here's a line in markdown for us to start with.
+  Here's a line for us to start with.
 
   This line is separated from the one above by two newlines, so it will be a **separate paragraph**.
 
