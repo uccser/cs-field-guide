@@ -188,14 +188,15 @@ Here are some things to try out:
 
 .. code-block:: none
 
-  Here's a line for us to start with.
+  Here's a line in markdown for us to start with.
 
-  This line is separated from the one above by two newlines in the markdown file, so it will be a **separate paragraph**
+  This line is separated from the one above by two newlines, so it will be a **separate paragraph**.
 
   This line is also a separate paragraph.
-  However, *this* line is only separated by a single newline in the markdown file, so it's a new sentence that will appear **on the same line** as the previous one.
-  
-  When writing markdown, new sentences belonging to the same paragraph should be started on a new line for clarity.
+  However, *this* line is only separated by a single newline in the markdown file.
+  These are new sentences that will appear **on the same line** as each previous one.
+
+  When writing markdown, new sentences should be started on a new line for clarity.
   An exception is for really small sentences like this:
   Is it one? two? three?
 
