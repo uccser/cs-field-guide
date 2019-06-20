@@ -7,7 +7,7 @@ This could be an educational game or demonstration that is created in HTML, CSS,
 This documentation page provides information about the interactive content of the Computer Science Field Guide.
 Interactives are a great resource for teaching and practicing concepts in the CSFG.
 The guidelines below aim to keep consistency among interactives.
-It also allows developers to make modifications to existing interactive with ease.
+It also allows developers to make modifications to existing interactives with ease.
 
 .. contents:: Contents
   :local:
@@ -72,9 +72,9 @@ Every interactive will follow a very similar file structure as given below:
 
 Items of interest from this diagram:
 
-- ``static/interactives/<interactive-slug>/`` - This is the directory where static files for the interactive are stored, which should be broken down into ``scss``, ``js`` and ``img`` directories.
+- ``static/interactives/<interactive-slug>/`` -- This is the directory where static files for the interactive are stored, which should be broken down into ``scss``, ``js`` and ``img`` directories.
 
-- ``static/interactives/<interactive-slug>/package.json`` - The ``package.json`` file is npm's configuration file for projects and modules.
+- ``static/interactives/<interactive-slug>/package.json`` -- The ``package.json`` file is npm's configuration file for projects and modules.
   Here we include any dependencies the interacive has.
   This file should only be included if the interactive loads **at least 1** npm module.
   An example structure of a package.json file for an interactive is below:
@@ -93,20 +93,20 @@ Items of interest from this diagram:
   You will need to make sure the path to this file is listed in the ``csfieldguide/package.json`` file.
   More information on npm modules can be found on the :ref:`static files` page.
 
-- ``static/interactives/<interactive-slug>/js/third-party/`` - Third-party JavaScript libraries specific to this interactive should be loaded as modules through the ``package.json`` file (see above).
+- ``static/interactives/<interactive-slug>/js/third-party/`` -- Third-party JavaScript libraries specific to this interactive should be loaded as modules through the ``package.json`` file (see above).
   Add the source JS file to this directory only if that is not possible (for example, if the package is not available on npm).
 
-- ``third-party/`` - Any third party css or js libraries used in multiple interactives can be stored in ``static/css/third-party/`` and ``static/js/third-party/`` directories.
+- ``third-party/`` -- Any third party css or js libraries used in multiple interactives can be stored in ``static/css/third-party/`` and ``static/js/third-party/`` directories.
 
 .. warning::
 
   Any third-party libraries you include must have a licence that allows them to be used in the CSFG.
   A summary of the library's licence must be added to ``LICENCE-THIRD-PARTY`` with the full licence file added to ``cs-field-guide/third-party-licences/``.
 
-- ``static/interactives/<interactive-slug>/README.md`` - This is a short file that that explains the interactive's purpose.
+- ``static/interactives/<interactive-slug>/README.md`` -- This is a short file that that explains the interactive's purpose.
   It can also include links to any documentation or websites that future developers may find useful.
 
-- ``templates/interactives/<interactive-slug>.html`` - This is the HTML template for the interactive for a specific locale, as defined in the interactive configuration file.
+- ``templates/interactives/<interactive-slug>.html`` -- This is the HTML template for the interactive for a specific locale, as defined in the interactive configuration file.
   Locale may or may not share a template for an interactive, allowing different versions of an interactive to be available (`see GitHub for more information <https://github.com/uccser/cs-field-guide/pull/710>`_).
   A template can also be omitted for a locale to disable the interactive for the locale.
 
@@ -186,9 +186,8 @@ Interactive Configuration Files
 
     - ``languages:`` A dictionary of all languages the interactive is available in, where each key is the locale.
 
-    - ``is_interactive:`` A boolean value indicating if the interactive can be interacted with.
-      This field was introduced so we could distingush between interactives and `uninteractives`_.
-      If the ``is interactive`` field is set to ``false``, it is not displayed in the interactives appendix.
+    - ``is_interactive:`` This field was introduced so we could distingush between interactives and `uninteractives`_.
+      If the ``is_interactive`` field is set to ``false``, it is not displayed in the interactives appendix.
       It means the user cannot interact with it to the extent where it would be useful to have as a standalone feature.
 
 A complete interactive structure file may look like the following:

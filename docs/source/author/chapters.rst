@@ -41,7 +41,7 @@ Configuration files are shared amongst all languages, because the content struct
 These files live under a special ``structure`` directory.
 
 As a simple rule, structure files situated inside the ``structure`` directory contain **no** text a website user will see.
-Any user facing text lives in a Markdown file inside the locale specific directories.
+Any user-facing text lives in a Markdown file inside the locale specific directories.
 
 Configuration Files
 ==============================================================================

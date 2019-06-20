@@ -66,7 +66,7 @@ Translatable Model
 =============================================================================
 
 The ``TranslatableModel`` class is a base model class that allows content to be stored using the above principles.
-It is availabe in the file ``utils/TranslatableModel.py`` and should be subclassed by all models which contain any user facing content.
+It is availabe in the file ``utils/TranslatableModel.py`` and should be subclassed by all models which contain any user-facing content.
 
 Django Package - ``modeltranslation``
 ******************************************************************************

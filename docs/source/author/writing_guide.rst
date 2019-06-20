@@ -247,6 +247,12 @@ Links to an interactive follow the same syntax as a chapter link, except 'chapte
 
   [link text]('interactives:interactive' '<interactive-slug>')
 
+To reference an interactive with URL parameters the syntax is:
+
+.. code-block:: none
+
+  [link text]('interactives:interactive' '<interactive-slug>'?<url-parameters>)
+
 
 Examples:
 
