@@ -14,7 +14,7 @@ ImageBitComparer.INITAL_IMAGES = [
                                   [image_bit_comparer_images["sunflower"], 'Sunflower'],
                                   [image_bit_comparer_images["temple-roof"], 'Roof of Temple'],
                                   [image_bit_comparer_images["nz-lake"], 'Lake in New Zealand'],
-                                  [image_bit_comparer_images["faces"], 'Faces'],
+                                  [image_bit_comparer_images["jacinda-ardern"], 'Jacinda Ardern'],
                                   [image_bit_comparer_images["flower"], 'Flower'],
                                   [image_bit_comparer_images["snow-flower"], 'Flower in snow'],
                                   [image_bit_comparer_images["duckling"], 'Duckling'],
