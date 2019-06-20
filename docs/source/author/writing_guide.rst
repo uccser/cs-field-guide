@@ -294,6 +294,7 @@ Create a Link on an Image (Verto feature)
 ------------------------------------------------------------------------------
 
 Images should now be linked using the ``caption-link`` and ``source`` tag parameters for including an image.
+See the Verto documentation on the `image processor`_ for more information and examples.
 
 Create a Link on a Button (Verto feature)
 ------------------------------------------------------------------------------
@@ -472,3 +473,4 @@ Chapters always contain the following:
 .. _Click here to read the documentation on how to include an image of Scratch block: http://verto.readthedocs.io/en/latest/processors/scratch.html
 .. _Click here to read the documentation on how to include a table of contents: http://verto.readthedocs.io/en/latest/processors/table-of-contents.html
 .. _Click here to read the documentation on how to include a video: http://verto.readthedocs.io/en/latest/processors/video.html
+.. _image processor: https://verto.readthedocs.io/en/latest/processors/image.html
