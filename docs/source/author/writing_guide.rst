@@ -1,8 +1,8 @@
 Writing Guide
 ##############################################################################
 
-The CS Field Guide is developed in English and is then translated into other languages.
-You can find more information about this on the translations page.
+The CS Field Guide is developed in English and then translated into other languages.
+You can find more information about this on the :ref:`translations` page.
 
 The majority of our text content is written in Markdown, and we also developed
 a program called `Verto`_ to allow you to include HTML elements like images and
@@ -190,10 +190,14 @@ Here are some things to try out:
 
   Here's a line for us to start with.
 
-  This line is separated from the one above by two newlines, so it will be a *separate paragraph*.
+  This line is separated from the one above by two newlines in the markdown file, so it will be a **separate paragraph**
 
-  This line is also a separate paragraph, but...
-  This line is only separated by a single newline, so it's a separate line in the *same paragraph*.
+  This line is also a separate paragraph.
+  However, *this* line is only separated by a single newline in the markdown file, so it's a new sentence that will appear **on the same line** as the previous one.
+  
+  When writing markdown, new sentences belonging to the same paragraph should be started on a new line for clarity.
+  An exception is for really small sentences like this:
+  Is it one? two? three?
 
 .. raw:: html
   :file: ../_static/html_snippets/markdown_example_line_break.html

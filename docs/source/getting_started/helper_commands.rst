@@ -141,7 +141,8 @@ To follow logs as they output, enter ``docker-compose logs --follow``.
 ==============================================================================
 
 Running ``./csfg make_interactive_thumbnails`` generates the thumbnails for each interactive.
-``make_interactive_thumbnails`` will take a screenshot of each interactive and save it under ``static/img/interactives/thumbnails/<interactive-slug>.png``.
+You will need to run the ``./csfg collect_static`` command after for them to appear in the ``staticfiles/`` directory.
+The thumbnail for each interactive will be saved under ``staticfiles/img/interactives/thumbnails/<language-code>/<interactive-slug>.png``.
 
 -----------------------------------------------------------------------------
 
@@ -211,7 +212,7 @@ More details for each command can be found on this page.
 ``restart_build``
 ==============================================================================
 
-Running ``./csfg restart`` is a shortcut for running:
+Running ``./csfg restart_build`` is a shortcut for running:
 
 - ``./csfg end``
 - ``./csfg build``
