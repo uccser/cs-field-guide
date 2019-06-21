@@ -85,7 +85,21 @@ You should never save anything in these directories, as the contents are often o
 
 The ``csfieldguide/`` directory also contains the following files:
 
+- ``gulpfile.js``
+
+  -  This file is where all gulp code belongs.
+     This file is also where gulp tasks are defined.
+
+- ``make-interactive-thumbnails.js``
+
+  - A script for generating interactive thumbnails.
+
 - ``manage.py``
 
   - A file created by Django used to manage the Django web system.
     Don't modify the contents of this file.
+
+- ``package.json``
+
+  - npm's configuration file for projects and modules.
+    Here we include any dependencies the project has.
