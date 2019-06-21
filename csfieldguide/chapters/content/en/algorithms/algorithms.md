@@ -2,8 +2,8 @@
 
 {comment explain different views of algorithm (programming context) and Algorithm (that have interesting complexity); use https://www.youtube.com/watch?v=6hfOvs8pY1k for the former?}
 
-Every computer device you have ever used, from your school computers to your calculator, has been using algorithms to tell it how to do whatever it was doing.
-Algorithms are a very important topic in Computer Science because they help software developers create efficient and error free programs.
+Every computer device you have ever used, from your school computers to your calculator, has been using {glossary-link term="algorithm" reference-text="introduction"}algorithms{glossary-link end} to tell it how to do whatever it was doing.
+Algorithms are a very important topic in Computer Science because they help software developers create efficient and error free {glossary-link term="program" reference-text="introduction"}programs{glossary-link end}.
 The most important thing to remember about algorithms is that there can be many different algorithms for the same problem, but some are much better than others!
 
 {interactive slug="sorting-algorithm-comparison" type="in-page"}
@@ -33,7 +33,7 @@ go through each score keeping track of the largest so far.
 Informal instructions like this aren't precise; there's no way that a computer could follow those instructions exactly, but a human could probably get the general idea of what you mean if they know what you're trying to achieve.
 This sort of description is only useful for quickly giving another human the general idea of what you mean, and even then there's a risk that they won't properly understand it.
 
-In contrast, an {glossary-link term="algorithm" reference-text="introduction"}algorithm{glossary-link end} is a step by step process that describes how to solve a problem and/or complete a task, which will always give the correct result.
+In contrast, an algorithm is a step by step process that describes how to solve a problem and/or complete a task, which will always give a result.
 For our previous non-computing example, the algorithm might be
 
 1)  Go to the kitchen.
@@ -45,7 +45,7 @@ For our previous non-computing example, the algorithm might be
 
 A human could follow these instructions easily, but it's still using general English language rather than a strict list of computer instructions.
 
-Algorithms are often expressed using a loosely defined format called [pseudo-code](https://en.wikipedia.org/wiki/Pseudocode), which matches a programming language fairly closely, but leaves out details that could easily be added later by a programmer.
+Algorithms are often expressed using a loosely defined format called [pseudo-code](https://en.wikipedia.org/wiki/Pseudocode), which matches a {glossary-link term="programming-language" reference-text="introduction"}programming language{glossary-link end} fairly closely, but leaves out details that could easily be added later by a programmer.
 Pseudocode doesn't have strict rules about the sorts of commands you can use, but it's halfway between an informal instruction and a specific computer program.
 
 With the high score problem, the algorithm might be written in pseudo-code like this:
@@ -65,7 +65,7 @@ The other important thing with this level of precision is that we can often make
 For the high score problem above, if the score table gets twice as big, the algorithm will take about twice as long.
 If the table could be very big (perhaps we're tracking millions of games and serving up the high score many times each second), that might already be enough to tell us that we need a better algorithm to track high scores regardless of which language it's going to be programmed in; or if the table only ever has 10 scores in it, then we know that the program is only going to do a few dozen operations, and is bound to be really fast even on a slow computer.
 
-The most precise way of giving a set of instructions is in the form of a {glossary-link term="algorithm" reference-text="computer program"}program{glossary-link end}, which is a specific implementation of an algorithm, written in a specific programming language, with a very specific result for any particular input.
+The most precise way of giving a set of instructions is in the form of a program, which is a specific implementation of an algorithm, written in a specific programming language, with a very specific result for any particular input.
 This is the most precise of these three descriptions and computers are able to follow and understand these.
 
 For the example with getting a drink, we might program a robot to do that; it would be written in some programming language that the robot's computer can run, and would tell the robot exactly how to retrieve a glass of water and bring it back to the person who asked for the water.
