@@ -93,8 +93,6 @@ Both of the above programs are the same algorithm.
 In this chapter we'll look in more detail about what an algorithm is, and why they are such a fundamental idea in computer science.
 Because algorithms exist even if they aren't turned in to programs, we won't need to look at programs at all for this topic, unless you particularly want to.
 
-{glossary-link term="algorithm" reference-text="algorithm cost"}{glossary-link end}
-
 ### Algorithm cost
 
 When Computer Scientists are comparing algorithms they often talk about the 'cost' of an algorithm.
@@ -110,10 +108,10 @@ That's worth knowing in advance because we usually need our programs to scale up
 
 # Algorithm complexity
 
-The formal term for working out the cost of an algorithm is [algorithm analysis](https://en.wikipedia.org/wiki/Analysis_of_algorithms), and we often refer to the cost as the algorithm's *complexity*.
+The formal term for working out the cost of an algorithm is [algorithm analysis](https://en.wikipedia.org/wiki/Analysis_of_algorithms), and we often refer to the cost as the algorithm's {glossary-link term="complexity" reference-text="introduction"}*complexity*{glossary-link end}.
 The most common complexity is the "time complexity" (a rough idea of how long it takes to run), but often the "space complexity" is of interest - how much memory or disk space will the algorithm use up when it's running?
 
-There's more about how the cost of an algorithm is described in industry, using a widely agreed on convention called 'Big-O Notation', in the ["The whole story!"](the-whole-story) section at the end of this chapter.
+There's more about how the cost of an algorithm is described in industry, using a widely agreed on convention called {glossary-link term="big-o" reference-text="introduction"}'Big O Notation'{glossary-link end}, in the ["The whole story!"](the-whole-story) section at the end of this chapter.
 
 {panel end}
 
