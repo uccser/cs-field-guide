@@ -245,6 +245,16 @@ function loadImage() {
       source_canvas.width = ImageBitComparer.BASE_WIDTH * ImageBitComparer.scale_factor;
       source_canvas.height = ImageBitComparer.BASE_HEIGHT * ImageBitComparer.scale_factor;
       source_canvas_context.drawImage(image, 0, 0, source_canvas.width, source_canvas.height);
+      // // Replace any transparent pixels
+      // for (var pixel_index = 0; pixel_index < canvas_data.data.length; pixel_index += 4) {
+      //   if (canvas_data.data[pixel_index + 3] == 0) {
+      //     // Transparent pixel. Change transparent pixel to white pixel.
+      //     canvas_data.data[pixel_index] = 255;
+      //     canvas_data.data[pixel_index + 1] = 255;
+      //     canvas_data.data[pixel_index + 2] = 255;
+      //     canvas_data.data[pixel_index + 3] = 1;
+      //   }
+      // }
       // Update canvases from base image
       drawCanvases();
   }
@@ -272,6 +282,7 @@ function initialCanvasData() {
                                                              0,
                                                              ImageBitComparer.BASE_WIDTH * ImageBitComparer.scale_factor,
                                                              ImageBitComparer.BASE_HEIGHT * ImageBitComparer.scale_factor);
+                                                             console.log(source_image_data);
   return source_image_data;
 };
 
@@ -288,14 +299,31 @@ function drawCanvas($canvas, source_image_data) {
   canvas_context = $canvas[0].getContext('2d');
   // Copy image data
   canvas_data = source_image_data;
-
   for (var pixel_index = 0; pixel_index < canvas_data.data.length; pixel_index += 4) {
-    canvas_data.data[pixel_index] = Math.round(canvas_data.data[pixel_index] / red_divisor) * red_divisor;
-    canvas_data.data[pixel_index + 1] = Math.round(canvas_data.data[pixel_index + 1] / green_divisor) * green_divisor;
-    canvas_data.data[pixel_index + 2] = Math.round(canvas_data.data[pixel_index + 2] / blue_divisor) * blue_divisor;
+    if (canvas_data.data[pixel_index + 3] == 0) {
+      // Transparent pixel. Change transparent pixel to white pixel.
+      canvas_data.data[pixel_index] = 255;
+      canvas_data.data[pixel_index + 1] = 255;
+      canvas_data.data[pixel_index + 2] = 255;
+      canvas_data.data[pixel_index + 3] = 1;
+    }
+
+    setRgbValue(canvas_data, pixel_index, red_divisor);
+    setRgbValue(canvas_data, pixel_index + 1, green_divisor);
+    setRgbValue(canvas_data, pixel_index + 2, blue_divisor);
   }
+
   canvas_context.putImageData(canvas_data, 0, 0, 0, 0, source_image_data.width, source_image_data.height);
 };
+
+
+function setRgbValue(canvas_data, pixel_index, divisor) {
+   if (divisor == Infinity) {
+    canvas_data.data[pixel_index] = 0;
+   } else {
+    canvas_data.data[pixel_index] = Math.round(canvas_data.data[pixel_index] / divisor) * divisor;
+   }
+}
 
 
 // Draw all canvases with source data
