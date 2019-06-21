@@ -36,12 +36,12 @@ This sort of description is only useful for quickly giving another human the gen
 In contrast, an algorithm is a step by step process that describes how to solve a problem and/or complete a task, which will always give a result.
 For our previous non-computing example, the algorithm might be
 
-1)  Go to the kitchen.
-2)  Pick up a glass.
-3)  Turn on the tap.
-4)  Put the glass under the running water and remove it once it is almost full.
-5)  Turn off the tap.
-6)  Take the glass back to the person who gave the instruction.
+1. Go to the kitchen.
+2. Pick up a glass.
+3. Turn on the tap.
+4. Put the glass under the running water and remove it once it is almost full.
+5. Turn off the tap.
+6. Take the glass back to the person who gave the instruction.
 
 A human could follow these instructions easily, but it's still using general English language rather than a strict list of computer instructions.
 

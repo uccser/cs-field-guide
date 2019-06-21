@@ -1,3 +1,3 @@
 # Adage
 
-A philisophical phrase or saying
+A philisophical yet credible phrase or saying.
