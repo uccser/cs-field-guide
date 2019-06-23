@@ -1,10 +1,10 @@
 # Programming Languages
 
-Programming, sometimes referred to as coding, is a nuts and bolts activity for computer scientists.
+{glossary-link term="program"}Programming{glossary-link end}, sometimes referred to as coding, is a nuts and bolts activity for computer scientists.
 While this chapter won't teach you how to program (we've given some links to sites that can do this in the introduction), we are going to look at what a programming language is, and how computer scientists breathe life into a language.
 From a programmer's point of view, they type some instructions, and the computer follows them.
 But how does the computer know what to do?
-Bear in mind that you might be using one of the many languages such as Python, Java, Scratch, Basic or C#, yet computers only have the hardware to follow instructions in one language: a very simple "machine code" that is difficult for humans to read and write.
+Bear in mind that you might be using one of the many {glossary-link term="programming-language"}languages{glossary-link end} such as Python, Java, Scratch, Basic or C#, yet computers only have the hardware to follow instructions in one language: a very simple "machine code" that is difficult for humans to read and write.
 Then if you invent a new programming language, how do you tell the computer how to use it?
 
 In this chapter we'll look at what happens when you write and run a program, and how this affects the way that you distribute the program for others to use.
@@ -69,7 +69,7 @@ What happens if you spell "programming" wrong? Does the computer correct it? If 
 
 Hopefully you figured out how to make the program print your name.
 You can also change the asterisks (\*) to other symbols.
- What happens if you do remove one of the double quotes or one of the parentheses? Try it!
+What happens if you do remove one of the double quotes or one of the parentheses? Try it!
 
 If you change a critical symbol in the program you will probably find that the Python interpreter gives an error message.
 In the Python interpreter interactive above, it says "SyntaxError: bad input on line 1", although different interpreters will express the error in different ways.
@@ -141,7 +141,7 @@ Look carefully at all the symbols that were used to include the recipient's name
 
 # Syntax
 
-The detailed requirements of a programming language about exactly which characters need to be used and where, is called its *syntax*.
+The detailed requirements of a programming language about exactly which characters need to be used and where, is called its *{glossary-link term="syntax"}syntax{glossary-link end}*.
 In the example above, the syntax for the list of names requires square brackets around the list, quotation marks or inverted commas around the names, and a comma between each one.
 If you make a mistake, such as leaving out one of the square brackets, the system will have a *syntax error*, and won't be able to run the program.
 Every symbol counts, and one small error in a program can stop it running, or make it do the wrong thing.
@@ -203,7 +203,7 @@ Building a fast and cheap circuit to do simple arithmetic such as this isn't tha
 # Binary
 
 The electronics in computers uses circuitry that mainly just works with two values (represented as high and low voltages) to make it reliable and fast.
-This system is called *binary*, and is often written on paper using zeroes and ones.
+This system is called *{glossary-link term="binary-number-system"}binary{glossary-link end}*, and is often written on paper using zeroes and ones.
 There's a lot more about binary in the [data representation]('chapters:chapter' 'data-representation') chapter, and it's worth having a quick look at the first section of that now if you haven't come across binary before.
 
 {panel end}
