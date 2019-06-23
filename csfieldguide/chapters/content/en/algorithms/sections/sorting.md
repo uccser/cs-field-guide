@@ -10,7 +10,7 @@ Sorting algorithms are useful to study because they illustrate many of the key i
 
 {panel end}
 
-Sorting is another very important area of {glossary-link term="algorithm"}algorithms{glossary-link end}.
+Sorting is another very important area of algorithms.
 Computers often have to sort large amounts of data into order based on some attribute of that data, such as sorting a list of files by their name or size, or emails by the date they were received, or a customer list according to people's names.
 Most of the time this is done to make searching easier.
 For example you might have a large amount of data and each piece of data could be someone's name and their phone number.
@@ -121,7 +121,7 @@ Then to add the next box compare it to these boxes (depending on the weight of t
 Continue inserting boxes until the sorted list is complete.
 Don't forget to count how many comparisons you had to make!
 
-This algorithm is called {glossary-link term="insertion-sort}insertion sort{glossary-link end}.
+This algorithm is called {glossary-link term="insertion-sort"}insertion sort{glossary-link end}.
 If you're not quite sure if you've got the idea of the algorithm yet then have a look at [this animation](https://upload.wikimedia.org/wikipedia/commons/0/0f/Insertion-sort-example-300px.gif) from [Wikipedia](https://en.wikipedia.org/wiki/Insertion_sort).
 
 Insertion sort can be described with informal instructions as follows:
