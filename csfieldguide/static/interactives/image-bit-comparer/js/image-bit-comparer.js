@@ -249,7 +249,7 @@ function loadImage() {
     data = imageData.data;
     // Replace any transparent pixels
     for (var pixel_index = 0; pixel_index < data.length; pixel_index += 4) {
-      if (data[pixel_index + 3] == 0) {
+      if (data[pixel_index + 3] !== 255) {
         // Transparent pixel. Change transparent pixel to white pixel.
         data[pixel_index] = 255; // red
         data[pixel_index + 1] = 255; // green
@@ -274,7 +274,7 @@ function loadImage() {
     data = imageData.data;
     // Replace any transparent pixels
     for (var pixel_index = 0; pixel_index < data.length; pixel_index += 4) {
-      if (data[pixel_index + 3] == 0) {
+      if (data[pixel_index + 3] !== 255) {
         // Transparent pixel. Change transparent pixel to white pixel.
         data[pixel_index] = 255; // red
         data[pixel_index + 1] = 255; // green
@@ -317,16 +317,26 @@ function drawCanvas($canvas, source_image_data) {
   canvas_context = $canvas[0].getContext('2d');
   // Copy image data
   canvas_data = source_image_data;
+  pixel_set = new Set();
   for (var pixel_index = 0; pixel_index < canvas_data.data.length; pixel_index += 4) {
     setRgbValue(canvas_data, pixel_index, red_divisor);
     setRgbValue(canvas_data, pixel_index + 1, green_divisor);
     setRgbValue(canvas_data, pixel_index + 2, blue_divisor);
+    pixel_str = "";
+    pixel_str += String(canvas_data.data[pixel_index]);
+    pixel_str += ",";
+    pixel_str += String(canvas_data.data[pixel_index+1]);
+    pixel_str += ",";
+    pixel_str += String(canvas_data.data[pixel_index+2]);
+    pixel_set.add(pixel_str);
   }
+  console.log(pixel_set);
 
   canvas_context.putImageData(canvas_data, 0, 0, 0, 0, source_image_data.width, source_image_data.height);
 };
 
 
+/* set one of the rgb values for a given pixel */
 function setRgbValue(canvas_data, pixel_index, divisor) {
    if (divisor == Infinity) {
     canvas_data.data[pixel_index] = 0;
@@ -343,6 +353,7 @@ function drawCanvases() {
     drawCanvas($(this), source_image_data)
   });
 };
+
 
 // Set base width and height depending on orientation of image
 function setDimensions(image) {
