@@ -240,30 +240,49 @@ function loadImage() {
     alert(gettext('Starting image cannot be loaded when viewing file locally. Try another browser or the online version.'));
   }, false);
   image.onload = function() {
-      $selected_image.data('data', image);
-      setDimensions($selected_image.data('data'));
-      source_canvas.width = ImageBitComparer.BASE_WIDTH * ImageBitComparer.scale_factor;
-      source_canvas.height = ImageBitComparer.BASE_HEIGHT * ImageBitComparer.scale_factor;
-      source_canvas_context.drawImage(image, 0, 0, source_canvas.width, source_canvas.height);
-      // // Replace any transparent pixels
-      // for (var pixel_index = 0; pixel_index < canvas_data.data.length; pixel_index += 4) {
-      //   if (canvas_data.data[pixel_index + 3] == 0) {
-      //     // Transparent pixel. Change transparent pixel to white pixel.
-      //     canvas_data.data[pixel_index] = 255;
-      //     canvas_data.data[pixel_index + 1] = 255;
-      //     canvas_data.data[pixel_index + 2] = 255;
-      //     canvas_data.data[pixel_index + 3] = 1;
-      //   }
-      // }
-      // Update canvases from base image
-      drawCanvases();
+    setDimensions(image);
+    source_canvas.width = ImageBitComparer.BASE_WIDTH * ImageBitComparer.scale_factor;
+    source_canvas.height = ImageBitComparer.BASE_HEIGHT * ImageBitComparer.scale_factor;
+    source_canvas_context.drawImage(image, 0, 0, source_canvas.width, source_canvas.height);
+
+    imageData = source_canvas_context.getImageData(0, 0, source_canvas.width, source_canvas.height);
+    data = imageData.data;
+    // Replace any transparent pixels
+    for (var pixel_index = 0; pixel_index < data.length; pixel_index += 4) {
+      if (data[pixel_index + 3] == 0) {
+        // Transparent pixel. Change transparent pixel to white pixel.
+        data[pixel_index] = 255; // red
+        data[pixel_index + 1] = 255; // green
+        data[pixel_index + 2] = 255; // blue
+        data[pixel_index + 3] = 255; // alpha
+      }
+    }
+    source_canvas_context.putImageData(imageData, 0, 0);
+
+    // Update canvases from base image
+    drawCanvases();
   }
   $selected_image = $("#interactive-image-bit-comparer-selected-image option:selected");
   if ($selected_image.data('data')) {
-    setDimensions($selected_image.data('data'));
+    selected_image_data = $selected_image.data('data')
+    setDimensions(selected_image_data);
     source_canvas.width = ImageBitComparer.BASE_WIDTH * ImageBitComparer.scale_factor;
     source_canvas.height = ImageBitComparer.BASE_HEIGHT * ImageBitComparer.scale_factor;
-    source_canvas_context.drawImage($selected_image.data('data'), 0, 0, source_canvas.width, source_canvas.height);
+    source_canvas_context.drawImage(selected_image_data, 0, 0, source_canvas.width, source_canvas.height);
+
+    imageData = source_canvas_context.getImageData(0, 0, source_canvas.width, source_canvas.height);
+    data = imageData.data;
+    // Replace any transparent pixels
+    for (var pixel_index = 0; pixel_index < data.length; pixel_index += 4) {
+      if (data[pixel_index + 3] == 0) {
+        // Transparent pixel. Change transparent pixel to white pixel.
+        data[pixel_index] = 255; // red
+        data[pixel_index + 1] = 255; // green
+        data[pixel_index + 2] = 255; // blue
+        data[pixel_index + 3] = 255; // alpha
+      }
+    }
+    source_canvas_context.putImageData(imageData, 0, 0);
     // Update canvases from base image
     drawCanvases();
   } else {
@@ -282,7 +301,6 @@ function initialCanvasData() {
                                                              0,
                                                              ImageBitComparer.BASE_WIDTH * ImageBitComparer.scale_factor,
                                                              ImageBitComparer.BASE_HEIGHT * ImageBitComparer.scale_factor);
-                                                             console.log(source_image_data);
   return source_image_data;
 };
 
@@ -300,14 +318,6 @@ function drawCanvas($canvas, source_image_data) {
   // Copy image data
   canvas_data = source_image_data;
   for (var pixel_index = 0; pixel_index < canvas_data.data.length; pixel_index += 4) {
-    if (canvas_data.data[pixel_index + 3] == 0) {
-      // Transparent pixel. Change transparent pixel to white pixel.
-      canvas_data.data[pixel_index] = 255;
-      canvas_data.data[pixel_index + 1] = 255;
-      canvas_data.data[pixel_index + 2] = 255;
-      canvas_data.data[pixel_index + 3] = 1;
-    }
-
     setRgbValue(canvas_data, pixel_index, red_divisor);
     setRgbValue(canvas_data, pixel_index + 1, green_divisor);
     setRgbValue(canvas_data, pixel_index + 2, blue_divisor);
