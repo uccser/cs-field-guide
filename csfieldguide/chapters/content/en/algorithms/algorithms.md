@@ -2,8 +2,8 @@
 
 {comment explain different views of algorithm (programming context) and Algorithm (that have interesting complexity); use https://www.youtube.com/watch?v=6hfOvs8pY1k for the former?}
 
-Every computer device you have ever used, from your school computers to your calculator, has been using {glossary-link term="algorithm" reference-text="introduction"}algorithms{glossary-link end} to tell it how to do whatever it was doing.
-Algorithms are a very important topic in Computer Science because they help software developers create efficient and error free {glossary-link term="program" reference-text="introduction"}programs{glossary-link end}.
+Every computer device you have ever used, from your school computers to your calculator, has been using {glossary-link term="algorithm"}algorithms{glossary-link end} to tell it how to do whatever it was doing.
+Algorithms are a very important topic in Computer Science because they help software developers create efficient and error free {glossary-link term="program"}programs{glossary-link end}.
 The most important thing to remember about algorithms is that there can be many different algorithms for the same problem, but some are much better than others!
 
 {interactive slug="sorting-algorithm-comparison" type="in-page"}
@@ -45,7 +45,7 @@ For our previous non-computing example, the algorithm might be
 
 A human could follow these instructions easily, but it's still using general English language rather than a strict list of computer instructions.
 
-Algorithms are often expressed using a loosely defined format called [pseudo-code](https://en.wikipedia.org/wiki/Pseudocode), which matches a {glossary-link term="programming-language" reference-text="introduction"}programming language{glossary-link end} fairly closely, but leaves out details that could easily be added later by a programmer.
+Algorithms are often expressed using a loosely defined format called [pseudo-code](https://en.wikipedia.org/wiki/Pseudocode), which matches a {glossary-link term="programming-language"}programming language{glossary-link end} fairly closely, but leaves out details that could easily be added later by a programmer.
 Pseudocode doesn't have strict rules about the sorts of commands you can use, but it's halfway between an informal instruction and a specific computer program.
 
 With the high score problem, the algorithm might be written in pseudo-code like this:
@@ -108,10 +108,10 @@ That's worth knowing in advance because we usually need our programs to scale up
 
 # Algorithm complexity
 
-The formal term for working out the cost of an algorithm is [algorithm analysis](https://en.wikipedia.org/wiki/Analysis_of_algorithms), and we often refer to the cost as the algorithm's {glossary-link term="complexity" reference-text="introduction"}*complexity*{glossary-link end}.
+The formal term for working out the cost of an algorithm is [algorithm analysis](https://en.wikipedia.org/wiki/Analysis_of_algorithms), and we often refer to the cost as the algorithm's {glossary-link term="complexity"}*complexity*{glossary-link end}.
 The most common complexity is the "time complexity" (a rough idea of how long it takes to run), but often the "space complexity" is of interest - how much memory or disk space will the algorithm use up when it's running?
 
-There's more about how the cost of an algorithm is described in industry, using a widely agreed on convention called {glossary-link term="big-o" reference-text="introduction"}'Big O Notation'{glossary-link end}, in the ["The whole story!"](the-whole-story) section at the end of this chapter.
+There's more about how the cost of an algorithm is described in industry, using a widely agreed on convention called {glossary-link term="big-o"}'Big O Notation'{glossary-link end}, in the ["The whole story!"](the-whole-story) section at the end of this chapter.
 
 {panel end}
 
@@ -126,7 +126,7 @@ Some algorithms will always make the same number of comparisons for a certain in
 If we develop or are given an algorithm to solve a problem, how do we know that it works?
 Sometimes we create test cases to verify the algorithm produces correct output for specific input values.
 While this is a useful practice and can help verify that we are on the right track, it is not enough to show that our algorithm is correct.
-The old {glossary-link term="adage" reference-text="introduction"}adage{glossary-link end} "even a broken watch is correct twice a day" is a good analogy.
+The old {glossary-link term="adage"}adage{glossary-link end} "even a broken watch is correct twice a day" is a good analogy.
 Even an algorithm that is correct for two test cases might be incorrect for every other input.
 A computer scientist must reason formally or mathematically about an algorithm to show its correctness.
 Typically this is done by classifying ranges of input values and showing that algorithm produces expected results for boundary values of the range and all values in between.
@@ -150,5 +150,3 @@ Often there are good reasons to know multiple correct algorithms because there a
 
 In this chapter we will look at two of the most common and important types of algorithms, searching and sorting. You probably come across these kinds of algorithms every time you use a computer without even realising!
 They also happen to be great for illustrating some of the key concepts that arise with algorithms.
-
-{glossary-link term="algorithm" reference-text="searching algorithms"}{glossary-link end}

@@ -20,7 +20,7 @@ And what is computer science anyway?
 I'm glad you asked!
 Put simply, computer science is about tools and techniques for designing and building applications that are very fast, have great interfaces, are reliable, secure, helpful — even fun.
 
-A lot of people confuse computer science with {glossary-link term="program" reference-text="introduction"}programming{glossary-link end}.
+A lot of people confuse computer science with {glossary-link term="program"}programming{glossary-link end}.
 It has been said that "computer science is no more about computers than astronomy is about telescopes" ([Mike Fellows](http://en.wikiquote.org/wiki/Computer_science)).
 Programming is the tool that computer scientists use to bring great ideas to life, but just knowing how to give programmed instructions to a computer isn't enough to create software that delights and empowers people.
 

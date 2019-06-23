@@ -4,7 +4,7 @@
 
 # Presenting searching in the classroom
 
-The box searching game in this section is split into two parts, the first corresponds to the Linear Search algorithm (also known as Sequential Search) and the second corresponds to {glossary-link term="binary-search"}Binary Search{glossary-link end}.
+The box searching game in this section is split into two parts, the first corresponds to the {glossary-link term="linear-search"}linear Search{glossary-link end} algorithm (also known as sequential Search) and the second corresponds to {glossary-link term="binary-search"}binary Search{glossary-link end}.
 
 We recommend you play through the levels yourself for a while, or after reading this description.
 It is based on the [CS Unplugged Battleships game](http://csunplugged.com/searching-algorithms) which can be used as a classroom activity to enforce the lessons in this chapter (the hashing activity is not used for the box searching game).
@@ -53,7 +53,7 @@ Now that you have played through the whole game (and hopefully found all of the 
 ## Linear search
 
 Since the boxes in the first game were in a random order there really wasn't any strategy you could have used to find the target number, except simply keep opening boxes one by one until you found the target number.
-This is essentially the *linear search* algorithm (sometimes called a sequential search).
+This is essentially the {glossary-link term="linear-search"}linear Search{glossary-link end} algorithm (sometimes called a sequential search).
 In simpler terms, linear search algorithm is as follows:
 
 - Check if the first item in a list is the item you are searching for, if it is the one you are looking for, you are done.
@@ -77,7 +77,7 @@ This means you might end up checking the same box again and again and again and 
 
 ## Binary search
 
-A much better algorithm to use is called binary search.
+A much better algorithm to use is called {glossary-link term="binary-search"}binary Search{glossary-link end}.
 In the second part of the box searching game the boxes were in order, which meant you were able to be more clever when you were searching for the target number, and you might have been using a binary search without realising!
 
 {panel type="teacher-note"}
@@ -144,5 +144,3 @@ Your project is to measure the amount of time taken as the number of items (*n*)
 - [Python (Version 3)](files/linear-binary-search-python3.py) - [Download Python 3 here](https://www.python.org/downloads/)
 
 {panel end}
-
-{glossary-link term="algorithm" reference-text="sorting algorithms"}{glossary-link end}
