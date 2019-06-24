@@ -131,18 +131,18 @@ Note that this interactive’s implementation of RSA is just for demonstrating t
 
 If you were asked to multiply the following two big prime numbers, you might find it a bit tiring to do by hand (although it is definitely achievable), and you could get an answer in a fraction of a second using a computer.
 
-```
+```text
 97394932817749829874327374574392098938789384897239489848732984239898983986969870902045828438234520989483483889389687489677903899
 ```
 
-```
+```text
 34983724732345498523673948934032028984850938689489896586772739002430884920489508348988329829389860884285043580020020020348508591
 ```
 
 If on the other hand you were asked which two prime numbers were multiplied to get the following big number, you’d have a lot more trouble!
 (If you do find the answer, let us know! We’d be very interested to hear about it!)
 
-```
+```text
 3944604857329435839271430640488525351249090163937027434471421629606310815805347209533599007494460218504338388671352356418243687636083829002413783556850951365164889819793107893590524915235738706932817035504589460835204107542076784924507795112716034134062407
 ```
 
@@ -176,7 +176,7 @@ Even a computer that could check 1 billion possibilities a second isn’t going 
 If you know about Big-O notation, this is an \( O(10^n) \) algorithm, where n is the number of digits -- even small numbers of digits are just too much to deal with!
 There are slightly better solutions, but none of them shave off enough time to actually be useful for problems of the size of the one above!
 
-The chapter on [complexity and tractability]('chapters:chapter' 'complexity-tractability') looks at more computer science problems that are surprisingly challenging to solve.
+The chapter on [complexity and tractability]('chapters:chapter' 'complexity-and-tractability') looks at more computer science problems that are surprisingly challenging to solve.
 If you found this stuff interesting, do read about complexity and tractability when you are finished here!
 
 {panel end}

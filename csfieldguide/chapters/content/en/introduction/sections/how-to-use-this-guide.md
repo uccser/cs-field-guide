@@ -13,6 +13,6 @@ There will be pointers for further reading, but be warned that some of it might 
 
 # Curricula support
 
-This guide is intended to support a variety of international curricula; [click here to view a list of available curricula guides]('appendices:appendix' 'curriculum-guides').
+This guide is intended to support a variety of international curricula; [click here to view a list of available curricula guides]('appendices:curriculum-guides').
 
 {panel end}

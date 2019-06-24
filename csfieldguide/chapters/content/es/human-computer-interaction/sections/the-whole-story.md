@@ -14,7 +14,7 @@ Hay muchas otras ideas de la psicología, la fisiología, la sociología e inclu
 
 Existen muchas más leyes, observaciones y directrices sobre el diseño de interfaces que tienen en cuenta el comportamiento humano y el funcionamiento del cuerpo humano.
 
-{comentario arriba se podría añadir: la `hipótesis de Sapir-Whorf <https://en.wikipedia.org/wiki/Linguistic_relativity>`, que estudia cómo la estructura del lenguaje afecta a la visión que tenemos del mundo}
+{comment arriba se podría añadir: la `hipótesis de Sapir-Whorf <https://en.wikipedia.org/wiki/Linguistic_relativity>`, que estudia cómo la estructura del lenguaje afecta a la visión que tenemos del mundo}
 
 ## Lecturas adicionales
 
@@ -35,7 +35,7 @@ Existen muchas más leyes, observaciones y directrices sobre el diseño de inter
 - Un [glosario de términos de usabilidad](http://www.usabilityfirst.com/glossary/)
 
 - Aquí puedes ver una serie de vídeos cómicos que muestran cómo se verían algunos de los errores típicos de las compras en línea si ocurrieran en la vida real.
-    
+
     - [Google Analytics In Real Life - Site Search](https://www.youtube.com/watch?v=cbtf1oyNg-8)
     - [Google Analytics In Real Life - Online Checkout](https://www.youtube.com/watch?v=3Sk7cOqB9Dk)
     - [Google Analytics In Real Life - Landing Page Optimization](https://www.youtube.com/watch?v=N5WurXNec7E)

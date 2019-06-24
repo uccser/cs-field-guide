@@ -47,7 +47,7 @@ print("**********************************************")
 
 This program is written in a language called Python, and when the program runs, it will print the following text to the screen
 
-```.html
+```text
 **********************************************
 **********************************************
 ** Welcome to computer programming, student **
@@ -153,7 +153,7 @@ Try running this program.
 Enter a number of miles to convert after `number_of_miles =`
 Don’t put units on the number you enter; for example just put "12".
 
-```
+```python3
 print("This program will convert miles to kilometers")
 number_of_miles =
 if number_of_miles < 0:

@@ -681,7 +681,7 @@ It's basically the same as the addition methods used on decimal numbers, except 
 You've probably learnt about column addition.
 For example, the following column addition would be used to do **128 + 255**.
 
-```
+```text
   1   (carries)
  128
 +255
@@ -701,7 +701,7 @@ Adding 1+1  causes a carry digit, since in binary 1+1 = 10, which translates to 
 The last one, 1+1+1 adds up to 11 in binary, which we can express as "1, carry 1".
 For our two example numbers, the addition works like this:
 
-```
+```text
     111   (carries)
  11001110
 +00001111
@@ -717,7 +717,7 @@ So you will need to carry a 1 to the next column if the total you get for a colu
 With negative numbers using sign bits like we did before, this does not work.
 If you wanted to add **+11 (01011)** and **-7 (10111)**, you would expect to get an answer of **+4 (00100)**.
 
-```
+```text
 11111 (carries)
  01011
 +10111
@@ -738,7 +738,7 @@ But for the negative number, **00111 (-7)** (sign bit from before removed as we 
 
 Adding these two numbers works like this:
 
-```
+```text
  01011
  11001
 100100
