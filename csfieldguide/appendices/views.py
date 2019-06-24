@@ -24,7 +24,7 @@ class ContributorsView(TemplateView):
 
 
 class SitemapView(TemplateView):
-    """View for the about page."""
+    """View for the sitemap."""
 
     template_name = "appendices/sitemap.html"
 

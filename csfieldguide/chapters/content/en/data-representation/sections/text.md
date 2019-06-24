@@ -194,19 +194,19 @@ Leading zeroes are used if there are not enough bits (just like how you can repr
 
 For example, the character **H** in UTF-32 would be:
 
-```
+```text
 00000000 00000000 00000000 01001000
 ```
 
 The character **$** in UTF-32 would be:
 
-```
+```text
 00000000 00000000 00000000 00100100
 ```
 
 And the character **犬** (dog in Chinese) in UTF-32 would be:
 
-```
+```text
 00000000 00000000 01110010 10101100
 ```
 
@@ -275,19 +275,19 @@ Remembering that a **byte** is 8 bits, these are 1, 2, 3, and 4 bytes.
 
 For example, the character **H** in UTF-8 would be:
 
-```
+```text
 01001000
 ```
 
 The character **ǿ** in UTF-8 would be:
 
-```
+```text
 11000111 10111111
 ```
 
 And the character **犬** (dog in Chinese) in UTF-8 would be:
 
-```
+```text
 11100111 10001010 10101100
 ```
 
@@ -308,7 +308,7 @@ Look back to the section on binary numbers if you cannot remember how to convert
 **Step 3.** Count how many bits are in the binary number, and choose the correct pattern to use, based on how many bits there were.
 Step 4 will explain how to use the pattern.
 
-```
+```text
 7  or fewer bits: 0xxxxxxx
 11 or fewer bits: 110xxxxx 10xxxxxx
 16 or fewer bits: 1110xxxx 10xxxxxx 10xxxxxx
@@ -410,7 +410,7 @@ Check the below panel once you think you have it.
 
 # Representation for water
 
-```
+```text
 w: 10111
 a: 00001
 t: 10111

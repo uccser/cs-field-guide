@@ -26,7 +26,7 @@ Imagine we have the following simple black and white image.
 One very simple way a computer can store this image in binary is by using a format where '0' means white and '1' means black (this is a "bit map", because we've mapped the pixels onto the values of bits).
 Using this method, the above image would be represented in the following way:
 
-```
+```text
 011000010000110
 100000111000001
 000001111100000
@@ -58,7 +58,7 @@ and the image itself can be viewed by opening it in a drawing or image viewing p
 (the format isn't very well supported, but a number of image viewing and editing programs can display them).
 A PBM file for the diamond image used earlier would be as follows:
 
-```
+```text
 P1
 15 15
 0 1 1 0 0 0 0 1 0 0 0 0 1 1 0
@@ -103,23 +103,23 @@ Is the basic idea behind run length encoding (RLE), which is used to save space 
 In run length encoding, we replace each row with numbers that say how many consecutive pixels are the same colour, *always starting with the number of white pixels*.
 For example, the first row in the image above contains one white, two black, four white, one black, four white, two black, and one white pixel.
 
-```
+```text
 011000010000110
 ```
 
 This could be represented as follows.
 
-```
+```text
 1, 2, 4, 1, 4, 2, 1
 ```
 
 For the second row, because we need to say what the number of white pixels is before we say the number of black, we need to explicitly say there are zero at the start of the row.
 
-```
+```text
 100000111000001
 ```
 
-```
+```text
 0, 1, 5, 3, 5, 1
 ```
 
@@ -128,19 +128,19 @@ The reason is that if we didn't have a clear rule about which to start with, the
 
 The third row contains five whites, five blacks, five whites.
 
-```
+```text
 000001111100000
 ```
 
 This is coded as:
 
-```
+```text
 5, 5, 5
 ```
 
 That means we get the following representation for the first three rows.
 
-```
+```text
 1, 2, 4, 1, 4, 2, 1
 0, 1, 5, 3, 5, 1
 5, 5, 5
@@ -154,7 +154,7 @@ You can work out what the other rows would be following this same system.
 
 The remaining rows are
 
-```
+```text
 4, 7, 4
 3, 9, 3
 2, 5, 1, 5, 2
@@ -185,7 +185,7 @@ In this video from a Computer Science Unplugged show, a Run length encoded image
 
 Just to ensure that we can reverse the compression process, have a go at finding the original representation (zeroes and ones) of this (compressed) image.
 
-```
+```text
 4, 11, 3
 4, 9, 2, 1, 2
 4, 9, 2, 1, 2

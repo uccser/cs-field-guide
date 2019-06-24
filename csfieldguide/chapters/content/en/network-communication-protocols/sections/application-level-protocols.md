@@ -125,7 +125,7 @@ Ignore those last two for now.
 
 Let’s look at the first few lines of the headers:
 
-```
+```text
 Remote Address: 132.181.2.122:3128
 Request URL: http://www.csfieldguide.org.nz/en/
 Request Method: GET
@@ -142,7 +142,7 @@ Finally, the *Status Code* is a code that the page can respond with.
 
 Let’s look at the *Request Headers* now, click ‘view source’ to see the original request.
 
-```
+```text
 GET /en/ HTTP/1.1
 Host: www.csfieldguide.org.nz
 Connection: keep-alive
@@ -162,7 +162,7 @@ As you can see, a request message consists of the following:
 
 Let’s look at the *Response Headers*:
 
-```
+```text
 HTTP/1.1 200 OK
 Date: Sun, 11 May 2014 03:52:56 GMT
 Server: Apache/2.2.15 (Red Hat)
