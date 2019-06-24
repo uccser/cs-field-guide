@@ -8,7 +8,7 @@ Before reading this section, you should have an understanding of low level langu
 
 {panel end}
 
-In a similar fashion to representing text or numbers using binary, we can represent an entire actual {glossary-link term=-"program"}program{glossary-link end} using binary.
+In a similar fashion to representing text or numbers using binary, we can represent an entire actual {glossary-link term="program"}program{glossary-link end} using binary.
 Since a program is just a sequence of instructions, we need to decide how many bits will be used to represent a single instruction and then how we are going to interpret those bits.
 Machine code instructions typically have a combination of two pieces: operation and operand.
 
