@@ -2,6 +2,7 @@
 
 from django.views.generic import TemplateView
 from chapters.models import Chapter
+from curriculum_guides.models import CurriculumGuide
 
 
 class AppendicesList(TemplateView):
@@ -35,4 +36,5 @@ class SitemapView(TemplateView):
         """
         context = super(SitemapView, self).get_context_data(**kwargs)
         context["chapters"] = Chapter.objects.all()
+        context["curriculum_guides"] = CurriculumGuide.objects.all()
         return context
