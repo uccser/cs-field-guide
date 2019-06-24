@@ -149,7 +149,7 @@ function getSubtitleText(bit_values) {
 
 
 /* Setup interface for current mode */
-function setupMode() {;
+function setupMode() {
   var $canvas_parent_container = $('#interactive-image-bit-comparer-canvas-parent-container');
   $canvas_parent_container.empty();
 
