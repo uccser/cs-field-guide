@@ -39,7 +39,7 @@ function generateThumbnails(json_data) {
 
 
 request(
-  BASE_URL + '/interactives/thumbnail-json/',
+  BASE_URL + '/interactives/thumbnail-json/?all_languages=true',
   function (error, response, body) {
     generateThumbnails(body);
   },
