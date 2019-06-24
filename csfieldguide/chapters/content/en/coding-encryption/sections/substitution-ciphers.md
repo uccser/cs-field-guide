@@ -47,7 +47,7 @@ The answer is:
 THE RESCUE MISSION WILL USE A HELICOPTER,
 ARRIVING AT NOON TOMORROW.
 BE READY TO BREAK OUT AS SOON
-AS YOU HEAR THREE  
+AS YOU HEAR THREE
 BLASTS ON A WHISTLE.
 I'LL BE WEARING A RED ARMBAND.
 ```
@@ -169,7 +169,7 @@ For the first challenge, the answer is:
 
 ```
 DECRYPTING CAESAR CIPHER IS EASY
-```  
+```
 
 For the second challenge, the answer is 26 (or 0, or any multiple of 26).
 Because that is a full rotation, the ciphertext and plaintext are equivalent.
@@ -553,7 +553,7 @@ In computer science, problems that take an exponential amount of time to solve a
 Working out which problems are tractable and which are intractable is a major area of research in computer science — many other problems that we care about appear to be intractable, much to our frustration.
 The area of encryption is one of the few situations where we're pleased that an algorithm is intractible!
 
-This guide has a [whole chapter about tractability]('chapters:chapter' 'complexity-tractability'), where you can explore these issues further.
+This guide has a [whole chapter about tractability]('chapters:chapter' 'complexity-and-tractability'), where you can explore these issues further.
 
 {panel end}
 

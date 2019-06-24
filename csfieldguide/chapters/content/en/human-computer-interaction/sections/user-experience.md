@@ -396,7 +396,7 @@ Interviews are a great way to help us see exactly how users are interacting with
 As the designers of the interface we are experts in how to use it, which means it is easy for us to make the mistake of believing it is intuitive when maybe it is not.
 User interviews will quickly bring issues like this to light.
 
-We want to understand what the user is thinking and feeling in our interviews (recall “Think Aloud Protocol” in the section on [interface usability]('chapters:chapter-section' 'human-computer-interaction' 'interface-usability')).
+We want to understand what the user is thinking and feeling in our interviews (recall “Think Aloud Protocol” in the section on [interface usability]('chapters:chapter_section' 'human-computer-interaction' 'interface-usability')).
 At each step we want to encourage the user to explain what they are thinking as this will give us insight as to what is confusing and why.
 We’ll ask them what they are about to do and why, what made them choose that particular button, etc.
 It’s important to make sure they feel comfortable explaining what they are doing and therefore we make sure not to criticise their decisions.
@@ -405,15 +405,15 @@ Afterall, if users are consistently making the same mistake, then the mistake is
 Our user interview will have two parts:
 
 1.  Tasks
-    
+
     This stage is about understanding how they usually interact with the app, and how they handle being asked to complete unfamiliar tasks.
     We will note down how they complete these tasks, giving particular attention to when they do something incorrect and get stuck or when they do something without realising there is a more efficient way for that task to be completed.
-    
+
     Asking the user to complete tasks is also a great way to identify any issues.
     It is difficult to come up with an answer for “did any tasks feel awkward, difficult or frustrating?" on the spot, but answers will naturally surface when the user tells you about previous usage, or as you watch them complete a task.
 
 	Questions and tasks could be:
-	
+
 	- *When was the last time you used the app? Please give as much detail as you can.*
 	  This is a great question to ask as the interview is an artificial environment we’ve set up, and their behaviour will change slightly because of it, so asking about the last time they used the app will give great insight as to what they are usually doing, feeling and thinking.
 
@@ -422,15 +422,15 @@ Our user interview will have two parts:
 	- Please show me how you would set your desired number of hours of sleep.
 
 2.  Questions
-	
+
 	In this stage we want to get more information about how the user feels about the app.
-	
+
 	Questions could be:
-	
+
 	- Is there any feature you feel is missing from the app?
-	
+
 	- What do you like about the app? What do you not like about it?
-	
+
 	- Do you feel that the app is helping you to improve your sleep habits?
 
 {panel type="teacher-note"}
