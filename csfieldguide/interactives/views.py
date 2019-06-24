@@ -5,7 +5,6 @@ from django.http import HttpResponse, JsonResponse
 from django.urls import reverse
 from django.conf import settings
 from django.utils import translation
-from django.db.models import Prefetch
 from interactives.models import Interactive
 from chapters.models import Chapter
 from config.templatetags.render_interactive_in_page import render_interactive_html
