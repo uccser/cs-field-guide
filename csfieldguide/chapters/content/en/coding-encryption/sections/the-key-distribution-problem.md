@@ -176,7 +176,7 @@ Even a computer that could check 1 billion possibilities a second isn’t going 
 If you know about Big-O notation, this is an \( O(10^n) \) algorithm, where n is the number of digits -- even small numbers of digits are just too much to deal with!
 There are slightly better solutions, but none of them shave off enough time to actually be useful for problems of the size of the one above!
 
-The chapter on [complexity and tractability]('chapters:chapter' 'complexity-tractability') looks at more computer science problems that are surprisingly challenging to solve.
+The chapter on [complexity and tractability]('chapters:chapter' 'complexity-and-tractability') looks at more computer science problems that are surprisingly challenging to solve.
 If you found this stuff interesting, do read about complexity and tractability when you are finished here!
 
 {panel end}
