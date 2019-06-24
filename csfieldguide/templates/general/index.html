@@ -1,8 +1,6 @@
 {% extends "base.html" %}
 
-{% load i18n %}
-{% load static %}
-{% load render_interactive_link %}
+{% load i18n static render_interactive_link svg %}
 
 {% block custom_title %}
   {% trans "Computer Science Field Guide" %}
@@ -41,8 +39,8 @@
       </div>
 
       <div class="col-12 col-md-8 col-lg-6">
-        <div class="media mb-5">
-          <img class="align-self-start mr-3" src="{% static 'img/chapters/icons8-book-shelf-96.png' %}" alt="A stack of books">
+        <div class="media mb-5 homepage-cta">
+          {% svg 'icons8-book-shelf' %}
           <div class="media-body">
             <h5 class="mt-0">{% trans "Chapters" %}</h5>
             <p>
@@ -53,8 +51,8 @@
         </div>
       </div>
       <div class="col-12 col-md-8 col-lg-6">
-        <div class="media mb-5">
-          <img class="align-self-start mr-3" src="{% static 'img/chapters/icons8-natural-user-interface-2-96.png' %}" alt="A finger tapping a point">
+        <div class="media mb-5 homepage-cta">
+          {% svg 'icons8-natural-user-interface-2' %}
           <div class="media-body">
             <h5 class="mt-0">{% trans "Interactives" %}</h5>
             <p>
@@ -65,8 +63,8 @@
         </div>
       </div>
       <div class="col-12 col-md-8 col-lg-6">
-        <div class="media mb-5">
-          <img class="align-self-start mr-3" src="{% static 'img/chapters/icons8-google-classroom-96.png' %}" alt="A stack of books">
+        <div class="media mb-5 homepage-cta">
+          {% svg 'icons8-classroom-modified' %}
           <div class="media-body">
             <h5 class="mt-0">{% trans "Teacher's guide" %}</h5>
             <p>
@@ -77,8 +75,8 @@
         </div>
       </div>
       <div class="col-12 col-md-8 col-lg-6">
-        <div class="media mb-5">
-          <img class="align-self-start mr-3" src="{% static 'img/chapters/icons8-source-code-96.png' %}" alt="A stack of books">
+        <div class="media mb-5 homepage-cta">
+          {% svg 'icons8-source-code' %}
           <div class="media-body">
             <h5 class="mt-0">{% trans "Open source" %}</h5>
             <p>
