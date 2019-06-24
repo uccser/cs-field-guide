@@ -36,6 +36,7 @@ The repository directory (or root directory) contains the following:
 - ``LICENCE-CONTENT.md``
 
   - This file details the Creative Commons Attribution-ShareAlike 4.0 International license.
+    This licence applies to Markdown files located within the `csfieldguide/chapters/content/` directory and images under the ``csfieldguide/static/img`` directory.
 
 - ``LICENCE-THIRD-PARTY.md``
 

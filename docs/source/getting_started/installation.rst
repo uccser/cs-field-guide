@@ -219,6 +219,8 @@ Once the update command has completed you should then be able to open your prefe
 
 Congratulations if you made it this far and everything is working, you're all set to contribute to the CS Field Guide project.
 
+.. _uninstallation:
+
 Uninstallation
 =================================================
 
