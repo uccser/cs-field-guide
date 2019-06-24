@@ -22,7 +22,7 @@ Importantly, a space is also a character.
 
 If you counted correctly, you should find that there were more than 64 characters, and you might have found up to around 95.
 Because 6 bits can only represent 64 characters, we will need more than 6 bits; it turns out that we need at least 7 bits to represent all of these characters as this gives 128 possible patterns.
-This is exactly what the **ASCII** representation for text does.
+This is exactly what the *{glossary-link term="ascii"}ASCII{glossary-link end}* representation for text does.
 
 {panel type="challenge"}
 
@@ -35,7 +35,7 @@ Can you explain how we knew that if 6 bits is enough to represent 64 characters,
 
 Each pattern in ASCII is usually stored in 8 bits, with one wasted bit, rather than 7 bits.
 However, the left-most bit in each 8-bit pattern is a 0, meaning there are still only 128 possible patterns.
-Where possible, we prefer to deal with  full bytes (8 bits) on a computer, this is why ASCII has an extra wasted bit.
+Where possible, we prefer to deal with full bytes (8 bits) on a computer, this is why ASCII has an extra wasted bit.
 
 Here is a table that shows the patterns of bits that ASCII uses for each of the characters.
 
@@ -76,8 +76,8 @@ Here is a table that shows the patterns of bits that ASCII uses for each of the 
 
 <br>
 
-For example, the letter c (lower case) in the table has the pattern "01100011" (the 0 at the front is just extra padding to make it up to 8 bits).
-The letter o has the pattern "01101111".
+For example, the letter "c" (lower case) in the table has the pattern "01100011" (the 0 at the front is just extra padding to make it up to 8 bits).
+The letter "o" has the pattern "01101111".
 You could write a word out using this code, and if you give it to someone else, they should be able to decode it exactly.
 
 {panel type="teacher-note"}
@@ -91,7 +91,7 @@ Exchanging short messages in code will force students to use the table, and they
 Computers can represent pieces of text with sequences of these patterns, much like Braille does.
 For example, the word "computers" (all lower case) would be 01100011 01101111 01101101 01110000 01110101 01110100 01100101 01110010 01110011.
 This is because "c" is "01100011", "o" is "01101111", and so on.
-Have a look at the ASCII table above to check that we are right!
+Have a look at the ASCII table above to check if we are right!
 
 {panel type="curiosity"}
 
@@ -110,7 +110,7 @@ Nowadays ASCII has been supplanted by a code called "UTF-8", which happens to be
 
 Have a go at the following ASCII exercises:
 
-- How would you represent "science" in ASCII?
+- How would you represent "science" in ASCII (ignore the `"` marks)?
 - How would you represent "Wellington" in ASCII? (note that it starts with an upper case "W")
 - How would you represent "358" in ASCII (it is three characters, even though it looks like a number)
 - How would you represent "Hello, how are you?" (look for the comma, question mark, and space characters in ASCII table)
@@ -128,8 +128,10 @@ These are the answers.
 - "science" = 01110011 01100011 01101001 01100101 01101110 01100011 01100101
 - "Wellington" = 01010111 01100101 01101100 01101100 01101001 01101110 01100111 01110100 01101111 01101110
 - "358" = 00110011 00110101 00111000
+- "Hello, how are you?" = 1001000 1100101 1101100 1101100 1101111 0101100 0100000 1101000 1101111 1110111 0100000 1100001 1110010 1100101 0100000 1111001 1101111 1110101 0111111
 
-Note that the text "358" is treated as 3 characters in ASCII, which may be confusing, as the text "358" is different to the number 358! You may have encountered this distinction in a spreadsheet e.g. if a cell starts with an inverted comma in Excel, it is treated as text rather than a number.
+Note that the text "358" is treated as 3 characters in ASCII, which may be confusing, as the text "358" is different to the number 358!
+You may have encountered this distinction in a spreadsheet e.g. if a cell starts with an inverted comma in Excel, it is treated as text rather than a number.
 One place this comes up is with phone numbers; if you type 027555555 into a spreadsheet as a number, it will come up as 27555555, but as text the 0 can be displayed.
 In fact, phone numbers aren't really just numbers because a leading zero can be important, as they can contain other characters &ndash; for example, +64 3 555 1234 extn. 1234.
 
@@ -160,7 +162,7 @@ The "control" key still exists on modern keyboards.
 ## Introduction to Unicode
 
 In practice, we need to be able to represent more than just English characters.
-To solve this problem, we use a standard called **Unicode**.
+To solve this problem, we use a standard called *{glossary-link term="unicode"}Unicode{glossary-link end}*.
 Unicode is a **character set** with around 120,000 different characters, in many different languages, current and historic.
 Each character has a unique number assigned to it, making it easy to identify.
 
