@@ -180,9 +180,11 @@ The following files will run selection sort and quicksort in various languages; 
 Note how long these take for various amounts of input (*n*), and show it in a table or graph.
 You should notice that the time taken by quicksort is quite different to that taken by selection sort.
 
-- [Scratch](files/selection-quicksort-scratch.zip) - [Download Scratch here](https://scratch.mit.edu/scratch2download/)
-- [Python (Version 2)](files/selection-quicksort-python2.py) - [Download Python 2 here](https://www.python.org/downloads/)
-- [Python (Version 3)](files/selection-quicksort-python3.py) - [Download Python 3 here](https://www.python.org/downloads/)
+{button-link link="files/selection-quicksort-scratch.zip" text="Download Scratch quicksort example" file="yes"}
+
+{button-link link="files/selection-quicksort-python2.py" text="Download Python 2 quicksort example" file="yes"}
+
+{button-link link="files/selection-quicksort-python3.py" text="Download Python 3 quicksort example" file="yes"}
 
 {panel end}
 
