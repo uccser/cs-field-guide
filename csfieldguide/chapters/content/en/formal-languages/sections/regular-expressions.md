@@ -37,7 +37,7 @@ When they are happy with their description (or five minutes is up) they write it
 Some suitable descriptions are as follows.
 We've used standard regex notation, but students might make up something different.
 
-```
+```text
 FSM-A: bee*p(-bee*p)*  or  be*ep(-be*ep)*  or  be+p(-be+p)*
 FSM-B: cl(i|a)ck(-cl(i|a)ck)*
 FSM-A: mee*o*w  or  me*eo*w  or  me+ow
@@ -139,7 +139,7 @@ There are four common rules:
 Try experimenting with these.
 Here are some examples to try:
 
-```
+```text
 f+
 pf*t
 af*
@@ -152,7 +152,7 @@ If you want to choose between options, the vertical bar is useful.
 Try the following, and work out what they match.
 You can type extra text into the test string area if you want to experiment:
 
-```
+```text
 was|that|hat
 was|t?hat
 th(at|e) cat
@@ -200,7 +200,7 @@ Regular Expression Search &ndash; Exercise 3
 
 The following regular expression will find common New Zealand number plates in the sample text, but can you find a shorter version using the {n} notation?
 
-```
+```text
 [A-Z][A-Z][A-Z]\d\d\d
 ```
 
@@ -214,7 +214,7 @@ The following regular expression will find common New Zealand number plates in t
 
 How about an expression to find the dates in the text? Here's one option, but it's not perfect:
 
-```
+```text
 \d [A-Z][a-z][a-z] \d\d\d\d
 ```
 
@@ -261,7 +261,7 @@ But nevertheless, regular expressions are very useful for a lot of common patter
 There's a direct relationship between regular expressions and FSAs.
 For example, consider the following regex, which matches strings that begin with an even number of the letter "a" and end with an even number of the letter "b":
 
-```
+```text
 (aa)+(bb)+
 ```
 
@@ -354,7 +354,7 @@ Now type your regular expression into the text entry box that starts with "R =".
 
 As a warmup, try:
 
-```
+```text
 aabb
 ```
 
@@ -367,7 +367,7 @@ To test your FSA, right-click on the background and choose "Track input".
 Now try some more complex regular expressions, such as the following.
 For each one, type it in, click on "solve exercise", and then track some sample inputs to see how it accepts and rejects different strings.
 
-```
+```text
 aa*b
 a(bb)*
 (bba*)*
@@ -393,7 +393,7 @@ There are some details about the format that JFLAP uses for regular expressions 
 
 As a warmup, we'll convert this regex to an FSA:
 
-```
+```text
 ab*b
 ```
 

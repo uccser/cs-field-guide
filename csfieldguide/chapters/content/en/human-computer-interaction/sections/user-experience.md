@@ -243,7 +243,7 @@ For example, here are a couple of user stories for our sleep habits app:
 - *As Alex, I want to be reminded to go to bed at a certain time, so I don’t stay up too late.*
 - *As Taylor, I want to be woken up when I’m only sleeping lighty, so that I feel more refreshed rather than sleepy.*
 
-We’ve used this template: ```As [persona], I [want to], [so that].```
+We’ve used this template: `As [persona], I [want to], [so that].`
 Think of this as person + need + purpose.
 This encourages us to keep the user as the center of attention when designing our app.
 Once we’ve written a few different user stories, we’ll be able to establish what the basic functions and features of the app will be.
