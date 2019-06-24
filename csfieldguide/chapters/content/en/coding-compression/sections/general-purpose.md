@@ -20,7 +20,7 @@ In fact, some of the most common sequences are things like a full stop followed 
 This approach also works very well for simple images, since sequences like "10 white pixels in a row" are likely to have occurred before.
 Here are some of the bits from the example image earlier in this chapter; you can paste them into the interactive above to see how many pointers are needed to represent it (in this example there's just one bit for each pixel because the image has only two colours, but in practice LZ methods are likely to code images with a bigger range of pixel colours, such as 8-bit pixels with 256 different colours).
 
-```
+```text
 011000010000110
 100000111000001
 000001111100000
@@ -195,7 +195,7 @@ To see just how much compression we achieved, let’s take a look at the binary 
 We'll assume that the characters are coded in 8 bits each (this is typical), based on UTF-8 coding (which is the same as ASCII for these characters).
 In binary, originally our message looked like this:
 
-```
+```text
 IAMSAMSAMIAM
 
 01001001 01000001 01001101 01010011 01000001 01001101 01010011 01000001 01001101 01001001 01000001 01001101
@@ -204,7 +204,7 @@ IAMSAMSAMIAM
 The uncompressed version has 12 characters, each using 8 bits, so there are 92 bits used to store it.
 
 And this is the compressed message:
-```
+```text
 000000000000 000000000001 000000000010 000000000011 000000000101 000000000111 000000000010 000000000100 000000000010
 ```
 
@@ -224,7 +224,7 @@ You can see this for yourself in the LZW compression interactive below:
 This compression algorithm works best for text with plenty of repeated sequences.
 To see this for yourself, try encoding the following string using the LZW interactive:
 
-```
+```text
 The fox jumped over the lazy dog.
 ```
 
@@ -250,7 +250,7 @@ The decoder starts with the same initial dictionary of single characters as the 
 
 The encoded message is as follows (we've shown each 12-bit code as a decimal number):
 
-```
+```text
 0 1 2 3 5 7 2 4 2
 ```
 
@@ -265,7 +265,7 @@ We’ll walk through this step by step:
 The first code in the encoded message is `0`.
 `0` is in the initial dictionary, so 0 is decodes to the letter `I` with the corresponding sequence (`I`), so our message now looks like this:
 
-```
+```text
 I
 ```
 
@@ -279,14 +279,14 @@ We then continue to the next character:
 
 In step 2, the code is `1`, which is also in the initial dictionary so we output the corresponding value (A), so our message now looks like this:
 
-```
+```text
 I A
 ```
 
 Now, recall that the decoder knows that `I + <the next character>` must be the next dictionary entry.
 	The decoder just discovered that the next character is A, so the sequence is:
 
-```
+```text
 Sequence  = I + the next character
 	      = I + A
 		  = IA
@@ -323,7 +323,7 @@ Recall that 5 wasn’t in the initial dictionary, but since we added it in step 
 
 Once we have decoded the whole message we now have the following string:
 
-```
+```text
 IAMSAMSAMIAM
 ```
 

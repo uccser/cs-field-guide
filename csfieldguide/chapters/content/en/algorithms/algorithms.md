@@ -50,7 +50,7 @@ Pseudocode doesn't have strict rules about the sorts of commands you can use, bu
 
 With the high score problem, the algorithm might be written in pseudo-code like this:
 
-```
+```text
 if the table is empty
   display that there is no high score, and quit
 otherwise, note the first score in the table

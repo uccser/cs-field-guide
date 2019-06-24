@@ -12,7 +12,7 @@ In a similar fashion to representing text or numbers using binary, we can repres
 Since a program is just a sequence of instructions, we need to decide how many bits will be used to represent a single instruction and then how we are going to interpret those bits.
 Machine code instructions typically have a combination of two pieces: operation and operand.
 
-```
+```text
 li $t0, 10 #Load the value 10 into register $t0
 li $t1, 20 #Load the value 20 into register $t1
 #Add the values in $t0 and $t1, put the result in register $a0

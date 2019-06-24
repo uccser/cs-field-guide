@@ -8,13 +8,13 @@ chances are that at some stage the system has told you there's an error and won'
 These "syntax errors" are annoying messages that programmers become excruciatingly familiar with... it means that they didn't follow the rules somehow, even if it's just a tiny mistake.
 For example, suppose you intended to write:
 
-```
+```text
 x = (a+b) * (c+d)
 ```
 
 but you accidentally left out one of the brackets:
 
-```
+```text
 x = (a+b) * c+d)
 ```
 
