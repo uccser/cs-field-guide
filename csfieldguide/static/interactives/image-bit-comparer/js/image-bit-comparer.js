@@ -15,7 +15,7 @@ ImageBitComparer.INITAL_IMAGES = [
                                   [image_bit_comparer_images["sunflower"], 'Sunflower'],
                                   [image_bit_comparer_images["temple-roof"], 'Roof of Temple'],
                                   [image_bit_comparer_images["nz-lake"], 'Lake in New Zealand'],
-                                  [image_bit_comparer_images["jacinda-ardern"], 'Jacinda Ardern'],
+                                  [image_bit_comparer_images["person"], 'Person'],
                                   [image_bit_comparer_images["flower"], 'Flower'],
                                   [image_bit_comparer_images["snow-flower"], 'Flower in snow'],
                                   [image_bit_comparer_images["duckling"], 'Duckling'],
@@ -45,6 +45,8 @@ ImageBitComparer.change_bits = [
                                ];
 
 $(document).ready(function(){
+  // Set image size to medium
+  $("#interactive-image-bit-comparer-image-size").val(1);
 
   // When user selects new image to load
   $('#interactive-image-bit-comparer-selected-image').change(function() {
