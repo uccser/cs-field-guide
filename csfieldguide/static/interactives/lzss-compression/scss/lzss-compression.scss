@@ -1,0 +1,97 @@
+html{
+    font-family: "Roboto",sans-serif;
+}
+
+body {
+    margin: 0px;
+}
+
+#lzss-compression {
+    width: 100%;
+    h3 {
+        text-align: center;
+    }
+    #lzss-compression-wrapper {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        
+        #lzss-compression-left-box,
+        #lzss-compression-right-box {
+            width: 100%;
+            margin: 10px;
+        }
+
+        #lzss-compression-left-box {
+            button {
+                margin-top: 4px;
+            }
+        }
+
+        #lzss-compression-right-box {
+            #lzss-compression-compressed-text {
+                background-color: #FFF;
+                font-weight: bold;
+                box-sizing: border-box;
+                width: 100%;
+                font: 1rem "Courier New", monospace;
+                padding: 3px;
+                border: 1px solid #BFB9B7;
+                min-height: 120px;
+                .lzss-compression-encoded-line {
+                    display: flex;
+                    align-items: center;
+                    flex-wrap: wrap;
+                    min-height: 25px;
+                }
+                .lzss-compression-encoded-character,
+                input.lzss-compression-placeholder-box {
+                    display: inline-block;
+                    min-width: 10px;
+                    min-height: 1.2rem;
+                    margin: 1px;
+                }
+                .lzss-compression-reference {
+                    display: flex;
+                    flex-wrap: wrap;
+                    margin: 2px;
+                    padding: 2px;
+                    input.lzss-compression-placeholder-box {
+                        width: 1rem;
+                        border: 1px solid #BFB9B7;
+                    }
+                }
+            }
+        }
+        
+        #lzss-compression-right-box #lzss-compression-compressed-text {
+            border-radius: 2px !important;
+            box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12)
+        }
+    }
+}
+
+.highlight {
+    outline: 2px solid #85c1dd;
+    outline-offset: 0.5px;
+}
+
+.selected {
+    outline: 2px solid #aedd85;
+    outline-offset: 0.5px;
+}
+
+@media (max-width: 768px) {
+    #lzss-compression {
+        #lzss-compression-wrapper {
+            flex-direction: column;
+            #lzss-compression-left-box,
+            #lzss-compression-right-box {
+                width: unset;
+                p {
+                    margin: 2px;
+                }
+            }
+        }
+    }
+}

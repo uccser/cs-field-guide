@@ -6,30 +6,32 @@
 {% block html %}
   <div class="container">
     <div id="interactive-high-score-boxes">
-      <h3>{% trans "High Score Boxes" %}</h3>
-      <p>{% trans "Clicking a box will reveal its number; your task is to find the highest number and enter it below." %}</p>
+      <h3 class="text-center">{% trans "High Score Boxes" %}</h3>
+      <p class="text-center">{% trans "Clicking a box will reveal its number; your task is to find the highest number and enter it below." %}</p>
       <div id="boxes-container"></div>
-      <div class="row">
-        <strong>{% trans "Highest number:" %}</strong>
-      </div>
-      <div class="row">
-        <input type="number" id="interactive-high-score-boxes-input" placeholder="Enter answer here..." class="form-control col-4 my-2">
-      </div>
-      <div class="row">
-        <button id="submit-button" class="btn btn-primary mb-2">{% trans "Submit" %}</button>
-      </div>
-      <div class="row">
-        <p id="completion-message"></p>
-      </div>
-      <div class="row">
-        <button id="restart-button" class="btn btn-danger">{% trans "Restart" %}</button>
+      <div class="col-12 text-center">
+        <div class="row justify-content-center">
+          <strong>{% trans "Highest number:" %}</strong>
+        </div>
+        <div class="row justify-content-center">
+          <input type="number" id="interactive-high-score-boxes-input" placeholder="Enter answer here..." class="form-control col-4 my-2">
+        </div>
+        <div class="row justify-content-center">
+          <button id="submit-button" class="btn btn-primary mb-2">{% trans "Submit" %}</button>
+        </div>
+        <div class="row justify-content-center">
+          <p id="completion-message"></p>
+        </div>
+        <div class="row justify-content-center">
+          <button id="restart-button" class="btn btn-danger">{% trans "Restart" %}</button>
+        </div>
       </div>
     </div>
   </div>
 {% endblock html %}
 
 {% block css %}
-  <link rel="stylesheet" href="{% static 'interactives/high-score-boxes/css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'interactives/high-score-boxes/css/high-score-boxes.css' %}">
 {% endblock css %}
 
 {% block js %}
@@ -52,5 +54,5 @@
       "{% static 'interactives/high-score-boxes/img/square15-200px-rounded.png' %}",
     ];
   </script>
-  <script type="text/javascript" src="{% static 'interactives/high-score-boxes/js/script.js' %}"></script>
+  <script type="text/javascript" src="{% static 'interactives/high-score-boxes/js/high-score-boxes.js' %}"></script>
 {% endblock js %}

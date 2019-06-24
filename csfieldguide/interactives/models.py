@@ -14,6 +14,7 @@ class Interactive(TranslatableModel):
     slug = models.SlugField(unique=True)
     name = models.CharField(max_length=100, default="")
     template = models.CharField(max_length=150)
+    is_interactive = models.BooleanField(default=True)
 
     def __str__(self):
         """Text representation of Interactive object.

@@ -32,27 +32,28 @@ def find_image_files(images, md_file_path):
 
 
 def check_interactives(interactives, file_path, chapter=None):
-        """Check interactives are available.
+    """Check interactives are available.
 
-        If chapter is given, each interactive has a relationship added
-        to the chapter.
+    If chapter is given, each interactive has a relationship added
+    to the chapter.
 
-        Args:
-            chapter (Chapter): Chapter to add relationship to interactive too.
-            file_path (str): File path of file providing interactives. Used
-                             when displaying error message.
+    Args:
+        interactives (set): Set of slugs of interactives.
+        file_path (str): File path of file providing interactives.
+                            Used when displaying error message.
+        chapter (Chapter): Chapter to add relationship to interactive too.
 
-        Raises:
-            KeyNotFoundError: If interactive cannot be found.
-        """
-        for interactive_slug in interactives:
-            try:
-                interactive = Interactive.objects.get(slug=interactive_slug)
-            except ObjectDoesNotExist:
-                raise KeyNotFoundError(
-                    file_path,
-                    interactive_slug,
-                    "Interactive"
-                )
-            if chapter:
-                chapter.interactives.add(interactive)
+    Raises:
+        KeyNotFoundError: If interactive cannot be found.
+    """
+    for interactive_slug in interactives:
+        try:
+            interactive = Interactive.objects.get(slug=interactive_slug)
+        except ObjectDoesNotExist:
+            raise KeyNotFoundError(
+                file_path,
+                interactive_slug,
+                "Interactive"
+            )
+        if chapter:
+            chapter.interactives.add(interactive)

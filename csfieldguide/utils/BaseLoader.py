@@ -13,6 +13,7 @@ from django.conf import settings
 from django.utils.translation import to_locale
 from utils.check_required_files import check_converter_required_files
 from utils.check_glossary_links import check_converter_glossary_links
+from utils.check_heading_tree import check_heading_tree
 from utils.errors.CouldNotFindMarkdownFileError import CouldNotFindMarkdownFileError
 from utils.errors.VertoConversionError import VertoConversionError
 from utils.errors.EmptyMarkdownFileError import EmptyMarkdownFileError
@@ -99,7 +100,10 @@ class BaseLoader():
             "markdown.extensions.tables",
             mdx_math.MathExtension()
         ]
-        self.converter = Verto(html_templates=templates, extensions=extensions)
+        settings = {
+            "add_default_interactive_thumbnails_to_required_files": False,
+        }
+        self.converter = Verto(html_templates=templates, extensions=extensions, custom_settings=settings)
 
     def convert_md_file(self, md_file_path, config_file_path, heading_required=True, remove_title=True):
         """Return the Verto object for a given Markdown file.
@@ -146,6 +150,8 @@ class BaseLoader():
             raise EmptyMarkdownFileError(md_file_path)
         check_converter_required_files(result.required_files, md_file_path)
         check_converter_glossary_links(result.required_glossary_terms, md_file_path)
+        if result.heading_tree:
+            check_heading_tree(result.heading_tree, md_file_path)
         return result
 
     def log(self, message, indent_amount=0):

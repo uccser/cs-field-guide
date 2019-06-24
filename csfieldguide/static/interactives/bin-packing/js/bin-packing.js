@@ -87,6 +87,7 @@ $(function() {
         $("div.item").css("transform", "translate(0px,0px)");
         $("div.item").attr('data-x', 0);
         $("div.item").attr('data-y', 0);
+        $("#winning-message").text('');
 
         for (var i = bin_list.getItems().length - 1; i >= 0; i--) {
             bin_list.getItems()[i].setContains(0);
@@ -269,9 +270,8 @@ $(function() {
             var format = gettext('Congratulations, you packed the items in ');
             format += ngettext('1 bin!', '%(bin_count)s bins!', binCount);
             var binCountText = interpolate(format, {"bin_count": binCount}, true);
-            var $h5 = $("<h5>");
-            $h5.append(binCountText);
-            $("#items_area").append($h5);
+            var winningMessage = $('#winning-message');
+            winningMessage.text(binCountText);
         }
     }
 

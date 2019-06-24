@@ -1,10 +1,8 @@
 """Custom loader for loading appendices."""
 
-from django.db import transaction
 from utils.TranslatableModelLoader import TranslatableModelLoader
 from utils.errors.MissingRequiredFieldError import MissingRequiredFieldError
 from utils.errors.InvalidYAMLValueError import InvalidYAMLValueError
-from appendices.models import Appendix, Subappendix
 from django.template.loader import get_template
 from django.template import TemplateDoesNotExist
 
@@ -20,50 +18,6 @@ class AppendicesLoader(TranslatableModelLoader):
         """
         super().__init__(**kwargs)
         self.factory = factory
-
-    @transaction.atomic
-    def load(self):
-        """Load appendices pages.
-
-        Raise:
-            MissingRequiredFieldError: when no object can be found with the matching
-                attribute.
-        """
-        appendices = self.load_yaml_file(self.structure_file_path)
-        appendices_translations = self.get_yaml_translations(
-            self.structure_filename,
-            required_fields=["name"],
-            required_slugs=appendices.keys()
-        )
-
-        for (slug, appendix_data) in appendices.items():
-            template = self.check_template(appendix_data, "Appendix")
-
-            translations = self.get_blank_translation_dictionary()
-            translations.update(appendices_translations.get(slug, dict()))
-
-            appendix = Appendix(
-                slug=slug,
-                template=template,
-            )
-            self.populate_translations(appendix, translations)
-            self.mark_translation_availability(appendix, required_fields=["name"])
-            appendix.save()
-            self.log("Added appendix: {}".format(appendices_translations[slug]["en"]["name"]))
-
-            subappendices = appendix_data.get("subappendices", dict())
-
-            for subappendix_slug, subappendix_data in subappendices.items():
-                subappendix_template = self.check_template(subappendix_data, "Subappendix")
-                subappendix = Subappendix(
-                    slug=subappendix_slug,
-                    template=subappendix_template,
-                    appendix=appendix,
-                )
-                self.populate_translations(subappendix, translations)
-                self.mark_translation_availability(subappendix, required_fields=["name"])
-                subappendix.save()
-                self.log("Added subappendix: {}".format(appendices_translations[subappendix_slug]["en"]["name"]), 1)
 
     def check_template(self, page_data, type):
         """Check template in page_data is valid.

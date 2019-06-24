@@ -1,4 +1,4 @@
-# Run Length Encoding
+# Run length encoding
 
 {video url="https://www.youtube.com/embed/uaV2RuAJTjQ?rel=0"}
 
@@ -26,7 +26,7 @@ Imagine we have the following simple black and white image.
 One very simple way a computer can store this image in binary is by using a format where '0' means white and '1' means black (this is a "bit map", because we've mapped the pixels onto the values of bits).
 Using this method, the above image would be represented in the following way:
 
-```
+```text
 011000010000110
 100000111000001
 000001111100000
@@ -58,7 +58,7 @@ and the image itself can be viewed by opening it in a drawing or image viewing p
 (the format isn't very well supported, but a number of image viewing and editing programs can display them).
 A PBM file for the diamond image used earlier would be as follows:
 
-```
+```text
 P1
 15 15
 0 1 1 0 0 0 0 1 0 0 0 0 1 1 0
@@ -103,23 +103,23 @@ Is the basic idea behind run length encoding (RLE), which is used to save space 
 In run length encoding, we replace each row with numbers that say how many consecutive pixels are the same colour, *always starting with the number of white pixels*.
 For example, the first row in the image above contains one white, two black, four white, one black, four white, two black, and one white pixel.
 
-```
+```text
 011000010000110
 ```
 
 This could be represented as follows.
 
-```
+```text
 1, 2, 4, 1, 4, 2, 1
 ```
 
 For the second row, because we need to say what the number of white pixels is before we say the number of black, we need to explicitly say there are zero at the start of the row.
 
-```
+```text
 100000111000001
 ```
 
-```
+```text
 0, 1, 5, 3, 5, 1
 ```
 
@@ -128,19 +128,19 @@ The reason is that if we didn't have a clear rule about which to start with, the
 
 The third row contains five whites, five blacks, five whites.
 
-```
+```text
 000001111100000
 ```
 
 This is coded as:
 
-```
+```text
 5, 5, 5
 ```
 
 That means we get the following representation for the first three rows.
 
-```
+```text
 1, 2, 4, 1, 4, 2, 1
 0, 1, 5, 3, 5, 1
 5, 5, 5
@@ -154,7 +154,7 @@ You can work out what the other rows would be following this same system.
 
 The remaining rows are
 
-```
+```text
 4, 7, 4
 3, 9, 3
 2, 5, 1, 5, 2
@@ -173,7 +173,7 @@ The remaining rows are
 
 {panel type="curiosity"}
 
-# Run Length Encoding in the CS Unplugged show
+# Run length encoding in the CS Unplugged show
 
 In this video from a Computer Science Unplugged show, a Run length encoded image is decoded using very large pixels (the printer is a spray can!).
 
@@ -181,11 +181,11 @@ In this video from a Computer Science Unplugged show, a Run length encoded image
 
 {panel end}
 
-## Converting Run Length Encoding back to the original representation
+## Converting run length encoding back to the original representation
 
 Just to ensure that we can reverse the compression process, have a go at finding the original representation (zeroes and ones) of this (compressed) image.
 
-```
+```text
 4, 11, 3
 4, 9, 2, 1, 2
 4, 9, 2, 1, 2
@@ -197,7 +197,9 @@ Just to ensure that we can reverse the compression process, have a go at finding
 1, 15, 2
 ```
 
-What is the image of? How many pixels were there in the original image? How many numbers were used to represent those pixels?
+What is the image of?
+How many pixels were there in the original image?
+How many numbers were used to represent those pixels?
 
 {panel type="spoiler"}
 
@@ -207,11 +209,11 @@ This image is from the [CS Unplugged image representation activity](http://csunp
 
 {panel end}
 
-The following interactive allows you to experiment further with Run Length Encoding.
+The following interactive allows you to experiment further with run length encoding.
 
-{interactive slug="run-length-encoding" type="whole-page" text="Run Length Encoding interactive"}
+{interactive slug="run-length-encoding" type="whole-page" alt="Run length encoding interactive"}
 
-## Analysing Run Length Encoding
+## Analysing run length encoding
 
 How much space have we saved using this alternate representation, and how can we measure it? One simple way to consider this is to imagine you were typing these representations, so you could think of each of the original bits being stored as one character, and each of the RLE codes using a character for each digit and comma (this is a bit crude, but it's a starting point).
 
@@ -221,7 +223,7 @@ This is the number of characters required to represent the image with the new re
 
 Assuming you got the new image representation correct, and counted correctly, you should have found there are 121 characters in the new image (double check if your number differs).
 This means that the new representation only requires around 54% as many characters to represent (calculated using 121/225).
-This is a significant reduction in the amount of space required to store the image — it's about half the size.
+This is a significant reduction in the amount of space required to store the image &ndash; it's about half the size.
 The new representation is a *compressed* form of the old one.
 
 {panel type="curiosity"}
@@ -235,7 +237,7 @@ The bit patterns used are usually based on a technique called Huffman coding, bu
 
 {panel end}
 
-## Where is Run Length Encoding used in practice?
+## Where is run length encoding used in practice?
 
 The main place that black and white scanned images are used now is on fax machines, which use this approach to compression.
 One reason that it works so well with scanned pages is that the number of consecutive white pixels is huge.
@@ -246,7 +248,7 @@ In fact, fax machines would take 7 times longer to send pages if they didn't use
 
 {panel type="project"}
 
-# Using Run Length Encoding for yourself
+# Using run length encoding for yourself
 
 Now that you know how run length encoding works, you can come up with and compress your own black and white image, as well as uncompress an image that somebody else has given you.
 

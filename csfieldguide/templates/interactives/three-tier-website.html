@@ -1,0 +1,71 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+<!--
+  Note that all images used are recycled from the original image file.
+  I do not know how they were first obtained nor who owns the rights to them
+-->
+<div class="container uninteractive">
+  <div class="three-tier-title">
+    {% trans 'Facebook as a three-tier system' %}
+  </div>
+  <!-- Presentation layer -->
+  <div class="row tier-layer">
+    <div class="col-sm-6 col-12">
+      <div class="row justify-content-center">
+        <img class="tier-image" src="{% static 'interactives/three-tier-website/img/zuckerberg_facebook.png' %}">
+      </div>
+    </div>
+    <div class="col-sm-6 col-12 tier-text">
+      {% trans 'Presentation layer' %}
+    </div>
+  </div>
+  <!-- Logic Layer -->
+  <div class="row tier-layer border-top-0">
+    <div class="col-sm-8 col-12">
+      <div class="row justify-content-center">
+        <div class="col-6">
+          <img class="tier-image" src="{% static 'interactives/three-tier-website/img/cogs.png' %}">
+        </div>
+        <div class="col-6 small-tier-text">
+          {% blocktrans %}Algorithms for:<br>
+            &nbsp;- Finding friends<br>
+            &nbsp;- Home feed<br>
+            &nbsp;- Birthdays<br>
+            And many more{% endblocktrans %}
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4 col-12 tier-text">
+      {% trans 'Logic Layer' %}
+    </div>
+  </div>
+  <!-- Data Layer -->
+  <div class="row tier-layer border-top-0">
+    <div class="col-sm-8 col-12">
+      <div class="row justify-content-center">
+        <div class="col-6">
+          <img class="tier-image" src="{% static 'interactives/three-tier-website/img/database_facebook.png' %}">
+        </div>
+        <div class="col-6 small-tier-text">
+          {% blocktrans %}Huge databases:<br>
+            &nbsp;- User Information<br>
+            &nbsp;- Encoded passwords<br>
+            &nbsp;- Photos<br>
+            &nbsp;- Messages<br>{% endblocktrans %}
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4 col-12 tier-text">
+      {% trans 'Data Layer' %}
+    </div>
+  </div>
+</div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/three-tier-website/css/three-tier-website.css' %}">
+{% endblock css %}

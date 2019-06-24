@@ -21,3 +21,4 @@ Welcome to the CS Field Guide!
     author/index
     developer/index
     other/index
+    changelog

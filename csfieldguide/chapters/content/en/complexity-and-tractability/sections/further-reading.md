@@ -2,7 +2,7 @@
 
 This topic is covered very thoroughly in a way that is accessible to non-specialists in a popular book by David Harel called "Computers Ltd.: What They Really Can't Do".
 
-## Useful Links
+## Useful links
 
 - [https://en.wikipedia.org/wiki/Computational_complexity_theory](https://en.wikipedia.org/wiki/Computational_complexity_theory)
 - [http://www.tsp.gatech.edu/games/index.html](http://www.tsp.gatech.edu/games/index.html)

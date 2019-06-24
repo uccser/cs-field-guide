@@ -1,0 +1,38 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div data-iframe-height class="row container-fluid m-1 justify-content-center">
+    <div class="col-12 interactive-unicode-binary-constrain-width">
+      <h4 class="text-center">{% trans 'Unicode to Binary (UTF-<span id="interactive-unicode-binary-mode">8</span>)' %}</h4>
+      <form class="formValidate" id="formValidate" method="get">
+        <div class="row">
+          <div class="text-left col-sm-6 col-md-6 mb-2">
+            <label for="interactive-unicode-binary-char" class="active">{% trans 'Character' %}</label>
+            <input class="form-control" type="text" id="interactive-unicode-binary-char" placeholder="Unicode Character" title="Character" autocomplete="off">
+          </div>
+          <div class="text-left col-sm-6 col-md-6 mb-2">
+              <label for="interactive-unicode-binary-decimal" class="active">{% trans 'Decimal' %}</label>
+              <input class="form-control" type="text" id="interactive-unicode-binary-decimal" placeholder="Enter an integer" title="Decimal" class="validate" pattern="\d+" autocomplete="off">
+          </div>
+        </div>
+        <div class="row mb-2">
+          <div class="text-left col-sm-12 col-md-12">
+            <label for="interactive-unicode-binary-binary" class="active">{% trans 'Binary' %}</label>
+            <input class="form-control" type="text" id="interactive-unicode-binary-binary" placeholder="Binary" readonly>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/unicode-binary/css/unicode-binary.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'interactives/unicode-binary/js/unicode-binary.js' %}"></script>
+{% endblock js %}

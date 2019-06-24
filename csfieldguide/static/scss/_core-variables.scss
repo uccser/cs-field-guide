@@ -3,6 +3,16 @@ $csfg-light: #3f51b5;
 $csfg-teacher: #f44336;
 $csfg-light-teacher: #ff5f54;
 $csu: #cc0423;
-$navbar-height: 48px;
-$navbar-padding-bottom: 24px;
 $text-color: $gray-900;
+$theme-colors: (
+    "primary": $csfg-light,
+    "secondary":  $secondary,
+    "success":    $success,
+    "info":       $info,
+    "warning":    $warning,
+    "danger":     $danger,
+    "light":      $light,
+    "dark":       $dark
+);
+$nav-pills-link-active-color: $csfg-light;
+$nav-pills-link-active-bg: $csfg-light;

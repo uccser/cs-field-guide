@@ -1,0 +1,62 @@
+#trig-function-calculator {
+  font-family: "Roboto", sans-serif;
+  width: 50%;
+}
+
+.trig-title {
+  text-align: center;
+  font-size: 35px;
+}
+
+.trig-subtitle {
+  display: inline;
+  font-size: 14px;
+}
+
+.trig-variable {
+  font-size: 25px;
+}
+
+p#info {
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+div#input {
+  margin: auto;
+  width: 50%;
+}
+
+div#input input {
+  font-family: monospace;
+  display: inline;
+}
+
+div#input button {
+  display: block;
+}
+
+div#error {
+  display: none;
+  color: red;
+  text-align: center;
+}
+
+div#output {
+  margin: auto;
+  margin-top: 20px;
+  width: 60%;
+}
+
+div#sin-output, div#cos-output {
+  display: block;
+}
+
+div#output p {
+  font-family: monospace;
+  display: inline;
+}
+
+div#output p#sin-result {
+  display: inline;
+}

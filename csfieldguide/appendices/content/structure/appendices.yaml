@@ -3,14 +3,18 @@ about:
 
 curriculum-guides:
   template: appendices/curriculum-guides/index.html
-  subappendices:
-    apcsp:
-      template: appendices/curriculum-guides/apcsp.html
-    ncea:
-      template: appendices/curriculum-guides/ncea.html
+
+apcsp:
+  template: appendices/curriculum-guides/apcsp.html
+
+ncea:
+  template: appendices/curriculum-guides/ncea.html
 
 contributors:
   template: appendices/contributors.html
+
+sitemap:
+  template: appendices/sitemap.html
 
 # 'Releases' page should redirect to documentation.
 # 'Included Files' page should redirect to LICENSE.

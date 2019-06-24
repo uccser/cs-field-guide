@@ -1,0 +1,81 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div class="row my-3 container-fluid justify-content-center">
+    <div class="row interactive packet-attack-creator">
+      <!-- Message row -->
+      <div class="col-12 col-md-6 col-lg-3 value form-group">
+        <label for="message-input">{% trans 'Message:' %}</label>
+        <input class="form-control" aria-describedby="message-help" id="message-input" placeholder="LONDON"></input>
+        <small id="message-help" class="form-text text-muted">{% trans 'The message to be sent' %}</small>
+      </div>
+
+      <!-- Number of Delays -->
+      <div class="col-12 col-md-6 col-lg-3 value form-group">
+        <label for="delays-input">{% trans 'Delays:' %}</label>
+        <input type="number" class="form-control" aria-describedby="delays-help" id="delays-input" value="1"></input>
+        <small id="delays-help" class="form-text text-muted">{% trans 'The number of delay uses' %}</small>
+      </div>
+      <!-- Number of Corrupts -->
+      <div class="col-12 col-md-6 col-lg-3 value form-group">
+        <label for="corrupts-input">{% trans 'Corrupts:' %}</label>
+        <input type="number" class="form-control" aria-describedby="corrupts-help" id="corrupts-input" value="1"></input>
+        <small id="corrupts-help" class="form-text text-muted">{% trans 'The number of corrupt uses' %}</small>
+      </div>
+      <!-- Number of kills -->
+      <div class="col-12 col-md-6 col-lg-3 value form-group">
+        <label for="kills-input">{% trans 'Kills:' %}</label>
+        <input type="number" class="form-control" aria-describedby="kills-help" id="kills-input" value="1"></input>
+        <small id="kills-help" class="form-text text-muted">{% trans 'The number of kill uses' %}</small>
+      </div>
+
+      <!-- Shields -->
+      <div class="col-12 col-md-6 col-lg-3 form-group">
+        <label class="button-label">{% trans 'Shields:' %}</label>
+        <button type="button" class="btn btn-success d-none" aria-describedby="shields-help" id="shields-true">{% trans 'TRUE' %}</button>
+        <button type="button" class="btn btn-danger" aria-describedby="shields-help" id="shields-false">{% trans 'FALSE' %}</button>
+        <small id="shields-help" class="form-text text-muted">{% trans 'Shields protect packets from corruption' %}</small>
+      </div>
+      <!-- Ordering -->
+      <div class="col-12 col-md-6 col-lg-3 form-group">
+        <label class="button-label">{% trans 'Numbers:' %}</label>
+        <button type="button" class="btn btn-success d-none" aria-describedby="numbers-help" id="numbers-true">{% trans 'TRUE' %}</button>
+        <button type="button" class="btn btn-danger" aria-describedby="numbers-help" id="numbers-false">{% trans 'FALSE' %}</button>
+        <small id="numbers-help" class="form-text text-muted">{% trans 'Numbers protect packet order' %}</small>
+      </div>
+      <!-- ACKS & NACKS -->
+      <div class="col-12 col-md-6 col-lg-3 form-group">
+        <label class="button-label">{% trans 'Replies:' %}</label>
+        <button type="button" class="btn btn-success d-none" aria-describedby="message-help" id="replies-true">{% trans 'TRUE' %}</button>
+        <button type="button" class="btn btn-danger" aria-describedby="message-help" id="replies-false">{% trans 'FALSE' %}</button>
+        <small id="delays-help" class="form-text text-muted">{% trans 'Replies tell the sender about packet status\'' %}</small>
+      </div>
+      <!-- Timeouts -->
+      <div class="col-12 col-md-6 col-lg-3 form-group">
+        <label class="button-label">{% trans 'Timeouts:' %}</label>
+        <button type="button" class="btn btn-success d-none" aria-describedby="timeouts-help" id="timeouts-true">{% trans 'TRUE' %}</button>
+        <button type="button" class="btn btn-danger" aria-describedby="timeouts-help" id="timeouts-false">{% trans 'FALSE' %}</button>
+        <small id="timeouts-help" class="form-text text-muted">{% trans 'A packet will be resent if it doesn\'t get a reply in time' %}</small>
+      </div>
+
+      <!-- Submit -->
+      <div class="col-12 justify-content-center">
+        <button type="button" class="btn btn-primary" id="submit">{% trans 'CREATE LEVEL' %}</button>
+      </div>
+    </div>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/packet-attack-level-creator/css/packet-attack-level-creator.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript">
+    var base = "{% url 'interactives:interactive' 'packet-attack' %}";
+  </script>
+  <script type="text/javascript" src="{% static 'interactives/packet-attack-level-creator/js/packet-attack-level-creator.js' %}"></script>
+{% endblock js %}

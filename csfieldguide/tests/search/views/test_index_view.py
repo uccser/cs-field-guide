@@ -8,7 +8,6 @@ from django.core import management
 from django.test import override_settings
 from tests.BaseTestWithDB import BaseTestWithDB
 from tests.chapters.ChaptersTestDataGenerator import ChaptersTestDataGenerator
-from tests.appendices.AppendicesTestDataGenerator import AppendicesTestDataGenerator
 from tests.helpers import query_string
 
 BASE_PATH = "tests/search/views/"
@@ -25,7 +24,6 @@ class IndexViewTest(BaseTestWithDB):
         super().__init__(*args, **kwargs)
         self.language = "en"
         self.chapters_test_data = ChaptersTestDataGenerator()
-        self.appendices_test_data = AppendicesTestDataGenerator()
 
     def setUp(self):
         """Automatically called before each test."""
@@ -67,20 +65,12 @@ class IndexViewTest(BaseTestWithDB):
             response.context["models"],
             [
                 {
-                    "value": "appendices.appendix",
-                    "name": "Appendices"
-                },
-                {
                     "value": "chapters.chaptersection",
                     "name": "Chapter sections"
                 },
                 {
                     "value": "chapters.chapter",
                     "name": "Chapters"
-                },
-                {
-                    "value": "appendices.subappendix",
-                    "name": "Sub-appendices"
                 },
             ]
         )
@@ -90,18 +80,12 @@ class IndexViewTest(BaseTestWithDB):
         url = reverse("search:index")
         get_parameters = [
             ("models", "chapters.chapter"),
-            ("models", "appendices.appendix"),
         ]
         url += query_string(get_parameters)
         response = self.client.get(url)
         self.assertEqual(
             response.context["models"],
             [
-                {
-                    "value": "appendices.appendix",
-                    "selected": "true",
-                    "name": "Appendices",
-                },
                 {
                     "value": "chapters.chaptersection",
                     "name": "Chapter sections",
@@ -110,10 +94,6 @@ class IndexViewTest(BaseTestWithDB):
                     "value": "chapters.chapter",
                     "selected": "true",
                     "name": "Chapters"
-                },
-                {
-                    "value": "appendices.subappendix",
-                    "name": "Sub-appendices"
                 },
             ]
         )
@@ -132,8 +112,6 @@ class IndexViewTest(BaseTestWithDB):
         self.assertEqual(len(response.context["object_list"]), 0)
 
     def test_search_view_assert_order(self):
-        appendix = self.appendices_test_data.create_appendix(1, "appendix-1.html")
-        self.appendices_test_data.create_subappendix(appendix, 1, "appendix-1.html")
         chapter = self.chapters_test_data.create_chapter(1)
         self.chapters_test_data.create_chapter_section(chapter, 1)
         management.call_command("rebuild_index", "--noinput")
@@ -142,16 +120,12 @@ class IndexViewTest(BaseTestWithDB):
             ("q", ""),
             ("models", "chapters.chapter"),
             ("models", "chapters.chaptersection"),
-            ("models", "appendices.appendix"),
-            ("models", "appendices.subappendix"),
         ]
         url += query_string(get_parameters)
         response = self.client.get(url)
         result_objects = response.context["object_list"]
         self.assertEqual(result_objects[0].model_name, "chapter")
         self.assertEqual(result_objects[1].model_name, "chaptersection")
-        self.assertEqual(result_objects[2].model_name, "appendix")
-        self.assertEqual(result_objects[3].model_name, "subappendix")
 
     def test_search_view_model_filter(self):
         chapter = self.chapters_test_data.create_chapter(1)
@@ -169,8 +143,6 @@ class IndexViewTest(BaseTestWithDB):
         self.assertEqual(result_objects[0].model_name, "chapter")
 
     def test_search_view_model_filter_multiple(self):
-        appendix = self.appendices_test_data.create_appendix(1, "appendix-1.html")
-        self.appendices_test_data.create_subappendix(appendix, 1, "appendix-1.html")
         chapter = self.chapters_test_data.create_chapter(1)
         self.chapters_test_data.create_chapter_section(chapter, 1)
         management.call_command("rebuild_index", "--noinput")
@@ -188,8 +160,6 @@ class IndexViewTest(BaseTestWithDB):
         self.assertEqual(result_objects[1].model_name, "chaptersection")
 
     def test_search_view_model_filter_multiple_with_query(self):
-        appendix = self.appendices_test_data.create_appendix(1, "appendix-1.html")
-        self.appendices_test_data.create_subappendix(appendix, 1, "appendix-1.html")
         chapter = self.chapters_test_data.create_chapter(1)
         self.chapters_test_data.create_chapter_section(chapter, 1)
         management.call_command("rebuild_index", "--noinput")
@@ -197,7 +167,7 @@ class IndexViewTest(BaseTestWithDB):
         get_parameters = [
             ("q", "Chapter"),
             ("models", "chapters.chapter"),
-            ("models", "appendices.appendix"),
+            ("models", "chapters.chaptersection"),
         ]
         url += query_string(get_parameters)
         response = self.client.get(url)

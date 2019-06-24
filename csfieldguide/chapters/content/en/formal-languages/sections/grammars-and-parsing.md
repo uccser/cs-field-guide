@@ -16,8 +16,8 @@ With unusual grammar Yoda from Star Wars speaks.
 Yet still understand him, people can.
 The flexibility of the rules of English grammar mean that you can usually be understood if you don't get it quite right, but it also means that the rules get very complicated and difficult to apply.
 
-Grammars in formal languages are much more predictable than grammars in human languages — that's why they're called *formal* languages!
-When you're doing English, grammar can be a tricky topic because not only are there are so many rules, but there are also so many exceptions — for example, you need an apostrophe if you write "the computer's USB port", but you have to leave it out if you say "its USB port".
+Grammars in formal languages are much more predictable than grammars in human languages &ndash; that's why they're called *formal* languages!
+When you're doing English, grammar can be a tricky topic because not only are there are so many rules, but there are also so many exceptions &ndash; for example, you need an apostrophe if you write "the computer's USB port", but you have to leave it out if you say "its USB port".
 
 {glossary-link term="grammar" reference-text="Formal languages"}Grammars{glossary-link end} in computer science are mainly used to specify programming languages and file formats, and compilers make a fuss even if you leave out just one bracket or comma!
 But at least they're predictable.
@@ -38,9 +38,9 @@ Note: the remainder of this section is yet to be developed.
 
 - Find a grammar for a programming language, and show how a sample program would be parsed using the grammar.
 
-- Use examples to show the parse tree (or tree) for a correct and incorrect program fragment, or to show a sequence of grammar productions to construct a correct program fragment
+- Use examples to show the parse tree (or tree) for a correct and incorrect program fragment, or to show a sequence of grammar productions to construct a correct program fragment.
 
-- Explore the grammar for balanced parentheses S -> SS, S -> (S), S -> ( )
+- Explore the grammar for balanced parentheses: S -> SS, S -> (S), S -> ( )
 
 - Find a grammar for a simple arithmetic expression in a programming language, and show the parse tree for sample expressions (such as (a+b)\*(c-d) ).
 

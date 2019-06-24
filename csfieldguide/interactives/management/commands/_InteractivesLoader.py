@@ -44,8 +44,10 @@ class InteractivesLoader(TranslatableModelLoader):
                         translations[language_code] = dict()
                     translations[language_code]["template"] = template_path
 
+            is_interactive = interactive_data.get("is_interactive")
             interactive = Interactive(
                 slug=interactive_slug,
+                is_interactive=is_interactive,
             )
             self.populate_translations(interactive, translations)
             self.mark_translation_availability(

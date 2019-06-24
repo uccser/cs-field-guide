@@ -1,0 +1,63 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div class="container-fluid my-3 dot-combinations text-center">
+
+    <!-- Heading and Description -->
+    <div class="col-12">
+      <h3>{% trans "Dot Combinations" %}</h3>
+    </div>
+    <div class="col-12 mb-3">
+      {% trans 'Click on a dot to flip it. Try to find all the combinations.' %}
+    </div>
+    <div class="form-group col-12 col-sm-4 offset-sm-4">
+      <label for="number-of-dots">{% trans 'Number of dots:' %}</label>
+      <select class="form-control w-auto p-1 d-inline" id="number-of-dots" value="3" size="1">
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+        <option>6</option>
+      </select>
+    </div>
+
+    <!-- Combinator -->
+    <div class="col-12">
+      <div id="dot-0" class="div-circle big white"></div>
+    </div>
+    <div class="col-12">
+      <div id="dot-1" class="div-circle big white"></div>
+    </div>
+    <div class="col-12">
+      <div id="dot-2" class="div-circle big white"></div>
+    </div>
+    <div class="col-12">
+      <div id="dot-3" class="div-circle big white d-none"></div>
+    </div>
+    <div class="col-12">
+      <div id="dot-4" class="div-circle big white d-none"></div>
+    </div>
+    <div class="col-12">
+      <div id="dot-5" class="div-circle big white d-none"></div>
+    </div>
+
+    <!-- Found combinations -->
+    <div id="dot-combinations-complete" class="col-12 dot-combinations-complete d-none">
+      {% trans 'Congratulations, you found them all!' %}
+    </div>
+    <div id="dot-combinations-count" class="col-12"></div>
+    <div id="found-combinations" class="row justify-content-left">
+    </div>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/dot-combinations/css/dot-combinations.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'interactives/dot-combinations/js/dot-combinations.js' %}"></script>
+{% endblock js %}

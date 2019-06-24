@@ -1,14 +1,15 @@
-{% extends "base.html" %}
+{% extends "appendices/base.html" %}
 
+{% load i18n %}
 {% load render_html_field %}
 
 {% block title %}
-  Glossary
+  {% trans 'Glossary' %}
 {% endblock title %}
 
-{% block page_heading %}
-Glossary
-{% endblock page_heading %}
+{% block appendix_title %}
+  {% trans 'Glossary' %}
+{% endblock appendix_title %}
 
 {% block content %}
   {% for glossary_term in glossary_terms %}

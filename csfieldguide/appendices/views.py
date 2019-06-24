@@ -1,11 +1,7 @@
 """Views for the appendices application."""
 
-from django.views.generic import TemplateView, DetailView
-from django.shortcuts import get_object_or_404
-from appendices.models import (
-    Appendix,
-    Subappendix,
-)
+from django.views.generic import TemplateView
+from chapters.models import Chapter
 
 
 class AppendicesList(TemplateView):
@@ -14,44 +10,47 @@ class AppendicesList(TemplateView):
     template_name = "appendices/index.html"
 
 
-class AppendixView(DetailView):
-    """View for a specific page."""
+class AboutView(TemplateView):
+    """View for the about page."""
 
-    model = Appendix
-    slug_url_kwarg = "appendix_slug"
-    context_object_name = "appendix"
+    template_name = "appendices/about.html"
 
-    def get_template_names(self, **kwargs):
-        """Provide the template name for appendix view.
+
+class ContributorsView(TemplateView):
+    """View for the contributors page."""
+
+    template_name = "appendices/contributors.html"
+
+
+class CurriculumGuidesView(TemplateView):
+    """View for the curriculum guides."""
+
+    template_name = "appendices/curriculum-guides/index.html"
+
+
+class NceaView(TemplateView):
+    """View for the ncea curriculum guide."""
+
+    template_name = "appendices/curriculum-guides/ncea.html"
+
+
+class ApcspView(TemplateView):
+    """View for the apcsp curriculum guide."""
+
+    template_name = "appendices/curriculum-guides/apcsp.html"
+
+
+class SitemapView(TemplateView):
+    """View for the about page."""
+
+    template_name = "appendices/sitemap.html"
+
+    def get_context_data(self, **kwargs):
+        """Provide the context data for the chapter view.
 
         Returns:
-            Name of template from object.
+            Dictionary of context data.
         """
-        return self.object.template
-
-
-class SubappendixView(DetailView):
-    """View for a specific page."""
-
-    model = Subappendix
-    context_object_name = "subappendix"
-
-    def get_object(self, **kwargs):
-        """Retrieve object for subappendiz view.
-
-        Returns:
-            Subappendix object, or raises 404 error if not found.
-        """
-        return get_object_or_404(
-            self.model.objects.select_related(),
-            parent_page__slug=self.kwargs.get("appendix_slug", None),
-            slug=self.kwargs.get("subappendix_slug", None)
-        )
-
-    def get_template_names(self, **kwargs):
-        """Provide the template name for the page view.
-
-        Returns:
-            Name of template from object.
-        """
-        return self.object.template
+        context = super(SitemapView, self).get_context_data(**kwargs)
+        context["chapters"] = Chapter.objects.all()
+        return context

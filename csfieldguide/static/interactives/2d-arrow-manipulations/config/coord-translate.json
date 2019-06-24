@@ -1,6 +1,0 @@
-{
-    "type": "coordinates",
-    "title": "Changing Point Locations",
-    "task": "Try adding 2 to all the x points, and 3 to all the y points. What effect does this have on the original arrow? <br>What happens if you subtract 3 from each of the original coordinates?",
-    "target": "2 7 -1 4 1 4 1 -1 3 -1 3 4 5 4"
-}

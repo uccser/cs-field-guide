@@ -31,10 +31,10 @@ for version in "${versions_to_delete[@]}"; do
   gcloud app versions delete --service=default ${version}
 done
 
-# Load environment variables.
+# Load environment variables which contain secrets for production environment.
 source ./load-dev-deploy-envs.sh
 
-# Create app-dev.yaml file using environment variables.
+# Create app-dev.yaml file using secret environment variables, to be uploaded inside app.
 python ./infrastructure/replace_envs.py ./infrastructure/dev-deploy/app-dev.yaml
 
 # Symlinks aren't added into a docker image, so replace symlink with actual directory

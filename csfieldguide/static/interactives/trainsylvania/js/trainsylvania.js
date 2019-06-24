@@ -5,15 +5,15 @@ var Trainsylvania = {
 };
 
 Trainsylvania.stations = {
-  'central' : 'Central Station',
-  'city'    : 'City Mall Station',
-  'east'    : 'East Station',
-  'railington'   : 'Railington Station',
-  'midway'  : 'Midway Station',
-  'north'   : 'North Station',
-  'south'   : 'South Station',
-  'suburb'  : 'Suburbopolis Station',
-  'west'    : 'West Station'
+  'central' : gettext('Central Station'),
+  'city'    : gettext('City Mall Station'),
+  'east'    : gettext('East Station'),
+  'railington'   : gettext('Railington Station'),
+  'midway'  : gettext('Midway Station'),
+  'north'   : gettext('North Station'),
+  'south'   : gettext('South Station'),
+  'suburb'  : gettext('Suburbopolis Station'),
+  'west'    : gettext('West Station')
 };
 Trainsylvania.station_destinations = {
   'central' : {'a': 'city'    ,'b': 'midway'},

@@ -4,6 +4,7 @@ from django.db import models
 from interactives.models import Interactive
 from django.core.exceptions import ValidationError
 from utils.TranslatableModel import TranslatableModel
+from django.urls import reverse
 
 
 class GlossaryTerm(TranslatableModel):
@@ -58,6 +59,10 @@ class Chapter(TranslatableModel):
         verbose_name = "Chapter"
         verbose_name_plural = "Chapters"
 
+    def get_absolute_url(self):
+        """Get absolute URL of Chapter object."""
+        return reverse('chapters:chapter', args=[self.slug])
+
 
 class ChapterSection(TranslatableModel):
     """Model for each section in a chapter in database."""
@@ -105,3 +110,13 @@ class ChapterSection(TranslatableModel):
         ordering = ["number"]
         verbose_name = "Chapter section"
         verbose_name_plural = "Chapter sections"
+
+    def get_absolute_url(self):
+        """Get absolute URL of ChapterSection object."""
+        return reverse(
+            'chapters:chapter_section',
+            kwargs={
+                'chapter_slug': self.chapter.slug,
+                'chapter_section_slug': self.slug
+            }
+        )

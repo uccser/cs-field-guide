@@ -65,7 +65,7 @@ We might create a general purpose bread baking algorithm:
 *Astute observers will note that this algorithm is still inefficient because the rising table and oven are not used at the same time.
 Designing algorithms that take advantage of parallelism is an important advanced topic in computer science.*
 
-## Combining Algorithms
+## Combining algorithms
 
 One of the advantages of the building blocks perspective is that completed algorithms themselves can now be seen as new blocks we can build with.
 We can connect complete algorithms or we can interleave parts of algorithms to create new algorithms.

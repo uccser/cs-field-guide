@@ -1,0 +1,76 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div class="container">
+        <div id="dictionary-compression">
+        <h3>{% trans "Compression using a Dictionary" %}</h3>
+            <p>
+                {% trans "This interactive demonstrates the concept of using a dictionary to compress text." %}
+            </p>
+            <p>
+                {% trans "Using the input box below, enter a message. Then try and build a dictionary that compresses every character in the message." %}
+            </p>
+            <p>
+                {% trans "How efficient is your dictionary? Are you compressing one character per dictionary entry, or many? What happens if you add additional text to your message, does your dictionary still compress all of the text?" %}
+            </p>
+
+            <div id="dictionary-compression-activity">
+                <div id="dictionary-compression-left">
+                    <h2 class="dictionary-compression-heading">{% trans "Enter a message to compress" %}:</h2>
+                    <textarea class="form-control" rows="5" id="dictionary-compression-input"></textarea>
+                    <button id="dictionary-compression-compress-button" class="btn btn-primary btn-block" type="button">
+                        {% trans "Compress" %} &rarr;
+                    </button>
+                    <h2 class="dictionary-compression-heading">{% trans "Compressed Message" %}:</h2>
+                    <p>
+                        {% trans "The highlighted characters represent the characters that are coded in your dictionary." %}
+                    </p>
+                    <div id="dictionary-compression-stats">
+                    </div>
+                    <div id="dictionary-compression-output">
+                    </div>
+                </div>
+
+                <div id="dictionary-compression-right">
+                    <h2 class="dictionary-compression-heading">{% trans "Dictionary" %}:</h2>
+                    <div id="dictionary-compression-user-dictionary-entry-input">
+                        <p>{% trans "New dictionary entry" %}:</p>
+                        <div id="compression-user-dictionary-entry-input-row">
+                            <input id="dictionary-compression-user-dictionary-value-input" class="form-control" placeholder="enter text here">
+                            <button id="dictionary-compression-add-entry-button" class="btn btn-primary" type="button">
+                                {% trans "Add" %} &rarr;
+                            </button>
+                        </div>
+                        <div id="error-message" class="hide">
+                            <p class="error-message">&#9888;</p>
+                            <p id="dictionary-compression-error-text" class="error-message">
+                            </p>
+                        </div>
+                        <button id="dictionary-compression-reset-button" class="btn btn-danger btn-block" type="button">
+                            {% trans "Reset Dictionary" %} &rarr;
+                        </button>
+                    </div>
+                    <div id="dictionary-compression-user-dictionary">
+                        <div id="dictionary-compression-user-dictionary-column-1" class="dictionary-compression-user-dictionary-column">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        </div>
+
+    </div>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/dictionary-compression/css/dictionary-compression.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'interactives/dictionary-compression/js/dictionary-compression.js' %}"></script>
+{% endblock js %}

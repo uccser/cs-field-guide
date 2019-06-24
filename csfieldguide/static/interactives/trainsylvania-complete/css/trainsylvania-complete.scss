@@ -1,0 +1,86 @@
+// This is so damn sensitive that we're just going to make the small version
+
+.trainsylvania-complete {
+    max-width: 500px;
+    font-size: 10pt;
+    padding-bottom: 20px;
+    line-height: 10pt;
+    text-align: center;
+}
+
+.t-c-spaced {
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+.t-c-station {
+    max-height: 40px;
+}
+
+svg {
+    transform: translate(0px, -300px);
+}
+
+.arrow {
+    stroke:#3f51b5;
+    stroke-width: 2px;
+    fill: none;
+    marker-end: url(#arrow);
+}
+
+.arrow-label {
+    font-size: 9pt;
+    font-weight: bold;
+}
+
+.t-c-suburb {
+    transform: translate(15px, 5px);
+}
+
+.t-c-north {
+    transform: translate(-35px, -10px);
+}
+
+.t-c-west {
+    transform: translate(-10px, -30px);
+}
+
+.t-c-central {
+    transform: translate(-5px, 15px);
+}
+
+.t-c-midway {
+    transform: translate(0, 25px);
+}
+
+.t-c-east {
+    transform: translate(0, -25px);
+}
+
+.t-c-city {
+    transform: translate(-25px, -10px);
+}
+
+.t-c-south {
+    transform: translate(-25px, 20px);
+}
+
+.too-small {
+    display: none;
+    font-size: 14pt;
+    text-align: center;
+}
+
+.solutionimg {
+    max-width: 450px;
+}
+
+@media screen and (max-width: 500px) {
+    .trainsylvania-complete {
+        display: none;
+    }
+
+    .too-small {
+        display: block;
+    }
+}

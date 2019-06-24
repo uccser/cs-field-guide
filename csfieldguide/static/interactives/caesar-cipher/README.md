@@ -6,8 +6,9 @@ This interactive encrypts and decrypts using the Caesar Cipher.
 
 To use this within the Field Guide it should be use an interactive tag (e.g. `{interactive slug="caesar-cipher" type="iframe"}`).
 
-## Development
+## Required files
 
-In order to make changes you will need Node.js, the source is written in CoffeeScript (don't edit the compiled JavaScript directly as it gets automatically generated).
-
-In order to make changes run `npm install` (once per computer) and make changes into the `caesar.coffee` file. When changes are made use `npm run build` to compile the CoffeeScript and all modules into a single JavaScript file.
+The interactive loads from a base website template which includes a JavaScript file containing jQuery, Bootstrap, and a few other utilities and polyfills.
+See `static/js/website.js` for a full list.
+This interactive also requires es5-shim and es6-shim.
+Their licences are listed in `LICENCE-THIRD-PARTY`, with full copies available in the `third-party-licences` directory.

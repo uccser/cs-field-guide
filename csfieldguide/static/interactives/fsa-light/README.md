@@ -4,28 +4,31 @@
 
 This interactive is created for learning FSAs.
 
-The interactive loads a configuration file to allow a user to traverse a FSA
+The interactive loads a configuration which allows a user to traverse an FSA
 while viewing if the light is on or off. The user should be able to draw an FSA
 diagram from this. This interactive is not feature complete so will currently
 not handle all FSA possibilities, however it provides all logic for the simple
-example requires.
+examples.
 
 ## Usage
 
 This interactive must be loaded in either `iframe` or `whole-page` mode to load
-configuration files.
+configurations.
 
-To select a configuration file, pass the `config` parameter at the end of the
-URL with the name of the JSON config file without the extension.
+Such configs are in the JS dictionary format, stored within `fsa-light.html`.
+Use Django logic to separate them, such as in `fsa-box.html`.
 
-For example, adding `?config=example-1` to the end of the URL for the
-`index.html` file will load the `example-1.json` file.
+To select a configuration, pass the `config` parameter at the end of the
+URL with the name of the config.
 
-If no example is provided, the interactive loads `example-1.json.`
+For example, adding `?config=example-1` to the end of the URL will load the `example-1` settings.
 
-## Configuration File
+`example-1` is the only configuration currently available.
+The interactive only loads `example-1`.
 
-The JSON config file must contain the following keys and values:
+## Configuration
+
+The configuration must contain the following keys and values:
 
 - `available_buttons`: A list of strings for button labels that can be taken
   from every state.
@@ -36,7 +39,7 @@ The JSON config file must contain the following keys and values:
   - `destinations`: A dictionary mapping a string of a button label to a string
     of a state label.
 
-### Example JSON file:
+### Example configuration:
 
 ```
 {
@@ -64,9 +67,3 @@ The JSON config file must contain the following keys and values:
   }
 }
 ```
-
-
-
-## Required files
-
-- This interactive uses MaterializeCSS, Modernizer, `iframeResizer` child file, and jQuery (all loaded from base-files folder).

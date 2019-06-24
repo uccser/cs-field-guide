@@ -8,11 +8,12 @@ The goal colour is picked to be impossible to match perfectly with 8 bit values.
 
 ## Usage
 
-The interactive shows binary representation as default, but it can also display hexidecimal by adding the following URL parameter: `?hexidecimal=true`.
+The interactive shows binary representation as default, but it can also display hexadecimal by adding the following URL parameter: `?hexadecimal=true`.
 
 ## Required files
 
-- This interactive uses MaterializeCSS, Modernizer, and jQuery (all loaded from base-files folder).
+The interactive loads from a base website template which includes a JavaScript file containing jQuery, Bootstrap, and a few other utilities and polyfills.
+See `static/js/website.js` for a full list.
 
 ## Future Plans
 

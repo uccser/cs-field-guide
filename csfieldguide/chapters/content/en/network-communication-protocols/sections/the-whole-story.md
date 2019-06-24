@@ -1,4 +1,4 @@
-# The Whole Story
+# The whole story!
 
 Let’s say I want to write an online music player.
 Okay, so I write the code for someone to press play on a website and the song plays.
@@ -16,7 +16,8 @@ And it is.
 
 Internet protocols exist in layers.
 We have four such layers in the computer science internet model.
-The top two levels are discussed above in detail, the bottom two we won’t focus on.The first layer is the Application Layer, followed by the Transport, Internet and Link layers.
+The top two levels were discussed before in detail, the bottom two we won’t focus on.
+The first layer is the Application layer, followed by the Transport, Internet and Link layers.
 
 At each layer, data is made up of the previous layers’ whole unit of data, and then *headers* are added and passed down.
 At the bottom layer, the Link layer, a *footer* is added also.
@@ -34,15 +35,15 @@ Headers come before the data and footers afterwards.
 
 {panel end}
 
-{image file-path="img/chapters/udp-encapsulation.png" alt="UDP Encapsulation" source="https://commons.wikimedia.org/wiki/File:UDP_encapsulation.svg"}
+{interactive slug="udp-layers" type="in-page"}
 
 You can think of these protocols as a game of pass the parcel.
 When a message is sent in HTTP, it is wrapped in a TCP header, which is then wrapped in an IPv6 header, which is then wrapped in a Ethernet header and footer and sent over ethernet.
-At the other end, it’s unwrapped again from an ethernet *frame*, back to a IP *packet*, a TCP *datagram*, to a HTTP *request*.
+At the other end, it’s unwrapped again from an ethernet *frame*, back to a IP *packet*, a TCP *segment*, to a HTTP *request*.
 
 {panel type="curiosity"}
 
-# What is a Packet?
+# What is a packet?
 
 The name packet is a generic term for a unit of data.
 In the application layer units of data are called *data* or *requests*, in the transport layer, *datagram* or *segments*, in the Network/IP layer, *packet* and in the physical layer, a *frame*.
@@ -59,20 +60,27 @@ That’s taken care of by the post company, which then uses a system to sort the
 
 # The OSI model vs the TCP/IP model
 
-The OSI internet model is different from the TCP/IP model of the internet that Computer Scientists use to approach protocol design.
-OSI is considered and probably mentioned in the networking standards but the guide will use the computer science approach because it is simpler, however the main idea of layers of abstraction is more important to get across.
+The OSI model of the internet is different from the TCP/IP model that Computer Scientists use to approach protocol design.
+OSI is considered and probably mentioned in the networking standards but this guide will use the computer science approach because it is simple.
+The main idea of layers of abstraction is more important.
 You can read more about the differences [here](https://en.wikipedia.org/wiki/Internet_protocol_suite#Comparison_of_TCP.2FIP_and_OSI_layering).
 
 {panel end}
 
 So what does a TCP segment look like?
 
-{image file-path="img/chapters/packet-structure-diagram.png" alt="Showing the structure of a TCP packet"}
+{interactive slug="tcp-segment" type="in-page"}
 
-As you can see, a packet is divided into four main parts, addresses (source, destination), numbers (sequence number, ACK number if it’s an acknowledgement), flags (urgent, checksum) in the header, then the actual data.
-At each level, a segment becomes the data for the next data unit, and that again gets its own header.
+A packet is divided into four main parts:
 
-TCP and UDP packets have a number with how big they are.
+- Two 16 bit addresses (source, destination)
+- Two 32 bit numbers (sequence number, ACK number if it’s an acknowledgement)
+- Between 64 and 384 bits worth of flags and options
+- And the actual data
+
+At each level, the *data* is the entirety of the previous level segment, which includes its own header and data.
+
+TCP and UDP packets have a number saying how big they are.
 This number means that the packet can actually be as big as you like.
 Can you think of any advantages of having small packets.
 How about big ones.
@@ -84,7 +92,7 @@ Think about the ratio of data to information (such as those in the header and fo
 
 Here’s an example of a packet trace on our network [(using tcpdump on the mac)](http://support.apple.com/kb/HT3994)
 
-```
+```text
 00:55:18.540237 b8:e8:56:02:f8:3e > c4:a8:1d:17:a0:d3, ethertype IPv4 (0x0800), length 100: (tos 0x0, ttl 64, id 41564, offset 0, flags [none], proto UDP (17), length 86)
   192.168.1.7.51413 > 37.48.71.67.63412: [udp sum ok] UDP, length 58
 0x0000:  4500 0056 a25c 0000 4011 aa18 c0a8 0107

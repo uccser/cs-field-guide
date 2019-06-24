@@ -1,3 +1,4 @@
+var urlParameters = require('../../../js/third-party/url-parameters.js');
 var Parity = {};
 
 $(document).ready(function(){
@@ -6,13 +7,13 @@ $(document).ready(function(){
   Parity.feedback = $('#interactive-parity-feedback');
   setupGrid();
 
-  if (getUrlParameter('mode') == 'sandbox') {
+  if (urlParameters.getUrlParameter('mode') == 'sandbox') {
     Parity.mode = 'sandbox';
     Parity.current_mode = 'sandbox';
-  } else if (getUrlParameter('mode') == 'set') {
+  } else if (urlParameters.getUrlParameter('mode') == 'set') {
     Parity.mode = 'set';
     Parity.current_mode = 'set';
-  } else if (getUrlParameter('mode') == 'detect') {
+  } else if (urlParameters.getUrlParameter('mode') == 'detect') {
     Parity.mode = 'detect';
     Parity.current_mode = 'detect';
   } else {
@@ -350,21 +351,4 @@ function setParityBits() {
       Parity.grid_values[Parity.grid_values.length-1][col] = false;
     }
   }
-};
-
-
-// From jquerybyexample.net/2012/06/get-url-parameters-using-jquery.html
-function getUrlParameter(sParam) {
-    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
-        sURLVariables = sPageURL.split('&'),
-        sParameterName,
-        i;
-
-    for (i = 0; i < sURLVariables.length; i++) {
-        sParameterName = sURLVariables[i].split('=');
-
-        if (sParameterName[0] === sParam) {
-            return sParameterName[1] === undefined ? true : sParameterName[1];
-        }
-    }
 };

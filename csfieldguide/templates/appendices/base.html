@@ -3,9 +3,9 @@
 {% load i18n %}
 
 {% block title %}
-  Appendices
+  {% trans 'Appendices' %}
 {% endblock title %}
 
 {% block page_heading %}
-  <small>Appendix</small><br>{% block appendix_title %}{% endblock appendix_title %}
+  <small>{% trans 'Appendix' %}</small><br>{% block appendix_title %}{% endblock appendix_title %}
 {% endblock page_heading %}

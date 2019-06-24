@@ -12,7 +12,7 @@ In a similar fashion to representing text or numbers using binary, we can repres
 Since a program is just a sequence of instructions, we need to decide how many bits will be used to represent a single instruction and then how we are going to interpret those bits.
 Machine code instructions typically have a combination of two pieces: operation and operand.
 
-```
+```text
 li $t0, 10 #Load the value 10 into register $t0
 li $t1, 20 #Load the value 20 into register $t1
 #Add the values in $t0 and $t1, put the result in register $a0
@@ -26,9 +26,11 @@ If we were using a 32-bit operating system we might encode the above instruction
 
 | Operation |    Op1   |    Op2   |   Op3    |
 |-----------|----------|----------|----------|
-| 00001000  | 00000000 | 00000000 | 00001010 |
+| 00001000 &nbsp; &nbsp; &nbsp; | 00000000 &nbsp; &nbsp; &nbsp; | 00000000 &nbsp; &nbsp; &nbsp; | 00001010 &nbsp; &nbsp; &nbsp; |
 | 00001000  | 00000001 | 00000000 | 00010100 |
 | 00001010  | 10000000 | 00000000 | 00000001 |
+
+<br>
 
 Our operation will always be determined by the bits in the first 8-bits of the 32-bit instruction.
 In this example machine code, 00001000 means li and 00001010 means add.

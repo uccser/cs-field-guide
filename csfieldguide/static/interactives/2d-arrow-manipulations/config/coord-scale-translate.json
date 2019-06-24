@@ -1,6 +1,0 @@
-{
-    "type": "coordinates",
-    "title": "Combining Scaling and Translation Challenge",
-    "task": "Try to get the blue arrow to match up with the red one.<br>Hint: you may like to use expressions like 2*(2+1) or fractions like 1/5",
-    "target": "5 12 -1 6 3 6 3 -4 7 -4 7 6 11 6"
-}

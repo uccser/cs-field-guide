@@ -1,9 +1,11 @@
-2d-arrow-manipulations:
-  name: 2d-arrow-manipulations (broken)
+2d-shape-manipulations:
+  name: 2D Shape Manipulations
 action-menu:
   name: Action Menu
 alarm-timer:
   name: Alarm Timer
+algorithm-timer:
+  name: Algorithm Timer
 available-menu-items:
   name: Available Menu Items
 awful-calculator:
@@ -19,15 +21,19 @@ binary-cards:
 binary-mode-calculator:
   name: Binary Mode Calculator
 box-rotation:
-  name: box-rotation (broken)
+  name: Box Rotation
 box-translation:
-  name: box-translation (broken)
+  name: Box Translation
+braille-alphabet:
+  name: Braille Alphabet
 caesar-cipher:
   name: Caesar Cipher
 checksum-calculator:
   name: Checksum Calculator
 checksum-calculator-gtin-13:
   name: Checksum Calculator GTIN-13
+city-trip:
+  name: City Trip
 close-window:
   name: Close Window
 cmy-mixer:
@@ -48,12 +54,20 @@ delay-analyser:
   name: Delay Analyser
 delayed-checkbox:
   name: Delayed Checkbox
+dictionary-compression:
+  name: Dictionary Compression
+dot-combinations:
+  name: Dot Combinations
+flowcharts-interpreter-compiler:
+  name: Flowcharts - Interpreter and Compiler
 frequency-analysis:
   name: Frequency Analysis
 fsa-box:
   name: FSA Box
 fsa-light:
   name: FSA Light
+fsa-terminology:
+  name: FSA Terminology
 fsa-washing-machine:
   name: FSA Washing Machine
 hex-background-colour:
@@ -64,18 +78,22 @@ huffman-tree:
   name: Huffman Tree
 image-bit-comparer:
   name: Image Bit Comparer
+iterative-software-development:
+  name: Iterative Software Development
+udp-layers:
+  name: UDP Layers
 jpeg-compression:
   name: JPEG Compression
-md5-hash:
-  name: md5-hash (broken)
+lzw-compression:
+  name: LZW Compression
+lzss-compression:
+  name: LZSS Compression
 menu-keystrokes:
   name: Menu Keystrokes
 mips-assembler:
-  name: mips-assembler (broken)
+  name: MIPS Assembler
 mips-simulator:
-  name: mips-simulator (broken)
-ncea-guide-selector:
-  name: ncea-guide-selector (broken)
+  name: MIPS Simulator
 nfa-guesser:
   name: NFA Guesser
 no-help:
@@ -85,17 +103,23 @@ number-generator:
 off-by-one:
   name: Off By One
 packet-attack:
-  name: packet-attack (broken)
+  name: Packet Attack
 packet-attack-level-creator:
-  name: packet-attack-level-creator (broken)
+  name: Packet Attack Level Creator
 parity:
   name: Parity
 payment-interface:
   name: Payment Interface
+persona-carousel:
+  name: Persona Slideshow
+pixel-grid:
+  name: Pixel Grid
 pixel-viewer:
-  name: pixel-viewer (broken)
+  name: Pixel Viewer
 python-interpreter:
   name: Python Interpreter
+python-syntax-error:
+  name: Python Syntax Error
 regular-expression-filter:
   name: Regular Expression Filter
 regular-expression-search:
@@ -124,19 +148,31 @@ sorting-algorithm-comparison:
   name: Sorting Algorithm Comparison
 sorting-algorithms:
   name: Sorting Algorithms
+system-layers:
+  name: System Layers
+tcp-segment:
+  name: TCP Segment
+three-tier-website:
+  name: Three-tier Website
 trainsylvania:
   name: Trainsylvania
 trainsylvania-planner:
   name: Trainsylvania Planner
+trainsylvania-blank:
+  name: Blank Trainsylvania
+trainsylvania-complete:
+  name: Complete Trainsylvania
 trig-function-calculator:
   name: Trig Function Calculator
 unexpected-error:
   name: Unexpected Error
 unicode-binary:
-  name: unicode-binary (broken)
+  name: Unicode Binary
 unicode-chars:
   name: Unicode Characters
 unicode-length:
   name: Unicode Length
 viola-jones-face-detector:
-  name: viola-jones-face-detector (broken)
+  name: Viola-Jones Face Detector
+waterfall-process:
+  name: Waterfall Process

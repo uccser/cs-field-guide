@@ -3,13 +3,12 @@
 **Original Author:** David Thompson
 **Modified By:** Jack Morgan
 
-This interactive is created for teaching finite state automata. The original interactive has been completely rewritten for the v2.0 of the Computer Science Field Guide, however the same principles have been used.
+This interactive is created for teaching finite state automata.
+The original interactive has been completely rewritten for the v2.0 of the Computer Science Field Guide, however the same principles have been used.
+
+## Licences
 
 Images for Trainsylvania were created by [Jack Morgan](mailto:jack.morgan@canterbury.ac.nz) and are freely available under this project's license.
-
-## Required Files
-
-- [jQuery](https://jquery.com/) (loaded from base-files folder)
 
 ## Future Plans
 

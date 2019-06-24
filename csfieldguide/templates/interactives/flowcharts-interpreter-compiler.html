@@ -1,0 +1,121 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <!-- NOTE: Uninteractive must be displayed in an iframe -->
+  <!-- p-1 and similar are to overwrite _grid-framework.scss values -->
+  <div class="container-fluid flowcharts-interpreter-compiler">
+    <div class="row">
+      <div class="col-12 col-sm-6 p-1 pr-2 mb-3">
+        <!-- Compiler -->
+        <div class="row flowcharts-title">
+          <div class="col-8">
+            {% trans 'Compiler' %}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-8 pb-4">
+            <div id="compiler-program" class="text-box">
+              {% trans 'Sorting program in C' %}
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-8 py-4">
+            <div id="compiler-compiler" class="text-box">
+              {% trans 'C compiler' %}
+            </div>
+          </div>
+          <div class="col-4 py-4">
+            <div id="compiler-data" class="text-box">
+              {% trans 'Data' %}<br>
+              [3, 1, 5, 2]
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-8 py-4">
+            <div id="compiler-interpreter"  class="text-box">
+              {% trans 'Sorting program in assembly/machine code' %}
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-8 pt-4">
+            <div id="compiler-result"  class="text-box">
+              {% trans 'Result' %}<br>
+              [1, 2, 3, 5]
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6 p-1 pt-4 pt-sm-1 pl-sm-2 mb-3">
+        <!-- Interpreter -->
+        <div class="row flowcharts-title">
+          <div class="col-8">
+            {% trans 'Interpreter' %}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-8 pb-4">
+            <div id="interpreter-program" class="text-box">
+              {% trans 'Sorting program in Scratch' %}
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-4 offset-8 py-4">
+            <div id="interpreter-data" class="text-box">
+              {% trans 'Data' %}<br>
+              [3, 1, 5, 2]
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-8 py-4">
+            <div id="interpreter-interpreter"  class="text-box">
+              {% trans 'Scratch interpreter' %}
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-8 pt-4">
+            <div id="interpreter-result"  class="text-box">
+              {% trans 'Result' %}<br>
+              [1, 2, 3, 5]
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- SVG arrow definitions -->
+    <svg class="flowcharts-svg">
+      <defs>
+        <marker id="arrowhead" markerWidth="10" markerHeight="13" refx="2" refy="6" orient="auto">
+          <path class="arrowhead" d="M2,1 L2,9 L8,6 L2,3 Z"/>
+        </marker>
+      </defs>
+
+      <!-- Compiler arrows top to bottom -->
+      <path class="arrow" id="compiler-program-compiler"/>
+      <path class="arrow" id="compiler-compiler-interpreter"/>
+      <path class="arrow" id="compiler-data-interpreter"/>
+      <path class="arrow" id="compiler-interpreter-result"/>
+      <!-- Interpreter arrows top to bottom -->
+      <path class="arrow" id="interpreter-program-interpreter"/>
+      <path class="arrow" id="interpreter-data-interpreter"/>
+      <path class="arrow" id="interpreter-interpreter-result"/>
+    </svg>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/flowcharts-interpreter-compiler/css/flowcharts-interpreter-compiler.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'interactives/flowcharts-interpreter-compiler/js/flowcharts-interpreter-compiler.js' %}"></script>
+{% endblock js %}

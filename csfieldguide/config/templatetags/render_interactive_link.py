@@ -10,7 +10,7 @@ register = template.Library()
 
 
 @register.simple_tag(takes_context=True)
-def render_interactive_link(context, interactive):
+def render_interactive_link(context, interactive, *args, **kwargs):
     """Render link button to interactive in whole-page mode.
 
     Args:
@@ -24,8 +24,18 @@ def render_interactive_link(context, interactive):
             Interactive,
             slug=interactive
         )
+
+    parameters = kwargs.get("parameters", None)
+    text = kwargs.get("text", None)
+
+    # Trim '?' at start if present
+    if isinstance(parameters, str) and parameters.startswith("?"):
+        parameters = parameters[1:]
+
     context = {
         "interactive": interactive,
         "interactive_thumbnail": "img/interactives/thumbnails/{}/{}.png".format(get_language(), interactive.slug),
+        "parameters": parameters,
+        "text": text,
     }
     return render_to_string(settings.INTERACTIVES_LINK_TEMPLATE, context, request=context.get("request"))

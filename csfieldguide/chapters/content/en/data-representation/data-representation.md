@@ -2,7 +2,7 @@
 
 {panel type="teacher-note"}
 
-# Math in Data Representation
+# Math in data representation
 
 A lot of the exercises in this chapter involve simple arithmetic.
 If students struggle to do this by hand, a lot can be done using spreadsheets.
@@ -71,13 +71,13 @@ This is the basis of data representation - anything that can have two different 
 When we write what is stored in a computer on paper, we normally use "0" for one of the states, and "1" for the other state.
 For example, a piece of computer memory could have the following voltages:
 
-```
+```text
 low low high low high high high high low high low low
 ```
 
 We could allocate **"0"** to **"low"**, and **"1"** to **"high"** and write this sequence down as:
 
-```
+```text
 0 0 1 0 1 1 1 1 0 1 0 0
 ```
 

@@ -1,6 +1,6 @@
 # Further reading
 
-## Useful Links
+## Useful links
 
 - [https://en.wikipedia.org/wiki/Computer_graphics](https://en.wikipedia.org/wiki/Computer_graphics)
 - [https://en.wikipedia.org/wiki/Transformation_matrix](https://en.wikipedia.org/wiki/Transformation_matrix)

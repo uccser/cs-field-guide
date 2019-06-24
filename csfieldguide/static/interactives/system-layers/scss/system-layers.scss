@@ -1,0 +1,62 @@
+.system-layers-title {
+    font-size: 26pt;
+}
+
+.system-layer {
+    border: 5px solid;
+    padding: 10px;
+    padding-right: 20px;
+}
+
+.system-text {
+    line-height: 80px;
+    font-size: 20pt;
+    text-align: right;
+    vertical-align: middle;
+}
+
+.system-image {
+    height: 80px;
+}
+
+// Standard bootstrap-defined large devices boundary
+@media screen and (max-width: 992px) {
+    .system-layers-title {
+        font-size: 20pt;
+    }
+
+    .system-layer {
+        border-width: 3px;
+        padding-right: 15px;
+    }
+
+    .system-text {
+        line-height: 50px;
+        font-size: 16pt;
+    }
+
+    .system-image {
+        height: 50px;
+    }
+}
+
+// Non-standard width works better
+@media screen and (max-width: 500px) {
+    .system-layers-title {
+        font-size: 16pt;
+    }
+
+    .system-layer {
+        border-width: 2px;
+        padding-right: 10px;
+    }
+
+    .system-text {
+        line-height: 40px;
+        font-size: 10pt;
+    }
+
+    .system-image {
+        height: 40px;
+    }
+}

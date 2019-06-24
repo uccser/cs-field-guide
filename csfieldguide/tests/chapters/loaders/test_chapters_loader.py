@@ -100,11 +100,7 @@ class ChaptersLoaderTest(BaseTestWithDB):
             chapter_loader.load
         )
 
-    @mock.patch(
-        "django.contrib.staticfiles.finders.find",
-        return_value=True
-    )
-    def test_chapters_chapter_loader_interactive(self, find_image_files):
+    def test_chapters_chapter_loader_interactive(self):
         test_slug = "interactives"
         factory = mock.Mock()
         interactive1 = self.interactives_test_data.create_interactive(1)
@@ -118,7 +114,6 @@ class ChaptersLoaderTest(BaseTestWithDB):
             structure_filename="{}.yaml".format(test_slug)
         )
         chapter_loader.load()
-        self.assertTrue(find_image_files.called)
         self.assertQuerysetEqual(
             Chapter.objects.all(),
             ["<Chapter: Interactives>"]

@@ -49,9 +49,23 @@
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans');
 
 body {
-  padding-top: $navbar-height;
-  position: relative;
   background-color: $gray-100;
+}
+
+#body-flex-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  > nav {
+    flex-shrink: 0;
+    z-index: 50;
+  }
+
+  > #body-content {
+    overflow: auto;
+    flex-grow: 1;
+  }
 }
 
 #page-header {
@@ -65,12 +79,18 @@ body {
   }
 }
 
-#content-container {
-  padding-top: $navbar-padding-bottom;
+.heading-permalink {
+  @extend .no-text-decoration;
+  color: $text-color;
+  img {
+    visibility: hidden;
+  }
+  &:hover img {
+    visibility: visible;
+  }
 }
-
-#sticky-sidebar {
-  top: $navbar-height + $navbar-padding-bottom;
+.section-heading-number {
+  @extend .text-muted;
 }
 
 .no-text-decoration {
@@ -87,6 +107,11 @@ body {
 
 .btn {
   cursor: pointer;
+}
+
+.btn-chapter-section {
+  max-width: 40%;
+  white-space: normal;
 }
 
 ol, ul {
@@ -185,4 +210,41 @@ blockquote {
 
 .uninteractive {
   pointer-events: none;
+}
+
+// Rules to set table elements to automatically have Bootstrap table styling.
+// These rules may interfere with tables in interactives, so need to check this when adding tables.
+#content-container table {
+  @extend .table;
+  @extend .table-sm;
+  @extend .table-hover;
+  thead {
+    @extend .thead-light;
+  }
+}
+
+.nav-link-colour {
+  color: $csfg-light;
+
+  &:hover {
+    color: #253589;
+  }
+}
+
+a {
+  color: #0034b4;
+
+  &:hover {
+    color: #0034b4;
+  }
+}
+
+.glossary-term {
+  color: #212529;
+  text-decoration-line: underline;
+  text-decoration-style: dotted;
+
+  &:hover {
+    color: #212529;
+  }
 }

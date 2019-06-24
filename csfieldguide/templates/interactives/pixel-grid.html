@@ -1,0 +1,22 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div class="container-fluid">
+    <div class="row mb-3 pixel-grid justify-content-center">
+      <div role="group" id="pixel-grid">
+        <!-- This is populated by JS -->
+      </div>
+    </div>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/pixel-grid/css/pixel-grid.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'interactives/pixel-grid/js/pixel-grid.js' %}"></script>
+{% endblock js %}

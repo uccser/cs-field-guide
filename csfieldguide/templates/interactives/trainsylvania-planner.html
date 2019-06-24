@@ -4,12 +4,12 @@
 {% load static %}
 
 {% block html %}
-    <div id="interactive-trainsylvania-planner">
-        <h3>{% trans "Trainsylvania Planner" %}</h3>
-        <p>{% trans "If you take the trains:" %}</p>
-        <input type="text" id="interactive-trainsylvania-planner-input" placeholder="{% blocktrans %}Enter sequence of A's and B's here{% endblocktrans %}">
-        <p id="interactive-trainsylvania-planner-result"></p>
-    </div>
+  <div id="interactive-trainsylvania-planner" class="text-center">
+    <h3>{% trans "Trainsylvania Planner" %}</h3>
+    <p>{% trans "If you take the trains:" %}</p>
+    <input type="text" id="interactive-trainsylvania-planner-input" placeholder="{% blocktrans %}Enter sequence of A's and B's here{% endblocktrans %}">
+    <p id="interactive-trainsylvania-planner-result"></p>
+  </div>
 {% endblock html %}
 
 {% block css %}

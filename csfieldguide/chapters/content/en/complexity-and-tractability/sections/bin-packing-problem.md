@@ -1,4 +1,4 @@
-# Bin Packing Problem
+# Bin packing problem
 
 The bin packing problem is another intractable problem that is encountered in many different forms in everyday life.
 In the bin packing problem there are a number of items of varying sizes and the goal is to minimise the number of bins required to fit all the items.

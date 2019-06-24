@@ -1,0 +1,42 @@
+.packet-attack-creator {
+  align-self: center;
+  background-color: #f8f9fa;
+  border: 2px solid;
+  border-radius: 10px;
+  padding: 5px;
+  max-width: 600px;
+}
+
+@media screen and (max-width: 1200px) {
+  .packet-attack-creator {
+    max-width: 550px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .packet-attack-creator {
+    max-width: 400px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .packet-attack-creator {
+    max-width: 280px;
+  }
+}
+
+.parameter {
+  text-align: right;
+}
+
+.value {
+  justify-content: left;
+}
+
+.button-label {
+  min-width: 100px;
+}
+
+#submit {
+  justify-self: center;
+}

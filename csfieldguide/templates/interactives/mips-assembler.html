@@ -1,0 +1,195 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div class="mb-3 container-fluid padded">
+    <!-- Title Block -->
+    <div id="interactive-mips-assembler" class="row justify-content-center">
+      <h1>{% trans 'MIPS Assembler' %}</h1>
+    </div>
+    <div class="row">
+      <div class="col-md-6 col-sm-12">
+        {% url 'interactives:interactive' 'mips-simulator' as simulator_link %}
+        <p>
+          {% blocktrans %}
+          Enter MIPS code below to see the assembler output.<br>
+          Then copy the plain output to the <a href="{{simulator_link}}" target="_blank">MIPS Simulator</a> interactive to run it.<br>
+          <strong>Note:</strong> Only a subset of MIPS is implemented. Comments start with #.<br>
+          {% endblocktrans %}
+        </p>
+      </div>
+      <div class="col-md-6 col-sm-12">
+        <details id="details">
+          <summary>{% trans 'Supported Instructions' %}</summary>
+          {% trans 'The following instructions are supported by both MIPS interactives' %}:<br>
+          <code>sll</code>, <code>jr</code>, <code>add</code>, <code>addu</code>, <code>sub</code>, <code>subu</code>, <code>and</code>, <code>or</code>, <code>xor</code>, <code>nor</code>, <code>beq</code>, <code>bne</code>, <code>addi</code>, <code>addiu</code>, <code>andi</code>, <code>ori</code>, <code>xori</code>, <code>j</code> <br>
+          {% blocktrans %}The <code>la</code>, <code>li</code> and <code>move</code> instructions are also supported and assembled to appropriate instructions from the list.{% endblocktrans %}<br>
+          {% trans 'See all MIPS instructions on <a href="https://en.wikipedia.org/wiki/MIPS_architecture" target="_blank">Wikipedia</a>.' %}
+        </details>
+      </div>
+    </div>
+
+    <!-- Assembler -->
+    <div class="row justify-content-center">
+      <!-- Input Column -->
+      <div class="col-md-6 col-sm-12 mb-2">
+        <h3>{% trans 'MIPS Input' %}</h3>
+        <!-- Code Block -->
+        <div class="row textarea-padding">
+          <textarea id="mips-input" class="code">
+          </textarea>
+        </div>
+      </div>
+
+      <!-- Output Column -->
+      <div class="col-md-6 col-sm-12 mb-2">
+        <h3>{% trans 'Assembler Output' %}</h3>
+        <div id="assembler-output" class="code scroll">
+        </div>
+      </div>
+    </div>
+
+    <!-- Options Block -->
+    <div class="row justify-content-left">
+      <div class="col-lg-2">
+        <div class="form-group form-check">
+          <input id="show-blank" type="checkbox" class="form-check-input">
+          <label class="form-check-label" for="show-blank">{% trans 'Show context' %}</label>
+        </div>
+        <div class="form-group form-check">
+          <input id="show-instructions" type="checkbox" class="form-check-input">
+          <label class="form-check-label" aria-describedby="note-block" for="show-instructions">{% trans 'Show details' %}</label>
+        </div>
+        <div class="form-group form-check">
+          <input id="show-binary" type="checkbox" class="form-check-input">
+          <label class="form-check-label" for="show-binary">{% trans 'Binary output' %}</label>
+        </div>
+        <div class="form-group form-check">
+          <input id="show-colours" type="checkbox" class="form-check-input">
+          <label class="form-check-label" for="show-colours">{% trans 'Show colours' %}</label>
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <button id="reset-adv" type="button" class="btn btn-outline-danger mb-2">{% trans 'Load advanced example' %}</button>
+        <button id="reset-basic" type="button" class="btn btn-outline-danger mb-2">{% trans 'Load basic example' %}</button>
+      </div>
+      <div class="col-lg-2">
+        <button id="submit-mips" type="button" class="btn btn-success">{% trans 'Assemble!' %}</button>
+      </div>
+    </div>
+
+    <!-- Contributions -->
+    <div class="row justify-content-center upper-padding">
+      <p>
+      {% trans 'This simplified Javascript sandbox is based on the work of <a href="https://github.com/alanhogan/online-mips-assembler" target="_blank">Alan J. Hogan</a>.' %}
+      </p>
+    </div>
+  </div>
+
+  <!-- Hidden Text: Basic Example Code -->
+  <div id="basic-example" class="d-none">.data
+str:  .asciiz "\n{% trans 'Hello World!' %}\n"
+# {% trans 'You can change what is between the quotes if you like' %}
+
+.text
+.globl main
+
+main:
+{% blocktrans %}# Do the addition
+# For this, we first need to put the values
+# to add into registers ($t0 and $t1)
+# You can change the 30 below to another value{% endblocktrans %}
+li $t0, 30
+# {% trans 'You can change the 20 below to another value' %}
+li $t1, 20
+
+{% blocktrans %}# Now we can add the values in $t0
+# and $t1, putting the result in special register $a0{% endblocktrans %}
+add $a0, $t0, $t1
+
+{% blocktrans %}# Set up for printing the value in $a0.
+# A 1 in $v0 means we want to print an integer{% endblocktrans %}
+li $v0, 1
+
+{% blocktrans %}# The system call looks at what is in $v0
+# and $a0, and knows to print what is in $a0{% endblocktrans %}
+syscall
+
+{% blocktrans %}# Now we want to print Hello World
+# So we load the (address of the) string into $a0.
+# The address of the string is too big to be stored
+# by one instruction, so we first load the upper half,
+# shift it across, then load the lower half{% endblocktrans %}
+la $a0, str
+
+# {% trans 'And put a 4 in $v0 to mean print a string' %}
+li $v0, 4
+
+{% blocktrans %}# And just like before syscall looks at
+# $v0 and $a0 and knows to print the string{% endblocktrans %}
+syscall
+
+# {% trans 'Nicely end the program' %}
+li $v0, 0
+jr $ra
+  </div>
+
+  <!-- Hidden Text: Advanced Example Code -->
+  <div id="advanced-example" class="d-none">{% trans '# Define the data strings' %}
+.data
+go_str:   .asciiz "{% trans 'GO!!!!!' %}\n"
+new_line: .asciiz "\n"
+
+.text
+{% trans '# Where should we start?' %}
+.globl main
+
+main:
+  {% trans '# Put our starting value 5 into register $t0. We will update it as we go' %}
+  li $t0, 5
+  {% trans '# Put our stopping value 0 into register $t1' %}
+  li $t1, 0
+
+{% trans '# This label is just used for the jumps to refer to' %}
+start_loop:
+  {% blocktrans %}# This says that if the values in $t0 and $t1 are the same,
+  # it should jump down to the end_loop label. This is the
+  # main loop condition{% endblocktrans %}
+  beq $t0, $t1, end_loop
+  {% blocktrans %}# These three lines prepare for and print the current int
+  # It must be moved into $a0 for the printing{% endblocktrans %}
+  move $a0, $t0
+  li $v0, 1
+  syscall
+  {% blocktrans %}# These three lines print a new line character so that
+  # each number is on a new line{% endblocktrans %}
+  li $v0, 4
+  la $a0, new_line
+  syscall
+  {% trans '# Add -1 to the value in $t0, i.e decrement it by 1' %}
+  addi $t0, $t0, -1
+  {% trans '# Jump back up to the start_loop label' %}
+  j start_loop
+
+{% blocktrans %}# This is the end loop label that we jump to
+# when the loop condition becomes true{% endblocktrans %}
+end_loop:
+  {% trans '# These three lines print the “GO!!!!” string.' %}
+  li $v0, 4
+  la $a0, go_str
+  syscall
+  {% trans '# And these two lines make the program exit nicely' %}
+  li $v0, 0
+  jr $ra
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/mips-assembler/css/mips-assembler.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'interactives/mips-assembler/js/mips-assembler.js' %}"></script>
+{% endblock js %}

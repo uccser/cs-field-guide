@@ -1,0 +1,164 @@
+html {
+    font-family: "Roboto",sans-serif;
+}
+
+body {
+    margin: 0px;
+}
+
+#lzw-compression {
+    h3 {
+    text-align: center;
+    }
+    #lzw-compression-wrapper {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin: 5px;
+        height: 100vh;
+        #lzw-compression-left,
+        #lzw-compression-right {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            margin: 10px;
+        }
+        #lzw-compression-left {
+            .lzw-compression-to-compress-block {
+                display: block;
+            }
+            flex-basis: 140%;
+            textarea {
+                font: 1rem "Courier New", monospace;
+            }
+            #lzw-compression-encoded-text {
+                flex-grow: 1;
+                overflow: scroll;
+                .lzw-code {
+                    margin: 1px;
+                    display: inline-block;
+                    p {
+                        margin: auto;
+                        text-align: center;
+                    }
+                    input.lzw-placeholder-box {
+                        width: 1rem;
+                        border: 1px solid #BFB9B7;
+                        margin: 1px;
+                        font: 1rem "Courier New", monospace !important;
+                        text-align: center;
+                    }
+                }
+            }
+        }
+        #lzw-compression-right {
+            overflow: hidden;
+            position: relative;
+            #lzw-compression-dictionary {
+                flex-grow: 1;
+                overflow: scroll;
+                scroll-behavior: smooth;
+                display: flex;
+                .lzw-compression-dictionary-column {
+                    width: 50%;
+                    margin: 2px;
+                }
+                .lzw-dictionary-entry {
+                    margin: 2px 0;
+                    p {
+                        display: inline-block;
+                        margin: 3px;
+                    }
+                    .lzw-dictionary-code {
+                        width: 2rem;
+                    }
+                }
+            }
+        }
+        textarea {
+            font-family: "Courier New", monospace !important;
+        }
+        #lzw-compression-encoded-text,
+        #lzw-compression-dictionary {
+            font-family: "Courier New", monospace !important;
+            border: 1px solid #BFB9B7;
+            padding: 5px;
+            border-radius: 2px !important;
+            box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12)
+        }
+    }
+}
+
+.highlight {
+    outline: 3px solid #FF7043;
+    outline-offset: 0.5px;
+    font-weight: bold;
+}
+
+.selected {
+    outline: 2px solid #FF7043;
+    outline-offset: 0.5px;
+}
+
+@media (max-width: 835px) {
+    #lzw-compression {
+        #lzw-compression-right {
+            #lzw-compression-dictionary {
+                font-size: 0.9rem;
+            }
+        }
+    }
+}
+
+@media (max-width: 800px) {
+    #lzw-compression {
+        #lzw-compression-right {
+            #lzw-compression-dictionary {
+                font-size: 0.8rem;
+            }
+        }
+    }
+}
+
+@media (max-width: 760px) {
+    #lzw-compression {
+        #lzw-compression-right {
+            #lzw-compression-dictionary {
+                font-size: 0.7rem;
+            }
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    #lzw-compression {
+        #lzw-compression-wrapper {
+            flex-wrap: wrap;
+            p {
+                margin: 2px;
+            }
+            #lzw-compression-left {
+                .lzw-compression-to-compress-block {
+                    margin-bottom: 20px;
+                }
+                #lzw-compression-encoded-text {
+                    height: 30vh;
+                }
+            }
+            #lzw-compression-dictionary {
+                height: 20vh;
+                font-size: 1rem !important;
+            }
+        }
+    }
+}
+
+@media (max-width: 375px) {
+    #lzw-compression {
+        #lzw-compression-right {
+            #lzw-compression-dictionary {
+                font-size: 0.8rem !important;
+            }
+        }
+    }
+}

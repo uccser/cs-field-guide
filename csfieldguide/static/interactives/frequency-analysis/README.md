@@ -4,12 +4,9 @@
 
 This interactive displays a bar chart of counts of specific characters within a piece of text for in understanding frequency analysis attacks.
 
-## Usage
+## Required Files
 
-To use this within the Field Guide it should be used within an iframe tag (e.g. `{interactive slug="frequency-analysis" type="iframe"}`).
-
-## Development
-
-In order to make changes you will need nodejs, the source is written in CoffeeScript (don't edit the compiled JavaScript directly as it gets automatically generated).
-
-In order to make changes run `npm install` (once ever) and make changes into the `main.coffee` file. When changes are made use `npm run build` to compile the CoffeeScript and all modules into a single JavaScript file.
+The interactive loads from a base website template which includes a JavaScript file containing jQuery, Bootstrap, and a few other utilities and polyfills.
+See `static/js/website.js` for a full list.
+This interactive also requires chart.js, es5-shim and es6-shim.
+Their licences are listed in `LICENCE-THIRD-PARTY` with a full copy available in the `third-party-licences` directory.

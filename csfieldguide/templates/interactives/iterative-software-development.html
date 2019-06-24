@@ -1,0 +1,76 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <!-- NOTE: Uninteractive must be displayed in an iframe -->
+  <div class="row justify-content-center iterative-software-title">
+    {% trans 'Iterative Software Development' %}
+  </div>
+  <div class="container-fluid mb-3 iterative-software-development">
+    <div class="row">
+      <!-- p-3 is used to overwrite _grid-framework.scss values -->
+      <div class="col-4 p-3">
+        <div id="feedback-text" class="iterative-feedback-text">
+          <div class="long-feedback">
+            {% trans 'Feedback from showing the<br>prototype to the customer' %}
+          </div>
+          <!-- Text is shortened to allow larger font sizes (>4pt) on the smallest screens -->
+          <div class="short-feedback">
+            {% trans 'Feedback from<br>customer' %}
+          </div>
+        </div>
+      </div>
+      <div class="col-4 p-3">
+        <div id="analysis" class="iterative-software-box">
+          {% trans 'Analysis' %}
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4 p-3">
+        <div id="testing" class="iterative-software-box">
+          {% trans 'Testing' %}
+        </div>
+      </div>
+      <div class="col-4 p-3 offset-4">
+        <div id="design" class="iterative-software-box">
+          {% trans 'Design' %}
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4 p-3 offset-4">
+        <div id="implementation" class="iterative-software-box">
+          {% trans 'Implementation' %}
+        </div>
+      </div>
+    </div>
+    <!-- SVG arrow definitions -->
+    <svg class="iterative-software-svg">
+      <defs>
+        <marker id="arrowhead" markerWidth="10" markerHeight="13" refx="2" refy="6" orient="auto">
+          <path class="arrowhead" d="M2,1 L2,9 L8,6 L2,3 Z"/>
+        </marker>
+        <marker id="grey-arrowhead" markerWidth="8" markerHeight="13" refx="2" refy="6" orient="auto">
+          <path class="arrowhead grey" d="M2,1 L2,9 L8,6 L2,3 Z"/>
+        </marker>
+      </defs>
+
+      <path class="arrow" id="analysis-design"/>
+      <path class="arrow" id="design-implementation"/>
+      <path class="arrow" id="implementation-testing"/>
+      <path class="arrow" id="testing-analysis"/>
+      <path class="arrow grey" id="feedback"/>
+    </svg>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/iterative-software-development/css/iterative-software-development.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'interactives/iterative-software-development/js/iterative-software-development.js' %}"></script>
+{% endblock js %}

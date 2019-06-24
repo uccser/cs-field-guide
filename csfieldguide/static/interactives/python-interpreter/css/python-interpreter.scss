@@ -1,0 +1,16 @@
+#interactive-python-interpreter textarea {
+  font-family: monospace;
+  height: 10rem;
+}
+#interactive-python-interpreter button {
+  margin: 1rem 0;
+}
+#interactive-python-interpreter-output {
+  background-color: #263238;
+  color: white;
+  min-height: 10rem;
+  text-align: left;
+}
+.btn-expand {
+  width: 100%;
+}

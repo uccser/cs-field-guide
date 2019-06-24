@@ -4,10 +4,16 @@
 {% load static %}
 
 {% block html %}
-  <div class="mx-auto mb-3" style="width: 510px;">
-      <h3>{% trans "Do you wish to close this window?" %}</h3>
-      <button type="button" id="close-window-yes-button" class="btn btn-success btn-lg">{% trans "Yes" %}</button>
-      <button type="button" id="close-window-no-button" class="btn btn-secondary btn-lg" disabled>{% trans "No" %}</button>
+  <div id="interactive-close-window" class="container-fluid text-center">
+    <div class="row justify-content-center mb-3">
+      <div class="col-12">
+        <h3>{% trans "Do you wish to close this window?" %}</h3>
+      </div>
+      <div class="col-12">
+        <button type="button" id="close-window-yes-button" class="btn btn-success btn-lg">{% trans "Yes" %}</button>
+        <button type="button" id="close-window-no-button" class="btn btn-secondary btn-lg" disabled>{% trans "No" %}</button>
+      </div>
+    </div>
   </div>
 {% endblock html %}
 

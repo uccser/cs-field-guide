@@ -1,0 +1,122 @@
+#add-city {
+  background-color: #ff7043;
+  border-color: #ff7043;
+}
+
+#cy {
+  width: 500px;
+  height: 500px;
+  display: block;
+  border-left: 2px solid #c6c8ca;
+}
+
+.graph-container {
+  width: 100%;
+  height: 100%;
+  overflow-x: auto;
+}
+
+#cy2 {
+  width: 500px;
+  height: 500px;
+  display: block;
+  border-left: 2px solid #c6c8ca;
+}
+
+.x-axis {
+  width: 500px;
+}
+
+.x-axis:after {
+  content: ' ';
+  display: block; 
+  position: relative;
+  border: 1px solid #c6c8ca;
+}
+
+.x-tick {
+  border-left: 2px solid #c6c8ca;
+  height: 11px;
+  position: absolute;
+}
+
+.x-tick:nth-child(1)  { left: 48px;  }
+.x-tick:nth-child(2)  { left: 148px;  }
+.x-tick:nth-child(3)  { left: 248px; }
+.x-tick:nth-child(4)  { left: 348px; }
+.x-tick:nth-child(5)  { left: 448px; }
+.x-tick:nth-child(6)  { left: 548px; }
+
+.x-tick > span {
+  position: relative;
+  width: 10px; left: -4px; top: 18px;
+  font: 0.75em Arial, Helvetica, sans-serif;
+}
+
+.axis-untis {
+  position: absolute;
+  left: 553px;
+  font: 0.75em Arial, Helvetica, sans-serif;
+}
+
+.y-tick {
+  border-top: 2px solid #c6c8ca;
+  width: 10px;
+  position: absolute;
+}
+
+.y-tick:nth-child(1)  { top: 8px; left: 40px; }
+.y-tick:nth-child(2)  { top: 108px; left: 40px; }
+.y-tick:nth-child(3)  { top: 208px; left: 40px;}
+.y-tick:nth-child(4)  { top: 308px; left: 40px;}
+.y-tick:nth-child(5)  { top: 408px; left: 40px;}
+.y-tick:nth-child(6)  { top: 508px; left: 40px;}
+
+.y-tick > span {
+  position: absolute;
+  width: 10px; top: -8px; right: 12px;
+  font: 0.75em Arial, Helvetica, sans-serif;
+}
+
+.status-ready {
+  color: #007bff;
+}
+
+.status-stopped {
+  color: #dc3545;
+}
+
+.status-running {
+  color: #ff7043;
+}
+
+.status-complete {
+  color: #28a745;
+}
+
+#warning {
+  display: none;
+  padding: 10px;
+}
+
+#warning label {
+  padding: 10px;
+  text-align: center;
+  background-color: rgba(244, 67, 54, 0.51);
+  border: 2px solid #FF4336;
+  border-radius: 5px;
+  z-index: 1;
+  display: block;
+}
+
+@media (max-width: 800px) {
+  #warning {
+    display: block;
+  }
+}
+
+@media (max-height: 800px) {
+  #warning {
+    display: block;
+  }
+}

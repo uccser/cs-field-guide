@@ -1,7 +1,0 @@
-{
-    "type": "matrix",
-    "title": "Scaling and Translation Challenge",
-    "task": "Use both scaling and translation to move the arrow to the target position.",
-    "target": "9 2 3 -4 7 -4 7 -14 11 -14 11 -4 15 -4",
-    "modules": ["first-scale", "first-translate"]
-}

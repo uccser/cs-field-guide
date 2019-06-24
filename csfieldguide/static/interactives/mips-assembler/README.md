@@ -1,15 +1,22 @@
 # MIPS Assembler Interactive
 
-**MIPS Assembler Creator:** Alan Hogan
-**Interactive Author:** Jack Morgan
+**Original author:** Jack Morgan, with assembler code by Alan Hogan
+
+**Recreated by:** Alasdair Smith
 
 This interactive allows users to enter MIPS code to see the assembler output.
 
-## MIPS Assembler License
+## Disclaimer
 
-The [MIPS Assembler](https://github.com/alanhogan/online-mips-assembler) by [Alan Hogan](http://alanhogan.com/) is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-nc-sa/4.0/).
+This is a program to illustrate the complexity of assembly languages.
+The Author *does not* claim that it is an accurate representation of MIPS.
 
+## Licences
 
-## Required Files
+This interactive is influenced by the [Online MIPS Assembler](https://github.com/alanhogan/online-mips-assembler) by [Alan Hogan](http://alanhogan.com/).
+It's licence is listed in `LICENCE-THIRD-PARTY`, with a full copy available in the `third-party-licences` directory.
 
-- This interactive uses jQuery and MaterializeCSS (loaded from base-files folder).
+## Required files
+
+The interactive loads from a base website template which includes a JavaScript file containing jQuery, Bootstrap, and a few other utilities and polyfills.
+See `static/js/website.js` for a full list.

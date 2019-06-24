@@ -1,11 +1,13 @@
 {% extends "base.html" %}
 
+{% load i18n %}
+
 {% block title %}
-  AP-CSP Curriculum Guides
+  {% trans 'AP-CSP Curriculum Guides' %}
 {% endblock title %}
 
 {% block page_heading %}
-  <h1>AP-CSP Curriculum Cuides</h1>
+  <h1>{% trans 'AP-CSP Curriculum Guides' %}</h1>
 {% endblock page_heading %}
 
 {% block content %}
