@@ -29,18 +29,19 @@ The repository directory (or root directory) contains the following:
 
   - This file contains an introduction and important information for the repository.
 
-- ``LICENCE.md``
+- ``LICENCE``
 
-  - This file details the licences the repository uses.
+  - This file details the MIT licence that covers the project infrastructure.
 
-- ``LICENCE-CONTENT.md``
+- ``LICENCE-CONTENT``
 
   - This file details the Creative Commons Attribution-ShareAlike 4.0 International license.
     This licence applies to Markdown files located within the ``csfieldguide/chapters/content/`` directory and images under the ``csfieldguide/static/img`` directory.
 
-- ``LICENCE-THIRD-PARTY.md``
+- ``LICENCE-THIRD-PARTY``
 
-  - This file contains licences for third-party libraries or other resources that may be distributed under licences different than the CS Field Guide licence.
+  - This file contains summaries of licences for third-party libraries or other resources that may be distributed under licences different than the CS Field Guide licence.
+    A full copy of their respective licences can be found in the ``third-party-licences`` directory.
 
 - Plus other files used for installation and repository configuration.
 
