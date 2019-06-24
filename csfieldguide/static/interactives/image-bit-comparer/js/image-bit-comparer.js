@@ -276,11 +276,17 @@ function loadImage() {
     // Replace any transparent pixels
     for (var pixel_index = 0; pixel_index < data.length; pixel_index += 4) {
       if (data[pixel_index + 3] !== 255) {
-        // Transparent pixel. Change transparent pixel to white pixel.
-        data[pixel_index] = 255; // red
-        data[pixel_index + 1] = 255; // green
-        data[pixel_index + 2] = 255; // blue
-        data[pixel_index + 3] = 255; // alpha
+        // Transparent pixel. Change transparent pixel to a similarly coloured solid pixel.
+        red = data[pixel_index];
+        green = data[pixel_index + 1];
+        blue = data[pixel_index + 2];
+        alpha = data[pixel_index + 3];
+
+        // Below method taken from http://marcodiiga.github.io/rgba-to-rgb-conversion
+        data[pixel_index] = (1 - alpha) * 255 + alpha * red; // new red value
+        data[pixel_index + 1] = (1 - alpha) * 255 + alpha * green; // new green value
+        data[pixel_index + 2] = (1 - alpha) * 255 + alpha * blue; // new blue value
+        data[pixel_index + 3] = 255; // new alpha value
       }
     }
     source_canvas_context.putImageData(imageData, 0, 0);
