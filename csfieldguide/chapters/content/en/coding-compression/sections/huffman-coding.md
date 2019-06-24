@@ -14,13 +14,13 @@ But let's start with a very simple textual example.
 This example language uses only 4 different characters, and yet is incredibly important to us: it's the language used to represent DNA, which is made up of sequences of four characters A, C, G and T.
 For example, the 4.6 million characters representing an *E.coli* DNA sequence happens to start with:
 
-```
+```text
 agcttttcattct
 ```
 
 Using a simple data representation, with four characters you'd expect to represent each character using 2 bits, such as:
 
-```
+```text
 a: 00
 c: 01
 g: 10
@@ -29,7 +29,7 @@ t: 11
 
 The 13 characters above would be written using 26 bits as follows - notice that we don't need gaps between the codes for each bits.
 
-```
+```text
 00100111111111010011110111
 ```
 
@@ -39,7 +39,7 @@ In the short sample text above the letter "t" is more common than the other lett
 If we give a shorter code to "t" then 54% of the time (7 out of 13 characters) we'd be using less space.
 For example, we could use the codes:
 
-```
+```text
 a: 010
 c: 00
 g: 011
@@ -48,7 +48,7 @@ t: 1
 
 Then our 13 characters would be coded as:
 
-```
+```text
 0100110011110001011001
 ```
 
@@ -58,7 +58,7 @@ This new code can still be decoded even though the lengths are different.
 For example, try to decode the following bits using the code we were just using.
 The main thing is to start at the first bit on the left, and match up the codes from left to right:
 
-```
+```text
 111001
 ```
 
@@ -96,7 +96,7 @@ His algorithm is fairly simple to do by hand, and is usually expressed as buildi
 
 For example, the code we used above (and repeated here) corresponds to the tree shown below.
 
-```
+```text
 a: 010
 c: 00
 g: 011
@@ -131,7 +131,7 @@ Huffman's algorithm for building the tree would work like this.
 
 First, we count how often each character occurs (or we can work out its probability):
 
-```
+```text
 a: 2 times
 c: 3 times
 g: 1 time
