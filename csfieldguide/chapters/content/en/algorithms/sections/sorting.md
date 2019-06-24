@@ -132,7 +132,7 @@ Insertion sort can be described with informal instructions as follows:
 
 People often perform this when they physically sort items.
 It can also be a very useful algorithm to use if you already have a sorted set of data and want to add a new piece of data into the set.
-For example if you owned a library and purchased a new book you wouldn't do a Selection Sort on the entire library just to place this new book, you would simply insert the new book in its correct place.
+For example if you owned a library and purchased a new book you wouldn't do a selection sort on the entire library just to place this new book, you would simply insert the new book in its correct place.
 
 ## Quicksort
 
