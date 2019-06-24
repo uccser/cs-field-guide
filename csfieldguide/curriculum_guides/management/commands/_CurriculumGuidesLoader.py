@@ -49,23 +49,10 @@ class CurriculumGuidesLoader(TranslatableModelLoader):
             curriculum_guide_translations[language]["introduction"] = content.html_string
             curriculum_guide_translations[language]["name"] = content.title
 
-        curriculum_guide_icon = curriculum_guide_structure.get("icon", None)
-        if curriculum_guide_icon is None:
-            raise MissingRequiredFieldError(
-                self.structure_file_path,
-                ["icon"],
-                "CurriculumGuide"
-            )
-        else:
-            # TODO: Check icon exists here before path modification
-            # Remove directory and extension as svg templatetag automatically adds these
-            curriculum_guide_icon = curriculum_guide_icon[4:-4]
-
         # Create curriculum guide object and save to the db
         curriculum_guide = CurriculumGuide(
             slug=self.curriculum_guide_slug,
             number=self.curriculum_guide_number,
-            icon=curriculum_guide_icon,
         )
 
         self.populate_translations(curriculum_guide, curriculum_guide_translations)

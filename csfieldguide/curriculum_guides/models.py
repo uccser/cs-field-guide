@@ -14,7 +14,6 @@ class CurriculumGuide(TranslatableModel):
     name = models.CharField(max_length=100, default="")
     number = models.SmallIntegerField(unique=True)
     introduction = models.TextField(default="")
-    icon = models.CharField(max_length=100)
 
     def __str__(self):
         """Text representation of CurriculumGuide object.
