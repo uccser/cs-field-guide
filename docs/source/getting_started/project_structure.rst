@@ -33,6 +33,14 @@ The repository directory (or root directory) contains the following:
 
   - This file details the licences the repository uses.
 
+- ``LICENCE-CONTENT.md``
+
+  - This file details the Creative Commons Attribution-ShareAlike 4.0 International license.
+
+- ``LICENCE-THIRD-PARTY.md``
+
+  - This file contains licences for third-party libraries or other resources that may be distributed under licences different than the CS Field Guide licence.
+
 - Plus other files used for installation and repository configuration.
 
 csfieldguide Directory
@@ -53,8 +61,8 @@ The project currently contains the following applications:
 
 - ``general/``
 
-  - This application displays webpages for generic pages on the website.
-    For example: homepage, about page, contact page, etc.
+  - This application contains webpages for generic pages on the website.
+    For example the homepage.
 
 - ``chapters/``
 
@@ -63,6 +71,17 @@ The project currently contains the following applications:
 - ``interactives/``
 
   - This application stores all data related to interactives in the CS Field Guide.
+
+- ``appendices/``
+
+  - This application contains minor appendices such as the `about` and `contributors` pages.
+    It also provides links to other important applications, like Interactives and the Glossary, but does not host any of them.
+
+- ``search/``
+
+  - This application contains the search functionality, including the search results page.
+    This is currently only available in English.
+    
 
 Details on how to modify an application can be found within their relavent author and developer documentation pages.
 

@@ -339,24 +339,24 @@ Nested lists can be created by indenting each level by 4 spaces.
 .. code-block:: none
 
   1. Item 1
-    1. A corollary to the above item, indented by 2 spaces.
+    1. A corollary to the above item, indented by 4 spaces.
     2. Yet another point to consider.
   2. Item 2
     * A corollary that does not need to be ordered.
-      * This is indented four spaces, because it's two for each level.
+      * This is indented eight spaces, because it's four for each level.
       * You might want to consider making a new list by now.
   3. Item 3
 
 1. Item 1
 
-  1. A corollary to the above item, indented by 2 spaces.
+  1. A corollary to the above item, indented by 4 spaces.
   2. Yet another point to consider.
 
 2. Item 2
 
   * A corollary that does not need to be ordered.
 
-    * This is indented four spaces, because it's two for each level.
+    * This is indented eight spaces, because it's four for each level.
     * You might want to consider making a new list by now.
 
 3. Item 3

@@ -75,7 +75,7 @@ Items of interest from this diagram:
 - ``static/interactives/<interactive-slug>/`` -- This is the directory where static files for the interactive are stored, which should be broken down into ``scss``, ``js`` and ``img`` directories.
 
 - ``static/interactives/<interactive-slug>/package.json`` -- The ``package.json`` file is npm's configuration file for projects and modules.
-  Here we include any dependencies the interacive has.
+  Here we include any dependencies the interactive has.
   This file should only be included if the interactive loads **at least 1** npm module.
   An example structure of a package.json file for an interactive is below:
 
