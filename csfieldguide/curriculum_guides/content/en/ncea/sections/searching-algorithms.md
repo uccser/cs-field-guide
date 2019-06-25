@@ -180,24 +180,25 @@ Hint for estimating linear search: Remember that in the worst case, you would ha
 
 {panel type="teacher-note"}
 
-# The following hint is technically incorrect
+# Explanation for the following hint
 
 The hint below this panel talks about a method for finding the average cost of binary search.
-It does not take into account the fact that the box you are looking for could be found before reaching just 1 box remaining.
-It does not calculate the worst case either: an extra comparison is required to check that the remaining box is correct.
+It may not match the way students think about binary search because when doing it by hand it is natural to stop if the value you are looking for is found before getting to just 1 box remaining.
+In practice (and somewhat counterintuitively), it is better *not* to check if you have found the value at each step using an "equals" comparison, but go straight to a "less than" comparison and eliminate half of the list.
+(This is faster because the chances of the "equals" being successful is very low, and it is making two comparisons at each step instead of one).
+If only one comparison is made each time the list is halved, it is faster on average *and* it is easier to calculate the time taken.
+It also means that the average case time is identical to the worst case time (and the best case!)
 
-Big O notation is more appropriate, as it defines a level of complexity rather than a specific value.
-But that is beyond what is expected at this level.
+There are other ways to tackle this question (you may have come across "Big O notation" where binary search is expressed as $O(log n)$, but this approach would require understanding of a whole new mathematical approach, and isn't needed at this level).
 
-Also, AS91074 for which this guide was written, has expired.
-Therefore no changes will be made.
+And bear in mind that the main point of this is that students should experience how incredibly fast the algorithm is - even with 1,000,000 values to search, only about 20 comparisons need to be made.
 
 {panel end}
 
 Hint for estimating binary search: Remember that with each box you look at, you are able to throw away half (give or take 1) of the boxes.
-Therefore, To calculate the average number of boxes that binary search would have to look at, repeatedly divide the number by 2 until it gets down to 1.
+Therefore, to calculate the average number of boxes that binary search would have to look at, repeatedly divide the number by 2 until it gets down to 1.
 However many times you divide by 2 is the average cost for binary search.
-Don’t worry if your answer isn’t perfect; it’s okay to be within 3 or so of the correct answer.
+Don't worry if your answer isn't perfect; it's okay to be within 3 or so of the correct answer.
 This means that if while halving your number it never gets down to exactly 1 (e.g. it gets down to 1.43 and then 0.715), your answer will be near enough.
 As long as you have halved your number repeatedly until it gets down to a number that is less than 1, your answer will be accurate.
 
