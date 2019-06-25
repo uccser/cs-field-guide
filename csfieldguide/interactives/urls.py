@@ -41,6 +41,10 @@ urlpatterns = [
     # eg: redirect /interactives/binary-cards/index.html to /interactives/binary-cards/
     url(
         r"^(?P<interactive_slug>[-\w]+)/index.html/$",
-        RedirectView.as_view(permanent=True, pattern_name="interactives:interactive", query_string=True),
+        RedirectView.as_view(
+            permanent=True,
+            pattern_name="interactives:interactive",
+            query_string=True
+        ),
     ),
 ]
