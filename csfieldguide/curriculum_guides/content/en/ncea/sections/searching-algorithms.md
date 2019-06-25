@@ -187,7 +187,7 @@ It may not match the way students think about binary search because when doing i
 In practice (and somewhat counterintuitively), it is better *not* to check if you have found the value at each step using an "equals" comparison, but go straight to a "less than" comparison and eliminate half of the list.
 (This is faster because the chances of the "equals" being successful is very low, and it is making two comparisons at each step instead of one).
 If only one comparison is made each time the list is halved, it is faster on average *and* it is easier to calculate the time taken.
-It also means that the average case time is identical to the worst case time (and the best case!)
+It also means that the average case time is essentially identical to the worst case time (and the best case!)
 
 There are other ways to tackle this question (you may have come across "Big O notation" where binary search is expressed as $O(log n)$, but this approach would require understanding of a whole new mathematical approach, and isn't needed at this level).
 
