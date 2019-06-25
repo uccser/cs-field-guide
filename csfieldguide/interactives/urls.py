@@ -3,6 +3,7 @@
 from django.conf.urls import url
 
 from . import views
+from django.views.generic.base import RedirectView
 
 app_name = "interactives"
 
@@ -37,14 +38,9 @@ urlpatterns = [
         name="interactive"
     ),
     # the redirect for /further-information/interactives.html is in /general/urls.py
-    # eg: redirect /interactives/binary-numbers/index.html to /interactives/binary-numbers/
+    # eg: redirect /interactives/binary-cards/index.html to /interactives/binary-cards/
     url(
-        r"^(?P<interactive_slug>[-\w]+)/index.html$",
-        RedirectView.as_view(permanent=True, pattern_name="interactive"),
+        r"^(?P<interactive_slug>[-\w]+)/index.html/$",
+        RedirectView.as_view(permanent=True, pattern_name="interactives:interactive", query_string=True),
     ),
-    # eg: redirect /chapters/algorithms.html#searching to /chapters/algorithms/searching/
-    # url(
-    #     r"^(?P<chapter_slug>[-\w]+).html#(?P<chapter_section_slug>[-\w]+)$",
-    #     RedirectView.as_view(permanent=True, pattern_name="chapters:chapter:chapter_section"),
-    # ),
 ]
