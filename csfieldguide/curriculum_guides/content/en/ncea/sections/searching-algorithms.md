@@ -44,9 +44,9 @@ As with all externally assessed Digital Technology reports, you should base your
 
 You should read and work through the interactives in the following sections of the CS Field Guide in order to prepare yourself for the assessed project.
 
-[2.1 - What’s the big picture?](chapters/algorithms.html#whats-the-big-picture)
+[What’s the big picture?]('chapters:chapter' 'algorithms')
 
-[2.2 - Searching Algorithms](chapters/algorithms.html#searching)
+[Searching Algorithms]('chapters:chapter_section' 'algorithms' 'searching')
 
 ## Project
 
@@ -161,7 +161,7 @@ As you do the various calculations, you should add them into a table, such as th
 
 Rather than actually carrying out the searching (the interactive is not big enough!), you are going to calculate the expected averages.
 Computer scientists call this *analysing* an algorithm, and often it is better to work out how long an algorithm can be expected to take before waiting years for it to run and wondering if it will ever complete.
-*Remember that you can use the [big number calculator](interactives/big-number-calculator/index.html) and the [time calculator](http://www.csfieldguide.org.nz/releases/1.9.9/_static/widgets/tract-scaling-v2.html) in the field guide to help you with the math.
+*Remember that you can use the [big number calculator]('interactives:interactive' 'big-number-calculator') and the [time calculator](http://www.csfieldguide.org.nz/releases/1.9.9/_static/widgets/tract-scaling-v2.html) in the field guide to help you with the math.
 If you are really keen, you could make a spreadsheet to do the calculations and graph trends.*
 
 {panel type="teacher-note"}
@@ -189,7 +189,7 @@ In practice (and somewhat counterintuitively), it is better *not* to check if yo
 If only one comparison is made each time the list is halved, it is faster on average *and* it is easier to calculate the time taken.
 It also means that the average case time is essentially identical to the worst case time (and the best case!)
 
-There are other ways to tackle this question (you may have come across "Big O notation" where binary search is expressed as $O(log n)$, but this approach would require understanding of a whole new mathematical approach, and isn't needed at this level).
+There are other ways to tackle this question (you may have come across "Big O notation" where binary search is expressed as \(O(log n)\), but this approach would require understanding of a whole new mathematical approach, and isn't needed at this level).
 
 And bear in mind that the main point of this is that students should experience how incredibly fast the algorithm is - even with 1,000,000 values to search, only about 20 comparisons need to be made.
 
