@@ -1,8 +1,12 @@
 # Excellence Guide for Data Representation (2.44) - Colours
 
-This is an excellence level guide for students attempting data representation in digital technologies achievement standard 2.44 (AS91371). It is aimed at students going for merit or excellence.
+This is an excellence level guide for students attempting data representation in digital technologies achievement standard 2.44 (AS91371).
+It is aimed at students going for merit or excellence.
 
-You will need to do one more project in data representation in addition to this one, because the standard requires you to cover two. This guide only covers text. Note that there is no excellence requirements for data representation -- it only goes up to merit. This guide is called an excellence guide though to avoid confusion about whether or not it is suitable for students aiming for excellence.
+You will need to do one more project in data representation in addition to this one, because the standard requires you to cover two.
+This guide only covers text.
+Note that there is no excellence requirements for data representation -- it only goes up to merit.
+This guide is called an excellence guide though to avoid confusion about whether or not it is suitable for students aiming for excellence.
 
 In order to fully cover the standard, you will also need to have done one more project on data representation, projects covering the three encoding topics up to the achieved level (error control coding, encryption, and compression), and a project covering human computer interaction, and included these in your report.
 
@@ -31,7 +35,9 @@ As with all externally assessed reports, you should base your explanations aroun
 
 This section will be around ¼ to ½ of a page.
 
-Start the data representation section of your report by writing an introduction to the topic of data representation. Describe what a "bit" is, and why computers use bits to represent data. Briefly describe a couple of the ways in which computers physically represent bits (if you open a computer, you will ***not*** see lots of little 0's and 1's!).
+Start the data representation section of your report by writing an introduction to the topic of data representation.
+Describe what a "bit" is, and why computers use bits to represent data.
+Briefly describe a couple of the ways in which computers physically represent bits (if you open a computer, you will ***not*** see lots of little 0's and 1's!).
 
 This explanation must be in your own words, based on what you understood in class (e.g. do not paraphrase a definition)
 
@@ -48,7 +54,8 @@ Each of the subsections will look at one of these parts.
 
 #### Explaining how a colour is represented with red, green, and blue components
 
-**Choose a colour**, using the RGB colour mixer which is near the start of the section on colours (do not use the CMY one). Include a sample of your chosen colour in your report (it just needs to be a small rectangle, no more than about 50 pixels tall), and specify how much red, green, and blue your chosen colour has.
+**Choose a colour**, using the RGB colour mixer which is near the start of the section on colours (do not use the CMY one).
+Include a sample of your chosen colour in your report (it just needs to be a small rectangle, no more than about 50 pixels tall), and specify how much red, green, and blue your chosen colour has.
 
 Briefly explain (1 - 2 sentences) why colours are described as amounts of red, green, and blue.
 
@@ -64,25 +71,37 @@ This section should be no longer than ⅓ of a page in your report.
 
 #### Converting a colour to a 8 bit Representation
 
-Convert your chosen colour to an 8 bit representation. The best way of doing this is to take your 24 bit colour representation, and remove all the bits except for the leftmost 3 red bits, leftmost 3 green bits, and leftmost 2 blue bits. Put your colour into the 8 bit colour interactive to see what it looks like.
+Convert your chosen colour to an 8 bit representation.
+The best way of doing this is to take your 24 bit colour representation, and remove all the bits except for the leftmost 3 red bits, leftmost 3 green bits, and leftmost 2 blue bits.
+Put your colour into the 8 bit colour interactive to see what it looks like.
 
-Explain whether or not your colour looks different with just 8 bits. How many different colours can be represented with 8 bits? And what about 24 bits? Why is it impossible to represent every colour that can be represented with 24 bits, with just 8 bits?
+Explain whether or not your colour looks different with just 8 bits.
+How many different colours can be represented with 8 bits? And what about 24 bits?
+Why is it impossible to represent every colour that can be represented with 24 bits, with just 8 bits?
 
 This section should be no longer than ⅓ of a page in your report.
 
 #### Discussing the use of 24 bit colour and alternatives
 
-24 bit colour is the most widely used representation of colour, but it is not the only one. Sometimes we can use 8 bit colour or especially 16 bit colour, and sometimes we want more than 24 bit colour, even though the human eye can't actually distinguish between more than 24 bits worth of colours. In this section, you should write about why we mostly use 24 bit colour, and the situations where we might use more or less bits for colours.
+24 bit colour is the most widely used representation of colour, but it is not the only one.
+Sometimes we can use 8 bit colour or especially 16 bit colour, and sometimes we want more than 24 bit colour, even though the human eye can't actually distinguish between more than 24 bits worth of colours.
+In this section, you should write about why we mostly use 24 bit colour, and the situations where we might use more or less bits for colours.
 
 The field guide contains a few ideas, and you may find the interactives useful for experimenting, although you should do some of your own reading as well. [Wikipedia is a good place to start](https://en.wikipedia.org/wiki/Color_depth#Direct_color), although remember not to paraphrase information. Put it into your own words, and relate it back to your own understand of representing colours.
 
-**This section should be no longer than ½ to 1 page in your report**. There should be no more than **½ a page of text** --- only go up to 1 page if you have included diagrams or images. Any images you include must be entirely your own work, and if you use the field guide interactives which show how images appear with a different number of bits, then you must **use your own image**, setting it with the "Choose file" option in the interactive. Your explanation must explain what your image is demonstrating.
+**This section should be no longer than ½ to 1 page in your report**.
+There should be no more than **½ a page of text** --- only go up to 1 page if you have included diagrams or images.
+Any images you include must be entirely your own work, and if you use the field guide interactives which show how images appear with a different number of bits, then you must **use your own image**, setting it with the "Choose file" option in the interactive. Your explanation must explain what your image is demonstrating.
 
 Be sure that your final report is printed in colour, if you include images.
 
 ## Hints for success
 
-- Your 2.44 report should be structured in the following way. Note that the bolded parts are recommended headings. Details have not been included for sections covered in other guides. Look carefully at the Representing Data section to ensure you have structured your report properly. This will help the marker find what they need to find.
+- Your 2.44 report should be structured in the following way.
+Note that the bolded parts are recommended headings.
+Details have not been included for sections covered in other guides.
+Look carefully at the Representing Data section to ensure you have structured your report properly.
+This will help the marker find what they need to find.
 
 {text-box indented="True"}
 **Computer Science report for 2.44**

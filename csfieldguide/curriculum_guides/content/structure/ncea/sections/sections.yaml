@@ -37,7 +37,7 @@ sorting-algorithms:
 achieved-compression-run-length-encoding:
   section-number: 13
 
-achieved-encryption-caesar-cypher:
+achieved-encryption-caesar-cipher:
   section-number: 14
 
 achieved-error-control-check-sums:

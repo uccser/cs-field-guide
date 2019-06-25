@@ -1,9 +1,12 @@
 # Excellence Guide for Data Representation (2.44) - Text
 
-This is an excellence level guide for students attempting data representation in digital technologies achievement standard 2.44 (AS91371). It is aimed at students aiming for merit or excellence.
+This is an excellence level guide for students attempting data representation in digital technologies achievement standard 2.44 (AS91371).
+It is aimed at students aiming for merit or excellence.
 
 **You will need to do one more project in data representation in addition to this one**, because the standard requires you to cover two types of data.
-This guide covers only text. Note that there is no excellence requirement for data representation -- it only goes up to merit. This guide is called an excellence guide though to avoid confusion about whether or not it is suitable for students aiming for excellence.
+This guide covers only text.
+Note that there is no excellence requirement for data representation -- it only goes up to merit.
+This guide is called an excellence guide though to avoid confusion about whether or not it is suitable for students aiming for excellence.
 
 In order to fully cover the standard, as well as one more investigation on data representation for another type of data, you will need to do projects covering the three encoding topics up to the achieved level (error control coding, encryption, and compression), follow one of the three coding methods to excellence level, and a project covering human computer interaction, and include these in your report.
 
@@ -35,7 +38,9 @@ You should read and work through the interactives in the following sections of t
 
 This section will be around ¼ to ½ of a page.
 
-Start the data representation section of your report by writing an introduction to the topic of data representation. Describe what a "bit" is, and why computers use bits to represent data. Briefly describe a couple of the ways in which computers physically represent bits (if you open a computer, you will ***not*** see lots of little 0's and 1's!).
+Start the data representation section of your report by writing an introduction to the topic of data representation.
+Describe what a "bit" is, and why computers use bits to represent data.
+Briefly describe a couple of the ways in which computers physically represent bits (if you open a computer, you will ***not*** see lots of little 0's and 1's!).
 
 This explanation must be in your own words, based on what you understood in class (e.g. do not paraphrase a definition).
 
@@ -53,33 +58,46 @@ This section will be around 1½ pages in your report. There are 5 parts to it.
 
 **Choosing the text samples**
 
-Choose two text samples, which you will use to explain Unicode and the representations for it. One text sample should be in English, and the other should be in an Asian language, for example Japanese. The text samples should be no longer than 50 characters long. You should be able to find a suitable text sample online, for example by visiting a Japanese forum. Check it in [Google Translate](https://translate.google.co.nz/) to ensure it is appropriate for your report.
+Choose two text samples, which you will use to explain Unicode and the representations for it.
+One text sample should be in English, and the other should be in an Asian language, for example Japanese.
+The text samples should be no longer than 50 characters long.
+You should be able to find a suitable text sample online, for example by visiting a Japanese forum.
+Check it in [Google Translate](https://translate.google.co.nz/) to ensure it is appropriate for your report.
 
 #### Introduction to Unicode and UTF
 
 Start by writing an introductory paragraph to Unicode and the representations used to represent it. Your paragraph should:
+
 - Explain what Unicode is.
-- Explain how Unicode is a character set (and not a representation). Use one character from each of your text samples as examples in your explanation.
+- Explain how Unicode is a character set (and not a representation).
+Use one character from each of your text samples as examples in your explanation.
 - Explain how UTF-8, UTF-16, and UTF-32 are various ways of representing the Unicode characters.
+
 The paragraph should be no more ½ of a page long.
 
 If you are confused, reread the Unicode section in the CS Field Guide or ask your teacher for help.
 
 #### Include your text samples
 
-Show your text samples. Explain that you are going to be using them to explain the concepts in your report.
+Show your text samples.
+Explain that you are going to be using them to explain the concepts in your report.
 
-These should not take up more than ⅓ of a page in your report, for both of them. If they take more space, than use smaller samples.
+These should not take up more than ⅓ of a page in your report, for both of them.
+If they take more space, than use smaller samples.
 
 #### Showing examples of UTF-32 representation
 
-Show how the first character in each of your samples is represented using UTF-32. Briefly explain what UTF-32 does.
+Show how the first character in each of your samples is represented using UTF-32.
+Briefly explain what UTF-32 does.
 
 This should not take up more than ⅓ to ½ of a page in your report.
 
 #### Showing examples of UTF-8 representation
 
-Show how the first character in each of your samples is represented using UTF-8. Explain the method that was used to convert the character's unicode number into a UTF-8 representation. Your process for each character should be the following (which is in the CS Field Guide).
+Show how the first character in each of your samples is represented using UTF-8.
+Explain the method that was used to convert the character's unicode number into a UTF-8 representation.
+Your process for each character should be the following (which is in the CS Field Guide).
+
 1. Look up the character in the Unicode table to get its Unicode number
 2. Convert the Unicode number into binary
 3. Look at the UTF-8 conversion table to find the correct pattern to use
@@ -89,11 +107,14 @@ This should not take up more than ½ of a page in your report.
 
 #### Comparing the various UTF representations
 
-The field guide includes an interactive [coming soon] which is used to determine how many bits are needed to represent a piece of text, using UTF-8, UTF-16, or UTF-32. Use that interactive to determine the best UTF representation for each of your text samples.
+The field guide includes an interactive which is used to determine how many bits are needed to represent a piece of text, using UTF-8, UTF-16, or UTF-32.
+Use that interactive to determine the best UTF representation for each of your text samples.
 
 Include a table in your report that shows the size for each text sample, with each representation.
 
-Explain your findings. Which seems to be the best for English text? Which seems to be the best for Asian text? Why is this the case?
+Explain your findings.
+Which seems to be the best for English text?
+Which seems to be the best for Asian text? Why is this the case?
 
 (optional) If you are keen, you might like to read more about [UTF-16](https://en.wikipedia.org/wiki/UTF-16) and [UTF-32](https://en.wikipedia.org/wiki/UTF-32) to try and figure out why you got the results that you did.
 
@@ -101,7 +122,11 @@ This (including the table) should not take more than ⅔ of a page in your repor
 
 ## Hints for success
 
-- Your 2.44 report should be structured in the following way. Note that the bolded parts are recommended headings. Details have not been included for sections covered in other guides. Look carefully at the Representing Data section to ensure you have structured your report properly. This will help the marker find what they need to find.
+- Your 2.44 report should be structured in the following way.
+Note that the bolded parts are recommended headings.
+Details have not been included for sections covered in other guides.
+Look carefully at the Representing Data section to ensure you have structured your report properly.
+This will help the marker find what they need to find.
 
 {text-box indented="True"}
 **Computer Science report for 2.44**
