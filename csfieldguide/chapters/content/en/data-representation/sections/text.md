@@ -113,7 +113,7 @@ Have a go at the following ASCII exercises:
 - How would you represent "science" in ASCII? (ignore the `"` marks)
 - How would you represent "Wellington" in ASCII? (note that it starts with an upper case "W")
 - How would you represent "358" in ASCII? (it is three characters, even though it looks like a number)
-- How would you represent "Hello, how are you?" in ASCII?(look for the comma, question mark, and space characters in ASCII table)
+- How would you represent "Hello, how are you?" in ASCII? (look for the comma, question mark, and space characters in ASCII table)
 
 Be sure to have a go at all of them before checking the answer!
 
