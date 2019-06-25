@@ -71,13 +71,13 @@ This is the basis of data representation - anything that can have two different 
 When we write what is stored in a computer on paper, we normally use "0" for one of the states, and "1" for the other state.
 For example, a piece of computer memory could have the following voltages:
 
-```
+```text
 low low high low high high high high low high low low
 ```
 
 We could allocate **"0"** to **"low"**, and **"1"** to **"high"** and write this sequence down as:
 
-```
+```text
 0 0 1 0 1 1 1 1 0 1 0 0
 ```
 
@@ -89,8 +89,8 @@ They are just using physical mechanisms such as high and low voltage, north or s
 # Bits
 
 The use of the two digits 0 and 1 is so common that some of the best known computer jargon is used for them.
-Since there are only two digits, the system is called binary.
-The short word for a "binary digit" is made by taking the first two letters and the last letter — a *bit* is just a digit that can have two values.
+Since there are only two digits, the system is called {glossary-link term="binary-number-system"}binary{glossary-link end}.
+The short word for a "binary digit" is made by taking the first two letters and the last letter — a *{glossary-link term="bit"}bit{glossary-link end}* is just a digit that can have two values.
 
 {panel end}
 

@@ -16,14 +16,14 @@ python-markdown-math==0.6
 # Search
 django-haystack==2.8.1
 Whoosh==2.7.4
-django-widget-tweaks==1.4.3
+django-widget-tweaks==1.4.5
 
 # XML Parsing
-lxml==4.3.3
+lxml==4.3.4
 cssselect==1.0.3
 
 # YAML Loading
-PyYAML==5.1
+PyYAML==5.1.1
 
 # I18n
 django-modeltranslation==0.13.1

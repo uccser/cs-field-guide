@@ -7,7 +7,7 @@
 The material in this chapter relates to "digital devices".
 While it definitely applies to conventional computers, it also applies to all sorts of other gadgets, such as alarm clocks, air conditioning units, microwave ovens, stopwatches, electronic instruments, point of sale units, parking meters and burglar alarms.
 In fact, most of the student exercises will be a lot easier to do on a device with few features, because this makes it possible for all the likely tasks and sequences to be considered.
-Evaluating something like "Microsoft Windows" or "iPads" is far too wide a scope, as there are so many subsystems, each of which would make a good project on its own (how menus work, how to find files, how to open a program, perhaps even just how to switch it on!).
+Evaluating something like "Microsoft Windows" or "an iPad" is far too wide a scope, as there are so many subsystems, each of which would make a good project on its own (how menus work, how to find files, how to open a program, perhaps even just how to switch it on!).
 
 {panel end}
 
@@ -18,14 +18,14 @@ Humans made computers, so why are computers often so frustrating for humans to u
 Computers are becoming hundreds of times more powerful every decade, yet there is one important component of the computer system that hasn't changed significantly in performance since the first computers were developed in the 1940s: the human.
 For a computer system to work really well, it needs to be designed by people who understand the human part of the system well.
 
-In this chapter we'll look at what typically makes good and bad interfaces.
+In this chapter we'll look at what typically makes good and bad {glossary-link term="interface"}interfaces{glossary-link end}.
 The idea is to make you sensitive to the main issues so that you can critique existing interfaces, and begin to think about how you might design good interfaces.
 
-Often software developers create a computer program or system for a device that requires the user to spend some time to learn how to use.
+Often software developers create a {glossary-link term="program"}computer program{glossary-link end} or system for a device that requires the {glossary-link term="user"}user{glossary-link end} to spend some time to learn how to use.
 The interface might be easy to use for the developer since they know the system really well, but a user just wants to get the job done without spending too much time learning the software (and they might switch to another program if it's too hard to use).
 A developer might think of the program and the user separately, but the user is part of the system, and a developer needs to create the software with the user in mind, designing a program that they will find easy to use and intuitive.
 
-Human-computer interaction (HCI) is about trying to make programs useful, usable, and accessible to humans.
+{glossary-link term="human-computer-interaction"}Human-computer interaction{glossary-link end} (HCI) is about trying to make programs useful, usable, and accessible to humans.
 It goes way beyond choosing layouts, colours, and fonts for an interface.
 It's strongly influenced by the psychology of how people interact with digital devices, which means understanding many issues about how people behave, how they perceive things, and how they understand things so that they feel that a system is working to help them and not hinder them.
 By understanding HCI, developers are more likely to create software that is effective and popular.

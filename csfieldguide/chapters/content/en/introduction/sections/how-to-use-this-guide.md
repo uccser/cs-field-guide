@@ -1,6 +1,6 @@
 # How to use this guide
 
-We've designed most chapters so that they can stand alone; the few that build on previous chapters explain at the outset what preparation you need (the most useful general preparation is the chapter on data representation, because everything on a computer is stored using binary numbers and so they have an important role in many areas of computer science).
+We've designed most chapters so that they can stand alone; the few that build on previous chapters explain at the outset what preparation you need (the most useful general preparation is the chapter on data representation, because everything on a computer is stored using {glossary-link term="binary-number-system"}binary numbers{glossary-link end} and so they have an important role in many areas of computer science).
 
 Each chapter begins with a section about the "big picture" — why the topic is useful for understanding and designing computer systems, and what can be achieved using the main ideas in the chapter.
 You'll then be introduced to key ideas and applications of the topic through examples, and wherever possible we'll have interactive activities that enable you to work with the ideas first hand.
@@ -13,6 +13,6 @@ There will be pointers for further reading, but be warned that some of it might 
 
 # Curricula support
 
-This guide is intended to support a variety of international curricula; [click here to view a list of available curricula guides]('appendices:appendix' 'curriculum-guides').
+This guide is intended to support a variety of international curricula; [click here to view a list of available curricula guides]('appendices:curriculum-guides').
 
 {panel end}

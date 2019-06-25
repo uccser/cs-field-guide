@@ -79,6 +79,20 @@ body {
   }
 }
 
+.heading-permalink {
+  @extend .no-text-decoration;
+  color: $text-color;
+  img {
+    visibility: hidden;
+  }
+  &:hover img {
+    visibility: visible;
+  }
+}
+.section-heading-number {
+  @extend .text-muted;
+}
+
 .no-text-decoration {
   text-decoration: none !important;
 }
@@ -93,6 +107,15 @@ body {
 
 .btn {
   cursor: pointer;
+}
+
+.homepage-cta svg {
+  max-height: 120px;
+}
+
+.btn-chapter-section {
+  max-width: 40%;
+  white-space: normal;
 }
 
 ol, ul {
@@ -206,7 +229,7 @@ blockquote {
 
 .nav-link-colour {
   color: $csfg-light;
-  
+
   &:hover {
     color: #253589;
   }

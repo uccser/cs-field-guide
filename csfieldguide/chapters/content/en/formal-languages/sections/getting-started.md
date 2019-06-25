@@ -10,7 +10,7 @@ But now we introduce the *wildcard* code, which in this case is "." &ndash;  thi
 This matches any character at all.
 So now you can do a search like
 
-```
+```text
 tim.b
 ```
 
@@ -18,7 +18,7 @@ and you will get any words that have "tim" followed by "b" with a single charact
 Are there any words that match "tim..b"? "tim...b"?
 You can specify any number of occurrences of a symbol by putting a '\*' after it (again a widely used convention), so:
 
-```
+```text
 tim.*b
 ```
 
@@ -27,7 +27,7 @@ will match any words where "tim" is followed by "b", separated by any number of 
 Try the following search.
 What kind of words does it find?
 
-```
+```text
 x.*y.*z
 ```
 

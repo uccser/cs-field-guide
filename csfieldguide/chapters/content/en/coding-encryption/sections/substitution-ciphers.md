@@ -22,7 +22,7 @@ Before we go any further, have a go at cracking this simple code.
 If you're stuck, try working in a small group with friends and classmates so that you can discuss ideas.
 A whiteboard or pen and paper would be helpful for doing this exercise.
 
-```
+```text
 DRO BOCMEO WSCCSYX GSVV ECO K ROVSMYZDOB,
 KBBSFSXQ KD XYYX DYWYBBYG.
 LO BOKNI DY LBOKU YED KC CYYX
@@ -43,11 +43,11 @@ In practice, far stronger ciphers are used, although for now we are going to loo
 
 The answer is:
 
-```
+```text
 THE RESCUE MISSION WILL USE A HELICOPTER,
 ARRIVING AT NOON TOMORROW.
 BE READY TO BREAK OUT AS SOON
-AS YOU HEAR THREE  
+AS YOU HEAR THREE
 BLASTS ON A WHISTLE.
 I'LL BE WEARING A RED ARMBAND.
 ```
@@ -121,7 +121,7 @@ In practice, a good encryption system ensures that the plaintext cannot be obtai
 
 As an example of *decrypting* with Caesar cipher, assume that we have the following ciphertext, and that the key is 6.
 
-```
+```text
 ZNK WAOIQ HXUCT LUD PASVY UBKX ZNK RGFE JUM
 ```
 
@@ -130,7 +130,7 @@ For example, the letter 6 places before "Z" is "T", 6 places before "N" is "H", 
 From this, we know that the first word must be "THE".
 Going through the entire ciphertext in this way, we can eventually get the plaintext of:
 
-```
+```text
 THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG
 ```
 
@@ -147,7 +147,7 @@ You should ensure you understand how to encrypt messages yourself though!
 Decrypt the following message using Caesar cipher.
 The key is 4.
 
-```
+```text
 HIGVCTXMRK GEIWEV GMTLIV MW IEWC
 ```
 
@@ -155,7 +155,7 @@ HIGVCTXMRK GEIWEV GMTLIV MW IEWC
 
 What is the key for the following *cipher text*?
 
-```
+```text
 THIS IS A TRICK QUESTION
 ```
 
@@ -167,9 +167,9 @@ THIS IS A TRICK QUESTION
 
 For the first challenge, the answer is:
 
-```
+```text
 DECRYPTING CAESAR CIPHER IS EASY
-```  
+```
 
 For the second challenge, the answer is 26 (or 0, or any multiple of 26).
 Because that is a full rotation, the ciphertext and plaintext are equivalent.
@@ -182,7 +182,7 @@ Encryption is equally straightforward.
 Instead of rotating backwards (subtracting) like we did for decrypting, we rotate forwards (add) the key to each letter in the plaintext.
 For example, assume we wanted to encrypt the following text with a key of 7.
 
-```
+```text
 HOW ARE YOU
 ```
 
@@ -190,7 +190,7 @@ We would start by working that the letter that is 7 places ahead of "H" is "O", 
 This means that the first word of the plaintext encrypts to "OVD" in the ciphertext.
 Going through the entire plaintext in this way, we can eventually get the ciphertext of:
 
-```
+```text
 OVD HYL FVB
 ```
 
@@ -202,7 +202,7 @@ OVD HYL FVB
 
 Encrypt the following message using Caesar cipher and a key of 20:
 
-```
+```text
 JUST ANOTHER RANDOM MESSAGE TO ENCRYPT
 ```
 
@@ -210,7 +210,7 @@ JUST ANOTHER RANDOM MESSAGE TO ENCRYPT
 
 Why is using a key of 26 on the following message not a good idea?
 
-```
+```text
 USING A KEY OF TWENTY SIX IN CAESAR CIPHER IS NOT A GOOD IDEA
 ```
 
@@ -222,7 +222,7 @@ USING A KEY OF TWENTY SIX IN CAESAR CIPHER IS NOT A GOOD IDEA
 
 For the first challenge, the answer is:
 
-```
+```text
 DOMN UHINBYL LUHXIG GYMMUAY NI YHWLSJN
 ```
 
@@ -291,7 +291,7 @@ You can paste in some text to see which are the most common (and least common) c
 The following text has been coded using a Caesar cipher.
 To try to make sense of it, paste it into the statistical analyser above.
 
-```
+```text
 F QTSL RJXXFLJ HTSYFNSX QTYX TK
 XYFYNXYNHFQ HQZJX YMFY HFS GJ
 ZXJI YT FSFQDXJ BMFY YMJ RTXY
@@ -308,7 +308,7 @@ YMJ HTIJ
 There are also text analysers available online, such as the one on [this website](http://www.richkni.co.uk/php/crypta/freq.php).
 For the text given, it gives the output in the table below.
 
-```
+```text
 Number of occurrences of each letter in the ciphertext
 
 J: 22          Q: 9          K: 3          D: 1
@@ -334,7 +334,7 @@ If you put the ciphertext into the above interactive and set a key of 5, you wil
 
 The message you should have decrypted is:
 
-```
+```text
 A LONG MESSAGE CONTAINS LOTS OF
 STATISTICAL CLUES THAT CAN BE
 USED TO ANALYSE WHAT THE MOST
@@ -360,19 +360,19 @@ Try to guess the key with as few guesses as you can!
 
 **Challenge 1**
 
-```
+```text
 WTGT XH PCDIWTG BTHHPVT IWPI NDJ HWDJAS WPKT CD IGDJQAT QGTPZXCV LXIW ATIITG UGTFJTCRN PCPANHXH
 ```
 
 **Challenge 2**
 
-```
+```text
 OCDN ODHZ OCZ HZNNVBZ XJIOVDIN GJON JA OCZ GZOOZM O, RCDXC DN OCZ NZXJIY HJNO XJHHJI GZOOZM DI OCZ VGKCVWZO
 ```
 
 **Challenge 3**
 
-```
+```text
 BGDTCU BCEJ, BCXKGT, CPF BCPG BQQOGF VJTQWIJ VJG BQQ
 ```
 
@@ -384,19 +384,19 @@ BGDTCU BCEJ, BCXKGT, CPF BCPG BQQOGF VJTQWIJ VJG BQQ
 
 For the first challenge, the most common letter is "E", with a key of 15:
 
-```
+```text
 HERE IS ANOTHER MESSAGE THAT YOU SHOULD HAVE NO TROUBLE BREAKING WITH LETTER FREQUENCY ANALYSIS
 ```
 
 For the second challenge, the most common letter is "T", with a key of 21:
 
-```
+```text
 THIS TIME THE MESSAGE CONTAINS LOTS OF THE LETTER T, WHICH IS THE SECOND MOST COMMON LETTER IN THE ALPHABET
 ```
 
 For the third challenge, the most common letter is "Z", with a key of 2. Obviously this one was a lot more challenging than the other two!
 
-```
+```text
 ZEBRAS ZACH, ZAVIER, AND ZANE ZOOMED THROUGH THE ZOO
 ```
 
@@ -437,7 +437,7 @@ The Vigenere cipher is known as a *polyalphabetic substitution cipher*, since it
 Another kind of attack is the *known plaintext* attack, where you know part or all of the solution.
 For example, if you know that I start all my messages with "HI THERE", you can easily determine the key for the following message.
 
-```
+```text
 AB MAXKX LXVKXM FXXMBGZ TM MPH TF MANKLWTR
 ```
 
@@ -445,7 +445,7 @@ Even if you did not know the key used a simple rotation (not all substitution ci
 This goes a long way towards deciphering the message.
 Filling in the letters you know, you would get:
 
-```
+```text
 AB MAXKX LXVKXM FXXMBGZ TM MPH TF MANKLWTR
 HI THERE _E__ET _EETI__ _T T__ __ TH______
 ```
@@ -459,7 +459,7 @@ Have a go at figuring it out.
 
 The deciphered message is:
 
-```
+```text
 HI THERE SECRET MEETING AT TWO AM THURSDAY
 ```
 
@@ -508,7 +508,7 @@ This is easy for a Caesar cipher because there are only 25 possible keys.
 For example, the following ciphertext is a single word, but is too short for a statistical attack.
 Try putting it into the decoder above, and trying keys until you decipher it.
 
-```
+```text
 EIJUDJQJYEKI
 ```
 
@@ -553,7 +553,7 @@ In computer science, problems that take an exponential amount of time to solve a
 Working out which problems are tractable and which are intractable is a major area of research in computer science — many other problems that we care about appear to be intractable, much to our frustration.
 The area of encryption is one of the few situations where we're pleased that an algorithm is intractible!
 
-This guide has a [whole chapter about tractability]('chapters:chapter' 'complexity-tractability'), where you can explore these issues further.
+This guide has a [whole chapter about tractability]('chapters:chapter' 'complexity-and-tractability'), where you can explore these issues further.
 
 {panel end}
 

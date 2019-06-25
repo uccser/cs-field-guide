@@ -32,7 +32,7 @@ class IndexView(generic.ListView):
             Dictionary of context data.
         """
         context = super(IndexView, self).get_context_data(**kwargs)
-        context["chapters"] = Chapter.objects.all().prefetch_related("interactives")
+        context["chapters"] = Chapter.objects.prefetch_related('interactives')
         return context
 
 

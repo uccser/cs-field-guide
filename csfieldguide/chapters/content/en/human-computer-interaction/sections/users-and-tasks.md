@@ -1,6 +1,6 @@
 # Users and tasks
 
-A very important consideration when designing or evaluating an interface is who the users are likely to be.
+A very important consideration when designing or evaluating an interface is who the {glossary-link term="user"}users{glossary-link end} are likely to be.
 For example, the typical age of a user can be significant: very young children may have difficulty reading some words and prefer images and animations, while someone in a commercial setting who uses an interface frequently will want it to be very fast to use, perhaps using keyboard shortcuts only.
 
 Think about the kinds of considerations you would have to make for the following user groups.
@@ -23,7 +23,7 @@ Think about the kinds of considerations you would have to make for the following
 
 The interface is the only part of a program that the user sees (that's the definition of an interface!), so if the interface doesn't work for them, then the program doesn't work.
 
-Another important thing to do when designing and evaluating an interface is to think about what tasks it is being used for.
+Another important thing to do when designing and evaluating an interface is to think about what {glossary-link term="task"}tasks{glossary-link end} it is being used for.
 Advertisements for digital devices often hide the complexity of a task, and simply point out the features available for doing the task.
 For example, suppose a smartphone is advertised as having a high resolution camera.
 The real task that someone might want to do is to take a photo of something they've just spotted, and send it to a friend.

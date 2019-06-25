@@ -46,7 +46,7 @@ El *error de captura* se da cuando nos acostumbramos a una ruta o un procedimien
 
 Mucha gente se culpa a sí misma por estos errores, pero la psicología básica nos dice que se trata de un error natural y un buen sistema debería proteger a los usuarios de tales errores (por ejemplo, permitiendo que los deshagan).
 
-{comentario Se pueden analizar las funciones de un botón como ejemplo de precisión en los detalles (arrastrar mientras se presiona, etc.); se puede añadir una actividad interactiva con una casilla simple (normal) y un botón (y quizá un menú) aquí para que el lector pueda experimentar con lo que sucede (por ej. hacer clic pero deslizando antes de soltar)}
+{comment Se pueden analizar las funciones de un botón como ejemplo de precisión en los detalles (arrastrar mientras se presiona, etc.); se puede añadir una actividad interactiva con una casilla simple (normal) y un botón (y quizá un menú) aquí para que el lector pueda experimentar con lo que sucede (por ej. hacer clic pero deslizando antes de soltar)}
 
 El diseño de buenas interfaces es *muy* difícil. Justo cuando crees que tienes una idea inteligente, descubres que hay un grupo de gente que no consigue averiguar cómo usarla o ves que falla en alguna situación. O lo que es peor, algunos desarrolladores piensan que sus usuarios son tontos y que todos los problemas con la interfaz son culpa del usuario y no del desarrollador. Pero el problema real es que el desarrollador conoce muy bien el sistema, mientras que el usuario solo quiere realizar sus tareas sin tener que pasar mucho tiempo aprendiendo a usar el programa. Si es muy difícil de usar y hay otras alternativas, el usuario buscará algo que le resulte más sencillo. ¡Las buenas interfaces valen mucho en el mercado!
 

@@ -17,7 +17,7 @@ The interactive below allows you to experiment with CMY incase you are not famil
 
 Computer screens and related devices also rely on mixing three colours, except they need a different set of primary colours because they are *additive*, starting with a black screen and adding colour to it.
 For additive colour on computers, the colours red, green and blue (RGB) are used.
-Each pixel on a screen is typically made up of three tiny "lights"; one red, one green, and one blue.
+Each {glossary-link term="pixel"}pixel{glossary-link end} on a screen is typically made up of three tiny "lights"; one red, one green, and one blue.
 By increasing and decreasing the amount of light coming out of each of these three, all the different colours can be made.
 The following interactive allows you to play around with RGB.
 
@@ -62,7 +62,7 @@ Because a colour is simply made up of amounts of the primary colours (red, green
 
 # Pixel
 
-The word **pixel** is short for "picture element".
+The word *{glossary-link term="pixel"}pixel{glossary-link end}* is short for "picture element".
 On computer screens and printers an image is almost always displayed using a grid of pixels, each one set to the required colour.
 A pixel is typically a fraction of a millimeter across, and images can be made up of millions of pixels (one megapixel is a million pixels), so you can't usually see the individual pixels.
 Photographs commonly have several megapixels in them.

@@ -18,7 +18,7 @@ Scripting languages have syntax that makes them quick to write programs for file
 As an example of a situation where Python is very useful, imagine your teacher has given 5 quizzes throughout the year, and recorded the results for each student in a file such as this (It could include more than 6 students), where each student’s name is followed by their scores.
 Some students didn’t bother going to class for all the quizzes, so have fewer than 5 results recorded.
 
-```
+```text
 Karen 12 12 14 18 17
 James 9 7 1
 Ben 19 17 19 13

@@ -5,8 +5,8 @@
 # Why are we also covering sorting?
 
 Our main points have already been made — what an algorithm is, how to estimate its cost, and that the cost isn't always proportional to the amount of data.
-However, it's good to reinforce this with some different algorithms.
-Sorting algorithms are useful to study because they illustrate many of the key issues that come up in algorithms, and there are some good contrasts, particularly between quicksort (which is fast and is widely used) and selection or insertion sort (which become very slow as the number of items sorted increases).
+However, it's good to reinforce this with some different {glossary-link term="algorithm"}algorithms{glossary-link end}.
+Sorting algorithms are useful to study because they illustrate many of the key issues that come up in algorithms, and there are some good contrasts, particularly between {glossary-link term="quicksort"}quicksort{glossary-link end} (which is fast and is widely used) and {glossary-link term="selection-sort"}selection{glossary-link end} or {glossary-link term="insertion-sort"}insertion sort{glossary-link end} (which become very slow as the number of items sorted increases).
 
 {panel end}
 
@@ -87,10 +87,11 @@ There's a visual explanation in [this video](http://www.numberphile.com/videos/o
 
 {comment Include a spoiler so that students can see the answer (or an interactive), and additionally a curiosity about Gauss' trick }
 
-This algorithm is called selection sort, because each time you look through the list you are 'selecting' the next lightest box and putting it into the correct position.
+This algorithm is called {glossary-link term="selection-sort"}selection sort{glossary-link end}, because each time you look through the list you are 'selecting' the next lightest box and putting it into the correct position.
 If you go back to the algorithms racing interactive at the top of the page you might now be able to watch the selection sort list and understand what it is doing at each step.
 
 The selection sort algorithm can be described as follows:
+
 - Find the smallest item in the list and place it to one side. This will be your sorted list.
 - Next find the smallest item in the remaining list, remove it and place it into your sorted list beside the item you previously put to the side.
 - Repeat this process until all items have been selected and moved into their correct position in the sorted list.
@@ -117,19 +118,21 @@ Now choose a box at random and place that on the other side of the screen, this 
 
 To insert another box into the sorted group, compare it to the box that is already in the sorted group and then arrange these two boxes in the correct order.
 Then to add the next box compare it to these boxes (depending on the weight of the box you might only have to compare it to one!) and then arrange these three boxes in the correct order.
-Continue inserting boxes until the sorted list is complete. Don't forget to count how many comparisons you had to make!
+Continue inserting boxes until the sorted list is complete.
+Don't forget to count how many comparisons you had to make!
 
-This algorithm is called insertion sort.
+This algorithm is called {glossary-link term="insertion-sort"}insertion sort{glossary-link end}.
 If you're not quite sure if you've got the idea of the algorithm yet then have a look at [this animation](https://upload.wikimedia.org/wikipedia/commons/0/0f/Insertion-sort-example-300px.gif) from [Wikipedia](https://en.wikipedia.org/wiki/Insertion_sort).
 
 Insertion sort can be described with informal instructions as follows:
+
 - Take an item from your unsorted list and place it to the side, this will be your sorted list.
 - One by one, take each item from the unsorted list and insert it into the correct position in the sorted list.
 - Do this until all items have been sorted.
 
 People often perform this when they physically sort items.
 It can also be a very useful algorithm to use if you already have a sorted set of data and want to add a new piece of data into the set.
-For example if you owned a library and purchased a new book you wouldn't do a Selection Sort on the entire library just to place this new book, you would simply insert the new book in its correct place.
+For example if you owned a library and purchased a new book you wouldn't do a selection sort on the entire library just to place this new book, you would simply insert the new book in its correct place.
 
 ## Quicksort
 
@@ -144,11 +147,12 @@ Quicksort Interactive
 
 {interactive end}
 
-This algorithm is a little more complicated, but is very powerful.
+This algorithm is a little more complicated, but very powerful.
 To do this algorithm with the sorting interactive, start by randomly choosing a box and placing it on the scales.
 Now compare every other box to the one you selected; heavier boxes should be put on the right of the second row and lighter boxes are put on the left.
 When you are done, place the box you were comparing everything else to between these two groups, but to help you keep track of things, put it in the row below.
-The following example shows how it might look after this step. Note that the selected block is in the right place for the final sorted order, and everything on either side will remain on the side that it is on.
+The following example shows how it might look after this step.
+Note that the selected block is in the right place for the final sorted order, and everything on either side will remain on the side that it is on.
 
 {image file-path="img/chapters/quicksort-interactive-step-1.png" alt="Quicksort interactive in progress"}
 
@@ -161,7 +165,8 @@ On the other hand you might be very lucky and choose the middle box to compare e
 Depending on this the number of comparisons you perform will change.
 
 Quicksort can be described in the following way:
-- Choose an item from the list and compare every other item in the list to this (this item is often called the pivot).
+
+- Choose an item from the list and compare every other item in the list to this (this item is often called the {glossary-link term="pivot"}pivot{glossary-link end}).
 - Place all the items that are greater than it into one subgroup and all the items that are smaller into another subgroup.
 Place the pivot item in between these two subgroups.
 - Choose a subgroup and repeat this process.
@@ -174,9 +179,12 @@ Eventually each subgroup will contain only one item and at this stage the items 
 The following files will run selection sort and quicksort in various languages; you can use them to generate random lists of values and measure how long they take to be sorted.
 Note how long these take for various amounts of input (*n*), and show it in a table or graph.
 You should notice that the time taken by quicksort is quite different to that taken by selection sort.
-- [Scratch](files/selection-quicksort-scratch.zip) - [Download Scratch here](https://scratch.mit.edu/scratch2download/)
-- [Python (Version 2)](files/selection-quicksort-python2.py) - [Download Python 2 here](https://www.python.org/downloads/)
-- [Python (Version 3)](files/selection-quicksort-python3.py) - [Download Python 3 here](https://www.python.org/downloads/)
+
+{button-link link="files/selection-quicksort-scratch.zip" text="Download Scratch quicksort example" file="yes"}
+
+{button-link link="files/selection-quicksort-python2.py" text="Download Python 2 quicksort example" file="yes"}
+
+{button-link link="files/selection-quicksort-python3.py" text="Download Python 3 quicksort example" file="yes"}
 
 {panel end}
 
