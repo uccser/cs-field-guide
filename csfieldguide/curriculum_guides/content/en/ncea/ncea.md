@@ -5,7 +5,7 @@ for the following NCEA Achievement Standards.
 
 {panel type="caution" expanded="Always"}
 
-These guides are still a work in progress.
+These guides may be out of date.
 
 We recommend reading the guidance on this page very carefully to ensure students are working on the right material.
 There is also a lot of material available online from NZQA, and good ideas shared on the [NZACDITT](http://nzacditt.org.nz/) mailing list.

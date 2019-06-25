@@ -1,0 +1,77 @@
+as91885:
+  section-number: 1
+  
+as91886:
+  section-number: 2
+
+as91887:
+  section-number: 3
+
+as91074:
+  section-number: 4
+
+as91371:
+  section-number: 5
+
+as91636:
+  section-number: 6
+# Level 1
+144-introduction:
+  section-number: 7
+
+human-computer-interaction:
+  section-number: 8
+
+programming-languages:
+  section-number: 9
+
+searching-algorithms:
+  section-number: 10
+
+sorting-algorithms:
+  section-number: 11
+# Level 2
+244-introduction:
+  section-number: 12
+
+achieved-compression-run-length-encoding:
+  section-number: 13
+
+achieved-encryption-caesar-cypher:
+  section-number: 14
+
+achieved-error-control-check-sums:
+  section-number: 15
+
+achieved-error-control-parity:
+  section-number: 16
+
+achieved-human-computer-interaction:
+  section-number: 17
+
+achieved-representing-data:
+  section-number: 18
+
+data-representation-binary-numbers:
+  section-number: 19
+
+excellence-data-representation-colour:
+  section-number: 20
+
+excellence-data-representation-numbers:
+  section-number: 21
+
+excellence-data-representation-text:
+  section-number: 22
+
+full-human-computer-interaction:
+  section-number: 23
+# level 3
+complexity-tractability-TSP:
+  section-number: 24
+
+formal-languages-FSA-RE:
+  section-number: 25
+
+software-engineering-methodologies:
+  section-number: 26
