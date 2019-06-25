@@ -2,9 +2,9 @@
 
 In this chapter we've mainly looked at how to critique interfaces, but we haven't said much about how to design good interfaces.
 That's a whole new problem, although being able to see what's wrong with an interface is a good basis for designing good interfaces.
-Many commercial systems are tested using the ideas above to check that people will find them easy to use; in fact, before releasing a new application, often they are tested many times with many users.
+Many commercial systems are tested using the ideas we covered to check that people will find them easy to use; in fact, before releasing a new application, often they are tested many times with many users.
 Improvements are made, and then more tests need to be run to check that the improvements didn't make some other aspect of the interface worse!
-It's no wonder that good software can be expensive – there are many people and a lot of time involved in making sure that it's easy to use before it's released.
+It's no wonder that good software can be expensive &ndash; there are many people and a lot of time involved in making sure that it's easy to use before it's released.
 
 There are many other ideas from psychology, physiology, sociology and even anthropology that HCI experts must draw on.
 Things that come into play include:

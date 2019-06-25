@@ -15,13 +15,15 @@ With the large size of modern computer memory this may seem to not be as importa
 For example, a query algorithm that stored even a single bit for each record it searched could quickly overwhelm a web server's memory if it was searching a large data set such as Netflix's current movie offerings.
 Minimising memory usage while also minimizing the number of steps an algorithm takes is not always possible; there is often a tradeoff between computation and memory usage.
 
-Computer Scientists use 'Big O notation' to more accurately describe the performance or complexity of an algorithm, and you are likely to come across this notation very quickly when investigating the performance of algorithms. It characterises the resources needed by an algorithm and is usually applied to the execution time required, or sometimes the space used by the algorithm.
+Computer Scientists use '{glossary-link term="big-o"}Big O notation{glossary-link end}' to more accurately describe the performance or complexity of an algorithm, and you are likely to come across this notation very quickly when investigating the performance of algorithms.
+It characterises the resources needed by an algorithm and is usually applied to the execution time required, or sometimes the space used by the algorithm.
 
 {panel type="extra-for-experts"}
 
 # Examples of Big O notation
 
 Here are some Big O examples:
+
 - $$ O(1) $$  - An algorithm with $$ O(1) $$ complexity will always execute in the same amount of time regardless of how much data you give it to process. For example, finding the smallest value in a sorted list is always easy.
 - $$ O(n) $$  - The amount of time an algorithm with $$ O(n) $$ complexity will take to execute will increase roughly linearly with (i.e. in direct proportion to) the amount of data you give it to process. The high-score algorithm was $$ O(n) $$, and so was the linear search.
 - $$ O(n^{2}) $$ - The performance of an algorithm with this complexity is roughly proportional to the square of the size of the input data set. Selection sort and insertion sort take $$ O(n^{2}) $$ time. That's not very good value - 10 times the amount of input will take 100 times as long!
