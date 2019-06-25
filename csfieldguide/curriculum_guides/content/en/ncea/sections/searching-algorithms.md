@@ -178,6 +178,22 @@ A slight margin of error in the binary search comparison count is nothing compar
 
 Hint for estimating linear search: Remember that in the worst case, you would have to look at every box (if the target turned out to be the last one), and on average you'll have to check half of them. Therefore, to calculate the average number of boxes that linear search would have to look at, just halve the total number of boxes.
 
+{panel type="teacher-note"}
+
+# The following hint is technically incorrect
+
+The hint below this panel talks about a method for finding the average cost of binary search.
+It does not take into account the fact that the box you are looking for could be found before reaching just 1 box remaining.
+It does not calculate the worst case either: an extra comparison is required to check that the remaining box is correct.
+
+Big O notation is more appropriate, as it defines a level of complexity rather than a specific value.
+But that is beyond what is expected at this level.
+
+Also, AS91074 for which this guide was written, has expired.
+Therefore no changes will be made.
+
+{panel end}
+
 Hint for estimating binary search: Remember that with each box you look at, you are able to throw away half (give or take 1) of the boxes.
 Therefore, To calculate the average number of boxes that binary search would have to look at, repeatedly divide the number by 2 until it gets down to 1.
 However many times you divide by 2 is the average cost for binary search.
