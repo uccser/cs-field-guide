@@ -32,15 +32,15 @@ Start by reading these introduction sections.
 They will give you a general overview of what Human Computer Interaction is all about.
 If you read them last year for 1.44 and remember the material well, you can just quickly skim over them.
 
-[What’s the Big Picture?](chapters/human-computer-interaction.html#whats-the-big-picture)
+[What’s the Big Picture?]('chapters:chapter' 'human-computer-interaction')
 
-[Users and Tasks](chapters/human-computer-interaction.html#users-and-tasks)
+[Users and Tasks]('chapters:chapter_section' 'human-computer-interaction' 'users-and-tasks')
 
-[Interface Usability](chapters/human-computer-interaction.html#interface-usability)
+[Interface Usability]('chapters:chapter_section' 'human-computer-interaction' 'interface-usability')
 
 Then read the section on usability heuristics. You will need to understand this material well.
 
-[Usability Heuristics](chapters/human-computer-interaction.html#usability-heuristics)
+[Usability Heuristics]('chapters:chapter_section' 'human-computer-interaction' 'usability-heuristics')
 
 ## Project
 

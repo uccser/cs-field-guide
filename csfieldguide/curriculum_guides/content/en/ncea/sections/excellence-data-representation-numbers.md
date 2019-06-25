@@ -27,10 +27,10 @@ As with all externally assessed reports, you should base your explanations aroun
 
 You should read and work through the interactives in the following sections of the CS Field Guide in order to prepare yourself for the assessed project.
 
-- [Representing whole numbers with Binary](chapters/data-representation.html#representing-whole-numbers-in-binary) - It is important that you understand this section really well before going any further, as every other concept is based on it.
-- [Representing numbers in practice](chapters/data-representation.html#computers-representing-numbers-in-practice) - This section is useful background, which explains the issues we need to consider in practice when representing numbers in binary.
-- [How many bits are used in practice](chapters/data-representation.html#how-many-bits-are-used-in-practice)
-- [Representing negative numbers in practice](chapters/data-representation.html#representing-negative-numbers-in-practice) - It is important that you understand this section really well, because it is central to this project. You should understand what we mean by a simple sign bit, Two's Complement, and how to add and subtract binary numbers, and the implications for simple sign bits vs Two's Complement.
+- [Representing whole numbers with Binary]('chapters:chapter_section' 'data-representation' 'numbers'#representing-whole-numbers-in-binary) - It is important that you understand this section really well before going any further, as every other concept is based on it.
+- [Representing numbers in practice]('chapters:chapter_section' 'data-representation' 'numbers'#computers-representing-numbers-in-practice) - This section is useful background, which explains the issues we need to consider in practice when representing numbers in binary.
+- [How many bits are used in practice]('chapters:chapter_section' 'data-representation' 'numbers'#how-many-bits-are-used-in-practice)
+- [Representing negative numbers in practice]('chapters:chapter_section' 'data-representation' 'numbers'#representing-negative-numbers-in-practice) - It is important that you understand this section really well, because it is central to this project. You should understand what we mean by a simple sign bit, Two's Complement, and how to add and subtract binary numbers, and the implications for simple sign bits vs Two's Complement.
 
 ## Project
 

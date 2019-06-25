@@ -24,8 +24,8 @@ As with all externally assessed reports, you should base your explanations aroun
 
 ## Reading from the Computer Science Field Guide
 
-- [Representing whole numbers with Binary](chapters/data-representation.html#representing-whole-numbers-in-binary) - It is important that you understand this section really well before going any further, as every other concept is based on it.
-- [Images and Colours](chapters/data-representation.html) - You will need to read this entire section well, as the project is based on it.
+- [Representing whole numbers with Binary]('chapters:chapter_section' 'data-representation' 'numbers'#representing-whole-numbers-in-binary) - It is important that you understand this section really well before going any further, as every other concept is based on it.
+- [Images and Colours]('chapters:chapter_section' 'data-representation' 'images-and-colours') - You will need to read this entire section well, as the project is based on it.
 
 ## Project
 

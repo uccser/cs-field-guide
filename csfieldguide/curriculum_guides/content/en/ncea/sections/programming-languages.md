@@ -37,13 +37,13 @@ As with all externally assessed reports, you should base your explanations aroun
 
 You should read and work through the interactives and activities in the following sections of the CS Field Guide in order to prepare yourself for the assessed project.
 
-[4.1 - What’s the Big Picture?](chapters/programming-languages.html#whats-the-big-picture) (and an introduction to what programming is, intended for those of you with limited programming experience)
+[What’s the Big Picture?]('chapters:chapter' 'programming-languages') (and an introduction to what programming is, intended for those of you with limited programming experience)
 
-[4.2 - Machine Code (Low Level Languages)](chapters/programming-languages.html#machine-code-low-level-languages)
+[Machine Code (Low Level Languages)]('chapters:chapter_section' 'programming-languages' 'machine-code')
 
-[4.3 - A Babel of Programming Languages (High Level Languages)](chapters/programming-languages.html#a-babel-of-programming-languages) (optional, don't spend too much time on this)
+[A Babel of Programming Languages (High Level Languages)]('chapters:chapter_section' 'programming-languages' 'a-babel-of-programming-languages') (optional, don't spend too much time on this)
 
-[4.4 - How does the Computer Process your Program? (Compilers and Interpreters)](chapters/programming-languages.html#how-does-the-computer-process-your-program)
+[How does the Computer Process your Program? (Compilers and Interpreters)]('chapters:chapter_section' 'programming-languages' 'how-does-the-computer-process-your-program')
 
 It is very important that you actually do the activities in 4.2 (and 4.1 if you don’t know much about programming).
 

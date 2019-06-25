@@ -216,7 +216,7 @@ The following tips may also help.
     - Use a ruler to draw the lines.
     - If scanning them makes any lines unclear, just redraw them with image editing software.
     - Use image sharpening or increase the contrast. It is okay if the image is black and white.
-    - Don’t save them as jpegs (If this seems strange to you, read about [how JPEG compression works](chapters/coding-compression.html#image-compression-using-jpeg) when you have some spare time)
+    - Don’t save them as jpegs (If this seems strange to you, read about [how JPEG compression works]('chapters:chapter_section' 'coding-compression' 'image-compression-using-jpeg') when you have some spare time)
 - Remember that the marker wants to know about the applications, and the use of algorithms to solve them.
 This is what the standard asks for, and should always be kept in mind.
 Real world implications are important, i.e. in practice, the optimal solution is not essential for the result to be useful.

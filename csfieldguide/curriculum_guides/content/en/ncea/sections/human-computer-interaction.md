@@ -44,15 +44,15 @@ You should read and work through the interactives in the following sections of t
 
 Start by reading both of these introduction sections. They will give you a general overview of what Human Computer Interaction is all about.
 
-[What’s the Big Picture?](chapters/human-computer-interaction.html#whats-the-big-picture)
+[What’s the Big Picture?]('chapters:chapter' 'human-computer-interaction')
 
-[Users and Tasks](chapters/human-computer-interaction.html#users-and-tasks)
+[Users and Tasks]('chapters_chapter_section' 'human-computer-interaction' 'users-and-tasks')
 
 Then read one (or both if you're keen) of these sections on usability, in order to understand the kinds of things you will be looking for in your usability evaluation.
 
-[Interface Usability](chapters/human-computer-interaction.html#interface-usability)
+[Interface Usability]('chapters:chapter_section' 'human-computer-interaction' 'interface-usability')
 
-[Usability Heuristics](chapters/human-computer-interaction.html#usability-heuristics)
+[Usability Heuristics]('chapters:chapter_section' 'human-computer-interaction' 'usability-heuristics')
 
 
 ## Project

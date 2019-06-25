@@ -43,11 +43,11 @@ You should read and work through the interactives in the following sections of t
 
 Read all of these sections, as they give the necessary introduction of the topic
 
-[5.1 - What’s the Big Picture? (General information about bits)](chapters/data-representation.html#whats-the-big-picture)
+[What’s the Big Picture? (General information about bits)]('chapters:chapter' 'data-representation')
 
-[5.4 - Representing numbers with bits (Relevant to the achieved criteria)](chapters/data-representation.html#representing-numbers-with-bits)
+[Representing numbers with bits (Relevant to the achieved criteria)]('chapters:chapter_section' 'data-representation' 'numbers')
 
-[5.8 - Computers representing numbers in practice (Relevant to the merit criteria)](chapters/data-representation.html#computers-representing-numbers-in-practice)
+[Computers representing numbers in practice (Relevant to the merit criteria)]('chapters:chapter_section' 'data-representation' 'numbers'#computers-representing-numbers-in-practice)
 
 {teacher}
 
