@@ -75,7 +75,7 @@ Using ten digits (like we do in our every day decimal counting system) would obv
 
 # Decimal-based computers
 
-Why are digital systems so hung up on only using two digits? After all, you could do all the same things with a 10 digit system?
+Why are digital systems so hung up on only using two digits? After all, you could do all the same things with a {glossary-link term="decimal-number-system"}10 digit system{glossary-link end}?
 
 As it happens, people have tried to build decimal-based computers, but it's just too hard.
 Recording a digit between 0 and 9 involves having accurate equipment for reading voltage levels, magnetisation or reflections, and it's a lot easier just to check if it's mainly one way or the other.

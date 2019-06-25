@@ -29,7 +29,8 @@ Selection allows us to create one algorithm to solve both cases:
 2. **If ingredients contain yeast,** allow to sit at room temperature for 1 hour
 3. Bake for 30 minutes
 
-### Iteration
+## Iteration
+
 Iteration allows an algorithm to repeat instructions.
 In its simplest form we might specify the exact number of times.
 For example, here is an algorithm to bake 2 loaves of bread:
@@ -89,7 +90,7 @@ Merge sort is used to merge these small sequences into larger ones to take advan
 
 # Why are there so many different programming languages?
 
-So if we know how to define an algorithm, why are there so many programming languages?
+So if we know how to define an algorithm, why are there so many {glossary-link term="programming-language"}programming languages{glossary-link end}?
 Programming languages are often created or adapted to express algorithms clearly for a specific problem domain.
 For example, it is easier to read mathematical algorithms in Python than Scratch.
 Similarly, data flow algorithms are clearer in visual programming languages like LabVIEW than Python.
