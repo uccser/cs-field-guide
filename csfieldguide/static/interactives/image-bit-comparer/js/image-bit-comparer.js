@@ -1,5 +1,6 @@
 // Image Bit Comparer Interactive JS
 // Author: Jack Morgan
+// Modified by: Courtney Bracefield
 
 var urlParameters = require('../../../js/third-party/url-parameters.js');
 
@@ -14,7 +15,7 @@ ImageBitComparer.INITAL_IMAGES = [
                                   [image_bit_comparer_images["sunflower"], 'Sunflower'],
                                   [image_bit_comparer_images["temple-roof"], 'Roof of Temple'],
                                   [image_bit_comparer_images["nz-lake"], 'Lake in New Zealand'],
-                                  [image_bit_comparer_images["faces"], 'Faces'],
+                                  [image_bit_comparer_images["person"], 'Person'],
                                   [image_bit_comparer_images["flower"], 'Flower'],
                                   [image_bit_comparer_images["snow-flower"], 'Flower in snow'],
                                   [image_bit_comparer_images["duckling"], 'Duckling'],
@@ -44,6 +45,8 @@ ImageBitComparer.change_bits = [
                                ];
 
 $(document).ready(function(){
+  // Set image size to medium
+  $("#interactive-image-bit-comparer-image-size").val(1);
 
   // When user selects new image to load
   $('#interactive-image-bit-comparer-selected-image').change(function() {
@@ -91,7 +94,7 @@ $(document).ready(function(){
 });
 
 
-// Add initial images to select element
+/* Add initial images to select element */
 function populateSelectOptions() {
   var $select = $('#interactive-image-bit-comparer-selected-image');
   for (var i = 0; i < ImageBitComparer.INITAL_IMAGES.length; i++) {
@@ -102,7 +105,7 @@ function populateSelectOptions() {
 };
 
 
-// Load image that has been dragged and dropped onto page
+/* Load image that has been dragged and dropped onto page */
 function loadDroppedImage(file){
     //	Prevent any non-image file type from being read.
     if(!file.type.match(/image.*/)){
@@ -119,7 +122,7 @@ function loadDroppedImage(file){
 };
 
 
-// Load image that has been uploaded by upload button
+/* Load image that has been uploaded by upload button */
 function loadImageDialog(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
@@ -131,13 +134,14 @@ function loadImageDialog(input) {
 };
 
 
-// Load user image and set as inital image
+/* Load user image and set as inital image */
 function loadUserImage(filename, file) {
     $('#interactive-image-bit-comparer-selected-image').append($('<option>').text(filename).data('file', file).attr('selected', true));
     loadImage();
 };
 
 
+/* Get the subtitle text that displays number of bits */
 function getSubtitleText(bit_values) {
   var number_of_bits = bit_values.reduce(function(a, b) {return a + b;});
   var format = ngettext('1 bit', '%(number_of_bits)s bits', number_of_bits);
@@ -146,7 +150,7 @@ function getSubtitleText(bit_values) {
 };
 
 
-// Setup interface for current mode
+/* Setup interface for current mode */
 function setupMode() {
   var $canvas_parent_container = $('#interactive-image-bit-comparer-canvas-parent-container');
   $canvas_parent_container.empty();
@@ -226,9 +230,10 @@ function setupMode() {
 };
 
 
-// Load and draw image for Canvas reference
+/* Load and draw image for Canvas reference */
 function loadImage() {
   var source_canvas = document.getElementById('interactive-image-bit-comparer-source-canvas');
+  setDimensions(source_canvas);
   source_canvas.width = ImageBitComparer.BASE_WIDTH * ImageBitComparer.scale_factor;
   source_canvas.height = ImageBitComparer.BASE_HEIGHT * ImageBitComparer.scale_factor;
   var source_canvas_context = source_canvas.getContext('2d');
@@ -239,26 +244,60 @@ function loadImage() {
     alert(gettext('Starting image cannot be loaded when viewing file locally. Try another browser or the online version.'));
   }, false);
   image.onload = function() {
-      $selected_image.data('data', image);
-      source_canvas_context.drawImage(image, 0, 0, source_canvas.width, source_canvas.height);
-      // Update canvases from base image
-      drawCanvases();
+    setDimensions(image);
+    source_canvas.width = ImageBitComparer.BASE_WIDTH * ImageBitComparer.scale_factor;
+    source_canvas.height = ImageBitComparer.BASE_HEIGHT * ImageBitComparer.scale_factor;
+    source_canvas_context.drawImage(image, 0, 0, source_canvas.width, source_canvas.height);
+
+    replaceTransparentPixels()
+    // Update canvases from base image
+    drawCanvases();
   }
   $selected_image = $("#interactive-image-bit-comparer-selected-image option:selected");
   if ($selected_image.data('data')) {
-    source_canvas_context.drawImage($selected_image.data('data'), 0, 0, source_canvas.width, source_canvas.height);
+    selected_image_data = $selected_image.data('data')
+    setDimensions(selected_image_data);
+    source_canvas.width = ImageBitComparer.BASE_WIDTH * ImageBitComparer.scale_factor;
+    source_canvas.height = ImageBitComparer.BASE_HEIGHT * ImageBitComparer.scale_factor;
+    source_canvas_context.drawImage(selected_image_data, 0, 0, source_canvas.width, source_canvas.height);
+
+    replaceTransparentPixels()
     // Update canvases from base image
     drawCanvases();
   } else {
     image.crossOrigin = 'anonymous';
     image.src = $selected_image.data('file');
   }
+
+  /* Replaces transparent pixels with solid white pixels */
+  function replaceTransparentPixels() {
+    imageData = source_canvas_context.getImageData(0, 0, source_canvas.width, source_canvas.height);
+    data = imageData.data;
+    // Replace any transparent pixels
+    for (var pixel_index = 0; pixel_index < data.length; pixel_index += 4) {
+      if (data[pixel_index + 3] !== 255) {
+        // Transparent pixel. Change transparent pixel to a similarly coloured solid pixel.
+        red = data[pixel_index];
+        green = data[pixel_index + 1];
+        blue = data[pixel_index + 2];
+        alpha = data[pixel_index + 3];
+
+        // Below method taken from http://marcodiiga.github.io/rgba-to-rgb-conversion
+        data[pixel_index] = (1 - alpha) * 255 + alpha * red; // new red value
+        data[pixel_index + 1] = (1 - alpha) * 255 + alpha * green; // new green value
+        data[pixel_index + 2] = (1 - alpha) * 255 + alpha * blue; // new blue value
+        data[pixel_index + 3] = 255; // new alpha value
+      }
+    }
+    source_canvas_context.putImageData(imageData, 0, 0);
+  }
 };
 
 
-// Load inital image data values
+/* Load inital image data values */
 function initialCanvasData() {
   var source_canvas = document.getElementById('interactive-image-bit-comparer-source-canvas');
+  setDimensions(source_canvas);
   var source_canvas_context = source_canvas.getContext('2d');
   var source_image_data = source_canvas_context.getImageData(0,
                                                              0,
@@ -268,7 +307,7 @@ function initialCanvasData() {
 };
 
 
-// Draw the image data to a canvas using the canvas max bit values
+/* Draw the image data to a canvas using the canvas max bit values */
 function drawCanvas($canvas, source_image_data) {
   $canvas.attr('width', ImageBitComparer.BASE_WIDTH * ImageBitComparer.scale_factor + 'px');
   $canvas.attr('height', ImageBitComparer.BASE_HEIGHT * ImageBitComparer.scale_factor + 'px');
@@ -280,20 +319,50 @@ function drawCanvas($canvas, source_image_data) {
   canvas_context = $canvas[0].getContext('2d');
   // Copy image data
   canvas_data = source_image_data;
-
   for (var pixel_index = 0; pixel_index < canvas_data.data.length; pixel_index += 4) {
-    canvas_data.data[pixel_index] = Math.round(canvas_data.data[pixel_index] / red_divisor) * red_divisor;
-    canvas_data.data[pixel_index + 1] = Math.round(canvas_data.data[pixel_index + 1] / green_divisor) * green_divisor;
-    canvas_data.data[pixel_index + 2] = Math.round(canvas_data.data[pixel_index + 2] / blue_divisor) * blue_divisor;
+    setRgbValue(canvas_data, pixel_index, red_divisor);
+    setRgbValue(canvas_data, pixel_index + 1, green_divisor);
+    setRgbValue(canvas_data, pixel_index + 2, blue_divisor);
   }
+
   canvas_context.putImageData(canvas_data, 0, 0, 0, 0, source_image_data.width, source_image_data.height);
 };
 
 
-// Draw all canvases with source data
+/* Set one of the rgb values for a given pixel */
+function setRgbValue(canvas_data, pixel_index, divisor) {
+   if (divisor == Infinity) {
+    canvas_data.data[pixel_index] = 0;
+   } else {
+    canvas_data.data[pixel_index] = Math.round(canvas_data.data[pixel_index] / divisor) * divisor;
+   }
+}
+
+
+/* Draw all canvases with source data */
 function drawCanvases() {
   var source_image_data = initialCanvasData();
   $('#interactive-image-bit-comparer-canvas-parent-container canvas').each(function () {
     drawCanvas($(this), source_image_data)
   });
 };
+
+
+/* Set base width and height depending on orientation of image */
+function setDimensions(image) {
+  if (image.height > image.width) {
+    // portrait
+    ImageBitComparer.BASE_WIDTH = 350;
+    ImageBitComparer.BASE_HEIGHT = 450;
+  }
+  else if (image.height < image.width) {
+    // landscape
+    ImageBitComparer.BASE_WIDTH = 450;
+    ImageBitComparer.BASE_HEIGHT = 300;
+  }
+  else {
+    // square
+    ImageBitComparer.BASE_WIDTH = 300;
+    ImageBitComparer.BASE_HEIGHT = 300;
+  }
+}
