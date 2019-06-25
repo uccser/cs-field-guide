@@ -1,6 +1,16 @@
 # The parity magic trick
 
-If you have never seen the parity magic trick before, check out the video in the "What’s the Big Picture?" section above.
+{panel type="teacher-note"}
+
+# Using the parity trick in a classroom
+
+The parity magic trick can be an intriguing introduction to the idea of error correction, and we recommend using it at the start of teaching this topic.
+You need to practise it in advance, and for high school students we recommend a grid of about 7x7 or 8x8 cards to have a good impact.
+Details are in the [Card flip magic section](http://csunplugged.org/error-detection) of the [CS Unplugged site](https://www.csunplugged.org/).
+
+{panel end}
+
+If you have never seen the parity magic trick before, check out [this video](https://www.youtube.com/watch?v=OXz64qCjZ6k).
 This section assumes that you know what is meant by the parity magic trick, but now we'll explain how it actually works!
 
 {image file-path="img/chapters/parity-trick-cartoon.jpg" alt="The parity magic trick" alignment="left"}

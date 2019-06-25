@@ -1,23 +1,26 @@
-run-length-encoding:
+whats-the-big-picture:
   section-number: 1
 
-huffman-coding:
+run-length-encoding:
   section-number: 2
 
-lossy-vs-lossless:
+huffman-coding:
   section-number: 3
 
-image-compression-using-jpeg:
+lossy-vs-lossless:
   section-number: 4
 
-general-purpose:
+image-compression-using-jpeg:
   section-number: 5
 
-audio-compression:
+general-purpose:
   section-number: 6
 
-the-whole-story:
+audio-compression:
   section-number: 7
 
-further-reading:
+the-whole-story:
   section-number: 8
+
+further-reading:
+  section-number: 9

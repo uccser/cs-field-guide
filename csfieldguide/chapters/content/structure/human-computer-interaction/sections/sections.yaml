@@ -1,17 +1,20 @@
-users-and-tasks:
+whats-the-big-picture:
   section-number: 1
 
-interface-usability:
+users-and-tasks:
   section-number: 2
 
-usability-heuristics:
+interface-usability:
   section-number: 3
 
-user-experience:
+usability-heuristics:
   section-number: 4
 
-the-whole-story:
+user-experience:
   section-number: 5
 
-further-reading:
+the-whole-story:
   section-number: 6
+
+further-reading:
+  section-number: 7
