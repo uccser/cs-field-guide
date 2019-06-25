@@ -47,4 +47,13 @@ urlpatterns = [
             query_string=True
         ),
     ),
+    # eg: redirect /interactives/mips-assembler/index.php to /interactives/mips-assembler/
+    url(
+        r"^(?P<interactive_slug>[-\w]+)/index.php/$",
+        RedirectView.as_view(
+            permanent=True,
+            pattern_name="interactives:interactive",
+            query_string=True
+        ),
+    ),
 ]
