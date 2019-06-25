@@ -22,11 +22,11 @@ You should read and work through the interactives in the following sections of t
 
 Read all of these sections, as they give the necessary introduction of the topic
 
-[What’s the Big Picture?](chapters/data-representation.html#whats-the-big-picture)
+[What’s the Big Picture?]('chapters:chapter' 'data-representation')
 
-[Representing numbers with bits](chapters/data-representation.html#numbers)
+[Representing numbers with bits]('chapters:chapter_section' 'data-representation' 'numbers')
 
-[Representing text with bits](chapters/data-representation.html#text)
+[Representing text with bits]('chapters:chapter_section' 'data-representation' 'text')
 
 ## Project
 

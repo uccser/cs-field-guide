@@ -24,9 +24,9 @@ You should read and work through the interactives in the following sections of t
 
 Read all of these sections, as they give the necessary introduction of the topics
 
-[9.1 - What’s the Big Picture?](chapters/coding-error-control.html#whats-the-big-picture)
+[9.1 - What’s the Big Picture?]('chapters:chapter' 'coding-error-control')
 
-[9.3 - Check digits on barcodes and other numbers](chapters/coding-error-control.html#check-digits-on-barcodes-and-other-numbers)
+[9.3 - Check digits on barcodes and other numbers]('chapters:chapter_section' 'coding-error-control' 'check-digits-on-barcodes')
 
 ## Project
 

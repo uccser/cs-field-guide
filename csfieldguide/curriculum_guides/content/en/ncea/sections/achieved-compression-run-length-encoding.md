@@ -24,9 +24,9 @@ You should read and work through the interactives in the following sections of t
 
 Read all of these sections, as they give the necessary introduction of the topics
 
-[7.1 - What’s the Big Picture?](chapters/coding-compression.html#whats-the-big-picture)
+[What’s the Big Picture?]('chapters:chapter' 'coding-compression')
 
-[7.2 - Run Length Encoding](chapters/coding-compression.html#run-length-encoding)
+[Run Length Encoding]('chapters:chapter_section' 'coding-compression' 'run-length-encoding')
 
 ## Project
 
@@ -65,7 +65,7 @@ Count how many characters were used in your Run Length Encoding representation.
 Don’t forget to include the commas!
 (check the field guide or read the teacher note if you don't understand why we say you must count the commas).
 How well did Run Length Encoding compress your image?
-You might choose to use [the Run Length Encoding interactive](interactives/run-length-encoding/index.html).
+You might choose to use [the Run Length Encoding interactive]('interactives:interactive' 'run-length-encoding').
 
 *Briefly* describe what Run Length Encoding is, relating back to the example you have just put in your report.
 Regardless of whether you use the interactive or calculate the run length encoding by hand, describe how you arrived at your answer for a couple of lines in the image.

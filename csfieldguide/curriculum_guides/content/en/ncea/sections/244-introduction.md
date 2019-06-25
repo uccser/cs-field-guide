@@ -12,9 +12,9 @@ Also note that the examples do not have to be related to a "device", for example
 
 - Representing Data using Bits
 - Encoding (split into 3 sub topics)
-  - Compression
-  - Error Control Coding
-  - Encryption
+    - Compression
+    - Error Control Coding
+    - Encryption
 - Human Computer Interaction (different to 1.44)
 
 Each of these topics has a chapter in the Computer Science Field Guide, which this assessment guide is based on.

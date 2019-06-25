@@ -12,10 +12,10 @@ This document provides a brief introduction to teachers on the Computer Science 
 
 Each of these topics has a chapter in the Computer Science Field Guide.
 
-Currently, we provide two different assessment guides for algorithms (sorting and searching), and one for each of human computer interaction and programming languages. Note that students only need to follow one assessment guide for each of the three topics (i.e. they do not need to do both searching and sorting for the topic of algorithms).
+Currently, we provide two different assessment guides for algorithms (sorting and searching), and one for each of human computer interaction and programming languages.
+Note that students only need to follow one assessment guide for each of the three topics (i.e. they do not need to do both searching and sorting for the topic of algorithms).
 
-The advice below applies to the whole standard; advice specific to each topic is available through
-[the main NCEA index](curriculum-guides/ncea/index.html).
+The advice below applies to the whole standard; advice specific to each topic is available through [the main NCEA index]('curriculum_guides:curriculum_guide' 'ncea').
 
 
 ## Sorting vs Searching for Algorithms

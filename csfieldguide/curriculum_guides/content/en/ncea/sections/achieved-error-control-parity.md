@@ -25,9 +25,9 @@ You should read and work through the interactives in the following sections of t
 
 Read all of these sections, as they give the necessary introduction of the topics
 
-[What’s the Big Picture?](chapters/coding-error-control.html#whats-the-big-picture)
+[What’s the Big Picture?]('chapters:chapter' 'coding-error-control')
 
-[The Parity Magic Trick](chapters/coding-error-control.html#the-parity-magic-trick)
+[The Parity Magic Trick]('chapters:chapter_section' 'coding-error-control' 'the-parity-magic-trick')
 
 ## Project
 

@@ -25,8 +25,8 @@ As with all externally assessed reports, you should base your explanations aroun
 Start by reading these introduction sections. They will give you a general overview of what Human Computer Interaction is all about.
 If you read them last year for 1.44 and remember the material well, you can just quickly skim over them.
 
-- [What’s the Big Picture?](chapters/human-computer-interaction.html#whats-the-big-picture)
-- [Usability Heuristics](chapters/human-computer-interaction.html#usability-heuristics)
+- [What’s the Big Picture?]('chapters:chapter' 'human-computer-interaction')
+- [Usability Heuristics]('chapters:chapter_section' 'human-computer-ionteraction' 'usability-heuristics')
 
 {panel type="teacher-note"}
 
