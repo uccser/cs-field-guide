@@ -22,7 +22,7 @@ Less mathematically able students who are really struggling with number systems 
 {panel end}
 
 In this section, we will look at how computers represent numbers.
-To begin with, we'll revise how the base-10 number system that we use every day works, and then look at binary, which is base-2.
+To begin with, we'll revise how the {glossary-link term="decimal-number-system"}base-10 number system{glossary-link end} that we use every day works, and then look at {glossary-link term="binary-number-system"}binary{glossary-link end}, which is base-2.
 After that, we'll look at some other charactertistics of numbers that computers must deal with, such as negative numbers and numbers with decimal points.
 
 ## Understanding the base 10 number system
@@ -94,7 +94,7 @@ As discussed earlier, computers can only store information using bits, which onl
 This means that they cannot represent base 10 numbers using digits 0 to 9, the way we write down numbers in decimal.
 Instead, they must represent numbers using just 2 digits &ndash; 0 and 1.
 
-Binary works in a very similar way to Decimal, even though it might not initially seem that way.
+Binary works in a very similar way to decimal, even though it might not initially seem that way.
 Because there are only 2 digits, this means that each digit is **2** times the value of the one immediately to the right.
 
 {panel type="curiosity"}
@@ -103,7 +103,7 @@ Because there are only 2 digits, this means that each digit is **2** times the v
 
 The base 10 (decimal) system is sometimes called denary, which is more consistent with the name binary for the base 2 system.
 The word "denary" also refers to the Roman denarius coin, which was worth ten asses (an "as" was a copper or bronze coin).
-The term "denary" seems to be used mainly in the UK; in the US, Australia and NZ the term "decimal" is more common.
+The term "denary" seems to be used mainly in the UK; in the US, Australia and New Zealand the term "decimal" is more common.
 
 {panel end}
 
@@ -256,7 +256,7 @@ When we have 8 bits the binary numbers start to get useful — they can represen
 
 # What is a byte?
 
-Groups of 8 bits are so useful that they have their own name: a **byte**.
+Groups of 8 bits are so useful that they have their own name: a *{glossary-link term="byte"}byte{glossary-link end}*.
 Computer memory and disk space are usually divided up into bytes, and bigger values are stored using more than one byte.
 For example, two bytes (16 bits) are enough to store numbers from 0 to 65,535.
 Four bytes (32 bits) can store numbers up to 4,294,967,295.
@@ -376,7 +376,7 @@ This is because a computer has no way of knowing where a number starts and ends,
 
 Any system that stores numbers needs to make a compromise between the number of bits allocated to store the number, and the range of values that can be stored.
 
-In some systems (like the Java and C programming languages and databases) it's possible to specify how accurately numbers should be stored; in others it is fixed in advance (such as in spreadsheets).
+In some systems (like the Java and C {glossary-link term="programming-language"}programming languages{glossary-link end} and databases) it's possible to specify how accurately numbers should be stored; in others it is fixed in advance (such as in spreadsheets).
 
 Some are able to work with arbitrarily large numbers by increasing the space used to store them as necessary (e.g. integers in the Python programming language).
 However, it is likely that these are still working with a multiple of 32 bits (e.g. 64 bits, 96 bits, 128 bits, 160 bits, etc).

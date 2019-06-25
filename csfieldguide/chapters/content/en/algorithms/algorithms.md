@@ -2,8 +2,8 @@
 
 {comment explain different views of algorithm (programming context) and Algorithm (that have interesting complexity); use https://www.youtube.com/watch?v=6hfOvs8pY1k for the former?}
 
-Every computer device you have ever used, from your school computers to your calculator, has been using algorithms to tell it how to do whatever it was doing.
-Algorithms are a very important topic in Computer Science because they help software developers create efficient and error free programs.
+Every computer device you have ever used, from your school computers to your calculator, has been using {glossary-link term="algorithm"}algorithms{glossary-link end} to tell it how to do whatever it was doing.
+Algorithms are a very important topic in Computer Science because they help software developers create efficient and error free {glossary-link term="program"}programs{glossary-link end}.
 The most important thing to remember about algorithms is that there can be many different algorithms for the same problem, but some are much better than others!
 
 {interactive slug="sorting-algorithm-comparison" type="in-page"}
@@ -33,19 +33,19 @@ go through each score keeping track of the largest so far.
 Informal instructions like this aren't precise; there's no way that a computer could follow those instructions exactly, but a human could probably get the general idea of what you mean if they know what you're trying to achieve.
 This sort of description is only useful for quickly giving another human the general idea of what you mean, and even then there's a risk that they won't properly understand it.
 
-In contrast, an {glossary-link term="algorithm" reference-text="introduction"}algorithm{glossary-link end} is a step by step process that describes how to solve a problem and/or complete a task, which will always give the correct result.
+In contrast, an algorithm is a step by step process that describes how to solve a problem and/or complete a task, which will always give a result.
 For our previous non-computing example, the algorithm might be
 
-1)  Go to the kitchen.
-2)  Pick up a glass.
-3)  Turn on the tap.
-4)  Put the glass under the running water and remove it once it is almost full.
-5)  Turn off the tap.
-6)  Take the glass back to the person who gave the instruction.
+1. Go to the kitchen.
+2. Pick up a glass.
+3. Turn on the tap.
+4. Put the glass under the running water and remove it once it is almost full.
+5. Turn off the tap.
+6. Take the glass back to the person who gave the instruction.
 
 A human could follow these instructions easily, but it's still using general English language rather than a strict list of computer instructions.
 
-Algorithms are often expressed using a loosely defined format called [pseudo-code](https://en.wikipedia.org/wiki/Pseudocode), which matches a programming language fairly closely, but leaves out details that could easily be added later by a programmer.
+Algorithms are often expressed using a loosely defined format called [pseudo-code](https://en.wikipedia.org/wiki/Pseudocode), which matches a {glossary-link term="programming-language"}programming language{glossary-link end} fairly closely, but leaves out details that could easily be added later by a programmer.
 Pseudocode doesn't have strict rules about the sorts of commands you can use, but it's halfway between an informal instruction and a specific computer program.
 
 With the high score problem, the algorithm might be written in pseudo-code like this:
@@ -65,7 +65,7 @@ The other important thing with this level of precision is that we can often make
 For the high score problem above, if the score table gets twice as big, the algorithm will take about twice as long.
 If the table could be very big (perhaps we're tracking millions of games and serving up the high score many times each second), that might already be enough to tell us that we need a better algorithm to track high scores regardless of which language it's going to be programmed in; or if the table only ever has 10 scores in it, then we know that the program is only going to do a few dozen operations, and is bound to be really fast even on a slow computer.
 
-The most precise way of giving a set of instructions is in the form of a {glossary-link term="algorithm" reference-text="computer program"}program{glossary-link end}, which is a specific implementation of an algorithm, written in a specific programming language, with a very specific result for any particular input.
+The most precise way of giving a set of instructions is in the form of a program, which is a specific implementation of an algorithm, written in a specific programming language, with a very specific result for any particular input.
 This is the most precise of these three descriptions and computers are able to follow and understand these.
 
 For the example with getting a drink, we might program a robot to do that; it would be written in some programming language that the robot's computer can run, and would tell the robot exactly how to retrieve a glass of water and bring it back to the person who asked for the water.
@@ -93,8 +93,6 @@ Both of the above programs are the same algorithm.
 In this chapter we'll look in more detail about what an algorithm is, and why they are such a fundamental idea in computer science.
 Because algorithms exist even if they aren't turned in to programs, we won't need to look at programs at all for this topic, unless you particularly want to.
 
-{glossary-link term="algorithm" reference-text="algorithm cost"}{glossary-link end}
-
 ### Algorithm cost
 
 When Computer Scientists are comparing algorithms they often talk about the 'cost' of an algorithm.
@@ -110,10 +108,10 @@ That's worth knowing in advance because we usually need our programs to scale up
 
 # Algorithm complexity
 
-The formal term for working out the cost of an algorithm is [algorithm analysis](https://en.wikipedia.org/wiki/Analysis_of_algorithms), and we often refer to the cost as the algorithm's *complexity*.
+The formal term for working out the cost of an algorithm is [algorithm analysis](https://en.wikipedia.org/wiki/Analysis_of_algorithms), and we often refer to the cost as the algorithm's {glossary-link term="complexity"}*complexity*{glossary-link end}.
 The most common complexity is the "time complexity" (a rough idea of how long it takes to run), but often the "space complexity" is of interest - how much memory or disk space will the algorithm use up when it's running?
 
-There's more about how the cost of an algorithm is described in industry, using a widely agreed on convention called 'Big-O Notation', in the ["The whole story!"](the-whole-story) section at the end of this chapter.
+There's more about how the cost of an algorithm is described in industry, using a widely agreed on convention called {glossary-link term="big-o"}'Big O Notation'{glossary-link end}, in the ["The whole story!"]('chapters:chapter_section' 'algorithms' 'the-whole-story') section at the end of this chapter.
 
 {panel end}
 
@@ -128,7 +126,7 @@ Some algorithms will always make the same number of comparisons for a certain in
 If we develop or are given an algorithm to solve a problem, how do we know that it works?
 Sometimes we create test cases to verify the algorithm produces correct output for specific input values.
 While this is a useful practice and can help verify that we are on the right track, it is not enough to show that our algorithm is correct.
-The old adage "even a broken watch is correct twice a day" is a good analogy.
+The old {glossary-link term="adage"}adage{glossary-link end} "even a broken watch is correct twice a day" is a good analogy.
 Even an algorithm that is correct for two test cases might be incorrect for every other input.
 A computer scientist must reason formally or mathematically about an algorithm to show its correctness.
 Typically this is done by classifying ranges of input values and showing that algorithm produces expected results for boundary values of the range and all values in between.
@@ -152,5 +150,3 @@ Often there are good reasons to know multiple correct algorithms because there a
 
 In this chapter we will look at two of the most common and important types of algorithms, searching and sorting. You probably come across these kinds of algorithms every time you use a computer without even realising!
 They also happen to be great for illustrating some of the key concepts that arise with algorithms.
-
-{glossary-link term="algorithm" reference-text="searching algorithms"}{glossary-link end}

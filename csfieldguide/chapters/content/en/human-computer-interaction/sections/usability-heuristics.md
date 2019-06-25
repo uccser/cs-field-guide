@@ -5,24 +5,24 @@
 # HCI posters for your classroom!
 
 A set of posters that support this section have been published by Jennifer Gottschalk.
-[These are available in PDF format here]().
+These are available in PDF format here:
 
 {button-link link="files/HCI-posters.pdf" file="yes" text="Download HCI Posters"}
 
 {panel end}
 
-Evaluating an interface is best done by getting feedback from having lots of potential users try it out.
+Evaluating an {glossary-link term="interface"}interface{glossary-link end} is best done by getting feedback from having lots of potential users try it out.
 However, this can be expensive and time-consuming, so HCI experts have come up with some quick rules of thumb that help us spot obvious problems quickly.
-The formal word for a rule of thumb is a *heuristic*, and in this section we will look at some common heuristics that can be used to critique an interface.
+The formal word for a rule of thumb is a *{glossary-link term="heuristic"}heuristic{glossary-link end}*, and in this section we will look at some common heuristics that can be used to critique an interface.
 
 There are various sets of heuristics that people have proposed for evaluating interfaces, but a Danish researcher called Jakob Nielsen has come up with a set of 10 heuristics that have become very widely used, and we will describe them in this section.
 If you encounter a usability problem in an interface, it is almost certainly breaking one of these heuristics, and possibly a few of them.
-It's not easy to design a system that doesn't break any of the heuristics, and sometimes you wouldn't want to follow them strictly – that's why they are called heuristics, and not rules.
+It's not easy to design a system that doesn't break any of the heuristics, and sometimes you wouldn't want to follow them strictly &ndash; that's why they are called heuristics, and not rules.
 
 {interactive slug="confusing-error" type="in-page"}
 
 Often a confusing feature in an interface design will break multiple heuristics.
-For example, the following error message (it is for real) doesn't help users recover from errors (the real error is a network setting, but it is explained as causing a flashing light!), and the "Skip", "Cancel" and "Ignore" buttons don't speak the user's language (match between the system and the real world).
+For example, the above error message (it is for real) doesn't help users recover from errors (the real error is a network setting, but it is explained as causing a flashing light!), and the "Skip", "Cancel" and "Ignore" buttons don't speak the user's language (match between the system and the real world).
 
 ## Visibility of system status
 
