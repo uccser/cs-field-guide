@@ -1,12 +1,7 @@
 """Custom loader for loading chapter section headings."""
 
 from django.db import transaction
-from django.conf import settings
 from utils.TranslatableModelLoader import TranslatableModelLoader
-from utils.errors.MissingRequiredFieldError import MissingRequiredFieldError
-from utils.errors.InvalidYAMLValueError import InvalidYAMLValueError
-from utils.language_utils import get_default_language
-from utils.check_required_files import check_interactives
 
 
 class ChapterSectionHeadingsLoader(TranslatableModelLoader):
@@ -24,7 +19,6 @@ class ChapterSectionHeadingsLoader(TranslatableModelLoader):
         self.factory = factory
         self.chapter_section = chapter_section
         self.content_translations = content_translations
-
 
     @transaction.atomic
     def load(self):
@@ -47,7 +41,7 @@ class ChapterSectionHeadingsLoader(TranslatableModelLoader):
         for language, content in self.content_translations.items():
             if content.heading_tree:
                 for (i, heading_node) in enumerate(content.heading_tree):
-                    heading = self.chapter_section.headings.create(
+                    self.chapter_section.headings.create(
                         slug=heading_node.title_slug,
                         name=heading_node.title,
                         language=language,

@@ -9,7 +9,6 @@ from utils.render_html_with_load_tags import render_html_with_load_tags
 from chapters.models import (
     Chapter,
     ChapterSection,
-    ChapterSectionHeading,
     GlossaryTerm,
 )
 
