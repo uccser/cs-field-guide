@@ -19,9 +19,7 @@
 
 {% block left_column_content %}
   {% if chapter_section.translation_available %}
-    <div id="scrollspy-target" class="position-relative h-100"  data-spy="scroll" data-target="#navbar-example">
-      {% render_html_field chapter_section.content %}
-    </div>
+    {% render_html_field chapter_section.content %}
   {% else %}
     {% with model=chapter_section %}
       {% include "generic/not-available-warning.html" %}
