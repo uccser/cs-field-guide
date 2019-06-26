@@ -81,4 +81,3 @@ class CurriculumGuidesLoaderTest(BaseTestWithDB):
             MissingRequiredFieldError,
             curriculum_guide_loader.load
         )
-        
