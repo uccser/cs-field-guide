@@ -14,8 +14,6 @@
 
 ## Learning objectives
 
-The above chapter readings include specific knowledge for EKs marked in bold. Work to include unmarked learning objectives in the CS Field Guide is currently in progress.
-
 ### LO 7.1.1 Explain how computing innovations affect communication, interaction, and cognition.
 
 - EK 7.1.1A Email, SMS, and chat have fostered new ways to communicate and collaborate.
@@ -46,10 +44,10 @@ Detailed knowledge of any social media site is beyond the scope of this course a
 ### LO 7.1.2 Explain how people participate in a problem-solving process that scales.
 
 - EK 7.1.2A Distributed solutions must scale to solve some problems.
-- EK 7.1.2B Science has been impacted by using scale and "citizen science" to solve scienti c problems using home computers in scientific research.
+- EK 7.1.2B Science has been impacted by using scale and "citizen science" to solve scientific problems using home computers in scientific research.
 - EK 7.1.2C Human computation harnesses contributions from many humans to solve problems related to digital data and the Web.
 - EK 7.1.2D Human capabilities are enhanced by digitally enabled collaboration.
-- EK 7.1.2E Some online services use the contributions of many people to bene t both individuals and society.
+- EK 7.1.2E Some online services use the contributions of many people to benefit both individuals and society.
 - EK 7.1.2F Crowdsourcing offers new models for collaboration, such as connecting people with jobs and businesses with funding.
 - EK 7.1.2G The move from desktop computers to a proliferation of always-on mobile computers is leading to new applications.
 
@@ -96,7 +94,7 @@ and aggregate levels.
 ### LO 7.5.1 Access, manage, and attribute information using effective strategies.
 
 - EK 7.5.1A Online databases and libraries catalog and house secondary and some primary sources.
-- EK 7.5.1B Advance search tools, Boolean logic, and key words can refine the search focus, and/or limit their searches based on a variety of factors (e.g., data, peer-review status, type of publication).
+- EK 7.5.1B Advance search tools, Boolean logic, and key words can refine the search focus, and/or limit their searches based on a variety of factors (e.g. data, peer-review status, type of publication).
 - EK 7.5.1C Plagiarism is a serious offense that occurs when a person present another’s ideas or words as his or her own. Plagiarism may be avoided by accurately acknowledging sources.
 
 ### LO 7.5.2 Evaluate online and print sources for appropriateness and credibility.

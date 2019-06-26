@@ -1,7 +1,8 @@
 # To Do
 
 Several learning objectives are not currently covered by the CS Field Guide.
-This "to-do" list includes general computer science topics and suggestions for how we can update the field guide to cover the learning objectives. Different levels of changes are suggested:
+This "to-do" list includes general computer science topics and suggestions for how we can update the field guide to cover the learning objectives.
+Different levels of changes are suggested:
 
 - new chapter: some topics are best put into stand-alone new field guide chapters
     - Hardware Abstractions [Phase+]
@@ -71,8 +72,9 @@ This "to-do" list includes general computer science topics and suggestions for h
 
 ## Impact
 
-**Most AP curriculum include specific lesson plans to cover these topic by requiring
-the students to research online after/during reading of the Blown to Bits book (freely available online). A teaching guide on how to use Blown to Bits in the classroom along with discussion questions and essay/project ideas should be sufficient. No new CS Field Guide content is suggested for these.**
+Most AP curriculum include specific lesson plans to cover these topics by requiring the students to research online after/during reading of the Blown to Bits book (freely available online).
+A teaching guide on how to use Blown to Bits in the classroom along with discussion questions and essay/project ideas should be sufficient.
+**Therefore no new CS Field Guide content is suggested for these.**
 
 - computer ethics
 - social computing
@@ -82,9 +84,9 @@ the students to research online after/during reading of the Blown to Bits book (
 - program components (modularity)
     - **additional sub-section in software-engineering** [Phase2]
 - program documentation
-   - **re-wording or new sub-section in software-engineering; include self-documenting approaches** [Phase2]
+    - **re-wording or new sub-section in software-engineering; include self-documenting approaches** [Phase2]
 - collaboration and communication within programming teams
-   - **add sub-section on Scrum, issue tracking and/or other communication mechanisms to 16.6** [Phase2]
+    - **add sub-section on Scrum, issue tracking and/or other communication mechanisms to 16.6** [Phase2]
 - program execution / implementation of algorithm
     - **new chapter on software/hardware abstraction**
 - solving larger classes of problems with hardware and algorithm improvements over time
@@ -98,7 +100,7 @@ the students to research online after/during reading of the Blown to Bits book (
 - functionality vs unit testing, program correctness, justification
     - **new subsection in software-engineering 16.4** [Phase2]
 - operators
-   - **new chapter on software abstraction**
+    - **new chapter on software abstraction**
 - boolean logic, algebra
     - **new chapter on logic**
 

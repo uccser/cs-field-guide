@@ -24,7 +24,7 @@ Work to include unmarked learning objectives in the CS Field Guide is currently 
 
 ### LO 1.2.1 Create a computational artifact for creative expression.
 
-- EK 1.2.1A A computational artifact is something created by a human using a computer and can be, but is not limited to, a program, an image, audio, video, a presentation, or a Web page file.
+- EK 1.2.1A A computational artifact is something created by a human using a computer and can be, but is not limited to, a program, an image, audio, video, a presentation, or a webpage file.
 - EK 1.2.1B Creating computational artifacts requires understanding of and use of software tools and services.
 - EK 1.2.1C Computing tools and techniques are used to create computational artifacts and can include, but are not limited to, programming integrated development environments (IDEs), spreadsheets, 3D printers, or text editors.
 - EK 1.2.1D A creatively developed computational artifact can be created by using nontraditional, nonprescribed computing techniques.

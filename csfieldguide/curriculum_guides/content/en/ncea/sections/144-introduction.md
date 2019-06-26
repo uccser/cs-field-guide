@@ -6,9 +6,9 @@ This document provides a brief introduction to teachers on the Computer Science 
 
 1.44 has bullet points for the following three topics in computer science:
 
-- Algorithms
-- Programming Languages
-- Human Computer Interaction
+- [Algorithms]('chapters:chapter' 'algorithms')
+- [Programming Languages]('chapters:chapter' 'programming-languages')
+- [Human Computer Interaction]('chapters:chapter' 'human-computer-interaction')
 
 Each of these topics has a chapter in the Computer Science Field Guide.
 

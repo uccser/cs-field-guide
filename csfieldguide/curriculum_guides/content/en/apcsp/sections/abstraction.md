@@ -16,7 +16,8 @@ Start by reading through:
 
 ## Learning objectives
 
-The above chapter readings include specific knowledge for EKs marked in bold. Work to include unmarked learning objectives in the CS Field Guide is currently in progress.
+The above chapter readings include specific knowledge for EKs marked in bold.
+Work to include unmarked learning objectives in the CS Field Guide is currently in progress.
 
 ### LO 2.1.1 Describe the variety of abstractions used to represent data.
 
@@ -126,7 +127,7 @@ Memorization of specific gate visual representations is beyond the scope of this
 
 - EK 2.3.2A Models and simulations facilitate the formulation and refinement of hypotheses related to the objects or phenomena under consideration.
 - EK 2.3.2B Hypotheses are formulated to explain the objects or phenomena being modeled.
-- EK 2.3.2C Hypotheses are re ned by examining the insights that models and simulations provide into the objects or phenomena.
+- EK 2.3.2C Hypotheses are refined by examining the insights that models and simulations provide into the objects or phenomena.
 - EK 2.3.2D The results of simulations may generate new knowledge and new hypotheses related to the phenomena being modeled.
 - EK 2.3.2E Simulations allow hypotheses to be tested without the constraints of the real world.
 - EK 2.3.2F Simulations can facilitate extensive and rapid testing of models.

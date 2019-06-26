@@ -67,7 +67,7 @@ Students are not expected to know specific formulas or options available in spre
 {panel end}
 
 - EK 3.2.1G Metadata is data about data.
-- EK 3.2.1H Metadata can be descriptive data about an image, a Web page, or other complex objects.
+- EK 3.2.1H Metadata can be descriptive data about an image, a webpage, or other complex objects.
 - EK 3.2.1I Metadata can increase the effective use of data or data sets by providing additional information about various aspects of that data.
 
 ### LO 3.2.2. Determine how large data sets impact the use of computational processes to discover information and knowledge.
