@@ -1,4 +1,4 @@
-"""Custom loader for loading a topic."""
+"""Custom loader for loading a chapter section."""
 
 from django.db import transaction
 from utils.TranslatableModelLoader import TranslatableModelLoader
@@ -86,6 +86,14 @@ class ChapterSectionsLoader(TranslatableModelLoader):
                 self.structure_file_path,
                 self.chapter,
             )
+
+            # Save chapter section headings
+            self.factory.create_chapter_section_heading_loader(
+                chapter_section,
+                content_translations,
+                base_path=self.base_path,
+                structure_filename=self.structure_file_path,
+            ).load()
 
         # assumes first section number is always 1
         for counter, section_number in enumerate(section_numbers, 1):

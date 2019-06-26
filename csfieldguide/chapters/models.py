@@ -120,3 +120,47 @@ class ChapterSection(TranslatableModel):
                 'chapter_section_slug': self.slug
             }
         )
+
+
+class ChapterSectionHeading(models.Model):
+    """Model for each heading in a chapter section in database.
+
+    See reasoning for model structure in _ChapterSectionHeadingsLoader.py.
+    """
+
+    #  Auto-incrementing 'id' field is automatically set by Django
+    slug = models.SlugField(max_length=300)
+    name = models.CharField(max_length=300, default="")
+    language = models.CharField(max_length=10, default="")
+    number = models.PositiveSmallIntegerField()
+    chapter_section = models.ForeignKey(
+        ChapterSection,
+        null=False,
+        related_name="headings"
+    )
+
+    def __str__(self):
+        """Text representation of ChapterSectionHeading object.
+
+        Returns:
+            Heading of chapter section heading (str).
+        """
+        return self.name
+
+    def get_absolute_url(self):
+        """Get absolute URL of ChapterSectionHeading object."""
+        url = reverse(
+            'chapters:chapter_section',
+            kwargs={
+                "chapter_slug": self.chapter_section.chapter.slug,
+                "chapter_section_slug": self.chapter_section.slug
+            }
+        )
+        return "{}#{}".format(url, self.slug)
+
+    class Meta:
+        """Set consistent ordering of chapter section headings."""
+
+        ordering = ["number"]
+        verbose_name = "Chapter section heading"
+        verbose_name_plural = "Chapter sections headings"
