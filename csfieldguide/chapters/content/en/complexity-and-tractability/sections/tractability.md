@@ -9,7 +9,9 @@ This may be best run as a class activity where students are guided through calcu
 Some of the times that turn up below are so long that they are beyond our ability to imagine, and are best illustrated by seeing how futile the times are even with 1000, a million or even a billion times the computing power.
 
 An earlier version of this chapter provided the following spreadsheet for doing these calculations; we've retained the link here for the meantime, but the new online interactive can cope a lot better with the large numbers in the calculations.
-If you are interested, you can [download the spreadsheet here](files/tractable-spreadsheet.xlsx) to do the calculations.
+If you are interested, you can download the spreadsheet here to do the calculations:
+
+{button-link link="files/tractable-spreadsheet.xlsx" text="Download tractability spreadsheet" file="yes"}
 
 {panel end}
 
