@@ -47,7 +47,7 @@ Read all of these sections, as they give the necessary introduction of the topic
 
 [Representing numbers with bits (Relevant to the achieved criteria)]('chapters:chapter_section' 'data-representation' 'numbers')
 
-[Computers representing numbers in practice (Relevant to the merit criteria)]('chapters:chapter_section' 'data-representation' 'numbers'#computers-representing-numbers-in-practice)
+Computers representing numbers in practice (Relevant to the merit criteria) subsection of the [numbers section]]('chapters:chapter_section' 'data-representation' 'numbers')
 
 {teacher}
 

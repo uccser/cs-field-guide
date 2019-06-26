@@ -27,7 +27,7 @@ As with all externally assessed reports, you should base your explanations aroun
 
 You should read and work through the interactives in the following sections of the CS Field Guide in order to prepare yourself for the assessed project. Note that while you do not need to write about ASCII in this project; it is assumed you have a solid understanding of ASCII.
 
-- [Representing whole numbers with Binary]('chapters:chapter_section' 'data-representation' 'numbers'#representing-whole-numbers-in-binary) - Most other representations are based on binary number representations, so understanding these first is essential. You only need to understand the material in this subsection.
+- The 'Representing whole numbers with Binary' subsection of the [Numbers section]('chapters:chapter_section' 'data-representation' 'numbers') - Most other representations are based on binary number representations, so understanding these first is essential. You only need to understand the material in this subsection.
 - [Representing Text]('chapters:chapter_section' 'data-representation' 'text') - You should read this entire section carefully. It is central to the project.
 
 ## Project

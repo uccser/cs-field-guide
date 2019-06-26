@@ -31,7 +31,7 @@ Read all of these sections, as they give the necessary introduction of the topic
 
 If you are really keen, you might like to read further into the problems with substitution ciphers, although note that this is optional because it is not necessary for the project in this guide.
 
-[Problems with Substitution Ciphers]('chapters:chapter_section' 'coding-encryption' 'substitution-ciphers'#problems-with-substitution-ciphers)
+Problems with Substitution Ciphers subsection of the [substitution ciphers section]('chapters:chapter_section' 'coding-encryption' 'substitution-ciphers')
 
 ## Project
 

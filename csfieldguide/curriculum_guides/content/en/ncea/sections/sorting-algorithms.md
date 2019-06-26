@@ -43,7 +43,7 @@ As with all externally assessed Digital Technology reports, you should base your
 
 You should read and work through the interactives in the following sections of the CS Field Guide in order to prepare yourself for the assessed project.
 
-[What’s the bigger picture?]('chapters:chapter' 'algorithms.html')
+[What’s the bigger picture?]('chapters:chapter' 'algorithms')
 
 [Sorting Algorithms]('chapters:chapter_section' 'algorithms' 'sorting')
 
@@ -300,8 +300,8 @@ Within the 4 pages we recommend for algorithms, a possible breakdown is:
 - 1 ¼ pages: Screenshots and explanations of you carrying out a chosen algorithm and determining the cost of it for your example problem (**Achieved**)
 - ¼ page: General instructions for carrying out your chosen algorithm (**Achieved**)
 - ½ page: Example of the iterative, conditional, and sequential steps that can be in an algorithm (**Merit**)
-- 1 ½ pages: Your investigation and data collected for merit/ excellence. Including results and discussion (**Merit/ Excellence**)
-- ¼ page to ½ page: Explanation of the difference between algorithms, programs, and informal instructions **(Achieved/ Merit/ Excellence)**
+- 1 ½ pages: Your investigation and data collected for merit/ excellence. Including results and discussion (**Merit/Excellence**)
+- ¼ page to ½ page: Explanation of the difference between algorithms, programs, and informal instructions **(Achieved/Merit/Excellence)**
 
 These are *maximums*, not targets!
 

@@ -46,7 +46,7 @@ Start by reading both of these introduction sections. They will give you a gener
 
 [What’s the Big Picture?]('chapters:chapter' 'human-computer-interaction')
 
-[Users and Tasks]('chapters_chapter_section' 'human-computer-interaction' 'users-and-tasks')
+[Users and Tasks]('chapters:chapter_section' 'human-computer-interaction' 'users-and-tasks')
 
 Then read one (or both if you're keen) of these sections on usability, in order to understand the kinds of things you will be looking for in your usability evaluation.
 
