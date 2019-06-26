@@ -6,67 +6,67 @@ as91886:
 
 as91887:
   section-number: 3
-
+# Level 1
 as91074:
   section-number: 4
 
-as91371:
+144-introduction:
   section-number: 5
 
-as91636:
-  section-number: 6
-# Level 1
-144-introduction:
-  section-number: 7
-
 human-computer-interaction:
-  section-number: 8
+  section-number: 6
 
 programming-languages:
-  section-number: 9
+  section-number: 7
 
 searching-algorithms:
-  section-number: 10
+  section-number: 8
 
 sorting-algorithms:
-  section-number: 11
+  section-number: 9
 # Level 2
+as91371:
+  section-number: 10
+
 244-introduction:
-  section-number: 12
+  section-number: 11
 
 achieved-compression-run-length-encoding:
-  section-number: 13
+  section-number: 12
 
 achieved-encryption-caesar-cipher:
-  section-number: 14
+  section-number: 13
 
 achieved-error-control-check-sums:
-  section-number: 15
+  section-number: 14
 
 achieved-error-control-parity:
-  section-number: 16
+  section-number: 15
 
 achieved-human-computer-interaction:
-  section-number: 17
+  section-number: 16
 
 achieved-representing-data:
-  section-number: 18
+  section-number: 17
 
 data-representation-binary-numbers:
-  section-number: 19
+  section-number: 18
 
 excellence-data-representation-colour:
-  section-number: 20
+  section-number: 19
 
 excellence-data-representation-numbers:
-  section-number: 21
+  section-number: 20
 
 excellence-data-representation-text:
-  section-number: 22
+  section-number: 21
 
 full-human-computer-interaction:
-  section-number: 23
+  section-number: 22
 # level 3
+as91636:
+  section-number: 23
+
 complexity-tractability-TSP:
   section-number: 24
 
