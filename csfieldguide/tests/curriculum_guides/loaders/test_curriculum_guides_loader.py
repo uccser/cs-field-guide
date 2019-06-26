@@ -81,18 +81,4 @@ class CurriculumGuidesLoaderTest(BaseTestWithDB):
             MissingRequiredFieldError,
             curriculum_guide_loader.load
         )
-
-    def test_curriculum_guides_curriculum_guide_loader_no_icon(self):
-        test_slug = "no-icon"
-        factory = mock.Mock()
-        curriculum_guide_loader = CurriculumGuidesLoader(
-            factory,
-            curriculum_guide_number=1,
-            content_path=test_slug,
-            base_path=self.base_path,
-            structure_filename="{}.yaml".format(test_slug)
-        )
-        self.assertRaises(
-            MissingRequiredFieldError,
-            curriculum_guide_loader.load
-        )
+        

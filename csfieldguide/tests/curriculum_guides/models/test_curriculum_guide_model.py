@@ -41,7 +41,6 @@ class CurriculumGuideModelTest(BaseTestWithDB):
             slug="curriculum_guide-2",
             name="CurriculumGuide 2",
             number=2,
-            icon="image.png"
         )
         self.assertQuerysetEqual(
             CurriculumGuide.objects.all(),
