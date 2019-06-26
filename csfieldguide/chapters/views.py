@@ -9,6 +9,7 @@ from utils.render_html_with_load_tags import render_html_with_load_tags
 from chapters.models import (
     Chapter,
     ChapterSection,
+    ChapterSectionHeading,
     GlossaryTerm,
 )
 
@@ -91,6 +92,7 @@ class ChapterSectionView(generic.DetailView):
             number=self.object.chapter.number + 1
         )
         context["chapter"] = self.object.chapter
+        context["headings"] = self.object.headings.filter(language=get_language())
         return context
 
 
