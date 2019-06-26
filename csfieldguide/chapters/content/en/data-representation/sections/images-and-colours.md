@@ -182,7 +182,7 @@ The main point about knowing this representation is to understand the trade-off 
 
 # Hexadecimal colour codes
 
-If you haven't already, read the section on [Hexadecimal]('chapters:chapter_section' 'data-representation' 'numbers'), otherwise this section might not make sense!
+If you haven't already, read the subsection on hexadecimal in the [numbers]('chapters:chapter_section' 'data-representation' 'numbers') section, otherwise this section might not make sense!
 
 When writing HTML code, you often need to specify colours for text, backgrounds, and so on.
 One way of doing this is to specify the colour name, for example "red", "blue", "purple", or "gold".
