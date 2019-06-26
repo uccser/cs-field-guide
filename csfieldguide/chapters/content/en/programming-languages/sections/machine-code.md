@@ -104,7 +104,7 @@ Unfortunately you won’t be able to make it multiply or divide using this simul
 Remember that to rerun the program after changing it, you will have to reassemble it first.
 
 You may be wondering why you have to carry out both these steps.
-Because computers work in binary (1s and 0s), the instructions need be converted into hexadecimal.
+Because computers work in binary (1s and 0s), the instructions need be assembled into {glossary-link term="hexadecimal"}hexadecimal{glossary-link end}.
 Hexadecimal is a shorthand notation for binary numbers.
 *Don’t muddle this process with compiling or interpreting!* Unlike these, assembling is much simpler as, in general, each instruction from the source code ends up being one line in the hexadecimal.
 

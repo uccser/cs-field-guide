@@ -4,7 +4,7 @@ The kind of image representations covered here are the basic ones used in most d
 
 The colour representation discussed is what is often referred to as "raw" or "bitmap" (bmp) representation.
 For large images, real systems use compression methods such as JPEG, GIF or PNG to reduce the space needed to store an image, but at the point where an image is being captured or displayed it is inevitably represented using the raw bits as described in this chapter, and the basic choices for capturing and displaying images will affect the quality and cost of a device.
-Compression is regarded as a form of encoding, and is covered in a later chapter.
+{glossary-link term="compression"}Compression{glossary-link end} is regarded as a form of encoding, and is covered in a later chapter.
 
 The representation of numbers is a whole area of study in itself.
 The choice of representation affects how quickly arithmetic can be done on the numbers, how accurate the results are, and how much memory or disk space is used up storing the data.
