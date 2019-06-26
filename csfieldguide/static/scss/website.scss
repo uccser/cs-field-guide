@@ -119,6 +119,20 @@ ol, ul {
     margin-bottom: 1rem !important;
 }
 
+#section-headings .nav-link {
+    font-size: 0.8rem;
+}
+
+// Smooth scrolling on the whole document
+html {
+	scroll-behavior: smooth;
+}
+@media screen and (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
+}
+
 .large-text {
   font-size: 3rem;
 }
