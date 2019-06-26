@@ -9,9 +9,6 @@ $(document).ready(function(){
   // Display glossary-modal
   $("#content-container, #glossary-modal").on("click", ".glossary-term", open_glossary_definition);
 
-  // If anchor link in URL, move page up to avoid link being covered by navbar
-  window.addEventListener("hashchange", function() { scrollBy(0, -72) })
-
   // Pause YouTube videos playing within a closed details elements
   $("body").on("click", "details[open]", details_element_closed);
 

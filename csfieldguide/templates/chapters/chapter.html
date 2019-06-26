@@ -12,38 +12,61 @@
   <span class="text-white-50">{{ chapter.number }}.</span> {{ chapter.name }}
 {% endblock page_heading %}
 
-{% block content %}
-  {% if chapter.translation_available %}
-    {% if chapter.video %}
-      <div class="row mb-3">
-        <div class="col-sm-12 col-md-10 offset-md-1 text-center">
-          <div class="embed-responsive embed-responsive-16by9">
-            <iframe src="{{ chapter.video }}" class="embed-responsive-item" frameborder="0" allowfullscreen></iframe>
+{% block content_container %}
+  <div class="col-12 print-col-12 print-order-1">
+    {% if chapter.translation_available %}
+      {% if chapter.video %}
+        <div class="row mb-3">
+          <div class="col-sm-12 col-md-10 offset-md-1 text-center">
+            <div class="embed-responsive embed-responsive-16by9">
+              <iframe src="{{ chapter.video }}" class="embed-responsive-item" frameborder="0" allowfullscreen></iframe>
+            </div>
           </div>
         </div>
+      {% endif %}
+    {% else %}
+      {% with model=chapter %}
+        {% include "generic/not-available-warning.html" %}
+      {% endwith %}
+    {% endif %}
+  </div>
+  <div class="col-12 col-md-4 order-md-2 print-col-12 print-order-1">
+    {% if chapter.translation_available %}
+      <div id="sticky-sidebar" class="sticky d-print-none">
+        <h2 class="mt-2">{% trans "Chapter sections" %}</h2>
+        <ul class="nav nav-pills flex-column" id="scrollspy-table-of-contents">
+          {% for section in chapter.chapter_sections.all %}
+          <li class="nav-item">
+            <a class="nav-link {% if section.slug == chapter_section.slug %} active text-white{% else %} nav-link-colour{% endif %}"
+              href="{% url 'chapters:chapter_section' chapter.slug section.slug %}">
+              {{ section.name }}
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
       </div>
     {% endif %}
-    {% render_html_field chapter.introduction %}
-  {% else %}
-    {% with model=chapter %}
-      {% include "generic/not-available-warning.html" %}
-    {% endwith %}
-  {% endif %}
+  </div>
+  <div class="col-12 col-md-8 order-md-1 print-col-12 print-order-2">
+    {% if chapter.translation_available %}
+      <h2 class="mt-2">{% trans "Introduction" %}</h2>
+      {% render_html_field chapter.introduction %}
+    {% endif %}
 
-  <h2>{% trans 'Sections in this chapter:' %}</h2>
-  <ul class="list-unstyled">
-    {% for section in chapter_sections %}
+    <h2 class="mt-5">{% trans 'Sections in this chapter:' %}</h2>
+    <ul class="list-unstyled">
+      {% for section in chapter_sections %}
       <li>
         {{ chapter.number }}.{{ section.number }}.
-        <a href="{% url 'chapters:chapter_section' chapter.slug section.slug %}" class="ml-1{% if not section.translation_available %} text-muted{% endif %}">
+        <a href="{% url 'chapters:chapter_section' chapter.slug section.slug %}"
+          class="ml-1{% if not section.translation_available %} text-muted{% endif %}">
           {{ section.name }}
         </a>
         {% if not section.translation_available %}
           {% include "generic/not-available-badge.html" %}
         {% endif %}
       </li>
-    {% endfor %}
-  </ul>
-
-
-{% endblock content %}
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock content_container %}
