@@ -3,6 +3,7 @@
 from django.conf.urls import url
 
 from . import views
+from django.views.generic.base import RedirectView
 
 app_name = "interactives"
 
@@ -35,5 +36,24 @@ urlpatterns = [
         r"^(?P<interactive_slug>[-\w]+)/$",
         views.interactive_whole_page_view,
         name="interactive"
+    ),
+    # the redirect for /further-information/interactives.html is in /general/urls.py
+    # eg: redirect /interactives/binary-cards/index.html to /interactives/binary-cards/
+    url(
+        r"^(?P<interactive_slug>[-\w]+)/index.html/$",
+        RedirectView.as_view(
+            permanent=True,
+            pattern_name="interactives:interactive",
+            query_string=True
+        ),
+    ),
+    # eg: redirect /interactives/mips-assembler/index.php to /interactives/mips-assembler/
+    url(
+        r"^(?P<interactive_slug>[-\w]+)/index.php/$",
+        RedirectView.as_view(
+            permanent=True,
+            pattern_name="interactives:interactive",
+            query_string=True
+        ),
     ),
 ]
