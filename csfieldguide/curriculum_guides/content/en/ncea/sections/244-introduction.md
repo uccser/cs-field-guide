@@ -10,12 +10,12 @@ Also note that the examples do not have to be related to a "device", for example
 
 2.44 has bullet points for the following topics in computer science.
 
-- Representing Data using Bits
+- [Representing Data using Bits]('chapters:chapter' 'data-representation')
 - Encoding (split into 3 sub topics)
-    - Compression
-    - Error Control Coding
-    - Encryption
-- Human Computer Interaction (different to 1.44)
+    - [Compression]('chapters:chapter' 'coding-compression')
+    - [Error Control Coding]('chapters:chapter' 'coding-error-control')
+    - [Encryption]('chapters:chapter' 'coding-encryption')
+- [Human Computer Interaction]('chapters:chapter' 'human-computer-interaction') (different to 1.44)
 
 Each of these topics has a chapter in the Computer Science Field Guide, which this assessment guide is based on.
 
