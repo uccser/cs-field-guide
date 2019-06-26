@@ -61,7 +61,7 @@
                   <a class="dropdown-item{% if LANGUAGE_CODE == lang.code %} active{% endif %}" href="{% translate_url language.0 %}">
                     {{ lang.name_local|capfirst }}
                     {% if lang.code != "en" %}
-                      <span class="badge badge-warning">Beta</span>
+                      <span class="badge badge-warning">{% trans "Beta" %}</span>
                     {% endif %}
                   </a>
                 {% endfor %}
