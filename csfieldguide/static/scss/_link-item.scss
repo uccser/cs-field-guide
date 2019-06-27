@@ -5,11 +5,11 @@
   background-color: transparent;
   color: $csfg !important;
   border: 1px solid transparent;
-  @include border-radius($border-radius)
-  padding: 0.5rem 1rem;
+  @include border-radius($border-radius);
+  padding: 0.4rem 1rem;
   margin-bottom: 1px;
   img {
-    height: 4rem;
+    height: 8rem;
   }
   &:hover {
     border-color: $csfg;
@@ -23,7 +23,7 @@
   }
   h2 {
     margin: 0;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
   }
   .badge-language-unavailable {
     margin-#{$right}: auto;
