@@ -7,6 +7,6 @@ for the following NCEA Achievement Standards.
 
 # These guides have moved!
 
-They will return on the [DTHM for kaiako site](https://www.dthm4kaiako.ac.nz/).
+They can now be found on the [DTHM for kaiako site](https://www.dthm4kaiako.ac.nz/).
 
 {panel end}
