@@ -14,6 +14,7 @@ urlpatterns = i18n_patterns(
     url(r"", include("general.urls", namespace="general")),
     url(r"^interactives/", include("interactives.urls", namespace="interactives")),
     url(r"^chapters/", include("chapters.urls", namespace="chapters")),
+    url(r"^curriculum-guides/", include("curriculum_guides.urls", namespace="curriculum_guides")),
     url(r"^appendices/", include("appendices.urls", namespace="appendices")),
 )
 

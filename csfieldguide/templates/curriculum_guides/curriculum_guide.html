@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% load static %}
+{% load render_html_field %}
+
+{% block title %}
+  {{ curriculum_guide.name }}
+{% endblock title %}
+
+{% block page_heading %}
+  {{ curriculum_guide.name }}
+{% endblock page_heading %}
+
+{% block content %}
+  {% if curriculum_guide.translation_available %}
+    {% render_html_field curriculum_guide.introduction %}
+  {% else %}
+    {% with model=curriculum_guide %}
+      {% include "generic/not-available-warning.html" %}
+    {% endwith %}
+  {% endif %}
+
+{% endblock content %}
