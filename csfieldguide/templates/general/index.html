@@ -73,11 +73,19 @@
             {% svg 'icons8-classroom-modified' %}
           </div>
           <div class="col-12 col-lg-9 text-center text-md-left">
+            {% if teacher_mode %}
+            <h5 class="mt-0">{% trans "This is the teacher's guide!" %}</h5>
+            <p class="text-left">
+              {% trans 'The teacher version has extra information on how to use this guide for teaching.' %}
+            </p>
+            <a href="{% url 'general:teacher_mode_logout' %}?next={{ request.path }}" class="btn btn-primary mb-5" role="button">{% trans "Switch to student mode" %}</a>
+            {% else %}
             <h5 class="mt-0">{% trans "Teacher's guide" %}</h5>
             <p class="text-left">
               {% trans 'If you are an educator, we recommend reading the teacher version for extra information on how to use this guide for teaching.' %}
             </p>
             <a href="{% url 'general:teacher_mode_login' %}?next={{ request.path }}" class="btn btn-primary mb-5" role="button">{% trans "Switch to teacher mode" %}</a>
+            {% endif %}
           </div>
         </div>
       </div>
