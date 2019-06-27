@@ -14,3 +14,4 @@ class Command(management.base.BaseCommand):
         management.call_command("loadappendices")
         management.call_command("loadinteractives")
         management.call_command("loadchapters")
+        management.call_command("loadcurriculumguides")

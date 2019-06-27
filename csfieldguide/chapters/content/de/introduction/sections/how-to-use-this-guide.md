@@ -10,6 +10,6 @@ Am Ende eines jeden Kapitels sprechen wir über das „Gesamtbild“ und geben H
 
 # Bildungsunterstützung
 
-Dieser Leitfaden ist dazu gedacht, vielerlei internationale Lehrprogramme zu unterstützen. Eine Liste der verfügbaren Studienleitfäden ist [hier]('appendices:curriculum-guides') zu finden.
+Dieser Leitfaden ist dazu gedacht, vielerlei internationale Lehrprogramme zu unterstützen. Eine Liste der verfügbaren Studienleitfäden ist [hier]('curriculum_guides:index') zu finden.
 
 {panel end}

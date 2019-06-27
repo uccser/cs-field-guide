@@ -51,6 +51,7 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     "general.apps.GeneralConfig",
     "chapters.apps.ChaptersConfig",
+    "curriculum_guides.apps.CurriculumGuidesConfig",
     "appendices.apps.AppendicesConfig",
     "interactives.apps.InteractivesConfig",
     "search.apps.SearchConfig",
@@ -272,6 +273,7 @@ HAYSTACK_SEARCH_RESULTS_PER_PAGE = 10
 DJANGO_PRODUCTION = env.bool("DJANGO_PRODUCTION")
 APPENDICES_CONTENT_BASE_PATH = os.path.join(str(ROOT_DIR.path("appendices")), "content")
 CHAPTERS_CONTENT_BASE_PATH = os.path.join(str(ROOT_DIR.path("chapters")), "content")
+CURRICULUM_GUIDES_CONTENT_BASE_PATH = os.path.join(str(ROOT_DIR.path("curriculum_guides")), "content")
 INTERACTIVES_CONTENT_BASE_PATH = os.path.join(str(ROOT_DIR.path("interactives")), "content")
 INTERACTIVES_BASE_TEMPLATES_PATH = os.path.join("interactives", "base")
 INTERACTIVES_LINK_TEMPLATE = "interactives/utils/interactive-link.html"

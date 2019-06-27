@@ -10,6 +10,6 @@ Terminamos cada capítulo hablando de la "historia completa" y brindamos sugeren
 
 # Apoyo curricular
 
-Esta guía está diseñada para respaldar diferentes planes de estudio internacionales; [haz clic aquí para ver una lista de las guías curriculares disponibles]('appendices:curriculum-guides').
+Esta guía está diseñada para respaldar diferentes planes de estudio internacionales; [haz clic aquí para ver una lista de las guías curriculares disponibles]('curriculum_guides:index').
 
 {panel end}

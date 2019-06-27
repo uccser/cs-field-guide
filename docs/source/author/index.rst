@@ -10,5 +10,6 @@ The following pages are for those wanting to write or edit CS Field Guide conten
     writing_guide
     understanding_configuration_files
     chapters
+    curriculum_guides
     content_style_guide
     translations

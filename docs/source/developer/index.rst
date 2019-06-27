@@ -13,6 +13,7 @@ The following pages are for those wanting to develop the CS Field Guide system.
     general
     appendices
     chapters
+    curriculum_guides
     interactives
     search
     static_files
