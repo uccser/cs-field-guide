@@ -39,10 +39,9 @@
       <div class="embed-responsive embed-responsive-16by9">
         <iframe src="{{ chapter.video }}" class="embed-responsive-item" frameborder="0" allowfullscreen></iframe>
       </div>
-
-      <h2 class="mt-2">{% trans "Introduction" %}</h2>
-      {% render_html_field chapter.introduction %}
     {% endif %}
+    <h2 class="mt-2">{% trans "Introduction" %}</h2>
+    {% render_html_field chapter.introduction %}
   {% else %}
     {% with model=chapter %}
       {% include "generic/not-available-warning.html" %}
