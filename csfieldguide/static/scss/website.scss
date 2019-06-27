@@ -140,6 +140,10 @@ ol, ul {
     font-size: 0.8rem;
     padding: 0.3rem 0.7rem;
   }
+  li.active a {
+    background-color: $csfg-light;
+    color: white;
+  }
 }
 
 

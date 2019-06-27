@@ -59,11 +59,13 @@
               <span class="section-heading-number">{{ chapter.number }}.{{ section.number }}.</span> {{ section.name }}
             </a>
             {% if section.slug == chapter_section.slug %}
-              <nav id="section-headings" class="nav nav-pills flex-column my-1 ml-5">
+              <ul id="section-headings" class="nav nav-pills flex-column my-1 ml-5">
                 {% for heading in headings %}
-                  <a class="nav-link" href="#{{ heading.slug }}">{{ heading.name }}</a>
+                  <li>
+                    <a class="nav-link" href="#{{ heading.slug }}">{{ heading.name }}</a>
+                  </li>
                 {% endfor %}
-                </nav>
+              </ul>
             {% endif %}
           </li>
         {% endfor %}

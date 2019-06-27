@@ -3,6 +3,7 @@ require('bootstrap');
 require('details-element-polyfill');
 require('featherlight');
 require('sticky-state');
+var gumshoe = require('gumshoejs');
 const iFrameResize = require('iframe-resizer/js/iframeResizer.js');
 
 $(document).ready(function(){
@@ -13,6 +14,11 @@ $(document).ready(function(){
   $("body").on("click", "details[open]", details_element_closed);
 
   iFrameResize({}, 'iframe.iframe-resize');
+
+  if (document.getElementById("section-headings")) {
+    var spy = new gumshoe('#section-headings a', { offset: 100 });
+    $('#body-content').scroll(spy.detect);
+  }
 });
 
 function open_glossary_definition() {
