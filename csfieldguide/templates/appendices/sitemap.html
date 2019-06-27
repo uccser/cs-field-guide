@@ -34,6 +34,23 @@
     {% endfor %}
     </ul>
     <li>
+      <a href="{% url 'curriculum_guides:index' %}">{% trans "Curriculum Guides" %}</a>
+    </li>
+    <ul>
+      {% for curriculum_guide in curriculum_guides %}
+        <li>
+          <a href="{% url 'curriculum_guides:curriculum_guide' curriculum_guide.slug %}">{{ curriculum_guide.name }}</a>
+        </li>
+        <ul>
+          {% for section in curriculum_guide.curriculum_guide_sections.all %}
+            <li>
+              <a href="{% url 'curriculum_guides:curriculum_guide_section' curriculum_guide.slug section.slug %}">{{ section.name }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endfor %}
+    </ul>
+    <li>
       <a href="{% url 'appendices:appendices' %}">{% trans "Appendices" %}</a>
       <ul>
         <li>
@@ -44,9 +61,6 @@
         </li>
         <li>
           <a href="{% url 'appendices:contributors' %}">{% trans "Contributors" %}</a>
-        </li>
-        <li>
-          <a href="{% url 'appendices:curriculum-guides' %}">{% trans "Curriculum Guides" %}</a>
         </li>
         <li>
           <a href="{% url 'chapters:glossary' %}">{% trans "Glossary" %}</a>

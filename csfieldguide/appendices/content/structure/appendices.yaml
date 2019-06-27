@@ -1,15 +1,6 @@
 about:
   template: appendices/about.html
 
-curriculum-guides:
-  template: appendices/curriculum-guides/index.html
-
-apcsp:
-  template: appendices/curriculum-guides/apcsp.html
-
-ncea:
-  template: appendices/curriculum-guides/ncea.html
-
 contributors:
   template: appendices/contributors.html
 
@@ -18,5 +9,6 @@ sitemap:
 
 # 'Releases' page should redirect to documentation.
 # 'Included Files' page should redirect to LICENSE.
+# 'Curriculum Guides' is within 'curriculum_guides' application
 # 'Glossary' page is within 'chapters' application
 # 'Interactives' page is within 'interactives' application

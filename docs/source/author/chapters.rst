@@ -1,4 +1,4 @@
-Chapter Content
+Chapters
 ##############################################################################
 
 The chapters application (see :ref:`what-is-an-application`) is the main focus of the CS Field Guide website, as it contains the majority of educational material for the project.
@@ -130,7 +130,7 @@ A complete chapter structure file may look like the following:
 
   .. code-block:: yaml
 
-    icon: img/chapters/introduction-thumbnail.png
+    icon: svg/introduction-icon.svg
     sections: sections/sections.yaml
 
 Chapter Sections Configuration File
