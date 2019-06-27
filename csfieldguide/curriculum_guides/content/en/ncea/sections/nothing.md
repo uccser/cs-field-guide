@@ -1,0 +1,3 @@
+# Nothing
+
+TODO: Decide how to deal with cases like this where no sections are to be added
