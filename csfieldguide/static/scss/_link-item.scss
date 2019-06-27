@@ -1,19 +1,18 @@
 .link-item {
-  @extend .shadow;
   @extend .no-text-decoration;
-  @extend .d-block;
-  @extend .h-100;
-  @extend .text-center;
-  background-color: $white;
+  display: flex;
+  align-items: center;
+  background-color: transparent;
   color: $csfg !important;
-  border: 2px solid $csfg;
+  border: 1px solid transparent;
   @include border-radius($border-radius)
   padding: 0.5rem 1rem;
+  margin-bottom: 1px;
   img {
     height: 4rem;
   }
   &:hover {
-    transform: translateY(2px);
+    border-color: $csfg;
     background-color: mix($csfg-light, $white, 10%);
   }
   &.unavailable {
