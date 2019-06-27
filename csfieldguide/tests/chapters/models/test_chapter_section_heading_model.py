@@ -40,20 +40,18 @@ class ChapterSectionHeadingModelTest(BaseTestWithDB):
             "/en/chapters/chapter-1/section-1/#heading-1"
         )
 
-
-
     def test_chapters_chapter_section_heading_model_default_order(self):
         chapter = self.test_data.create_chapter(1)
         section = self.test_data.create_chapter_section(chapter, 1)
         # Create in reverse order
-        heading_2 = ChapterSectionHeading(
+        ChapterSectionHeading(
             slug="heading-2",
             name="Heading 2",
             language="en",
             number=2,
             chapter_section=section,
         ).save()
-        heading_1 = ChapterSectionHeading(
+        ChapterSectionHeading(
             slug="heading-1",
             name="Heading 1",
             language="en",
