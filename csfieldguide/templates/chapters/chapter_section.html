@@ -46,16 +46,16 @@
 
 {% block right_column_content %}
   {% if chapter_section.translation_available %}
-    <div id="sticky-sidebar" class="sticky-top d-print-none">
+    <div id="side-navbar" class="sticky-top d-print-none">
       <h2 class="mt-3">{% trans "Table of contents" %}</h2>
       <ul class="nav nav-pills flex-column">
         {% for section in chapter.chapter_sections.all %}
           <li class="nav-item">
-            <a class="nav-link {% if section.slug == chapter_section.slug %} active text-white{% else %} nav-link-colour{% endif %}" href="{% url 'chapters:chapter_section' chapter.slug section.slug %}">
-              {{ section.name }}
+            <a class="nav-link {% if section.slug == chapter_section.slug %} active{% else %} nav-link-colour{% endif %}" href="{% url 'chapters:chapter_section' chapter.slug section.slug %}">
+              <span class="section-heading-number">{{ chapter.number }}.{{ section.number }}.</span> {{ section.name }}
             </a>
             {% if section.slug == chapter_section.slug %}
-              <nav id="section-headings" class="nav nav-pills flex-column my-1 ml-3">
+              <nav id="section-headings" class="nav nav-pills flex-column my-1 ml-5">
                 {% for heading in headings %}
                   <a class="nav-link" href="#{{ heading.slug }}">{{ heading.name }}</a>
                 {% endfor %}

@@ -21,7 +21,7 @@
         <li class="nav-item">
           <a class="nav-link {% if section.slug == chapter_section.slug %} active text-white{% else %} nav-link-colour{% endif %}{% if not section.translation_available %} disabled{% endif %}"
             href="{% url 'chapters:chapter_section' chapter.slug section.slug %}">
-            <span class="text-muted">{{ chapter.number }}.{{ section.number }}.</span> {{ section.name }}
+            <span class="section-heading-number">{{ chapter.number }}.{{ section.number }}.</span> {{ section.name }}
           </a>
           {% if not section.translation_available %}
             {% include "generic/not-available-badge.html" %}

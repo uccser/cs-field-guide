@@ -119,12 +119,29 @@ body {
 }
 
 ol, ul {
-    margin-bottom: 1rem !important;
+  margin-bottom: 1rem !important;
 }
 
-#section-headings .nav-link {
+#side-navbar {
+  .nav-link {
+    border: 1px solid transparent;
+    margin-bottom: 1px;
+    &.active {
+      color: white;
+      .section-heading-number {
+        color: $gray-400 !important;
+      }
+    }
+    &:hover {
+      border-color: $csfg-light;
+    }
+  }
+  #section-headings .nav-link {
     font-size: 0.8rem;
+    padding: 0.3rem 0.7rem;
+  }
 }
+
 
 // Smooth scrolling on the whole document
 html {
