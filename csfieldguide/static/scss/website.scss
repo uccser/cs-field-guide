@@ -127,6 +127,8 @@ ol, ul {
 }
 
 #side-navbar {
+  // Separate top of side navigation from navbar when stickied
+  top: 1rem !important;
   .nav-link {
     border: 1px solid transparent;
     margin-bottom: 1px;
