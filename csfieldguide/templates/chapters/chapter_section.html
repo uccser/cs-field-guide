@@ -26,7 +26,7 @@
     {% endwith %}
   {% endif %}
 
-  <div class="{% if previous_section %}d-flex justify-content-between{% endif %}">
+  <div class="mt-5 {% if previous_section %}d-flex justify-content-between{% endif %}">
     {% if previous_section %}
       <a href="{% url 'chapters:chapter_section' chapter.slug previous_section.0.slug %}" class="btn btn-primary btn-chapter-section mb-2 float-left {% if not chapter_section.translation_available %} text-muted{% endif %}">
         <strong>{% trans 'Previous:' %}</strong><br>{{ previous_section.0.name }}
