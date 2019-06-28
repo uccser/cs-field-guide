@@ -49,7 +49,7 @@
               <span class="section-heading-number">{{ chapter.number }}.{{ section.number }}.</span> {{ section.name }}
             </a>
             {% if not section.translation_available %}
-            {% include "generic/not-available-badge.html" %}
+              {% include "generic/not-available-badge.html" %}
             {% endif %}
           </li>
           {% endfor %}
