@@ -55,7 +55,12 @@
       <ul class="nav nav-pills flex-column">
         {% for section in chapter.chapter_sections.all %}
           <li class="nav-item">
-            <a class="nav-link {% if section.slug == chapter_section.slug %} active{% else %} nav-link-colour{% endif %}" href="{% url 'chapters:chapter_section' chapter.slug section.slug %}">
+            <a class="nav-link {% if section.slug == chapter_section.slug %} active{% else %} nav-link-colour{% endif %}"
+              {% if section.slug == chapter_section.slug %}
+                href="#top"
+              {% else %}
+                href="{% url 'chapters:chapter_section' chapter.slug section.slug %}">
+              {% endif %}
               <span class="section-heading-number">{{ chapter.number }}.{{ section.number }}.</span> {{ section.name }}
             </a>
             {% if section.slug == chapter_section.slug and headings %}
