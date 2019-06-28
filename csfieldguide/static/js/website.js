@@ -16,7 +16,10 @@ $(document).ready(function(){
   iFrameResize({}, 'iframe.iframe-resize');
 
   if (document.getElementById("section-headings")) {
-    var spy = new gumshoe('#section-headings a', { offset: 100 });
+    var spy = new gumshoe('#section-headings a', {
+      offset: window.innerHeight * 0.5, // 50% down page
+      reflow: true,
+    });
     $('#body-content').scroll(spy.detect);
   }
 });
