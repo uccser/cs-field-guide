@@ -132,6 +132,7 @@ ol, ul {
   top: 1rem !important;
   max-height: calc(100vh - #{$navbar-height});
   overflow-y: auto;
+  z-index: 10;
   .nav-link {
     border: 1px solid transparent;
     margin-bottom: 1px;
