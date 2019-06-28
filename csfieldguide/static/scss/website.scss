@@ -130,7 +130,7 @@ ol, ul {
 #side-navbar {
   // Separate top of side navigation from navbar when stickied
   top: 1rem !important;
-  height: calc(100vh - #{$navbar-height});
+  max-height: calc(100vh - #{$navbar-height});
   overflow-y: auto;
   .nav-link {
     border: 1px solid transparent;
