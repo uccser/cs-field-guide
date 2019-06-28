@@ -2,6 +2,7 @@
 
 from django.views.generic import TemplateView
 from chapters.models import Chapter
+from curriculum_guides.models import CurriculumGuide
 
 
 class AppendicesList(TemplateView):
@@ -22,24 +23,6 @@ class ContributorsView(TemplateView):
     template_name = "appendices/contributors.html"
 
 
-class CurriculumGuidesView(TemplateView):
-    """View for the curriculum guides."""
-
-    template_name = "appendices/curriculum-guides/index.html"
-
-
-class NceaView(TemplateView):
-    """View for the ncea curriculum guide."""
-
-    template_name = "appendices/curriculum-guides/ncea.html"
-
-
-class ApcspView(TemplateView):
-    """View for the apcsp curriculum guide."""
-
-    template_name = "appendices/curriculum-guides/apcsp.html"
-
-
 class SitemapView(TemplateView):
     """View for the sitemap."""
 
@@ -53,4 +36,5 @@ class SitemapView(TemplateView):
         """
         context = super(SitemapView, self).get_context_data(**kwargs)
         context["chapters"] = Chapter.objects.all()
+        context["curriculum_guides"] = CurriculumGuide.objects.all()
         return context

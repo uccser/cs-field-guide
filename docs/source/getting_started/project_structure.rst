@@ -70,6 +70,10 @@ The project currently contains the following applications:
 
   - The core CS Field Guide content is split into chapters.
 
+- ``curriculum_guides/``
+
+  - Curriculum guides help teachers utilise CSFG material for specific curricula.
+
 - ``interactives/``
 
   - This application stores all data related to interactives in the CS Field Guide.
