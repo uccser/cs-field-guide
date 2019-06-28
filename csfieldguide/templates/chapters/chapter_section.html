@@ -58,7 +58,7 @@
             <a class="nav-link {% if section.slug == chapter_section.slug %} active{% else %} nav-link-colour{% endif %}" href="{% url 'chapters:chapter_section' chapter.slug section.slug %}">
               <span class="section-heading-number">{{ chapter.number }}.{{ section.number }}.</span> {{ section.name }}
             </a>
-            {% if section.slug == chapter_section.slug %}
+            {% if section.slug == chapter_section.slug and headings %}
               <ul id="section-headings" class="nav nav-pills flex-column my-1 ml-5">
                 {% for heading in headings %}
                   <li>
