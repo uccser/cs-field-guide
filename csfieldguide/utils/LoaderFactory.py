@@ -3,6 +3,7 @@
 from appendices.management.commands._AppendicesLoader import AppendicesLoader
 from chapters.management.commands._ChaptersLoader import ChaptersLoader
 from chapters.management.commands._ChapterSectionsLoader import ChapterSectionsLoader
+from chapters.management.commands._ChapterSectionHeadingsLoader import ChapterSectionHeadingsLoader
 from chapters.management.commands._GlossaryTermsLoader import GlossaryTermsLoader
 from curriculum_guides.management.commands._CurriculumGuidesLoader import CurriculumGuidesLoader
 from curriculum_guides.management.commands._CurriculumGuideSectionsLoader import CurriculumGuideSectionsLoader
@@ -21,8 +22,12 @@ class LoaderFactory:
         return ChaptersLoader(self, **kwargs)
 
     def create_chapter_section_loader(self, chapter, **kwargs):
-        """Create chapter loader."""
+        """Create chapter section loader."""
         return ChapterSectionsLoader(self, chapter, **kwargs)
+
+    def create_chapter_section_heading_loader(self, chapter_section, content_translations, **kwargs):
+        """Create chapter section heading loader."""
+        return ChapterSectionHeadingsLoader(self, chapter_section, content_translations, **kwargs)
 
     def create_curriculum_guide_loader(self, **kwargs):
         """Create curriculum guide loader."""

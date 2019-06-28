@@ -1,20 +1,23 @@
-getting-started:
+whats-the-big-picture:
   section-number: 1
 
-numbers:
+getting-started:
   section-number: 2
 
-text:
+numbers:
   section-number: 3
 
-images-and-colours:
+text:
   section-number: 4
 
-program-instructions:
+images-and-colours:
   section-number: 5
 
-the-whole-story:
+program-instructions:
   section-number: 6
 
-further-reading:
+the-whole-story:
   section-number: 7
+
+further-reading:
+  section-number: 8

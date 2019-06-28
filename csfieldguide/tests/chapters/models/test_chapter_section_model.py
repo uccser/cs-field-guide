@@ -4,7 +4,7 @@ from tests.chapters.ChaptersTestDataGenerator import ChaptersTestDataGenerator
 from chapters.models import ChapterSection
 
 
-class ChapterSectionSectionModelTest(BaseTestWithDB):
+class ChapterSectionModelTest(BaseTestWithDB):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

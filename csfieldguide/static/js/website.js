@@ -3,19 +3,25 @@ require('bootstrap');
 require('details-element-polyfill');
 require('featherlight');
 require('sticky-state');
+var gumshoe = require('gumshoejs');
 const iFrameResize = require('iframe-resizer/js/iframeResizer.js');
 
 $(document).ready(function(){
   // Display glossary-modal
   $("#content-container, #glossary-modal").on("click", ".glossary-term", open_glossary_definition);
 
-  // If anchor link in URL, move page up to avoid link being covered by navbar
-  window.addEventListener("hashchange", function() { scrollBy(0, -72) })
-
   // Pause YouTube videos playing within a closed details elements
   $("body").on("click", "details[open]", details_element_closed);
 
   iFrameResize({}, 'iframe.iframe-resize');
+
+  if (document.getElementById("section-headings")) {
+    var spy = new gumshoe('#section-headings a', {
+      offset: window.innerHeight * 0.5, // 50% down page
+      reflow: true,
+    });
+    $('#body-content').scroll(spy.detect);
+  }
 });
 
 function open_glossary_definition() {

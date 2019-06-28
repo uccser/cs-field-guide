@@ -1,4 +1,4 @@
-"""Custom loader for loading a topic."""
+"""Custom loader for loading a chapter."""
 
 import os.path
 from django.db import transaction

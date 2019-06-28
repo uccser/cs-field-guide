@@ -12,6 +12,7 @@
     "multiple-select": "1.2.1",
     "sticky-state": "2.4.1",
     "iframe-resizer": "3.6.3",
+    "gumshoejs": "5.1.1",
     "csfg-module-fsa": "file:./static/js/modules/fsa/",
     "csfg-interactive-algorithm-timer": "file:./static/interactives/algorithm-timer/",
     "csfg-interactive-big-number-calculator": "file:./static/interactives/big-number-calculator/",

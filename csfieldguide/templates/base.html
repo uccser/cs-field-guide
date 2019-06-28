@@ -60,6 +60,9 @@
                 {% get_language_info for language.0 as lang %}
                   <a class="dropdown-item{% if LANGUAGE_CODE == lang.code %} active{% endif %}" href="{% translate_url language.0 %}">
                     {{ lang.name_local|capfirst }}
+                    {% if lang.code != "en" %}
+                      <span class="badge badge-warning">{% trans "Beta" %}</span>
+                    {% endif %}
                   </a>
                 {% endfor %}
                 <a class="dropdown-item" href="https://bezkomputera.wmi.amu.edu.pl/ppi/">

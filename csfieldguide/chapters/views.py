@@ -91,6 +91,7 @@ class ChapterSectionView(generic.DetailView):
             number=self.object.chapter.number + 1
         )
         context["chapter"] = self.object.chapter
+        context["headings"] = self.object.headings.filter(language=get_language())
         return context
 
 
