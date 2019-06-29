@@ -42,7 +42,7 @@ jobs:
           script: bash ./infrastructure/dev-deploy/deploy-static-files.sh
           skip_cleanup: true
           on:
-            branch: develop
+            branch: issue/1046
     - script: skip
       name: "Update Google Cloud Platform database"
       deploy:

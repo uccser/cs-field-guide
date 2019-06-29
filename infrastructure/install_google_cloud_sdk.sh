@@ -21,3 +21,9 @@ sudo apt-get update && sudo apt-get install google-cloud-sdk
 # Display the gcloud version, useful for debugging purposes.
 # See: https://cloud.google.com/sdk/gcloud/reference/version
 gcloud version
+
+# TEMPORARY FIX
+# Revert Cloud SDK to 251.0.0 to fix gsutil issue until fixed.
+# See: https://github.com/uccser/cs-field-guide/issues/1046
+gcloud components update --version=251.0.0
+gcloud version
