@@ -16,14 +16,11 @@ echo "deb http://packages.cloud.google.com/apt $CLOUD_SDK_REPO main" | sudo tee 
 curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
 
 # Update the package list and install the Cloud SDK.
-sudo apt-get update && sudo apt-get install google-cloud-sdk
+# sudo apt-get update && sudo apt-get install google-cloud-sdk
+# TEMPORARY CHANGE: Install Cloud SDK at version 250.0.0-0 to fix gsutil issue until fixed.
+# See: https://github.com/uccser/cs-field-guide/issues/1046
+gcloud components update --version=250.0.0
 
 # Display the gcloud version, useful for debugging purposes.
 # See: https://cloud.google.com/sdk/gcloud/reference/version
-gcloud version
-
-# TEMPORARY FIX
-# Revert Cloud SDK to 251.0.0 to fix gsutil issue until fixed.
-# See: https://github.com/uccser/cs-field-guide/issues/1046
-gcloud components update --version=251.0.0
 gcloud version
