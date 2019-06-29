@@ -60,4 +60,4 @@ notifications:
 stages:
   - name: test
   - name: develop deploy
-    if: branch = develop
+    if: branch = issue/1046
