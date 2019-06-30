@@ -1,7 +1,8 @@
 Changelog
 ##############################################################################
 
-This page lists updates to the Computer Science Field Guide. All notable changes to this project will be documented in this file.
+This page lists updates to the Computer Science Field Guide.
+All notable changes to this project will be documented in this file.
 
 .. note ::
 
@@ -14,10 +15,62 @@ This page lists updates to the Computer Science Field Guide. All notable changes
   - HOTFIX version change when bug hotfixes are made (for example: fixing a typo, fixing a bug in an interactive).
   - A pre-release version is denoted by appending a hyphen and the alpha label followed by the pre-release version.
 
-
-
 We have listed major changes for each release below.
 
+3.0.0
+==============================================================================
+
+- **Release date**: 30th June 2019
+- **Downloads**: `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/3.0.0>`__
+
+**Changelog:**
+
+- Rebuild the CS Field Guide website to use an open source Django system based off CS Unplugged (`see the GitHub milestone <https://github.com/uccser/cs-field-guide/milestone/17>`__). Major features include:
+
+  - Greatly improved translation features.
+  - Allowing student and teacher pages to use the same URLs (switch between modes available in page footer).
+  - Search functionality for English chapters.
+
+- Improve chapter content:
+
+  - Chapters sections are now split across pages for better readability.
+  - General content, grammar, and spelling fixes.
+  - View glossary definitions within a page.
+
+- Introduce new chapter sections:
+
+  - 'User experience' by Hayley van Waas for the Human Computer Interaction chapter.
+  - 'General purpose compression' by Hayley van Waas for the Coding - Compression chapter.
+
+- Improve interactives:
+
+  - Introduce automated thumbnail generator.
+  - Introduce many 'uninteractives' &ndash; allowing image text to be translated.
+  - Update existing interactives for better accessi.
+
+- Introduce new interactives:
+
+  - `Algorithm Timer`
+  - `Braille Alphabet`
+  - `City Trip`
+  - `Dictionary Compression`
+  - `Dot combinations`
+  - `LZSS compression`
+  - `LZW Compression`
+  - `Pixel Grid`
+
+- Remove obsolete interactives:
+
+  - `MD5-hash`
+  - `ncea-guide-selector`
+  - `ziv-lempel-coding`
+
+- Redesign homepage.
+- Update documentation and contributing guides.
+- Update contributors page.
+- Improve licencing structure to make it easier to find and navigate on GitHub.
+- Rename '2D Arrow Manipulations' interactive to '2D Shape Manipulations.
+- Introduce initial German and Spanish translations.
 
 2.12.2
 ==============================================================================
@@ -29,6 +82,10 @@ We have listed major changes for each release below.
 
 - Add optional parameters to Pixel Viewer interactive to specific starting image, hide pixel fill, and hide menu. `#630 <https://github.com/uccser/cs-field-guide/pull/630>`__
 - Grammar/spelling fixes for Data Representation and Compression Coding chapters. `#626 <https://github.com/uccser/cs-field-guide/pull/626>`__
+
+`This release is archived for viewing here <https://archive.csfieldguide.org.nz/2.12.2/>`__
+
+`The teacher version is archived for viewing here <https://archive.csfieldguide.org.nz/2.12.2/teacher/>`__
 
 2.12.1
 ==============================================================================
@@ -256,7 +313,7 @@ A full list of changes in this version is `available on GitHub <https://github.c
 - **Generation improvements:** Improvements to internal link creation (glossary links in particular). Separated dependency installation from generation script (see documentation for how to install and run generation script).
 - **Project improvements:** Added documentation for contributing to and developing this project, including a code of conduct.
 
-A full list of changes in this version is `available on GitHub <https://github.com/uccser/cs-field-guide/compare/v2.5.0...v2.6.0>`__ 
+A full list of changes in this version is `available on GitHub <https://github.com/uccser/cs-field-guide/compare/v2.5.0...v2.6.0>`__
 
 2.5.0
 ==============================================================================
@@ -267,9 +324,9 @@ A full list of changes in this version is `available on GitHub <https://github.c
 **Notable changes:**
 
 - The Data Representation chapter has been rewritten and reorganised to be easier to follow, and three NCEA assessment guides have been written for students aiming for merit/excellence:
-- `Numbers (Two's Complement) <curriculum-guides/ncea/level-2/excellence-data-representation-numbers.html>`__ 
-- `Text (Unicode) <curriculum-guides/ncea/level-2/excellence-data-representation-text.html>`__ 
-- `Colours (Various bit depths) <curriculum-guides/ncea/level-2/excellence-data-representation-colour.html>`__ 
+- `Numbers (Two's Complement) <curriculum-guides/ncea/level-2/excellence-data-representation-numbers.html>`__
+- `Text (Unicode) <curriculum-guides/ncea/level-2/excellence-data-representation-text.html>`__
+- `Colours (Various bit depths) <curriculum-guides/ncea/level-2/excellence-data-representation-colour.html>`__
 
 The chapter and assessment guides have been rewritten to take account of new feedback from the marking process and our own observations of student work.
 
@@ -416,6 +473,6 @@ Released at CS4HS 2015.
 
 The last version of the CSFG before the open source version was adopted.
 
-`This release is archived for viewing here <http://www.csfieldguide.org.nz/releases/1.9.9/>`__
+`This release is archived for viewing here <https://archive.csfieldguide.org.nz/1.9.9/>`__
 
-`The teacher version is archived for viewing here <http://www.csfieldguide.org.nz/releases/1.9.9/teacher/>`__
+`The teacher version is archived for viewing here <https://archive.csfieldguide.org.nz/1.9.9/teacher/>`__
