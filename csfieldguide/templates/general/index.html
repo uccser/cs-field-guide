@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+
+{% load i18n static render_interactive_link svg %}
+
+{% block custom_title %}
+  {% trans "Computer Science Field Guide" %}
+{% endblock custom_title %}
+
+{% block page_content %}
+  <div class="jumbotron jumbotron-fluid py-5">
+    <div class="container text-center">
+      <div class="row align-items-center">
+        <div class="col-6 mx-auto col-md-4 order-md-2">
+          <img id="homepage-logo" src="{% static 'img/logos/guide-logo-light.png' %}">
+        </div>
+        <div class="col-md-8 order-md-1 text-center text-md-left pr-md-5">
+          <h1 class="mb-3 bd-text-purple-bright">
+            {% trans 'Computer Science Field Guide' %}
+          </h1>
+          <p class="lead">
+            {% trans 'An online interactive resource for high school students learning about computer science.' %}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-6 homepage-cta">
+        <div class="row no-gutters">
+          <div class="col-12 col-lg-3">
+            {% svg 'icons8-book-shelf' %}
+          </div>
+          <div class="col-12 col-lg-9 text-center text-md-left">
+            <h5 class="mt-0">{% trans "Chapters" %}</h5>
+            <p class="text-left">
+              {% trans 'The Computer Science Field Guide has many chapters to inform you of the various areas of Computer Science.' %}
+            </p>
+            <a href="{% url 'chapters:index' %}" class="btn btn-primary mb-5" role="button">{% trans "View chapters" %}</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6 homepage-cta">
+        <div class="row no-gutters">
+          <div class="col-12 col-lg-3">
+            {% svg 'icons8-natural-user-interface-2' %}
+          </div>
+          <div class="col-12 col-lg-9 text-center text-md-left">
+            <h5 class="mt-0">{% trans "Interactives" %}</h5>
+            <p class="text-left">
+              {% trans 'We have many interactives throughout the website that teach many different computer science concepts.' %}
+            </p>
+            <a href="{% url 'interactives:index' %}" class="btn btn-primary mb-5" role="button">{% trans "View interactives" %}</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6 homepage-cta">
+        <div class="row no-gutters">
+          <div class="col-12 col-lg-3">
+            {% svg 'icons8-classroom-modified' %}
+          </div>
+          <div class="col-12 col-lg-9 text-center text-md-left">
+            {% if teacher_mode %}
+            <h5 class="mt-0">{% trans "This is the teacher's guide!" %}</h5>
+            <p class="text-left">
+              {% trans 'The teacher version has extra information on how to use this guide for teaching.' %}
+            </p>
+            <a href="{% url 'general:teacher_mode_logout' %}?next={{ request.path }}" class="btn btn-primary mb-5" role="button">{% trans "Switch to student mode" %}</a>
+            {% else %}
+            <h5 class="mt-0">{% trans "Teacher's guide" %}</h5>
+            <p class="text-left">
+              {% trans 'If you are an educator, we recommend reading the teacher version for extra information on how to use this guide for teaching.' %}
+            </p>
+            <a href="{% url 'general:teacher_mode_login' %}?next={{ request.path }}" class="btn btn-primary mb-5" role="button">{% trans "Switch to teacher mode" %}</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6 homepage-cta">
+        <div class="row no-gutters">
+          <div class="col-12 col-lg-3">
+            {% svg 'icons8-source-code' %}
+          </div>
+          <div class="col-12 col-lg-9 text-center text-md-left">
+            <h5 class="mt-0">{% trans "Open source" %}</h5>
+            <p class="text-left">
+              {% trans 'This project is completely open source and available on GitHub.' %}
+            </p>
+            <a href="https://github.com/uccser/cs-field-guide" class="btn btn-primary mb-5" role="button">{% trans "View on GitHub" %}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock page_content %}

@@ -1,0 +1,48 @@
+{% extends "appendices/base.html" %}
+
+{% load i18n %}
+{% load static %}
+{% load render_interactive_link %}
+
+{% block title %}
+  {% trans "Interactives" %}
+{% endblock title %}
+
+{% block appendix_title %}
+  {% trans "Interactives" %}
+{% endblock appendix_title %}
+
+{% block content %}
+  <h2>List of interactives by chapter</h2>
+  {% for chapter in chapters %}
+    <h3>{{ chapter.name }}</h3>
+    {% if chapter.interactives.all %}
+      <div class="row">
+        {% for interactive in chapter.interactives.all %}
+          {% if interactive.is_interactive %}
+            <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
+            {% render_interactive_link interactive %}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% else %}
+      <p>{% trans 'No interactives are available for this chapter.' %}</p>
+    {% endif %}
+  {% endfor %}
+
+  <h2>List of interactives alphabetically</h2>
+  {% if interactives %}
+    <div class="row">
+      {% for interactive in interactives %}
+        {% if interactive.is_interactive %}
+          <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
+          {% render_interactive_link interactive %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>{% trans 'No interactives are available.' %}</p>
+  {% endif %}
+{% endblock content %}

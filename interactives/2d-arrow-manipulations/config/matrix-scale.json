@@ -1,7 +1,0 @@
-{
-    "type": "matrix",
-    "title": "2D Scaling",
-    "task": "Try replacing the 1s with 2s in the multiplication matrix",
-    "target": "0 8 -6 2 -2 2 -2 -8 2 -8 2 2 6 2",
-    "modules": ["first-scale"]
-}

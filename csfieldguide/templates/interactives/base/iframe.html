@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}
+  {{ interactive.name }}
+{% endblock title %}
+
+{% block body %}
+  {% if not interactive.translation_available %}
+    {% with model=interactive %}
+      {% include 'generic/not-available-warning.html' %}
+    {% endwith %}
+  {% else %}
+    <style>
+      body { padding-top: 0 !important; }
+    </style>
+    <div class="interactive">
+      {% block html %}
+      {% endblock html %}
+    </div>
+
+    <link rel="stylesheet" href="{% static 'css/interactive-iframe.css' %}">
+    {% block css %}
+    {% endblock css %}
+
+    {% block js %}
+    {% endblock js %}
+
+    <script type="text/javascript" src="{% static 'js/iframe-resizer-content-window.js' %}"></script>
+  {% endif %}
+{% endblock body %}

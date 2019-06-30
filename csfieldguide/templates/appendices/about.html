@@ -1,0 +1,38 @@
+{% extends "appendices/base.html" %}
+
+{% load i18n %}
+
+{% block title %}
+  {% trans 'About' %}
+{% endblock title %}
+
+{% block appendix_title %}
+  {% trans 'About' %}
+{% endblock appendix_title %}
+
+{% block content %}
+  <p>
+    {% blocktrans %}The Computer Science Field Guide is an online resource for teaching Computer Science to students.
+    This guide was initially developed as an online interactive textbook to support the new achievement standards in Computer Science that were being rolled out in New Zealand (2011-2013), and is now being adapted for use all over the world.
+    The New Zealand project started in 2012, with the first materials released to the public in 2013.
+    The development of this guide focuses on content in the form of text (both for students and guidance for teachers), developing images, designing interactives (educational games or demostrations), and tuning the existing chapters.{% endblocktrans %}
+  </p>
+
+  <p>
+    {% trans 'This project is open source and <a href="https://github.com/uccser/cs-field-guide">available on GitHub</a>, and is maintained by a small team of developers.' %}
+  </p>
+
+  <p>
+    {% blocktrans %}If you are a teacher (or involved in education), you can join the <a href="https://groups.google.com/forum/?fromgroups#!forum/csfg-teachers">CSFG teachers group</a> to receive updates.
+    You can access the teacher's version on the guide by using the link in the page footer.{% endblocktrans %}
+  </p>
+
+  <h2>{% trans 'Press Contact Details' %}</h2>
+
+  <h4>Tim Bell</h4>
+  <p>
+    {% trans 'Project Lead' %}
+    <br>
+    <a href="mailto:tim.bell@canterbury.ac.nz">tim.bell@canterbury.ac.nz</a>
+  </p>
+{% endblock content %}

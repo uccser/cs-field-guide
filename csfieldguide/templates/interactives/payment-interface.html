@@ -1,0 +1,24 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div id="interactive-payment-interface" class="container-fluid mb-3">
+    <div class="row justify-content-center">
+      <div class="form-group">
+        <label for="interactive-payment-interface-input"><h3>{% trans "Payment Amount" %}</h3></label>
+        <input type="text" class="form-control" id="interactive-payment-interface-input" placeholder="{% trans 'How much to pay?' %}"/>
+        <small id="interactive-payment-interface-message"></small>
+      </div>
+    </div>
+  </div>
+{% endblock html %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'interactives/payment-interface/css/payment-interface.css' %}">
+{% endblock css %}
+
+{% block js %}
+    <script type="text/javascript" src="{% static 'interactives/payment-interface/js/payment-interface.js' %}"></script>
+{% endblock js %}

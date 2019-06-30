@@ -1,0 +1,59 @@
+.padded {
+  padding-left: 10rem;
+  padding-right: 10rem;
+}
+
+@media screen and (max-width: 1540px) {
+  .padded {
+    padding-left: 5rem;
+    padding-right: 5rem;
+  }
+}
+
+@media screen and (max-width: 1380px) {
+  .padded {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+.code {
+  font-family: monospace;
+  font-weight: normal;
+  font-size: .9rem !important;
+  background-color: #263238;
+  color: #fff;
+  padding: 0.3rem !important;
+  overflow: auto;
+  width: 100%;
+  max-height: 480px;
+  min-height: 100px;
+}
+
+@media screen and (min-width: 768px) {
+  // 768px is defined as 'medium' by bootstrap regarding grids
+  .code {
+    min-height: 480px;
+  }
+}
+
+textarea.code {
+  height: 30rem;
+}
+.footer {
+  padding: 1rem;
+}
+.btn-expand {
+  width: 100%;
+}
+.scroll {
+  overflow: auto;
+  white-space: nowrap;
+}
+.upper-padding {
+  padding-top: 5pt;
+}
+.textarea-padding {
+  padding-left: 15px;
+  padding-right: 15px;
+}

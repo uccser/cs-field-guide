@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% load static %}
+{% load svg %}
+
+{% block title %}
+  {% trans "Curiculum Guides" %}
+{% endblock title %}
+
+{% block page_heading %}
+  {% trans "Curriculum Guides" %}
+{% endblock page_heading %}
+
+{% block content %}
+
+  <p>
+    {% blocktrans %}We currently provide guides for using the Computer Science Field Guide in the following curricula.
+    We aim to provide guides for curricula all over the world, to aid educators and students on how to teach and learn Computer Science using the Computer Science Field Guide.{% endblocktrans %}
+  </p>
+
+  {% if curriculum_guides %}
+    <div class="row justify-content-start">
+      {% for curriculum_guide in curriculum_guides %}
+        <div class="col-12 col-md-6 col-lg-4 mb-4">
+          <a class="link-item{% if not curriculum_guide.translation_available %} unavailable{% endif %}" href="{% url 'curriculum_guides:curriculum_guide' curriculum_guide.slug %}">
+            <h2>{{ curriculum_guide.name }}</h2>
+            {% if not curriculum_guide.translation_available %}
+              {% include "generic/not-available-badge.html" %}
+            {% endif %}
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>{% trans 'No curriculum guides are available.' %}</p>
+  {% endif %}
+{% endblock content %}

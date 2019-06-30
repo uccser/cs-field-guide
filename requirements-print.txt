@@ -1,6 +1,0 @@
-packaging==16.8
-appdirs==1.4.3
-html5lib==1.0b9
-six==1.10.0
-weasyprint==0.36
-requests>=2.10.0    # Used for retrieving images from internet

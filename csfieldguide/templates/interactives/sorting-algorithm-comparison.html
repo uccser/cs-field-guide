@@ -1,0 +1,36 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div class="container">
+    <div class="row text-center" id="interactive-sorting-algorithm-comparison">
+      <div class="col-12">
+        <p>{% trans "Click an image to play sorting animations" %}</p>
+      </div>
+      <div class="col-6">
+        <img id="sorting-algorithm-comparison-selection-sort" src="{% static 'interactives/sorting-algorithm-comparison/img/initial-sort.gif' %}">
+        <p class="sorting-algorithm-comparison-subtitle">{% trans "Selection sort" %}</p>
+      </div>
+      <div class="col-6">
+        <img id="sorting-algorithm-comparison-quick-sort" src="{% static 'interactives/sorting-algorithm-comparison/img/initial-sort.gif' %}">
+        <p class="sorting-algorithm-comparison-subtitle">{% trans "Quick sort" %}</p>
+      </div>
+      <div class="col-12">
+        <p id="sorting-algorithm-comparison-credit"><em>{% trans 'Animations provided by David Martin from <a href="http://www.sorting-algorithms.com/">www.sorting-algorithms.com' %}</a></em></p>
+      </div>
+      <!-- Preload the images so they start at the same time -->
+      <img id="sorting-algorithm-comparison-selection-sort-animation" class="sorting-algorithm-comparison-preload" src="{% static 'interactives/sorting-algorithm-comparison/img/selection-sort.gif' %}">
+      <img id="sorting-algorithm-comparison-quick-sort-animation" class="sorting-algorithm-comparison-preload" src="{% static 'interactives/sorting-algorithm-comparison/img/quick-sort.gif' %}">
+    </div>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/sorting-algorithm-comparison/css/style.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script src="{% static 'interactives/sorting-algorithm-comparison/js/script.js' %}"></script>
+{% endblock js %}

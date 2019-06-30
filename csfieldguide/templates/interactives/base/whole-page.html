@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% load static %}
+
+{% block title %}
+  {{ interactive.name }}
+{% endblock title %}
+
+{% block body_content %}
+  {% if not interactive.translation_available %}
+    {% with model=interactive %}
+      {% include 'generic/not-available-warning.html' %}
+    {% endwith %}
+  {% else %}
+    {% block html %}
+    {% endblock html %}
+
+    {% block css %}
+    {% endblock css %}
+
+    {% block js %}
+    {% endblock js %}
+  {% endif %}
+{% endblock body_content %}

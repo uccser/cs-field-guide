@@ -1,0 +1,29 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div id="interactive-delayed-checkbox" class="containter-fluid text-center">
+    <div class="row justify-content-center">
+      <div class="col-12">
+        <h4>{% trans "Tick the checkbox" %}</h4>
+      </div>
+      <div class="col-12">
+        <input id="interactive-delayed-checkbox-box" type="checkbox" value="">
+          <div id="interactive-delayed-checkbox-feedback">
+            {% trans 'Clicked <span id="interactive-delayed-checkbox-counter">0</span> times' %}
+          </div>
+        </input>
+      </div>
+    </div>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/delayed-checkbox/css/delayed-checkbox.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'interactives/delayed-checkbox/js/delayed-checkbox.js' %}"></script>
+{% endblock js %}

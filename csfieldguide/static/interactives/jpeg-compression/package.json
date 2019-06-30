@@ -1,0 +1,9 @@
+{
+    "name": "csfg-interactive-jpeg-compression",
+    "version": "1.0.0",
+    "private": true,
+    "dependencies": {
+        "interactjs": "1.4.0-alpha.17",
+        "dct": "0.0.3"
+    }
+}

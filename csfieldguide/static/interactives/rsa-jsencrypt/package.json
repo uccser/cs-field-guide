@@ -1,0 +1,8 @@
+{
+    "name": "csfg-interactive-rsa-jsencrypt",
+    "version": "1.0.0",
+    "private": true,
+    "dependencies": {
+        "jsencrypt": "3.0.0-rc.1"
+    }
+}

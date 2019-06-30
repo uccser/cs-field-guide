@@ -1,0 +1,8 @@
+{
+    "name": "csfg-interactive-unicode-chars",
+    "version": "1.0.0",
+    "private": true,
+    "dependencies": {
+        "string.fromcodepoint": "0.2.1"
+    }
+}

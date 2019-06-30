@@ -1,0 +1,31 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div class="container mb-3">
+    <h3 class="text-center">{% trans "Unicode Encoding Size" %}</h3>
+    <div id="interactive-unicode-length" class="d-flex justify-content-center">
+      <div class="mr-5">
+        <p>{% trans "Enter text for length calculation:" %}</p>
+        <textarea id="interactive-unicode-length-text" class="form-control mb-1"></textarea>
+        <button id="interactive-unicode-length-button" class="btn btn-primary">{% trans "Calculate Bit Lengths" %}</button>
+      </div>
+      <div id="interactive-unicode-length-bit-lengths">
+        <p>{% trans "Encoding lengths:" %}</p>
+        <p><b>{% trans 'UTF-8:</b> <span id="interactive-unicode-length-utf8">0 bits' %}</span></p>
+        <p><b>{% trans 'UTF-16:</b> <span id="interactive-unicode-length-utf16">0 bits' %}</span></p>
+        <p><b>{% trans 'UTF-32:</b> <span id="interactive-unicode-length-utf32">0 bits' %}</span></p>
+      </div>
+    </div>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/unicode-length/css/unicode-length.css' %}">
+{% endblock css %}
+
+{% block js %}
+    <script type="text/javascript" src="{% static 'interactives/unicode-length/js/unicode-length.js' %}"></script>
+{% endblock js %}

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block title %}
+  {% trans 'Appendices' %}
+{% endblock title %}
+
+{% block page_heading %}
+  <small>{% trans 'Appendix' %}</small><br>{% block appendix_title %}{% endblock appendix_title %}
+{% endblock page_heading %}

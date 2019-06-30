@@ -1,0 +1,35 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div id="interactive-rgb-mixer" class="mb-3 container-fluid">
+    <h3>{% trans "RGB Colour Mixer - Used by Screens" %}</h3>
+    <div id="interactive-rgb-mixer-container">
+      <div id="interactive-rgb-mixer-result"></div>
+        <div id="interactive-rgb-mixer-sliders">
+          <div>
+            <div>{% trans '<strong>Red</strong> - Currently set to <input id="interactive-rgb-mixer-red-value" value=127 class="form-control w-auto d-inline" size="3">' %}</div>
+            <div class="interactive-rgb-mixer-slider"></div>
+          </div>
+          <div>
+            <div>{% trans '<strong>Green</strong> - Currently set to <input id="interactive-rgb-mixer-green-value" value=127 class="form-control w-auto d-inline" size="3">' %}</div>
+            <div class="interactive-rgb-mixer-slider"></div>
+          </div>
+          <div>
+            <div>{% trans '<strong>Blue</strong> - Currently set to <input id="interactive-rgb-mixer-blue-value" value=127 class="form-control w-auto d-inline" size="3">' %}</div>
+            <div class="interactive-rgb-mixer-slider"></div>
+          </div>
+      </div>
+    </div>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/rgb-mixer/css/rgb-mixer.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'interactives/rgb-mixer/js/rgb-mixer.js' %}"></script>
+{% endblock js %}

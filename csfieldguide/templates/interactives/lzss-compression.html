@@ -1,0 +1,38 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div class="container">
+    <div id="lzss-compression">
+      <h3>{% trans "LZSS Compression" %}</h3>
+      <div id="lzss-compression-wrapper">
+        <div id="lzss-compression-left-box">
+          <p>{% trans "Enter the message you want to encode here" %}:</p>
+          <div id="lzss-compression-input-text">
+            <textarea class="form-control" rows="5" id="message-to-decode"></textarea>
+          </div>
+          <div>
+            <button id="lzss-compression-compress-button" class="btn btn-primary btn-block" type="button">
+                {% trans "Compress" %} &rarr;
+            </button>
+          </div>
+        </div>
+        <div id="lzss-compression-right-box">
+          <p>{% trans "Encoded Message" %}:</p>
+          <div id="lzss-compression-compressed-text">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/lzss-compression/css/lzss-compression.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'interactives/lzss-compression/js/lzss-compression.js' %}"></script>
+{% endblock js %}

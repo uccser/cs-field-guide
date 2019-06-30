@@ -1,0 +1,67 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div class="container">
+    <div class="row">
+      <div class="col s12">
+        <div id="interactive-image-bit-comparer">
+          <h4 class="mt-4">{% trans "Image Bit Comparer" %}</h4>
+
+          <div class="row">
+            <div class="col s12 m4">
+              <h5>{% trans "Select Image" %}</h5>
+              <select id="interactive-image-bit-comparer-selected-image" class="browser-default form-control">
+              </select>
+            </div>
+            <div class="col s12 m4">
+              <h5>{% trans "Upload Image" %}</h5>
+              <p>{% trans "Either drag and drop or click the button below to load your own landscape image into the interactive." %}
+                <input id="image-input" type="file" name="image" accept="image/*">
+              </p>
+            </div>
+            <div class="col s12 m4">
+              <h5>{% trans "Image Preview Size" %}</h5>
+              <select id="interactive-image-bit-comparer-image-size" class="browser-default form-control">
+                <option value="0.6">{% trans "Small" %}</option>
+                <option value="1" selected="true">{% trans "Medium" %}</option>
+                <option value="2.4">{% trans "Large (may take longer to load)" %}</option>
+              </select>
+            </div>
+          </div>
+
+          <div id="interactive-image-bit-comparer-canvas-parent-container"></div>
+
+          <!-- Source canvas for loading images, hidden from user -->
+          <canvas id="interactive-image-bit-comparer-source-canvas" crossorigin="anonymous"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/image-bit-comparer/css/image-bit-comparer.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript">
+    var image_bit_comparer_images = {
+      "sunflower": "{% static 'interactives/image-bit-comparer/img/IMG_5035.jpg' %}",
+      "temple-roof": "{% static 'interactives/image-bit-comparer/img/IMG_5264.jpg' %}",
+      "nz-lake": "{% static 'interactives/image-bit-comparer/img/IMG_2223.jpg' %}",
+      "person": "{% static 'interactives/image-bit-comparer/img/person.jpg' %}",
+      "flower": "{% static 'interactives/image-bit-comparer/img/IMG_8354.jpg' %}",
+      "snow-flower": "{% static 'interactives/image-bit-comparer/img/IMG_6698.jpg' %}",
+      "duckling": "{% static 'interactives/image-bit-comparer/img/IMG_8061.jpg' %}",
+      "car": "{% static 'interactives/image-bit-comparer/img/wedding-vehicle.jpg' %}",
+      "lightning": "{% static 'interactives/image-bit-comparer/img/IMG_2521.jpg' %}",
+      "balloons": "{% static 'interactives/image-bit-comparer/img/IMG_7448.jpg' %}",
+      "black-and-white": "{% static 'interactives/image-bit-comparer/img/black-and-white.jpg' %}",
+      "books": "{% static 'interactives/image-bit-comparer/img/IMG_0775.jpg' %}",
+    };
+  </script>
+  <script type="text/javascript" src="{% static 'interactives/image-bit-comparer/js/image-bit-comparer.js' %}"></script>
+{% endblock js %}

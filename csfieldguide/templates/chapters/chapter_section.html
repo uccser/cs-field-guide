@@ -1,0 +1,92 @@
+{% extends "columns.html" %}
+
+{% load i18n %}
+{% load render_html_field %}
+
+{% block title %}
+  {{ chapter_section.chapter.name }}
+{% endblock title %}
+
+{% block page_heading %}
+  <small>
+    <a href="{% url 'chapters:chapter' chapter.slug %}" class="text-white-50">
+      {{ chapter.name }}
+    </a>
+  </small>
+  <br>
+  <span class="text-white-50">{{ chapter.number }}.{{ chapter_section.number }}.</span> {{ chapter_section.name }}
+{% endblock page_heading %}
+
+{% block left_column_content %}
+  {% if chapter_section.translation_available %}
+    {% render_html_field chapter_section.content %}
+  {% else %}
+    {% with model=chapter_section %}
+      {% include "generic/not-available-warning.html" %}
+    {% endwith %}
+  {% endif %}
+
+  <div class="mt-5 {% if previous_section %}d-flex justify-content-between{% endif %}">
+    {% if previous_section %}
+      <a href="{% url 'chapters:chapter_section' chapter.slug previous_section.0.slug %}" class="btn btn-primary btn-chapter-section mb-2 float-left {% if not chapter_section.translation_available %} text-muted{% endif %}">
+        <strong>{% trans 'Previous:' %}</strong><br>{{ previous_section.0.name }}
+        {% if not previous_section.0.translation_available %}
+          <br>
+          {% include "generic/not-available-badge.html" %}
+        {% endif %}
+      </a>
+    {% endif %}
+    {% if next_section %}
+      <a id="section-next-btn" href="{% url 'chapters:chapter_section' chapter.slug next_section.0.slug %}" class="btn btn-primary btn-chapter-section mb-2 float-right {% if not chapter_section.translation_available %} text-muted{% endif %}">
+        <strong>{% trans 'Next:' %}</strong><br>{{ next_section.0.name }}
+        {% if not next_section.0.translation_available %}
+          <br>
+          {% include "generic/not-available-badge.html" %}
+        {% endif %}
+      </a>
+    {% elif next_chapter %}
+      <a id="section-next-btn" href="{% url 'chapters:chapter' next_chapter.0.slug %}" class="btn btn-primary btn-chapter-section mb-2 float-right {% if not chapter.translation_available %} text-muted{% endif %}">
+        <strong>{% trans 'Next:' %}</strong><br>{{ next_chapter.0.name }}
+        {% if not next_chapter.0.translation_available %}
+          <br>
+          {% include "generic/not-available-badge.html" %}
+        {% endif %}
+      </a>
+    {% endif %}
+  </div>
+{% endblock left_column_content %}
+
+{% block right_column_content %}
+  {% if chapter_section.translation_available %}
+    <div id="side-navbar" class="sticky-top d-print-none pl-2 border-left">
+      <h4 class="pl-3">
+        <a href="{% url 'chapters:chapter' chapter.slug %}">
+          {{ chapter.name }}
+        </a>
+      </h4>
+      <ul class="nav nav-pills flex-column">
+        {% for section in chapter.chapter_sections.all %}
+          <li class="nav-item">
+            <a class="nav-link {% if section.slug == chapter_section.slug %} active{% else %} nav-link-colour{% endif %}"
+              {% if section.slug == chapter_section.slug %}
+                href="#top"
+              {% else %}
+                href="{% url 'chapters:chapter_section' chapter.slug section.slug %}">
+              {% endif %}
+              <span class="section-heading-number">{{ chapter.number }}.{{ section.number }}.</span> {{ section.name }}
+            </a>
+            {% if section.slug == chapter_section.slug and headings %}
+              <ul id="section-headings" class="nav nav-pills flex-column my-1 ml-5">
+                {% for heading in headings %}
+                  <li>
+                    <a class="nav-link" href="#{{ heading.slug }}">{{ heading.name }}</a>
+                  </li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+{% endblock right_column_content %}

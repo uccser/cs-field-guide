@@ -1,0 +1,29 @@
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+#results {
+  .row {
+    padding: 0.4em 0;
+  }
+  .row:nth-child(odd) {
+    background-color: rgba(0,0,0,.05);
+  }
+  small a {
+    font-style: italic;
+  }
+}
+#results-heading {
+  color: $black;
+  text-align: center;
+  border-top: 1px $gray-700 solid;
+  margin-top: 1em;
+  padding-top: 0.5em;
+}
+#result-page-links {
+  font-size: 0.9em;
+  .span {
+    vertical-align: text-top;
+  }
+  .btn-link {
+    padding: 0.3em;
+  }
+}

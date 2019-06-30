@@ -1,0 +1,126 @@
+@mixin detail-colour-variant($color) {
+  > summary {
+    background-color: hsl(hue($color), saturation($color), 65%);
+    color: rgba($text-color, 0.8);
+    &:hover {
+      background-color: hsl(hue($color), saturation($color), 60%);
+    }
+  }
+  border-color: hsl(hue($color), saturation($color), 65%);
+  background-color: hsl(hue($color), saturation($color), 90%);
+}
+
+.boxed-text {
+  border: 1px solid $gray-light;
+  margin-bottom: $spacer;
+
+  .boxed-text-content {
+    margin: ($spacer * .5) ($spacer * .5);
+    overflow: auto;
+  }
+}
+
+.boxed-text-indented {
+  margin-#{$left}: 1em;
+}
+
+$details-summary-bg: #dde0e2;
+details {
+  @extend .boxed-text;
+  @extend .shadow;
+  overflow: hidden;
+  background-color: $gray-lighter;
+
+  summary {
+    background-color: $details-summary-bg;
+    color: $gray-dark;
+    cursor: pointer;
+    font-size: 1.1em;
+    padding: ($spacer * .5) $spacer;
+    display: flex;
+    align-items: center;
+    .inline-image {
+      margin-top: 0.2rem;
+      margin-bottom: 0.2rem;
+      margin-#{$left}: auto;
+      margin-#{$right}: 0.2rem;
+    }
+  }
+  summary:hover {
+    background-color: darken($details-summary-bg, 10%);
+  }
+  &.panel-{
+    &teacher-note {
+      @include detail-colour-variant(#e57373);
+    }
+    &additional-information {
+      @include detail-colour-variant($amber);
+    }
+    &curiosity {
+      @include detail-colour-variant($purple);
+    }
+    &challenge {
+      @include detail-colour-variant(#ff5722);
+    }
+    &caution {
+      @include detail-colour-variant($orange);
+    }
+    &jargon-buster {
+      @include detail-colour-variant(#8bc34a);
+    }
+    &spoiler {
+      @include detail-colour-variant(#607d8b);
+    }
+    &project {
+      @include detail-colour-variant($blue);
+    }
+  }
+}
+
+/*
+ The following rules are used to better display <details> elements in Internet
+ Explorer and Edge, as they are currently unsupported. A JavaScript polyfill
+ is used to add functionality, however the following rules ensure to remove
+ some other issues.
+
+ 1. border: 0;
+    This is used as these browsers do not correctly calculate the position of
+    the element, and the border displays as a vertical line beside the element.
+    This removes the border completely.
+
+ 2. background-color: $gray-lighter;
+    This provides a backup to ensure the detail's contents display with a
+    background colour, by colouring a child div element which these browser
+    can properly calculate size and position. Without this the content is
+    displayed with no background colour, and it is hard for a user to decipher
+    what text belows to the detail element.
+
+ 3. padding: 0.5rem 1rem 0;
+    This provides extra spacing around the text within the panel so it doesn't
+    hit the background coloured edge.
+
+ Both sets of rules use CSS tricks to determine the browser. If these fail, a
+ JavaScript function could run on each page to determine the browser, or the
+ Django system could check the browser and include an optional file with these
+ rules.
+*/
+// IE10+ detail support
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  details {
+    border: 0 !important;
+    .boxed-text-content {
+      background-color: $gray-lighter !important;
+      padding: 0.5rem 1rem 0;
+    }
+  }
+}
+// Edge 12+ detail support
+@supports (-ms-ime-align:auto) {
+  details {
+    border: 0 !important;
+    .boxed-text-content {
+      background-color: $gray-lighter !important;
+      padding: 0.5rem 1rem 0;
+    }
+  }
+}

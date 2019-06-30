@@ -1,0 +1,7 @@
+{% load i18n %}
+
+<span class="badge badge-danger badge-language-unavailable">
+  {% blocktrans trimmed with language=current_language.name_local %}
+    Not available in {{ language }}
+  {% endblocktrans %}
+</span>

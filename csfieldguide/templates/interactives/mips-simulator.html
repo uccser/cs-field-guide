@@ -1,0 +1,128 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div class="mb-3 container-fluid padded">
+    <!-- Title Block -->
+    <div id="interactive-mips-simulator" class="row justify-content-center">
+      <h1>{% trans 'MIPS Simulator' %}</h1>
+    </div>
+
+    {% url 'interactives:interactive' 'mips-assembler' as assembler_link %}
+    <p>
+      {% blocktrans %}
+        Enter the assembled MIPS code from the <a href="{{ assembler_link }}" target="_blank">MIPS Assembler</a> interactive to run it.<br>
+        Enter only the assembled hexadecimal values, no other assembler output.<br>
+        <strong>Note:</strong> Only a subset of MIPS is implemented, negative values are rarely supported.
+      {% endblocktrans %}
+    </p>
+
+    <!-- Simulator -->
+    <div class="row justify-content-center">
+      <!-- Input Column -->
+      <div class="col-md-6 col-sm-12 mb-2">
+        <h3>{% trans 'Assembled MIPS Input' %}</h3>
+        <!-- Code Block -->
+        <div class="row textarea-padding">
+          <textarea id="assembled-input" class="code">
+          </textarea>
+        </div>
+      </div>
+
+      <!-- Output Column -->
+      <div class="col-md-6 col-sm-12 mb-2">
+        <h3>{% trans 'Program Output' %}</h3>
+        <div id="program-output" class="code scroll">
+        </div>
+      </div>
+    </div>
+
+    <!-- Options Block -->
+    <div class="row justify-content-left">
+      <div class="col-lg-2">
+        <div class="form-group form-check">
+          <input id="show-context" type="checkbox" class="form-check-input">
+          <label class="form-check-label" for="show-context">{% trans 'Show context' %}</label>
+        </div>
+        <div class="form-group form-check">
+          <input id="show-registers" type="checkbox" class="form-check-input">
+          <label class="form-check-label" for="show-registers">{% trans 'Show register trace' %}</label>
+        </div>
+        <div class="form-group form-check">
+          <input id="show-colours" type="checkbox" class="form-check-input">
+          <label class="form-check-label" for="show-colours">{% trans 'Show colours' %}</label>
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <button id="reset-adv" type="button" class="btn btn-outline-danger mb-2 d-none">{% trans 'Load advanced example' %}</button>
+        <button id="reset-basic" type="button" class="btn btn-outline-danger mb-2 d-none">{% trans 'Load basic example' %}</button>
+      </div>
+      <div class="col-lg-2">
+        <button id="run-mips" type="button" class="btn btn-success">{% trans 'Run Program!' %}</button>
+      </div>
+    </div>
+
+    <!-- Contributions -->
+    <div class="row justify-content-center upper-padding">
+      <p>
+      {% trans 'This simplified Javascript sandbox is based on the work of <a href="https://github.com/alanhogan/miphps-mips-simulator" target="_blank">Alan J. Hogan</a>.' %}
+      </p>
+    </div>
+  </div>
+
+  <!-- Hidden Text: Basic Example Code -->
+  <div id="basic-example" class="d-none">2408001e
+24090014
+01092020
+24020001
+0000000c
+240400c0
+00042400
+24840000
+24020004
+0000000c
+24020000
+03e00008
+0a48656c
+6c6f2057
+6f726c64
+210a0000
+  </div>
+
+  <!-- Hidden Text: Advanced Example Code -->
+  <div id="advanced-example" class="d-none">24080005
+24090000
+1109000a
+00082020
+24020001
+0000000c
+24020004
+240400c0
+00042400
+24840008
+0000000c
+2108ffff
+08400008
+24020004
+240400c0
+00042400
+24840000
+0000000c
+24020000
+03e00008
+474f2121
+2121210a
+00000000
+0a000000
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/mips-simulator/css/mips-simulator.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'interactives/mips-simulator/js/mips-simulator.js' %}"></script>
+{% endblock js %}

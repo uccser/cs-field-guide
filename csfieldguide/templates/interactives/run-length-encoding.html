@@ -1,0 +1,71 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="row">
+          <div class="col-sm-12 text-center">
+            <h1 id="heading">{% trans "Run Length Encoding" %}</h1>
+            <div class="form-group row justify-content-center">
+              <label class="col-auto col-form-label" for="grid-size">{% trans "Grid Size:" %}</label>
+              <div class="col-auto">
+                <select class="form-control" id="grid-size">
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5" selected>5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+                  <option value="16">16</option>
+                  <option value="17">17</option>
+                  <option value="18">18</option>
+                  <option value="19">19</option>
+                  <option value="20">20</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-8 col-lg-6">
+            <p class="text-center">
+              {% trans 'Number of bits for grid: <span id="bit-count"></span>' %}
+            </p>
+            <div id="encoding-grid"></div>
+          </div>
+          <div class="col-sm-12 col-md-4 col-lg-6">
+            <p class="text-center">
+              {% trans 'Number of characters for encoding: <span id="char-count"></span>' %}
+            </p>
+            <textarea id="encoding-text" class="form-control">
+            </textarea>
+            <div id="encoding-text-feedback" class="text-center error"></div>
+            <button id="invert" class="btn btn-dark expand">{% trans "Invert" %}</button>
+            <button id="clear-all" class="btn btn-danger expand">{% trans "Clear all black pixels" %}</button>
+          </div>
+          <div id="footer" class="col-sm-12 text-center">
+            <p>{% trans "Created by Hannah Taylor - Adapted by Jack Morgan & Alasdair Smith" %}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/run-length-encoding/css/run-length-encoding.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'interactives/run-length-encoding/js/run-length-encoding.js' %}"></script>
+{% endblock js %}

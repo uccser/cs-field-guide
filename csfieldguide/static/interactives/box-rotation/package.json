@@ -1,0 +1,9 @@
+{
+    "name": "csfg-interactive-box-rotation",
+    "version": "1.0.0",
+    "private": true,
+    "dependencies": {
+        "three": "0.101.1",
+        "@tweenjs/tween.js": "17.3.0"
+    }
+}

@@ -1,0 +1,8 @@
+{
+    "name": "csfg-interactive-python-interpreter",
+    "version": "1.0.0",
+    "private": true,
+    "dependencies": {
+        "skulpt": "0.11.1"
+    }
+}

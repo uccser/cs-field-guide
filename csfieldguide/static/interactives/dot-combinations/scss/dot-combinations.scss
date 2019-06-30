@@ -1,0 +1,32 @@
+.div-circle {
+  display: inline-block;
+  border: 1px solid;
+  border-color: black;
+  border-radius: 50%;
+  color: black;
+  background-color: black;
+}
+
+.div-circle.big {
+  width: 40px;
+  height: 40px;
+}
+
+.div-circle.little {
+  width: 20px;
+  height: 20px;
+}
+
+.div-circle.white {
+  color: white;
+  background-color: white;
+}
+
+.dot-combinations-complete {
+  color: #42ac00;
+}
+
+.dot-solution {
+  max-width: 30px;
+  align-items: center;
+}

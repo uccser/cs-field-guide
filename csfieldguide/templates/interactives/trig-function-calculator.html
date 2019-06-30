@@ -1,0 +1,45 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div class="container" id="trig-function-calculator">
+    <div class="trig-title">{% trans "Trig Function Calculator" %}</div>
+    <p id="info">
+      {% trans "Calculate the sine and cosine values of an angle given in degrees.<br>(Calculations give up to 9 decimal places)." %}
+    </p>
+
+    <div id="input">
+      <div class="form-inline d-flex justify-content-center">
+        <div class="trig-variable mt-1 mr-1">X = </div>
+        <input id="x" class="form-control mr-1">
+        <button id="calculate" class="btn btn-primary">{% trans "Calculate" %}</button>
+      </div>
+    </div>
+
+    <div id="error">
+      <p>{% trans "Invalid input!" %}</p>
+    </div>
+
+    <div id="output" class="text-center">
+      <div class="trig-subtitle">{% trans "Result:" %}</div>
+      <div id="result">
+        <div id="sin-output">
+          <p>sin(X) = </p><p id="sin-result"></p>
+        </div>
+        <div id="cos-output">
+          <p>cos(X) = </p><p id="cos-result"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/trig-function-calculator/css/trig-function-calculator.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'interactives/trig-function-calculator/js/trig-function-calculator.js' %}"></script>
+{% endblock js %}

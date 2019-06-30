@@ -1,0 +1,125 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+    <div id="interactive-colour-matcher" class="container">
+      <h2 class="mt-2">{% trans "Colour Matcher" %}</h2>
+
+      <p>{% trans "Firstly try matching the colour in the goal panel with the 24 bit sliders." %}</p>
+
+      <div class="section bordered">
+        <div class="flex-parent mt-2">
+          <div class="flex-child-sliders">
+            <h4>{% trans "24 bit" %}</h4>
+            <div id="interactive-colour-matcher-24-bit-sliders" class="interactive-colour-matcher-sliders">
+              <div>
+                <div class="interactive-colour-matcher-heading">
+                  {% trans "<strong>Red</strong> - 8 bits for red set to <span class='representation-text'></span>" %}
+                </div>
+                <div class="interactive-colour-matcher-slider interactive-colour-matcher-24-bit-slider"></div>
+              </div>
+              <div>
+                <div class="interactive-colour-matcher-heading">
+                  {% trans "<strong>Green</strong> - 8 bits for green set to <span class='representation-text'></span>" %}
+                </div>
+                <div class="interactive-colour-matcher-slider interactive-colour-matcher-24-bit-slider"></div>
+              </div>
+              <div>
+                <div class="interactive-colour-matcher-heading">
+                  {% trans "<strong>Blue</strong> - 8 bits for blue set to <span class='representation-text'></span>" %}
+                </div>
+                <div class="interactive-colour-matcher-slider interactive-colour-matcher-24-bit-slider"></div>
+              </div>
+            </div>
+          </div>
+          <div class="flex-child flex-parent flex-parent-column">
+            <h5>{% trans "24 bit colour" %}</h5>
+            <div class="flex-child interactive-colour-matcher-result" id="interactive-colour-matcher-24-bit-result"></div>
+          </div>
+          <div class="flex-child flex-parent flex-parent-column">
+            <h5>{% trans "Goal colour" %}</h5>
+            <div class="flex-child interactive-colour-matcher-result interactive-colour-matcher-goal"></div>
+          </div>
+        </div>
+
+        <div class="section-representation">
+          <div class="interactive-colour-matcher-heading">
+            {% trans "<strong>Bit representation</strong> - Click a bit to toggle its value" %}
+          </div>
+          <div id="interactive-colour-matcher-bit-representation-24" class="flex-parent">
+          </div>
+        </div>
+        <div class="section-representation hexadecimal">
+          <div class="interactive-colour-matcher-heading">
+            {% trans "<strong>Hexadecimal representation</strong>" %}
+          </div>
+          <div id="interactive-colour-matcher-hexadecimal-representation-24" class='representation-text'></div>
+        </div>
+
+        <p>
+          {% trans "Need help finding the correct values?" %}
+        </p>
+        <div class="d-flex justify-content-start">
+          <button id="interactive-colour-matcher-help" type="button" class="btn btn-danger">{% trans "Help me set red" %}</button>
+        </div>
+      </div>
+
+
+      <p>{% trans "Now try matching the same goal colour with the 8 bit sliders." %}</p>
+
+
+      <div class="section bordered">
+        <div class="flex-parent mt-2">
+          <div class="flex-child-sliders">
+            <h4>{% trans "8 bit" %}</h4>
+            <div id="interactive-colour-matcher-8-bit-sliders" class="interactive-colour-matcher-sliders">
+              <div>
+                <div>{% trans "<strong>Red</strong> - 3 bits for red set to <span class='representation-text'></span>" %}</div>
+                <div class="interactive-colour-matcher-slider interactive-colour-matcher-8-bit-slider"></div>
+              </div>
+              <div>
+                <div>{% trans "<strong>Green</strong> - 3 bits for green set to <span class='representation-text'></span>" %}</div>
+                <div class="interactive-colour-matcher-slider interactive-colour-matcher-8-bit-slider"></div>
+              </div>
+              <div>
+                <div>{% trans "<strong>Blue</strong> - 2 bits for blue set to <span class='representation-text'></span>" %}</div>
+                <div class="interactive-colour-matcher-slider interactive-colour-matcher-8-bit-slider"></div>
+              </div>
+            </div>
+          </div>
+          <div class="flex-child flex-parent flex-parent-column">
+            <h5>{% trans "8 bit colour" %}</h5>
+            <div class="flex-child interactive-colour-matcher-result" id="interactive-colour-matcher-8-bit-result"></div>
+          </div>
+          <div class="flex-child flex-parent flex-parent-column">
+            <h5>{% trans "Goal colour" %}</h5>
+            <div class="flex-child interactive-colour-matcher-result interactive-colour-matcher-goal"></div>
+          </div>
+        </div>
+
+        <div class="section-representation">
+          <div class="interactive-colour-matcher-heading">
+            {% trans "<strong>Bit representation</strong> - Click a bit to toggle its value" %}
+          </div>
+          <div id="interactive-colour-matcher-bit-representation-8" class="flex-parent">
+          </div>
+        </div>
+        <div class="section-representation hexadecimal">
+          <div>{% trans "<strong>Hexadecimal representation</strong>" %}</div>
+          <div id="interactive-colour-matcher-hexadecimal-representation-8" class='representation-text'></div>
+        </div>
+      </div>
+
+      <button id="interactive-colour-matcher-reset" type="button" class="btn btn-primary">{% trans "Try another colour" %}</button>
+    </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/colour-matcher/css/colour-matcher.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'interactives/colour-matcher/js/colour-matcher.js' %}"></script>
+{% endblock js %}

@@ -1,0 +1,66 @@
+.navbar {
+  background-color: $csfg;
+  transition: background-color .3s ease 0s;
+
+  #navbar-brand-logo {
+    margin: 0;
+    @include media-breakpoint-up(md) {
+      margin-right: 1em;
+    }
+  }
+
+  .navbar-nav .nav-link:hover {
+    text-decoration: underline;
+  }
+}
+
+#search-navbar {
+  input,
+  button {
+    line-height: 1.4 !important;
+    padding-left: 0.4rem !important;
+    padding-right: 0.4rem !important;
+  }
+}
+
+#navbarLanguageSelector {
+  padding: 4px 7.25px;
+  font-size: 1.25rem;
+  line-height: 1;
+  background-color: transparent;
+  border: 1px solid $white;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+@include media-breakpoint-up("md") {
+  #navbarLanguageSelector {
+    border-color: transparent;
+  }
+  #navbarLanguageSelector:hover,
+  #navbarLanguageSelector:focus {
+    border-color: $white;
+  }
+}
+#navbarLanguageDropdown.dropdown-menu-right {
+  right: 0;
+  left: auto;
+}
+
+.icon {
+  display: block;
+  margin: auto;
+  stroke-width: 0;
+  stroke: $white;
+  fill: $white;
+}
+.icon-language {
+  height: 1.5em;
+}
+.icon-search {
+  width: 1em;
+  height: 1em;
+}
+button:hover .icon-search {
+  stroke: $red;
+  fill: $red;
+}

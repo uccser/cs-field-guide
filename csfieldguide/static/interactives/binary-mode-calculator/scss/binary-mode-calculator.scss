@@ -1,0 +1,29 @@
+#binary-mode-calculator {
+  .calculator {
+    border: 2px solid #D0D0D0;
+    border-radius: 2px;
+    margin-top: 1rem;
+    padding: 0.1rem 0.6rem 0.6rem 0.6rem !important;
+    margin: 0.3rem;
+  }
+  button {
+    width: 100%;
+    padding: 0;
+    margin: 2px;
+    color: white;
+  }
+  .calculator-input {
+    margin: 0;
+    padding: 0 0.3rem;
+    width: 100%;
+    background-color: #EFEFEF;
+    color: #000;
+    text-align: right;
+    font-size: 1.4rem;
+    border: 1px solid #D0D0D0;
+    border-radius: 2px;
+  }
+  .mode-dropdown {
+    background-color: #EFEFEF;
+  }
+}

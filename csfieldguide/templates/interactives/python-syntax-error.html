@@ -1,0 +1,19 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div class="container mb-3 uninteractive">
+    <div class="text row justify-content-center">
+      <div class="col-md-6 col-sm-12">
+        >>> x = (a+b) * c+d<span class="highlight">)</span><br>
+        <span class="error">{% trans 'SyntaxError: invalid syntax' %}</span>
+      </div>
+    </div>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/python-syntax-error/css/python-syntax-error.css' %}">
+{% endblock css %}

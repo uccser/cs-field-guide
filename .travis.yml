@@ -1,26 +1,90 @@
+sudo: required
+services:
+  - docker
 language: python
-
 python:
-  - "3.4"
-  - "3.5"
-  - "3.5-dev" # 3.5 development branch
-
+  - '3.6'
 before_install:
-  - pip install --upgrade pip setuptools
-
-# Install dependencies for both screen and print versions
+  # See https://github.com/travis-ci/travis-ci/issues/7940
+  - sudo rm -f /etc/boto.cfg
 install:
-  - pip install -r requirements.txt
-  - pip install -r requirements-print.txt
-
-# Creates the CSFG with print and teacher versions
-script:
-  - python generateguide.py -t
-
-# Stop email notifications but post to Slack channel
+  - sudo docker --version
+  - sudo docker-compose --version
+jobs:
+  include:
+    - stage: test
+      script: ./csfg ci load_content
+      name: "Load content"
+    - script: ./csfg ci test_general
+      name: "Run general tests"
+    - script: ./csfg ci test_management
+      name: "Run management tests"
+    - script: ./csfg ci test_backwards
+      name: "Run test suite backwards"
+      if: type = pull_request
+    - script: ./csfg ci style
+      name: "Run style checker"
+    - script: ./csfg ci docs
+      name: "Build documentation"
+    - stage: develop deploy
+      name: "Deploy app to Google App Engine"
+      script: skip
+      deploy:
+        - provider: script
+          script: bash ./infrastructure/dev-deploy/deploy-app.sh
+          skip_cleanup: true
+          on:
+            branch: develop
+    - script: skip
+      name: "Copy static files to Google Storage Bucket"
+      deploy:
+        - provider: script
+          script: bash ./infrastructure/dev-deploy/deploy-static-files.sh
+          skip_cleanup: true
+          on:
+            branch: develop
+    - script: skip
+      name: "Update Google Cloud Platform database"
+      deploy:
+        - provider: script
+          script: bash ./infrastructure/dev-deploy/update-database.sh
+          skip_cleanup: true
+          on:
+            branch: develop
+    - stage: production deploy
+      name: "Deploy app to Google App Engine"
+      script: skip
+      deploy:
+        - provider: script
+          script: bash ./infrastructure/prod-deploy/deploy-app.sh
+          skip_cleanup: true
+          on:
+            branch: master
+    - script: skip
+      name: "Copy static files to Google Storage Bucket"
+      deploy:
+        - provider: script
+          script: bash ./infrastructure/prod-deploy/deploy-static-files.sh
+          skip_cleanup: true
+          on:
+            branch: master
+    - script: skip
+      name: "Update Google Cloud Platform database"
+      deploy:
+        - provider: script
+          script: bash ./infrastructure/prod-deploy/update-database.sh
+          skip_cleanup: true
+          on:
+            branch: master
 notifications:
   email: false
   slack:
     rooms: deptfunstuff:abJKvzApk5SKtcEyAgtswXAv
     on_success: change
     on_failure: change
+stages:
+  - name: test
+  - name: develop deploy
+    if: branch = develop
+  - name: production deploy
+    if: branch = master

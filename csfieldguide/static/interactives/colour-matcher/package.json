@@ -1,0 +1,9 @@
+{
+    "name": "csfg-interactive-colour-matcher",
+    "version": "1.0.0",
+    "private": true,
+    "dependencies": {
+        "nouislider": "13.1.5",
+        "wnumb": "1.1.0"
+    }
+}

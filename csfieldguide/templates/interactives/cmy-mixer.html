@@ -1,0 +1,35 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div id="interactive-cmy-mixer" class="mb-3 container-fluid">
+    <h3>{% trans "CMY Colour Mixer - Used by Printers" %}</h3>
+    <div id="interactive-cmy-mixer-container">
+      <div id="interactive-cmy-mixer-result"></div>
+        <div id="interactive-cmy-mixer-sliders">
+          <div>
+            <div>{% trans '<strong>Cyan</strong> - Currently set to <input id="interactive-cmy-mixer-cyan-value" value=127 class="form-control w-auto d-inline" size="3">' %}</div>
+            <div class="interactive-cmy-mixer-slider"></div>
+          </div>
+          <div>
+            <div>{% trans '<strong>Magenta</strong> - Currently set to <input id="interactive-cmy-mixer-magenta-value" value=127 class="form-control w-auto d-inline" size="3">' %}</div>
+            <div class="interactive-cmy-mixer-slider"></div>
+          </div>
+          <div>
+            <div>{% trans '<strong>Yellow</strong> - Currently set to <input id="interactive-cmy-mixer-yellow-value" value=127 class="form-control w-auto d-inline" size="3">' %}</div>
+            <div class="interactive-cmy-mixer-slider"></div>
+          </div>
+        </div>
+    </div>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/cmy-mixer/css/cmy-mixer.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'interactives/cmy-mixer/js/cmy-mixer.js' %}"></script>
+{% endblock js %}

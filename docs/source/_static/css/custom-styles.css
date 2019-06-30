@@ -1,0 +1,52 @@
+div#tree-diagram {
+  font-size: 14px;
+  line-height: 1.2;
+  color: #404040;
+  background: #fff;
+  border: solid 1px #e1e4e5;
+  padding: 0.5em;
+  margin: 1em 0;
+  font-family: Consolas,"Andale Mono WT","Andale Mono","Lucida Console","Lucida Sans Typewriter","DejaVu Sans Mono","Bitstream Vera Sans Mono","Liberation Mono","Nimbus Mono L",Monaco,"Courier New",Courier,monospace;
+}
+
+div#tree-diagram span.directory {
+  color: #2980B9;
+}
+
+div#tree-diagram span.file {
+  color: #E74C3C;
+}
+
+div#tree-diagram span.text-file {
+  color: #3FB322;
+}
+
+table.markdown-example {
+  margin: 1em 0;
+}
+
+table.markdown-example thead {
+  background-color: #DEE0E2;
+}
+
+table.markdown-example th,
+table.markdown-example td {
+    padding: 6px 13px;
+    border: 1px solid #CFD1D4;
+}
+table.markdown-example tr:nth-child(2n) {
+    background-color: #F1F1F1;
+}
+
+.md-example-blockquote {
+  color: #6c757d;
+  margin-bottom: 1rem;
+  padding: 1rem 1rem 1rem 1.5rem;
+  font-size: 1.1rem;
+  border-left: 5px solid #2a3da0;
+}
+
+/* Add spacing after sublist within list */
+.rst-content .section ul li ul {
+  margin-bottom: 12px;
+}

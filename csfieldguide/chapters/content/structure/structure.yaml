@@ -1,0 +1,35 @@
+chapters:
+  introduction:
+    chapter-number: 1
+  algorithms:
+    chapter-number: 2
+  programming-languages:
+    chapter-number: 3
+  human-computer-interaction:
+    chapter-number: 4
+  data-representation:
+    chapter-number: 5
+  coding-introduction:
+    chapter-number: 6
+  coding-compression:
+    chapter-number: 7
+  coding-encryption:
+    chapter-number: 8
+  coding-error-control:
+    chapter-number: 9
+  artificial-intelligence:
+    chapter-number: 10
+  complexity-and-tractability:
+    chapter-number: 11
+  computer-graphics:
+    chapter-number: 12
+  computer-vision:
+    chapter-number: 13
+  formal-languages:
+    chapter-number: 14
+  network-communication-protocols:
+    chapter-number: 15
+  software-engineering:
+    chapter-number: 16
+
+glossary-folder: glossary

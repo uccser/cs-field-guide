@@ -1,0 +1,20 @@
+whats-the-big-picture:
+  section-number: 1
+
+substitution-ciphers:
+  section-number: 2
+
+cryptosystems-used-in-practice:
+  section-number: 3
+
+the-key-distribution-problem:
+  section-number: 4
+
+storing-passwords-securely:
+  section-number: 5
+
+the-whole-story:
+  section-number: 6
+
+further-reading:
+  section-number: 7

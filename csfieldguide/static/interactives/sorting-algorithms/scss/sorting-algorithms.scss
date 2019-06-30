@@ -1,0 +1,70 @@
+@import "node_modules/dragula/dist/dragula";
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+@import "node_modules/bootstrap/scss/mixins";
+
+.dashed-box {
+  background-color: white;
+  border: 2px dashed #777;
+}
+
+.square {
+  margin: 0.2em;
+  $box-size: 30px;
+  width: $box-size;
+  height: $box-size;
+  max-width: $box-size;
+  @each $size, $width in $container-max-widths {
+    @include media-breakpoint-only($size) {
+      $box-size: $width / 10;
+      width: $box-size;
+      height: $box-size;
+      max-width: $box-size;
+    }
+  }
+}
+
+img.sorting-boxes {
+  touch-action: none;
+  height: 100%;
+  width: 100%;
+  padding: 2px;
+  overflow: hidden;
+  display: none;
+  &:last-child {
+    display: block;
+  }
+  cursor: grab;
+  &.gu-mirror {
+    cursor: grabbing;
+  }
+}
+
+#scale {
+  transition: transform 1s;
+}
+
+#check-order-result-text-correct,
+#check-order-result-text-incorrect {
+  display: none;
+}
+
+.point-left {
+  transform: rotate(0deg);
+}
+
+.point-up {
+  transform: rotate(90deg);
+}
+
+.point-right {
+  transform: rotate(180deg);
+}
+
+.correct {
+  color: #42ac00;
+}
+
+.incorrect {
+  color: #d50000;
+}

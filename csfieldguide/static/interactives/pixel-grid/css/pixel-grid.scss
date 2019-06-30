@@ -1,0 +1,37 @@
+.pixel-grid {
+    padding: 20px;
+}
+
+.div-square {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    border: 1px solid;
+    border-color: black;
+    border-radius: 0px;
+    padding: 0.1rem;
+    text-align: center;
+    color: black;
+    background-color: white;
+}
+
+@media (max-width: 535px) {
+    .div-square {
+        width: 20px;
+        height: 20px;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 435px) {
+    .div-square {
+        width: 15px;
+        height: 15px;
+        font-size: 0.5rem;
+    }
+}
+
+.div-square.active {
+    color: white;
+    background-color: black;
+}

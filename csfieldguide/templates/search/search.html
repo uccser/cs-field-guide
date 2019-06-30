@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+{% load static %}
+{% load widget_tweaks %}
+{% load query_replace %}
+
+{% block title %}
+  Search
+{% endblock title %}
+
+{% block page_content %}
+  <div id="content-container" class="container">
+    <div class="row">
+      <div class="col-12">
+        <form method="get" action=".">
+          {% if form.non_field_errors %}
+            <div class="alert alert-danger" role="alert">
+              {% for error in form.non_field_errors %}
+                {{ error }}
+              {% endfor %}
+            </div>
+          {% endif %}
+
+          <div class="form-group row">
+            <label for="{{ form.q.id_for_label }}" class="col-sm-2 col-form-label col-form-label-lg">
+              Search
+            </label>
+            <div class="col-sm-10">
+              {% if form.is_bound and form.q.errors %}
+                {% render_field form.q class="form-control form-control-lg is-invalid" aria-describedby="form-query-text-help" placeholder="Search" %}
+                {% for error in field.errors %}
+                  <div class="invalid-feedback">
+                    {{ error }}
+                  </div>
+                {% endfor %}
+              {% else %}
+                {% render_field form.q class="form-control form-control-lg" aria-describedby="form-query-text-help" placeholder="Search" %}
+              {% endif %}
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-md-4 col-lg-3 col-form-label">
+              Filter by type
+            </label>
+            <div class="col-md-8 col-lg-9">
+              <select id="models-filter" name="models" multiple="multiple" style="display:none;">
+                {% for model in models %}
+                  <option value="{{ model.value }}"{% if model.selected == "true" %} selected="selected"{% endif %}>
+                    {{ model.name }}
+                  </option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+
+          <button type="button" id="clear-form" class="btn btn-outline-danger mb-3">
+            Clear form
+          </button>
+          <button type="submit" class="btn btn-success mb-3 float-right" name="page" value="1">
+            Search
+          </button>
+        </form>
+
+        {% if search %}
+          <h3 id="results-heading">Results</h3>
+
+          {% if object_list %}
+            <p class="text-center"><em>Showing {% if is_paginated %}results {{ page_obj.start_index }} to {{ page_obj.end_index }} of {% endif %}{{ paginator.count }} results</em></p>
+
+            <div id="results">
+              {% for result in page_obj.object_list %}
+                <div class="row">
+                  {% with object=result.object %}
+                    <div class="col-12 col-sm-3 text-sm-right">
+                      {{ result.verbose_name }}
+                    </div>
+                    <div class="col-12 col-sm-9">
+                      {% with template="search/result/"|add:result.model_name|add:".html" %}
+                        {% include template %}
+                      {% endwith %}
+                      {% if not DEPLOYED %}
+                        <p class="mb-0">
+                          <small class="text-muted">
+                            Search score: {{ result.score|floatformat:3 }}
+                          </small>
+                        </p>
+                      {% endif %}
+                    </div>
+                  {% endwith %}
+                </div>
+              {% endfor %}
+            </div>
+
+            {% if paginator.num_pages > 1 %}
+              <div class="text-center">
+                {% if page_obj.has_previous %}
+                  <a class="btn btn-link" href="{% url 'search:index' %}?{% query_replace page=page_obj.previous_page_number %}">
+                    &laquo; Previous page
+                  </a>
+                {% endif %}
+                {% if page_obj.has_next %}
+                  <a class="btn btn-link" href="{% url 'search:index' %}?{% query_replace page=page_obj.next_page_number %}">
+                    Next page &raquo;
+                  </a>
+                {% endif %}
+              </div>
+              <div id="result-page-links" class="text-center">
+                <span>Jump to page:</span>
+                {% for page in paginator.page_range %}
+                  {% if page_obj.number == page %}
+                    <a class="btn btn-link disabled" aria-disabled="true">{{ page }}</a>
+                  {% else %}
+                    <a class="btn btn-link" href="{% url 'search:index' %}?{% query_replace page=page %}">{{ page }}</a>
+                  {% endif %}
+                {% endfor %}
+              </div>
+            {% endif %}
+          {% else %}
+            <p class="text-center">No results found.</p>
+          {% endif %}
+        {% else %}
+          <p class="text-center mt-3 font-italic">
+            <a href="{% url 'search:index' %}?q=binary" class="text-muted">
+              Try searching for 'binary'
+            </a>
+          </p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endblock page_content %}
+
+{% block scripts %}
+  <script type="text/javascript" src="{% static 'js/third-party/multiple-select.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/website-search.js' %}"></script>
+{% endblock scripts %}
+
+{% block css %}
+  <link href="{% static 'css/third-party/multiple-select.css' %}" type="text/css" media="screen" rel="stylesheet" />
+  <link href="{% static 'css/search.css' %}" type="text/css" media="screen" rel="stylesheet" />
+{% endblock css %}

@@ -1,0 +1,19 @@
+{% extends "appendices/base.html" %}
+
+{% load i18n %}
+{% load render_html_field %}
+
+{% block title %}
+  {% trans 'Glossary' %}
+{% endblock title %}
+
+{% block appendix_title %}
+  {% trans 'Glossary' %}
+{% endblock appendix_title %}
+
+{% block content %}
+  {% for glossary_term in glossary_terms %}
+    <h3>{{ glossary_term.term }}</h3>
+    {% render_html_field glossary_term.definition %}
+  {% endfor %}
+{% endblock content %}

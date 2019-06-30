@@ -1,0 +1,46 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+	<div class="container">
+		<div class="row justify-content-center">
+		  <div class="col-lg-6 col-md-8 col-sm-10 col-xs-12">
+		  	<div class="card"> 
+			  	<ul class="list-group list-group-flush mb-0">
+		  			<li class="list-group-item">
+		  				<div class="d-flex justify-content-between">
+		  					<div>{% trans "New File" %}</div>
+		  					<div>⌘N</div>
+		  				</div>
+		  			</li>
+			  		<li class="list-group-item">
+		  				<div class="d-flex justify-content-between">
+		  					<div>{% trans "Open..." %}</div>
+		  					<div>⌘O</div>
+		  				</div>
+		  			</li>
+			  		<li class="list-group-item">
+		  				<div class="d-flex justify-content-between">
+		  					<div>{% trans "Save" %}</div>
+		  					<div>⌘S</div>
+		  				</div>
+		  			</li>
+		  			<li class="list-group-item">
+		  				<div class="d-flex justify-content-between">
+		  					<div>{% trans "Close Tab" %}</div>
+		  					<div>⌘W</div>
+		  				</div>
+		  			</li>
+		  			<li class="list-group-item">
+		  				<div class="d-flex justify-content-between">
+		  					<div>{% trans "Close Pane" %}</div>
+		  				</div>
+		  			</li>
+					</ul>
+				</div>
+		  </div>
+		</div>
+	</div>
+{% endblock html %}

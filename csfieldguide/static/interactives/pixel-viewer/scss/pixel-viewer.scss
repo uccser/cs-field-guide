@@ -1,0 +1,110 @@
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+@import "node_modules/bootstrap/scss/mixins";
+
+#pixel-viewer-interactive {
+  user-select: none !important;
+  background-color: #000;
+  flex-grow: 1;
+
+  #pixel-viewer-interactive-source-canvas {
+    height: 133px;
+    width: 200px;
+    display: none;
+  }
+  #pixel-viewer-interactive-container {
+    background-color: #fff;
+    flex-grow: 1;
+    position: relative;
+    z-index: 0;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+  }
+  #pixel-viewer-interactive-content {
+    cursor: grab;
+  }
+  .pixel-viewer-interactive-footer {
+    font-size: 0.8rem;
+  }
+  #pixel-viewer-interactive-settings {
+    z-index: 9;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #fff;
+    border: 3px solid #000;
+    border-top: 0;
+    width: 100%;
+    height: 100%;
+    @include media-breakpoint-up(md) { width: 60%; }
+    @include media-breakpoint-up(lg) { width: 40%; }
+    overflow-y: auto;
+    transition: 0.3s;
+
+    &.menu-offscreen {
+      left: -100%;
+    }
+  }
+  #pixel-viewer-interactive-loader {
+    z-index: 1;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+  }
+  #pixel-viewer-interactive-original-image {
+    z-index: 2;
+    display: none;
+    overflow: hidden;
+    position: absolute;
+    user-drag: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    margin: 0;
+    top: 50%;
+    left: 50%;
+    max-width: none;
+    margin-top: -66px;
+    margin-left: -100px;
+  }
+  .img-pick{
+    width:100px;
+    height:60px;
+    border:2px solid;
+    border-color:#333;
+    margin:3px;
+    cursor: pointer;
+    cursor: hand;
+  }
+  .img-pick:hover{
+    border-color:#AAA;
+    border:1px solid;
+  }
+  #pixel-viewer-interactive-buttons {
+    flex-shrink: 0;
+    visibility: visible;
+    opacity: 0;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    border: 1px solid black;
+
+    button {
+      border-radius: 0 !important;
+      border: 0;
+
+      &:not(:first-child) {
+        border-left: 1px solid black;
+      }
+    }
+  }
+}
+
+#freeze-warning {
+  color: red;
+}
+
+#R_lt_or_gt {
+  margin-left: 5px !important;
+}

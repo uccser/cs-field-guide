@@ -1,0 +1,146 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div class="container mb-3 mt-2" id="interactive-regular-expression-search">
+    <!-- Content -->
+    <div>
+      <h3>{% trans "Regular Expression Search" %}</h3>
+      <p id="interactive-regular-expression-search-regex">{% trans "Enter a regular expression below to highlight words in the box." %}</p>
+
+      <p>{% trans "You can edit the text below to use your own text to search." %}</p>
+
+      <textarea id="interactive-regular-expression-search-text">{% blocktrans %}
+The fat cat sat on the mat.
+The vindication was catastrophic.
+The bilocation of the cataract required certification.
+The 42 buffalo baffled them with a pfffffffft sound.
+Pennsylvania 6-5000.
+Assorted exhalations: pfft pffft pft.
+Was that a match or was it not?{% endblocktrans %}</textarea>
+    </div>
+    
+    <!-- Quick Reference Guide -->
+    <div>
+      <button class="btn btn-secondary my-2" type="button" data-toggle="collapse" data-target="#quick-reference">{% trans "Quick Reference Guide" %}</button>
+
+      <div class="collapse" id="quick-reference">
+        <table class="table table-striped table-sm">
+          <thead class="thead-dark">
+            <tr>
+                <th scope="col">{% trans "Expression" %}</th>
+                <th scope="col">{% trans "Description" %}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>a?</td>
+              <td>{% trans "Zero or one of a" %}</td>
+            </tr>
+            <tr>
+              <td>a*</td>
+              <td>{% trans "Zero or more of a" %}</td>
+            </tr>
+            <tr>
+              <td>a+</td>
+              <td>{% trans "One or more of a" %}</td>
+            </tr>
+            <tr>
+              <td>a{3}</td>
+              <td>{% trans "Exactly 3 of a" %}</td>
+            </tr>
+            <tr>
+              <td>a{3,}</td>
+              <td>{% trans "3 or more of a" %}</td>
+            </tr>
+            <tr>
+              <td>a{3,6}</td>
+              <td>{% trans "Between 3 and 6 of a" %}</td>
+            </tr>
+            <tr>
+              <td>[^abc]</td>
+              <td>{% trans "Any single character except: a, b, or c" %}</td>
+            </tr>
+            <tr>
+              <td>[a-z]</td>
+              <td>{% trans "Any single character in the range a-z" %}</td>
+            </tr>
+            <tr>
+              <td>[a-zA-Z]</td>
+              <td>{% trans "Any single character in the range a-z or A-Z" %}</td>
+            </tr>
+            <tr>
+              <td>^</td>
+              <td>{% trans "Start of line" %}</td>
+            </tr>
+            <tr>
+              <td>$</td>
+              <td>{% trans "End of line" %}</td>
+            </tr>
+            <tr>
+              <td>\A</td>
+              <td>{% trans "Start of string" %}</td>
+            </tr>
+            <tr>
+              <td>\z</td>
+              <td>{% trans "End of string" %}</td>
+            </tr>
+            <tr>
+              <td>.</td>
+              <td>{% trans "Any single character" %}</td>
+            </tr>
+            <tr>
+              <td>\s</td>
+              <td>{% trans "Any whitespace character" %}</td>
+            </tr>
+            <tr>
+              <td>\S</td>
+              <td>{% trans "Any non-whitespace character" %}</td>
+            </tr>
+            <tr>
+              <td>\d</td>
+              <td>{% trans "Any digit" %}</td>
+            </tr>
+            <tr>
+              <td>\D</td>
+              <td>{% trans "Any non-digit" %}</td>
+            </tr>
+            <tr>
+              <td>\w</td>
+              <td>{% trans "Any word character (letter, number, underscore)" %}</td>
+            </tr>
+            <tr>
+              <td>\W</td>
+              <td>{% trans "Any non-word character" %}</td>
+            </tr>
+            <tr>
+              <td>\b</td>
+              <td>{% trans "Any word boundary" %}</td>
+            </tr>
+            <tr>
+              <td>(...)</td>
+              <td>{% trans "Capture everything enclosed" %}</td>
+            </tr>
+            <tr>
+              <td>(a|b)</td>
+              <td>{% trans "a or b" %}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/regular-expression-search/css/regular-expression-search.css' %}">
+  <link rel="stylesheet" href="{% static 'css/codemirror-mode-regex.css' %}">
+  <link rel="stylesheet" href="{% static 'css/codemirror.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'interactives/regular-expression-search/js/regular-expression-search.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/codemirror-mode-regex.js' %}"></script>
+{% endblock js %}

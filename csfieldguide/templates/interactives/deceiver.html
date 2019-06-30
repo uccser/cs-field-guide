@@ -1,0 +1,35 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+    <div id="interactive-deceiver">
+        <h4 id="interactive-deceiver-heading" class="interactive-deceiver-text mb-3"></h4>
+        <div id="interactive-deceiver-start-panel">
+            <button id="interactive-deceiver-start-button" class="btn btn-success btn-lg px-4">{% trans "Start" %}</button>
+        </div>
+        <div id="interactive-deceiver-game-buttons" style="display:none;">
+            <button id="interactive-deceiver-button-left" class="btn btn-primary btn-lg interactive-deceiver-button px-4">
+                {% trans "Even" %}
+            </button>
+            <button id="interactive-deceiver-button-right" class="btn btn-primary btn-lg interactive-deceiver-button px-4">
+                {% trans "Odd" %}
+            </button>
+        </div>
+        <div id="interactive-deceiver-feedback-container">
+            <div id="interactive-deceiver-feedback" class="interactive-deceiver-text"></div>
+        </div>
+        <div id="interactive-deceiver-timer">
+            {% trans '<span id="interactive-deceiver-seconds">15</span> seconds left' %}
+        </div>
+    </div>
+{% endblock html %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'interactives/deceiver/css/deceiver.css' %}">
+{% endblock css %}
+
+{% block js %}
+    <script type="text/javascript" src="{% static 'interactives/deceiver/js/deceiver.js' %}"></script>
+{% endblock js %}

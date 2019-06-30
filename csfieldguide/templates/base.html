@@ -1,0 +1,351 @@
+{% load i18n %}
+{% load static %}
+{% load statici18n %}
+{% load render_html_field %}
+{% load translate_url %}
+
+{% get_language_info for LANGUAGE_CODE as current_language %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>
+      {% block custom_title %}
+        {% block title %}{% endblock title %} - {% trans "Computer Science Field Guide" %}
+      {% endblock custom_title %}
+    </title>
+    <meta name="description" content="{% trans "An online interactive resource for high school students learning about computer science" %}">
+    <meta name="author" content="University of Canterbury Computer Science Education Research Group">
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+    {% if LANGUAGE_BIDI %}
+      <link rel="stylesheet" href="{% static 'css/website-rtl.css' %}">
+    {% else %}
+      <link rel="stylesheet" href="{% static 'css/website.css' %}">
+    {% endif %}
+    <script src="{% static 'js/website.js' %}"></script>
+    <script type="text/javascript" src="{% statici18n LANGUAGE_CODE %}"></script>
+    {% block css %}
+    {% endblock css %}
+    <link rel="shortcut icon" href="{% static 'img/guide-favicon.png' %}">
+  </head>
+  <body style="text-align: {{LANGUAGE_START}};">
+    {% block body %}
+      <div id="body-flex-container">
+        <nav class="navbar navbar-expand-md navbar-dark py-1 d-print-none{% if teacher_mode %} navbar-teacher-mode{% endif %}">
+          <div class="container px-0">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <a id="navbar-brand-logo" class="navbar-brand" href="{% url 'general:index' %}">
+              CSFG
+            </a>
+            <div class="dropdown ml-md-3 order-md-last">
+              <button type="button" id="navbarLanguageSelector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <!-- SVG from https://thenounproject.com/term/translation/987/ (Public Domain) -->
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 100 75.446"
+                  xml:space="preserve" class="icon icon-language">
+                  <title>{% trans "Language" %}</title>
+                  <g>
+                    <path d="M19.198,44.002v-8.201h-8.575c-3.319,0-6.021-2.874-6.021-6.406V10.903c0-3.533,2.701-6.408,6.021-6.408h38.345   c3.319,0,6.019,2.875,6.019,6.408v18.492c0,3.532-2.7,6.406-6.019,6.406v4.496c5.797,0,10.514-4.891,10.514-10.902V10.903   C59.482,4.892,54.766,0,48.968,0H10.623C4.824,0,0.107,4.892,0.107,10.903v18.492c0,6.011,4.717,10.902,10.516,10.902h4.08v7.968   c0,1.223,0.789,2.332,1.963,2.764c0.334,0.123,0.677,0.184,1.014,0.184c0.821,0,1.609-0.354,2.165-1.01l8.369-9.905h8.353v-4.496   H26.128L19.198,44.002z"></path>
+                    <path d="M89.377,24.233h-25.96v4.496h25.96c3.319,0,6.021,2.875,6.021,6.408v18.489c0,3.533-2.701,6.408-6.021,6.408h-8.574v8.205   l-6.931-8.203H51.031c-3.318,0-6.019-2.875-6.019-6.408V35.137c0-3.533,2.701-6.408,6.019-6.408v-4.496   c-5.797,0-10.515,4.892-10.515,10.903v18.491c0,6.014,4.717,10.904,10.515,10.904h20.754l8.372,9.91   c0.555,0.652,1.342,1.004,2.161,1.004c0.337,0,0.68-0.059,1.014-0.182c1.176-0.432,1.967-1.543,1.967-2.768V64.53h4.078   c5.799,0,10.516-4.891,10.516-10.904V35.137C99.893,29.125,95.176,24.233,89.377,24.233z"></path>
+                    <path d="M26.532,7.437l-7.952,20.951h4.665l1.644-4.665h7.834l1.584,4.665h4.782L31.255,7.437H26.532z M26.093,20.29l2.729-7.688   h0.058l2.641,7.688H26.093z"></path>
+                    <path d="M60.12,49.114c0,2.297,1.468,3.787,3.862,3.787c2.876-0.061,5.721-1.887,6.647-2.711c0.926-0.826,3.42-3.693,4.521-5.963   c1.393,0.658,2.053,1.76,2.053,2.98c0,2.639-2.542,4.17-6.599,4.635l1.968,2.725c6.354-0.832,8.516-3.5,8.516-7.408   c0-3.301-2.077-5.305-4.74-6.183c0.049-0.242,0.138-0.495,0.188-0.74l-3.611-0.643c-0.024,0.365-0.097,0.432-0.168,0.798   c-1.297-0.074-2.738,0.121-3.202,0.219c0-0.66,0.024-2.421,0.049-3.055c3.006-0.122,5.962-0.365,8.699-0.781l-0.318-3.566   c-2.81,0.562-5.523,0.856-8.186,1.003c0.072-0.71,0.172-2.717,0.172-2.717l-3.813-0.291c-0.05,0.978-0.072,2.127-0.121,3.128   c-1.688,0.024-3.689,0.024-4.742,0l0.171,3.446h0.414c1.003,0,2.641-0.051,4.109-0.099c0,0.952,0.023,3.005,0.048,3.934   C62.589,43.051,60.12,45.717,60.12,49.114z M71.606,43.59c-0.514,1.025-1.124,1.957-1.808,2.736   c-0.1-0.807-0.148-1.637-0.196-2.516C69.87,43.762,70.945,43.59,71.606,43.59z M66.229,45.008c0.123,1.369,0.27,2.688,0.489,3.885   c-0.634,0.318-1.244,0.514-1.809,0.539c-1.223,0.049-1.223-0.732-1.223-1.076C63.687,47.059,64.689,45.864,66.229,45.008z"></path>
+                  </g>
+                </svg>
+              </button>
+              <div id="navbarLanguageDropdown" class="dropdown-menu dropdown-menu-{{ LANGUAGE_END }}" aria-labelledby="navbarLanguageSelector">
+                {% for language in LANGUAGES %}
+                {% get_language_info for language.0 as lang %}
+                  <a class="dropdown-item{% if LANGUAGE_CODE == lang.code %} active{% endif %}" href="{% translate_url language.0 %}">
+                    {{ lang.name_local|capfirst }}
+                    {% if lang.code != "en" %}
+                      <span class="badge badge-warning">{% trans "Beta" %}</span>
+                    {% endif %}
+                  </a>
+                {% endfor %}
+                <a class="dropdown-item" href="https://bezkomputera.wmi.amu.edu.pl/ppi/">
+                  język polski <span class="text-muted">(2.6.0)</span>
+                </a>
+              </div>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <div class="navbar-nav navbar-nav-i18n mr-auto">
+                <a class="nav-item nav-link" href="{% url 'chapters:index' %}">
+                  {% trans "Chapters" %}
+                </a>
+                <a class="nav-item nav-link" href="{% url 'curriculum_guides:index' %}">
+                  {% trans "Curriculum Guides" %}
+                </a>
+                <a class="nav-item nav-link" href="{% url 'appendices:appendices' %}">
+                  {% trans "Appendices" %}
+                </a>
+              </div>
+              {% if LANGUAGE_CODE == "en" %}
+                <!-- Search is only currently available in English -->
+                <form method="get" action="{% url 'search:index' %}">
+                  <div class="input-group" id="search-navbar">
+                    <input type="search" class="form-control form-control-sm border-0" placeholder="{% trans "Search" %}" aria-label="Search" name="q" required="required">
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-light btn-sm" type="submit">
+                        <!-- SVG from Icomoon-Free -->
+                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 32 32" class="icon">
+                          <title>{% trans "Search" %}</title>
+                          <path d="M31.008 27.231l-7.58-6.447c-0.784-0.705-1.622-1.029-2.299-0.998 1.789-2.096 2.87-4.815 2.87-7.787 0-6.627-5.373-12-12-12s-12 5.373-12 12 5.373 12 12 12c2.972 0 5.691-1.081 7.787-2.87-0.031 0.677 0.293 1.515 0.998 2.299l6.447 7.58c1.104 1.226 2.907 1.33 4.007 0.23s0.997-2.903-0.23-4.007zM12 20c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"></path>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              {% endif %}
+            </div>
+          </div>
+        </nav>
+
+        <div id="body-content" class="d-flex flex-column">
+          <div id="top"></div>
+          {% block body_content %}
+            {% block page_content %}
+              <div id="page-header" class="py-4 mb-4{% if teacher_mode %} teacher-mode{% endif %}">
+                <div class="container">
+                  <h1>
+                    {% block page_heading %}{% endblock page_heading %}
+                  </h1>
+                </div>
+              </div>
+              <div id="content-container" class="container">
+                <div class="row">
+                  {% block content_container %}
+                    <div class="col-12">
+                      {% block content %}
+                      {% endblock content %}
+                    </div>
+                  {% endblock content_container %}
+                  <div class="col-12 order-md-12">
+                    {% block end_content %}
+                    {% endblock end_content %}
+                  </div>
+                </div>
+              </div>
+            {% endblock page_content %}
+
+            <div class="container white-footer mt-5 py-5 d-print-none">
+              <div class="row align-items-center">
+                <div class="col-12 col-sm-6 col-md-4">
+                  <a href="https://www.canterbury.ac.nz/engineering/schools/csse/research/cse/">
+                    <img class="img-fluid py-5" src="{% static 'img/logos/uc-computer-science-education-logo.png' %}">
+                  </a>
+                </div>
+                <div class="col-12 col-sm-6 col-md-4 text-center">
+                  <a href="https://www.google.com">
+                    <img class="img-fluid px-3" src="{% static 'img/logos/google-logo-colour.png' %}">
+                  </a>
+                </div>
+                <div class="col-12 col-sm-6 col-md-4">
+                  <a href="https://www.microsoft.com/about/philanthropies/">
+                    <img class="img-fluid" src="{% static 'img/logos/microsoft-philanthropies-logo' %}.png">
+                  </a>
+                </div>
+                <div class="col-12 col-sm-6 col-md-4">
+                  <a href="https://internetnz.nz/">
+                    <img class="img-fluid" src="{% static 'img/logos/internet-new-zealand-logo' %}.png">
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <footer id="page-footer" class="d-print-none">
+              <div class="background-csu py-3 w-100 text-center">
+                <div class="container">
+                  <p class="mb-0">
+                    {% blocktrans trimmed %}
+                    Looking for something for primary schools?
+                    Check out <a href="http://www.csunplugged.org/">CS Unplugged</a>.
+                    {% endblocktrans %}
+                  </p>
+                </div>
+              </div>
+
+              <div class="container py-3">
+                <div class="row justify-content-center mt-4">
+                  <div class="col-12 col-md-6">
+                    <p>
+                      {% blocktrans trimmed %}
+                      The Computer Science Field Guide is an online interactive resource for high school students learning about computer science.
+                      {% endblocktrans %}
+                    </p>
+                  </div>
+
+                  <div class="col-6 col-md-2">
+                    <p class="mb-1 font-weight-bold">{% trans "Useful Links" %}</p>
+                    <ul class="list-unstyled list-unstyled-i18n">
+                      <li>
+                        <a href="{% url 'appendices:about' %}">
+                          {% trans "About" %}
+                        </a>
+                      </li>
+                      <li>
+                        <a href="{% url 'chapters:index' %}">
+                          {% trans "Chapters" %}
+                        </a>
+                      </li>
+                      <li>
+                        <a href="{% url 'interactives:index' %}">
+                          {% trans "Interactives" %}
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-6 col-md-2">
+                    <p class="mb-1 font-weight-bold">{% trans "Community" %}</p>
+                    <ul class="list-unstyled list-unstyled-i18n">
+                      <li>
+                        <a href="https://twitter.com/UCCSEd">
+                          {% trans "Twitter" %}
+                        </a>
+                      </li>
+                      <li>
+                        <a href="https://www.youtube.com/user/csunplugged">
+                          {% trans "YouTube" %}
+                        </a>
+                      </li>
+                      <li>
+                        <a href="https://github.com/uccser/cs-field-guide">
+                          {% trans "GitHub" %}
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-12 col-md-2">
+                    <p class="mb-1 font-weight-bold">{% trans "Help" %}</p>
+                    <ul class="list-unstyled list-unstyled-i18n">
+                      {% if LANGUAGE_CODE == "en" %}
+                      <!-- Search is only currently available in English -->
+                      <li>
+                        <a href="{% url 'search:index' %}">
+                          {% trans "Search" %}
+                        </a>
+                      </li>
+                      {% endif %}
+                      <li>
+                        <a href="{% url 'chapters:glossary' %}">
+                          {% trans "Glossary" %}
+                        </a>
+                      </li>
+                      <li>
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfuXuIxHY2GglRsIFwgJw0pWnFmqfD7ZNC-EXarWqziYV79PA/viewform?formkey=dExMejRvei05OWFVbzJ2eENpdWRvcEE6MQ">
+                          {% trans "Feedback" %}
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <p class="text-center">
+                  {% if teacher_mode %}
+                  <a href="{% url 'general:teacher_mode_logout' %}?next={{ request.path }}">
+                    {% trans 'Switch to student mode' %}
+                  </a>
+                  {% else %}
+                  <a href="{% url 'general:teacher_mode_login' %}?next={{ request.path }}">
+                    {% trans 'Switch to teacher mode' %}
+                  </a>
+                  {% endif %}
+                </p>
+              </div>
+
+              <div class="container py-3 footer-statement text-center">
+                <p class="mb-0">
+                  <small>
+                    {% for language in LANGUAGES %}
+                    {% get_language_info for language.0 as lang %}
+                    <a href="{% translate_url language.0 %}">
+                      {{ lang.name_local|capfirst }}
+                    </a>{% if not forloop.last %} | {% endif %}
+                    {% endfor %}
+                    |
+                    <a href="https://bezkomputera.wmi.amu.edu.pl/ppi/">
+                      język polski <span class="text-muted">(2.6.0)</span>
+                    </a>
+                  </small>
+                </p>
+              </div>
+
+              <div class="container py-3 footer-statement text-center">
+                <p>
+                  <small>
+                    {% blocktrans trimmed %}
+                    The Computer Science Field Guide material is open source on <a href="https://github.com/uccser/cs-field-guide">GitHub</a>,
+                    and this website's content is shared under a <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative
+                      Commons Attribution-ShareAlike 4.0 International license</a>.
+                    The Computer Science Field Guide is a project by the <a href="http://www.cosc.canterbury.ac.nz/research/RG/CSE/">Computer
+                      Science Education Research Group</a> at the <a href="http://www.canterbury.ac.nz/">University of Canterbury</a>,
+                    New Zealand.
+                    Icons provided generously by <a href="https://icons8.com/">icons8</a>.
+                    {% endblocktrans %}
+                  </small>
+                </p>
+                <p class="mb-0">
+                  <small><a href="http://cs-field-guide.readthedocs.io/en/latest/changelog.html">{{ VERSION_NUMBER }}</a></small>
+                </p>
+              </div>
+            </footer>
+          {% endblock body_content %}
+          </div>
+      </div>
+
+      <div class="modal fade" id="glossary-modal" tabindex="-1" role="dialog" aria-labelledby="glossary-modal-term" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="glossary-modal-term"></h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="alert alert-danger d-none" role="alert" id="glossary-modal-translation-unavailable">
+                {% blocktrans trimmed with language=current_language.name_local %}
+                  This definition is not available in {{ language }}, sorry!
+                {% endblocktrans %}
+              </div>
+              <div id="glossary-modal-definition"></div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans "Close" %}</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script>
+        glossary_url = "{% url 'chapters:glossary_json' %}";
+      </script>
+      <script src="https://www.youtube.com/player_api"></script>
+      <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          CommonHTML: { linebreaks: { automatic: true } },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          SVG: { linebreaks: { automatic: true } }
+        });
+      </script>
+      <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+      </script>
+      {% block scripts %}
+      {% endblock scripts %}
+
+      {% if DEPLOYED %}
+        <!-- Google Analytics -->
+        <script>
+          (function(i,s,o,g,r,a,m){i["GoogleAnalyticsObject"]=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,"script","//www.google-analytics.com/analytics.js","ga");
+
+          ga("create", "UA-49289263-2", "auto");
+          ga("send", "pageview");
+        </script>
+      {% endif %}
+    {% endblock body %}
+  </body>
+</html>

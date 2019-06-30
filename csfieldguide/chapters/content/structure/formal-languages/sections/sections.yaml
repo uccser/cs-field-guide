@@ -1,0 +1,20 @@
+whats-the-big-picture:
+  section-number: 1
+
+getting-started:
+  section-number: 2
+
+finite-state-automata:
+  section-number: 3
+
+regular-expressions:
+  section-number: 4
+
+grammars-and-parsing:
+  section-number: 5
+
+the-whole-story:
+  section-number: 6
+
+further-reading:
+  section-number: 7

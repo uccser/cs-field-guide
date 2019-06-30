@@ -1,0 +1,48 @@
+#interactive-base-calculator-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  &::before,
+  &::after {
+    content: '';  /* Insert pseudo-element */
+    margin: auto; /* Make it push flex items to the center */
+  }
+  div.calculator-column {
+    flex: 0 1 auto;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  div.calculator-column:nth-child(4n+1) {
+    background-color: #EEE;
+  }
+  div.calculator-element {
+    flex: 0 1 auto;
+    text-align: center;
+    min-width: 2rem;
+    padding: 0.2rem;
+    font-size: 1rem;
+    width: 100%;
+    color: rgba(0, 0, 0, 0.8);
+    white-space: nowrap;
+  }
+  div.calculator-element.calculator-symbol {
+    font-weight: bold;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    color: rgba(0, 0, 0, 0.5);
+  }
+  select {
+    text-align: center;
+    color: black;
+    display: block;
+    border: 1px solid grey;
+    border-radius: 2px;
+    padding: 0.2rem;
+    background: none;
+    font-size: 1.4rem;
+    cursor: pointer;
+  }
+}

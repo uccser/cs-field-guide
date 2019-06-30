@@ -1,0 +1,304 @@
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+@import "node_modules/bootstrap/scss/mixins";
+@import "core-variables";
+@import "bootstrap-overrides";
+@import "node_modules/bootstrap/scss/root";
+@import "node_modules/bootstrap/scss/print";
+@import "node_modules/bootstrap/scss/reboot";
+@import "node_modules/bootstrap/scss/type";
+@import "node_modules/bootstrap/scss/images";
+@import "node_modules/bootstrap/scss/code";
+@import "node_modules/bootstrap/scss/grid";
+@import "node_modules/bootstrap/scss/tables";
+@import "node_modules/bootstrap/scss/forms";
+@import "node_modules/bootstrap/scss/buttons";
+@import "node_modules/bootstrap/scss/transitions";
+@import "node_modules/bootstrap/scss/dropdown";
+@import "node_modules/bootstrap/scss/button-group";
+@import "node_modules/bootstrap/scss/input-group";
+@import "node_modules/bootstrap/scss/custom-forms";
+@import "node_modules/bootstrap/scss/nav";
+@import "node_modules/bootstrap/scss/navbar";
+@import "node_modules/bootstrap/scss/card";
+@import "node_modules/bootstrap/scss/breadcrumb";
+@import "node_modules/bootstrap/scss/pagination";
+@import "node_modules/bootstrap/scss/badge";
+@import "node_modules/bootstrap/scss/jumbotron";
+@import "node_modules/bootstrap/scss/alert";
+@import "node_modules/bootstrap/scss/progress";
+@import "node_modules/bootstrap/scss/media";
+@import "node_modules/bootstrap/scss/list-group";
+@import "node_modules/bootstrap/scss/close";
+@import "node_modules/bootstrap/scss/modal";
+@import "node_modules/bootstrap/scss/tooltip";
+@import "node_modules/bootstrap/scss/popover";
+@import "node_modules/bootstrap/scss/carousel";
+@import "node_modules/bootstrap/scss/utilities";
+@import "third-party/pygments-highlighting";
+@import "third-party/sticky-state";
+@import "third-party/directional";
+@import "third-party/featherlight";
+@import "panels";
+@import "navbar";
+@import "footer";
+@import "homepage";
+@import "teacher-mode";
+@import "link-item";
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans');
+
+body {
+  background-color: $gray-100;
+}
+
+#body-flex-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  > nav {
+    flex-shrink: 0;
+    z-index: 50;
+    height: $navbar-height;
+  }
+
+  > #body-content {
+    overflow: auto;
+    flex-grow: 1;
+  }
+}
+
+#page-header {
+  background-color: $csfg-light;
+  color: $white;
+  h1 {
+    margin: 0;
+    small {
+      color: mix($csfg-light, $white, 60%);
+    }
+  }
+}
+
+.heading-permalink {
+  @extend .no-text-decoration;
+  color: $text-color;
+  img {
+    visibility: hidden;
+  }
+  &:hover img {
+    visibility: visible;
+  }
+}
+
+.section-heading {
+  .section-divider {
+    border-top: 1px solid $csfg-light;
+    width: 15rem;
+    margin: 4rem auto 2rem;
+  }
+  .section-heading-number {
+    @extend .text-muted;
+    @extend .mb-1;
+  }
+}
+
+.no-text-decoration {
+  text-decoration: none !important;
+}
+
+.shadow {
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.12);
+}
+
+.chapter-icon path {
+  fill: $csfg-light !important;
+}
+
+.btn {
+  cursor: pointer;
+}
+
+.homepage-cta svg {
+  max-height: 120px;
+}
+
+.btn-chapter-section {
+  max-width: 40%;
+  white-space: normal;
+}
+
+ol, ul {
+  margin-bottom: 1rem !important;
+}
+
+#side-navbar {
+  // Separate top of side navigation from navbar when stickied
+  top: 1rem !important;
+  max-height: calc(100vh - #{$navbar-height});
+  overflow-y: auto;
+  z-index: 10;
+  .nav-link {
+    border: 1px solid transparent;
+    margin-bottom: 1px;
+    &.active {
+      color: white;
+      .section-heading-number {
+        color: $gray-400 !important;
+      }
+    }
+    &:hover {
+      border-color: $csfg-light;
+    }
+  }
+  #section-headings .nav-link {
+    font-size: 0.8rem;
+    padding: 0.3rem 0.7rem;
+  }
+  li.active a {
+    background-color: $csfg-light;
+    color: white;
+  }
+}
+
+
+// Smooth scrolling on the whole document
+html {
+	scroll-behavior: smooth;
+}
+@media screen and (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
+}
+
+.large-text {
+  font-size: 3rem;
+}
+
+.no-text-decoration {
+  text-decoration: none !important;
+}
+
+.list-unstyled-i18n {
+  padding-#{$left}: 0;
+  padding-#{$right}: auto;
+}
+
+.navbar-nav-i18n {
+  margin-#{$right}: auto !important;
+  margin-#{$left}: 0 !important;
+}
+
+.img-container {
+  img {
+    @include img-fluid;
+  }
+  margin-bottom: $spacer * 0.5;
+  @include media-breakpoint-up(md) {
+    margin-top: $spacer * 0.5;
+    &.img-wrap-left {
+      @include float-left;
+      margin-right: $spacer * 0.5;
+    }
+    &.img-wrap-right {
+      @include float-right;
+      margin-left: $spacer * 0.5;
+    }
+    &.img-wrap-left,
+    &.img-wrap-right {
+      max-width: 50%;
+    }
+  }
+  @include media-breakpoint-down(sm) {
+    &.img-wrap-left,
+    &.img-wrap-right {
+      text-align: center;
+    }
+  }
+  &:not(.img-wrap-left),
+  &:not(.img-wrap-right) {
+    display: block;
+    text-align: center;
+  }
+}
+
+h1, h2, h3, h4, h5, h6, details {
+  clear: both;
+}
+
+// Fix for displaying images correcting in Internet Explorer
+// See: https://github.com/twbs/bootstrap/issues/25242
+.figure {
+  display: block !important;
+}
+
+blockquote {
+  padding: 1rem 1rem 1rem 1.5rem;
+  font-size: 1.1rem !important;
+  border-left: 5px solid $csfg;
+}
+
+.icon-1 {
+  width: 1rem;
+}
+.icon-2 {
+  width: 2rem;
+}
+.icon-3 {
+  width: 3rem;
+}
+.icon-4 {
+  width: 4rem;
+}
+.icon-5 {
+  width: 5rem;
+}
+.icon-6 {
+  width: 6rem;
+}
+
+.text-mono {
+  font-family: monospace;
+}
+
+.uninteractive {
+  pointer-events: none;
+}
+
+// Rules to set table elements to automatically have Bootstrap table styling.
+// These rules may interfere with tables in interactives, so need to check this when adding tables.
+#content-container table {
+  @extend .table;
+  @extend .table-sm;
+  @extend .table-hover;
+  thead {
+    @extend .thead-light;
+  }
+}
+
+.nav-link-colour {
+  color: $csfg-light;
+
+  &:hover {
+    color: #253589;
+  }
+}
+
+a {
+  color: #0034b4;
+
+  &:hover {
+    color: #0034b4;
+  }
+}
+
+.glossary-term {
+  color: #212529;
+  text-decoration-line: underline;
+  text-decoration-style: dotted;
+
+  &:hover {
+    color: #212529;
+  }
+}

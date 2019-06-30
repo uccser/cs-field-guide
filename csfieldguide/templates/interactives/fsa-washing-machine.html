@@ -1,0 +1,40 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+    <div id="interactive-fsa-washing-machine" class="container">
+
+      <div id="interactive-fsa-washing-machine-state-text" class="text-center">
+        {% trans 'Current state: <span id="interactive-fsa-washing-machine-current-state-text"></span>' %}
+      </div>
+
+      <div id="interactive-fsa-washing-machine-images" class="row justify-content-center">
+        <div>
+          <img id="interactive-fsa-washing-machine-back" src="{% static 'interactives/fsa-washing-machine/img/washing-machine-layer-back.png' %}">
+          <div id="interactive-fsa-washing-machine-middle-rotate-container" class="image-overlay">
+            <div id="interactive-fsa-washing-machine-slow" class="rotate-layer">
+              <div id="interactive-fsa-washing-machine-medium" class="rotate-layer">
+                <img id="interactive-fsa-washing-machine-fast" class="rotate-layer" src="{% static 'interactives/fsa-washing-machine/img/washing-machine-layer-middle.png' %}">
+              </div>
+            </div>
+          </div>
+          <img id="interactive-fsa-washing-machine-front" src="{% static 'interactives/fsa-washing-machine/img/washing-machine-layer-front.png' %}" class="image-overlay">
+        </div>
+      </div>
+
+      <div id="interactive-fsa-washing-machine-buttons" class="text-center mb-3">
+        <button id="interactive-fsa-washing-machine-change-state" class="btn btn-primary btn-lg">{% trans "Change spin speed" %}</button>
+        <button id="interactive-fsa-washing-machine-reset" class="btn btn-danger btn-lg">{% trans "Reset to start state" %}</button>
+      </div>
+    </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/fsa-washing-machine/css/fsa-washing-machine.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'interactives/fsa-washing-machine/js/fsa-washing-machine.js' %}"></script>
+{% endblock js %}

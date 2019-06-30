@@ -1,0 +1,29 @@
+<figure class="figure img-container {% if alignment %} img-wrap-{{ alignment }}{% endif %}">
+<img
+{% if file_relative %}
+{% autoescape false -%}
+  src="{{ "{% static '" }}{{ full_file_path }}{{ "' %}" }}"
+{%- endautoescape %}
+{% else %}
+  src="{{ full_file_path }}"
+{% endif %}
+class="figure-img"
+{% if alt %} alt="{{ alt }}"{% endif %}
+{% if hover_text %} title="{{ hover_text }}"{% endif %}>
+{% if caption %}
+<figcaption class="figure-caption text-center">
+{% if caption_link %}
+<a href="{{ caption_link }}">
+{% endif %}
+{{ caption }}
+{% if caption_link %}
+</a>
+{% endif %}
+</figcaption>
+{% endif %}
+{% if source_link %}
+<figcaption class="figure-caption text-center">
+<a href="{{ source_link }}">Source</a>
+</figcaption>
+{% endif %}
+</figure>

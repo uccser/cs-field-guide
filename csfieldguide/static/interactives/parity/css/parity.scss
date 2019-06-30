@@ -1,0 +1,107 @@
+.flex-container {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row;
+  justify-content: space-around;
+  line-height:30px;
+}
+
+.flex-item {
+  color: white;
+  font-weight: bold;
+  font-size: 1.5em;
+  text-align: center;
+  flex: 1 0 auto;
+  height:auto;
+}
+
+.flex-item:before {
+  content:'';
+  float:left;
+  padding-top:100%;
+}
+
+.parity-card {
+  border: 2px solid #929292;
+  background: white;
+  margin: 1px;
+  border-radius: 6px;
+}
+
+.black {
+  background: black;
+}
+
+#interactive-parity-grid {
+  cursor: cell;
+}
+
+.parity-bit {
+  border-color: #2196F3;
+}
+
+.correct-bit {
+  border-color: #4CAF50 !important;
+}
+
+#interactive-parity-feedback {
+  margin: 0;
+  padding: 10px 0;
+  font-size: 1.1rem;
+  line-height: 1.5rem;
+  color: #4CAF50;
+  font-weight: 500;
+}
+
+#interactive-parity-feedback.error {
+  color: red;
+}
+
+#interactive-parity-footer {
+  padding-top: 2rem;
+  color: grey;
+}
+
+#interactive-parity-footer > p {
+  font-size: 0.8rem;
+}
+
+select {
+  border: 1px solid #929292;
+}
+
+#interactive-parity-grid-container{
+  position: relative;
+}
+
+#interactive-parity-grid-confusation {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+  align-items: center;
+  justify-content: center;
+}
+
+#interactive-parity-grid-confusation-text {
+  text-align: center;
+  flex: none;
+  color: white;
+  font-size: 2rem;
+}
+
+.interactive-parity-controls p,
+.interactive-parity-text,
+#interactive-parity h4 {
+  text-align: left;
+}

@@ -1,0 +1,178 @@
+2d-shape-manipulations:
+  name: 2D Shape Manipulations
+action-menu:
+  name: Action Menu
+alarm-timer:
+  name: Alarm Timer
+algorithm-timer:
+  name: Algorithm Timer
+available-menu-items:
+  name: Available Menu Items
+awful-calculator:
+  name: Awful Calculator
+base-calculator:
+  name: Base Calculator
+big-number-calculator:
+  name: Big Number Calculator
+bin-packing:
+  name: Bin Packing
+binary-cards:
+  name: Binary Cards
+binary-mode-calculator:
+  name: Binary Mode Calculator
+box-rotation:
+  name: Box Rotation
+box-translation:
+  name: Box Translation
+braille-alphabet:
+  name: Braille Alphabet
+caesar-cipher:
+  name: Caesar Cipher
+checksum-calculator:
+  name: Checksum Calculator
+checksum-calculator-gtin-13:
+  name: Checksum Calculator GTIN-13
+city-trip:
+  name: City Trip
+close-window:
+  name: Close Window
+cmy-mixer:
+  name: CMY Mixer
+colour-matcher:
+  name: Colour Matcher
+compression-comparer:
+  name: Compression Comparer
+confused-buttons:
+  name: Confused Buttons
+confusing-error:
+  name: Confusing Error
+date-picker:
+  name: Date Picker
+deceiver:
+  name: Deceiver
+delay-analyser:
+  name: Delay Analyser
+delayed-checkbox:
+  name: Delayed Checkbox
+dictionary-compression:
+  name: Dictionary Compression
+dot-combinations:
+  name: Dot Combinations
+flowcharts-interpreter-compiler:
+  name: Flowcharts - Interpreter and Compiler
+frequency-analysis:
+  name: Frequency Analysis
+fsa-box:
+  name: FSA Box
+fsa-light:
+  name: FSA Light
+fsa-terminology:
+  name: FSA Terminology
+fsa-washing-machine:
+  name: FSA Washing Machine
+hex-background-colour:
+  name: Hex Background Colour
+high-score-boxes:
+  name: High Score Boxes
+huffman-tree:
+  name: Huffman Tree
+image-bit-comparer:
+  name: Image Bit Comparer
+iterative-software-development:
+  name: Iterative Software Development
+udp-layers:
+  name: UDP Layers
+jpeg-compression:
+  name: JPEG Compression
+lzw-compression:
+  name: LZW Compression
+lzss-compression:
+  name: LZSS Compression
+menu-keystrokes:
+  name: Menu Keystrokes
+mips-assembler:
+  name: MIPS Assembler
+mips-simulator:
+  name: MIPS Simulator
+nfa-guesser:
+  name: NFA Guesser
+no-help:
+  name: No Help
+number-generator:
+  name: Number Generator
+off-by-one:
+  name: Off By One
+packet-attack:
+  name: Packet Attack
+packet-attack-level-creator:
+  name: Packet Attack Level Creator
+parity:
+  name: Parity
+payment-interface:
+  name: Payment Interface
+persona-carousel:
+  name: Persona Slideshow
+pixel-grid:
+  name: Pixel Grid
+pixel-viewer:
+  name: Pixel Viewer
+python-interpreter:
+  name: Python Interpreter
+python-syntax-error:
+  name: Python Syntax Error
+regular-expression-filter:
+  name: Regular Expression Filter
+regular-expression-search:
+  name: Regular Expresion Search
+remote-complicated:
+  name: Complicated Remote
+remote-modified:
+  name: Modified Remote
+remote-simple:
+  name: Simple Remote
+rgb-mixer:
+  name: RGB Mixer
+rsa-jsencrypt:
+  name: RSA jsencrypt
+rsa-key-generator:
+  name: RSA Key Generator
+rsa-no-padding:
+  name: RSA No Padding
+run-length-encoding:
+  name: Run Length Encoding
+searching-algorithms:
+  name: Searching Algorithms
+sha2:
+  name: SHA2
+sorting-algorithm-comparison:
+  name: Sorting Algorithm Comparison
+sorting-algorithms:
+  name: Sorting Algorithms
+system-layers:
+  name: System Layers
+tcp-segment:
+  name: TCP Segment
+three-tier-website:
+  name: Three-tier Website
+trainsylvania:
+  name: Trainsylvania
+trainsylvania-planner:
+  name: Trainsylvania Planner
+trainsylvania-blank:
+  name: Blank Trainsylvania
+trainsylvania-complete:
+  name: Complete Trainsylvania
+trig-function-calculator:
+  name: Trig Function Calculator
+unexpected-error:
+  name: Unexpected Error
+unicode-binary:
+  name: Unicode Binary
+unicode-chars:
+  name: Unicode Characters
+unicode-length:
+  name: Unicode Length
+viola-jones-face-detector:
+  name: Viola-Jones Face Detector
+waterfall-process:
+  name: Waterfall Process

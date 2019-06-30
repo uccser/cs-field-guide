@@ -1,0 +1,52 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div class="container">
+    <div class="row">
+      <div class="col s12 l6 offset-l3">
+        <div id="interactive-big-number-calculator">
+          <h3>{% trans "Big Number Calculator" %}</h3>
+
+          <div class="row">
+            <div class="col s12 m6">
+              <strong>{% trans "X Value:" %}</strong>
+              <textarea id="interactive-big-number-calculator-x" class="form-control"></textarea>
+            </div>
+            <div class="col s12 m6">
+              <strong>{% trans "Y Value:" %}</strong>
+              <textarea id="interactive-big-number-calculator-y" class="form-control"></textarea>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s12">
+              <button id="interactive-big-number-calculator-addition" class="btn btn-primary btn-lg ml-0">{% trans "X + Y" %}</button>
+              <button id="interactive-big-number-calculator-subtraction" class="btn btn-primary btn-lg">{% trans "X - Y" %}</button>
+              <button id="interactive-big-number-calculator-multiply" class="btn btn-primary btn-lg">{% trans "X &times; Y" %}</button>
+              <button id="interactive-big-number-calculator-division" class="btn btn-primary btn-lg">{% trans "X &divide; Y" %}</button>
+              <button id="interactive-big-number-calculator-power" class="btn btn-primary btn-lg">{% trans "X<sup>Y</sup>" %}</button>
+              <button id="interactive-big-number-calculator-factorial" class="btn btn-primary btn-lg">{% trans "X!" %}</button>
+              <button id="interactive-big-number-calculator-clear" class="btn btn-primary btn-lg">{% trans "Clear" %}</button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s12">
+              <strong>{% trans "Result:" %}</strong>
+              <div id="interactive-big-number-calculator-result"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/big-number-calculator/css/big-number-calculator.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'interactives/big-number-calculator/js/big-number-calculator.js' %}"></script>
+{% endblock js %}

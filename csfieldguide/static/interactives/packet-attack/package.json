@@ -1,0 +1,8 @@
+{
+    "name": "csfg-interactive-packet-attack",
+    "version": "1.0.0",
+    "private": true,
+    "dependencies": {
+        "phaser": "3.16.2"
+    }
+}

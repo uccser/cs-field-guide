@@ -1,0 +1,19 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div id="interactive-base-calculator">
+    <h3 class="text-center mt-2">{% trans 'Base <span id="base-value"></span> Calculator' %}</h3>
+    <div id='interactive-base-calculator-container'></div>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/base-calculator/css/base-calculator.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'interactives/base-calculator/js/base-calculator.js' %}"></script>
+{% endblock js %}

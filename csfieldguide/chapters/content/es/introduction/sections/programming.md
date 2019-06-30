@@ -1,0 +1,5 @@
+# Programación
+
+¿Y qué pasa con la programación? Puedes seguir la guía entera sin hacer nada de programación, aunque te sugeriremos ejercicios. En última instancia, todos los conceptos discutidos aquí se reflejan en programas escritos por personas. Si quieres aprender programación, hay muchos cursos excelentes disponibles. Lleva tiempo y práctica y merece la pena trabajar con los temas de esta guía en paralelo. Existen numerosos sistemas y libros en línea gratuitos que puedes utilizar para aprender programación por tu cuenta. En [www.code.org](https://code.org/educate/allhourofcode) hay una lista de opciones para que gente de todas las edades aprenda a programar. Además, hay un vídeo muy popular de unos genios informáticos bastante famosos que es perfecto para enseñar en clase.
+
+La programación es solo una de las habilidades que necesitarás para ser informático. En este libro practicarás muchas otras habilidades: las matemáticas, la psicología y la comunicación son las más importantes.

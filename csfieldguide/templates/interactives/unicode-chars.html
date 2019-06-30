@@ -1,0 +1,31 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div id="interactive-unicode-chars" class="mb-3 container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-12">
+        <h4 class="text-center">{% trans "Unicode Characters" %}</h4>
+      </div>
+      <div class="col-lg-3 col-sm-6 px-2">
+        <label for="interactive-unicode-chars-decimal" class="active">{% trans "Decimal" %}</label>
+        <input type="text" id="interactive-unicode-chars-decimal" placeholder="{% trans 'Enter an integer' %}" title="Decimal" class="validate form-control" pattern="\d+">
+        <div id="interactive-unicode-chars-error" class="d-none">{% trans 'No corresponding character' %}</div>
+      </div>
+      <div class="col-lg-3 col-sm-6 px-2">
+        <label for="interactive-unicode-chars-char" class="active">{% trans "Character" %}</label>
+        <input type="text" id="interactive-unicode-chars-char" placeholder="{% trans 'Enter a character' %}" title="Character" class="validate form-control" maxlength="1">
+      </div>
+    </div>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/unicode-chars/css/unicode-chars.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'interactives/unicode-chars/js/unicode-chars.js' %}"></script>
+{% endblock js %}

@@ -1,0 +1,38 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div class="container my-3">
+    <div id="interactive-checksum-calculator-gtin-13">
+      <div class="row justify-content-center">
+        <h4>{% trans "GTIN-13 Number Checker" %}</h4>
+      </div>
+      <div class="row justify-content-center">
+        <div class="form-group col-lg-6 col-sm-12 mb-2">
+          <label for="interactive-checksum-calculator-gtin-13-input">
+            {% trans "Enter number here (without checksum digit)" %}
+          </label>
+          <input type="text" id="interactive-checksum-calculator-gtin-13-input" class="form-control"></input>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="form-group col-lg-6 col-sm-10 mb-2">
+          <button id="interactive-checksum-calculator-gtin-13-check" class="btn btn-primary">
+            {% trans "Calculate checksum digit" %}
+          </button>
+          <p id="interactive-checksum-calculator-gtin-13-feedback"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/checksum-calculator-gtin-13/css/checksum-calculator-gtin-13.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'interactives/checksum-calculator-gtin-13/js/checksum-calculator-gtin-13.js' %}"></script>
+{% endblock js %}

@@ -1,0 +1,56 @@
+.flowcharts-interpreter-compiler {
+    font-size: 11pt;
+    text-align: center;
+}
+
+.flowcharts-title {
+    font-size: 20pt;
+    padding-bottom: 10px;
+}
+
+.text-box {
+    border: 1px solid;
+    height: 60px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    vertical-align: middle;
+    background-color: #ffffff;
+}
+
+.text-box.empty {
+    border: none;
+    background-color: transparent;
+}
+
+.flowcharts-svg {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+
+.arrow {
+    stroke: #000000;
+    stroke-width: 2px;
+    fill: none;
+    marker-end: url(#arrowhead);
+}
+
+.arrowhead {
+    fill: #000000;
+}
+
+// This uninteractive is in an iframe, so bootstrap-defined screen sizes don't work
+@media screen and (min-width: 520px) and (max-width: 620px) {
+    .flowcharts-interpreter-compiler {
+        font-size: 9pt;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .flowcharts-interpreter-compiler {
+        font-size: 9pt;
+    }
+}

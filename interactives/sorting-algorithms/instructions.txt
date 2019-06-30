@@ -1,5 +1,0 @@
-﻿Throughout this section you can use the sorting interactive to test out the algorithms we talk about. When you’re using it make sure you take note of the comparisons at the bottom of the screen, each time you compare two boxes the algorithm is making ‘one comparison’ so the total number of comparisons you have to make with each algorithm is the cost of that algorithm for the 8 boxes.
-
-Use the scales to compare the boxes (you can only compare two boxes at a time) and then arrange them along the bottom of the screen. Arrange them so that the lightest box is on the far left and the heaviest is on the far right. Once you think they are in order click ‘Test order’.
-
-If the interactive does not run properly on your computer you can use a set of physical balance scales instead --- just make sure you can only tell if one box is heavier than the other, not their exact weight (so not digital scales that show the exact weight).

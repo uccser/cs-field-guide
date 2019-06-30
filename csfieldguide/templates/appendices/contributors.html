@@ -1,0 +1,159 @@
+{% extends "appendices/base.html" %}
+
+{% load i18n %}
+
+{% block title %}
+  {% trans 'About' %}
+{% endblock title %}
+
+{% block appendix_title %}
+  {% trans 'Contributors' %}
+{% endblock appendix_title %}
+
+{% block content %}
+  <p>{% trans 'This project is the result of contributions from a large community of Computer Science education enthusiasts from all over the world.' %}</p>
+
+  <h2 id="project-leads"><a href="#project-leads">{% trans 'Project Leads' %}</a></h2>
+  <ul>
+    <li>Tim Bell - {% trans 'International Field Guide, co-founder' %}</li>
+    <li>Peter Denning - {% trans 'International Field Guide, co-founder' %}</li>
+    <li>Jack Morgan - {% trans 'Project Manager' %}</li>
+  </ul>
+
+  <h2 id="software-development"><a href="#software-development">{% trans 'Software Development' %}</a></h2>
+  <ul>
+    <li>Jack Morgan - {% trans 'Technical Lead' %}</li>
+    <li>Jordan Griffiths</li>
+    <li>Hayley van Waas</li>
+    <li>Courtney Bracefield</li>
+    <li>Alasdair Smith</li>
+  </ul>
+
+  <h2 id="interactive-development"><a href="#interactive-development">{% trans 'Interactive Development' %}</a></h2>
+  <ul>
+    <li>Jack Morgan</li>
+    <li>David Thompson</li>
+    <li>Rhem Munro</li>
+    <li>Heidi Newton</li>
+    <li>James Browning</li>
+    <li>Sam Jarman</li>
+    <li>Hayley van Waas</li>
+    <li>Hannah Taylor</li>
+    <li>Marcus Stenfert Kroese</li>
+    <li>Victor Chang</li>
+    <li>Isabelle Taylor</li>
+    <li>Courtney Bracefield</li>
+    <li>Alasdair Smith</li>
+  </ul>
+
+  <h2 id="writers"><a href="#writers">{% trans 'Writers' %}</a></h2>
+  <ul>
+    <li>Tim Bell - {% trans 'Formal Languages, Compression, Human Computer Interaction, and Coding Introduction' %}</li>
+    <li>Heidi Newton - {% trans 'NCEA Assessment Guides, Programming Languages, Data Representation, Compression, Encryption, Error Control, Artificial Intelligence, and Complexity and Tractability' %}</li>
+    <li>Caitlin Duncan - {% trans 'Algorithms' %}</li>
+    <li>Sam Jarman - {% trans 'Network Communication Protocols' %}</li>
+    <li>David Thompson - {% trans 'Computer Vision' %}</li>
+    <li>Rhem Munro - {% trans 'Computer Graphics' %}</li>
+    <li>Janina Voigt - {% trans 'Software Engineering' %}</li>
+    <li>Jon Rutherford - {% trans 'Software Engineering' %}</li>
+    <li>Joshua Scott - {% trans 'Computer Graphics' %}</li>
+  </ul>
+
+  <h2 id="editors"><a href="#editors">{% trans 'Editors' %}</a></h2>
+  <ul>
+    <li>Tim Bell</li>
+    <li>Heidi Newton</li>
+    <li>Hayley van Waas</li>
+    <li>Jack Morgan</li>
+    <li>Ian Witten</li>
+  </ul>
+
+  <h2 id="advisors"><a href="#advisors">{% trans 'Advisors' %}</a></h2>
+  <ul>
+    <li>Mike Fellows - <a href="http://csunplugged.org/">CS Unplugged</a></li>
+    <li>Andrea Arpaci-Dusseau - <a href="http://csunplugged.org/">CS Unplugged</a></li>
+    <li>Paul Curzon - <a href="http://www.cs4fn.org/">CS4FN</a></li>
+    <li>Quintin Cutts - <a href="https://web.archive.org/web/20150517010211/http://csi.dcs.gla.ac.uk/">Computing Science Inside</a></li>
+    <li>Calvin Lin - <a href="http://www.cs.utexas.edu/~engage/">Thriving in our Digital World</a></li>
+    <li>Bradley Beth - <a href="http://www.cs.utexas.edu/~engage/">Thriving in our Digital World</a></li>
+    <li>Peter Andreae - {% trans 'Artificial Intelligence, Complexity and Tractability, Data Representation, Compression, Error Control, and Encryption' %}</li>
+    <li>Wal Irwin - {% trans 'Software Engineering' %}</li>
+    <li>Patrick Baker - {% trans 'Curriculum (NCEA)' %}</li>
+    <li>Jenny Baker - {% trans 'Curriculum (NCEA)' %}</li>
+    <li>Neil Leslie - {% trans 'Curriculum (NCEA)' %}</li>
+    <li>Hannah Taylor - {% trans 'Curriculum (NCEA)' %}</li>
+    <li>James Atlas - {% trans 'Curriculum (AP-CSP)' %}</li>
+    <li>Paul Tymann - {% trans 'Curriculum (AP-CSP)' %}</li>
+    <li>Dr Mukundan - {% trans 'Computer Graphics, Computer Vision' %}</li>
+    <li>Richard Green - {% trans 'Computer Vision' %}</li>
+    <li>DongSeong Kim - {% trans 'Network Communication Protocols, Encryption' %}</li>
+    <li>Andreas Willig - {% trans 'Network Communication Protocols' %}</li>
+    <li>Walter Guttmann - {% trans 'Formal Languages' %}</li>
+    <li>Joshua Scott - {% trans 'Programming Languages' %}</li>
+    <li>Brad Miller (<a href="http://runestoneinteractive.org/">{% trans 'Runestone Interactive' %}</a>)</li>
+    <li>David Ranum (<a href="http://runestoneinteractive.org/">{% trans 'Runestone Interactive' %}</a>)</li>
+    <li>Ian Witten</li>
+    <li>Anthony Robins</li>
+    <li>Shadi Ibrahim</li>
+    <li>Renate Thies</li>
+    <li>Jan Vahrenhold</li>
+    <li>Paul Matthews</li>
+  </ul>
+
+  <h2 id="translators"><a href="#translators">{% trans 'Translators' %}</a></h2>
+  <ul>
+    <li>{% blocktrans %}Translators are listed on our Crowdin page <a href="https://crowdin.com/project/cs-field-guide">here{% endblocktrans %}</a></li>
+  </ul>
+
+  <h2 id="other"><a href="#other">{% trans 'Other' %}</a></h2>
+  <ul>
+    <li>Sumant Murugesh - {% trans 'Research' %}</li>
+    <li>Marcus Stenfert Kroese</li>
+    <li>Ben Gibson - {% trans 'Interactive games and related material' %}</li>
+    <li>Michael Bell (<a href="http://orangestudio.co.nz/">Orange Studio</a>) - {% trans 'Video production' %}</li>
+    <li>Linda Pettigrew - {% trans 'Formal languages material' %}</li>
+    <li>Sarang Love Leehan - {% trans 'Illustrations' %}</li>
+  </ul>
+
+  <h2 id="community-contributors"><a href="#community-contributors">{% trans 'Community Contributors' %}</a></h2>
+  <ul>
+    <li><a href="https://github.com/ArloL">ArloL</a> (Arlo Louis O'Keeffe)</li>
+    <li><a href="https://github.com/0xcpu">ner0x652</a> (Cornel Punga)</li>
+    <li><a href="https://github.com/alanhogan">alanhogan</a> (Alan Hogan)</li>
+    <li><a href="https://github.com/StevenMaude">StevenMaude</a> (Steven Maude)</li>
+    <li><a href="https://github.com/rdpse">rdpse</a> (Rúben Enes)</li>
+    <li><a href="https://github.com/oughter">oughter</a></li>
+    <li><a href="https://github.com/ekendra-nz">digitalDojoNZ</a></li>
+    <li><a href="https://github.com/pvskarthikeya">pvskarthikeya</a> (Karthikeya Pammi)</li>
+    <li><a href="https://github.com/Goldob">Goldob</a> (Adam Gotlib)</li>
+    <li><a href="https://github.com/anzeljg">anzeljg</a> (Gregor Anželj)</li>
+    <li><a href="https://github.com/ptymann">ptyman</a> (Paul Tymann)</li>
+    <li><a href="https://github.com/mbs66">mbs66</a></li>
+    <li><a href="https://github.com/jskripchuk">jskripchuck</a> (James Skripchuk)</li>
+    <li><a href="https://github.com/k-yle">k-yle</a> (Kyle Hensel)</li>
+    <li><a href="https://github.com/JamieDawson">JamieDawson</a> (Jamie Dawson)</li>
+    <li><a href="https://github.com/Goldob">Goldob</a> (Adam Gotlib)</li>
+    <li><a href="https://github.com/gitter-badger">glitter-badger</a> (The Glitter Badger)</li>
+  </ul>
+
+  <p>{% trans '<strong>Note:</strong> If there is an error in the list, please contact <a href="mailto:jack.morgan@canterbury.ac.nz">Jack Morgan</a>' %}</p>
+
+  <h2 id="acknowledgements"><a href="#acknowledgements">{% trans 'Acknowledgements' %}</a></h2>
+  <p>
+    {% blocktrans %}This project has grown out of a partnership for an international field guide to computing.
+    In the <a href="http://www.canterbury.ac.nz/">University of Canterbury</a> CSSE department, it grew from the <a href="https://www.csunplugged.org">Computer Science Unplugged project</a> and the New Zealand Computer Science resource guides.
+    At the Naval Postgraduate School in Monterey, California, it grew from a project called <a href="http://nps.edu/Cebrowski/FGSC.html">A Field Guide to the Science of Computation</a> and the <a href="http://denninginstitute.com/pjd/GP/GP-site/welcome.html">Great Principles of Computing project</a>, both led by Peter Denning.{% endblocktrans %}
+  </p>
+
+  <p>
+    {% blocktrans %}Funding for this online textbook has been provided by our sponsors listed at the end of this page.
+    In addition, countless hours of volunteer time have been contributed by those listed above.
+    Tim Bell prepared an initial draft of this material while visiting Huazhong University of Science and Technology, Wuhan, China, whom we thank for providing an excellent environment for writing
+    The project is based at the <a href="http://www.canterbury.ac.nz/">University of Canterbury</a>, Christchurch, New Zealand; other authors are at <a href="http://www.victoria.ac.nz/">Victoria University of Wellington</a>, New Zealand, and <a href="http://www.cam.ac.uk/">Cambridge University</a>, UK.{% endblocktrans %}
+  </p>
+
+  <p>
+    {% trans 'Partial funding for the US field guide project was provided by the US National Science Foundation under Grant No. 0938809.' %}
+  </p>
+
+{% endblock content %}

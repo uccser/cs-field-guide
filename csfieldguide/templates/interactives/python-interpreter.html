@@ -1,0 +1,32 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div class="container mb-3">
+    <div class="row">
+      <div class="col">
+        <div id="interactive-python-interpreter">
+        <form>
+          <h4>{% trans "Program" %}</h4>
+          <textarea id="interactive-python-interpreter-code" wrap="off" class="form-control"></textarea>
+          <button id="interactive-python-interpreter-run" type="button" class="btn btn-primary btn-expand">
+            {% trans "Run program" %}
+          </button>
+          <h4>{% trans "Output" %}</h4>
+          <pre id="interactive-python-interpreter-output" class="form-control"></pre>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/python-interpreter/css/python-interpreter.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'interactives/python-interpreter/js/python-interpreter.js' %}"></script>
+{% endblock js %}

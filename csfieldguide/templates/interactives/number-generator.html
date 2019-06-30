@@ -1,0 +1,50 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+    <div class="container">
+      <div class="row justify-content-center">
+        <div id="interactive-checksum-generator" class="col-10 mb-3 shadow bg-white rounded">
+          <div class="row mt-3">
+            <div class="col-12">
+              <h4>{% trans "Number Generator" %}</h4>
+            </div>
+          </div>
+          <div class="row justify-content-center">
+            <div class="col-8">
+              <select name="interactive-checksum-generator-type" class="browser-default form-control" id="interactive-checksum-generator-type">
+                <option selected="selected" value="ISBN-10">{% trans "ISBN-10" %}</option>
+                <option value="GTIN-13">{% trans "GTIN-13 / ISBN-13" %}</option>
+                <option value="credit-card">{% trans "Credit Card" %}</option>
+                <option value="trains">{% trans "Trains" %}</option>
+                <option value="tax-number">{% trans "Tax ID Number" %}</option>
+                <option value="passport-dates">{% trans "Passport Dates" %}</option>
+              </select>
+            </div>
+          </div>
+          <div class="row justify-content-center">
+            <div class="col-8">
+              <button id="interactive-checksum-generator-generate" class="btn btn-primary">{% trans "Generate" %}</button>
+            </div>
+          </div>
+          <div class="row justify-content-center mb-3">
+            <div class="col-10">
+              <p>{% trans "The following codes are a combination of valid and invalid codes" %}</p>
+              <textarea id="interactive-checksum-generator-codes" class="form-control" rows="5" readonly placeholder="Codes will be displayed here"></textarea>
+              <p>{% trans "Codes are generated with no dashes/spaces/etc" %}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/number-generator/css/checksum-generator.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'interactives/number-generator/js/checksum-generator.js' %}"></script>
+{% endblock js %}

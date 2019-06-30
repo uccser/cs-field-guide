@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block title %}
+  {% trans "Page not found" %}
+{% endblock title %}
+
+{% block page_content %}
+  <div id="content-container" class="container">
+    <div class="row">
+      <div class="col-12">
+        <h1>{% trans "Page not found" %}</h1>
+        <p>{% trans "We are sorry but we could not find a page for the link you provided." %}</p>
+        <p>{% trans "You may find one of the links below useful:" %}</p>
+        <ul>
+          <li>
+            <a href="{% url 'general:index' %}">
+              {% trans "Home page" %}
+            </a>
+          </li>
+          {% if LANGUAGE_CODE == "en" %}
+            <!-- Search is only currently available in English, see https://github.com/uccser/cs-unplugged/issues/989 -->
+            <li>
+              <a href="{% url 'search:index' %}">
+                {% trans "Search" %}
+              </a>
+            </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </div>
+{% endblock page_content %}

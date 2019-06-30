@@ -1,0 +1,22 @@
+[run]
+branch = True
+source =
+    chapters
+    config
+    general
+    interactives
+    search
+    static
+    templates
+    utils
+omit =
+    # Omit migration files
+    */migrations/*
+    # Omit settings files for local and production environments
+    # TODO: Add integration tests for local and production environments
+    */config/settings/*
+    # Omit pregenerated files
+    */config/wsgi.py
+
+[report]
+fail_under=20

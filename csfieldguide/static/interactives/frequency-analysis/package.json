@@ -1,0 +1,11 @@
+{
+    "name": "csfg-interactive-frequency-anaylsis",
+    "version": "1.0.0",
+    "private": true,
+    "description": "This is a simple frequency analysis chart",
+    "dependencies": {
+        "chart.js": "2.7.2",
+        "es5-shim": "4.5.12",
+        "es6-shim": "0.35.4"
+    }
+}

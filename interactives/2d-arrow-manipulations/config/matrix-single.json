@@ -1,7 +1,0 @@
-{
-    "type": "matrix",
-    "title": "Single Matrix",
-    "task": "Try putting in the final matrix here and see if it does scale by 2 and rotate by 45 degrees.",
-    "target": "5.6 5.6 -2.8 5.6 0 2.8 -7 -4.2 -4.2 -7 2.8 0 5.6 -2.8",
-    "modules": ["first-scale"]
-}

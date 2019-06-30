@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block title %}
+  {% trans 'Appendices' %}
+{% endblock title %}
+
+{% block page_heading %}
+  <h1>{% trans 'Appendices' %}</h1>
+{% endblock page_heading %}
+
+{% block content %}
+  <ul>
+    <li>
+      <a href="{% url 'appendices:about' %}">
+        {% trans "About" %}
+      </a>
+    </li>
+    <li>
+      <a href="https://cs-field-guide.readthedocs.io/en/latest/index.html">
+        {% trans "Documentation" %}
+      </a>
+    </li>
+    <li>
+      <a href="https://cs-field-guide.readthedocs.io/en/latest/changelog.html">
+        {% trans "Changelog" %}
+      </a>
+    </li>
+    <li>
+      <a href="{% url 'appendices:contributors' %}">
+        {% trans "Contributors" %}
+      </a>
+    </li>
+    <li>
+      <a href="{% url 'curriculum_guides:index' %}">
+        {% trans "Curriculum Guides" %}
+      </a>
+    </li>
+    <li>
+      <a href="{% url 'chapters:glossary' %}">
+        {% trans "Glossary" %}
+      </a>
+    </li>
+    <li>
+      <a href="{% url 'interactives:index' %}">
+        {% trans "Interactives" %}
+      </a>
+    </li>
+    <li>
+      <a href="{% url 'appendices:sitemap' %}">
+        {% trans "Sitemap" %}
+      </a>
+    </li>
+  </ul>
+{% endblock content %}

@@ -1,0 +1,1124 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: cs-field-guide\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-11-06 19:45+0000\n"
+"PO-Revision-Date: 2019-04-16 14:08\n"
+"Last-Translator: UC Computer Science Education (uccser-admin)\n"
+"Language-Team: German\n"
+"Language: de_DE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: crowdin.com\n"
+"X-Crowdin-Project: cs-field-guide\n"
+"X-Crowdin-Language: de\n"
+"X-Crowdin-File: /csfieldguide/locale/en/LC_MESSAGES/django.po\n"
+
+#: config/settings/base.py:124
+msgid "Translation mode"
+msgstr "Übersetzungsmodus"
+
+#: config/settings/base.py:130
+msgid "Translation mode (Bi-directional)"
+msgstr "Übersetzungsmodus (bidirektional)"
+
+#: interactives/models.py:11
+msgid "Interactive"
+msgstr "Interaktiv"
+
+#: templates/404.html:6 templates/404.html:13
+msgid "Page not found"
+msgstr "Seite nicht gefunden"
+
+#: templates/404.html:14
+msgid "We are sorry but we could not find a page for the link you provided."
+msgstr "Wir konnten leider keine Seite für den angegebenen Link finden."
+
+#: templates/404.html:15
+msgid "You may find one of the links below useful:"
+msgstr "Eventuell ist einer der nachstehenden Links nützlich:"
+
+#: templates/404.html:19
+msgid "Home page"
+msgstr "Startseite"
+
+#: templates/404.html:26 templates/base.html:79 templates/base.html:84
+#: templates/base.html:214
+msgid "Search"
+msgstr "Suchen"
+
+#: templates/appendices/index.html:17 templates/base.html:172
+msgid "About"
+msgstr "Über uns"
+
+#: templates/appendices/index.html:23
+msgid "Changelog"
+msgstr "Änderungsprotokoll"
+
+#: templates/appendices/index.html:28
+msgid "Contributors"
+msgstr "Mitwirkende"
+
+#: templates/appendices/index.html:33
+msgid "Curriculum Guides"
+msgstr "Studienplanleitfäden"
+
+#: templates/appendices/index.html:38 templates/base.html:220
+msgid "Glossary"
+msgstr "Glossar"
+
+#: templates/appendices/index.html:43 templates/base.html:182
+#: templates/interactives/index.html:7
+msgid "Interactives"
+msgstr "Interaktive Module"
+
+#: templates/base.html:16 templates/general/index.html:7
+msgid "Computer Science Field Guide"
+msgstr "Computer Science Field Guide"
+
+#: templates/base.html:19
+msgid "An online interactive resource for high school students learning about computer science"
+msgstr "Eine interaktive Online-Ressource für Oberschüler, die Informatik lernen"
+
+#: templates/base.html:48
+msgid "Language"
+msgstr "Sprache"
+
+#: templates/base.html:69 templates/base.html:177
+#: templates/chapters/index.html:8
+msgid "Chapters"
+msgstr "Kapitel"
+
+#: templates/base.html:72
+msgid "Appendices"
+msgstr "Ergänzungen"
+
+#: templates/base.html:149
+msgid "Looking for something for primary schools? Check out <a href=\"http://www.csunplugged.org/\">CS Unplugged</a>."
+msgstr "Suchen Sie etwas für Grundschulen? Sehen Sie sich auf <a href=\"http://www.csunplugged.org/\">CS Unplugged</a> um."
+
+#: templates/base.html:161
+msgid "The Computer Science Field Guide is an online interactive resource for high school students learning about computer science."
+msgstr "Der Computer Science Field Guide ist eine interaktive Online-Ressource für Oberschüler, die Informatik lernen."
+
+#: templates/base.html:168
+msgid "Useful Links"
+msgstr "Nützliche Links"
+
+#: templates/base.html:188
+msgid "Community"
+msgstr "Community"
+
+#: templates/base.html:192
+msgid "Twitter"
+msgstr "Twitter"
+
+#: templates/base.html:197
+msgid "YouTube"
+msgstr "YouTube"
+
+#: templates/base.html:202
+msgid "GitHub"
+msgstr "GitHub"
+
+#: templates/base.html:208
+msgid "Help"
+msgstr "Help"
+
+#: templates/base.html:225
+msgid "Feedback"
+msgstr "Feedback"
+
+#: templates/base.html:260
+msgid "The Computer Science Field Guide material is open source on <a href=\"https://github.com/uccser/cs-field-guide\">GitHub</a>, and this website's content is shared under a <a href=\"https://creativecommons.org/licenses/by-sa/4.0/\">Creative Commons Attribution-ShareAlike 4.0 International license</a>. The Computer Science Field Guide is a project by the <a href=\"http://www.cosc.canterbury.ac.nz/research/RG/CSE/\">Computer Science Education Research Group</a> at the <a href=\"http://www.canterbury.ac.nz/\">University of Canterbury</a>, New Zealand. Icons provided generously by <a href=\"https://icons8.com/\">icons8</a>."
+msgstr "Das Material des Computer Science Field Guide steht als Open-Source-Material auf <a href=\"https://github.com/uccser/cs-field-guide\">GitHub</a> zur Verfügung und die Inhalte dieser Website sind unter einer <a href=\"https://creativecommons.org/licenses/by-sa/4.0/\">internationalen Creative Commons Attribution-ShareAlike 4.0 Lizenz</a> verfügbar. Der Computer Science Field Guide ist ein Projekt der <a href=\"http://www.cosc.canterbury.ac.nz/research/RG/CSE/\">Computer Science Education Research Group</a> der <a href=\"http://www.canterbury.ac.nz/\">University of Canterbury</a>, Neuseeland. Verwendete Symbole wurden großzügigerweise von <a href=\"https://icons8.com/\">icons8</a> zur Verfügung gestellt."
+
+#: templates/base.html:284
+#, python-format
+msgid "This definition is not available in %(language)s, sorry!"
+msgstr "Diese Definition ist leider nicht in %(language)s verfügbar!"
+
+#: templates/base.html:291
+msgid "Close"
+msgstr "Schließen"
+
+#: templates/chapters/chapter_section.html:46
+msgid "Table of contents"
+msgstr "Inhaltsverzeichnis"
+
+#: templates/chapters/index.html:17
+msgid "The following chapters cover key topics within Computer Science."
+msgstr "Die folgenden Kapitel behandeln wichtige Themen der Informatik."
+
+#: templates/general/index.html:19
+msgid "Computer Science<br>Field Guide"
+msgstr "Computer Science<br>Field Guide"
+
+#: templates/general/index.html:24
+msgid "An online interactive resource for high school students learning about computer science."
+msgstr "Eine interaktive Online-Ressource für Oberschüler, die Informatik lernen."
+
+#: templates/general/index.html:29
+msgid "View the chapters"
+msgstr "Kapitel ansehen"
+
+#: templates/generic/not-available-badge.html:4
+#, python-format
+msgid "Not available in %(language)s"
+msgstr "Nicht in %(language)s verfügbar"
+
+#: templates/generic/not-available-warning.html:6
+#, python-format
+msgid "<h4>Sorry! This item is not yet available in %(language)s.</h4> <p>This item is available in the following languages:</p>"
+msgstr "<h4>Tut uns leid! Dieses Element ist noch nicht in %(language)s verfügbar.</h4> <p>Es ist in den folgenden Sprachen verfügbar:</p>"
+
+#: templates/generic/not-available-warning.html:36
+msgid "Return to homepage "
+msgstr "Zurück zur Startseite "
+
+#: templates/interactives/action-menu.html:10
+msgid "Menu"
+msgstr "Menü"
+
+#: templates/interactives/action-menu.html:13
+msgid "Pizza ordered!"
+msgstr "Pizza bestellt!"
+
+#: templates/interactives/action-menu.html:14
+msgid "Order a pizza"
+msgstr "Pizza bestellen"
+
+#: templates/interactives/action-menu.html:16
+msgid "TV turned on!"
+msgstr "Fernseher eingeschaltet!"
+
+#: templates/interactives/action-menu.html:17
+msgid "Turn on TV"
+msgstr "Fernseher einschalten"
+
+#: templates/interactives/action-menu.html:19
+msgid "Nuclear attack launched... why did you do that?"
+msgstr "Atomangriff gestartet ... Warum hast du das getan?"
+
+#: templates/interactives/action-menu.html:20
+msgid "Launch nuclear attack"
+msgstr "Atomangriff starten"
+
+#: templates/interactives/action-menu.html:22
+msgid "Water boiled!"
+msgstr "Wasser gekocht!"
+
+#: templates/interactives/action-menu.html:23
+msgid "Boil Water"
+msgstr "Wasser kochen"
+
+#: templates/interactives/alarm-timer.html:10
+msgid "Alarm set for 12 hours and 57 minutes from now."
+msgstr "Wecker für 12 Stunden und 57 Minuten ab jetzt gestellt."
+
+#: templates/interactives/alarm-timer.html:11
+msgid "Alarm already set for 09:00."
+msgstr "Wecker bereits für 09:00 Uhr gestellt."
+
+#: templates/interactives/available-menu-items.html:9
+msgid "Available Menu Items"
+msgstr "Verfügbare Menüpunkte"
+
+#: templates/interactives/available-menu-items.html:12
+msgid "Error: Answers unavailable!"
+msgstr "Fehler: Antworten nicht verfügbar!"
+
+#: templates/interactives/available-menu-items.html:13
+msgid "Download answers"
+msgstr "Antworten herunterladen"
+
+#: templates/interactives/available-menu-items.html:15
+msgid "Error: YouTube unavailable!"
+msgstr "Fehler: YouTube nicht verfügbar!"
+
+#: templates/interactives/available-menu-items.html:16
+msgid "Watch YouTube videos"
+msgstr "YouTube-Videos ansehen"
+
+#: templates/interactives/available-menu-items.html:18
+msgid "Error: Facebook unavailable!"
+msgstr "Fehler: Facebook nicht verfügbar!"
+
+#: templates/interactives/available-menu-items.html:19
+msgid "Open Facebook"
+msgstr "Facebook öffnen"
+
+#: templates/interactives/available-menu-items.html:21
+msgid "Error: Games unavailable!"
+msgstr "Fehler: Spiele nicht verfügbar!"
+
+#: templates/interactives/available-menu-items.html:22
+msgid "Play games"
+msgstr "Spiele spielen"
+
+#: templates/interactives/base-calculator.html:8
+msgid "Base"
+msgstr "Basis"
+
+#: templates/interactives/base-calculator.html:8
+#: templates/interactives/binary-mode-calculator.html:10
+msgid "Calculator"
+msgstr "Rechner"
+
+#: templates/interactives/big-number-calculator.html:11
+msgid "Big Number Calculator"
+msgstr "Rechner für große Zahlen"
+
+#: templates/interactives/big-number-calculator.html:15
+#: templates/interactives/trig-function-calculator.html:15
+msgid "X Value:"
+msgstr "X-Wert:"
+
+#: templates/interactives/big-number-calculator.html:19
+msgid "Y Value:"
+msgstr "Y-Wert:"
+
+#: templates/interactives/big-number-calculator.html:25
+msgid "X + Y"
+msgstr "X + Y"
+
+#: templates/interactives/big-number-calculator.html:26
+msgid "X - Y"
+msgstr "X - Y"
+
+#: templates/interactives/big-number-calculator.html:27
+msgid "X &times; Y"
+msgstr "X &times; Y"
+
+#: templates/interactives/big-number-calculator.html:28
+msgid "X &divide; Y"
+msgstr "X &divide; Y"
+
+#: templates/interactives/big-number-calculator.html:29
+msgid "X<sup>Y</sup>"
+msgstr "X<sup>Y</sup>"
+
+#: templates/interactives/big-number-calculator.html:30
+msgid "X!"
+msgstr "X!"
+
+#: templates/interactives/big-number-calculator.html:31
+msgid "Clear"
+msgstr "Löschen"
+
+#: templates/interactives/big-number-calculator.html:36
+#: templates/interactives/trig-function-calculator.html:26
+msgid "Result:"
+msgstr "Ergebnis:"
+
+#: templates/interactives/binary-cards.html:10
+msgid "Binary Cards"
+msgstr "Binärkarten"
+
+#: templates/interactives/binary-cards.html:16
+msgid "Flip all card sides to:"
+msgstr "Alle Karten umdrehen auf:"
+
+#: templates/interactives/binary-cards.html:17
+msgid "Black"
+msgstr "Schwarz"
+
+#: templates/interactives/binary-cards.html:18
+msgid "White"
+msgstr "Weiß"
+
+#: templates/interactives/binary-mode-calculator.html:19
+msgid "Malformed expression"
+msgstr "Nicht wohlgeformter Ausdruck"
+
+#: templates/interactives/binary-mode-calculator.html:25
+msgid "Mode: "
+msgstr "Modus: "
+
+#: templates/interactives/binary-mode-calculator.html:28
+msgid "Binary"
+msgstr "Binär"
+
+#: templates/interactives/caesar-cipher.html:9
+msgid "Plaintext"
+msgstr "Klartext"
+
+#: templates/interactives/caesar-cipher.html:11
+#: templates/interactives/rsa-jsencrypt.html:20
+#: templates/interactives/rsa-no-padding.html:18
+msgid "Encrypt"
+msgstr "Verschlüsseln"
+
+#: templates/interactives/caesar-cipher.html:14
+msgid "Rotation Amount"
+msgstr "Verschiebechiffre"
+
+#: templates/interactives/caesar-cipher.html:18
+msgid "Ciphertext"
+msgstr "Geheimtext"
+
+#: templates/interactives/caesar-cipher.html:20
+msgid "Decrypt"
+msgstr "Entschlüsseln"
+
+#: templates/interactives/close-window.html:8
+msgid "Do you wish to close this window?"
+msgstr "Möchtest du dieses Fenster schließen?"
+
+#: templates/interactives/close-window.html:9
+msgid "Yes"
+msgstr "Ja"
+
+#: templates/interactives/close-window.html:10
+msgid "No"
+msgstr "Nein"
+
+#: templates/interactives/cmy-mixer.html:8
+msgid "CMY Colour Mixer - Used by Printers"
+msgstr "CMY-Farbmischer – von Druckern verwendet"
+
+#: templates/interactives/cmy-mixer.html:13
+msgid "<strong>Cyan</strong> - Currently set to <span id=\"interactive-cmy-mixer-cyan-value\">127</span>"
+msgstr "<strong>Cyan</strong> – Aktuell auf <span id=\"interactive-cmy-mixer-cyan-value\">127</span> eingestellt"
+
+#: templates/interactives/cmy-mixer.html:17
+msgid "<strong>Magenta</strong> - Currently set to <span id=\"interactive-cmy-mixer-magenta-value\">127</span>"
+msgstr "<strong>Magenta</strong> – Aktuell auf <span id=\"interactive-cmy-mixer-magenta-value\">127</span> eingestellt"
+
+#: templates/interactives/cmy-mixer.html:21
+msgid "<strong>Yellow</strong> - Currently set to <span id=\"interactive-cmy-mixer-yellow-value\">127</span>"
+msgstr "<strong>Gelb</strong> – Aktuell auf <span id=\"interactive-cmy-mixer-yellow-value\">127</span> eingestellt"
+
+#: templates/interactives/colour-matcher.html:8
+msgid "Colour Matcher"
+msgstr "Farbabstimmung"
+
+#: templates/interactives/colour-matcher.html:10
+msgid "Firstly try matching the colour in the goal panel the 24 bit sliders."
+msgstr "Versuche zunächst, die Farbe des Zielfelds mithilfe der 24-Bit-Regler zu erreichen."
+
+#: templates/interactives/colour-matcher.html:15
+msgid "24 bit"
+msgstr "24 Bit"
+
+#: templates/interactives/colour-matcher.html:19
+msgid "<strong>Red</strong> - 8 bits for red set to <span class='representation-text'></span>"
+msgstr "<strong>Rot</strong> - 8 Bits für Rot auf <span class='representation-text'></span> eingestellt"
+
+#: templates/interactives/colour-matcher.html:25
+msgid "<strong>Green</strong> - 8 bits for green set to <span class='representation-text'></span>"
+msgstr "<strong>Grün</strong> - 8 Bits für Grün auf <span class='representation-text'></span> eingestellt"
+
+#: templates/interactives/colour-matcher.html:31
+msgid "<strong>Blue</strong> - 8 bits for blue set to <span class='representation-text'></span>"
+msgstr "<strong>Blau</strong> - 8 Bits für Blau auf <span class='representation-text'></span> eingestellt"
+
+#: templates/interactives/colour-matcher.html:38
+msgid "24 bit colour"
+msgstr "24-Bit-Farbe"
+
+#: templates/interactives/colour-matcher.html:42
+#: templates/interactives/colour-matcher.html:97
+msgid "Goal colour"
+msgstr "Zielfarbe"
+
+#: templates/interactives/colour-matcher.html:49
+#: templates/interactives/colour-matcher.html:104
+msgid "<strong>Bit representation</strong> - Click a bit to toggle its value"
+msgstr "<strong>Bit-Darstellung</strong> – Ein Bit anklicken, um dessen Wert umzuschalten"
+
+#: templates/interactives/colour-matcher.html:56
+#: templates/interactives/colour-matcher.html:110
+msgid "<strong>Hexidecimal representation</strong>"
+msgstr "<strong>Hexadezimale Darstellung</strong>"
+
+#: templates/interactives/colour-matcher.html:62
+msgid "Need help finding the correct values?"
+msgstr "Brauchst du Hilfe, um die richtigen Werte zu finden?"
+
+#: templates/interactives/colour-matcher.html:65
+msgid "Help me set red"
+msgstr "Hilf mir, Rot einzustellen"
+
+#: templates/interactives/colour-matcher.html:70
+msgid "Now try matching the same goal colour with the 8 bit sliders."
+msgstr "Versuche nun, dieselbe Zielfarbe mit den 8-Bit-Reglern einzustellen."
+
+#: templates/interactives/colour-matcher.html:76
+msgid "8 bit"
+msgstr "8 Bit"
+
+#: templates/interactives/colour-matcher.html:79
+msgid "<strong>Red</strong> - 3 bits for red set to <span class='representation-text'></span>"
+msgstr "<strong>Rot</strong> - 3 Bits für Rot auf <span class='representation-text'></span> eingestellt"
+
+#: templates/interactives/colour-matcher.html:83
+msgid "<strong>Green</strong> - 3 bits for green set to <span class='representation-text'></span>"
+msgstr "<strong>Grün</strong> - 3 Bits für Grün auf <span class='representation-text'></span> eingestellt"
+
+#: templates/interactives/colour-matcher.html:87
+msgid "<strong>Blue</strong> - 2 bits for blue set to <span class='representation-text'></span>"
+msgstr "<strong>Blau</strong> - 2 Bits für Blau auf <span class='representation-text'></span> eingestellt"
+
+#: templates/interactives/colour-matcher.html:93
+msgid "8 bit colour"
+msgstr "8-Bit-Farbe"
+
+#: templates/interactives/colour-matcher.html:115
+msgid "Try another colour"
+msgstr "Mit einer anderen Farbe versuchen"
+
+#: templates/interactives/compression-comparer.html:12
+msgid "Move the slider to compare the two images"
+msgstr "Regler verschieben, um die beiden Bilder zu vergleichen"
+
+#: templates/interactives/compression-comparer.html:21
+msgid "55 Kb JPEG"
+msgstr "55 kB JPEG"
+
+#: templates/interactives/compression-comparer.html:22
+msgid "139 Kb JPEG"
+msgstr "139 kB JPEG"
+
+#: templates/interactives/confused-buttons.html:8
+msgid "Confirm"
+msgstr "Bestätigen"
+
+#: templates/interactives/confused-buttons.html:9
+#: templates/interactives/confusing-error.html:16
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#: templates/interactives/confusing-error.html:11
+msgid "This configuration will cause your backup device's status light to blink amber. Are you sure you want to continue?"
+msgstr "Durch diese Konfiguration wird das Statuslicht des Backup-Geräts gelb blinken. Möchtest du wirklich fortfahren?"
+
+#: templates/interactives/confusing-error.html:13
+msgid "Click Ignore to prevent your backup device's status light from blinking amber for this problem."
+msgstr "Ignorieren anklicken, um zu verhindern, dass das Statuslicht des Backup-Geräts bei diesem Problem gelb leuchtet."
+
+#: templates/interactives/confusing-error.html:15
+msgid "Skip"
+msgstr "Überspringen"
+
+#: templates/interactives/confusing-error.html:17
+msgid "Ignore"
+msgstr "Ignorieren"
+
+#: templates/interactives/date-picker.html:8
+msgid "Pick a date"
+msgstr "Wähle ein Datum aus"
+
+#: templates/interactives/date-picker.html:43
+msgid "January"
+msgstr "Januar"
+
+#: templates/interactives/date-picker.html:44
+msgid "February"
+msgstr "Februar"
+
+#: templates/interactives/date-picker.html:45
+msgid "March"
+msgstr "März"
+
+#: templates/interactives/date-picker.html:46
+msgid "April"
+msgstr "April"
+
+#: templates/interactives/date-picker.html:47
+msgid "May"
+msgstr "Mai"
+
+#: templates/interactives/date-picker.html:48
+msgid "June"
+msgstr "Juni"
+
+#: templates/interactives/date-picker.html:49
+msgid "July"
+msgstr "Juli"
+
+#: templates/interactives/date-picker.html:50
+msgid "August"
+msgstr "August"
+
+#: templates/interactives/date-picker.html:51
+msgid "September"
+msgstr "September"
+
+#: templates/interactives/date-picker.html:52
+msgid "October"
+msgstr "Oktober"
+
+#: templates/interactives/date-picker.html:53
+msgid "November"
+msgstr "November"
+
+#: templates/interactives/date-picker.html:54
+msgid "December"
+msgstr "Dezember"
+
+#: templates/interactives/date-picker.html:59
+msgid "Do you realise that's not a real date?"
+msgstr "Ist dir klar, dass dies kein gültiges Datum ist?"
+
+#: templates/interactives/deceiver.html:10
+msgid "Start"
+msgstr "Starten"
+
+#: templates/interactives/deceiver.html:14
+msgid "Even"
+msgstr "Gerade"
+
+#: templates/interactives/deceiver.html:17
+msgid "Odd"
+msgstr "Ungerade"
+
+#: templates/interactives/deceiver.html:24
+msgid " seconds left"
+msgstr " Sekunden verbleibend"
+
+#: templates/interactives/delay-analyser.html:9
+msgid "Delay Analyser"
+msgstr "Verzögerungsanalysator"
+
+#: templates/interactives/delay-analyser.html:12
+msgid "Instructions"
+msgstr "Anleitung"
+
+#: templates/interactives/delay-analyser.html:14
+msgid "Click on any tile of the grid. This will reveal a small tile of a larger image."
+msgstr "Eine beliebige Kachel im Gitterfeld anklicken. Dies deckt einen kleinen Teil eines größeren Bildes auf."
+
+#: templates/interactives/delay-analyser.html:15
+msgid "If you perceived any delay in the tile being revealed, in other words 'it didn't feel like it appeared instantly' then click on this tile again. The tile will be coloured green, indicating that you have decided there was a perceivable delay."
+msgstr "Wenn du eine Verzögerung beim Aufdecken der Kachel wahrnimmst, d. h. „es hat sich nicht angefühlt, als ob das Teilbild sofort angezeigt wurde“, erneut auf die Kachel klicken. Die Kachel wird grün eingefärbt, was anzeigt, dass du eine merkbare Verzögerung festgestellt hast."
+
+#: templates/interactives/delay-analyser.html:16
+msgid "If you made a mistake by clicking it, you can change your mind by clicking again."
+msgstr "Wird eine Kachel versehentlich angeklickt, kann dies durch erneutes Anklicken rückgängig gemacht werden."
+
+#: templates/interactives/delay-analyser.html:17
+msgid "Repeat this on all other cells to reveal the complete image."
+msgstr "Wiederhole dies mit allen anderen Kacheln, bis das gesamte Bild aufgedeckt ist."
+
+#: templates/interactives/delay-analyser.html:18
+msgid "View the statistics page to see experiment results."
+msgstr "Lass dir die Statistikenseite anzeigen, um das Ergebnis des Experiments zu sehen."
+
+#: templates/interactives/delay-analyser.html:22
+msgid "View statistics"
+msgstr "Statistiken anzeigen"
+
+#: templates/interactives/delay-analyser.html:33
+msgid "Not Perceived"
+msgstr "Nicht erkannt"
+
+#: templates/interactives/delay-analyser.html:34
+msgid "Perceived"
+msgstr "Erkannt"
+
+#: templates/interactives/delay-analyser.html:44
+msgid "Reset experiment"
+msgstr "Experiment zurücksetzen"
+
+#: templates/interactives/delay-analyser.html:50
+msgid "Created by Rhem Munro - Adapted by Jack Morgan"
+msgstr "Erstellt von Rhem Munro – Überarbeitet von Jack Morgan"
+
+#: templates/interactives/delayed-checkbox.html:8
+msgid "Tick the checkbox"
+msgstr "Markiere das Kästchen"
+
+#: templates/interactives/delayed-checkbox.html:11
+msgid "Clicked <span id=\"interactive-delayed-checkbox-counter\">0</span> times"
+msgstr "<span id=\"interactive-delayed-checkbox-counter\">0</span> Mal angeklickt"
+
+#: templates/interactives/fsa-box.html:11
+msgid "Current state: <span id=\"interactive-fsa-box-current-state-text\"></span>"
+msgstr "Aktueller Zustand: <span id=\"interactive-fsa-box-current-state-text\"></span>"
+
+#: templates/interactives/fsa-box.html:19
+#: templates/interactives/fsa-light.html:22
+#: templates/interactives/fsa-washing-machine.html:27
+msgid "Reset to start state"
+msgstr "Auf Startzustand zurücksetzen"
+
+#: templates/interactives/fsa-light.html:11
+msgid "Current state: <span id=\"interactive-fsa-light-current-state-text\"></span>"
+msgstr "Aktueller Zustand: <span id=\"interactive-fsa-light-current-state-text\"></span>"
+
+#: templates/interactives/fsa-washing-machine.html:10
+msgid "Current state: <span id=\"interactive-fsa-washing-machine-current-state-text\"></span>"
+msgstr "Aktueller Zustand: <span id=\"interactive-fsa-washing-machine-current-state-text\"></span>"
+
+#: templates/interactives/fsa-washing-machine.html:26
+msgid "Change spin speed"
+msgstr "Schleudergeschwindigkeit ändern"
+
+#: templates/interactives/hex-background-colour.html:8
+msgid "RGB Backround Colour Changer"
+msgstr "RGB-Hintergrundfarbenwechsler"
+
+#: templates/interactives/hex-background-colour.html:18
+msgid "Change"
+msgstr "Ändern"
+
+#: templates/interactives/hex-background-colour.html:21
+msgid "Reset"
+msgstr "Zurücksetzen"
+
+#: templates/interactives/high-score-boxes.html:9
+msgid "High Score Boxes"
+msgstr "Höchstzahlkästchen"
+
+#: templates/interactives/high-score-boxes.html:10
+msgid "Clicking a box will reveal its number; your task is to find the highest number and enter it below."
+msgstr "Durch Anklicken eines Kästchens wird dessen Zahl aufgedeckt. Deine Aufgabe ist es, die höchste Zahl zu finden und unten einzugeben."
+
+#: templates/interactives/high-score-boxes.html:13
+msgid "Highest number:"
+msgstr "Höchste Zahl:"
+
+#: templates/interactives/high-score-boxes.html:19
+msgid "Submit"
+msgstr "Senden"
+
+#: templates/interactives/high-score-boxes.html:25
+msgid "Restart"
+msgstr "Neu starten"
+
+#: templates/interactives/huffman-tree.html:10
+msgid "Huffman Tree Generator"
+msgstr "Huffman-Baum-Generator"
+
+#: templates/interactives/huffman-tree.html:11
+msgid "Enter text below to create a Huffman Tree. The following characters will be used to create the tree: letters, numbers, full stop, comma, single quote. All other characters are ignored."
+msgstr "Gib unten Text ein, um einen Huffman-Baum zu erstellen. Gültige Zeichen sind: Buchstaben, Zahlen, Punkt, Komma, einfaches Anführungszeichen. Alle anderen Zeichen werden ignoriert."
+
+#: templates/interactives/huffman-tree.html:14
+msgid "Loading generator..."
+msgstr "Generator laden ..."
+
+#: templates/interactives/image-bit-comparer.html:11
+msgid "Image Bit Comparer"
+msgstr "Bildbits-Vergleich"
+
+#: templates/interactives/image-bit-comparer.html:15
+msgid "Select Image"
+msgstr "Bild auswählen"
+
+#: templates/interactives/image-bit-comparer.html:20
+msgid "Upload Image"
+msgstr "Bild hochladen"
+
+#: templates/interactives/image-bit-comparer.html:21
+msgid "Either drag and drop or click the button below to load your own landscape image into the interactive."
+msgstr "Lade dein eigenes Querformatbild durch Ziehen und Ablegen oder über die Schaltfläche unten hoch."
+
+#: templates/interactives/image-bit-comparer.html:26
+msgid "Image Preview Size"
+msgstr "Bildvorschaugröße"
+
+#: templates/interactives/image-bit-comparer.html:28
+msgid "Small"
+msgstr "Klein"
+
+#: templates/interactives/image-bit-comparer.html:29
+msgid "Medium"
+msgstr "Mittel"
+
+#: templates/interactives/image-bit-comparer.html:30
+msgid "Large (may take longer to load)"
+msgstr "Groß (möglicherweise längere Ladezeit)"
+
+#: templates/interactives/menu-keystrokes.html:14
+msgid "New File"
+msgstr "Neue Datei"
+
+#: templates/interactives/menu-keystrokes.html:20
+msgid "Open..."
+msgstr "Öffnen ..."
+
+#: templates/interactives/menu-keystrokes.html:26
+msgid "Save"
+msgstr "Speichern"
+
+#: templates/interactives/menu-keystrokes.html:32
+msgid "Close Tab"
+msgstr "Tab schließen"
+
+#: templates/interactives/menu-keystrokes.html:38
+msgid "Close Pane"
+msgstr "Bereich schließen"
+
+#: templates/interactives/nfa-guesser.html:8
+msgid "Practice traversing a NFA"
+msgstr "Eine NEA-Darstellung durchlaufen"
+
+#: templates/interactives/nfa-guesser.html:9
+msgid "Traverse the NFA map below with the input sequence and select all the resulting states."
+msgstr "Durchlaufe die abgebildete NEA-Darstellung mit der gegebenen Eingabefolge und wähle alle Ergebniszustände aus."
+
+#: templates/interactives/nfa-guesser.html:14
+msgid "Input sequence: <span id=\"interactive-nfa-guesser-input-sequence-value\"></span>"
+msgstr "Eingabefolge: <span id=\"interactive-nfa-guesser-input-sequence-value\"></span>"
+
+#: templates/interactives/nfa-guesser.html:20
+msgid "Check answer"
+msgstr "Antwort überprüfen"
+
+#: templates/interactives/nfa-guesser.html:26
+msgid "Generate new input sequence"
+msgstr "Neue Eingabefolge generieren"
+
+#: templates/interactives/no-help.html:8
+msgid "Click me for help"
+msgstr "Für Hilfe hier klicken"
+
+#: templates/interactives/number-generator.html:12
+msgid "Number Generator"
+msgstr "Zahlengenerator"
+
+#: templates/interactives/number-generator.html:18
+msgid "ISBN-10"
+msgstr "ISBN-10"
+
+#: templates/interactives/number-generator.html:19
+msgid "GTIN-13 / ISBN-13"
+msgstr "GTIN-13 / ISBN-13"
+
+#: templates/interactives/number-generator.html:20
+msgid "Credit Card"
+msgstr "Kreditkarte"
+
+#: templates/interactives/number-generator.html:21
+msgid "Trains"
+msgstr "Züge"
+
+#: templates/interactives/number-generator.html:22
+msgid "IRD Number"
+msgstr ""
+
+#: templates/interactives/number-generator.html:23
+msgid "Passport Dates"
+msgstr "Reisepassdaten"
+
+#: templates/interactives/number-generator.html:29
+msgid "Generate"
+msgstr "Generieren"
+
+#: templates/interactives/number-generator.html:34
+msgid "The following codes are a combination of valid and invalid codes"
+msgstr "Die folgenden Codes sind eine Kombination aus gültigen und ungültigen Codes"
+
+#: templates/interactives/number-generator.html:36
+msgid "Codes are generated with no dashes/spaces/etc"
+msgstr "Codes werden ohne Striche, Leerstellen usw. generiert"
+
+#: templates/interactives/off-by-one.html:8
+msgid "Clear form"
+msgstr "Formular leeren"
+
+#: templates/interactives/off-by-one.html:9
+msgid "Submit now"
+msgstr "Jetzt senden"
+
+#: templates/interactives/payment-interface.html:9
+msgid "Payment Amount"
+msgstr "Zahlungsbetrag"
+
+#: templates/interactives/payment-interface.html:11
+msgid "How much do you want to pay?"
+msgstr "Wie viel möchtest du bezahlen?"
+
+#: templates/interactives/python-interpreter.html:12
+msgid "Program"
+msgstr "Programm"
+
+#: templates/interactives/python-interpreter.html:15
+msgid "Run program"
+msgstr "Programm ausführen"
+
+#: templates/interactives/python-interpreter.html:17
+msgid "Output"
+msgstr "Ausgabe"
+
+#: templates/interactives/rgb-mixer.html:8
+msgid "RGB Colour Mixer - Used by Screens"
+msgstr "RGB-Farbmischer – von Bildschirmen verwendet"
+
+#: templates/interactives/rgb-mixer.html:13
+msgid "<strong>Red</strong> - Currently set to <span id=\"interactive-rgb-mixer-red-value\">127</span>"
+msgstr "<strong>Rot</strong> – Aktuell auf <span id=\"interactive-rgb-mixer-red-value\">127</span> eingestellt"
+
+#: templates/interactives/rgb-mixer.html:17
+msgid "<strong>Green</strong> - Currently set to <span id=\"interactive-rgb-mixer-green-value\">127</span>"
+msgstr "<strong>Grün</strong> – Aktuell auf <span id=\"interactive-rgb-mixer-green-value\">127</span> eingestellt"
+
+#: templates/interactives/rgb-mixer.html:21
+msgid "<strong>Blue</strong> - Currently set to <span id=\"interactive-rgb-mixer-blue-value\">127</span>"
+msgstr "<strong>Blau</strong> – Aktuell auf <span id=\"interactive-rgb-mixer-blue-value\">127</span> eingestellt"
+
+#: templates/interactives/rsa-jsencrypt.html:12
+msgid "RSA <span id=\"interactive-rsa-jsencrypt-mode\">Encrypter</span>"
+msgstr "RSA-<span id=\"interactive-rsa-jsencrypt-mode\">Verschlüsseler</span>"
+
+#: templates/interactives/rsa-jsencrypt.html:14
+#: templates/interactives/rsa-no-padding.html:12
+msgid "Key"
+msgstr "Schlüssel"
+
+#: templates/interactives/rsa-jsencrypt.html:17
+msgid "<span id=\"interactive-rsa-jsencrypt-input-type\">Plain</span> Text"
+msgstr "<span id=\"interactive-rsa-jsencrypt-input-type\">Klar</span>text"
+
+#: templates/interactives/rsa-jsencrypt.html:22
+msgid "<span id=\"interactive-rsa-jsencrypt-output-type\">Cipher</span> Text"
+msgstr "<span id=\"interactive-rsa-jsencrypt-output-type\">Geheim</span>text"
+
+#: templates/interactives/rsa-jsencrypt.html:25
+msgid "This interactive uses the <code><a href=\"http://travistidwell.com/jsencrypt/#\">jsencrypt</a></code> library."
+msgstr "Dieses interaktive Modul nutzt die <code><a href=\"http://travistidwell.com/jsencrypt/#\">Jsencrypt</a></code>-Bibliothek."
+
+#: templates/interactives/rsa-no-padding.html:10
+msgid "RSA <span id=\"interactive-rsa-no-padding-mode\">Encrypter</span>"
+msgstr "RSA-<span id=\"interactive-rsa-no-padding-mode\">Verschlüsseler</span>"
+
+#: templates/interactives/rsa-no-padding.html:15
+msgid "<span id=\"interactive-rsa-no-padding-input-type\">Plain</span> Text"
+msgstr "<span id=\"interactive-rsa-no-padding-input-type\">Klar</span>text"
+
+#: templates/interactives/rsa-no-padding.html:20
+msgid "Cipher</span> Text"
+msgstr "Geheim</span>text"
+
+#: templates/interactives/run-length-encoding.html:12
+msgid "Run Length Encoding"
+msgstr "Lauflängenkodierung"
+
+#: templates/interactives/run-length-encoding.html:15
+msgid "Grid Size:"
+msgstr "Gittergröße:"
+
+#: templates/interactives/run-length-encoding.html:43
+msgid "Number of bits for grid: <span id=\"bit-count\"></span>"
+msgstr "Anzahl der Bits für das Gitter: <span id=\"bit-count\"></span>"
+
+#: templates/interactives/run-length-encoding.html:49
+msgid "Number of characters for encoding: <span id=\"char-count\"></span>"
+msgstr "Zeichenanzahl zur Verschlüsselung: <span id=\"char-count\"></span>"
+
+#: templates/interactives/run-length-encoding.html:54
+msgid "Invert"
+msgstr "Umkehren"
+
+#: templates/interactives/run-length-encoding.html:55
+msgid "Clear all black pixels"
+msgstr "Alle schwarzen Pixel löschen"
+
+#: templates/interactives/run-length-encoding.html:58
+msgid "Created by Hannah Taylor - Adapted by Jack Morgan"
+msgstr "Erstellt von Hannah Taylor – Überarbeitet von Jack Morgan"
+
+#: templates/interactives/searching-algorithms.html:10
+msgid "Searching Algorithms"
+msgstr "Suchalgorithmen"
+
+#: templates/interactives/searching-algorithms.html:17
+msgid "The boxes are in a <span id='order'></span> order. Out of <span id='num-boxes'></span> boxes, the number to find is <span id='target'>100</span>."
+msgstr ""
+
+#: templates/interactives/searching-algorithms.html:20
+msgid "You have <span id='num-guesses'></span> guesses to find it."
+msgstr ""
+
+#: templates/interactives/searching-algorithms.html:24
+msgid "You ran out of guesses!"
+msgstr ""
+
+#: templates/interactives/searching-algorithms.html:36
+msgid "You found it!"
+msgstr ""
+
+#: templates/interactives/searching-algorithms.html:42
+msgid "Next Level"
+msgstr ""
+
+#: templates/interactives/searching-algorithms.html:45
+msgid "Restart Level"
+msgstr ""
+
+#: templates/interactives/searching-algorithms.html:48
+msgid "Restart From First Level"
+msgstr ""
+
+#: templates/interactives/sha2.html:7
+msgid "SHA2 Hashing"
+msgstr "SHA-2 Hashing"
+
+#: templates/interactives/sha2.html:10
+msgid "Text to convert"
+msgstr "Umzuwandelnder Text"
+
+#: templates/interactives/sha2.html:13
+msgid "Hash"
+msgstr "Hashwert bilden"
+
+#: templates/interactives/sha2.html:16
+msgid "Hashed message will be shown here"
+msgstr "Hash-Nachricht wird hier angezeigt"
+
+#: templates/interactives/sorting-algorithm-comparison.html:10
+msgid "Click an image to play sorting animations"
+msgstr "Eine Abbildung anklicken, um Sortieranimationen abzuspielen"
+
+#: templates/interactives/sorting-algorithm-comparison.html:14
+msgid "Selection sort"
+msgstr "Auswahlsortierung"
+
+#: templates/interactives/sorting-algorithm-comparison.html:18
+msgid "Quick sort"
+msgstr "Schnellsortierung"
+
+#: templates/interactives/sorting-algorithm-comparison.html:21
+msgid "Animations provided by David Martin from <a href=\"http://www.sorting-algorithms.com/\">www.sorting-algorithms.com"
+msgstr "Animationen von David Martin, <a href=\"http://www.sorting-algorithms.com/\">www.sorting-algorithms.com, zur Verfügung gestellt"
+
+#: templates/interactives/sorting-algorithms.html:9
+msgid "Sorting Algorithms"
+msgstr "Sortieralgorithmen"
+
+#: templates/interactives/sorting-algorithms.html:64
+msgid "Points to heaviest box"
+msgstr ""
+
+#: templates/interactives/sorting-algorithms.html:80
+msgid "Lightest box"
+msgstr ""
+
+#: templates/interactives/sorting-algorithms.html:83
+msgid "Heaviest box"
+msgstr ""
+
+#: templates/interactives/sorting-algorithms.html:91
+msgid "Check Order"
+msgstr ""
+
+#: templates/interactives/trainsylvania-planner.html:8
+msgid "Trainsylvania Planner"
+msgstr "Zugmania-Planer"
+
+#: templates/interactives/trainsylvania-planner.html:9
+msgid "If you take the trains:"
+msgstr "Wenn du folgende Züge nimmst:"
+
+#: templates/interactives/trainsylvania-planner.html:10
+msgid "Enter sequence of A\\"
+msgstr "Hier eine Folge der Buchstaben A und B eingeben"
+
+#: templates/interactives/trainsylvania.html:9
+msgid "Find your way to <strong>Suburbopolis Station!</strong>"
+msgstr "Finde deinen Weg zur <strong>Suburbopolis Station!</strong>"
+
+#: templates/interactives/trainsylvania.html:10
+msgid "You are currently at:"
+msgstr "Dein aktueller Standort:"
+
+#: templates/interactives/trainsylvania.html:14
+msgid "Do you want to travel on:"
+msgstr "Wähle einen Zug für deine Reise:"
+
+#: templates/interactives/trainsylvania.html:15
+msgid "Train A"
+msgstr "Zug A"
+
+#: templates/interactives/trainsylvania.html:17
+msgid "Train B"
+msgstr "Zug B"
+
+#: templates/interactives/trainsylvania.html:20
+msgid "Congratulations! You made it!"
+msgstr "Glückwunsch! Du hast es geschafft!"
+
+#: templates/interactives/trainsylvania.html:22
+msgid "Start over"
+msgstr "Neu starten"
+
+#: templates/interactives/trig-function-calculator.html:8
+msgid "Trig Function Calculator"
+msgstr "Trigonometrierechner"
+
+#: templates/interactives/trig-function-calculator.html:10
+msgid "Calculate the sine and cosine values of an angle given in degrees. (Calculations give up to 9 decimal places)."
+msgstr "Berechne die Sinus- und Kosinuswerte eines in Grad angegebenen Winkels. (Kalkulationen ergeben bis zu neun Dezimalstellen.)"
+
+#: templates/interactives/trig-function-calculator.html:17
+msgid "Calculate"
+msgstr "Berechnen"
+
+#: templates/interactives/trig-function-calculator.html:22
+msgid "Invalid input!"
+msgstr "Ungültige Eingabe!"
+
+#: templates/interactives/unexpected-error.html:11
+msgid "Audio Player"
+msgstr "Audio-Player"
+
+#: templates/interactives/unexpected-error.html:14
+msgid "An error occurred while troubleshooting:"
+msgstr "Fehler bei der Problembehandlung aufgetreten:"
+
+#: templates/interactives/unexpected-error.html:15
+msgid "An unexpected error has occurred. The troubleshooting wizard can't continue."
+msgstr "Unbekannter Fehler aufgetreten. Der Troubleshooting-Wizard kann nicht weiter ausgeführt werden."
+
+#: templates/interactives/unicode-chars.html:8
+msgid "Unicode Characters"
+msgstr "Unicode-Zeichen"
+
+#: templates/interactives/unicode-chars.html:11
+msgid "Decimal"
+msgstr "Dezimal"
+
+#: templates/interactives/unicode-chars.html:12
+msgid "Enter a decimal number"
+msgstr "Dezimalzahl eingeben"
+
+#: templates/interactives/unicode-chars.html:15
+msgid "Character"
+msgstr "Zeichen"
+
+#: templates/interactives/unicode-chars.html:16
+msgid "Unicode Character"
+msgstr "Unicode-Zeichen"
+
+#: templates/interactives/unicode-length.html:8
+msgid "Unicode Encoding Size"
+msgstr "Unicode-Kodierungsgröße"
+
+#: templates/interactives/unicode-length.html:11
+msgid "Enter text for length calculation:"
+msgstr "Text für Längenkalkulation eingeben:"
+
+#: templates/interactives/unicode-length.html:13
+msgid "Calculate Bit Lengths"
+msgstr "Bitlängen kalkulieren"
+
+#: templates/interactives/unicode-length.html:16
+msgid "Encoding lengths:"
+msgstr "Kodierungslängen:"
+
+#: templates/interactives/unicode-length.html:17
+msgid "UTF-8:</b> <span id=\"interactive-unicode-length-utf8\">0 bits"
+msgstr "UTF-8:</b> <span id=\"interactive-unicode-length-utf8\">0 Bits"
+
+#: templates/interactives/unicode-length.html:18
+msgid "UTF-16:</b> <span id=\"interactive-unicode-length-utf16\">0 bits"
+msgstr "UTF-16:</b> <span id=\"interactive-unicode-length-utf16\">0 Bits"
+
+#: templates/interactives/unicode-length.html:19
+msgid "UTF-32:</b> <span id=\"interactive-unicode-length-utf32\">0 bits"
+msgstr "UTF-32:</b> <span id=\"interactive-unicode-length-utf32\">0 Bits"
+

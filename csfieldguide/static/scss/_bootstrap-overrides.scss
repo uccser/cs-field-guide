@@ -1,0 +1,83 @@
+@import "core-variables";
+
+// Bootstrap overrides
+//
+// Copy variables from `_variables.scss` to this file to override default values
+// without modifying source files.
+
+
+// Colors
+//
+// Grayscale and brand colors for use across Bootstrap.
+
+// Start with assigning color names to specific hex values.
+$white:                     #fff;
+$black:                     #000;
+$red:                       #f44336;
+$orange:                    #ff9800;
+$amber:                     #ffc107;
+$yellow:                    #ffeb3b;
+$green:                     #4caf50;
+$light-blue:                #03a9f4;
+$blue:                      #2196f3;
+$teal:                      #009688;
+$pink:                      #e91e63;
+$light-purple:              #892f8b;
+$purple:                    #9c27b0;
+
+$transparent:               rgba(0,0,0,0);
+
+// Create grayscale
+$gray-dark:                 #292b2c;
+$gray:                      #464a4c;
+$gray-light:                #636c72;
+$gray-lighter:              #eceeef;
+$gray-lightest:             #f7f7f9;
+
+// Reassign color vars to semantic color scheme
+$brand-primary:             $blue;
+$brand-success:             $green;
+$brand-info:                $teal;
+$brand-warning:             $orange;
+$brand-danger:              $red;
+$brand-inverse:             $gray-dark;
+
+
+// Components
+//
+// Define common padding and border radius sizes and more.
+
+$border-radius: .3rem;
+$input-btn-border-width: 2px;
+
+// Breadcrumbs
+$breadcrumb-padding-y:          0;
+$breadcrumb-padding-x:          0;
+$breadcrumb-bg:                 inherit;
+
+
+// Fonts
+//
+// Font, line-height, and color for body text, headings, and more.
+
+$font-family-sans-serif: "Noto Sans", sans-serif;
+$headings-font-family: "Roboto", sans-serif;
+$font-family-base: $font-family-sans-serif;
+
+// Links
+//
+// Style anchor elements.
+
+$link-color:            $blue;
+$link-decoration:       none;
+$link-hover-color:      darken($blue, 15%);
+$link-hover-decoration: underline;
+
+
+// Navbar
+//
+$navbar-dark-color:                $white;
+$navbar-dark-hover-color:          $white;
+$navbar-dark-toggler-icon-bg: str-replace(url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='#{$navbar-dark-color}' stroke-width='3' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E"), "#", "%23");
+$navbar-dark-toggler-border-color:       $white;
+$navbar-brand-padding-y: 4px;

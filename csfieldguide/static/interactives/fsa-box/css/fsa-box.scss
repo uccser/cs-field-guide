@@ -1,0 +1,24 @@
+#interactive-fsa-box-current-state {
+  font-size: 1.5em;
+  font-weight: bold;
+  width: 12em;
+  margin: 0.5em auto;
+  padding: 0.5em;
+  background-color: rgba(244, 67, 54, 0.6);
+  border: 0.2em rgba(244, 67, 54, 1) solid;
+  border-radius: 0.3em;
+  transition: 0.2s;
+}
+#interactive-fsa-box-current-state.accepted {
+  background-color: rgba(76, 175, 80, 0.6);
+  border-color: rgba(76, 175, 80, 1)
+}
+#interactive-fsa-box-buttons {
+  font-size: 1.5em;
+}
+#interactive-fsa-box-state-text {
+  font-size: 1.2em;
+}
+#interactive-fsa-box-current-state-text {
+  font-weight: bold;
+}

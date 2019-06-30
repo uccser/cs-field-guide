@@ -1,0 +1,40 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div class="my-3 container-fluid">
+    <div class="row warning">
+      {% trans 'Sorry, this interactive is only available on screens larger than 820x650px<br>If you are using a tablet, this may be achieved by holding it in landscape.' %}
+    </div>
+    <!-- The game font needs to be applied in a div somewhere to be loaded -->
+    <div id="start-screen" class="col start-screen" style="font-family: Open Sans">
+      <h1>{% trans 'PACKET ATTACK' %}</h1>
+      <h3>{% trans 'Information' %}</h3>
+      <h5>{% blocktrans %}Welcome to Packet Attack.<br>
+        In this game, your job is to attack the packet creatures and stop messages being delivered.<br>
+        You pass a level if the received message is any different from the one sent.<br>
+        While a creature is in the Danger Zone (indicated by the yellow and grey area) you may attack by clicking the command buttons.<br>
+        Good luck!{% endblocktrans %}
+      </h5>
+      <button type="button" class="btn btn-success" id="start-button">{% trans 'START' %}</button>
+    </div>
+    <div class="row interactive game-canvas">
+      <div class="col-12" id="interactive-packet-attack"></div>
+    </div>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/packet-attack/css/packet-attack.css' %}">
+  <!-- The aforementioned game font by Steve Matteson -->
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript">
+    var base = "{{ STATIC_URL }}";
+  </script>
+  <script type="text/javascript" src="{% static 'interactives/packet-attack/js/packet-attack.js' %}"></script>
+{% endblock js %}

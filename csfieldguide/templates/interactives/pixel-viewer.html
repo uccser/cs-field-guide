@@ -1,0 +1,104 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+    <div id="pixel-viewer-interactive" class="d-flex flex-column">
+        <div id="pixel-viewer-interactive-buttons" class="flex-shrink-0">
+            <button id="pixel-viewer-interactive-zoom-in" class="btn btn-primary btn-lg flex-fill zoom-button">
+                {% trans "Zoom In" %}
+            </button>
+            <button id="pixel-viewer-interactive-zoom-out" class="btn btn-primary btn-lg flex-fill zoom-button">
+                {% trans "Zoom Out" %}
+            </button>
+            <button id="pixel-viewer-interactive-menu-toggle" class="btn btn-primary btn-lg flex-fill">
+                {% trans "Toggle Menu" %}
+            </button>
+        </div>
+        <div id="pixel-viewer-interactive-container">
+            <img id="pixel-viewer-interactive-original-image" />
+            <div id="pixel-viewer-interactive-loader"></div>
+            <canvas id="pixel-viewer-interactive-content" crossorigin="anonymous"></canvas>
+            <div id="pixel-viewer-interactive-settings" class="menu-offscreen p-3">
+                <h3 id="pixel-viewer-interactive-title">
+                    {% trans "Pixel Viewer Interactive" %}
+                </h3>
+                <p>{% blocktrans %}This interactive allows you to see the pixels of an image, and details about those pixels. <strong>Click Zoom
+                        In</strong> to see details about individual pixels.{% endblocktrans %}</p>
+
+                <p id="pixel-viewer-extra-feature-description"></p>
+
+                <span id="pixel-viewer-image-manipulator"></span>
+                <p>{% trans "This interactive works best on a desktop Chrome browser, due to the heavy performance load." %}</p>
+
+                <hr>
+
+                <h5>{% trans "Options" %}</h5>
+                <label>
+                    <input id="pixel-viewer-interactive-show-pixel-fill" type="checkbox" checked="checked">
+                    {% trans "Show pixel background" %}
+                </label>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="configSelector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {% trans 'Reload with a different configuration' %}
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="configSelector">
+                        <a class="dropdown-item" href="{% url 'interactives:interactive' 'pixel-viewer' %}">
+                            {% trans 'Default' %}</a>
+                        <a class="dropdown-item" href="{% url 'interactives:interactive' 'pixel-viewer' %}?mode=threshold&picturepicker">
+                            {% trans 'Colour Threshold' %}</a>
+                        <a class="dropdown-item" href="{% url 'interactives:interactive' 'pixel-viewer' %}?mode=thresholdgreyscale&picturepicker">
+                            {% trans 'Greyscale Threshold' %}</a>
+                        <a class="dropdown-item" href="{% url 'interactives:interactive' 'pixel-viewer' %}?mode=blur&picturepicker">
+                            {% trans 'Blur' %}</a>
+                        <a class="dropdown-item" href="{% url 'interactives:interactive' 'pixel-viewer' %}?mode=edgedetection&picturepicker">
+                            {% trans 'Edge Detection' %}</a>
+                    </div>
+                </div>
+
+                <hr>
+
+                <h5>{% trans "Upload your own image" %}</h5>
+                <p>{% blocktrans %}Either drag and drop an image onto this page, or click the button below to load your own image into
+                    the interactive. The image will be resized for performance.{% endblocktrans %}</p>
+                
+                <div class="custom-file w-auto d-block col-8 my-1">
+                    <input type="file" id="pixel-viewer-upload" class="custom-file-input" name="image" onchange="loadImageDialog(this)" accept="image/*" />
+                    <label class="custom-file-label" for="pixel-viewer-upload">{% trans "Choose file" %}</label>
+                </div>
+                <canvas id="pixel-viewer-interactive-source-canvas"></canvas>
+
+                <p>
+                    <i><span id="pixel-viewer-interactive-resize-values"></span></i>
+                </p>
+
+                <div id="picture-picker"></div>
+
+                <p>{% blocktrans %}You can save an image of this interactive by right clicking on the zoomed image and clicking "Save
+                    image as..." (Chrome/Firefox).{% endblocktrans %}</p>
+
+
+                <hr>
+
+                <p class="pixel-viewer-interactive-footer">
+                    <a href="{% static 'interactives/pixel-viewer/license.md' %}" target="_blank">{% trans "Copyright information" %}</a>
+                </p>
+            </div>
+        </div>
+    </div>
+{% endblock html %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'interactives/pixel-viewer/css/pixel-viewer.css' %}">
+{% endblock css %}
+
+{% block js %}
+    <script type="text/javascript">
+        var base_static_path = "{{ STATIC_URL }}";
+    </script>
+    <script type="text/javascript" src="{% static 'interactives/pixel-viewer/js/third-party/Scroller.js' %}"></script>
+    <script type="text/javascript" src="{% static 'interactives/pixel-viewer/js/third-party/Animate.js' %}"></script>
+    <script type="text/javascript" src="{% static 'interactives/pixel-viewer/js/third-party/Tiling.js' %}"></script>
+    <script type="text/javascript" src="{% static 'interactives/pixel-viewer/js/pixel-viewer.js' %}"></script>
+{% endblock js %}

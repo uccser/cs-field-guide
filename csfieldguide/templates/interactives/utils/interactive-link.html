@@ -1,0 +1,23 @@
+{% load static %}
+
+<a
+  href="{% url 'interactives:interactive' interactive.slug %}{% if parameters %}?{{ parameters }}{% endif %}"
+  class="link-item flex-column h-100 py-2 text-center{% if not interactive.translation_available %} unavailable{% endif %}"
+  target="_blank">
+  {% if interactive.translation_available %}
+    <img class="border rounded mb-2" src="{% static interactive_thumbnail %}" alt="Thumbnail of {{ interactive.name }} interactive">
+  {% endif %}
+  <p class="mb-0">
+    <strong>
+      {% if text %}
+        {{ text }}
+      {% else %}
+        {{ interactive.name }}
+      {% endif %}
+    </strong>
+    <br />
+    {% if not interactive.translation_available %}
+      {% include "generic/not-available-badge.html" %}
+    {% endif %}
+  </p>
+</a>

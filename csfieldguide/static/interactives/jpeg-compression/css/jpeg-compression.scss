@@ -1,0 +1,165 @@
+/* File is based off modified style.css licensed uner MIT */
+/* jquery.stepper.js */
+/* https://github.com/ncou/jquery.stepper.basic/blob/master/style.css */
+/* ------------------------------------------------------ */
+/* Author: NCOU */
+
+.stepper {
+  position: relative;
+  width: 64px;
+  height: 30px;
+  cursor: col-resize;
+}
+
+.stepper-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: rgba(255, 255, 255, 0.2);
+  -webkit-transform-origin: 0 0;
+  -ms-transform-origin: 0 0;
+  transform-origin: 0 0;
+  -webkit-transition: background-color 0.1s linear;
+  transition: background-color 0.1s linear;
+}
+
+.stepper-number {
+  position: relative;
+  width: 100%;
+  height: 28px !important;
+  line-height: 28px;
+  padding: 0 6px;
+  color: black;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  outline-offset: 0;
+  cursor: col-resize;
+  z-index: 2;
+  border-bottom: 0 !important;
+}
+
+.stepper-number:focus {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.stepper.is-changing .stepper-progress {
+  background-color: #1baee1;
+}
+
+.stepper.is-scrubbing {
+  background: rgba(255, 255, 255, 0.8)
+}
+
+#little-drag-square {
+  border: 2px solid #fd008c;
+  height: 8px;
+  width: 8px;
+  position: absolute;
+  top: 30px;
+}
+
+img {
+  width: 100%;
+  max-width: 64px;
+}
+
+#big-image {
+  position: relative;
+  height: 300px;
+  min-width: 403px;
+  float: left;
+}
+
+#before,
+#after {
+  position: relative;
+  height: 320px;
+  min-width: 260px;
+  float: left;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.relative {
+  position: relative;
+}
+
+#before-labels-8-by-8 {
+  position: absolute;
+  left: 10px;
+  top: 30px;
+  max-width: 240px;
+  table-layout: fixed;
+  font-family: Arial, Verdana, sans-serif;
+  font-size: 0.7em;
+  color: #fff;
+}
+
+#after-labels-8-by-8 {
+  position: absolute;
+  left: 10px;
+  top: 30px;
+  max-width: 240px;
+  table-layout: fixed;
+  font-family: Arial, Verdana, sans-serif;
+  font-size: 0.7em;
+  color: #fff;
+}
+
+.label-row {
+  max-height: 20px;
+  padding: 0;
+}
+
+.label-data {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  text-align: center;
+}
+
+#dct-table td {
+  padding-right: 60px;
+}
+
+.switch {
+  position: absolute;
+  top: 280px;
+}
+
+.btn {
+  margin-bottom: 10px;
+  width: 100%;
+  margin-right: 1rem;
+  max-width: 300px;
+  min-width: 250px;
+  padding: 0 1rem;
+}
+
+
+#puzzle-stuff {
+  line-height: 1;
+  min-width: 370px;
+}
+
+#nextLevelButton {
+  width: 100%;
+}
+
+#helpButton {
+  min-width: 97.75px;
+  padding: 0 1rem;
+}
+
+#right-of-dct,
+#help {
+  margin-bottom: 20px;
+}
+
+#dctData {
+  min-width: 35px;
+}

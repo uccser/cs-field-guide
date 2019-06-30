@@ -1,0 +1,34 @@
+#interactive-fsa-light-images {
+  position: relative;
+  margin: 1em;
+}
+#interactive-fsa-light-images img {
+  width: 50%;
+  max-width: 15em;
+  transition: 0.15s;
+}
+#interactive-fsa-light-bulb-on {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  /* Removes jagged edges during animation in Chrome */
+  outline: 1px solid transparent;
+}
+#interactive-fsa-light-bulb-on.hide-bulb {
+  opacity: 0;
+}
+#interactive-fsa-light button.btn {
+  text-transform: none;
+  margin: 0.5em;
+}
+#interactive-fsa-light-buttons {
+  font-size: 1.5em;
+}
+#interactive-fsa-light-state-text {
+  font-size: 2em;
+}
+#interactive-fsa-light-current-state-text {
+  font-weight: bold;
+}

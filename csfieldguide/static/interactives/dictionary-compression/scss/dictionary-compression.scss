@@ -1,0 +1,173 @@
+$shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+$border: 1px solid #BFB9B7;
+$green: #aedd85;
+$blue: #85c1dd;
+$orange: #FF7043;
+
+html {
+    font-family: "Roboto",sans-serif;
+}
+
+#dictionary-compression {
+    #dictionary-compression-activity {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin: 5px;
+        height: 100vh;
+        #dictionary-compression-left,
+        #dictionary-compression-right {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            margin: 10px;
+        }
+        #dictionary-compression-left {
+            flex-basis: 140%;
+            textarea {
+                margin-bottom: 4px;
+                font: 1rem "Courier New", monospace;
+            }
+            p {
+                margin-bottom: 0px;
+            }
+            #dictionary-compression-stats {
+                text-align: center;
+                font-weight: bold;
+                p {
+                    display: inline-block;
+                    margin-top: 0;
+                    margin-bottom: 5px;
+                }
+            }
+            #dictionary-compression-output {
+                flex-grow: 1;
+                overflow: scroll;
+                .dictionary-compression-output-line {
+                    display: flex;
+                    flex-wrap: wrap;
+                    align-items: center;
+                    p.dictionary-compression-message-character {
+                        display: inline-block;
+                        min-width: 10px;
+                        min-height: 1rem;
+                        margin: 1px;
+                        &.compressed {
+                            background-color: $green;
+                            outline-offset: 0.5px;
+                        }
+                        &.highlight {
+                            color: #FFF;
+                            background-color: orange !important;
+                        }
+                    }
+                }
+            }
+        }
+        #dictionary-compression-right {
+            overflow: hidden;
+            position: relative;
+            #dictionary-compression-user-dictionary-entry-input {
+                margin: 0 2px;
+                p {
+                    margin-top: 0px;
+                }
+                #compression-user-dictionary-entry-input-row {
+                    display: flex;
+                    input {
+                        flex-basis: 300%;
+                        margin: 1px;
+                        font: 1rem "Courier New", monospace !important;
+                    }
+                    input.error {
+                        border-color: red !important;
+                    }
+                    input:focus.error {
+                        outline: 1px solid red;
+                    }
+                    button {
+                        margin: 1px 0 1px 3px;
+                    }
+                }
+                #error-message {
+                    display: block;
+                    font-size: 0.8rem;
+                    text-align: center;
+                    color: red;
+                    p {
+                        margin: 0px;
+                    }
+                    &.hide {
+                        display: none;
+                    }
+                    &.show {
+                        display: block;
+                    }
+                    .error-message {
+                        display: inline-block;
+                    }
+                }
+                #dictionary-compression-reset-button {
+                    margin-top: 4px;
+                }
+            }
+            #dictionary-compression-user-dictionary {
+                flex-grow: 1;
+                margin-top: 20px;
+                display: flex;
+                overflow: scroll;
+                min-width: 100%;
+                border-radius: 2px !important;
+                .dictionary-compression-user-dictionary-column {
+                    min-width: 175px;
+                    margin: 2px;
+                    .dictionary-compression-user-dictionary-entry {
+                        margin: 2px 0;
+                        &:hover, &.highlight {
+                            border: 2px solid $orange;
+                            outline-offset: 0.5px;
+                        }
+                        p {
+                            display: inline-block;
+                            margin: 3px;
+                        }
+                        .dictionary-compression-user-dictionary-code {
+                            width: 2rem;
+                        }
+                    }
+                }
+            }
+        }
+        #dictionary-compression-left #dictionary-compression-output,
+        #dictionary-compression-user-dictionary {
+            border: $border;
+            padding: 5px;
+            font-family: "Courier New", monospace !important;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    #dictionary-compression {
+        .dictionary-compression-heading {
+            margin: 15px 0;
+        }
+        #dictionary-compression-activity {
+            flex-wrap: wrap;
+            #dictionary-compression-left {
+                width: 50% !important;
+                flex-basis: 100% !important;
+                p {
+                    margin-top: 0px;
+                }
+                #dictionary-compression-stats {
+                    order: 10;
+                    margin-top: 5px;
+                }
+            }
+            #dictionary-compression-right {
+                margin: 0px;
+            }
+        }
+    }
+}

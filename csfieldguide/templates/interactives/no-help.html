@@ -1,0 +1,16 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div class="container-fluid my-2">
+    <div class="row justify-content-center">
+      <button class="btn btn-success btn-lg" id="interactive-no-help">{% trans "Click me for help" %}</button>
+    </div>
+  </div>
+{% endblock html %}
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'interactives/no-help/js/no-help.js' %}"></script>
+{% endblock js %}

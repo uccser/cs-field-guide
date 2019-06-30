@@ -1,0 +1,391 @@
+2d-shape-manipulations:
+  languages:
+    en: interactives/2d-shape-manipulations.html
+  is_interactive: true
+action-menu:
+  languages:
+    en: interactives/action-menu.html
+    de: interactives/action-menu.html
+    es: interactives/action-menu.html
+  is_interactive: true
+alarm-timer:
+  languages:
+    en: interactives/alarm-timer.html
+    de: interactives/alarm-timer.html
+    es: interactives/alarm-timer.html
+  is_interactive: false
+algorithm-timer:
+  languages:
+    en: interactives/algorithm-timer.html
+  is_interactive: true
+available-menu-items:
+  languages:
+    en: interactives/available-menu-items.html
+    de: interactives/available-menu-items.html
+    es: interactives/available-menu-items.html
+  is_interactive: true
+awful-calculator:
+  languages:
+    en: interactives/awful-calculator.html
+    de: interactives/awful-calculator.html
+    es: interactives/awful-calculator.html
+  is_interactive: true
+base-calculator:
+  languages:
+    en: interactives/base-calculator.html
+  is_interactive: true
+big-number-calculator:
+  languages:
+    en: interactives/big-number-calculator.html
+  is_interactive: true
+bin-packing:
+  languages:
+    en: interactives/bin-packing.html
+  is_interactive: true
+binary-cards:
+  languages:
+    en: interactives/binary-cards.html
+  is_interactive: true
+binary-mode-calculator:
+  languages:
+    en: interactives/binary-mode-calculator.html
+    de: interactives/binary-mode-calculator.html
+    es: interactives/binary-mode-calculator.html
+  is_interactive: false
+box-rotation:
+  languages:
+    en: interactives/box-rotation.html
+  is_interactive: true
+box-translation:
+  languages:
+    en: interactives/box-translation.html
+  is_interactive: true
+braille-alphabet:
+  languages:
+    en: interactives/braille-alphabet.html
+  is_interactive: true
+caesar-cipher:
+  languages:
+    en: interactives/caesar-cipher.html
+  is_interactive: true
+checksum-calculator:
+  languages:
+    en: interactives/checksum-calculator.html
+  is_interactive: true
+checksum-calculator-gtin-13:
+  languages:
+    en: interactives/checksum-calculator-gtin-13.html
+  is_interactive: true
+city-trip:
+  languages:
+    en: interactives/city-trip.html
+  is_interactive: true
+close-window:
+  languages:
+    en: interactives/close-window.html
+    de: interactives/close-window.html
+    es: interactives/close-window.html
+  is_interactive: true
+cmy-mixer:
+  languages:
+    en: interactives/cmy-mixer.html
+  is_interactive: true
+colour-matcher:
+  languages:
+    en: interactives/colour-matcher.html
+  is_interactive: true
+compression-comparer:
+  languages:
+    en: interactives/compression-comparer.html
+    de: interactives/compression-comparer.html
+  is_interactive: true
+confused-buttons:
+  languages:
+    en: interactives/confused-buttons.html
+    de: interactives/confused-buttons.html
+    es: interactives/confused-buttons.html
+  is_interactive: false
+confusing-error:
+  languages:
+    en: interactives/confusing-error.html
+    de: interactives/confusing-error.html
+    es: interactives/confusing-error.html
+  is_interactive: false
+date-picker:
+  languages:
+    en: interactives/date-picker.html
+    de: interactives/date-picker.html
+    es: interactives/date-picker.html
+  is_interactive: false
+deceiver:
+  languages:
+    en: interactives/deceiver.html
+    de: interactives/deceiver.html
+    es: interactives/deceiver.html
+  is_interactive: true
+delay-analyser:
+  languages:
+    en: interactives/delay-analyser.html
+    de: interactives/delay-analyser.html
+    es: interactives/delay-analyser.html
+  is_interactive: true
+delayed-checkbox:
+  languages:
+    en: interactives/delayed-checkbox.html
+    de: interactives/delayed-checkbox.html
+    es: interactives/delayed-checkbox.html
+  is_interactive: true
+dictionary-compression:
+  languages:
+    en: interactives/dictionary-compression.html
+  is_interactive: true
+dot-combinations:
+  languages:
+    en: interactives/dot-combinations.html
+  is_interactive: true
+flowcharts-interpreter-compiler:
+  languages:
+    en: interactives/flowcharts-interpreter-compiler.html
+  is_interactive: false
+frequency-analysis:
+  languages:
+    en: interactives/frequency-analysis.html
+  is_interactive: true
+fsa-box:
+  languages:
+    en: interactives/fsa-box.html
+  is_interactive: true
+fsa-light:
+  languages:
+    en: interactives/fsa-light.html
+  is_interactive: true
+fsa-terminology:
+  languages:
+    en: interactives/fsa-terminology.html
+  is_interactive: false
+fsa-washing-machine:
+  languages:
+    en: interactives/fsa-washing-machine.html
+  is_interactive: true
+hex-background-colour:
+  languages:
+    en: interactives/hex-background-colour.html
+  is_interactive: true
+high-score-boxes:
+  languages:
+    en: interactives/high-score-boxes.html
+  is_interactive: true
+huffman-tree:
+  languages:
+    en: interactives/huffman-tree.html
+  is_interactive: true
+image-bit-comparer:
+  languages:
+    en: interactives/image-bit-comparer.html
+  is_interactive: true
+iterative-software-development:
+  languages:
+    en: interactives/iterative-software-development.html
+  is_interactive: false
+udp-layers:
+  languages:
+    en: interactives/udp-layers.html
+  is_interactive: false
+jpeg-compression:
+  languages:
+    en: interactives/jpeg-compression.html
+  is_interactive: true
+lzss-compression:
+  languages:
+    en: interactives/lzss-compression.html
+  is_interactive: true
+lzw-compression:
+  languages:
+    en: interactives/lzw-compression.html
+  is_interactive: true
+menu-keystrokes:
+  languages:
+    en: interactives/menu-keystrokes.html
+    de: interactives/menu-keystrokes.html
+    es: interactives/menu-keystrokes.html
+  is_interactive: false
+mips-assembler:
+  languages:
+    en: interactives/mips-assembler.html
+  is_interactive: true
+mips-simulator:
+  languages:
+    en: interactives/mips-simulator.html
+  is_interactive: true
+nfa-guesser:
+  languages:
+    en: interactives/nfa-guesser.html
+  is_interactive: true
+no-help:
+  languages:
+    en: interactives/no-help.html
+    de: interactives/no-help.html
+    es: interactives/no-help.html
+  is_interactive: true
+number-generator:
+  languages:
+    en: interactives/number-generator.html
+  is_interactive: true
+off-by-one:
+  languages:
+    en: interactives/off-by-one.html
+    de: interactives/off-by-one.html
+    es: interactives/off-by-one.html
+  is_interactive: false
+packet-attack:
+  languages:
+    en: interactives/packet-attack.html
+  is_interactive: true
+packet-attack-level-creator:
+  languages:
+    en: interactives/packet-attack-level-creator.html
+  is_interactive: true
+parity:
+  languages:
+    en: interactives/parity.html
+  is_interactive: true
+payment-interface:
+  languages:
+    en: interactives/payment-interface.html
+    de: interactives/payment-interface.html
+    es: interactives/payment-interface.html
+  is_interactive: true
+persona-carousel:
+  languages:
+    en: interactives/persona-carousel.html
+  is_interactive: false
+pixel-grid:
+  languages:
+    en: interactives/pixel-grid.html
+  is_interactive: true
+pixel-viewer:
+  languages:
+    en: interactives/pixel-viewer.html
+  is_interactive: true
+python-interpreter:
+  languages:
+    en: interactives/python-interpreter.html
+  is_interactive: true
+python-syntax-error:
+  languages:
+    en: interactives/python-syntax-error.html
+  is_interactive: false
+regular-expression-filter:
+  languages:
+    en: interactives/regular-expression-filter.html
+  is_interactive: true
+regular-expression-search:
+  languages:
+    en: interactives/regular-expression-search.html
+  is_interactive: true
+remote-complicated:
+  languages:
+    en: interactives/remote-complicated.html
+  is_interactive: false
+remote-modified:
+  languages:
+    en: interactives/remote-modified.html
+  is_interactive: false
+remote-simple:
+  languages:
+    en: interactives/remote-simple.html
+  is_interactive: false
+rgb-mixer:
+  languages:
+    en: interactives/rgb-mixer.html
+  is_interactive: true
+rsa-jsencrypt:
+  languages:
+    en: interactives/rsa-jsencrypt.html
+  is_interactive: true
+rsa-key-generator:
+  languages:
+    en: interactives/rsa-key-generator.html
+  is_interactive: true
+rsa-no-padding:
+  languages:
+    en: interactives/rsa-no-padding.html
+  is_interactive: true
+run-length-encoding:
+  languages:
+    en: interactives/run-length-encoding.html
+  is_interactive: true
+searching-algorithms:
+  languages:
+    en: interactives/searching-algorithms.html
+  is_interactive: true
+sha2:
+  languages:
+    en: interactives/sha2.html
+  is_interactive: true
+sorting-algorithm-comparison:
+  languages:
+    en: interactives/sorting-algorithm-comparison.html
+  is_interactive: true
+sorting-algorithms:
+  languages:
+    en: interactives/sorting-algorithms.html
+  is_interactive: true
+system-layers:
+  languages:
+    en: interactives/system-layers.html
+  is_interactive: false
+tcp-segment:
+  languages:
+    en: interactives/tcp-segment.html
+  is_interactive: false
+three-tier-website:
+  languages:
+    en: interactives/three-tier-website.html
+  is_interactive: false
+trainsylvania:
+  languages:
+    en: interactives/trainsylvania.html
+  is_interactive: true
+trainsylvania-planner:
+  languages:
+    en: interactives/trainsylvania-planner.html
+  is_interactive: true
+trainsylvania-blank:
+  languages:
+    en: interactives/trainsylvania-blank.html
+  is_interactive: false
+trainsylvania-complete:
+  languages:
+    en: interactives/trainsylvania-complete.html
+  is_interactive: false
+trig-function-calculator:
+  languages:
+    en: interactives/trig-function-calculator.html
+  is_interactive: true
+unexpected-error:
+  languages:
+    en: interactives/unexpected-error.html
+    de: interactives/unexpected-error.html
+    es: interactives/unexpected-error.html
+  is_interactive: false
+unicode-binary:
+  languages:
+    en: interactives/unicode-binary.html
+  is_interactive: true
+unicode-chars:
+  languages:
+    en: interactives/unicode-chars.html
+  is_interactive: true
+unicode-length:
+  languages:
+    en: interactives/unicode-length.html
+  is_interactive: true
+viola-jones-face-detector:
+  languages:
+    en: interactives/viola-jones-face-detector.html
+  is_interactive: true
+waterfall-process:
+  languages:
+    en: interactives/waterfall-process.html
+  is_interactive: false

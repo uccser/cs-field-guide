@@ -1,0 +1,42 @@
+.face {
+  position: absolute;
+  border: 3px solid red;
+}
+#image-container {
+  position: absolute;
+  z-index: 1;
+}
+.haar {
+  z-index: 2;
+  position: absolute;
+  left: 10px;
+  width: 30px;
+  height: 30px;
+  border: 1px solid grey;
+}
+#haar1 {
+  top: 10px;
+}
+#haar2 {
+  top: 50px;
+}
+#haar3 {
+  top: 90px;
+}
+#haar4 {
+  top: 130px;
+}
+#haar5 {
+  top: 170px;
+}
+.haar.valid {
+  border: 2px solid #04da04 !important;
+}
+#values {
+  display: block;
+  height: 7em;
+}
+#feedback {
+  color: #5d5d5d;
+  font-size: 1.5em;
+}

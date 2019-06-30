@@ -1,0 +1,15 @@
+{%- if type == 'in-page' -%}
+  <div class="interactive-in-page mb-3">
+    {{ "{% render_interactive_in_page '" }}{{ slug }}{{ "' %}" }}
+  </div>
+{% elif type == 'iframe' -%}
+  <iframe src="{{ "{% url 'interactives:iframe_interactive' '" }}{{ slug }}{{ "' %}" }}{% if parameters %}?{{ parameters }}{% endif %}" class="iframe-resize w-100 mb-3" frameborder="0" scrolling="no">
+    <p>Your browser does not support iframes.</p>
+  </iframe>
+{% elif type == 'whole-page' -%}
+  <div class="row">
+    <div class="col s12 m8 l6 offset-m2 mb-3">
+      {{ "{% render_interactive_link '" }}{{ slug }}'{% if text %} text='{{ text }}'{% endif %}{% if parameters %} parameters='{{ parameters }}' {% endif %}{{ " %}" }}
+    </div>
+  </div>
+{%- endif -%}

@@ -1,0 +1,20 @@
+{% if type == "teacher-note" %}
+  <div>
+  {{ "{% if teacher_mode %}" }}
+{% endif %}
+<details{% if expanded == 'true'%} open="open"{% endif %} class="panel-{{ type }}">
+<summary>
+<strong>
+{{ title }}
+{% if subtitle %}:</strong> {{ subtitle }}{% else %}</strong>{% endif %}
+</summary>
+<div class="boxed-text-content">
+{% autoescape false %}
+{{ content }}
+{% endautoescape %}
+</div>
+</details>
+{% if type == "teacher-note" %}
+  {{ "{% endif %}" }}
+  </div>
+{% endif %}

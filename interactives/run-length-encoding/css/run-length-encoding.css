@@ -1,21 +1,0 @@
-#encoding-text {
-  width: 100%;
-  height: 25rem;
-  margin: 0;
-}
-#encoding-text-feedback {
-  margin: 0;
-  padding: 10px;
-  height: 5rem;
-}
-.pixel {
-  border: 1px solid #dddddd;
-  background: white;
-}
-.black {
-  background: black;
-}
-#invert {
-  background-color: #222222;
-  color: #dddddd;
-}#clear-all {  background-color: #EF3636;}#encoding-grid {  border: 1px solid #DDD;}#grid-size,#grid-size-label {  font-size: 1.5rem;}#grid-size {  padding: 0;  height: 2rem;}.flex-container {  padding: 0;  margin: 0;  list-style: none;  display: -webkit-box;  display: -moz-box;  display: -ms-flexbox;  display: -webkit-flex;  display: flex;  -webkit-flex-flow: row;  justify-content: space-around;  line-height:30px;}.flex-item {  color: white;  font-weight: bold;  font-size: 1.5em;  text-align: center;  flex: 1 0 auto;  height:auto;}.flex-item:before {  content:'';  float:left;  padding-top:100%;}#footer {  padding-top: 2rem;  color: grey;}#footer > p {  font-size: 0.8rem;}.error {  color: red;}textarea.error {  border: red 2px solid;}

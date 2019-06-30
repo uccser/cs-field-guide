@@ -1,0 +1,22 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div id="interactive-close-window" class="container-fluid text-center">
+    <div class="row justify-content-center mb-3">
+      <div class="col-12">
+        <h3>{% trans "Do you wish to close this window?" %}</h3>
+      </div>
+      <div class="col-12">
+        <button type="button" id="close-window-yes-button" class="btn btn-success btn-lg">{% trans "Yes" %}</button>
+        <button type="button" id="close-window-no-button" class="btn btn-secondary btn-lg" disabled>{% trans "No" %}</button>
+      </div>
+    </div>
+  </div>
+{% endblock html %}
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'interactives/close-window/js/close-window.js' %}"></script>
+{% endblock js %}

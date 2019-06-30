@@ -1,0 +1,15 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+	<div class="container">
+		<div class="row justify-content-center">
+		  <div class="col-lg-8 col-xs-12 bg-secondary text-left py-1 px-2">
+		    <p class="text-white mb-0">{% trans "Alarm set for 12 hours and 57 minutes from now." %}</p>
+		    <p class="text-white mb-0">{% trans "Alarm already set for 09:00." %}</p>
+		  </div>
+		</div>
+	</div>
+{% endblock html %}

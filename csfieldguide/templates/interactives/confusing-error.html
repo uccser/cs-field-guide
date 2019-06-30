@@ -1,0 +1,23 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+	<div class="container uninteractive">
+		<div class="row justify-content-center">
+		  <div class="card col-lg-8 col-xs-12">
+		  	<div class="card-body text-left">
+		  		<h6 class="card-title">{% trans "This configuration will cause your backup device's status light to blink amber. Are you sure you want to continue?" %}</h6>
+		  		<img class="float-left icon-4 mr-2" src="{% static 'interactives/confusing-error/img/icons8-data-backup-100.png' %}">
+			    <p class="card-text"><small>{% trans "Click Ignore to prevent your backup device's status light from blinking amber for this problem." %}</small></p>
+			    <div class="text-right">
+				    <button type="button" class="btn btn-outline-dark btn-sm mr-5">{% trans "Skip" %}</button>
+				    <button type="button" class="btn btn-outline-dark btn-sm">{% trans "Cancel" %}</button>
+				    <button type="button" class="btn btn-primary btn-sm">{% trans "Ignore" %}</button>
+				  </div>
+			  </div>
+		  </div>
+		</div>
+	</div>
+{% endblock html %}

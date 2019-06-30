@@ -1,0 +1,81 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <!-- NOTE: Uninteractive must be displayed in an iframe -->
+  <div class="row justify-content-center waterfall-title">
+    {% trans 'The Waterfall process' %}
+  </div>
+  <div class="container-fluid mb-3 waterfall-process">
+    <div class="row">
+      <!-- p-1 and similar are to overwrite _grid-framework.scss values -->
+      <div class="col-3 pr-1 pb-1">
+        <div id="analysis" class="waterfall-box">
+          {% trans 'Analysis' %}
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-3 p-1 offset-3">
+        <div id="design" class="waterfall-box">
+          {% trans 'Design' %}
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-3 p-1 offset-6">
+        <div id="implementation"  class="waterfall-box">
+          {% trans 'Implementation' %}
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-3 pr-1">
+        <div id="not-allowed-label" class="not-allowed-text">
+          {% trans 'Usually not<br>allowed!' %}
+        </div>
+      </div>
+      <div class="col-3 pl-1 offset-6 pt-1">
+        <div id="testing"  class="waterfall-box">
+          {% trans 'Testing' %}
+        </div>
+      </div>
+    </div>
+    <!-- SVG arrow definitions -->
+    <svg class="waterfall-svg">
+      <defs>
+        <marker id="arrowhead" markerWidth="10" markerHeight="13" refx="2" refy="6" orient="auto">
+          <path class="arrowhead" d="M2,1 L2,9 L8,6 L2,3 Z"/>
+        </marker>
+        <marker id="up-arrowhead" markerWidth="10" markerHeight="13" refx="2" refy="6" orient="auto">
+          <path class="arrowhead up" d="M2,1 L2,9 L8,6 L2,3 Z"/>
+        </marker>
+        <marker id="note-arrowhead" markerWidth="10" markerHeight="13" refx="2" refy="6" orient="auto">
+          <path class="arrowhead note" d="M2,1 L2,9 L8,6 L2,3 Z"/>
+        </marker>
+      </defs>
+
+      <path class="arrow" id="analysis-design"/>
+      <path class="arrow" id="design-implementation"/>
+      <path class="arrow" id="implementation-testing"/>
+
+      <path stroke-dasharray="10,10" class="arrow up" id="design-analysis"/>
+      <path stroke-dasharray="10,10" class="arrow up" id="implementation-design"/>
+      <path stroke-dasharray="10,10" class="arrow up" id="testing-implementation"/>
+
+      <path class="arrow note" id="not-allowed-1"/>
+      <path class="arrow note" id="not-allowed-2"/>
+      <path class="arrow note" id="not-allowed-3"/>
+    </svg>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/waterfall-process/css/waterfall-process.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'interactives/waterfall-process/js/waterfall-process.js' %}"></script>
+{% endblock js %}

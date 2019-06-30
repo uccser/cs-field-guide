@@ -1,0 +1,19 @@
+.white-footer {
+  border-top: 2px $csfg solid;
+}
+.background-csu {
+  background-color: $csu;
+}
+#page-footer {
+  background-color: $csfg;
+  color: rgba($white, 0.6);
+  a {
+    color: $white;
+    @include hover-focus {
+      color: $white;
+    }
+  }
+  .footer-statement {
+    border-top: 1px $white solid;
+  }
+}

@@ -1,0 +1,21 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div id="interactive-trainsylvania-planner" class="text-center">
+    <h3>{% trans "Trainsylvania Planner" %}</h3>
+    <p>{% trans "If you take the trains:" %}</p>
+    <input type="text" id="interactive-trainsylvania-planner-input" placeholder="{% blocktrans %}Enter sequence of A's and B's here{% endblocktrans %}">
+    <p id="interactive-trainsylvania-planner-result"></p>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/trainsylvania-planner/css/trainsylvania-planner.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'interactives/trainsylvania-planner/js/trainsylvania-planner.js' %}"></script>
+{% endblock js %}

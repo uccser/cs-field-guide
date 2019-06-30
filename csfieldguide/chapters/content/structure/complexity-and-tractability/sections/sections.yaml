@@ -1,0 +1,23 @@
+whats-the-big-picture:
+  section-number: 1
+
+algorithms-problems-and-speed-limits:
+  section-number: 2
+
+tractability:
+  section-number: 3
+
+the-travelling-salesman-problem:
+  section-number: 4
+
+bin-packing-problem:
+  section-number: 5
+
+other-intractable-problems:
+  section-number: 6
+
+the-whole-story:
+  section-number: 7
+
+further-reading:
+  section-number: 8

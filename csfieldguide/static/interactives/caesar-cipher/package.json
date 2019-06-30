@@ -1,0 +1,9 @@
+{
+    "name": "csfg-interactive-caesar-cipher",
+    "version": "1.0.0",
+    "private": true,
+    "dependencies": {
+        "es5-shim": "latest",
+        "es6-shim": "latest"
+    }
+}

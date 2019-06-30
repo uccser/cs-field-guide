@@ -1,0 +1,39 @@
+{% load i18n %}
+{% load static %}
+{% load translate_url %}
+
+<div class="alert alert-danger" role="alert">
+  {% blocktrans trimmed with language=current_language.name_local %}
+  <h4>Sorry! This item is not yet available in {{ language }}.</h4>
+  <p>This item is available in the following languages:</p>
+  {% endblocktrans %}
+  <ul>
+    {% for language in model.languages %}
+      {% get_language_info for language as lang %}
+      <li>
+        <a href="{% translate_url language %}">
+          {{ lang.name_local }}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+  {% if parent %}
+    <p>
+      <a class="btn btn-outline-danger" href="{{ parent.get_absolute_url }}">
+        {{ model.RETURN_TO_PARENT }}
+      </a>
+    </p>
+  {% endif %}
+  {% if url and url_label %}
+    <p>
+      <a class="btn btn-outline-danger" href="{{ url }}">
+        {{ url_label }}
+      </a>
+    </p>
+  {% endif %}
+  <p>
+    <a class="btn btn-outline-danger" href="{% url 'general:index' %}">
+      {% trans "Return to homepage "%}
+    </a>
+  </p>
+</div>

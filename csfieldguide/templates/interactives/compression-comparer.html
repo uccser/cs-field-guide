@@ -1,0 +1,37 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div class="container">
+    <div class="row">
+      <div class="col s12">
+
+        <div id="interactive-compression-comparer">
+          <p><strong>{% trans "Move the slider to compare the two images" %}</strong></p>
+          <div class="interactive-compression-comparer-high">
+             <img src="{% static 'interactives/compression-comparer/img/lake-rotoiti-high.jpg' %}">
+             <div class="interactive-compression-comparer-low">
+                 <img src="{% static 'interactives/compression-comparer/img/lake-rotoiti-low.jpg' %}">
+             </div>
+             <span class="interactive-compression-comparer-handle"></span>
+          </div>
+          <div class="interactive-compression-comparer-clearfix">
+            <p class="interactive-compression-comparer-left">{% trans "55 Kb JPEG" %}</p>
+            <p class="interactive-compression-comparer-right">{% trans "139 Kb JPEG" %}</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/compression-comparer/css/compression-comparer.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'interactives/compression-comparer/js/third-party/before-after.min.js' %}"></script>
+{% endblock js %}

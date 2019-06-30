@@ -1,0 +1,11 @@
+# Test dependencies
+
+# Check Python style
+flake8==3.7.7
+pydocstyle==3.0.0
+
+#Coverage Tools
+coverage==4.5.3
+
+# Skip migration files for local testing
+django-test-without-migrations==0.6

@@ -1,8 +1,0 @@
-{
-    "type": "matrix",
-    "title": "Using Translation to Simplify Scaling",
-    "task": "This time the tip of the arrow is at (12, 12), so you should translate it to the origin, scale it, then transform it back.",
-    "start": "12 12 15 9 13 9 13 4 11 4 11 9 9 9",
-    "target": "12 12 18 6 14 6 14 -4 10 -4 10 6 6 6",
-    "modules": ["first-translate", "first-scale", "second-translate"]
-}

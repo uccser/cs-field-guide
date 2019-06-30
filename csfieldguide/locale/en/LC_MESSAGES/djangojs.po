@@ -1,0 +1,265 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-11-06 19:45+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: static/interactives/big-number-calculator/js/big-number-calculator.js:22
+#: static/interactives/big-number-calculator/js/big-number-calculator.js:43
+msgid ""
+"The result of this calculation will be massive! We won't try calculating "
+"this number as it's so big!"
+msgstr ""
+
+#: static/interactives/big-number-calculator/js/big-number-calculator.js:47
+msgid "Error! Your X value is not a valid number."
+msgstr ""
+
+#: static/interactives/big-number-calculator/js/big-number-calculator.js:49
+msgid "Error! Your Y value is not a valid number."
+msgstr ""
+
+#: static/interactives/big-number-calculator/js/big-number-calculator.js:71
+msgid ""
+"The result of this factorial will be massive, over 5000 digits long! We "
+"won't try calculating this number as it's so big!"
+msgstr ""
+
+#: static/interactives/binary-cards/js/binary-cards.js:173
+msgid "1 dot is visible"
+msgid_plural "%(dot_count)s dots are visible"
+msgstr[0] ""
+msgstr[1] ""
+
+#: static/interactives/close-window/js/close-window.js:6
+msgid "Why did you do that?!"
+msgstr ""
+
+#: static/interactives/close-window/js/close-window.js:7
+msgid "Refresh the page"
+msgstr ""
+
+#: static/interactives/colour-matcher/js/colour-matcher.js:16
+msgid "Help me set 24 bit red"
+msgstr ""
+
+#: static/interactives/colour-matcher/js/colour-matcher.js:17
+msgid "Help me set 24 bit green"
+msgstr ""
+
+#: static/interactives/colour-matcher/js/colour-matcher.js:18
+msgid "All help given"
+msgstr ""
+
+#: static/interactives/deceiver/js/deceiver.js:7
+msgid "Odd"
+msgstr ""
+
+#: static/interactives/deceiver/js/deceiver.js:35
+msgid "CORRECT"
+msgstr ""
+
+#: static/interactives/deceiver/js/deceiver.js:43
+msgid "WRONG"
+msgstr ""
+
+#: static/interactives/deceiver/js/deceiver.js:52
+msgid "Answer as many questions as you can"
+msgstr ""
+
+#: static/interactives/deceiver/js/deceiver.js:98
+msgid "Score: %(score)s"
+msgstr ""
+
+#: static/interactives/deceiver/js/deceiver.js:108
+msgid "<span id=\"interactive-deceiver-seconds\">15</span> seconds left"
+msgstr ""
+
+#: static/interactives/delay-analyser/js/delay-analyser.js:23
+#: static/interactives/delay-analyser/js/delay-analyser.js:32
+msgid "View grid"
+msgstr ""
+
+#: static/interactives/delay-analyser/js/delay-analyser.js:25
+#: static/interactives/delay-analyser/js/delay-analyser.js:34
+msgid "View statistics"
+msgstr ""
+
+#: static/interactives/delay-analyser/js/delay-analyser.js:75
+msgid "You still have tiles to reveal!"
+msgstr ""
+
+#: static/interactives/hex-background-colour/js/hex-background-colour.js:18
+msgid "invalid!"
+msgstr ""
+
+#: static/interactives/high-score-boxes/js/script.js:164
+msgid "Correct! But you missed a box... You got lucky this time!"
+msgstr ""
+
+#: static/interactives/high-score-boxes/js/script.js:166
+msgid "Correct! But you could've been more efficient..."
+msgstr ""
+
+#: static/interactives/high-score-boxes/js/script.js:168
+msgid ""
+"Correct! You've found how to complete this challenge the most efficient "
+"way!\n"
+"Your time was %(seconds_taken)s seconds."
+msgstr ""
+
+#: static/interactives/high-score-boxes/js/script.js:174
+msgid "Incorrect!"
+msgstr ""
+
+#: static/interactives/high-score-boxes/js/script.js:179
+msgid "Inputted value must be a whole number"
+msgstr ""
+
+#: static/interactives/image-bit-comparer/js/image-bit-comparer.js:102
+msgid "The dropped file is not an image! File provided was %(file_type)s"
+msgstr ""
+
+#: static/interactives/image-bit-comparer/js/image-bit-comparer.js:136
+msgid "1 bit"
+msgid_plural "%(number_of_bits)s bits"
+msgstr[0] ""
+msgstr[1] ""
+
+#: static/interactives/image-bit-comparer/js/image-bit-comparer.js:232
+msgid ""
+"Starting image cannot be loaded when viewing file locally. Try another "
+"browser or the online version."
+msgstr ""
+
+#: static/interactives/nfa-guesser/js/nfa-guesser.js:67
+msgid "Correct"
+msgstr ""
+
+#: static/interactives/nfa-guesser/js/nfa-guesser.js:70
+msgid "Incorrect"
+msgstr ""
+
+#: static/interactives/no-help/js/no-help.js:3
+msgid "Error: No help available!"
+msgstr ""
+
+#: static/interactives/payment-interface/js/payment-interface.js:10
+msgid "Valid amount."
+msgstr ""
+
+#: static/interactives/payment-interface/js/payment-interface.js:14
+msgid "Invalid amount. Decimals are allowed up to two places."
+msgstr ""
+
+#: static/interactives/python-interpreter/js/python-interpreter.js:25
+msgid "Welcome to computer programming, Student"
+msgstr ""
+
+#: static/interactives/rsa-jsencrypt/js/rsa-jsencrypt.js:22
+#: static/interactives/rsa-no-padding/js/rsa-jsencrypt-no-padding.js:20
+msgid "Error in encryption!"
+msgstr ""
+
+#: static/interactives/rsa-jsencrypt/js/rsa-jsencrypt.js:30
+#: static/interactives/rsa-no-padding/js/rsa-jsencrypt-no-padding.js:28
+msgid "Error in decryption!"
+msgstr ""
+
+#: static/interactives/rsa-jsencrypt/js/rsa-jsencrypt.js:37
+#: static/interactives/rsa-no-padding/js/rsa-jsencrypt-no-padding.js:35
+msgid "Decrypter"
+msgstr ""
+
+#: static/interactives/rsa-jsencrypt/js/rsa-jsencrypt.js:38
+#: static/interactives/rsa-no-padding/js/rsa-jsencrypt-no-padding.js:36
+msgid "Decrypt"
+msgstr ""
+
+#: static/interactives/rsa-jsencrypt/js/rsa-jsencrypt.js:39
+#: static/interactives/rsa-no-padding/js/rsa-jsencrypt-no-padding.js:37
+msgid "Cipher"
+msgstr ""
+
+#: static/interactives/rsa-jsencrypt/js/rsa-jsencrypt.js:40
+#: static/interactives/rsa-no-padding/js/rsa-jsencrypt-no-padding.js:38
+msgid "Plain"
+msgstr ""
+
+#: static/interactives/run-length-encoding/js/run-length-encoding.js:44
+msgid "Please enter a value between 0 and 100"
+msgstr ""
+
+#: static/interactives/run-length-encoding/js/run-length-encoding.js:102
+msgid "Your numbers add up to a different number than the grid requires!"
+msgstr ""
+
+#: static/interactives/run-length-encoding/js/run-length-encoding.js:109
+msgid "You have a different number of lines than lines in the grid!"
+msgstr ""
+
+#: static/interactives/searching-algorithms/js/searching-algorithms.js:85
+msgid "sorted"
+msgstr ""
+
+#: static/interactives/searching-algorithms/js/searching-algorithms.js:87
+msgid "random"
+msgstr ""
+
+#: static/interactives/searching-algorithms/js/searching-algorithms.js:109
+#: static/interactives/searching-algorithms/js/searching-algorithms.js:273
+msgid "You have <span id=\"num-guesses\">1</span> guess to find it."
+msgid_plural ""
+"You have <span id=\"num-guesses\">%(num_guesses)s</span> guesses to find it."
+msgstr[0] ""
+msgstr[1] ""
+
+#: static/interactives/searching-algorithms/js/searching-algorithms.js:193
+msgid "Box"
+msgstr ""
+
+#: static/interactives/searching-algorithms/js/searching-algorithms.js:228
+msgid "Number of guesses used: %(num_guesses)s"
+msgstr ""
+
+#: static/interactives/sorting-algorithms/js/sorting-algorithms.js:22
+#: static/interactives/sorting-algorithms/js/sorting-algorithms.js:162
+msgid "Show second row of boxes"
+msgstr ""
+
+#: static/interactives/sorting-algorithms/js/sorting-algorithms.js:120
+msgid "Number Of Comparisons: %(comparisons)s"
+msgstr ""
+
+#: static/interactives/sorting-algorithms/js/sorting-algorithms.js:132
+msgid "You need to sort all the boxes before checking!"
+msgstr ""
+
+#: static/interactives/sorting-algorithms/js/sorting-algorithms.js:145
+msgid "The boxes are in order!"
+msgstr ""
+
+#: static/interactives/sorting-algorithms/js/sorting-algorithms.js:148
+msgid "The boxes are not in order!"
+msgstr ""
+
+#: static/interactives/sorting-algorithms/js/sorting-algorithms.js:160
+msgid "Hide second row of boxes"
+msgstr ""
+
+#: static/interactives/unicode-length/js/unicode-length.js:13
+msgid "%(num_bits_used)s bits"
+msgstr ""

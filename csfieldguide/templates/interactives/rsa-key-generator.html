@@ -1,0 +1,82 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div class="container my-3">
+    <div class="row" id="interactive-rsa-key-generator">
+      <div class="col s12">
+        <h3>{% trans "RSA Key Generator" %}</h3>
+
+        <div class="row text-left">
+          <div class="col-12">       
+            <h5>{% trans "Key Size" %}</h5>
+          </div>
+        </div>
+        <div class="row mb-2 text-left">  
+          <div class="col-7">
+            <select id="interactive-rsa-key-generator-key-size" class="browser-default form-control">
+              <option value="256">{% trans "256 bits" %}</option>
+              <option value="512" selected>{% trans "512 bits" %}</option>
+              <option value="1024">{% trans "1024 bits" %}</option>
+              <option value="2048">{% trans "2048 bits" %}</option>
+              <option value="4096">{% trans "4096 bits" %}</option>
+            </select>
+          </div>
+          <div class="col-5">
+            <button id="interactive-rsa-key-generator-generate" class="btn btn-primary">{% trans "Generate Keys" %}</button>
+          </div>
+        </div>
+
+        <div class="row text-left">
+          <div class="col-12">
+            <p><em><strong>{% trans "Warning:</strong> Keys larger than 512 bits may take longer than a second to create." %}</em></p>
+          </div>
+        </div>
+
+        <div class="row text-left">
+          <div class="col-12">  
+          	<h5>{% trans "Public Key" %}</h5>
+          </div>
+        </div>
+        <div class="row mb-2 text-left">
+          <div class="col-7">
+            <textarea id="interactive-rsa-key-generator-public-key" class="form-control" rows="5" readonly></textarea>
+          </div>
+          <div class="col-5">
+            <button class="btn btn-primary interactive-rsa-key-generator-button disabled" type="button" data-toggle="tooltip" data-placement="bottom" id="interactive-rsa-key-generator-copy-public" title="Copy to Clipboard">
+            	{% trans "Copy Public Key" %}
+            </button>
+          </div>
+        </div>
+
+
+        <div class="row text-left">
+          <div class="col-12">  
+          	<h5>{% trans "Private Key" %}</h5>
+          </div>
+        </div>
+        <div class="row mb-2 text-left">
+          <div class="col-7">
+            <textarea id="interactive-rsa-key-generator-private-key" class="form-control" rows="8" readonly></textarea>
+          </div>
+          <div class="col-5">
+            <button class="btn btn-primary interactive-rsa-key-generator-button disabled" type="button" data-toggle="tooltip" data-placement="bottom"  id="interactive-rsa-key-generator-copy-private" title="Copy to Clipboard">
+            	{% trans "Copy Private Key" %}
+           	</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/rsa-key-generator/css/rsa-key-generator.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'interactives/rsa-key-generator/js/rsa-key-generator.js' %}"></script>
+{% endblock js %}

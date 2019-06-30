@@ -13,45 +13,39 @@ After using an internal system for creating the guide (from 2012 to 2015), we ha
 All areas of the project, from chapter text to website design, are now available for all.
 We want this project to be as accessible as possible to our many user groups, which includes students, teachers and educators, and developers.
 
-## Requires
+## Documentation
 
-- Python 3.4+
-
-## Installation
-
-Download the latest release from the [GitHub releases page](https://github.com/uccser/cs-field-guide/releases), or clone the repository for the latest development version.
-
-The required dependencies are listed within `requirements.txt` and can be installed using the Python package `pip` ([see how to do this here](https://pip.pypa.io/en/stable/user_guide/#requirements-files)), or can be manually installed to suit your environment.
-
-## Usage
-
-Run `generateguide.py` with Python 3.
-This will produce an student version of the CSFG in English.
-Details about [optional parameters are found within the usage documentation](docs/usage.md#optional-parameters).
-
-## Bugs and feature requests
-
-Have a bug or a feature request? Please first search for [existing and closed issues](https://github.com/uccser/cs-field-guide/issues) in our issue tracker.
-If your problem or idea is not addressed yet, please [open a new issue](https://github.com/uccser/cs-field-guide/issues/new).
+Documentation for this project can be found on
+[ReadTheDocs](http://cs-field-guide.readthedocs.io/en/latest/),
+and can also be built from the documentation source within the `docs/` directory.
 
 ## Contributing
 
-We would love your help to make this guide the best it can be! Please read our [contribution guide](CONTRIBUTING.md) to get started. Possible areas for contributions include:
-
-- Suggesting a text edit for a typo, grammar correction, or just clearing up a point.
-- Add a translation for a chapter or interactive.
-- Add a new or replacement image for a chapter.
-- Modify text and create their own version of the CSFG.
-- Add or modify an interactive for the guide.
-
-## Documentation
-
-Documentation for this project is stored in the [documentation folder](docs/README.md).
+We would love your help to make this guide the best it can be!
+Please read our
+[contribution guide](http://cs-field-guide.readthedocs.io/en/latest/getting_started/contributing_guide.html)
+to get started.
 
 ## License
 
-The Computer Science Field Guide uses a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) license](http://creativecommons.org/licenses/by-nc-sa/4.0/). Read the [license file](LICENSE.md) for more details.
+The content of this project itself is licensed under the
+[Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0) license](https://creativecommons.org/licenses/by-sa/4.0/)
+(`LICENCE-CONTENT` file).
+This license applies to the following contents of this project:
+
+- Markdown files located within the `csfieldguide/chapters/content/` directory.
+- Images located within the `csfieldguide/static/img/` directory.
+
+Third-party libraries used in this project have their license's
+listed within the `LICENCE-THIRD-PARTY` file, with a full copy of the license
+available within the `third-party-licences` directory.
+If a source file of a third-party library or system is stored within this
+repository, then a copyright notice should be present at the top of the file.
+
+The rest of the project, which is the underlying source code used to manage
+and display this content, is licensed under the
+[MIT license](https://opensource.org/licenses/MIT) (`LICENCE` file).
 
 ## Contact
 
-This repository is currently primarily managed by [Jack Morgan](http://jackmorgannz.github.io/), with [Hayley van Waas](http://hayleyavw.com/) and [Tim Bell](mailto:tim.bell@canterbury.ac.nz) as backup administrators.
+You can contact us at [csse-education-research@canterbury.ac.nz](mailto:csse-education-research@canterbury.ac.nz).

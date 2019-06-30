@@ -1,7 +1,0 @@
-{
-    "type": "matrix",
-    "title": "Combining Translation, Scaling and Rotation",
-    "task": "Try moving the arrow to the target position by using the two multiplication matrices (one to scale and one to rotate) then translating.",
-    "target": "12 4 9 10 9 6 4 6 4 2 9 2 9 -2",
-    "modules": ["first-scale", "second-scale", "first-translate"]
-}

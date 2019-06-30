@@ -1,0 +1,8 @@
+{
+    "name": "csfg-interactive-big-number-calculator",
+    "version": "1.0.0",
+    "private": true,
+    "dependencies": {
+        "big.js": "5.1.2"
+    }
+}

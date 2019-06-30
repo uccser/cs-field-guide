@@ -1,0 +1,21 @@
+<{{ heading_type }} id="{{ title_slug }}">
+<span class="section_number">
+{%- if heading_level >= 2 -%}
+{{ level_2 }}
+{%- endif -%}
+{%- if heading_level >= 3 -%}
+.{{ level_3 }}
+{%- endif -%}
+{%- if heading_level >= 4 -%}
+.{{ level_4 }}
+{%- endif -%}
+{%- if heading_level >= 5 -%}
+.{{ level_5 }}
+{%- endif -%}
+{%- if heading_level >= 6 -%}
+.{{ level_6 }}
+{%- endif -%}
+.
+</span>
+{{ title }}
+</{{ heading_type }}>

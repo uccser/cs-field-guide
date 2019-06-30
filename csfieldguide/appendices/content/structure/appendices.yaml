@@ -1,0 +1,14 @@
+about:
+  template: appendices/about.html
+
+contributors:
+  template: appendices/contributors.html
+
+sitemap:
+  template: appendices/sitemap.html
+
+# 'Releases' page should redirect to documentation.
+# 'Included Files' page should redirect to LICENSE.
+# 'Curriculum Guides' is within 'curriculum_guides' application
+# 'Glossary' page is within 'chapters' application
+# 'Interactives' page is within 'interactives' application

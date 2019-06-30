@@ -1,0 +1,74 @@
+{% extends "appendices/base.html" %}
+
+{% load i18n %}
+
+{% block title %}
+  {% trans "Sitemap" %}
+{% endblock title %}
+
+{% block appendix_title %}
+  {% trans "Sitemap" %}
+{% endblock appendix_title %}
+
+{% block content %}
+  <p>{% trans "All pages within the Computer Science Field Guide are listed here:" %}</p>
+  <ul>
+    <li>
+      <a href="{% url 'general:index' %}">{% trans "Computer Science Field Guide" %}</a>
+    </li>
+    <li>
+      <a href="{% url 'chapters:index' %}">{% trans "Chapters" %}</a>
+    </li>
+    <ul>
+    {% for chapter in chapters %}
+      <li>
+        <a href="{% url 'chapters:chapter' chapter.slug %}">{{ chapter.name }}</a>
+      </li>
+      <ul>
+        {% for section in chapter.chapter_sections.all %}
+          <li>
+            <a href="{% url 'chapters:chapter_section' chapter.slug section.slug %}">{{ section.name }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% endfor %}
+    </ul>
+    <li>
+      <a href="{% url 'curriculum_guides:index' %}">{% trans "Curriculum Guides" %}</a>
+    </li>
+    <ul>
+      {% for curriculum_guide in curriculum_guides %}
+        <li>
+          <a href="{% url 'curriculum_guides:curriculum_guide' curriculum_guide.slug %}">{{ curriculum_guide.name }}</a>
+        </li>
+        <ul>
+          {% for section in curriculum_guide.curriculum_guide_sections.all %}
+            <li>
+              <a href="{% url 'curriculum_guides:curriculum_guide_section' curriculum_guide.slug section.slug %}">{{ section.name }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endfor %}
+    </ul>
+    <li>
+      <a href="{% url 'appendices:appendices' %}">{% trans "Appendices" %}</a>
+      <ul>
+        <li>
+          <a href="{% url 'appendices:about' %}">{% trans "About" %}</a>
+        </li>
+        <li>
+          <a href="https://cs-field-guide.readthedocs.io/en/latest/changelog.html">{% trans "Changelog" %}</a>
+        </li>
+        <li>
+          <a href="{% url 'appendices:contributors' %}">{% trans "Contributors" %}</a>
+        </li>
+        <li>
+          <a href="{% url 'chapters:glossary' %}">{% trans "Glossary" %}</a>
+        </li>
+        <li>
+          <a href="{% url 'interactives:index' %}">{% trans "Interactives" %}</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+{% endblock content %}

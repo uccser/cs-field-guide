@@ -1,0 +1,31 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div class="row container-fluid" data-iframe-height>
+    <div class="col-sm-12 col-md-4">
+      <h4>{% trans "Plaintext" %}</h4>
+      <textarea id="interactive-caesar-plaintext" class="form-control mb-1" rows="5"></textarea>
+      <button id="interactive-caesar-encrypt" type="button" class="btn btn-primary btn-expand mb-2">{% trans "Encrypt" %}</button>
+    </div>
+    <div class="col-sm-12 col-md-4">
+      <h4>{% trans "Rotation Amount" %}</h4>
+      <input id="interactive-caesar-key-input" type="number" min="1" max="26" value="1" class="interactive-input form-control mb-2">
+    </div>
+    <div class="col-sm-12 col-md-4">
+      <h4>{% trans "Ciphertext" %}</h4>
+      <textarea id="interactive-caesar-ciphertext" class="form-control mb-1" rows="5"></textarea>
+      <button id="interactive-caesar-decrypt" type="button" class="btn btn-primary btn-expand">{% trans "Decrypt" %}</button>
+    </div>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/caesar-cipher/css/caesar-cipher.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'interactives/caesar-cipher/js/caesar.js' %}"></script>
+{% endblock js %}

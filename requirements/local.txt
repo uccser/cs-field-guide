@@ -1,0 +1,10 @@
+# Local development dependencies go here
+-r base.txt
+-r test.txt
+
+# Documentation
+sphinx==2.1.2
+sphinx-rtd-theme==0.4.3
+
+# Debugging Tools
+django-debug-toolbar==2.0

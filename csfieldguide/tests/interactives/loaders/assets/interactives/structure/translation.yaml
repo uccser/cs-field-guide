@@ -1,0 +1,4 @@
+interactive-translated:
+  languages:
+    en: interactives/template.html
+  is_interactive: true
