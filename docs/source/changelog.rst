@@ -33,7 +33,7 @@ We have listed major changes for each release below.
 
 - Improve chapter content:
 
-  - Chapters sections are now split across pages for better readability.
+  - Chapter sections are now split across pages for better readability.
   - General content, grammar, and spelling fixes.
   - View glossary definitions within a page.
 
@@ -45,8 +45,8 @@ We have listed major changes for each release below.
 - Improve interactives:
 
   - Introduce automated thumbnail generator.
-  - Introduce many 'uninteractives' &ndash; allowing image text to be translated.
-  - Update existing interactives for better accessi.
+  - Introduce many 'uninteractives' - allowing image text to be translated.
+  - Update existing interactives for better accessibility.
 
 - Introduce new interactives:
 
@@ -69,7 +69,7 @@ We have listed major changes for each release below.
 - Update documentation and contributing guides.
 - Update contributors page.
 - Improve licencing structure to make it easier to find and navigate on GitHub.
-- Rename '2D Arrow Manipulations' interactive to '2D Shape Manipulations.
+- Rename '2D Arrow Manipulations' interactive to '2D Shape Manipulations'.
 - Introduce initial German and Spanish translations.
 
 2.12.2
