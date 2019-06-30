@@ -25,10 +25,15 @@ urlpatterns = [
         views.CurriculumGuideSectionView.as_view(),
         name="curriculum_guide_section"
     ),
+    # eg: redirect any subpage of /ncea/ to NCEA homepage
+    url(
+        r"^ncea/",
+        views.NCEARedirectView.as_view(),
+    ),
     # eg: redirect /curriculum-guides/index.html to /curriculum-guides/
     url(
         r"^index.html$",
-        RedirectView.as_view(permanent=True, url="/curriculum-guides/"),
+        RedirectView.as_view(permanent=True, pattern_name="curriculum_guides:index"),
     ),
     # eg: redirect /curriculum-guides/apcsp/index.html to /curriculum-guides/apcsp/
     url(
@@ -39,6 +44,6 @@ urlpatterns = [
     url(
         r"^(?P<curriculum_guide_slug>[-\w]+)/index.html#(?P<curriculum_guide_section_slug>[-\w]+)$",
         RedirectView.as_view(permanent=True,
-                             pattern_name="curriculum_guides:curriculum_guide:curriculum_guide_section"),
+                             pattern_name="curriculum_guides:curriculum_guide_section"),
     ),
 ]

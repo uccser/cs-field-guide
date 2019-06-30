@@ -5,6 +5,8 @@ However the amount of data computers use is often so large that it doesn't matte
 This is where algorithms come in.
 If a computer is given a better algorithm to process the data then it doesn't matter how much information it has to look through, it will still be able to do it in a reasonable amount of time.
 
+{interactive slug="sorting-algorithm-comparison" type="in-page"}
+
 If you have read through the Introduction chapter you may remember that the speed of an application on a computer makes a big difference to a human using it.
 If an application you create is too slow, people will get frustrated with it and won't use it.
 It doesn't matter if your software is amazing, if it takes too long they will simply give up and try something else!

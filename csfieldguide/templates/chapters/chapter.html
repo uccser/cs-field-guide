@@ -1,4 +1,4 @@
-{% extends "columns.html" %}
+{% extends "base.html" %}
 
 {% load i18n %}
 {% load static %}
@@ -12,48 +12,53 @@
   <span class="text-white-50">{{ chapter.number }}.</span> {{ chapter.name }}
 {% endblock page_heading %}
 
-{% block right_column_content %}
-  {% if chapter.translation_available %}
-    <div id="side-navbar" class="sticky-top d-print-none">
-      <h2 class="mt-2">{% trans "Chapter sections" %}</h2>
-      <ul class="nav nav-pills flex-column" id="scrollspy-table-of-contents">
-        {% for section in chapter.chapter_sections.all %}
-        <li class="nav-item">
-          <a class="nav-link {% if section.slug == chapter_section.slug %} active text-white{% else %} nav-link-colour{% endif %}{% if not section.translation_available %} disabled{% endif %}"
-            href="{% url 'chapters:chapter_section' chapter.slug section.slug %}">
-            <span class="section-heading-number">{{ chapter.number }}.{{ section.number }}.</span> {{ section.name }}
-          </a>
-          {% if not section.translation_available %}
+{% block content_container %}
+  <div class="col-12 col-md-8 print-col-12">
+    {% if chapter.translation_available %}
+      {% if chapter.video %}
+        <div class="embed-responsive embed-responsive-16by9">
+          <iframe src="{{ chapter.video }}" class="embed-responsive-item" frameborder="0" allowfullscreen></iframe>
+        </div>
+      {% endif %}
+      <h2 class="mt-2">{% trans "Introduction" %}</h2>
+      {% render_html_field chapter.introduction %}
+    {% else %}
+      {% with model=chapter %}
+        {% include "generic/not-available-warning.html" %}
+      {% endwith %}
+    {% endif %}
+
+    <div class="text-right">
+      {% if chapter_sections %}
+        <a id="section-next-btn" href="{% url 'chapters:chapter_section' chapter.slug chapter_sections.0.slug %}"
+          class="btn btn-primary btn-chapter-section mb-2 float-right {% if not chapter_sections.0.translation_available %} text-muted{% endif %}">
+          <strong>{% trans 'Next:' %}</strong><br>{{ chapter_sections.0.name }}
+          {% if not chapter_sections.0.translation_available %}
+            <br>
             {% include "generic/not-available-badge.html" %}
           {% endif %}
-        </li>
-        {% endfor %}
-      </ul>
+        </a>
+      {% endif %}
     </div>
-  {% endif %}
-{% endblock right_column_content %}
-
-{% block left_column_content %}
-  {% if chapter.translation_available %}
-    {% if chapter.video %}
-      <div class="embed-responsive embed-responsive-16by9">
-        <iframe src="{{ chapter.video }}" class="embed-responsive-item" frameborder="0" allowfullscreen></iframe>
+  </div>
+  <div class="col-12 col-md-4 print-col-12">
+    {% if chapter.translation_available %}
+      <div id="side-navbar" class="sticky-top d-print-none">
+        <h2 class="mt-2">{% trans "Chapter sections" %}</h2>
+        <ul class="nav nav-pills flex-column" id="scrollspy-table-of-contents">
+          {% for section in chapter.chapter_sections.all %}
+          <li class="nav-item">
+            <a class="nav-link {% if section.slug == chapter_section.slug %} active text-white{% else %} nav-link-colour{% endif %}{% if not section.translation_available %} disabled{% endif %}"
+              href="{% url 'chapters:chapter_section' chapter.slug section.slug %}">
+              <span class="section-heading-number">{{ chapter.number }}.{{ section.number }}.</span> {{ section.name }}
+            </a>
+            {% if not section.translation_available %}
+              {% include "generic/not-available-badge.html" %}
+            {% endif %}
+          </li>
+          {% endfor %}
+        </ul>
       </div>
     {% endif %}
-    <h2 class="mt-2">{% trans "Introduction" %}</h2>
-    {% render_html_field chapter.introduction %}
-  {% else %}
-    {% with model=chapter %}
-      {% include "generic/not-available-warning.html" %}
-    {% endwith %}
-  {% endif %}
-
-  <div class="text-right">
-    {% if chapter_sections %}
-      <a id="section-next-btn" href="{% url 'chapters:chapter_section' chapter.slug chapter_sections.0.slug %}"
-        class="btn btn-primary btn-chapter-section mb-2 float-right {% if not chapter_sections.0.translation_available %} text-muted{% endif %}">
-        <strong>{% trans 'Next:' %}</strong><br>{{ chapter_sections.0.name }}
-      </a>
-    {% endif %}
   </div>
-{% endblock left_column_content %}
+{% endblock content_container %}
