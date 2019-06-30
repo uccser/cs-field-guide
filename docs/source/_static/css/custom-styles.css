@@ -39,9 +39,14 @@ table.markdown-example tr:nth-child(2n) {
 }
 
 .md-example-blockquote {
-  color: #6c757d; 
-  margin-bottom: 1rem; 
-  padding: 1rem 1rem 1rem 1.5rem; 
-  font-size: 1.1rem; 
+  color: #6c757d;
+  margin-bottom: 1rem;
+  padding: 1rem 1rem 1rem 1.5rem;
+  font-size: 1.1rem;
   border-left: 5px solid #2a3da0;
+}
+
+/* Add spacing after sublist within list */
+.rst-content .section ul li ul {
+  margin-bottom: 12px;
 }

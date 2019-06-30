@@ -60,6 +60,7 @@ body {
   > nav {
     flex-shrink: 0;
     z-index: 50;
+    height: $navbar-height;
   }
 
   > #body-content {
@@ -91,9 +92,14 @@ body {
 }
 
 .section-heading {
-  margin-top: 5rem;
+  .section-divider {
+    border-top: 1px solid $csfg-light;
+    width: 15rem;
+    margin: 4rem auto 2rem;
+  }
   .section-heading-number {
     @extend .text-muted;
+    @extend .mb-1;
   }
 }
 
@@ -127,6 +133,11 @@ ol, ul {
 }
 
 #side-navbar {
+  // Separate top of side navigation from navbar when stickied
+  top: 1rem !important;
+  max-height: calc(100vh - #{$navbar-height});
+  overflow-y: auto;
+  z-index: 10;
   .nav-link {
     border: 1px solid transparent;
     margin-bottom: 1px;

@@ -1,5 +1,9 @@
 <div class="section-heading">
 {%- if heading_level < 3 -%}
+<div class="section-divider"></div>
+{%- endif -%}
+<a class="heading-permalink" href="#{{ title_slug }}">
+{%- if heading_level < 3 -%}
 <div class="section-heading-number">
 {{ "{{ chapter.number }}.{{ chapter_section.number }}" }}
 {%- if heading_level >= 2 -%}
@@ -9,9 +13,8 @@
 </div>
 {%- endif -%}
 <{{ heading_type }} id="{{ title_slug }}">
-<a class="heading-permalink" href="#{{ title_slug }}">
 {{ title }}
 <img src="{{ "{% static 'img/third-party/icons8-link-26.png' %}" }}" class="permalink-icon">
-</a>
 </{{ heading_type }}>
+</a>
 </div>

@@ -3,26 +3,14 @@
   transition: background-color .3s ease 0s;
 
   #navbar-brand-logo {
-    height: 2rem;
+    margin: 0;
     @include media-breakpoint-up(md) {
-      padding-right: .5em;
+      margin-right: 1em;
     }
   }
 
   .navbar-nav .nav-link:hover {
     text-decoration: underline;
-  }
-}
-
-// This removes the navbar button from the document flow,
-// allowing the logo to display perfectly center.
-.navbar > .container {
-  position: relative;
-  justify-content: center;
-  > .navbar-toggler {
-    position: absolute;
-    top: 0;
-    left: 0;
   }
 }
 
