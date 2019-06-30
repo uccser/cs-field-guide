@@ -30,15 +30,27 @@
     {% if previous_section %}
       <a href="{% url 'chapters:chapter_section' chapter.slug previous_section.0.slug %}" class="btn btn-primary btn-chapter-section mb-2 float-left {% if not chapter_section.translation_available %} text-muted{% endif %}">
         <strong>{% trans 'Previous:' %}</strong><br>{{ previous_section.0.name }}
+        {% if not previous_section.0.translation_available %}
+          <br>
+          {% include "generic/not-available-badge.html" %}
+        {% endif %}
       </a>
     {% endif %}
     {% if next_section %}
       <a id="section-next-btn" href="{% url 'chapters:chapter_section' chapter.slug next_section.0.slug %}" class="btn btn-primary btn-chapter-section mb-2 float-right {% if not chapter_section.translation_available %} text-muted{% endif %}">
         <strong>{% trans 'Next:' %}</strong><br>{{ next_section.0.name }}
+        {% if not next_section.0.translation_available %}
+          <br>
+          {% include "generic/not-available-badge.html" %}
+        {% endif %}
       </a>
     {% elif next_chapter %}
       <a id="section-next-btn" href="{% url 'chapters:chapter' next_chapter.0.slug %}" class="btn btn-primary btn-chapter-section mb-2 float-right {% if not chapter.translation_available %} text-muted{% endif %}">
         <strong>{% trans 'Next:' %}</strong><br>{{ next_chapter.0.name }}
+        {% if not next_chapter.0.translation_available %}
+          <br>
+          {% include "generic/not-available-badge.html" %}
+        {% endif %}
       </a>
     {% endif %}
   </div>
