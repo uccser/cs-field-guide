@@ -729,12 +729,6 @@ There are many online resources for experimenting with FSAs; we've described one
 However, there may be variations that you find helpful, either for various computing platforms, or with themes relevant to your students.
 Here are some others that you could explore.
 
-The Manufactoria game is essentially about constructing a finite state machine that represents given rules.
-Some of the puzzles are quite tricky, and if students can solve them then they've understood FSAs well.
-(Hints: The conveyor belts are the transitions, the  B/R branches are the states with a transition out for blue or red.
-You can have conveyor belts that act as bridges).
-The game is available [here](http://pleasingfungus.com/#Manufactoria) and [here](http://jayisgames.com/games/manufactoria/).
-
 If you use the Java-based graphical educational system [Greenfoot](http://www.greenfoot.org/door) as a programming environment, the [treasure hunt finite state automata exercise](http://greenroom.greenfoot.org/resources/5) is based on the Treasure Island FSA activity from CS Unplugged.
 Teachers can register at the [Greenroom](http://greenroom.greenfoot.org/door) resources area to download the software.
 
