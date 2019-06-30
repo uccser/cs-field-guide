@@ -1,7 +1,7 @@
 """Views for the curriculum guides application."""
 
 from django.shortcuts import get_object_or_404
-from django.core.urlresolvers import resolve, reverse
+from django.core.urlresolvers import reverse
 from django.views import generic
 from curriculum_guides.models import (
     CurriculumGuide,
@@ -88,10 +88,12 @@ class CurriculumGuideSectionView(generic.DetailView):
 
 
 class NCEARedirectView(generic.RedirectView):
+    """View for redirecting all old NCEA subpages to NCEA homepage."""
 
     permanent = True
     query_string = True
     pattern_name = "curriculum_guides:curriculum_guide_section"
 
     def get_redirect_url(self, *args, **kwargs):
+        """Return URL for redirection."""
         return reverse("curriculum_guides:curriculum_guide", kwargs={"curriculum_guide_slug": "ncea"})
