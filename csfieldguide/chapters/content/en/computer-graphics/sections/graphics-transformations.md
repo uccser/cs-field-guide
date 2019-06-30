@@ -123,7 +123,7 @@ The
 
 Other explanations aimed at school students include:
 - [Math is Fun - Matrix multiplying](http://www.mathsisfun.com/algebra/matrix-multiplying.html)
-- [Math in Sight - Matrix vector multiplication](http://mathinsight.org/matrix_vector_multiplication)
+- [Math in Sight - Matrix vector multiplication](https://mathinsight.org/matrix_vector_multiplication)
 - [Math Planet - Transformation using matrices](http://www.mathplanet.com/education/geometry/transformations/transformation-using-matrices)
 - [Wikipedia entry on matrix transformation](https://en.wikipedia.org/wiki/Transformation_matrix) &ndash; which likely has too much extra detail for students in it
 
