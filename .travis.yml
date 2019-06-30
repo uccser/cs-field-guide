@@ -51,6 +51,31 @@ jobs:
           skip_cleanup: true
           on:
             branch: develop
+    - stage: production deploy
+      name: "Deploy app to Google App Engine"
+      script: skip
+      deploy:
+        - provider: script
+          script: bash ./infrastructure/prod-deploy/deploy-app.sh
+          skip_cleanup: true
+          on:
+            branch: release/3.0.0
+    - script: skip
+      name: "Copy static files to Google Storage Bucket"
+      deploy:
+        - provider: script
+          script: bash ./infrastructure/prod-deploy/deploy-static-files.sh
+          skip_cleanup: true
+          on:
+            branch: release/3.0.0
+    - script: skip
+      name: "Update Google Cloud Platform database"
+      deploy:
+        - provider: script
+          script: bash ./infrastructure/prod-deploy/update-database.sh
+          skip_cleanup: true
+          on:
+            branch: release/3.0.0
 notifications:
   email: false
   slack:
@@ -61,3 +86,5 @@ stages:
   - name: test
   - name: develop deploy
     if: branch = develop
+  - name: production deploy
+    if: branch = release/3.0.0
