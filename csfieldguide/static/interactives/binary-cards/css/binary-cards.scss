@@ -23,7 +23,9 @@
   border: 1px solid #000000;
   text-align: center;
   box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
-  backface-visibility: hidden;
+  @supports (-moz-appearance: none) {
+    backface-visibility: hidden;
+  }
 }
 #interactive-binary-cards-container div.binary-card canvas {
   margin: 0;
