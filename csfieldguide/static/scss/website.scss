@@ -309,12 +309,7 @@ a {
     background: #2a3da0;
     background-clip: padding-box;
     border-radius: 0.25rem;
-    &.collapsing {
-      &.teacher-mode-collapsed {
-        background: linear-gradient(to right, #2a3da0 0%, #f44336 65%);
-      }
-    }
-    &.show {
+    &.collapsing, &.show {
       &.teacher-mode-collapsed {
         background: linear-gradient(to right, #2a3da0 0%, #f44336 65%);
       }
