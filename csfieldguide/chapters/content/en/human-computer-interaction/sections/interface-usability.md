@@ -78,7 +78,7 @@ The following interactive lets you find out how fast "instant" is for you.
 As you click on each cell, there will sometimes be a random delay before it comes up; other cells won't have a delay.
 Click on each cell, and if it seems to respond instantly, leave it as it is.
 However, if you perceive that there is a small delay before the image comes up, click it again (which makes the cell green).
-Just make a quick, gut-level decision the first time you click each cell - don't overthink it.
+Just make a quick, gut-level decision the first time you click each cell &ndash; don't overthink it.
 The delay may be very short, but only make the cell green if you are fairly sure you noticed a delay.
 
 {interactive slug="delay-analyser" type="whole-page" text="Delay Analyser interactive"}
@@ -178,7 +178,7 @@ You'll take notes on what they say, and you can reflect on that afterwards to ev
 
 This protocol gives insights into what might be confusing in an interface, and why.
 
-For example, if someone setting an alarm clock says "I'm pressing the up button until I get to 7am - oh bother, it stopped at 7:09, now I have to go right around again", that gives some insight into how the interface might get in the way of the users completing a task efficiently.
+For example, if someone setting an alarm clock says "I'm pressing the up button until I get to 7am &ndash; oh bother, it stopped at 7:09, now I have to go right around again", that gives some insight into how the interface might get in the way of the users completing a task efficiently.
 
 This approach is focussed on observing a user doing a particular *task*, to capture what happens in reality when people use an interface.
 *Tasks* are often confused with *features*; you use the features of a device to accomplish a task.
