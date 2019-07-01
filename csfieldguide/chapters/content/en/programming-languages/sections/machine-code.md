@@ -183,16 +183,17 @@ end_loop:
 
 Can you change the Python program so that it counts down from 10?
 What about so it stops at 5?
-(You might have to try a couple of times, as it is somewhat counter intuitive.
-Remember that when i is the stopping number, it stops there and does not run the loop for that value!).
+
+You might have to try a couple of times, as it is somewhat counter intuitive.
+Remember that when i is the stopping number, it stops there and does not run the loop for that value!.
+
 And what about decrementing by 2 instead of 1?
 And changing the string (text) that is printed at the end?
 
 You probably found the Python program not too difficult to modify.
 See if you can make these same changes to the MIPS program.
 
-If that was too easy for you, can you make both programs print out "GO!!!!" twice instead of once?
-(you don’t have to use a loop for that).
+If that was too easy for you, can you make both programs print out "GO!!!!" twice instead of once (you don’t have to use a loop for that)?
 And if THAT was too easy, what about making each program print out "GO!!!!" 10 times?
 Because repeating a line in a program 10 times without a loop would be terrible programming practice, you’d need to use a loop for this task.
 

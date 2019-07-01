@@ -68,7 +68,7 @@ Some of the ideas that you could prompt for are:
 
 # Dumb users or dumb interfaces?
 
-Computer systems often make people feel dumb - in fact, there are lots of "dummies" books available, such as "iPad for dummies" or "The Complete Idiot's Guide to Microsoft Windows 10".
+Computer systems often make people feel dumb &ndash; in fact, there are lots of "dummies" books available, such as "iPad for dummies" or "The Complete Idiot's Guide to Microsoft Windows 10".
 These books sell millions of copies, yet chances are the people who buy them are actually quite intelligent — it's just that the interfaces can make people so frustrated that they feel like a dummy.
 The truth is that if an interface makes lots of people feel like an idiot, chances are the real problem is with the interface and not the user.
 In the past there has been a culture where the balance of power was with the programmers who designed a system, and they could afford to blame the users for any problems.
