@@ -15,7 +15,7 @@ After students have finished the first part ask them questions like "Did anyone 
 While they are playing the second part some may have trouble finding the correct algorithm to find the target number.
 If they are finding these levels confusing you can give them a hint like "Why don't you start by opening the box in the centre" and when they do ask them "What does the number you found tell you about all the numbers before it?" if the number is smaller than the one they are looking for, or "all the numbers after it?" if the number is bigger than the one they are looking for.
 
-When students have finished ask them questions like "Were you able to find the target number even though you had less lives? What strategy did you use to find the target number?", we have found that many students will have ended up doing a binary search (or similar) without even knowing what a binary search is!
+When students have finished ask them questions like "Were you able to find the target number even though you had fewer lives? What strategy did you use to find the target number?", we have found that many students will have ended up doing a binary search (or similar) without even knowing what a binary search is!
 Explaining these algorithms to students is likely to be easier now that they have seen them in action.
 
 {panel end}
@@ -38,7 +38,7 @@ This might not seem like such a bad thing since you had enough lives to look und
 It would have taken far too long to look through all the boxes and the target number might have never been found.
 
 Now this next game is slightly different.
-You have less lives, which makes things a bit more challenging, but this time the numbers inside the boxes will be in order.
+You have fewer lives, which makes things a bit more challenging, but this time the numbers inside the boxes will be in order.
 The box with the smallest number is on the far left, and the one with the largest number is on the far right.
 Let's see if you can find all the target numbers without running out of lives...
 
@@ -69,7 +69,7 @@ For a list of 10 items this means on average you would only have to look at 5 it
 
 # How is bozo search different from linear search?
 
-If you watched the video at the beginning of the chapter you might be thinking that what you did in the box searching game sounds more like bozo search than linear search, but actually bozo search is even sillier than this!
+If you watched the video at the beginning of the chapter you might be thinking that what you did in the box searching game sounds more like {glossary-link term="bozo-search"}bozo search{glossary-link end} than {glossary-link term="linear-search"}linear search{glossary-link end}, but actually bozo search is even sillier than this!
 If you were doing a bozo search then after opening a box and finding the wrong number, you would close the box back up and try another one at random!
 This means you might end up checking the same box again and again and again and you might never find the target number, even with a small number of boxes!
 
