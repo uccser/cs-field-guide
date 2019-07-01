@@ -96,6 +96,7 @@ body {
     border-top: 1px solid $csfg-light;
     width: 15rem;
     margin: 4rem auto 2rem;
+    clear: both;
   }
   .section-heading-number {
     @extend .text-muted;
