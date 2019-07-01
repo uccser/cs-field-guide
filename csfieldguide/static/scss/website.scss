@@ -303,3 +303,26 @@ a {
     color: #212529;
   }
 }
+
+// Standard bootstrap-defined Medium devices boundary
+@media (max-width: 767px) {
+  .navbar-collapse {
+    background: #2a3da0;
+    background-clip: padding-box;
+    border-radius: 0.25rem;
+    &.collapsing, &.show {
+      &.teacher-mode-collapse {
+        background: linear-gradient(to right, #2a3da0 0%, #f44336 65%);
+      }
+    }
+    .nav-item {
+      color: #ffffff !important;
+      padding-left: 1rem !important;
+    }
+  }
+
+  #search-navbar {
+    margin: 5px;
+    width: inherit !important;
+  }
+}
