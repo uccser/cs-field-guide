@@ -149,7 +149,7 @@ If on the other hand you were asked which two prime numbers were multiplied to g
 Creating an RSA code involves doing the multiplication above, which is easy for computers.
 If we could solve the second problem and find the multiples for a big number, we'd be able to crack an RSA code.
 However, no one knows a fast way to do that.
-This is called a "trapdoor" function - it's easy to go into the trapdoor (multiply two numbers), but it's pretty much impossible to get back out (find the two factors).
+This is called a "trapdoor" function &ndash; it's easy to go into the trapdoor (multiply two numbers), but it's pretty much impossible to get back out (find the two factors).
 
 So why is it that despite these two problems being similar, one of them is "easy" and the other one is "hard"? Well, it comes down to the algorithms we have to solve each of the problems.
 
@@ -190,7 +190,7 @@ In order to decrypt it, the corresponding private key must be used.
 But what would happen if the message was encrypted using the *private* key?
 Could you then decrypt it with the public key?
 
-Initially this might sound like a pointless thing to do — why would you encrypt a message that can be decrypted using a key that everybody in the world can access!?!
+Initially this might sound like a pointless thing to do &ndash; why would you encrypt a message that can be decrypted using a key that everybody in the world can access!?!
 It turns out that indeed, encrypting a message with the private key and then decrypting it with the public key works, and it has a very useful application.
 
 The only person who is able to *encrypt* the message using the *private* key is the person who owns the private key.

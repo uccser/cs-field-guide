@@ -24,15 +24,19 @@ It characterises the resources needed by an algorithm and is usually applied to 
 
 Here are some Big O examples:
 
-- $$ O(1) $$  - An algorithm with $$ O(1) $$ complexity will always execute in the same amount of time regardless of how much data you give it to process. For example, finding the smallest value in a sorted list is always easy.
-- $$ O(n) $$  - The amount of time an algorithm with $$ O(n) $$ complexity will take to execute will increase roughly linearly with (i.e. in direct proportion to) the amount of data you give it to process. The high-score algorithm was $$ O(n) $$, and so was the linear search.
-- $$ O(n^{2}) $$ - The performance of an algorithm with this complexity is roughly proportional to the square of the size of the input data set. Selection sort and insertion sort take $$ O(n^{2}) $$ time. That's not very good value - 10 times the amount of input will take 100 times as long!
-- $$ O(2^{n}) $$ - The amount of time an algorithm with this complexity will take to complete will double with each additional element added to the data set! We haven't seen these kinds of situations in this chapter, but they are common, and are a theme of the Complexity and Tractability chapter. Algorithms that are this slow can be almost impossible to use!
+- \( O(1) \)
+    - An algorithm with \( O(1) \) complexity will always execute in the same amount of time regardless of how much data you give it to process. For example, finding the smallest value in a sorted list is always easy.
+- \( O(n) \)
+    - The amount of time an algorithm with \( O(n) \) complexity will take to execute will increase roughly linearly with (i.e. in direct proportion to) the amount of data you give it to process. The high-score algorithm was \( O(n) \), and so was the linear search.
+- \( O(n^2) \)
+    - The performance of an algorithm with this complexity is roughly proportional to the square of the size of the input data set. Selection sort and insertion sort take \( O(n^2) \) time. That's not very good value &ndash; 10 times the amount of input will take 100 times as long!
+- \( O(2^n) \)
+    - The amount of time an algorithm with this complexity will take to complete will double with each additional element added to the data set! We haven't seen these kinds of situations in this chapter, but they are common, and are a theme of the [Complexity and Tractability chapter]('chapters:chapter' 'complexity-and-tractability'). Algorithms that are this slow can be almost impossible to use!
 
 {panel end}
 
-Big O Notation however requires some advanced mathematics to explore thoroughly so has been intentionally left out of this main chapter, but if you want to learn more check out the Useful links section.
-These topics are looked at in more depth in the Complexity and Tractability chapter.
+Big O notation however requires some advanced mathematics to explore thoroughly so has been intentionally left out of this main chapter, but if you want to learn more check out the [Further reading]('chapters:chapter_section' 'algorithms' 'further-reading') section.
+These topics are looked at in more depth in the [Complexity and Tractability chapter]('chapters:chapter' 'complexity-and-tractability').
 
 To make things even more complicated, theoretical analysis techniques such as Big O Notation are extremely useful when designing and predicting performance but empirical analysis such as stopwatch timing shows that in practice algorithm performance can vary greatly due to hardware and operating system design.
 Most computers have cached memory and virtual memory, where the time to access a particular value can be particularly short, or particularly long.
