@@ -40,16 +40,11 @@ urlpatterns = [
     # eg: redirect /chapters/index.html to /chapters/
     url(
         r"^index.html$",
-        RedirectView.as_view(permanent=True, url="/chapters/"),
+        RedirectView.as_view(permanent=True, pattern_name="chapters:index"),
     ),
     # eg: redirect /chapters/algorithms.html to /chapters/algorithms/
     url(
         r"^(?P<chapter_slug>[-\w]+).html$",
         RedirectView.as_view(permanent=True, pattern_name="chapters:chapter"),
-    ),
-    # eg: redirect /chapters/algorithms.html#searching to /chapters/algorithms/searching/
-    url(
-        r"^(?P<chapter_slug>[-\w]+).html#(?P<chapter_section_slug>[-\w]+)$",
-        RedirectView.as_view(permanent=True, pattern_name="chapters:chapter:chapter_section"),
     ),
 ]
