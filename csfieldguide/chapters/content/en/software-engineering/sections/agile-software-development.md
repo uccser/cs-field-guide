@@ -18,7 +18,6 @@ Therefore, they do very little planning and documentation because documenting th
 Agile processes include lots of interesting principles that are quite different from standard software development.
 We look at the most interesting ones here.
 If you want to find out more, have a look at [Agile Academy on Youtube](https://www.youtube.com/user/AgileAcademyAus) which has lots of videos about interesting agile practices!
-There’s also [another video here](https://www.youtube.com/watch?v=kqz_jDS0RWY) that explains the differences between agile software development and the waterfall process.
 
 Here are some general principles used for agile programming:
 
