@@ -114,7 +114,7 @@ We have listed major changes for each release below.
 
 `This release is archived for viewing here <https://archive.csfieldguide.org.nz/2.12.2/>`__
 
-`The teacher version is archived for viewing here <https://archive.csfieldguide.org.nz/2.12.2/teacher/>`__
+`The teacher version is archived for viewing here <https://archive.csfieldguide.org.nz/2.12.2/en/teacher/>`__
 
 2.12.1
 ==============================================================================
