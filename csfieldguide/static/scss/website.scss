@@ -305,7 +305,7 @@ a {
 }
 
 // Standard bootstrap-defined Medium devices boundary
-@media (max-width: 767px) {
+@include media-breakpoint-down(sm) {
   .navbar-collapse {
     background: #2a3da0;
     background-clip: padding-box;

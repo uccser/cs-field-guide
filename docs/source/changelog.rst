@@ -29,7 +29,6 @@ We have listed major changes for each release below.
 - Add background to navigation dropdown on mobile. `#1054 <https://github.com/uccser/cs-field-guide/issues/1054>`__
 - Add option to reshuffle weights in sorting algorithms interactive. `#1070 <https://github.com/uccser/cs-field-guide/pull/1070>`__
 - Add link to curriculum guides in useful links. `#1052 <https://github.com/uccser/cs-field-guide/issues/1052>`__
-
 - Fix several content errors. `#1044 <https://github.com/uccser/cs-field-guide/issues/1044>`__
 
   - Remove broken links that have no replacement link.
@@ -37,14 +36,10 @@ We have listed major changes for each release below.
   - Correct sentence that states there are 0.6 kilometers in a mile.
 
 - Fix formatting issues, add glossary links and a glossary term for bozo search. `#1060 <https://github.com/uccser/cs-field-guide/pull/1060>`__
-- Add link to curriculum guides in useful links. `#1052 <https://github.com/uccser/cs-field-guide/issues/1052>`__
 - Floating elements no longer overlap the subsection divider. `#1059 <https://github.com/uccser/cs-field-guide/issues/1059>`__
 - Add a redirect for the old homepage URL to the new homepage URL. `#1058 <https://github.com/uccser/cs-field-guide/pull/1058>`__
 - Correct spelling and formatting in the changelog. `#1037 <https://github.com/uccser/cs-field-guide/issues/1037>`__
-
 - Add a temporary fix for deploying static files. `#1046 <https://github.com/uccser/cs-field-guide/issues/1046>`__
-  
-  - Installs Cloud SDK at version 250.0.0.0 to fix gsutil issue temporarily.
 
 3.0.0
 ==============================================================================
