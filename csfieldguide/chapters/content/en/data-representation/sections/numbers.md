@@ -256,7 +256,7 @@ When we have 8 bits the binary numbers start to get useful — they can represen
 
 # What is a byte?
 
-Groups of 8 bits are so useful that they have their own name: a *{glossary-link term="byte"}byte{glossary-link end}*.
+Groups of 8 bits are so useful that they have their own name: a {glossary-link term="byte"}byte{glossary-link end}.
 Computer memory and disk space are usually divided up into bytes, and bigger values are stored using more than one byte.
 For example, two bytes (16 bits) are enough to store numbers from 0 to 65,535.
 Four bytes (32 bits) can store numbers up to 4,294,967,295.

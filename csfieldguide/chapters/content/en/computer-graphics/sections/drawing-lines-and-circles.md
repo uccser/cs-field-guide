@@ -132,6 +132,8 @@ For the formula for a line this results in:
 
 \\[
 m = \frac{(9 - 4)}{(16 - 3)}  = 5/13 = 0.384615
+\\]
+\\[
 b = \frac{(4 \times 16 - 9 \times 3)}{(16-3)} = 37/13 = 2.846154
 \\]
 

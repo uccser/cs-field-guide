@@ -40,10 +40,4 @@ urlpatterns = [
         r"^(?P<curriculum_guide_slug>[-\w]+)/index.html$",
         RedirectView.as_view(permanent=True, pattern_name="curriculum_guides:curriculum_guide"),
     ),
-    # eg: redirect /curriculum-guides/apcsp/index.html#abstraction to /curriculum-guides/apcsp/abstraction/
-    url(
-        r"^(?P<curriculum_guide_slug>[-\w]+)/index.html#(?P<curriculum_guide_section_slug>[-\w]+)$",
-        RedirectView.as_view(permanent=True,
-                             pattern_name="curriculum_guides:curriculum_guide_section"),
-    ),
 ]

@@ -17,6 +17,30 @@ All notable changes to this project will be documented in this file.
 
 We have listed major changes for each release below.
 
+3.0.1
+==============================================================================
+
+- **Release date:** 3rd July 2019
+- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/3.0.1>`__
+
+**Changelog:**
+
+- Fix bug where binary cards were not flipping back to white on Chrome. `#1056 <https://github.com/uccser/cs-field-guide/issues/1056>`__
+- Add background to navigation dropdown on mobile. `#1054 <https://github.com/uccser/cs-field-guide/issues/1054>`__
+- Add option to reshuffle weights in sorting algorithms interactive. `#1070 <https://github.com/uccser/cs-field-guide/pull/1070>`__
+- Add link to curriculum guides in useful links. `#1052 <https://github.com/uccser/cs-field-guide/issues/1052>`__
+- Fix several content errors. `#1044 <https://github.com/uccser/cs-field-guide/issues/1044>`__
+
+  - Remove broken links that have no replacement link.
+  - Improve formatting and correct spelling errors.
+  - Correct sentence that states there are 0.6 kilometers in a mile.
+
+- Fix formatting issues, add glossary links and a glossary term for bozo search. `#1060 <https://github.com/uccser/cs-field-guide/pull/1060>`__
+- Floating elements no longer overlap the subsection divider. `#1059 <https://github.com/uccser/cs-field-guide/issues/1059>`__
+- Add a redirect for the old homepage URL to the new homepage URL. `#1058 <https://github.com/uccser/cs-field-guide/pull/1058>`__
+- Correct spelling and formatting in the changelog. `#1037 <https://github.com/uccser/cs-field-guide/issues/1037>`__
+- Add a temporary fix for deploying static files. `#1046 <https://github.com/uccser/cs-field-guide/issues/1046>`__
+
 3.0.0
 ==============================================================================
 
@@ -33,7 +57,7 @@ We have listed major changes for each release below.
 
 - Improve chapter content:
 
-  - Chapters sections are now split across pages for better readability.
+  - Chapter sections are now split across pages for better readability.
   - General content, grammar, and spelling fixes.
   - View glossary definitions within a page.
 
@@ -45,8 +69,8 @@ We have listed major changes for each release below.
 - Improve interactives:
 
   - Introduce automated thumbnail generator.
-  - Introduce many 'uninteractives' &ndash; allowing image text to be translated.
-  - Update existing interactives for better accessi.
+  - Introduce many 'uninteractives' - allowing image text to be translated.
+  - Update existing interactives for better accessibility.
 
 - Introduce new interactives:
 
@@ -69,7 +93,7 @@ We have listed major changes for each release below.
 - Update documentation and contributing guides.
 - Update contributors page.
 - Improve licencing structure to make it easier to find and navigate on GitHub.
-- Rename '2D Arrow Manipulations' interactive to '2D Shape Manipulations.
+- Rename '2D Arrow Manipulations' interactive to '2D Shape Manipulations'.
 - Introduce initial German and Spanish translations.
 
 2.12.2
@@ -85,7 +109,7 @@ We have listed major changes for each release below.
 
 `This release is archived for viewing here <https://archive.csfieldguide.org.nz/2.12.2/>`__
 
-`The teacher version is archived for viewing here <https://archive.csfieldguide.org.nz/2.12.2/teacher/>`__
+`The teacher version is archived for viewing here <https://archive.csfieldguide.org.nz/2.12.2/en/teacher/>`__
 
 2.12.1
 ==============================================================================

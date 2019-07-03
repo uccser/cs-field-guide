@@ -70,7 +70,7 @@
                 </a>
               </div>
             </div>
-            <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="collapse navbar-collapse{% if teacher_mode %} teacher-mode-collapse{% endif %}" id="navbarNav">
               <div class="navbar-nav navbar-nav-i18n mr-auto">
                 <a class="nav-item nav-link" href="{% url 'chapters:index' %}">
                   {% trans "Chapters" %}
@@ -193,6 +193,11 @@
                       <li>
                         <a href="{% url 'interactives:index' %}">
                           {% trans "Interactives" %}
+                        </a>
+                      </li>
+                      <li>
+                        <a href="{% url 'curriculum_guides:index' %}">
+                          {% trans "Curriculum Guides" %}
                         </a>
                       </li>
                     </ul>

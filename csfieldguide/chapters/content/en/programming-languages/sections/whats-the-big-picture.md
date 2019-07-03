@@ -132,7 +132,7 @@ Look carefully at all the symbols that were used to include the recipient's name
 
 # Syntax
 
-The detailed requirements of a programming language about exactly which characters need to be used and where, is called its *{glossary-link term="syntax"}syntax{glossary-link end}*.
+The detailed requirements of a programming language about exactly which characters need to be used and where, is called its {glossary-link term="syntax"}syntax{glossary-link end}.
 In the example above, the syntax for the list of names requires square brackets around the list, quotation marks or inverted commas around the names, and a comma between each one.
 If you make a mistake, such as leaving out one of the square brackets, the system will have a *syntax error*, and won't be able to run the program.
 Every symbol counts, and one small error in a program can stop it running, or make it do the wrong thing.
@@ -158,7 +158,7 @@ else:
 The first line is a *print* statement (which you should be very familiar with by now!).
 The second line stores a number of miles as a variable (try entering different numbers here when you test it).
 The third line uses an *if* statement to check if the number entered was less than 0, so that it can print an error if it is.
-Otherwise if the number was okay, the program jumps into the *else* section (the error is not printed because the *if* was not true), calculates the number of kilometers (there are 0.6214 kilometers in a mile), stores it into a *variable* called `number_of_kilometers` for later reference, and then the last line prints it out.
+Otherwise if the number was okay, the program jumps into the *else* section (the error is not printed because the *if* was not true), calculates the number of kilometers (there are 0.6214 miles in a kilometer), stores it into a *variable* called `number_of_kilometers` for later reference, and then the last line prints it out.
 Again, we don’t have quotes around `number_of_kilometers` in the last line as we want to print the value out that is stored in the `number_of_kilometers` variable.
 If this doesn’t make sense, don’t worry.
 You aren’t expected to know how to program for this chapter, this introduction is only intended for you to have some idea of what a program is and the things it can do.
@@ -194,7 +194,7 @@ Building a fast and cheap circuit to do simple arithmetic such as this isn't tha
 # Binary
 
 The electronics in computers uses circuitry that mainly just works with two values (represented as high and low voltages) to make it reliable and fast.
-This system is called *{glossary-link term="binary-number-system"}binary{glossary-link end}*, and is often written on paper using zeroes and ones.
+This system is called {glossary-link term="binary-number-system"}binary{glossary-link end}, and is often written on paper using zeroes and ones.
 There's a lot more about binary in the [data representation]('chapters:chapter' 'data-representation') chapter, and it's worth having a quick look at the first section of that now if you haven't come across binary before.
 
 {panel end}

@@ -32,7 +32,7 @@ Can you make black, white, shades of grey, yellow, orange, and purple?
 
 Having all the sliders at the extremes will produce black and white, and if they are all the same value but in between, it will be grey (i.e. between black and white).
 
-Yellow is not what you might expect - it's made from red and green, with no blue.
+Yellow is not what you might expect &ndash; it's made from red and green, with no blue.
 
 {panel end}
 
@@ -62,7 +62,7 @@ Because a colour is simply made up of amounts of the primary colours (red, green
 
 # Pixel
 
-The word *{glossary-link term="pixel"}pixel{glossary-link end}* is short for "picture element".
+The word {glossary-link term="pixel"}pixel{glossary-link end} is short for "picture element".
 On computer screens and printers an image is almost always displayed using a grid of pixels, each one set to the required colour.
 A pixel is typically a fraction of a millimeter across, and images can be made up of millions of pixels (one megapixel is a million pixels), so you can't usually see the individual pixels.
 Photographs commonly have several megapixels in them.
@@ -92,7 +92,7 @@ We'll cover the answer later in this section if you are still not sure!
 The following interactive allows you to zoom in on an image to see the pixels that are used to represent it.
 Each pixel is a solid colour square, and the computer needs to store the colour for each pixel.
 If you zoom in far enough, the interactive will show you the red-green-blue values for each pixel.
-You can pick a pixel and put the values on the slider above - it should come out as the same colour as the pixel.
+You can pick a pixel and put the values on the slider above &ndash; it should come out as the same colour as the pixel.
 
 {interactive slug="pixel-viewer" type="whole-page" text="Pixel Viewer interactive"}
 
@@ -335,4 +335,4 @@ However, compression methods require a lot more processing, and images need to b
 
 The ideas in this present chapter more commonly come up when designing systems (such as graphics interfaces) and working with high-quality images (such as RAW photographs), and typically the goal is to choose the best representation possible without wasting too much space.
 
-Have a look at the Compression Chapter to find out more!
+Have a look at the [compression chapter]('chapters:chapter' 'coding-compression') to find out more!

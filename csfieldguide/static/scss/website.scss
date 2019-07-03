@@ -96,6 +96,7 @@ body {
     border-top: 1px solid $csfg-light;
     width: 15rem;
     margin: 4rem auto 2rem;
+    clear: both;
   }
   .section-heading-number {
     @extend .text-muted;
@@ -300,5 +301,28 @@ a {
 
   &:hover {
     color: #212529;
+  }
+}
+
+// Standard bootstrap-defined Medium devices boundary
+@include media-breakpoint-down(sm) {
+  .navbar-collapse {
+    background: #2a3da0;
+    background-clip: padding-box;
+    border-radius: 0.25rem;
+    &.collapsing, &.show {
+      &.teacher-mode-collapse {
+        background: linear-gradient(to right, #2a3da0 0%, #f44336 65%);
+      }
+    }
+    .nav-item {
+      color: #ffffff !important;
+      padding-left: 1rem !important;
+    }
+  }
+
+  #search-navbar {
+    margin: 5px;
+    width: inherit !important;
   }
 }

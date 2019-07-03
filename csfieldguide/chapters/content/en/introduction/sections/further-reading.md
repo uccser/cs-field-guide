@@ -8,7 +8,7 @@ Books that we particularly recommend include:
 - Algorithmics, by David Harel.
 - Abenteuer Informatik, by Jens Gallenbacher.
 - [Computational fairy tales](http://computationaltales.blogspot.co.nz), by Jeremy Kubica.
-- Algorithmic adventures: from knowledge to magic, by Jurag Hromkovic.
+- Algorithmic adventures: from knowledge to magic, by Juraj Hromkovič.
 - The Turing Omnibus, by A.K. Dewdney.
 - The AQA Computing A2 book(s), by Sylvia Langfield and Kevin Bond.
 

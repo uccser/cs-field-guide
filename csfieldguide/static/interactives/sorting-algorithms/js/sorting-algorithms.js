@@ -69,6 +69,9 @@ $(function() {
     $('#reset-button').on('click', function () {
         reset();
     });
+    $('#reshuffle-button').on('click', function () {
+        reshuffle();
+    });
 });
 
 /**
@@ -229,4 +232,19 @@ function reset() {
     var s = interpolate(fmts, {comparisons: comparisons}, true);
     document.getElementById('comparison-counter-text').innerText = s;
     $('#check-order-result-text-feedback').html('<br>');
+}
+
+/**
+ * Returns all images to their original locations, weights reshuffled, and resets
+ * the number of comparisons made
+ */
+function reshuffle() {
+    reset();
+
+    var images_to_sort = document.getElementsByClassName('sorting-boxes');
+    var shuffled_weights = shuffle(data_weights);
+    for (var i = 0; i < images_to_sort.length; i++) {
+        var image = images_to_sort[i];
+        image.dataset.weight = shuffled_weights[i];
+    }
 }

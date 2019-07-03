@@ -4,7 +4,7 @@ from django.conf.urls import url
 from . import views
 from django.views.generic.base import RedirectView
 
-
+app_name = "general"
 urlpatterns = [
     # e.g. csfieldguide.org.nz/
     url(
@@ -41,5 +41,9 @@ urlpatterns = [
     url(
         r"^further-information/releases.html$",
         RedirectView.as_view(permanent=True, url="https://cs-field-guide.readthedocs.io/en/latest/changelog.html"),
+    ),
+    url(
+        r"^index.html$",
+        RedirectView.as_view(permanent=True, pattern_name="general:index"),
     ),
 ]
