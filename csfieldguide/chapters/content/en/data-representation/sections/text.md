@@ -162,7 +162,7 @@ The "control" key still exists on modern keyboards.
 ## Introduction to Unicode
 
 In practice, we need to be able to represent more than just English characters.
-To solve this problem, we use a standard called {glossary-link term="unicode"}Unicode{glossary-link end}.
+To solve this problem, we use a standard called {glossary-link term="unicode"}unicode{glossary-link end}.
 Unicode is a **character set** with around 120,000 different characters, in many different languages, current and historic.
 Each character has a unique number assigned to it, making it easy to identify.
 
