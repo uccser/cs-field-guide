@@ -326,9 +326,3 @@ a {
     width: inherit !important;
   }
 }
-
-@include media-breakpoint-down(xs) {
-  .homepage-center {
-    max-width: inherit !important;
-  }
-}
