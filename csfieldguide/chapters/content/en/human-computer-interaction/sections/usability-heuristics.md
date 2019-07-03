@@ -13,7 +13,7 @@ These are available in PDF format here:
 
 Evaluating an {glossary-link term="interface"}interface{glossary-link end} is best done by getting feedback from having lots of potential users try it out.
 However, this can be expensive and time-consuming, so HCI experts have come up with some quick rules of thumb that help us spot obvious problems quickly.
-The formal word for a rule of thumb is a *{glossary-link term="heuristic"}heuristic{glossary-link end}*, and in this section we will look at some common heuristics that can be used to critique an interface.
+The formal word for a rule of thumb is a {glossary-link term="heuristic"}heuristic{glossary-link end}, and in this section we will look at some common heuristics that can be used to critique an interface.
 
 There are various sets of heuristics that people have proposed for evaluating interfaces, but a Danish researcher called Jakob Nielsen has come up with a set of 10 heuristics that have become very widely used, and we will describe them in this section.
 If you encounter a usability problem in an interface, it is almost certainly breaking one of these heuristics, and possibly a few of them.
