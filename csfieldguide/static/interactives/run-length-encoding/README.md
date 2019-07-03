@@ -6,7 +6,7 @@
 This interactive is created for showing users how basic images can be stored with the run length encoding compression method.
 Encoding numbers should be separated with commas (and spaces if desired) and each row on a new line.
 
-The original code was provided by Hannah Taylor ([original program available here](http://taylormade.io/run-length-encoding.html)) with permission given to use in the CSFG. The existing program has been modified to fit the new CSFG requirements (responsive design, etc).
+The original code was provided by Hannah Taylor with permission given to use in the CSFG. The existing program has been modified to fit the new CSFG requirements (responsive design, etc).
 
 ## URL Parameters
 
