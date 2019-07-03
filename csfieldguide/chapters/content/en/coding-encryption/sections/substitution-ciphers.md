@@ -1,5 +1,11 @@
 # Substitution ciphers
 
+A substitution cipher takes each character (sometimes groups of characters) in a message and replaces it with a different character according to fixed rules.
+Every occurence of one character will be *substituted* with the same replacement character.
+
+An encrypted message can then be decrypted with another substitution cipher, this time set to substitute each character with the one that it originally replaced.
+It is a very simple system which, as we'll find out, makes it a very insecure method of encryption!
+
 {panel type="teacher-note"}
 
 # Starting with a very insecure cipher!
