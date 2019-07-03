@@ -104,7 +104,7 @@ That's worth knowing in advance because we usually need our programs to scale up
 
 # Algorithm complexity
 
-The formal term for working out the cost of an algorithm is [algorithm analysis](https://en.wikipedia.org/wiki/Analysis_of_algorithms), and we often refer to the cost as the algorithm's *{glossary-link term="complexity"}complexity{glossary-link end}*.
+The formal term for working out the cost of an algorithm is [algorithm analysis](https://en.wikipedia.org/wiki/Analysis_of_algorithms), and we often refer to the cost as the algorithm's {glossary-link term="complexity"}complexity{glossary-link end}.
 The most common complexity is the "time complexity" (a rough idea of how long it takes to run), but often the "space complexity" is of interest - how much memory or disk space will the algorithm use up when it's running?
 
 There's more about how the cost of an algorithm is described in industry, using a widely agreed on convention called {glossary-link term="big-o"}'Big O Notation'{glossary-link end}, in the ["The whole story!"]('chapters:chapter_section' 'algorithms' 'the-whole-story') section at the end of this chapter.

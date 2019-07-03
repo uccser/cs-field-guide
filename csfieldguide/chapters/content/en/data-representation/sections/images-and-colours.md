@@ -62,7 +62,7 @@ Because a colour is simply made up of amounts of the primary colours (red, green
 
 # Pixel
 
-The word *{glossary-link term="pixel"}pixel{glossary-link end}* is short for "picture element".
+The word {glossary-link term="pixel"}pixel{glossary-link end} is short for "picture element".
 On computer screens and printers an image is almost always displayed using a grid of pixels, each one set to the required colour.
 A pixel is typically a fraction of a millimeter across, and images can be made up of millions of pixels (one megapixel is a million pixels), so you can't usually see the individual pixels.
 Photographs commonly have several megapixels in them.
