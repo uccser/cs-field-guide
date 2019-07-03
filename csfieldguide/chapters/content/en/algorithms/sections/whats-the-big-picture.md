@@ -104,7 +104,7 @@ That's worth knowing in advance because we usually need our programs to scale up
 
 # Algorithm complexity
 
-The formal term for working out the cost of an algorithm is [algorithm analysis](https://en.wikipedia.org/wiki/Analysis_of_algorithms), and we often refer to the cost as the algorithm's *{glossary-link term="complexity"}complexity{glossary-link end}*.
+The formal term for working out the cost of an algorithm is [algorithm analysis](https://en.wikipedia.org/wiki/Analysis_of_algorithms), and we often refer to the cost as the algorithm's {glossary-link term="complexity"}complexity{glossary-link end}.
 The most common complexity is the "time complexity" (a rough idea of how long it takes to run), but often the "space complexity" is of interest - how much memory or disk space will the algorithm use up when it's running?
 
 There's more about how the cost of an algorithm is described in industry, using a widely agreed on convention called {glossary-link term="big-o"}'Big O Notation'{glossary-link end}, in the ["The whole story!"]('chapters:chapter_section' 'algorithms' 'the-whole-story') section at the end of this chapter.
@@ -122,7 +122,7 @@ Some algorithms will always make the same number of comparisons for a certain in
 If we develop or are given an algorithm to solve a problem, how do we know that it works?
 Sometimes we create test cases to verify the algorithm produces correct output for specific input values.
 While this is a useful practice and can help verify that we are on the right track, it is not enough to show that our algorithm is correct.
-The old {glossary-link term="adage"}adage{glossary-link end} "even a broken watch is correct twice a day" is a good analogy.
+The old saying "even a broken watch is correct twice a day" is a good analogy.
 Even an algorithm that is correct for two test cases might be incorrect for every other input.
 A computer scientist must reason formally or mathematically about an algorithm to show its correctness.
 Typically this is done by classifying ranges of input values and showing that algorithm produces expected results for boundary values of the range and all values in between.

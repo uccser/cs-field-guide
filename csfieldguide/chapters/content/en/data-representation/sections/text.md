@@ -22,7 +22,7 @@ Importantly, a space is also a character.
 
 If you counted correctly, you should find that there were more than 64 characters, and you might have found up to around 95.
 Because 6 bits can only represent 64 characters, we will need more than 6 bits; it turns out that we need at least 7 bits to represent all of these characters as this gives 128 possible patterns.
-This is exactly what the *{glossary-link term="ascii"}ASCII{glossary-link end}* representation for text does.
+This is exactly what the {glossary-link term="ascii"}ASCII{glossary-link end} representation for text does.
 
 {panel type="challenge"}
 
@@ -162,7 +162,7 @@ The "control" key still exists on modern keyboards.
 ## Introduction to Unicode
 
 In practice, we need to be able to represent more than just English characters.
-To solve this problem, we use a standard called *{glossary-link term="unicode"}Unicode{glossary-link end}*.
+To solve this problem, we use a standard called {glossary-link term="unicode"}unicode{glossary-link end}.
 Unicode is a **character set** with around 120,000 different characters, in many different languages, current and historic.
 Each character has a unique number assigned to it, making it easy to identify.
 
