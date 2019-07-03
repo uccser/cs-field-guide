@@ -1,0 +1,13 @@
+canvas {
+  display: inline-block;
+}
+div.absolute {
+  position: absolute;
+  top: 20px;
+  left: 600px;
+  width: 500px;
+  height: 600px;
+}
+th, td {
+  padding: 2px;
+}
