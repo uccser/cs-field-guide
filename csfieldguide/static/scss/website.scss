@@ -328,7 +328,7 @@ a {
 }
 
 @include media-breakpoint-down(xs) {
-  .logo-mobile-width, .csfg-logo-center {
+  .csfg-logo-center {
     max-width: inherit !important;
   }
   .logo-mobile-center {
