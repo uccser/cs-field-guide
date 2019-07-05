@@ -30,6 +30,21 @@
       <div class="col-12 col-md-6 homepage-cta">
         <div class="row no-gutters">
           <div class="col-12 col-lg-3 text-center">
+            {% svg 'icons8-more-info' %}
+          </div>
+          <div class="col-12 col-lg-9 text-center text-md-left">
+            <h5 class="mt-0">{% trans "About" %}</h5>
+            <p class="text-left">
+              {% trans 'You can find more information about the Computer Science Field Guide on the about page.' %}
+            </p>
+            <a href="{% url 'appendices:about' %}" class="btn btn-primary mb-5" role="button">{% trans "View about page" %}</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6 homepage-cta">
+        <div class="row no-gutters">
+          <div class="col-12 col-lg-3">
             {% svg 'icons8-book-shelf' %}
           </div>
           <div class="col-12 col-lg-9 text-center text-md-left">
@@ -38,6 +53,21 @@
               {% trans 'The Computer Science Field Guide has many chapters to inform you of the various areas of Computer Science.' %}
             </p>
             <a href="{% url 'chapters:index' %}" class="btn btn-primary mb-5" role="button">{% trans "View chapters" %}</a>
+          </div>
+        </div>
+      </div>
+    
+      <div class="col-12 col-md-6 homepage-cta">
+        <div class="row no-gutters">
+          <div class="col-12 col-lg-3">
+              {% svg 'icons8-books' %}
+          </div>
+          <div class="col-12 col-lg-9 text-center text-md-left">
+            <h5 class="mt-0">{% trans "Curriculum Guides" %}</h5>
+            <p class="text-left">
+              {% trans 'We provide guides for using the Computer Science Field Guide in different curricula.' %}
+            </p>
+            <a href="{% url 'curriculum_guides:index' %}" class="btn btn-primary mb-5" role="button">{% trans "View curriculum guides" %}</a>
           </div>
         </div>
       </div>
