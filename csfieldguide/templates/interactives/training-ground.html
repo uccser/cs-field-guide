@@ -1,30 +1,36 @@
-<!DOCTYPE HTML>
-<html>
-  <head>
-    <script language="javascript" type="text/javascript" src="js/lib/phaser.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="js/lib/logger.min.js"></script>
+{% extends interactive_mode_template %}
 
-    <script type="text/javascript" src="js/play.js"></script>
-    <script type="text/javascript" src="js/howtoplay.js"></script>
-    <script type="text/javascript" src="js/menu.js"></script>
-    <script type="text/javascript" src="js/load.js"></script>
-    <script type="text/javascript" src="js/game.js"></script>
+{% load i18n %}
+{% load static %}
 
-    <link rel="stylesheet" href="css/common.css">
-    <link rel="stylesheet" href="css/table.css">
-
-    <script src="js/player.js"></script>
-    <script src="js/ai.js"></script>
-    <script src="js/Main.js"></script>
-
-    <title>Sticks Game</title>
-  </head>
-  <body>
+{% block html %}
+  <div class="my-3 container-fluid">
+    <div class="row warning">
+      {% trans 'Sorry, this interactive is only available on screens larger than TODOpx<br>If you are using a tablet, this may be achieved by holding it in landscape.' %}
+    </div>
+    <!-- The game font needs to be applied in a div somewhere to be loaded -->
+    <div id="start-screen" class="col start-screen" style="">
+      <h1>{% trans 'trAIning ground' %}</h1>
+      <h3>{% trans 'Information' %}</h3>
+      <h5>{% blocktrans %}{% endblocktrans %}
+      </h5>
+      <button type="button" class="btn btn-success" id="start-button">{% trans 'START' %}</button>
+    </div>
     <div id="gameDiv"> </div>
     <div class = "relative" style = "font-size: 100%;">
         <table id="excelDataTable" border="1">
         </table>
     </div>
-  </body>
-</html>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/training-ground/css/training-ground.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript">
+    var base = "{{ STATIC_URL }}";
+  </script>
+  <script type="text/javascript" src="{% static 'interactives/training-ground/js/training-ground.js' %}"></script>
+{% endblock js %}

@@ -3,10 +3,12 @@
 
 **Created by:**
 
-- Lia Dawson ([GitHub](https://GitHub.com/ldawson02))
-- William Taylor ([GitHub](https://GitHub.com/wtaylor45), [email](mailto:taylorw@udel.edu))
-- Greg Mohler ([GitHub](https://GitHub.com/gmohler213), [email](mailto:gmohler@udel.edu))
-- Rachel Muzzelo ([email](mailto:rmuzzelo@udel.edu))
+- Lia Dawson
+- William Taylor
+- Greg Mohler
+- Rachel Muzzelo
+
+The original can be found [here](https://github.com/wtaylor45/374-sticks-game).
 
 **Rebuilt by:** Alasdair Smith
 
@@ -22,4 +24,4 @@ Its neural network can be seen by the player on the right side of the screen.
 ## Licences
 
 This interactive was created using [Phaser 3](https://www.phaser.io/phaser3).
-The licence for this is listed in the `LICENCE-THIRD-PARTY` file, with a full copy available in the `third-party-licences` directory.
+The licence for this is listed in `LICENCE-THIRD-PARTY`, with a full copy available in the `third-party-licences` directory.
