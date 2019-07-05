@@ -304,6 +304,11 @@ a {
   }
 }
 
+.csfg-logo-image {
+  max-width: 100% !important;
+  height: auto !important;
+}
+
 // Standard bootstrap-defined Medium devices boundary
 @include media-breakpoint-down(sm) {
   .navbar-collapse {
@@ -325,20 +330,8 @@ a {
     margin: 5px;
     width: inherit !important;
   }
-}
 
-@include media-breakpoint-down(xs) {
-  .csfg-logo-center {
-    max-width: inherit !important;
-  }
   .logo-mobile-center {
     text-align: center;
-  }
-}
-
-// Keep CSFG logo in viewport between widths 768px and 840px
-@media (max-width:840px) and (min-width:768px) {
-  #homepage-logo {
-    margin-left: -20%;
   }
 }
