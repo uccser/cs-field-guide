@@ -304,11 +304,6 @@ a {
   }
 }
 
-.csfg-logo-image {
-  max-width: 100% !important;
-  height: auto !important;
-}
-
 // Standard bootstrap-defined Medium devices boundary
 @include media-breakpoint-down(sm) {
   .navbar-collapse {
