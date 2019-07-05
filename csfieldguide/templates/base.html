@@ -83,8 +83,8 @@
                 </a>
               </div>
               {% if LANGUAGE_CODE == "en" %}
-                <!-- Search is only currently available in English -->
-                <form method="get" action="{% url 'search:index' %}">
+                <!-- Search is currently only available in English -->
+                <form class="form-inline" method="get" action="{% url 'search:index' %}">
                   <div class="input-group" id="search-navbar">
                     <input type="search" class="form-control form-control-sm border-0" placeholder="{% trans "Search" %}" aria-label="Search" name="q" required="required">
                     <div class="input-group-append">
