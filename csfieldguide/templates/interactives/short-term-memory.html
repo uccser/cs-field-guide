@@ -4,13 +4,39 @@
 {% load static %}
 
 {% block html %}
+<div class="container">
+  <div id="interactive-high-score-boxes">
+    <h3 class="text-center">{% trans "Short term memory" %}</h3>
+    <p class="text-center">{% trans "Try to remember as many items as you can in 30 seconds.<br>When you are ready, click the button below to display the items!" %}</p>
+    <div class="row justify-content-center">
+      <button id="ready-button" class="btn btn-success">{% trans "Ready" %}</button>
+    </div>
 
+    <div id="items-container"></div>
+
+    <div id="answer-input" class="col-12 text-center d-none">
+      <div class="row">
+        {% trans "Enter the items you remember below!" %}
+      </div>
+      <div class="row">
+        <input id="stm-answer-input" placeholder="Enter answers here..." class="form-control col-4 my-2">
+      </div>
+      <div class="row">
+        <button id="submit-button" class="btn btn-primary mb-2">{% trans "Submit" %}</button>
+      </div>
+      <div class="row d-none">
+          <p id="completion-message"></p>
+        <button id="restart-button" class="btn btn-danger">{% trans "Restart" %}</button>
+      </div>
+    </div>
+  </div>
+  </div>
 {% endblock html %}
 
 {% block css %}
-
+  <link rel="stylesheet" href="{% static 'interactives/short-term-memory/css/short-term-memory.css' %}">
 {% endblock css %}
 
 {% block js %}
-
+  <script type="text/javascript" src="{% static 'interactives/short-term-memory/js/short-term-memory.js' %}"></script>
 {% endblock js %}

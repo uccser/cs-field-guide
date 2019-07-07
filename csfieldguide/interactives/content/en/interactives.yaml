@@ -144,6 +144,8 @@ searching-algorithms:
   name: Searching Algorithms
 sha2:
   name: SHA2
+short-term-memory:
+ name: Short Term Memory
 sorting-algorithm-comparison:
   name: Sorting Algorithm Comparison
 sorting-algorithms:

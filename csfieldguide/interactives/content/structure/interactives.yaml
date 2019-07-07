@@ -323,6 +323,10 @@ sha2:
   languages:
     en: interactives/sha2.html
   is_interactive: true
+short-term-memory:
+  languages:
+    en: interactives/short-term-memory.html
+  is_interactive: true
 sorting-algorithm-comparison:
   languages:
     en: interactives/sorting-algorithm-comparison.html
