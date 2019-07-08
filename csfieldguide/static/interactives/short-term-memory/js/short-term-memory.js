@@ -1,18 +1,18 @@
 var itemsShown = [
-  "banana",
-  "bicycle",
-  "book",
-  "cactus",
-  "calculator",
-  "camera",
-  "duck",
-  "toothbrush",
-  "forklift",
-  "guitar",
-  "scissors",
-  "soccerball",
-  "sock",
-  "teapot"
+  gettext("banana"),
+  gettext("bicycle"),
+  gettext("book"),
+  gettext("cactus"),
+  gettext("calculator"),
+  gettext("camera"),
+  gettext("duck"),
+  gettext("toothbrush"),
+  gettext("forklift"),
+  gettext("guitar"),
+  gettext("scissors"),
+  gettext("soccerball"),
+  gettext("sock"),
+  gettext("teapot")
 ]
 
 $(document).ready(function(){
