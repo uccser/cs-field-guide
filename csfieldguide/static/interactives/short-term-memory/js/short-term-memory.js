@@ -15,6 +15,7 @@ var itemsShown = [
   gettext("teapot")
 ]
 
+
 $(document).ready(function(){
   $('#ready-button').click(function() {
     $('#items-container').removeClass('d-none');
@@ -62,6 +63,7 @@ $(document).ready(function(){
     itemsShownSet = new Set(itemsShown);
     itemsMissedSet = new Set([...itemsShownSet].filter(x => !answerSet.has(x)));
 
+    // Lists the items that were missed
     itemsMissed = '';
     itemsMissedSet.forEach(function(value) {
       itemsMissed += value + '<br>';  
