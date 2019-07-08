@@ -1,6 +1,7 @@
 {% extends interactive_mode_template %}
 
 {% load i18n %}
+{% load i18n static render_interactive_link svg %}
 {% load static %}
 
 {% block html %}
@@ -12,7 +13,61 @@
       <button id="ready-button" class="btn btn-success">{% trans "Ready" %}</button>
     </div>
 
-    <div id="items-container"></div>
+    <div id="items-container">
+      <div class="row">
+        <div class="stm-item col-3">
+          {% svg 'short-term-memory/icons8-banana' %}
+        </div>
+        <div class="stm-item col-3">
+          {% svg 'short-term-memory/icons8-scissors' %}
+        </div>
+        <div class="stm-item col-3">
+          {% svg 'short-term-memory/icons8-duck' %}
+        </div>
+        <div class="stm-item col-3">
+          {% svg 'short-term-memory/icons8-guitar' %}
+        </div>
+      </div>
+
+      <div class="row mt-5">
+        <div class="stm-item col-3 offset-1">
+          {% svg 'short-term-memory/icons8-bicycle' %}
+        </div>
+        <div class="stm-item col-3">
+          {% svg 'short-term-memory/icons8-camera' %}
+        </div>
+        <div class="stm-item col-3">
+          {% svg 'short-term-memory/icons8-soccer-ball' %}
+        </div>
+      </div>
+
+      <div class="row mt-5">
+        <div class="stm-item col-3">
+          {% svg 'short-term-memory/icons8-book' %}
+        </div>
+        <div class="stm-item col-3">
+          {% svg 'short-term-memory/icons8-electric-toothbrush' %}
+        </div>
+        <div class="stm-item col-3">
+          {% svg 'short-term-memory/icons8-teapot' %}
+        </div>
+        <div class="stm-item col-3">
+          {% svg 'short-term-memory/icons8-calculator' %}
+        </div>
+      </div>
+
+      <div class="row mt-5">
+        <div class="stm-item col-3 offset-1">
+          {% svg 'short-term-memory/icons8-fork-lift' %}
+        </div>
+        <div class="stm-item col-3">
+          {% svg 'short-term-memory/icons8-socks' %}
+        </div>
+        <div class="stm-item col-3">
+          {% svg 'short-term-memory/icons8-cactus' %}
+        </div>
+      </div>
+    </div>
 
     <div id="answer-input" class="col-12 text-center d-none">
       <div class="row">
