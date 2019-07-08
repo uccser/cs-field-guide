@@ -69,13 +69,15 @@ $(document).ready(function(){
 
     $('#items-missed').html(itemsMissed);
     $('#completion-message').removeClass('d-none');
-    $('#restart-button').removeClass('d-none');
+    $('#restart-div').removeClass('d-none');
   });
 
   $('#restart-button').click(function() {
     $('.intro-content').removeClass('d-none');
     $('#stm-timer b').css('color', '#212529');
     $('#completion-message').addClass('d-none');
-    $('#restart-button').addClass('d-none');
+    $('#restart-div').addClass('d-none');
+    $('#items-missed').addClass('d-none');
+    $('#items-missed').html('');
   });
 });
