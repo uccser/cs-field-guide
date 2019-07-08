@@ -6,14 +6,18 @@
 
 {% block html %}
 <div class="container">
-  <div id="interactive-high-score-boxes">
+  <div>
     <h3 class="text-center">{% trans "Short term memory" %}</h3>
-    <p class="text-center">{% trans "Try to remember as many items as you can in 30 seconds.<br>When you are ready, click the button below to display the items!" %}</p>
-    <div class="row justify-content-center">
+    <p class="text-center intro-content">{% trans "Try to remember as many items as you can in 30 seconds.<br>When you are ready, click the button below to display the items!" %}</p>
+    <div class="row justify-content-center intro-content">
       <button id="ready-button" class="btn btn-success">{% trans "Ready" %}</button>
     </div>
 
-    <div id="items-container">
+    <div id="stm-timer" class="text-center d-none">
+      {% trans 'Time left: <b><span id="time-left">30</span> seconds</b>' %}
+    </div>
+
+    <div id="items-container" class="d-none">
       <div class="row">
         <div class="stm-item col-3">
           {% svg 'short-term-memory/icons8-banana' %}
@@ -70,16 +74,16 @@
     </div>
 
     <div id="answer-input" class="col-12 text-center d-none">
-      <div class="row">
+      <div class="row justify-content-center">
         {% trans "Enter the items you remember below!" %}
       </div>
-      <div class="row">
-        <input id="stm-answer-input" placeholder="Enter answers here..." class="form-control col-4 my-2">
+      <div class="row justify-content-center">
+        <textarea id="stm-answer-input" rows="4" placeholder="Enter answers here..." class="form-control col-4 my-2"></textarea>
       </div>
-      <div class="row">
+      <div class="row justify-content-center">
         <button id="submit-button" class="btn btn-primary mb-2">{% trans "Submit" %}</button>
       </div>
-      <div class="row d-none">
+      <div class="row justify-content-center d-none">
           <p id="completion-message"></p>
         <button id="restart-button" class="btn btn-danger">{% trans "Restart" %}</button>
       </div>
