@@ -5,90 +5,97 @@
 {% load static %}
 
 {% block html %}
-<div class="container">
-  <div>
-    <h3 class="text-center">{% trans "Short term memory" %}</h3>
-    <p class="text-center intro-content">{% trans "Try to remember as many items as you can in 30 seconds.<br>When you are ready, click the button below to display the items!" %}</p>
-    <div class="row justify-content-center intro-content">
-      <button id="ready-button" class="btn btn-success">{% trans "Ready" %}</button>
-    </div>
+  <div class="container">
+    <div>
+      <h3 class="text-center">{% trans "Short term memory" %}</h3>
+      <p class="text-center intro-content">{% trans "Try to remember as many items as you can in 30 seconds.<br>When you are ready, click the button below to display the items!" %}</p>
+      <div class="row justify-content-center intro-content">
+        <button id="ready-button" class="btn btn-success">{% trans "Ready" %}</button>
+      </div>
 
-    <div id="stm-timer" class="text-center d-none">
-      {% trans 'Time left: <b><span id="time-left">30</span> seconds</b>' %}
-    </div>
+      <div id="stm-timer" class="text-center d-none">
+        {% trans 'Time left: <b><span id="time-left">30</span> seconds</b>' %}
+      </div>
 
-    <div id="items-container" class="d-none">
-      <div class="row">
-        <div class="stm-item col-3">
-          {% svg 'short-term-memory/icons8-banana' %}
+      <div id="items-container" class="d-none">
+        <div class="row">
+          <div class="stm-item col-3">
+            {% svg 'short-term-memory/icons8-banana' %}
+          </div>
+          <div class="stm-item col-3">
+            {% svg 'short-term-memory/icons8-scissors' %}
+          </div>
+          <div class="stm-item col-3">
+            {% svg 'short-term-memory/icons8-duck' %}
+          </div>
+          <div class="stm-item col-3">
+            {% svg 'short-term-memory/icons8-guitar' %}
+          </div>
         </div>
-        <div class="stm-item col-3">
-          {% svg 'short-term-memory/icons8-scissors' %}
+
+        <div class="row mt-5">
+          <div class="stm-item col-3 offset-1">
+            {% svg 'short-term-memory/icons8-bicycle' %}
+          </div>
+          <div class="stm-item col-3">
+            {% svg 'short-term-memory/icons8-camera' %}
+          </div>
+          <div class="stm-item col-3">
+            {% svg 'short-term-memory/icons8-soccer-ball' %}
+          </div>
         </div>
-        <div class="stm-item col-3">
-          {% svg 'short-term-memory/icons8-duck' %}
+
+        <div class="row mt-5">
+          <div class="stm-item col-3">
+            {% svg 'short-term-memory/icons8-book' %}
+          </div>
+          <div class="stm-item col-3">
+            {% svg 'short-term-memory/icons8-electric-toothbrush' %}
+          </div>
+          <div class="stm-item col-3">
+            {% svg 'short-term-memory/icons8-teapot' %}
+          </div>
+          <div class="stm-item col-3">
+            {% svg 'short-term-memory/icons8-calculator' %}
+          </div>
         </div>
-        <div class="stm-item col-3">
-          {% svg 'short-term-memory/icons8-guitar' %}
+
+        <div class="row mt-5">
+          <div class="stm-item col-3 offset-1">
+            {% svg 'short-term-memory/icons8-fork-lift' %}
+          </div>
+          <div class="stm-item col-3">
+            {% svg 'short-term-memory/icons8-socks' %}
+          </div>
+          <div class="stm-item col-3">
+            {% svg 'short-term-memory/icons8-cactus' %}
+          </div>
         </div>
       </div>
 
-      <div class="row mt-5">
-        <div class="stm-item col-3 offset-1">
-          {% svg 'short-term-memory/icons8-bicycle' %}
+      <div id="answer-input" class="col-12 text-center d-none">
+        <div class="row justify-content-center">
+          {% trans "Enter the items you remember below! Please separate each item with a comma." %}
         </div>
-        <div class="stm-item col-3">
-          {% svg 'short-term-memory/icons8-camera' %}
+        <div class="row justify-content-center">
+          <textarea id="stm-answer-input" rows="4" placeholder="Enter answers here..." class="form-control col-4 my-2"></textarea>
         </div>
-        <div class="stm-item col-3">
-          {% svg 'short-term-memory/icons8-soccer-ball' %}
-        </div>
-      </div>
-
-      <div class="row mt-5">
-        <div class="stm-item col-3">
-          {% svg 'short-term-memory/icons8-book' %}
-        </div>
-        <div class="stm-item col-3">
-          {% svg 'short-term-memory/icons8-electric-toothbrush' %}
-        </div>
-        <div class="stm-item col-3">
-          {% svg 'short-term-memory/icons8-teapot' %}
-        </div>
-        <div class="stm-item col-3">
-          {% svg 'short-term-memory/icons8-calculator' %}
+        <div class="row justify-content-center">
+          <button id="submit-button" class="btn btn-primary mb-2">{% trans "Submit" %}</button>
         </div>
       </div>
 
-      <div class="row mt-5">
-        <div class="stm-item col-3 offset-1">
-          {% svg 'short-term-memory/icons8-fork-lift' %}
-        </div>
-        <div class="stm-item col-3">
-          {% svg 'short-term-memory/icons8-socks' %}
-        </div>
-        <div class="stm-item col-3">
-          {% svg 'short-term-memory/icons8-cactus' %}
-        </div>
+      <div id="completion-message" class="row justify-content-center d-none">
+        <p>{% trans 'You remembered <span id="num-correct">0</span> out of 14 items! Here\'s what you missed:' %}</p>
       </div>
-    </div>
-
-    <div id="answer-input" class="col-12 text-center d-none">
-      <div class="row justify-content-center">
-        {% trans "Enter the items you remember below!" %}
-      </div>
-      <div class="row justify-content-center">
-        <textarea id="stm-answer-input" rows="4" placeholder="Enter answers here..." class="form-control col-4 my-2"></textarea>
-      </div>
-      <div class="row justify-content-center">
-        <button id="submit-button" class="btn btn-primary mb-2">{% trans "Submit" %}</button>
+      <div>
+        <p id="items-missed" class="text-center"></p>
       </div>
       <div class="row justify-content-center d-none">
-          <p id="completion-message"></p>
-        <button id="restart-button" class="btn btn-danger">{% trans "Restart" %}</button>
+        <button id="restart-button" class="btn btn-danger mt-3">{% trans "Restart" %}</button>
       </div>
+      
     </div>
-  </div>
   </div>
 {% endblock html %}
 
