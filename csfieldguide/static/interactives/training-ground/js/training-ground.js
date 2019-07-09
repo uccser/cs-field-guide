@@ -5,12 +5,24 @@
  */
 
 require('phaser');
+var GAME = require('./game.js');
+
+var game;
+var numSimulations;
+var numSticks;
+var aiSensitivity;
 
 $(document).ready(function() {
   //The canvas doesn't wait for fonts to be loaded, so if we load the game immediately
   //no text is displayed.
   $('#start-button').on('click', function() {
     $('#start-screen').hide();
+    numSimulations = $('#num-simulations-select').val();
+    console.log(numSimulations);
+    numSticks = $('#num-sticks-select').val();
+    console.log(numSticks);
+    aiSensitivity = $('#sensitivity-select').val();
+    console.log(aiSensitivity);
     run();
   });
 });
@@ -21,14 +33,26 @@ $(document).ready(function() {
  * method of ensuring the game font is always loaded first and is therefore visible
  */
 function run() {
-  var game = new Phaser.Game(1000, 600, Phaser.AUTO, 'gameDiv');
+  var gameScene = new GAME.GameScene();
+  var uiScene = new GAME.UIScene();
 
-  // load the game states:
-  game.state.add('load', loadState);
-  game.state.add('menu', menuState);
-  game.state.add('play', playState);
-  game.state.add('howtoplay', instructionState);
+  var config = {
+    type: Phaser.AUTO,
+    width: 1000,
+    height: 600,
+    backgroundColor: '#AAAAAA',
+    parent: 'interactive-training-ground',
+    scene: gameScene
+  }
+  
+  game = new Phaser.Game(config);
+  game.scene.add('UIScene', uiScene, true);
+}
 
-  // start with the load state:
-  game.state.start('load');
+function reset() {
+  //game.destroy() or something
+  $('#num-simulations-select').val("0");
+  $('#num-sticks-select').val("17");
+  $('#sensitivity-select').val("5");
+  $('#start-screen').show();
 }

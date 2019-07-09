@@ -261,3 +261,7 @@ function AI(){
         return num;
     }
 }
+
+module.exports = {
+    AI
+};

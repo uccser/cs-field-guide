@@ -21,6 +21,12 @@ The player and AI (Nathaniel) will alternate picking up between 1 and 3 sticks.
 At the conclusion of the game, Nathaniel will update its neural network based on the moves it made and the result of the game.
 Its neural network can be seen by the player on the right side of the screen.
 
+## Assets
+
+Most game assets were created by the original authors, exclusions include:
+
+- sprites/stick.png: Public domain image from [publicdomainvectors.org](https://publicdomainvectors.org/en/free-clipart/Stick-vector-image/81315.html)
+
 ## Licences
 
 This interactive was created using [Phaser 3](https://www.phaser.io/phaser3).

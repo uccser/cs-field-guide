@@ -37,10 +37,10 @@
             <option value="15">15</option>
             <option value="16">16</option>
             <option selected value="17">17</option>
-            <option value="17">18</option>
-            <option value="17">19</option>
-            <option value="17">20</option>
-            <option value="17">21</option>
+            <option value="18">18</option>
+            <option value="19">19</option>
+            <option value="20">20</option>
+            <option value="21">21</option>
           </select>
           <small id="num-sticks-help" class="form-text text-muted">{% trans 'How many sticks in the pile?' %}</small>
         </div>
@@ -50,7 +50,7 @@
             <option  value="0">0%</option>
             <option selected value="5">5%</option>
             <option value="10">10%</option>
-            <option value="10">15%</option>
+            <option value="15">15%</option>
             <option value="20">20%</option>
             <option value="25">25%</option>
             <option value="30">30%</option>
@@ -62,7 +62,9 @@
       </div>
       <button type="button" class="btn btn-success" id="start-button">{% trans 'START' %}</button>
     </div>
-    <div id="gameDiv"></div>
+    <div id="game-canvas" class="row interactive">
+      <div id="interactive-training-ground" class="col-12"></div>
+    </div>
     <div class="relative" style="font-size: 100%;">
         <table id="excelDataTable" border="1">
         </table>
