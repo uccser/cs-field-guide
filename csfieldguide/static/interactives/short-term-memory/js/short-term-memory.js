@@ -48,7 +48,7 @@ $(document).ready(function(){
     var answer = $('#stm-answer-input').val();
     // Remove whitespace
     answer = answer.replace(/\s/g, '');
-    answerList = answer.split(',');
+    var answerList = answer.split(',');
 
     var correct = 0;
     for (i = 0; i < answerList.length; i++) {
@@ -61,12 +61,12 @@ $(document).ready(function(){
     $('#answer-input').addClass('d-none');
 
     if (correct !== NUM_ITEMS_SHOWN) {
-      answerSet = new Set(answerList);
-      itemsShownSet = new Set(itemsShown);
-      itemsMissedSet = new Set([...itemsShownSet].filter(x => !answerSet.has(x)));
+      var answerSet = new Set(answerList);
+      var itemsShownSet = new Set(itemsShown);
+      var itemsMissedSet = new Set([...itemsShownSet].filter(x => !answerSet.has(x)));
 
       // Lists the items that were missed
-      itemsMissed = '';
+      var itemsMissed = '';
       itemsMissedSet.forEach(function(value) {
         itemsMissed += value + '<br>';
       })
