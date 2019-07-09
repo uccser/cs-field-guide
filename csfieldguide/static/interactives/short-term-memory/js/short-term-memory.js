@@ -15,6 +15,7 @@ var itemsShown = [
   gettext("teapot")
 ]
 
+const NUM_ITEMS_SHOWN = 14;
 
 $(document).ready(function(){
   $('#ready-button').click(function() {
@@ -59,18 +60,23 @@ $(document).ready(function(){
     $('#num-correct').html(correct);
     $('#answer-input').addClass('d-none');
 
-    answerSet = new Set(answerList);
-    itemsShownSet = new Set(itemsShown);
-    itemsMissedSet = new Set([...itemsShownSet].filter(x => !answerSet.has(x)));
+    if (correct !== NUM_ITEMS_SHOWN) {
+      answerSet = new Set(answerList);
+      itemsShownSet = new Set(itemsShown);
+      itemsMissedSet = new Set([...itemsShownSet].filter(x => !answerSet.has(x)));
 
-    // Lists the items that were missed
-    itemsMissed = '';
-    itemsMissedSet.forEach(function(value) {
-      itemsMissed += value + '<br>';  
-    })
+      // Lists the items that were missed
+      itemsMissed = '';
+      itemsMissedSet.forEach(function(value) {
+        itemsMissed += value + '<br>';
+      })
 
-    $('#items-missed').html(itemsMissed);
-    $('#completion-message').removeClass('d-none');
+      $('#items-missed').html(itemsMissed);
+      $('#items-missed-text').removeClass('d-none');
+    } else {
+      $('#items-correct-text').removeClass('d-none');
+    }
+
     $('#restart-div').removeClass('d-none');
   });
 
@@ -79,7 +85,10 @@ $(document).ready(function(){
     $('#stm-timer b').css('color', '#212529');
     $('#completion-message').addClass('d-none');
     $('#restart-div').addClass('d-none');
-    $('#items-missed').addClass('d-none');
+    $('#items-correct-text').addClass('d-none');
+    $('#items-missed-text').addClass('d-none');
     $('#items-missed').html('');
+    $('#time-left').html(30);
+    $('#stm-answer-input').val('');
   });
 });

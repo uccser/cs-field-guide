@@ -75,7 +75,7 @@
 
       <div id="answer-input" class="col-12 text-center d-none">
         <div class="row justify-content-center">
-          {% trans "Enter the items you remember below! Please separate each item with a comma." %}
+          <p>{% trans "Enter the items you remember below! <span id='stm-instructions'>Please separate each item with a comma.</span>" %}</p>
         </div>
         <div class="row justify-content-center">
           <textarea id="stm-answer-input" rows="4" placeholder="Enter answers here..." class="form-control col-4 my-2"></textarea>
@@ -85,10 +85,12 @@
         </div>
       </div>
 
-      <div id="completion-message" class="row justify-content-center d-none">
+      <p id="items-correct-text" class="text-center d-none">{% trans "Congratulations you remembered all of the items!" %}</p>
+      <div id="items-missed-text" class="text-center d-none">
         <p>{% trans 'You remembered <span id="num-correct">0</span> out of 14 items! Here\'s what you missed:' %}</p>
+        <p id="items-missed"></p>
       </div>
-      <p id="items-missed" class="text-center"></p>
+
       <div id="restart-div" class="row justify-content-center d-none">
         <button id="restart-button" class="btn btn-danger mt-3">{% trans "Restart" %}</button>
       </div>
