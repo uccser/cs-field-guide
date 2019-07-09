@@ -13,14 +13,19 @@ var AI = require('./ai.js');
  */
 class GameScene extends Phaser.Scene {
 
-  constructor() {
+  constructor(config) {
     super({ key: 'GameScene'});
+
+    this.initialSimulations = config.numSimulations;
+    this.initialSticks = config.numSticks;
+    this.initialSensitivity = config.aiSensitivity;
   }
 
   /**
    * Initialises all required variables, handlers, and relevant global registry values
    */
   init() {
+    this.ai = new AI.AI();
   }
 
   /**

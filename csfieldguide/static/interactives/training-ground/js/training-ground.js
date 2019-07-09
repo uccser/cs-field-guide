@@ -33,7 +33,13 @@ $(document).ready(function() {
  * method of ensuring the game font is always loaded first and is therefore visible
  */
 function run() {
-  var gameScene = new GAME.GameScene();
+  var gameParameters = {
+    numSimulations: numSimulations,
+    numSticks: numSticks,
+    aiSensitivity: aiSensitivity
+  }
+
+  var gameScene = new GAME.GameScene(gameParameters);
   var uiScene = new GAME.UIScene();
 
   var config = {
