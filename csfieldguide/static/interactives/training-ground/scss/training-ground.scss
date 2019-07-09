@@ -1,8 +1,9 @@
-#start-screen {
+#start-screen, #interactive-training-ground {
   max-width: 1000px;
 }
 
-@media screen and (max-width: 1001px) {
+// 1000px canvas + 15px margins
+@media screen and (max-width: 1030px) {
   #start-screen {
     display: none;
   }
@@ -11,7 +12,7 @@
   }
 }
 
-@media screen and (min-width: 1000px) {
+@media screen and (min-width: 1031px) {
   #ai-warning {
     display: none;
   }
