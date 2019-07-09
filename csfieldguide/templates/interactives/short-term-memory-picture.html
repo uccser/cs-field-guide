@@ -7,7 +7,7 @@
 {% block html %}
   <div class="container">
     <div>
-      <h3 class="text-center">{% trans "Short term memory" %}</h3>
+      <h3 class="text-center">{% trans "Short term memory picture game" %}</h3>
       <p class="text-center intro-content">{% trans "Try to remember as many items as you can in 30 seconds.<br>When you are ready, click the button below to display the items!" %}</p>
       <div class="row justify-content-center intro-content">
         <button id="ready-button" class="btn btn-success">{% trans "Ready" %}</button>
@@ -100,9 +100,9 @@
 {% endblock html %}
 
 {% block css %}
-  <link rel="stylesheet" href="{% static 'interactives/short-term-memory/css/short-term-memory.css' %}">
+  <link rel="stylesheet" href="{% static 'interactives/short-term-memory-picture/css/short-term-memory-picture.css' %}">
 {% endblock css %}
 
 {% block js %}
-  <script type="text/javascript" src="{% static 'interactives/short-term-memory/js/short-term-memory.js' %}"></script>
+  <script type="text/javascript" src="{% static 'interactives/short-term-memory-picture/js/short-term-memory-picture.js' %}"></script>
 {% endblock js %}
