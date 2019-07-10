@@ -1,4 +1,4 @@
-var itemsShown = [
+var items = [
   gettext("banana"),
   gettext("bicycle"),
   gettext("book"),
@@ -15,10 +15,12 @@ var itemsShown = [
   gettext("teapot")
 ]
 
+var itemsShown = [];
 const NUM_ITEMS_SHOWN = 14;
 
 $(document).ready(function(){
   $('#ready-button').click(function() {
+    showItems();
     $('#items-container').removeClass('d-none');
     $('.intro-content').addClass('d-none');
 
@@ -92,3 +94,37 @@ $(document).ready(function(){
     $('#stm-answer-input').val('');
   });
 });
+
+
+function showItems() {
+  shuffle(items);
+  itemsToShow = items.slice(0, NUM_ITEMS_SHOWN);
+  itemsShown = itemsToShow;
+  for (i = 0; i < itemsToShow.length; i++) {
+    itemDiv = $('#item-' + itemsToShow[i]);
+    itemDiv.removeClass('d-none');
+  }
+}
+
+
+function resetItems() {
+  for (i = 0; i < items.length; i++) {
+    itemDiv = $('#item-' + items[i]);
+    itemDiv.addClass('d-none');
+  }
+}
+
+
+/**
+ * Shuffles array in place.
+ * @param {Array} a The array containing the items.
+ */
+function shuffle(a) {
+  var j, x, i;
+  for (i = a.length; i; i--) {
+      j = Math.floor(Math.random() * i);
+      x = a[i - 1];
+      a[i - 1] = a[j];
+      a[j] = x;
+  }
+}

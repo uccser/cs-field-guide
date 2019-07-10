@@ -1,7 +1,7 @@
 {% extends interactive_mode_template %}
 
 {% load i18n %}
-{% load i18n static render_interactive_link svg %}
+{% load i18n svg %}
 {% load static %}
 
 {% block html %}
@@ -19,55 +19,49 @@
 
       <div id="items-container" class="d-none">
         <div class="row">
-          <div class="stm-item col-3">
+          <div id="item-banana" class="stm-item col-3 d-none">
             {% svg 'short-term-memory/icons8-banana' %}
           </div>
-          <div class="stm-item col-3">
+          <div id="item-scissors" class="stm-item col-3 d-none">
             {% svg 'short-term-memory/icons8-scissors' %}
           </div>
-          <div class="stm-item col-3">
+          <div id="item-duck" class="stm-item col-3 d-none">
             {% svg 'short-term-memory/icons8-duck' %}
           </div>
-          <div class="stm-item col-3">
+          <div id="item-guitar" class="stm-item col-3 d-none">
             {% svg 'short-term-memory/icons8-guitar' %}
           </div>
-        </div>
 
-        <div class="row mt-5">
-          <div class="stm-item col-3 offset-1">
+          <div id="item-bicycle" class="stm-item col-3 offset-1 d-none">
             {% svg 'short-term-memory/icons8-bicycle' %}
           </div>
-          <div class="stm-item col-3">
+          <div id="item-camera" class="stm-item col-3 d-none">
             {% svg 'short-term-memory/icons8-camera' %}
           </div>
-          <div class="stm-item col-3">
+          <div id="item-soccerball" class="stm-item col-3 d-none">
             {% svg 'short-term-memory/icons8-soccer-ball' %}
           </div>
-        </div>
 
-        <div class="row mt-5">
-          <div class="stm-item col-3">
+          <div id="item-book" class="stm-item col-3 d-none">
             {% svg 'short-term-memory/icons8-book' %}
           </div>
-          <div class="stm-item col-3">
+          <div id="item-toothbrush" class="stm-item col-3 d-none">
             {% svg 'short-term-memory/icons8-electric-toothbrush' %}
           </div>
-          <div class="stm-item col-3">
+          <div id="item-teapot" class="stm-item col-3 d-none">
             {% svg 'short-term-memory/icons8-teapot' %}
           </div>
-          <div class="stm-item col-3">
+          <div id="item-calculator" class="stm-item col-3 d-none">
             {% svg 'short-term-memory/icons8-calculator' %}
           </div>
-        </div>
 
-        <div class="row mt-5">
-          <div class="stm-item col-3 offset-1">
+          <div id="item-forklift" class="stm-item col-3 offset-1 d-none">
             {% svg 'short-term-memory/icons8-fork-lift' %}
           </div>
-          <div class="stm-item col-3">
+          <div id="item-sock" class="stm-item col-3 d-none">
             {% svg 'short-term-memory/icons8-socks' %}
           </div>
-          <div class="stm-item col-3">
+          <div id="item-cactus" class="stm-item col-3 d-none">
             {% svg 'short-term-memory/icons8-cactus' %}
           </div>
         </div>
