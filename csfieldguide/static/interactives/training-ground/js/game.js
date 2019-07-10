@@ -68,7 +68,8 @@ class UIScene extends Phaser.Scene {
     this.load.spritesheet('button_1', base + 'interactives/training-ground/assets/buttons/button_1.png', {frameWidth: 100, frameHeight: 50});
     this.load.spritesheet('button_2', base + 'interactives/training-ground/assets/buttons/button_2.png', {frameWidth: 100, frameHeight: 50});
     this.load.spritesheet('button_3', base + 'interactives/training-ground/assets/buttons/button_3.png', {frameWidth: 100, frameHeight: 50});
-    this.load.spritesheet('button_quit', base + 'interactives/training-ground/assets/buttons/button_quit.png', {frameWidth: 100, frameHeight: 50});
+    this.load.spritesheet('button_quit', base + 'interactives/training-ground/assets/buttons/button_red.png', {frameWidth: 100, frameHeight: 50});
+    this.load.spritesheet('button_rematchOrSimulate', base + 'interactives/training-ground/assets/buttons/button_blue.png', {frameWidth: 100, frameHeight: 50});
   }
 
   /**
@@ -97,7 +98,7 @@ class UIScene extends Phaser.Scene {
 
     this.button_3 = new PHASER_BUTTONS.PhaserButton(buttonConfig)
 
-    var quitButtonConfig = {
+    var textButtonConfig = {
       'scene': this,
       'key': 'button_quit',
       'up': 1,
@@ -113,7 +114,19 @@ class UIScene extends Phaser.Scene {
       }
     }
 
-    this.button_quit = new PHASER_BUTTONS.PhaserTextButton(quitButtonConfig);
+    this.button_quit = new PHASER_BUTTONS.PhaserTextButton(textButtonConfig);
+
+    textButtonConfig.key = 'button_rematchOrSimulate';
+    textButtonConfig.text = 'Rematch';
+    textButtonConfig.y = 505;
+
+    this.button_rematch = new PHASER_BUTTONS.PhaserTextButton(textButtonConfig);
+
+    textButtonConfig.text = 'Simulate';
+    textButtonConfig.x = 160;
+    textButtonConfig.y = 495;
+
+    this.button_simulate = new PHASER_BUTTONS.PhaserTextButton(textButtonConfig);
   }
 }
 
