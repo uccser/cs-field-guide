@@ -1,12 +1,12 @@
 /**
- * Packet Attack
+ * trAIning ground
  * 
  * Main Gameplay Classes
  */
 
 require('phaser');
 var AI = require('./ai.js');
-var PHASER_BUTTONS = require('./phaser-buttons.js');
+var PHASER_BUTTONS = require('./phaser-button.js');
 
 /**
  * Gameplay element.
@@ -65,9 +65,7 @@ class UIScene extends Phaser.Scene {
    * Loads all required base images
    */
   preload() {
-    this.load.spritesheet('button_1', base + 'interactives/training-ground/assets/buttons/button_1.png', {frameWidth: 100, frameHeight: 50});
-    this.load.spritesheet('button_2', base + 'interactives/training-ground/assets/buttons/button_2.png', {frameWidth: 100, frameHeight: 50});
-    this.load.spritesheet('button_3', base + 'interactives/training-ground/assets/buttons/button_3.png', {frameWidth: 100, frameHeight: 50});
+    this.load.spritesheet('button_number', base + 'interactives/training-ground/assets/buttons/button_green.png', {frameWidth: 100, frameHeight: 50});
     this.load.spritesheet('button_quit', base + 'interactives/training-ground/assets/buttons/button_red.png', {frameWidth: 100, frameHeight: 50});
     this.load.spritesheet('button_rematchOrSimulate', base + 'interactives/training-ground/assets/buttons/button_blue.png', {frameWidth: 100, frameHeight: 50});
   }
@@ -76,37 +74,16 @@ class UIScene extends Phaser.Scene {
    * Builds the UI with all elements
    */
   create() {
+
     var buttonConfig = {
       'scene': this,
-      'key': 'button_1',
+      'key': 'button_number',
       'up': 1,
       'over':0,
       'down':2,
       'x': 55,
-      'y': 495
-    }
-
-    this.button_1 = new PHASER_BUTTONS.PhaserButton(buttonConfig)
-
-    buttonConfig.key = 'button_2';
-    buttonConfig.x = 160;
-    
-    this.button_2 = new PHASER_BUTTONS.PhaserButton(buttonConfig)
-
-    buttonConfig.key = 'button_3';
-    buttonConfig.x = 265;
-
-    this.button_3 = new PHASER_BUTTONS.PhaserButton(buttonConfig)
-
-    var textButtonConfig = {
-      'scene': this,
-      'key': 'button_quit',
-      'up': 1,
-      'over':0,
-      'down':2,
-      'x': 450,
-      'y': 565,
-      'text': "Quit",
+      'y': 495,
+      'text': "1",
       'textConfig': {
         font: '20px Arial',
         fill: '#ffffff',
@@ -114,19 +91,36 @@ class UIScene extends Phaser.Scene {
       }
     }
 
-    this.button_quit = new PHASER_BUTTONS.PhaserTextButton(textButtonConfig);
+    this.button_1 = new PHASER_BUTTONS.PhaserTextButton(buttonConfig)
 
-    textButtonConfig.key = 'button_rematchOrSimulate';
-    textButtonConfig.text = 'Rematch';
-    textButtonConfig.y = 505;
+    buttonConfig.text = "2";
+    buttonConfig.x = 160;
+    
+    this.button_2 = new PHASER_BUTTONS.PhaserTextButton(buttonConfig)
 
-    this.button_rematch = new PHASER_BUTTONS.PhaserTextButton(textButtonConfig);
+    buttonConfig.text = "3";
+    buttonConfig.x = 265;
 
-    textButtonConfig.text = 'Simulate';
-    textButtonConfig.x = 160;
-    textButtonConfig.y = 495;
+    this.button_3 = new PHASER_BUTTONS.PhaserTextButton(buttonConfig)
 
-    this.button_simulate = new PHASER_BUTTONS.PhaserTextButton(textButtonConfig);
+    buttonConfig.key = 'button_quit';
+    buttonConfig.text = "Quit";
+    buttonConfig.x = 450;
+    buttonConfig.y =  565;
+
+    this.button_quit = new PHASER_BUTTONS.PhaserTextButton(buttonConfig);
+
+    buttonConfig.key = 'button_rematchOrSimulate';
+    buttonConfig.text = "Rematch";
+    buttonConfig.y = 505;
+
+    this.button_rematch = new PHASER_BUTTONS.PhaserTextButton(buttonConfig);
+
+    buttonConfig.text = "Simulate";
+    buttonConfig.x = 160;
+    buttonConfig.y = 495;
+
+    this.button_simulate = new PHASER_BUTTONS.PhaserTextButton(buttonConfig);
   }
 }
 

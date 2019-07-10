@@ -29,7 +29,7 @@ class PhaserTextButton extends Phaser.GameObjects.Container {
 
     this.setSize(this.sprite.width, this.sprite.height);
 
-    this.setInteractive();
+    this.setInteractive({ useHandCursor: true });
     this.on('pointerdown', this.onDown, this);
     this.on('pointerup', this.onOver, this);
     this.on('pointerover', this.onOver, this);
@@ -49,42 +49,6 @@ class PhaserTextButton extends Phaser.GameObjects.Container {
   }
 }
 
-/**
- * trAIning ground button with just a spritesheet
- * Based on https://phasergames.com/how-to-make-buttons-in-phaser-3/
- */
-class PhaserButton extends Phaser.GameObjects.Sprite {
-  constructor(config) {
-
-    super(config.scene, 0, 0, config.key, config.up);
-
-    this.x = config.x;
-    this.y = config.y;
-    this.config = config;
-
-    config.scene.add.existing(this);
-
-    this.setInteractive();
-    this.on('pointerdown', this.onDown, this);
-    this.on('pointerup', this.onOver, this);
-    this.on('pointerover', this.onOver, this);
-    this.on('pointerout', this.onUp, this);
-  }
-	
-  onDown() {
-    this.setFrame(this.config.down);
-  }
-
-  onOver() {
-    this.setFrame(this.config.over);
-  }
-
-  onUp() {
-    this.setFrame(this.config.up);
-  }
-}
-
 module.exports = {
-  PhaserTextButton,
-  PhaserButton
+  PhaserTextButton
 }
