@@ -6,7 +6,7 @@
 
 require('phaser');
 var AI = require('./ai.js');
-var PHASER_BUTTONS = require('./phaser-button.js');
+var PHASER_BUTTON = require('./phaser-button.js');
 
 /**
  * Gameplay element.
@@ -91,36 +91,35 @@ class UIScene extends Phaser.Scene {
       }
     }
 
-    this.button_1 = new PHASER_BUTTONS.PhaserTextButton(buttonConfig)
+    this.button_1 = new PHASER_BUTTON.PhaserTextButton(buttonConfig)
 
     buttonConfig.text = "2";
     buttonConfig.x = 160;
     
-    this.button_2 = new PHASER_BUTTONS.PhaserTextButton(buttonConfig)
+    this.button_2 = new PHASER_BUTTON.PhaserTextButton(buttonConfig)
 
     buttonConfig.text = "3";
     buttonConfig.x = 265;
 
-    this.button_3 = new PHASER_BUTTONS.PhaserTextButton(buttonConfig)
+    this.button_3 = new PHASER_BUTTON.PhaserTextButton(buttonConfig)
 
     buttonConfig.key = 'button_quit';
     buttonConfig.text = "Quit";
     buttonConfig.x = 450;
-    buttonConfig.y =  565;
+    buttonConfig.y =  555;
 
-    this.button_quit = new PHASER_BUTTONS.PhaserTextButton(buttonConfig);
+    this.button_quit = new PHASER_BUTTON.PhaserTextButton(buttonConfig);
 
     buttonConfig.key = 'button_rematchOrSimulate';
     buttonConfig.text = "Rematch";
-    buttonConfig.y = 505;
+    buttonConfig.y = 495;
 
-    this.button_rematch = new PHASER_BUTTONS.PhaserTextButton(buttonConfig);
+    this.button_rematch = new PHASER_BUTTON.PhaserTextButton(buttonConfig);
 
     buttonConfig.text = "Simulate";
     buttonConfig.x = 160;
-    buttonConfig.y = 495;
 
-    this.button_simulate = new PHASER_BUTTONS.PhaserTextButton(buttonConfig);
+    this.button_simulate = new PHASER_BUTTON.PhaserTextButton(buttonConfig);
   }
 }
 
