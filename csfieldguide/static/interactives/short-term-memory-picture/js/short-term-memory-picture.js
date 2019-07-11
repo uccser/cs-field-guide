@@ -97,6 +97,7 @@ $(document).ready(function(){
     $('#items-correct-text').addClass('d-none');
     $('#items-missed-text').addClass('d-none');
     $('#items-missed').html('');
+    resetItems();
     $('#time-left').html(30);
     $('#stm-answer-input').val('');
   });
