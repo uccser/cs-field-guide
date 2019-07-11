@@ -1,22 +1,29 @@
 var items = [
+  gettext("backpack"),
   gettext("banana"),
-  gettext("bicycle"),
+  gettext("bike"),
   gettext("book"),
   gettext("cactus"),
   gettext("calculator"),
   gettext("camera"),
+  gettext("chair"),
+  gettext("cup"),
   gettext("duck"),
-  gettext("toothbrush"),
+  gettext("envelope"),
   gettext("forklift"),
+  gettext("glasses"),
   gettext("guitar"),
   gettext("scissors"),
+  gettext("sheep"),
   gettext("soccerball"),
   gettext("sock"),
-  gettext("teapot")
+  gettext("teapot"),
+  gettext("tshirt"),
+  gettext("toothbrush")
 ]
 
 var itemsShown = [];
-const NUM_ITEMS_SHOWN = 14;
+const NUM_ITEMS_SHOWN = 16;
 
 $(document).ready(function(){
   $('#ready-button').click(function() {
