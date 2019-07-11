@@ -61,6 +61,8 @@ $(document).ready(function(){
 
     var correct = 0;
     for (i = 0; i < answerList.length; i++) {
+      // Convert to lower case and save to array
+      answerList[i] = answerList[i].toLowerCase();
       if (itemsShown.includes(answerList[i])) {
         correct += 1;
       }
