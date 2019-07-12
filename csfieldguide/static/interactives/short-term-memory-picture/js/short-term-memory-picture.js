@@ -10,15 +10,15 @@ var items = [
   gettext("cup"),
   gettext("duck"),
   gettext("envelope"),
+  gettext("football"),
   gettext("forklift"),
   gettext("glasses"),
   gettext("guitar"),
   gettext("scissors"),
   gettext("sheep"),
-  gettext("soccerball"),
   gettext("sock"),
   gettext("teapot"),
-  gettext("tshirt"),
+  gettext("t-shirt"),
   gettext("toothbrush")
 ]
 
@@ -54,16 +54,16 @@ $(document).ready(function(){
   });
 
   $('#submit-button').click(function() {
-    var answer = $('#stm-answer-input').val();
-    // Remove whitespace
-    answer = answer.replace(/\s/g, '');
-    var answerList = answer.split(',');
+    var itemsChecked = [];
+    $.each($("input[name='answers']:checked"), function() {            
+      itemsChecked.push($(this).val());
+    });
+
+    console.log(itemsChecked);
 
     var correct = 0;
-    for (i = 0; i < answerList.length; i++) {
-      // Convert to lower case and save to array
-      answerList[i] = answerList[i].toLowerCase();
-      if (itemsShown.includes(answerList[i])) {
+    for (i = 0; i < itemsChecked.length; i++) {
+      if (itemsShown.includes(itemsChecked[i])) {
         correct += 1;
       }
     }
@@ -72,18 +72,28 @@ $(document).ready(function(){
     $('#answer-input').addClass('d-none');
 
     if (correct !== NUM_ITEMS_SHOWN) {
-      var answerSet = new Set(answerList);
+      var answerSet = new Set(itemsChecked);
       var itemsShownSet = new Set(itemsShown);
-      var itemsMissedSet = new Set([...itemsShownSet].filter(x => !answerSet.has(x)));
+      var itemsIncorrect = new Set([...answerSet].filter(x => !itemsShownSet.has(x)));
 
-      // Lists the items that were missed
-      var itemsMissed = '';
-      itemsMissedSet.forEach(function(value) {
-        itemsMissed += value + '<br>';
+      // Show the items that were missed
+      answerSet.forEach(function(value) {
+        itemDiv = $('#item-' + value);
+        itemDiv.addClass('d-none');
       })
 
-      $('#items-missed').html(itemsMissed);
       $('#items-missed-text').removeClass('d-none');
+      $('#items-container').removeClass('d-none');
+
+      if (itemsIncorrect) {
+        itemsIncorrectString = '';
+        // List items the user checked that were never shown
+        itemsIncorrect.forEach(function(value) {
+          itemsIncorrectString += value.charAt(0).toUpperCase() + value.slice(1) + '<br>';
+        });
+        $('#incorrect-items-div').removeClass('d-none');
+        $('#incorrect-items').html(itemsIncorrectString);
+      }
     } else {
       $('#items-correct-text').removeClass('d-none');
     }
@@ -94,11 +104,15 @@ $(document).ready(function(){
   $('#restart-button').click(function() {
     $('.intro-content').removeClass('d-none');
     $('#stm-timer b').css('color', '#212529');
+    $('#answer-input').addClass('d-none');
+    $('input:checkbox').removeAttr('checked');
     $('#completion-message').addClass('d-none');
     $('#restart-div').addClass('d-none');
     $('#items-correct-text').addClass('d-none');
     $('#items-missed-text').addClass('d-none');
     $('#items-missed').html('');
+    $('#incorrect-items-div').addClass('d-none');
+    $('#incorrect-items').html('');
     resetItems();
     $('#time-left').html(30);
     $('#stm-answer-input').val('');
@@ -128,6 +142,7 @@ function resetItems() {
 /**
  * Shuffles array in place.
  * @param {Array} a The array containing the items.
+ * Taken from high-score-boxes.js
  */
 function shuffle(a) {
   var j, x, i;
