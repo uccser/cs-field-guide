@@ -92,6 +92,9 @@ function reset(runHardMode) {
   showStartScreen();
 }
 
+/**
+ * Recursively displays each string in STALL_TEXT for the amount of time also defined in it (ms)
+ */
 function recursiveStall(x) {
   if (x >= STALL_TEXT.length) {
     showSubmitScreen();
