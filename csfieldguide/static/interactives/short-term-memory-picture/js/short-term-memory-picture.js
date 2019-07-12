@@ -59,33 +59,26 @@ $(document).ready(function(){
       itemsChecked.push($(this).val());
     });
 
-    console.log(itemsChecked);
-
     var correct = 0;
+    var incorrect = 0;
     for (i = 0; i < itemsChecked.length; i++) {
       if (itemsShown.includes(itemsChecked[i])) {
         correct += 1;
+      } else {
+        incorrect += 1;
       }
     }
 
     $('#num-correct').html(correct);
     $('#answer-input').addClass('d-none');
-
-    if (correct !== NUM_ITEMS_SHOWN) {
-      var answerSet = new Set(itemsChecked);
+    var answerSet = new Set(itemsChecked);
+    if (correct === NUM_ITEMS_SHOWN) {
       var itemsShownSet = new Set(itemsShown);
       var itemsIncorrect = new Set([...answerSet].filter(x => !itemsShownSet.has(x)));
 
-      // Show the items that were missed
-      answerSet.forEach(function(value) {
-        itemDiv = $('#item-' + value);
-        itemDiv.addClass('d-none');
-      })
+      $('#items-correct-text').removeClass('d-none');
 
-      $('#items-missed-text').removeClass('d-none');
-      $('#items-container').removeClass('d-none');
-
-      if (itemsIncorrect) {
+      if (itemsIncorrect.size > 0) {
         itemsIncorrectString = '';
         // List items the user checked that were never shown
         itemsIncorrect.forEach(function(value) {
@@ -94,6 +87,15 @@ $(document).ready(function(){
         $('#incorrect-items-div').removeClass('d-none');
         $('#incorrect-items').html(itemsIncorrectString);
       }
+    } else if (correct < NUM_ITEMS_SHOWN) {
+      // Show the items that were missed
+      answerSet.forEach(function(value) {
+        itemDiv = $('#item-' + value);
+        itemDiv.addClass('d-none');
+      });
+
+      $('#items-missed-text').removeClass('d-none');
+      $('#items-container').removeClass('d-none');
     } else {
       $('#items-correct-text').removeClass('d-none');
     }
@@ -105,7 +107,7 @@ $(document).ready(function(){
     $('.intro-content').removeClass('d-none');
     $('#stm-timer b').css('color', '#212529');
     $('#answer-input').addClass('d-none');
-    $('input:checkbox').removeAttr('checked');
+    $('input[type="checkbox"]').prop('checked', false);
     $('#completion-message').addClass('d-none');
     $('#restart-div').addClass('d-none');
     $('#items-correct-text').addClass('d-none');
