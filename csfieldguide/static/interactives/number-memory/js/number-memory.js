@@ -39,6 +39,13 @@ $(document).ready(function() {
   $('#reset-hard-button').on('click', function() {
     reset(true);
   });
+    
+  $(document).on('keypress', function(key) {
+    if(key.which == 13 && !$('#submit-button').hasClass('d-none')) {
+      // Enter was pressed, act like submit button was clicked
+      submit();
+    }
+  });
 });
 
 function start() {
@@ -126,6 +133,9 @@ function showSubmitScreen() {
   $('#number-memory-title').removeClass('d-none');
   $('#number-input-form').removeClass('d-none');
   $('#submit-button').removeClass('d-none');
+
+  // Focus on the input
+  $('#number-input').focus();
 }
 
 function showEndScreen() {
