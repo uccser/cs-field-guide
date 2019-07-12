@@ -48,12 +48,19 @@ $(document).ready(function() {
   });
 });
 
+/**
+ * Hides the number to remember and starts the game
+ */
 function start() {
   $('#number-text').html('');
   showStallScreen();
   stall();
 }
 
+/**
+ * If the interactive is in Hard Mode, runs a stalling function to distract the user.
+ * Else it skips that and shows the submit screen
+ */
 function stall() {
   if (!isHardMode) {
     showSubmitScreen();
@@ -62,6 +69,10 @@ function stall() {
   }
 }
 
+/**
+ * Checks the number entered in the input box against the saved value.
+ * Displays a message and reveals either the reset or reset-hard buttons depending on if the user is correct.
+ */
 function submit() {
   showEndScreen();
   if ($('#number-input').val() == generatedNumber) {
@@ -73,6 +84,9 @@ function submit() {
   }
 }
 
+/**
+ * Resets the game to as it was when first loaded. If runHardMode, starts the game in Hard mode.
+ */
 function reset(runHardMode) {
   isHardMode = runHardMode;
   showStartScreen();
@@ -87,6 +101,10 @@ function recursiveStall(x) {
   }
 }
 
+/**
+ * Hides irrrelevant HTML divs, then reveals relevant ones.
+ * Also resets the number input box and sets the title to the remember text.
+ */
 function showStartScreen() {
   $('#number-input').val('');
   $('#number-memory-title').html(TXT_REMEMBER);
@@ -105,6 +123,9 @@ function showStartScreen() {
   $('#start-button').removeClass('d-none');
 }
 
+/**
+ * Hides irrrelevant HTML divs, then reveals relevant ones.
+ */
 function showStallScreen() {
   // Hide
   $('#number-memory-title').addClass('d-none');
@@ -119,6 +140,10 @@ function showStallScreen() {
   $('#middle-text').removeClass('d-none');
 }
 
+/**
+ * Hides irrrelevant HTML divs, then reveals relevant ones.
+ * Also sets the title to the submit text and focuses the input box.
+ */
 function showSubmitScreen() {
   $('#number-memory-title').html(TXT_WHAT_WAS);
 
@@ -138,6 +163,9 @@ function showSubmitScreen() {
   $('#number-input').focus();
 }
 
+/**
+ * Hides irrrelevant HTML divs, then reveals relevant ones.
+ */
 function showEndScreen() {
   // Hide
   $('#number-text-container').addClass('d-none');
