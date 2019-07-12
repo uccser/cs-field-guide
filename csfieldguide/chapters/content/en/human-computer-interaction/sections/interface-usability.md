@@ -107,7 +107,7 @@ Another important length of time to bear in mind is our *short term memory* time
 To remember something for longer, the user needs to rehearse it (repeat it over) or make a note of the information, such as writing it down.
 Try the interactive below and see how many items you can remember without writing anything down!
 
-{interactive slug="short-term-memory-picture" type="whole-page"}
+{interactive slug="picture-memory" type="whole-page"}
 
 If a system takes some time to respond (say, 10 seconds) then chances are the user may have forgotten some detail of what they were going to do with the system.
 For example, if you have a phone number to type in that someone has just told you, and it takes 12 seconds before you can type it, you may forget the number, whereas if you can access the interface within a couple of seconds, you can probably enter the number without much effort.

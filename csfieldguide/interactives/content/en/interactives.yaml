@@ -112,6 +112,8 @@ payment-interface:
   name: Payment Interface
 persona-carousel:
   name: Persona Slideshow
+picture-memory:
+ name: Picture Memory
 pixel-grid:
   name: Pixel Grid
 pixel-viewer:
@@ -144,8 +146,6 @@ searching-algorithms:
   name: Searching Algorithms
 sha2:
   name: SHA2
-short-term-memory-picture:
- name: Short Term Memory Picture Game
 sorting-algorithm-comparison:
   name: Sorting Algorithm Comparison
 sorting-algorithms:
