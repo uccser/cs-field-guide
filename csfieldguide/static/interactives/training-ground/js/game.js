@@ -27,6 +27,7 @@ class GameScene extends Phaser.Scene {
    */
   init() {
     this.ai = new AI.AI();
+    this.sticks = this.add.group();
   }
 
   /**
@@ -42,6 +43,23 @@ class GameScene extends Phaser.Scene {
    * Creates the GameScene, adds the preloaded background element and other assets
    */
   create() {
+    this.createSticks();
+  }
+
+  createSticks() {
+    this.sticks.clear();
+
+    var sticksToAdd = this.initialSticks;
+  
+    for (var y = 0; y < 3; y++) {
+      for (var x = 0; x < 7; x++) {
+        if(sticksToAdd > 0) {
+          this.sticks.create(85 + (x * 60), 110 + (y * 130), 'stick').setScale(0.5);
+          //stick = sticks.create(40 + (x * 60), 50 + (y * 130), 'stick_key', null, 7*x + y +1);
+        }
+        sticksToAdd--
+      }
+    }
   }
 }
 
