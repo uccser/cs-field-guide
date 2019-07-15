@@ -37,6 +37,7 @@ $(document).ready(function(){
     var timerText = $('#time-left');
     var timerFunction = setInterval(countdown, 1000);
   
+    /* Timer for displaying items */
     function countdown() {
       if (timeLeft == 0) {
         clearTimeout(timerFunction);
@@ -53,6 +54,9 @@ $(document).ready(function(){
     }
   });
 
+  /* Checks how many items the user remembered correctly.
+  *  Displays how many items they remembered, what items they forgot and
+  *  what items they thought they saw (but were in fact not shown). */
   $('#submit-button').click(function() {
     var itemsChecked = [];
     $.each($("input[name='answers']:checked"), function() {            
@@ -60,12 +64,9 @@ $(document).ready(function(){
     });
 
     var correct = 0;
-    var incorrect = 0;
     for (i = 0; i < itemsChecked.length; i++) {
       if (itemsShown.includes(itemsChecked[i])) {
         correct += 1;
-      } else {
-        incorrect += 1;
       }
     }
 
@@ -78,6 +79,7 @@ $(document).ready(function(){
 
       $('#items-correct-text').removeClass('d-none');
 
+      // If the user selected items that weren't shown
       if (itemsIncorrect.size > 0) {
         itemsIncorrectString = '';
         // List items the user checked that were never shown
@@ -96,19 +98,17 @@ $(document).ready(function(){
 
       $('#items-missed-text').removeClass('d-none');
       $('#items-container').removeClass('d-none');
-    } else {
-      $('#items-correct-text').removeClass('d-none');
-    }
+    } 
 
     $('#restart-div').removeClass('d-none');
   });
 
+  // Reset interface
   $('#restart-button').click(function() {
     $('.intro-content').removeClass('d-none');
     $('#stm-timer b').css('color', '#212529');
     $('#answer-input').addClass('d-none');
     $('input[type="checkbox"]').prop('checked', false);
-    $('#completion-message').addClass('d-none');
     $('#restart-div').addClass('d-none');
     $('#items-correct-text').addClass('d-none');
     $('#items-missed-text').addClass('d-none');
@@ -121,7 +121,8 @@ $(document).ready(function(){
   });
 });
 
-
+/* Shuffles the items list and displays the 
+*  first 16 items in the list. */
 function showItems() {
   shuffle(items);
   itemsToShow = items.slice(0, NUM_ITEMS_SHOWN);
@@ -132,7 +133,7 @@ function showItems() {
   }
 }
 
-
+/* Hide all items. */
 function resetItems() {
   for (i = 0; i < items.length; i++) {
     itemDiv = $('#item-' + items[i]);
