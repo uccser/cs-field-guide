@@ -46,7 +46,7 @@ function run() {
     type: Phaser.AUTO,
     width: 1000,
     height: 600,
-    backgroundColor: '#AAAAAA',
+    backgroundColor: '#111111',
     parent: 'interactive-training-ground',
     scene: gameScene
   }

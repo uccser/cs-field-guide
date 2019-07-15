@@ -8,6 +8,9 @@ require('phaser');
 var AI = require('./ai.js');
 var PHASER_BUTTON = require('./phaser-button.js');
 
+var TXT_REMAINING = gettext("Remaining sticks:");
+var TXT_PLAYED = gettext("Games played:");
+
 /**
  * Gameplay element.
  * Handles all stick, table and AI processing.
@@ -26,8 +29,16 @@ class GameScene extends Phaser.Scene {
    * Initialises all required variables, handlers, and relevant global registry values
    */
   init() {
-    this.ai = new AI.AI();
+    this.handlers = {
+      'remainingSticks': this.updateRemainingSticks
+    };
+
+    this.registry.events.on('changedata', this.registryUpdate, this);
+
+    this.ai = new AI.AI(this.initialSticks, this.initialSensitivity);
     this.sticks = this.add.group();
+
+    this.registry.set('remainingSticks', this.initialSticks);
   }
 
   /**
@@ -44,9 +55,16 @@ class GameScene extends Phaser.Scene {
    */
   create() {
     this.createSticks();
-    this.removeSticks(3);
-    this.removeSticks(3);
-    this.removeSticks(3);
+  }
+
+  /**
+   * Handler function for a registry update.
+   * If a handler is defined for the given key, apply the set handler for that key.
+   */
+  registryUpdate(parent, key, data) {
+    if (this.handlers[key]) {
+      this.handlers[key](this, data);
+    }
   }
 
   createSticks() {
@@ -58,7 +76,6 @@ class GameScene extends Phaser.Scene {
       for (var x = 0; x < 7; x++) {
         if(sticksToAdd > 0) {
           this.sticks.create(85 + (x * 60), 110 + (y * 130), 'stick').setScale(0.5);
-          //stick = sticks.create(40 + (x * 60), 50 + (y * 130), 'stick_key', null, 7*x + y +1);
         }
         sticksToAdd--
       }
@@ -73,6 +90,11 @@ class GameScene extends Phaser.Scene {
     for(var i=0; i < num; i++) {
       allSticks[0].destroy();
     }
+  }
+
+  updateRemainingSticks(scene) {
+    console.log('updating remaining sticks');
+    scene.removeSticks(scene.sticks.getLength() - scene.registry.get('remainingSticks'));
   }
 }
 
@@ -112,7 +134,7 @@ class UIScene extends Phaser.Scene {
       'up': 1,
       'over':0,
       'down':2,
-      'x': 55,
+      'x': 120,
       'y': 495,
       'text': "1",
       'textConfig': {
@@ -125,31 +147,53 @@ class UIScene extends Phaser.Scene {
     this.button_1 = new PHASER_BUTTON.PhaserTextButton(buttonConfig)
 
     buttonConfig.text = "2";
-    buttonConfig.x = 160;
+    buttonConfig.x = 230;
     
     this.button_2 = new PHASER_BUTTON.PhaserTextButton(buttonConfig)
 
     buttonConfig.text = "3";
-    buttonConfig.x = 265;
+    buttonConfig.x = 340;
 
     this.button_3 = new PHASER_BUTTON.PhaserTextButton(buttonConfig)
 
     buttonConfig.key = 'button_rematchOrSimulate';
     buttonConfig.text = gettext("Simulate");
-    buttonConfig.x = 160;
+    buttonConfig.x = 230;
 
-    this.button_rematch = new PHASER_BUTTON.PhaserTextButton(buttonConfig);
+    this.button_simulate = new PHASER_BUTTON.PhaserTextButton(buttonConfig);
 
     buttonConfig.text = gettext("Rematch");
     buttonConfig.x = 450;
 
-    this.button_simulate = new PHASER_BUTTON.PhaserTextButton(buttonConfig);
+    this.button_rematch = new PHASER_BUTTON.PhaserTextButton(buttonConfig);
 
     buttonConfig.key = 'button_quit';
     buttonConfig.text = gettext("Quit");
     buttonConfig.y =  555;
 
     this.button_quit = new PHASER_BUTTON.PhaserTextButton(buttonConfig);
+
+    var txtConfig = {
+      font: '20px Arial',
+      fill: '#ffffff'
+    }
+
+    this.remainingSticksText = this.add.text(10, 10, TXT_REMAINING, txtConfig);
+    this.gamesPlayed = this.add.text(300, 10, TXT_PLAYED, txtConfig);
+    this.statusText = this.add.text(70, 440, 'Placeholder text.', txtConfig);
+
+    this.disableEndButtons();
+  }
+
+  diableChoiceButtons() {
+    this.button_1.disable();
+    this.button_2.disable();
+    this.button_3.disable();
+  }
+
+  disableEndButtons() {
+    this.button_simulate.disable();
+    this.button_rematch.disable();
   }
 }
 

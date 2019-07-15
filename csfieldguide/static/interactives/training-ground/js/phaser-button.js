@@ -29,7 +29,7 @@ class PhaserTextButton extends Phaser.GameObjects.Container {
 
     this.setSize(this.sprite.width, this.sprite.height);
 
-    this.setInteractive({ useHandCursor: true });
+    this.enable();
     this.on('pointerdown', this.onDown, this);
     this.on('pointerup', this.onOver, this);
     this.on('pointerover', this.onOver, this);
@@ -46,6 +46,17 @@ class PhaserTextButton extends Phaser.GameObjects.Container {
 
   onUp() {
     this.sprite.setFrame(this.config.up);
+  }
+
+  disable() {
+    console.log('disabling');
+    this.disableInteractive();
+    this.setVisible(false);
+  }
+
+  enable() {
+    this.setVisible(true);
+    this.setInteractive({ useHandCursor: true });
   }
 }
 
