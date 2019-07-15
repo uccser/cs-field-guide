@@ -73,22 +73,10 @@ $(document).ready(function(){
     $('#num-correct').html(correct);
     $('#answer-input').addClass('d-none');
     var answerSet = new Set(itemsChecked);
+    var itemsShownSet = new Set(itemsShown);
+    var itemsIncorrect = new Set([...answerSet].filter(x => !itemsShownSet.has(x)));
     if (correct === NUM_ITEMS_SHOWN) {
-      var itemsShownSet = new Set(itemsShown);
-      var itemsIncorrect = new Set([...answerSet].filter(x => !itemsShownSet.has(x)));
-
       $('#items-correct-text').removeClass('d-none');
-
-      // If the user selected items that weren't shown
-      if (itemsIncorrect.size > 0) {
-        itemsIncorrectString = '';
-        // List items the user checked that were never shown
-        itemsIncorrect.forEach(function(value) {
-          itemsIncorrectString += value.charAt(0).toUpperCase() + value.slice(1) + '<br>';
-        });
-        $('#incorrect-items-div').removeClass('d-none');
-        $('#incorrect-items').html(itemsIncorrectString);
-      }
     } else if (correct < NUM_ITEMS_SHOWN) {
       // Show the items that were missed
       answerSet.forEach(function(value) {
@@ -98,7 +86,18 @@ $(document).ready(function(){
 
       $('#items-missed-text').removeClass('d-none');
       $('#items-container').removeClass('d-none');
-    } 
+    }
+
+    // If the user selected items that weren't shown
+    if (itemsIncorrect.size > 0) {
+      itemsIncorrectString = '';
+      // List items the user checked that were never shown
+      itemsIncorrect.forEach(function(value) {
+        itemsIncorrectString += value.charAt(0).toUpperCase() + value.slice(1) + '<br>';
+      });
+      $('#incorrect-items-div').removeClass('d-none');
+      $('#incorrect-items').html(itemsIncorrectString);
+    }
 
     $('#restart-div').removeClass('d-none');
   });
@@ -127,9 +126,10 @@ function showItems() {
   shuffle(items);
   itemsToShow = items.slice(0, NUM_ITEMS_SHOWN);
   itemsShown = itemsToShow;
-  for (i = 0; i < itemsToShow.length; i++) {
+  for (i = 0; i < items.length; i++) {
     itemDiv = $('#item-' + itemsToShow[i]);
     itemDiv.removeClass('d-none');
+    itemDiv.prependTo($('#items-container'));
   }
 }
 
