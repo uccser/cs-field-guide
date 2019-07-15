@@ -44,6 +44,9 @@ class GameScene extends Phaser.Scene {
    */
   create() {
     this.createSticks();
+    this.removeSticks(3);
+    this.removeSticks(3);
+    this.removeSticks(3);
   }
 
   createSticks() {
@@ -59,6 +62,16 @@ class GameScene extends Phaser.Scene {
         }
         sticksToAdd--
       }
+    }
+  }
+
+  removeSticks(num) {
+    var allSticks = this.sticks.getChildren();
+    if (num > allSticks.length) {
+      num = allSticks.length();
+    }
+    for(var i=0; i < num; i++) {
+      allSticks[0].destroy();
     }
   }
 }
