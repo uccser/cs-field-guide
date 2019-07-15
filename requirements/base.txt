@@ -5,7 +5,7 @@
 wheel==0.33.4
 
 # Images
-Pillow==6.0.0
+Pillow==6.1.0
 django-inline-svg==0.1.1
 selenium==3.141.0
 
@@ -26,8 +26,8 @@ cssselect==1.0.3
 PyYAML==5.1.1
 
 # I18n
-django-modeltranslation==0.13.1
+django-modeltranslation==0.13.2
 uniseg==0.7.1
-python-bidi==0.4.0
+python-bidi==0.4.2
 django-bidi-utils==1.0
 django-statici18n==1.8.3
