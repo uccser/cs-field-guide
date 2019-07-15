@@ -38,7 +38,8 @@ class GameScene extends Phaser.Scene {
     this.ai = new AI.AI(this.initialSticks, this.initialSensitivity);
     this.sticks = this.add.group();
 
-    this.registry.set('remainingSticks', this.initialSticks);
+    this.registry.set('remainingSticks', -1);
+    this.registry.set('gamesPlayed', -1);
   }
 
   /**
@@ -53,8 +54,10 @@ class GameScene extends Phaser.Scene {
   /**
    * Creates the GameScene, adds the preloaded background element and other assets
    */
-  create() {
+  lateCreate() {
     this.createSticks();
+    this.registry.set('remainingSticks', this.initialSticks);
+    this.registry.set('gamesPlayed', 0);
   }
 
   /**
@@ -92,9 +95,9 @@ class GameScene extends Phaser.Scene {
     }
   }
 
-  updateRemainingSticks(scene) {
+  updateRemainingSticks(scene, numSticks) {
     console.log('updating remaining sticks');
-    scene.removeSticks(scene.sticks.getLength() - scene.registry.get('remainingSticks'));
+    scene.removeSticks(scene.sticks.getLength() - numSticks);
   }
 }
 
@@ -112,6 +115,12 @@ class UIScene extends Phaser.Scene {
    * Initialises all required variables and handlers
    */
   init() {
+    this.handlers = {
+      'remainingSticks': this.updateRemainingSticks,
+      'gamesPlayed': this.updateGamesPlayed
+    };
+
+    this.registry.events.on('changedata', this.registryUpdate, this);
   }
 
   /**
@@ -179,10 +188,22 @@ class UIScene extends Phaser.Scene {
     }
 
     this.remainingSticksText = this.add.text(10, 10, TXT_REMAINING, txtConfig);
-    this.gamesPlayed = this.add.text(300, 10, TXT_PLAYED, txtConfig);
+    this.gamesPlayedText = this.add.text(300, 10, TXT_PLAYED, txtConfig);
     this.statusText = this.add.text(70, 440, 'Placeholder text.', txtConfig);
 
+    this.scene.get('GameScene').lateCreate()
+
     this.disableEndButtons();
+  }
+
+  /**
+   * Handler function for a registry update.
+   * If a handler is defined for the given key, apply the set handler for that key.
+   */
+  registryUpdate(parent, key, data) {
+    if (this.handlers[key]) {
+      this.handlers[key](this, data);
+    }
   }
 
   diableChoiceButtons() {
@@ -194,6 +215,14 @@ class UIScene extends Phaser.Scene {
   disableEndButtons() {
     this.button_simulate.disable();
     this.button_rematch.disable();
+  }
+
+  updateRemainingSticks(scene, numSticks) {
+    scene.remainingSticksText.setText(TXT_REMAINING + " " + numSticks);
+  }
+
+  updateGamesPlayed(scene, numGames) {
+    scene.gamesPlayedText.setText(TXT_PLAYED + " " + numGames);
   }
 }
 

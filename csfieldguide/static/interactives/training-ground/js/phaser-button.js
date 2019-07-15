@@ -49,7 +49,6 @@ class PhaserTextButton extends Phaser.GameObjects.Container {
   }
 
   disable() {
-    console.log('disabling');
     this.disableInteractive();
     this.setVisible(false);
   }
