@@ -5,12 +5,12 @@ const STALL_TEXT = [
   [1000, gettext("Bumped my head.")],
   [1500, gettext("Got it, now where was that pen?")],
   [300, gettext("Ah ha!")],
-  [500, gettext("*Tap tap tap*")],
-  [800, gettext("Empty. :(")],
+  [500, gettext("*Scribble scribble*")],
+  [800, gettext("It's empty :(")],
   [500, gettext("Hmmm")],
   [2000, gettext("Really need to sort out this room someday...")],
   [600, gettext("There you are.")],
-  [500, gettext("*scribble scribble*")],
+  [500, gettext("*Scribble scribble*")],
   [500, gettext("It works!")]
 ];
 const MIN = 100000;
