@@ -263,6 +263,10 @@ persona-carousel:
   languages:
     en: interactives/persona-carousel.html
   is_interactive: false
+picture-memory:
+  languages:
+    en: interactives/picture-memory.html
+  is_interactive: true
 pixel-grid:
   languages:
     en: interactives/pixel-grid.html

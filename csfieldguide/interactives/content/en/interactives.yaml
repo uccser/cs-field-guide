@@ -114,6 +114,8 @@ payment-interface:
   name: Payment Interface
 persona-carousel:
   name: Persona Slideshow
+picture-memory:
+ name: Picture Memory
 pixel-grid:
   name: Pixel Grid
 pixel-viewer:
