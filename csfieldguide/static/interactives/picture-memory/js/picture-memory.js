@@ -48,11 +48,11 @@ $(document).ready(function(){
         $('#answer-input').addClass('d-flex justify-content-center');
         $('#submit-div').removeClass('d-none');
       } else {
-        timeLeft--;
         if (timeLeft <= 5) {
           $('#stm-timer b').css('color', 'red');
         }
         timerText.html(timeLeft);
+        timeLeft--;
       }
     }
   });
