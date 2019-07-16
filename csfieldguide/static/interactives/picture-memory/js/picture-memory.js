@@ -33,7 +33,7 @@ $(document).ready(function(){
 
     var timerDisplay = $('#stm-timer');
     timerDisplay.removeClass('d-none');
-    var timeLeft = 30;
+    var timeLeft = 29; // 30 is already displayed in html template
     var timerText = $('#time-left');
     var timerFunction = setInterval(countdown, 1000);
   
