@@ -109,6 +109,8 @@ If a system takes some time to respond (say, 10 seconds) then chances are the us
 For example, if you have a phone number to type in that someone has just told you, and it takes 12 seconds before you can type it, you may forget the number, whereas if you can access the interface within a couple of seconds, you can probably enter the number without much effort.
 For this reason, any part of a system that takes more than about 10 seconds to respond forces the user to rehearse or write down key information, which is more tiring.
 
+{interactive slug="number-memory" type="in-page"}
+
 There's some more information about "time limits" for interfaces in [this article by Jakob Nielsen](http://www.nngroup.com/articles/response-times-3-important-limits/).
 
 ## Human spatial memory

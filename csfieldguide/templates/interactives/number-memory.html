@@ -4,8 +4,8 @@
 {% load static %}
 
 {% block html %}
-  <div class="container-fluid text-center my-3">
-    <div id="number-memory-title" class="col-12 number-memory-title"></div>
+  <div class="container-fluid text-center my-3 number-memory">
+    <div id="number-memory-title" class="col-12"></div>
     <div id="number-text-container" class="row justify-content-center mb-3">
       <div id="number-text"></div>
     </div>
@@ -17,13 +17,13 @@
       <button id="start-button" type="button" class="btn btn-success">{% trans 'Start' %}</button>
     </div>
     <div class="col-12">
-      <button id="submit-button" type="button" class="btn btn-primary d-none">{% trans 'Submit' %}</button>
+      <button id="submit-button" type="button" class="btn btn-primary d-none mb-1">{% trans 'Submit' %}</button>
     </div>
     <div class="col-12">
-      <button id="reset-button" type="button" class="btn btn-danger d-none">{% trans 'Restart' %}</button>
+      <button id="reset-button" type="button" class="btn btn-danger d-none mb-1">{% trans 'Restart' %}</button>
     </div>
     <div class="col-12">
-      <button id="reset-hard-button" type="button" class="btn btn-danger d-none">{% trans 'Hard Mode' %}</button>
+      <button id="reset-hard-button" type="button" class="btn btn-danger d-none mb-1">{% trans 'Hard Mode' %}</button>
     </div>
   </div>
 {% endblock html %}
