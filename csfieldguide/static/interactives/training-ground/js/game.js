@@ -52,7 +52,7 @@ class GameScene extends Phaser.Scene {
   }
 
   /**
-   * Creates the GameScene, adds the preloaded background element and other assets
+   * Creates the GameScene, adds the stick assets and other parameters
    */
   lateCreate() {
     this.createSticks();
