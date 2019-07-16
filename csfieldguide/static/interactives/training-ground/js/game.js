@@ -116,7 +116,6 @@ class GameScene extends Phaser.Scene {
   updateWhosTurn(scene, turn) {
     if (turn == TURNS.AI) {
       scene.ai.takeTurn();
-      scene.registry.set('whosTurn', TURNS.PLAYER);
     }
   }
 }
@@ -221,10 +220,16 @@ class UIScene extends Phaser.Scene {
     this.registry.set('whosTurn', TURNS.AI);
   }
 
-  diableChoiceButtons() {
+  disableChoiceButtons() {
     this.button_1.disable();
     this.button_2.disable();
     this.button_3.disable();
+  }
+
+  enableChoiceButtons() {
+    this.button_1.enable();
+    this.button_2.enable();
+    this.button_3.enable();
   }
 
   disableEndButtons() {
@@ -251,18 +256,21 @@ class UIScene extends Phaser.Scene {
   }
 
   updateWhosTurn(scene, turn) {
-    console.log(turn);
     scene.turn = turn;
+    if (scene.turn == TURNS.PLAYER) {
+      scene.enableChoiceButtons();
+    } else if (scene.turn == TURNS.AI) {
+      scene.disableChoiceButtons();
+    }
   }
 
   concludeAiTurn(scene, sticksChosen) {
     console.log('stugf');
-    if (scene.turn == TURNS.PLAYER) {
+    if (scene.turn == TURNS.AI) {
       var format = ngettext("Nathaniel chose 1 stick.", "Nathaniel chose %(num_sticks)s sticks.", sticksChosen);
       var numChosenText = interpolate(format, {'num_sticks': sticksChosen}, true);
       scene.statusText.setText(numChosenText + " " + TXT_TURN);
-      console.log(sticksChosen);
-      console.log(numChosenText);
+      scene.registry.set('whosTurn', TURNS.PLAYER);
     }
   }
 }

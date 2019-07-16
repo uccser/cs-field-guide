@@ -105,6 +105,11 @@ class AI {
     }
   }
 
+  /**
+   * Applies the move the AI chose to make
+   * 
+   * @param {int} num The number of sticks the AI chose to remove
+   */
   applyMove(num) {
     this.moves[this.sticksLeft.toString()] = num;
     this.scene.removeSticks(num);
