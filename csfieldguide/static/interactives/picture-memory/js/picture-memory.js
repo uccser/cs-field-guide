@@ -7,7 +7,7 @@ var items = [
   gettext("calculator"),
   gettext("camera"),
   gettext("chair"),
-  gettext("cup"),
+  gettext("mug"),
   gettext("duck"),
   gettext("envelope"),
   gettext("football"),
@@ -39,11 +39,14 @@ $(document).ready(function(){
   
     /* Timer for displaying items */
     function countdown() {
-      if (timeLeft == 0) {
+      if (timeLeft <= 0) {
         clearTimeout(timerFunction);
         $('#items-container').addClass('d-none');
         timerDisplay.addClass('d-none');
+        $('#answer-instructions').removeClass('d-none');
         $('#answer-input').removeClass('d-none');
+        $('#answer-input').addClass('d-flex justify-content-center');
+        $('#submit-div').removeClass('d-none');
       } else {
         timeLeft--;
         if (timeLeft <= 5) {
@@ -71,7 +74,10 @@ $(document).ready(function(){
     }
 
     $('#num-correct').html(correct);
+    $('#answer-input').removeClass('d-flex justify-content-center');
     $('#answer-input').addClass('d-none');
+    $('#submit-div').addClass('d-none');
+    $('#answer-instructions').addClass('d-none');
     var answerSet = new Set(itemsChecked);
     var itemsShownSet = new Set(itemsShown);
     var itemsIncorrect = new Set([...answerSet].filter(x => !itemsShownSet.has(x)));
@@ -106,7 +112,10 @@ $(document).ready(function(){
   $('#restart-button').click(function() {
     $('.intro-content').removeClass('d-none');
     $('#stm-timer b').css('color', '#212529');
+    $('#answer-input').removeClass('d-flex justify-content-center');
     $('#answer-input').addClass('d-none');
+    $('#submit-div').addClass('d-none');
+    $('#answer-instructions').addClass('d-none');
     $('input[type="checkbox"]').prop('checked', false);
     $('#restart-div').addClass('d-none');
     $('#items-correct-text').addClass('d-none');

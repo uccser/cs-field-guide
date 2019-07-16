@@ -105,7 +105,7 @@ It has English captions, but the most interesting part is what is happening in t
 
 Another important length of time to bear in mind is our *short term memory* time, which is usually a matter of seconds.
 To remember something for longer, the user needs to rehearse it (repeat it over) or make a note of the information, such as writing it down.
-Try the interactive below and see how many items you can remember without writing anything down!
+Try the interactive below and see how many items you can remember without using these techniques!
 
 {interactive slug="picture-memory" type="whole-page"}
 
