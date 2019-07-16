@@ -10,6 +10,13 @@ var PHASER_BUTTON = require('./phaser-button.js');
 
 var TXT_REMAINING = gettext("Remaining sticks:");
 var TXT_PLAYED = gettext("Games played:");
+var TXT_TURN = gettext("Your turn.");
+
+const TURNS = {
+  'NONE': 0,
+  'PLAYER': 1,
+  'AI': 2
+}
 
 /**
  * Gameplay element.
@@ -30,16 +37,21 @@ class GameScene extends Phaser.Scene {
    */
   init() {
     this.handlers = {
-      'remainingSticks': this.updateRemainingSticks
+      'remainingSticks': this.updateRemainingSticks,
+      'whosTurn': this.updateWhosTurn
     };
 
     this.registry.events.on('changedata', this.registryUpdate, this);
 
-    this.ai = new AI.AI(this.initialSticks, this.initialSensitivity);
+    this.ai = new AI.AI(this, this.initialSticks, this.initialSensitivity);
+    this.ai.init();
     this.sticks = this.add.group();
 
+    // Set initial registry to impossible values, so assigning the start values triggers a registry change
     this.registry.set('remainingSticks', -1);
     this.registry.set('gamesPlayed', -1);
+    this.registry.set('sticksChosen', -1);
+    this.registry.set('whosTurn', TURNS.NONE);
   }
 
   /**
@@ -52,22 +64,13 @@ class GameScene extends Phaser.Scene {
   }
 
   /**
-   * Creates the GameScene, adds the stick assets and other parameters
+   * Creates the GameScene, adds the stick assets and other parameters.
+   * Is called after the UIScene loads important data
    */
   lateCreate() {
     this.createSticks();
     this.registry.set('remainingSticks', this.initialSticks);
     this.registry.set('gamesPlayed', 0);
-  }
-
-  /**
-   * Handler function for a registry update.
-   * If a handler is defined for the given key, apply the set handler for that key.
-   */
-  registryUpdate(parent, key, data) {
-    if (this.handlers[key]) {
-      this.handlers[key](this, data);
-    }
   }
 
   createSticks() {
@@ -95,9 +98,26 @@ class GameScene extends Phaser.Scene {
     }
   }
 
+  /**
+   * Handler function for a registry update.
+   * If a handler is defined for the given key, apply the set handler for that key.
+   */
+  registryUpdate(parent, key, data) {
+    if (this.handlers[key]) {
+      this.handlers[key](this, data);
+    }
+  }
+
   updateRemainingSticks(scene, numSticks) {
     console.log('updating remaining sticks');
     scene.removeSticks(scene.sticks.getLength() - numSticks);
+  }
+
+  updateWhosTurn(scene, turn) {
+    if (turn == TURNS.AI) {
+      scene.ai.takeTurn();
+      scene.registry.set('whosTurn', TURNS.PLAYER);
+    }
   }
 }
 
@@ -117,7 +137,9 @@ class UIScene extends Phaser.Scene {
   init() {
     this.handlers = {
       'remainingSticks': this.updateRemainingSticks,
-      'gamesPlayed': this.updateGamesPlayed
+      'gamesPlayed': this.updateGamesPlayed,
+      'sticksChosen': this.concludeAiTurn,
+      'whosTurn': this.updateWhosTurn
     };
 
     this.registry.events.on('changedata', this.registryUpdate, this);
@@ -136,6 +158,18 @@ class UIScene extends Phaser.Scene {
    * Builds the UI with all elements
    */
   create() {
+
+    var txtConfig = {
+      font: '20px Arial',
+      fill: '#ffffff'
+    }
+
+    this.remainingSticksText = this.add.text(10, 10, TXT_REMAINING, txtConfig);
+    this.gamesPlayedText = this.add.text(300, 10, TXT_PLAYED, txtConfig);
+    this.statusText = this.add.text(70, 440, 'Placeholder text.', txtConfig);
+    this.turn = TURNS.NONE;
+
+    this.scene.get('GameScene').lateCreate()
 
     var buttonConfig = {
       'scene': this,
@@ -182,28 +216,9 @@ class UIScene extends Phaser.Scene {
 
     this.button_quit = new PHASER_BUTTON.PhaserTextButton(buttonConfig);
 
-    var txtConfig = {
-      font: '20px Arial',
-      fill: '#ffffff'
-    }
-
-    this.remainingSticksText = this.add.text(10, 10, TXT_REMAINING, txtConfig);
-    this.gamesPlayedText = this.add.text(300, 10, TXT_PLAYED, txtConfig);
-    this.statusText = this.add.text(70, 440, 'Placeholder text.', txtConfig);
-
-    this.scene.get('GameScene').lateCreate()
-
     this.disableEndButtons();
-  }
 
-  /**
-   * Handler function for a registry update.
-   * If a handler is defined for the given key, apply the set handler for that key.
-   */
-  registryUpdate(parent, key, data) {
-    if (this.handlers[key]) {
-      this.handlers[key](this, data);
-    }
+    this.registry.set('whosTurn', TURNS.AI);
   }
 
   diableChoiceButtons() {
@@ -217,12 +232,38 @@ class UIScene extends Phaser.Scene {
     this.button_rematch.disable();
   }
 
+  /**
+   * Handler function for a registry update.
+   * If a handler is defined for the given key, apply the set handler for that key.
+   */
+  registryUpdate(parent, key, data) {
+    if (this.handlers[key]) {
+      this.handlers[key](this, data);
+    }
+  }
+
   updateRemainingSticks(scene, numSticks) {
     scene.remainingSticksText.setText(TXT_REMAINING + " " + numSticks);
   }
 
   updateGamesPlayed(scene, numGames) {
     scene.gamesPlayedText.setText(TXT_PLAYED + " " + numGames);
+  }
+
+  updateWhosTurn(scene, turn) {
+    console.log(turn);
+    scene.turn = turn;
+  }
+
+  concludeAiTurn(scene, sticksChosen) {
+    console.log('stugf');
+    if (scene.turn == TURNS.PLAYER) {
+      var format = ngettext("Nathaniel chose 1 stick.", "Nathaniel chose %(num_sticks)s sticks.", sticksChosen);
+      var numChosenText = interpolate(format, {'num_sticks': sticksChosen}, true);
+      scene.statusText.setText(numChosenText + " " + TXT_TURN);
+      console.log(sticksChosen);
+      console.log(numChosenText);
+    }
   }
 }
 
