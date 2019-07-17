@@ -11,6 +11,8 @@ var PHASER_BUTTON = require('./phaser-button.js');
 var TXT_REMAINING = gettext("Remaining sticks:");
 var TXT_PLAYED = gettext("Games played:");
 var TXT_TURN = gettext("Your turn.");
+var TXT_LOADING = gettext("Loading...");
+var TXT_WAIT = gettext("Nathaniel is thinking.");
 
 const TURNS = {
   'NONE': 0,
@@ -91,9 +93,9 @@ class GameScene extends Phaser.Scene {
   removeSticks(num) {
     var allSticks = this.sticks.getChildren();
     if (num > allSticks.length) {
-      num = allSticks.length();
+      num = allSticks.length;
     }
-    for(var i=0; i < num; i++) {
+    for (var i=0; i < num; i++) {
       allSticks[0].destroy();
     }
   }
@@ -142,6 +144,8 @@ class UIScene extends Phaser.Scene {
     };
 
     this.registry.events.on('changedata', this.registryUpdate, this);
+
+    this.numSticks = 0;
   }
 
   /**
@@ -165,7 +169,7 @@ class UIScene extends Phaser.Scene {
 
     this.remainingSticksText = this.add.text(10, 10, TXT_REMAINING, txtConfig);
     this.gamesPlayedText = this.add.text(300, 10, TXT_PLAYED, txtConfig);
-    this.statusText = this.add.text(70, 440, 'Placeholder text.', txtConfig);
+    this.statusText = this.add.text(70, 440, TXT_LOADING, txtConfig);
     this.turn = TURNS.NONE;
 
     this.scene.get('GameScene').lateCreate()
@@ -211,11 +215,20 @@ class UIScene extends Phaser.Scene {
 
     buttonConfig.key = 'button_quit';
     buttonConfig.text = gettext("Quit");
-    buttonConfig.y =  555;
+    buttonConfig.y = 555;
 
     this.button_quit = new PHASER_BUTTON.PhaserTextButton(buttonConfig);
 
+    this.disableChoiceButtons();
     this.disableEndButtons();
+
+    this.button_1.on('pointerdown', this.choose1);
+    this.button_2.on('pointerdown', this.choose2);
+    this.button_3.on('pointerdown', this.choose3);
+
+    this.button_quit.on('pointerdown', this.forceQuit);
+    this.button_rematch.on('pointerdown', this.rematch);
+    this.button_simulate.on('pointerdown', this.simulate);
 
     this.registry.set('whosTurn', TURNS.AI);
   }
@@ -237,6 +250,35 @@ class UIScene extends Phaser.Scene {
     this.button_rematch.disable();
   }
 
+  choose1() {
+    this.scene.choose(1);
+  }
+
+  choose2() {
+    this.scene.choose(2);
+  }
+
+  choose3() {
+    this.scene.choose(3);
+  }
+
+  forceQuit() {
+    
+  }
+
+  rematch() {
+    
+  }
+
+  simulate() {
+    
+  }
+
+  choose(x) {
+    this.registry.set('remainingSticks', this.numSticks - x);
+    this.registry.set('whosTurn', TURNS.AI);
+  }
+
   /**
    * Handler function for a registry update.
    * If a handler is defined for the given key, apply the set handler for that key.
@@ -247,8 +289,9 @@ class UIScene extends Phaser.Scene {
     }
   }
 
-  updateRemainingSticks(scene, numSticks) {
-    scene.remainingSticksText.setText(TXT_REMAINING + " " + numSticks);
+  updateRemainingSticks(scene, num) {
+    scene.numSticks = num;
+    scene.remainingSticksText.setText(TXT_REMAINING + " " + scene.numSticks);
   }
 
   updateGamesPlayed(scene, numGames) {
@@ -261,16 +304,17 @@ class UIScene extends Phaser.Scene {
       scene.enableChoiceButtons();
     } else if (scene.turn == TURNS.AI) {
       scene.disableChoiceButtons();
+      scene.statusText.setText(TXT_WAIT);
     }
   }
 
   concludeAiTurn(scene, sticksChosen) {
-    console.log('stugf');
     if (scene.turn == TURNS.AI) {
       var format = ngettext("Nathaniel chose 1 stick.", "Nathaniel chose %(num_sticks)s sticks.", sticksChosen);
       var numChosenText = interpolate(format, {'num_sticks': sticksChosen}, true);
       scene.statusText.setText(numChosenText + " " + TXT_TURN);
       scene.registry.set('whosTurn', TURNS.PLAYER);
+      scene.registry.set('remainingSticks', scene.numSticks - sticksChosen);
     }
   }
 }

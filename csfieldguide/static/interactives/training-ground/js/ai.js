@@ -112,7 +112,6 @@ class AI {
    */
   applyMove(num) {
     this.moves[this.sticksLeft.toString()] = num;
-    this.scene.removeSticks(num);
     this.scene.registry.set('sticksChosen', num);
   }
 
