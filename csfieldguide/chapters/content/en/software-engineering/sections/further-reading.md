@@ -1,7 +1,5 @@
 # Further reading
 
-## Useful links
-
 - [Wikipedia &ndash; Software engineering](https://en.wikipedia.org/wiki/Software_engineering)
 - [CS4FN &ndash; Software engineering](http://www.cs4fn.org/fundamentals/softwareeng.php)
 - [Teach ICT &ndash; Systems Life Cycle](http://www.teach-ict.com/as_a2_ict_new/ocr/A2_G063/331_systems_cycle/slc_stages/home_slc.html)
