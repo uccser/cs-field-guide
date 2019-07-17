@@ -1,5 +1,11 @@
 # Substitution ciphers
 
+A substitution cipher takes each character (sometimes groups of characters) in a message and replaces it with a different character according to fixed rules.
+Every occurrence of one character will be *substituted* with the same replacement character.
+
+An encrypted message can then be decrypted with another substitution cipher, this time set to substitute each character with the one that it originally replaced.
+It is a very simple system which, as we'll find out, makes it a very insecure method of encryption!
+
 {panel type="teacher-note"}
 
 # Starting with a very insecure cipher!
@@ -487,11 +493,11 @@ A can be substituted for any of the 26 letters in the alphabet, B can then be su
 
 This gives us 26 possibilities for A times 25 possibilities for B times 24 possibilities for C, all the way down to 2 possibilities for Y and 1 possibility for Z.
 
-``\[
+\[
 26 \times 25 \times 24 \times 23 \times 22 \times 21 \times 20 \times 19 \times 18 \times 17 \times\\
 16 \times 15 \times 14 \times 13 \times 12 \times 11 \times 10 \times 9 \times 8 \times 7 \times 6 \times\\
 5 \times 4 \times 3 \times 2 \times 1 = 26!
-\]``
+\]
 
 Representing each of these possibilities requires around 88 bits, making the cipher’s key size around 88 bits, which is below modern standards, although still not too bad!
 

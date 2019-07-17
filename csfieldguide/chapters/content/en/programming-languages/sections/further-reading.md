@@ -1,7 +1,5 @@
 # Further reading
 
-## Useful links
-
 - The [TeachICT lesson on programming languages](http://www.teach-ict.com/gcse_computing/ocr/216_programming/programming_languages/miniweb/index.php) covers many of the topics in this chapter
 - CS Online has a [quick overview of this topic](http://courses.cs.vt.edu/~csonline/ProgrammingLanguages/Lessons/Introduction/index.html)
 - Wikipedia entries on [programming language](https://en.wikipedia.org/wiki/Programming_language), [high level language](https://en.wikipedia.org/wiki/High-level_programming_language), and [low level language](https://en.wikipedia.org/wiki/Low-level_programming_language)
