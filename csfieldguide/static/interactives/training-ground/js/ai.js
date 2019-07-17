@@ -93,7 +93,7 @@ class AI {
 
     console.log('chose ' + num + ' sticks w sticksLeft = ' + this.sticksLeft);
     if (!this.isSimulation) {
-      // Create time lag if this is againt a real player
+      // Create time lag if this is against a real player
       var lag = 1500;
       var ai = this;
       setTimeout(function() {

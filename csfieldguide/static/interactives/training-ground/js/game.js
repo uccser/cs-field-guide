@@ -14,10 +14,18 @@ var TXT_TURN = gettext("Your turn.");
 var TXT_LOADING = gettext("Loading...");
 var TXT_WAIT = gettext("Nathaniel is thinking.");
 
+const AI_PLAYER = 'ai';
+const PLAYER = 'player';
+
 const TURNS = {
   'NONE': 0,
   'PLAYER': 1,
   'AI': 2
+}
+
+const WINNER = {
+  'ai': gettext("Nathaniel wins"),
+  'player': gettext("You win!")
 }
 
 /**
@@ -54,6 +62,11 @@ class GameScene extends Phaser.Scene {
     this.registry.set('gamesPlayed', -1);
     this.registry.set('sticksChosen', -1);
     this.registry.set('whosTurn', TURNS.NONE);
+
+    this.gamelog = []; // List of [player, chosenSticks, remaining]
+    this.lastGamelog = [PLAYER, 0, this.initialSticks];
+    this.gameOver = false;
+    this.isSimulation = false;
   }
 
   /**
@@ -73,6 +86,16 @@ class GameScene extends Phaser.Scene {
     this.createSticks();
     this.registry.set('remainingSticks', this.initialSticks);
     this.registry.set('gamesPlayed', 0);
+  }
+
+  update() {
+    if (!this.gameOver && !this.isSimulation) {
+      if (this.lastGamelog[2] <= 0) {
+        this.gameOver = true;
+        this.registry.set('whosTurn', TURNS.NONE);
+        this.scene.get('UIScene').statusText.setText(WINNER[this.lastGamelog[0]]);
+      }
+    }
   }
 
   createSticks() {
@@ -98,6 +121,12 @@ class GameScene extends Phaser.Scene {
     for (var i=0; i < num; i++) {
       allSticks[0].destroy();
     }
+  }
+
+  updateGamelog(player, chosen, remaining) {
+    var log = [player, chosen, remaining];
+    this.gamelog.push(log);
+    this.lastGamelog = log;
   }
 
   /**
@@ -250,6 +279,11 @@ class UIScene extends Phaser.Scene {
     this.button_rematch.disable();
   }
 
+  enableEndButtons() {
+    this.button_simulate.enable();
+    this.button_rematch.enable();
+  }
+
   choose1() {
     this.scene.choose(1);
   }
@@ -275,7 +309,9 @@ class UIScene extends Phaser.Scene {
   }
 
   choose(x) {
-    this.registry.set('remainingSticks', this.numSticks - x);
+    var remainingSticks = this.numSticks - x;
+    this.registry.set('remainingSticks', remainingSticks);
+    this.scene.get('GameScene').updateGamelog(PLAYER, x, remainingSticks);
     this.registry.set('whosTurn', TURNS.AI);
   }
 
@@ -305,6 +341,9 @@ class UIScene extends Phaser.Scene {
     } else if (scene.turn == TURNS.AI) {
       scene.disableChoiceButtons();
       scene.statusText.setText(TXT_WAIT);
+    } else {
+      scene.disableChoiceButtons();
+      scene.enableEndButtons();
     }
   }
 
@@ -313,8 +352,10 @@ class UIScene extends Phaser.Scene {
       var format = ngettext("Nathaniel chose 1 stick.", "Nathaniel chose %(num_sticks)s sticks.", sticksChosen);
       var numChosenText = interpolate(format, {'num_sticks': sticksChosen}, true);
       scene.statusText.setText(numChosenText + " " + TXT_TURN);
+      var remainingSticks = scene.numSticks - sticksChosen;
+      scene.registry.set('remainingSticks', remainingSticks);
+      scene.scene.get('GameScene').updateGamelog(AI_PLAYER, sticksChosen, remainingSticks);
       scene.registry.set('whosTurn', TURNS.PLAYER);
-      scene.registry.set('remainingSticks', scene.numSticks - sticksChosen);
     }
   }
 }
