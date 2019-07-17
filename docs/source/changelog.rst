@@ -17,6 +17,23 @@ All notable changes to this project will be documented in this file.
 
 We have listed major changes for each release below.
 
+3.0.2
+==============================================================================
+
+- **Release date:** 18th July 2019
+- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/3.0.2>`__
+
+**Changelog:**
+
+- Add interactive to demonstrate limitations of short term memory.  `#144 <https://github.com/uccser/cs-field-guide/issues/144>`__
+- Add second short term memory interactive. `#1090 <https://github.com/uccser/cs-field-guide/pull/1090>`__
+- Update about page and introduction chapter. `#1082 <https://github.com/uccser/cs-field-guide/issues/1082>`__
+- Improve consistency in chapter section beginnings. `#1065 <https://github.com/uccser/cs-field-guide/issues/1065>`__
+- Align and resize homepage logos. `#1050 <https://github.com/uccser/cs-field-guide/issues/1050>`__
+- Center homepage icons on Firefox mobile. `#1066 <https://github.com/uccser/cs-field-guide/issues/1066>`__
+- Add link to Vox video on how snapchat filters work in the computer vision chapter. `#367 <https://github.com/uccser/cs-field-guide/issues/367>`__
+- Reduce length of search bar on mobile. `#1080 <https://github.com/uccser/cs-field-guide/pull/1080>`__
+
 3.0.1
 ==============================================================================
 
@@ -151,7 +168,7 @@ We have listed major changes for each release below.
 
 **Changelog:**
 
-- Add Bin Packing interactice. `#490 <https://github.com/uccser/cs-field-guide/pull/490>`__
+- Add Bin Packing interactive. `#490 <https://github.com/uccser/cs-field-guide/pull/490>`__
 - Correct Two's Complement text. `#503 <https://github.com/uccser/cs-field-guide/issues/503>`__
 - Remove contributor names from changelogs.
 - Update JPEG interactive. `#488 <https://github.com/uccser/cs-field-guide/pull/488>`__
