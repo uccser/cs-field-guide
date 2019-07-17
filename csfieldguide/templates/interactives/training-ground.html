@@ -4,7 +4,7 @@
 {% load static %}
 
 {% block html %}
-  <div class="my-3 container-fluid text-center">
+  <div class="my-3 container text-center">
     <div class="row" id="ai-warning">
       {% trans 'Sorry, this interactive is only available on screens larger than TODOpx<br>If you are using a tablet, this may be achieved by holding it in landscape.' %}
     </div>
@@ -61,11 +61,9 @@
       </div>
       <button type="button" class="btn btn-success" id="start-button">{% trans 'START' %}</button>
     </div>
-    <div id="game-canvas" class="row interactive">
+    <div id="game-canvas" class="row interactive d-none">
       <div id="interactive-training-ground" class="col-12"></div>
-      <div class="relative" style="font-size: 100%;">
-        <table id="dataTable" border="1"> </table>
-      </div>
+      <table id="data-table" border="1"> </table>
     </div>
   </div>
 {% endblock html %}

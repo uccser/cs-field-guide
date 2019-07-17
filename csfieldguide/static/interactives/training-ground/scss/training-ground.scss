@@ -2,6 +2,24 @@
   max-width: 1000px;
 }
 
+#game-canvas {
+  position: relative;
+  background-color: #111111;
+}
+
+#data-table {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  color: #ffffff;
+  background-color: #111111;
+  z-index: 1000;
+  td, th {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+
 // 1000px canvas + 15px margins
 @media screen and (max-width: 1030px) {
   #start-screen {

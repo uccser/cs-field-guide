@@ -7,6 +7,7 @@
 require('phaser');
 var AI = require('./ai.js');
 var PHASER_BUTTON = require('./phaser-button.js');
+var HTML_TABLE = require('./html-table.js');
 
 var TXT_REMAINING = gettext("Remaining sticks:");
 var TXT_PLAYED = gettext("Games played:");
@@ -55,6 +56,8 @@ class GameScene extends Phaser.Scene {
 
     this.ai = new AI.AI(this, this.initialSticks, this.initialSensitivity);
     this.ai.init();
+    this.table = new HTML_TABLE.HtmlTable($('#data-table'), this.initialSticks);
+    this.table.createTable();
     this.sticks = this.add.group();
 
     // Set initial registry to impossible values, so assigning the start values triggers a registry change

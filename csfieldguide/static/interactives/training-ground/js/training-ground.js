@@ -39,6 +39,8 @@ function run() {
     aiSensitivity: aiSensitivity
   }
 
+  $('#game-canvas').removeClass('d-none');
+
   var gameScene = new GAME.GameScene(gameParameters);
   var uiScene = new GAME.UIScene();
 
