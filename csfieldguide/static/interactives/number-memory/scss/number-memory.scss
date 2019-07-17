@@ -1,0 +1,29 @@
+.number-memory {
+  align-self: center;
+}
+
+#number-memory-title {
+  font-size: 24pt;
+}
+
+#number-text {
+  width: 12rem;
+  border-radius: 10px;
+  color: #FFFFFF;
+  background-color: #444444;
+  font-family: monospace;
+  font-size: 20pt;
+  user-select: none;
+}
+
+#middle-text {
+  font-size: 14pt;
+}
+
+.red {
+  color: #dc3545;
+}
+
+.green {
+  color: #28a745;
+}

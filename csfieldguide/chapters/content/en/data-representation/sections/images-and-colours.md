@@ -1,7 +1,5 @@
 # Images and Colours
 
-## How do computers display colours?
-
 In school or art class you may have mixed different colours of paint or dye together in order to make new colours.
 In painting it's common to use red, yellow and blue as three "primary" colours that can be mixed to produce lots more colours.
 Mixing red and blue give purple, red and yellow give orange, and so on.
