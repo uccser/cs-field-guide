@@ -117,7 +117,6 @@ For this reason, any part of a system that takes more than about 10 seconds to r
 
 There's some more information about "time limits" for interfaces in [this article by Jakob Nielsen](http://www.nngroup.com/articles/response-times-3-important-limits/).
 
-
 ## Human spatial memory
 
 Another important usability consideration is *spatial memory* – our ability to remember where things are located (such as where a button or icon is).
