@@ -1,5 +1,5 @@
 
-var TXT_REMAINING = gettext("Sticks remaining:");
+var TXT_REMAINING = gettext("Sticks<br>remaining:");
 var TXT_CHANCE = gettext("Chance to pick (%):");
 var TXT_STICKS = {
   '1': gettext("1 stick"),
@@ -8,12 +8,12 @@ var TXT_STICKS = {
 }
 
 class HtmlTable {
-  constructor(parentDiv, size) {
+  constructor(parentDiv) {
     this.$parent = parentDiv;
-    this.rows = size;
   }
 
-  createTable() {
+  createTable(size) {
+    this.rows = size;
     var baseTable = '<table>\n';
     baseTable +=    '  <tr>\n'
               +     '    <th rowspan="2">' + TXT_REMAINING + '</th>\n'
@@ -27,9 +27,9 @@ class HtmlTable {
     for (var i=this.rows; i > 0; i--) {
       baseTable +=  '  <tr id="row-' + i + '">\n'
                 +   '    <td id="' + i + '-remaining">' + i + '</td>\n'
-                +   '    <td id="' + i + '-1-sticks">'  + 0 + '</td>\n'
-                +   '    <td id="' + i + '-2-sticks">'  + 0 + '</td>\n'
-                +   '    <td id="' + i + '-3-sticks">'  + 0 + '</td>\n'
+                +   '    <td id="' + i + '-1-sticks">N/A</td>\n'
+                +   '    <td id="' + i + '-2-sticks">N/A</td>\n'
+                +   '    <td id="' + i + '-3-sticks">N/A</td>\n'
                 +   '  </tr>\n';
     }
     baseTable +=    '</table>\n';

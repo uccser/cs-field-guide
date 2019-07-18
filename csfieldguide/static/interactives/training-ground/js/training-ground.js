@@ -4,63 +4,63 @@
  * Creates and executes the game
  */
 
-require('phaser');
-var GAME = require('./game.js');
+var TABLE = require('./html-table.js');
+var IMG_GRID = require('./image-grid.js');
+var AI = require('./ai.js');
 
-var game;
 var numSimulations;
 var numSticks;
 var aiSensitivity;
+var $dataTable;
+var networkTable;
+var sticksGrid;
+var $sticksArea;
+var ai;
+
+const stickPath = base + 'interactives/training-ground/assets/sprites/stick.png';
+
 
 $(document).ready(function() {
-  //The canvas doesn't wait for fonts to be loaded, so if we load the game immediately
-  //no text is displayed.
+  reset();
+  refresh();
   $('#start-button').on('click', function() {
-    $('#start-screen').hide();
-    numSimulations = $('#num-simulations-select').val();
-    console.log(numSimulations);
-    numSticks = $('#num-sticks-select').val();
-    console.log(numSticks);
-    aiSensitivity = $('#sensitivity-select').val();
-    console.log(aiSensitivity);
     run();
   });
 });
 
 /**
  * Builds and executes the game.
- * No assets are loaded until the user presses start, but this is the simplest
- * method of ensuring the game font is always loaded first and is therefore visible
  */
 function run() {
-  var gameParameters = {
-    numSimulations: numSimulations,
-    numSticks: numSticks,
-    aiSensitivity: aiSensitivity
-  }
+  $('#game-parameters').addClass('d-none');
+  refresh();
+  ai = new AI.AI(numSticks, aiSensitivity);
+}
 
-  $('#game-canvas').removeClass('d-none');
+/**
+ * Recalculates the number of sticks to display and other initial parameters
+ */
+function refresh() {
+  getParameters();
+  networkTable.createTable(numSticks);
+  sticksGrid.createGrid(numSticks);
+}
 
-  var gameScene = new GAME.GameScene(gameParameters);
-  var uiScene = new GAME.UIScene();
-
-  var config = {
-    type: Phaser.AUTO,
-    width: 1000,
-    height: 600,
-    backgroundColor: '#111111',
-    parent: 'interactive-training-ground',
-    scene: gameScene
-  }
-  
-  game = new Phaser.Game(config);
-  game.scene.add('UIScene', uiScene, true);
+function getParameters() {
+  numSimulations = $('#num-simulations-select').val();
+  numSticks = $('#num-sticks-select').val();
+  aiSensitivity = $('#sensitivity-select').val();
 }
 
 function reset() {
   //game.destroy() or something
-  $('#num-simulations-select').val("0");
-  $('#num-sticks-select').val("17");
-  $('#sensitivity-select').val("5");
-  $('#start-screen').show();
+  $('#num-simulations-select').val('0');
+  $('#num-sticks-select').val('17');
+  $('#sensitivity-select').val('5');
+  getParameters();
+  $dataTable = $('#data-table');
+  $sticksArea = $('#sticks-area');
+  networkTable = new TABLE.HtmlTable($dataTable);
+  sticksGrid = new IMG_GRID.ImageGrid($sticksArea, stickPath, 7);
+  $('#game-parameters').removeClass('d-none');
 }

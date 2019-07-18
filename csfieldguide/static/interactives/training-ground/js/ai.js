@@ -6,8 +6,7 @@ require('phaser');
 
 class AI {
 
-  constructor(gameScene, initialSticks, initialSensitivity) {
-    this.scene = gameScene;
+  constructor(initialSticks, initialSensitivity) {
     this.floor = 0;     // The lowest value the neural net percentages can individually reach
     this.ceiling = 100; // The highest value the neural net percentages can individually reach
     this.map;           // The AI neural net

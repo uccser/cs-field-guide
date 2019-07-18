@@ -4,66 +4,79 @@
 {% load static %}
 
 {% block html %}
-  <div class="my-3 container text-center">
+  <div class="my-3 container-fluid interactive text-center">
     <div class="row" id="ai-warning">
       {% trans 'Sorry, this interactive is only available on screens larger than TODOpx<br>If you are using a tablet, this may be achieved by holding it in landscape.' %}
     </div>
-    <!-- The game font needs to be applied in a div somewhere to be loaded -->
-    <div id="start-screen" class="col start-screen" style="">
+    <div id="interactive-training-ground" class="container start-screen" style="">
       <h1>{% trans 'trAIning ground' %}</h1>
       <br>
       <h5>{% blocktrans %}In this game, take turns with the AI (Nathaniel) picking 1, 2, or 3 sticks.
         Whoever picks the last stick wins!<br>
         Watch how Nathaniel's picks change as it plays more games.{% endblocktrans %}
       </h5>
-      <br>
-      <h3>{% trans 'Game parameters' %}</h3>
-      <div class="row">
-        <div class="col-4 form-group text-left">
-          <label for="num-simulations-select">{% trans 'Number of simulations:' %}</label>
-          <select id="num-simulations-select" class="custom-select text-left">
-            <option selected value="0">0</option>
-            <option value="50">50</option>
-            <option value="100">100</option>
-            <option value="500">500</option>
-          </select>
-          <small id="num-sims-help" class="form-text text-muted">{% trans 'Nathaniel can practice before we start.' %}</small>
+      <div class="row my-3">
+        <div id="game-area" class="col-7">
+          <div class="row">
+            <div class="col-6">REMAININGSTICKS</div>
+            <div class="col-6">GAMESPLAYED</div>
+          </div>
+          <div id="sticks-area" class="row text-left"></div>
+          <div class="row">STATUSTEXT</div>
+          <div class="row">
+            ROWOFBUTTONS
+          </div>
+          <div class="row">
+            QUITBUTTON
+          </div>
+          <div id="splash-text"></div>
         </div>
-        <div class="col-4 form-group text-center">
-          <label for="num-sticks-select">{% trans 'Number of sticks:' %}</label>
-          <select id="num-sticks-select" class="custom-select text-center">
-            <option value="14">14</option>
-            <option value="15">15</option>
-            <option value="16">16</option>
-            <option selected value="17">17</option>
-            <option value="18">18</option>
-            <option value="19">19</option>
-            <option value="20">20</option>
-            <option value="21">21</option>
-          </select>
-          <small id="num-sticks-help" class="form-text text-muted">{% trans 'How many sticks in the pile?' %}</small>
-        </div>
-        <div class="col-4 form-group text-right">
-          <label for="sensitivity-select">{% trans 'AI sensitivity:' %}</label>
-          <select id="sensitivity-select" class="custom-select text-right">
-            <option  value="0">0%</option>
-            <option selected value="5">5%</option>
-            <option value="10">10%</option>
-            <option value="15">15%</option>
-            <option value="20">20%</option>
-            <option value="25">25%</option>
-            <option value="30">30%</option>
-            <option value="35">35%</option>
-            <option value="40">40%</option>
-          </select>
-          <small id="sensitivity-help" class="form-text text-muted">{% trans 'Slight adjustments or sweeping changes?' %}</small>
-        </div>
+        <table id="data-table" class="col-5"></table>
       </div>
-      <button type="button" class="btn btn-success" id="start-button">{% trans 'START' %}</button>
-    </div>
-    <div id="game-canvas" class="row interactive d-none">
-      <div id="interactive-training-ground" class="col-12"></div>
-      <table id="data-table" border="1"> </table>
+      <div id="game-parameters">
+        <h3>{% trans 'Game parameters' %}</h3>
+        <div class="row">
+          <div class="col-4 form-group text-left">
+            <label for="num-simulations-select">{% trans 'Number of simulations:' %}</label>
+            <select id="num-simulations-select" class="custom-select text-left">
+              <option selected value="0">0</option>
+              <option value="50">50</option>
+              <option value="100">100</option>
+              <option value="500">500</option>
+            </select>
+            <small id="num-sims-help" class="form-text text-muted">{% trans 'Nathaniel can practice before we start.' %}</small>
+          </div>
+          <div class="col-4 form-group text-center">
+            <label for="num-sticks-select">{% trans 'Number of sticks:' %}</label>
+            <select id="num-sticks-select" class="custom-select text-center">
+              <option value="15">15</option>
+              <option value="16">16</option>
+              <option selected value="17">17</option>
+              <option value="18">18</option>
+              <option value="19">19</option>
+              <option value="20">20</option>
+              <option value="21">21</option>
+            </select>
+            <small id="num-sticks-help" class="form-text text-muted">{% trans 'How many sticks in the pile?' %}</small>
+          </div>
+          <div class="col-4 form-group text-right">
+            <label for="sensitivity-select">{% trans 'AI sensitivity:' %}</label>
+            <select id="sensitivity-select" class="custom-select text-right">
+              <option  value="0">0%</option>
+              <option selected value="5">5%</option>
+              <option value="10">10%</option>
+              <option value="15">15%</option>
+              <option value="20">20%</option>
+              <option value="25">25%</option>
+              <option value="30">30%</option>
+              <option value="35">35%</option>
+              <option value="40">40%</option>
+            </select>
+            <small id="sensitivity-help" class="form-text text-muted">{% trans 'Slight adjustments or sweeping changes?' %}</small>
+          </div>
+        </div>
+        <button type="button" class="btn btn-success" id="start-button">{% trans 'START' %}</button>
+      </div>
     </div>
   </div>
 {% endblock html %}

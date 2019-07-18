@@ -1,37 +1,32 @@
-#start-screen, #interactive-training-ground {
+#interactive-training-ground {
   max-width: 1000px;
 }
 
-#game-canvas {
+#game-area{
   position: relative;
+  color: #ffffff;
   background-color: #111111;
+  border: 1px solid;
 }
 
 #data-table {
-  position: absolute;
-  top: 0px;
-  right: 0px;
   color: #ffffff;
   background-color: #111111;
-  z-index: 1000;
   td, th {
     padding-left: 10px;
     padding-right: 10px;
+    border: 1px solid;
   }
 }
 
-// 1000px canvas + 15px margins
-@media screen and (max-width: 1030px) {
-  #start-screen {
-    display: none;
-  }
-  #game-canvas {
-    display: none;
-  }
+#splash-text {
+  position: absolute;
+  top: 500px;
+  left: 500px;
 }
 
-@media screen and (min-width: 1031px) {
-  #ai-warning {
-    display: none;
-  }
+.stick-image {
+  padding: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
 }
