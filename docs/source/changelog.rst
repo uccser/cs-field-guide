@@ -27,6 +27,7 @@ We have listed major changes for each release below.
 
 - Add interactive to demonstrate limitations of short term memory.  `#144 <https://github.com/uccser/cs-field-guide/issues/144>`__
 - Add second short term memory interactive. `#1090 <https://github.com/uccser/cs-field-guide/pull/1090>`__
+- Fix broken links to old interactives in the computer graphics chapter.
 - Update about page and introduction chapter. `#1082 <https://github.com/uccser/cs-field-guide/issues/1082>`__
 - Improve consistency in chapter section beginnings. `#1065 <https://github.com/uccser/cs-field-guide/issues/1065>`__
 - Align and resize homepage logos. `#1050 <https://github.com/uccser/cs-field-guide/issues/1050>`__
