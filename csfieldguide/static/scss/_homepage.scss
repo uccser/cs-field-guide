@@ -2,7 +2,8 @@
   background-color: $csfg-light;
   width: 100%;
   #homepage-logo {
-    height: 12rem;
+    max-width: 100% !important;
+    height: auto !important;
   }
   h1 {
     font-family: $headings-font-family;
