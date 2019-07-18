@@ -1,0 +1,37 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div class="container text-center my-5 mx-1 number-memory">
+    <div id="number-memory-title" class="col-12"></div>
+    <div id="number-text-container" class="row justify-content-center mb-3">
+      <div id="number-text"></div>
+    </div>
+    <div id="number-input-form" class="row mb-3 justify-content-center d-none">
+      <input id="number-input" type="text" maxlength="10" class="col-4 col-sm-3 form-control">
+    </div>
+    <div id="middle-text" class="col-12 d-none"></div>
+    <div class="col-12">
+      <button id="start-button" type="button" class="btn btn-success">{% trans 'Start' %}</button>
+    </div>
+    <div class="col-12">
+      <button id="submit-button" type="button" class="btn btn-primary d-none mb-1">{% trans 'Submit' %}</button>
+    </div>
+    <div class="col-12">
+      <button id="reset-button" type="button" class="btn btn-danger d-none mb-1">{% trans 'Restart' %}</button>
+    </div>
+    <div class="col-12">
+      <button id="reset-hard-button" type="button" class="btn btn-danger d-none mb-1">{% trans 'Hard Mode' %}</button>
+    </div>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/number-memory/css/number-memory.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'interactives/number-memory/js/number-memory.js' %}"></script>
+{% endblock js %}

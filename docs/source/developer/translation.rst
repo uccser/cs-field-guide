@@ -59,7 +59,7 @@ To achieve this we use the following syntax, where ``dot_count`` is the number o
     var format = ngettext('1 dot is visible', '%(dot_count)s dots are visible', dotCount);
     var dotCountText = interpolate(format, {"dot_count": dotCount}, true);
 
-Django provides further documentation on these funcitons and `translations in JavaScript here`_.
+Django provides further documentation on these functions and `translations in JavaScript here`_.
 
 
 Translatable Model

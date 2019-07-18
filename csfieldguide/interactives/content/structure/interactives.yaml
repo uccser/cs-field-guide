@@ -231,6 +231,10 @@ number-generator:
   languages:
     en: interactives/number-generator.html
   is_interactive: true
+number-memory:
+  languages:
+    en: interactives/number-memory.html
+  is_interactive: true
 off-by-one:
   languages:
     en: interactives/off-by-one.html
@@ -259,6 +263,10 @@ persona-carousel:
   languages:
     en: interactives/persona-carousel.html
   is_interactive: false
+picture-memory:
+  languages:
+    en: interactives/picture-memory.html
+  is_interactive: true
 pixel-grid:
   languages:
     en: interactives/pixel-grid.html
