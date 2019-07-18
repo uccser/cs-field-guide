@@ -21,8 +21,10 @@
 
 #splash-text {
   position: absolute;
-  top: 500px;
-  left: 500px;
+  top: 40%;
+  left: 10%;
+  z-index: 100;
+  font-size: 30pt;
 }
 
 .stick-image {

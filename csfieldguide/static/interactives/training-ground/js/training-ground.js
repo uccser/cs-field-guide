@@ -10,12 +10,19 @@ var AI = require('./ai.js');
 
 var numSimulations;
 var numSticks;
+var remainingSticks;
 var aiSensitivity;
-var $dataTable;
 var networkTable;
 var sticksGrid;
-var $sticksArea;
 var ai;
+var gamesPlayed;
+
+var $dataTable = $('#data-table');
+var $sticksArea = $('#sticks-area');
+var $remainingText = $('#remaining-sticks');
+var $playedText = $('#games-played');
+var $statusText = $('#status-text');
+var $splashText = $('#splash-text');
 
 const stickPath = base + 'interactives/training-ground/assets/sprites/stick.png';
 
@@ -35,6 +42,9 @@ function run() {
   $('#game-parameters').addClass('d-none');
   refresh();
   ai = new AI.AI(numSticks, aiSensitivity);
+  $statusText.html(gettext("Preparing..."));
+  disableChoiceButtons();
+  showChoiceButtons();
 }
 
 /**
@@ -44,6 +54,20 @@ function refresh() {
   getParameters();
   networkTable.createTable(numSticks);
   sticksGrid.createGrid(numSticks);
+  remainingSticks = numSticks;
+  displayBaseVariables();
+}
+
+function reset() {
+  //game.destroy() or something
+  $('#num-simulations-select').val('0');
+  $('#num-sticks-select').val('17');
+  $('#sensitivity-select').val('5');
+  gamesPlayed = 0;
+  networkTable = new TABLE.HtmlTable($dataTable);
+  sticksGrid = new IMG_GRID.ImageGrid($sticksArea, stickPath, 7);
+  refresh();
+  $('#game-parameters').removeClass('d-none');
 }
 
 function getParameters() {
@@ -52,15 +76,27 @@ function getParameters() {
   aiSensitivity = $('#sensitivity-select').val();
 }
 
-function reset() {
-  //game.destroy() or something
-  $('#num-simulations-select').val('0');
-  $('#num-sticks-select').val('17');
-  $('#sensitivity-select').val('5');
-  getParameters();
-  $dataTable = $('#data-table');
-  $sticksArea = $('#sticks-area');
-  networkTable = new TABLE.HtmlTable($dataTable);
-  sticksGrid = new IMG_GRID.ImageGrid($sticksArea, stickPath, 7);
-  $('#game-parameters').removeClass('d-none');
+function displayBaseVariables() {
+  $remainingText.html(remainingSticks);
+  $playedText.html(gamesPlayed);
+}
+
+function disableChoiceButtons() {
+  $('#button_1').prop('disabled', true);
+  $('#button_2').prop('disabled', true);
+  $('#button_3').prop('disabled', true);
+}
+
+function enableChoiceButtons() {
+  $('#button_1').prop('disabled', false);
+  $('#button_2').prop('disabled', false);
+  $('#button_3').prop('disabled', false);
+}
+
+function hideChoiceButtons() {
+  $('#game-buttons').addClass('d-none');
+}
+
+function showChoiceButtons() {
+  $('#game-buttons').removeClass('d-none');
 }

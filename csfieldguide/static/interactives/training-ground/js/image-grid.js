@@ -5,6 +5,7 @@ class ImageGrid {
     this.$parent = parentDiv;
     this.imagePath = imgPath;
     this.maxWidth = maxWidth;
+    this.allSticks = [];
   }
 
   createGrid(size) {
@@ -19,6 +20,7 @@ class ImageGrid {
       fullHtml += separator;
       while (i < (this.maxWidth * row) && i < size) {
         img = '  <img src="' + this.imagePath + '" id="img-' + i + '" class="stick-image"/>\n';
+        this.allSticks.push(i);
         fullHtml += img;
         i++;
       }
@@ -26,8 +28,14 @@ class ImageGrid {
       row++;
       separator = '<div id="row-' + row + '" class="col-12">\n';
     }
-    console.log(fullHtml);
     this.$parent.append(fullHtml)
+  }
+
+  removeSticks(num) {
+    for (var i=0; i < num; i++) {
+      $('#img-' + this.allSticks[0]).remove();
+      this.allSticks.shift(); // Remove item 0
+    }
   }
 }
 

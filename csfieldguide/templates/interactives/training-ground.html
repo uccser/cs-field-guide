@@ -5,7 +5,7 @@
 
 {% block html %}
   <div class="my-3 container-fluid interactive text-center">
-    <div class="row" id="ai-warning">
+    <div id="ai-warning" class="row d-none">
       {% trans 'Sorry, this interactive is only available on screens larger than TODOpx<br>If you are using a tablet, this may be achieved by holding it in landscape.' %}
     </div>
     <div id="interactive-training-ground" class="container start-screen" style="">
@@ -18,18 +18,24 @@
       <div class="row my-3">
         <div id="game-area" class="col-7">
           <div class="row">
-            <div class="col-6">REMAININGSTICKS</div>
-            <div class="col-6">GAMESPLAYED</div>
+            <div class="col-6">{% trans 'Sticks remaining:' %} <span id="remaining-sticks"></span></div>
+            <div class="col-6">{% trans 'Games played:' %} <span id="games-played"></span></div>
           </div>
           <div id="sticks-area" class="row text-left"></div>
-          <div class="row">STATUSTEXT</div>
-          <div class="row">
-            ROWOFBUTTONS
+          <div id="status-text" class="col-12 text-center">{% trans 'Set the initial parameters below, then hit start' %}</div>
+          <div id="game-buttons" class="col-12 text-center d-none">
+            <button id="button_1" type="button" class="btn btn-success m-2">&nbsp;&nbsp;&nbsp;I&nbsp;&nbsp;&nbsp;</button>
+            <button id="button_2" type="button" class="btn btn-success m-2">&nbsp;&nbsp;I I&nbsp;&nbsp;</button>
+            <button id="button_3" type="button" class="btn btn-success m-2">&nbsp;I I I&nbsp;</button>
           </div>
-          <div class="row">
-            QUITBUTTON
+          <div id="end-buttons" class="col-12 text-center d-none">
+            <button id="button_simulate" type="button" class="btn btn-primary m-2">{% trans 'Simulate' %}</button>
+            <button id="button_rematch" type="button" class="btn btn-primary m-2">{% trans 'Rematch' %}</button>
           </div>
-          <div id="splash-text"></div>
+          <div id="quit-buttons" class="col-12 text-right d-none">
+            <button id="button_reset" type="button" class="btn btn-danger m-2">{% trans 'Reset' %}</button>
+          </div>
+          <div id="splash-text" class="d-none"></div>
         </div>
         <table id="data-table" class="col-5"></table>
       </div>
