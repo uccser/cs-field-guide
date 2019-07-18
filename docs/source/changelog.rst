@@ -33,6 +33,11 @@ We have listed major changes for each release below.
 - Center homepage icons on Firefox mobile. `#1066 <https://github.com/uccser/cs-field-guide/issues/1066>`__
 - Add link to Vox video on how snapchat filters work in the computer vision chapter. `#367 <https://github.com/uccser/cs-field-guide/issues/367>`__
 - Reduce length of search bar on mobile. `#1080 <https://github.com/uccser/cs-field-guide/pull/1080>`__
+- Dependency updates:
+
+  - Update ``django-modeltranslation`` from 0.13.1 to 0.13.2.
+  - Update ``Pillow`` from 6.0.0 to 6.1.0.
+  - Update ``python-bidi`` from 0.4.0 to 0.4.2.
 
 3.0.1
 ==============================================================================
