@@ -127,7 +127,6 @@ class AI {
       var key = keys[i]
       // If key is in map (should always be true) update map values
       if(key in this.map){
-        console.log(key + ":" + this.moves[key]);
         var cur_vals = this.map[key];
         var spot = this.moves[key];
 
