@@ -2,8 +2,6 @@
  * AI contains all functions used by the AI to calculate, save, and update its neural net.
  */
 
-require('phaser');
-
 class AI {
 
   constructor(initialSticks, initialSensitivity) {
@@ -58,12 +56,6 @@ class AI {
       else {
         this.smartMap[i.toString()] = [i, 33.33, 33.33, 33.34];
       }
-
-      this.handlers = {
-        'remainingSticks': this.updateRemainingSticks
-      };
-  
-      this.scene.registry.events.on('changedata', this.registryUpdate, this);
     }
 
     // Hard coded rules, cannot choose more sticks than are available
@@ -73,6 +65,11 @@ class AI {
     this.smartMap['1'] = [1, 100, 0, 0];
 
     console.log(JSON.stringify(this.smartMap));
+  }
+
+  newGame() {
+    this.moves = {};
+    this.sticksLeft = this.startingSticks;
   }
 
   /**
@@ -91,27 +88,27 @@ class AI {
     }
 
     console.log('chose ' + num + ' sticks w sticksLeft = ' + this.sticksLeft);
-    if (!this.isSimulation) {
-      // Create time lag if this is against a real player
-      var lag = 1500;
-      var ai = this;
-      setTimeout(function() {
-        ai.applyMove(num);
-      }, lag)
-    }
-    else {
-      this.applyMove(num);
-    }
+    var id = this.sticksLeft.toString();
+    this.moves[id] = num;
+    return num;
   }
 
   /**
-   * Applies the move the AI chose to make
-   * 
-   * @param {int} num The number of sticks the AI chose to remove
+   * Simulates the practice bot taking it's turn, returns the number of sticks to remove
    */
-  applyMove(num) {
-    this.moves[this.sticksLeft.toString()] = num;
-    this.scene.registry.set('sticksChosen', num);
+  takeBotTurn() {
+    console.log('Practice bot taking turn: ', this.sticksLeft);
+
+    // Random pick from weighted map of choices
+    var num = this.chooseNum(this.smartMap[this.sticksLeft.toString()]);
+
+    if (num > this.sticksLeft) {
+      num = this.sticksLeft;
+      console.log('ERROR: Impossible move chosen, changed');
+    }
+
+    console.log('chose ' + num + ' sticks w sticksLeft = ' + this.sticksLeft);
+    return num;
   }
 
   /**
@@ -119,31 +116,25 @@ class AI {
    * and the results of that game. Also determines change in percentage based on
    * slider arrow.
    */
-  updateAI() {
-    var change = slider_arrow.x/7; // Get percentage from the slider on screen
+  updateAI(playerWin) {
+    var change = this.sensitivity; // Get percentage from the slider on screen
     if (playerWin) {
       change *= -1; // Decrement values for chosen moves
     }
 
-    var keys = Object.keys(moves);
+    var keys = Object.keys(this.moves);
     for (var i in keys) {
       var key = keys[i]
       // If key is in map (should always be true) update map values
-      if(key in map){
-        console.log(key + ":" + moves[key]);
-        var cur_vals = map[key];
-        var spot = moves[key];
+      if(key in this.map){
+        console.log(key + ":" + this.moves[key]);
+        var cur_vals = this.map[key];
+        var spot = this.moves[key];
 
-        map[key] = this.calculateVals(cur_vals, spot, change);
+        this.map[key] = this.calculateVals(cur_vals, spot, change);
         cur_vals = [];
       }
     }
-
-    // Update HTML table
-    $('#dataTable').empty();
-    buildHtmlTable('#dataTable');
-
-    gamesPlayed++;
 
     if (this.isSimulation) {
       this.trainAI(--simGames); //recursively call trainAI function
@@ -211,55 +202,6 @@ class AI {
   }
 
   /**
-   * Triggers simulation of a given number of games against an intelligent model. It 
-   * is called recursively, and stops when the input value is 0.
-   *
-   * @param {int} num    The number of simulations left to perform
-   */
-  trainAI(num) {
-    console.log('Simulations left: ', num);
-
-    if(num <= 0) {
-      quit_btn.inputEnabled = true;
-      simulation = false;
-    }
-    else {
-      initVars();
-      this.simulateGame();
-    }
-  }
-
-  /**
-   * Simulates one game for our AI against an intelligent model. When one game is 
-   * complete, the updateAI function is called to update our AI's neural net.
-   */
-  simulateGame() {
-    // While statement continues until either the AI or the model wins
-    while(this.sticksLeft > 0) {
-      // AI takes turn, same as in regular game
-      this.takeTurn();
-
-      if(this.sticksLeft <= 0) {
-        // If AI picked up last stick, AI won
-        playerWin = false;
-        break;
-      }
-
-      // Model takes turn based on random pick from weighted smart map of choices
-      var num = this.chooseNum(this.smartMap[this.sticksLeft.toString()]);
-      console.log('NUMBER CHOSEN BY SIM: ', num)
-      removeSticks(num);
-
-      if (this.sticksLeft<=0) {
-        playerWin = true;
-      }
-    }
-
-
-    this.updateAI();
-  }
-
-  /**
    * This function uses a random number generator and an input weighted map to choose
    * a number, 1 through 3, which represents the number of sticks to be removed. It is
    * used by the AI and the model to determine how many sticks to pick up at a given
@@ -283,20 +225,6 @@ class AI {
     }
 
     return num;
-  }
-
-  /**
-   * Handler function for a registry update.
-   * If a handler is defined for the given key, apply the set handler for that key.
-   */
-  registryUpdate(parent, key, data) {
-    if (this.handlers[key]) {
-      this.handlers[key](this, data);
-    }
-  }
-
-  updateRemainingSticks(scene, numSticks) {
-    scene.sticksLeft = numSticks;
   }
 }
 

@@ -7,6 +7,12 @@ var TXT_STICKS = {
   '3': gettext("3 sticks")
 }
 
+const HIGHLIGHTS = {
+  WIN: 'green',
+  LOSS: 'red',
+  UNDECIDED: 'blue'
+}
+
 class HtmlTable {
   constructor(parentDiv) {
     this.$parent = parentDiv;
@@ -35,8 +41,34 @@ class HtmlTable {
     baseTable +=    '</table>\n';
     this.$parent.html(baseTable);
   }
+
+  highlightCell(remaining, number, colour) {
+    $('#' + remaining + '-remaining').addClass(colour);
+    $('#' + remaining + '-' + number + '-sticks').addClass(colour);
+  }
+
+  recolourCells(colour) {
+    $('.' + HIGHLIGHTS.UNDECIDED).addClass(colour).removeClass(HIGHLIGHTS.UNDECIDED);
+  }
+
+  uncolourCells() {
+    $('.' + HIGHLIGHTS.UNDECIDED).removeClass(HIGHLIGHTS.UNDECIDED);
+    $('.' + HIGHLIGHTS.WIN).removeClass(HIGHLIGHTS.WIN);
+    $('.' + HIGHLIGHTS.LOSS).removeClass(HIGHLIGHTS.LOSS);
+  }
+
+  populateTable(networkMap) {
+    var entry;
+    for (var value in networkMap) {
+      entry = networkMap[value];
+      $('#' + entry[0] + '-1-sticks').html(entry[1]);
+      $('#' + entry[0] + '-2-sticks').html(entry[2]);
+      $('#' + entry[0] + '-3-sticks').html(entry[3]);
+    }
+  }
 }
 
 module.exports = {
-  HtmlTable
+  HtmlTable,
+  HIGHLIGHTS
 }

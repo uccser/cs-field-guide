@@ -4,14 +4,9 @@
 
 #game-area{
   position: relative;
-  color: #ffffff;
-  background-color: #111111;
-  border: 1px solid;
 }
 
 #data-table {
-  color: #ffffff;
-  background-color: #111111;
   td, th {
     padding-left: 10px;
     padding-right: 10px;
@@ -24,11 +19,34 @@
   top: 40%;
   left: 10%;
   z-index: 100;
-  font-size: 30pt;
+  font-size: 2.5rem;
 }
 
-.stick-image {
+.stick-image-container {
+  // Height & Width includes padding
+  min-height: 132px;
+  max-height: 132px;
+  min-width: 51px;
+  max-width: 51px;
+
   padding: 10px;
   padding-left: 15px;
   padding-right: 15px;
+}
+
+.black-background {
+  color: #ffffff;
+  background-color: #111111;
+}
+
+.blue {
+  background-color: #3f51b5;
+}
+
+.green {
+  background-color: #28a745;
+}
+
+.red {
+  background-color: #dc3545;
 }

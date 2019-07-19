@@ -15,29 +15,31 @@
         Whoever picks the last stick wins!<br>
         Watch how Nathaniel's picks change as it plays more games.{% endblocktrans %}
       </h5>
-      <div class="row my-3">
-        <div id="game-area" class="col-7">
-          <div class="row">
-            <div class="col-6">{% trans 'Sticks remaining:' %} <span id="remaining-sticks"></span></div>
-            <div class="col-6">{% trans 'Games played:' %} <span id="games-played"></span></div>
+      <div class="col-12 my-3">
+        <div class="row black-background">
+          <div id="game-area" class="col-7">
+            <div class="row">
+              <div class="col-6">{% trans 'Sticks remaining:' %} <span id="remaining-sticks"></span></div>
+              <div class="col-6">{% trans 'Games played:' %} <span id="games-played"></span></div>
+            </div>
+            <div id="sticks-area" class="row text-left"></div>
+            <div id="status-text" class="col-12 text-center">{% trans 'Set the initial parameters below, then hit start' %}</div>
+            <div id="game-buttons" class="col-12 text-center d-none">
+              <button id="button_1" type="button" class="btn btn-success m-2">&nbsp;&nbsp;&nbsp;I&nbsp;&nbsp;&nbsp;</button>
+              <button id="button_2" type="button" class="btn btn-success m-2">&nbsp;&nbsp;I I&nbsp;&nbsp;</button>
+              <button id="button_3" type="button" class="btn btn-success m-2">&nbsp;I I I&nbsp;</button>
+            </div>
+            <div id="end-buttons" class="col-12 text-center d-none">
+              <button id="button_simulate" type="button" class="btn btn-primary m-2">{% trans 'Simulate' %}</button>
+              <button id="button_rematch" type="button" class="btn btn-primary m-2">{% trans 'Rematch' %}</button>
+            </div>
+            <div id="quit-buttons" class="col-12 text-right d-none">
+              <button id="button_quit" type="button" class="btn btn-danger m-2">{% trans 'Quit' %}</button>
+            </div>
+            <div id="splash-text" class="d-none"></div>
           </div>
-          <div id="sticks-area" class="row text-left"></div>
-          <div id="status-text" class="col-12 text-center">{% trans 'Set the initial parameters below, then hit start' %}</div>
-          <div id="game-buttons" class="col-12 text-center d-none">
-            <button id="button_1" type="button" class="btn btn-success m-2">&nbsp;&nbsp;&nbsp;I&nbsp;&nbsp;&nbsp;</button>
-            <button id="button_2" type="button" class="btn btn-success m-2">&nbsp;&nbsp;I I&nbsp;&nbsp;</button>
-            <button id="button_3" type="button" class="btn btn-success m-2">&nbsp;I I I&nbsp;</button>
-          </div>
-          <div id="end-buttons" class="col-12 text-center d-none">
-            <button id="button_simulate" type="button" class="btn btn-primary m-2">{% trans 'Simulate' %}</button>
-            <button id="button_rematch" type="button" class="btn btn-primary m-2">{% trans 'Rematch' %}</button>
-          </div>
-          <div id="quit-buttons" class="col-12 text-right d-none">
-            <button id="button_reset" type="button" class="btn btn-danger m-2">{% trans 'Reset' %}</button>
-          </div>
-          <div id="splash-text" class="d-none"></div>
+          <table id="data-table" class="col-5"></table>
         </div>
-        <table id="data-table" class="col-5"></table>
       </div>
       <div id="game-parameters">
         <h3>{% trans 'Game parameters' %}</h3>
@@ -81,7 +83,7 @@
             <small id="sensitivity-help" class="form-text text-muted">{% trans 'Slight adjustments or sweeping changes?' %}</small>
           </div>
         </div>
-        <button type="button" class="btn btn-success" id="start-button">{% trans 'START' %}</button>
+        <button type="button" class="btn btn-success" id="button_start">{% trans 'START' %}</button>
       </div>
     </div>
   </div>
