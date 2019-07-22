@@ -16,11 +16,13 @@ var networkTable;
 var sticksGrid;
 var ai;
 var gamesPlayed;
+var aiWins;
 var isSimulation;
 
 var $dataTable = $('#data-table');
 var $sticksArea = $('#sticks-area');
 var $remainingText = $('#remaining-sticks');
+var $aiWinsText = $('#ai-wins');
 var $playedText = $('#games-played');
 var $statusText = $('#status-text');
 var $splashText = $('#splash-text');
@@ -108,10 +110,13 @@ function reset() {
   $('#sensitivity-select').val('5');
   $statusText.html(TXT_INITIAL);
   gamesPlayed = 0;
+  aiWins = 0;
   networkTable = new TABLE.HtmlTable($dataTable);
   sticksGrid = new IMG_GRID.ImageGrid($sticksArea, stickPath, 7);
   refresh();
   hideQuitButtons();
+  hideEndButtons();
+  hideChoiceButtons();
   $('#game-parameters').removeClass('d-none');
 }
 
@@ -144,6 +149,7 @@ function simulate(num) {
   hideChoiceButtons();
   hideEndButtons();
   showCancelButton();
+  console.log('Running ' + num + ' simulations...');
   recursiveSim(num);
 }
 
@@ -171,6 +177,7 @@ function endSimulation() {
   $splashText.addClass('d-none');
   isSimulation = false;
   console.log('simulation ended');
+  enableQuitButtons();
   if (isStart) {
     isStart = false;
     showQuitButtons();
@@ -190,10 +197,11 @@ function getParameters() {
 }
 
 /**
- * Displays base game variables: Number of sticks remaining and Number of games played
+ * Displays base game variables: number of sticks remaining, number of wins, and number of games played
  */
 function displayBaseVariables() {
   $remainingText.html(remainingSticks);
+  $aiWinsText.html(aiWins);
   $playedText.html(gamesPlayed);
 }
 
@@ -209,6 +217,7 @@ function disableChoiceButtons() {
 
 /**
  * Enables controls for the user to choose a number of sticks to remove.
+ * Does not affect visibility
  */
 function enableChoiceButtons() {
   $('#button_1').prop('disabled', false);
@@ -235,6 +244,20 @@ function showChoiceButtons() {
  */
 function hideEndButtons() {
   $('#end-buttons').addClass('d-none');
+}
+
+/**
+ * Disables the quit button, does not affect its visibility
+ */
+function disableQuitButtons() {
+  $('#button_quit').prop('disabled', true);
+}
+
+/**
+ * Enables the quit button, does not affect its visibility
+ */
+function enableQuitButtons() {
+  $('#button_quit').prop('disabled', false);
 }
 
 /**
@@ -281,6 +304,7 @@ function takeAiTurn() {
     endGame(isSimulation? PLAYERS.INTELLIBOT : PLAYERS.HUMAN);
   } else {
     disableChoiceButtons();
+    disableQuitButtons();
     $statusText.html(TXT_WAIT);
     var num = ai.takeTurn();
     if (!isSimulation) {
@@ -342,6 +366,7 @@ function readyPlayerTurn() {
     var num = ai.takeBotTurn();
     applyMove(PLAYERS.INTELLIBOT, num);
   } else {
+    enableQuitButtons();
     enableChoiceButtons();
   }
 }
@@ -353,6 +378,7 @@ function endGame(winner) {
   gamesPlayed++;
   displayBaseVariables();
   if (winner == PLAYERS.AI) {
+    aiWins++;
     $statusText.html(TXT_LOSS);
     ai.updateAI(false);
     networkTable.recolourCells(TABLE.HIGHLIGHTS.WIN);

@@ -63,8 +63,6 @@ class AI {
     this.map['1'] = [1, 100, 0, 0];
     this.smartMap['2'] = [2, 0, 100, 0];
     this.smartMap['1'] = [1, 100, 0, 0];
-
-    console.log(JSON.stringify(this.smartMap));
   }
 
   newGame() {
@@ -77,14 +75,13 @@ class AI {
    * its neural net and records the decision.
    */
   takeTurn() {
-    console.log('AI taking turn: ', this.sticksLeft);
 
     // Random pick from weighted map of choices
     var num = this.chooseNum(this.map[this.sticksLeft.toString()]);
 
     if (num > this.sticksLeft) {
       num = this.sticksLeft;
-      console.log('ERROR: Impossible move chosen, changed');
+      console.log('ERROR: Impossible AI move chosen, changed');
     }
 
     var id = this.sticksLeft.toString();
@@ -96,14 +93,13 @@ class AI {
    * Simulates the practice bot taking it's turn, returns the number of sticks to remove
    */
   takeBotTurn() {
-    console.log('Practice bot taking turn: ', this.sticksLeft);
 
     // Random pick from weighted map of choices
     var num = this.chooseNum(this.smartMap[this.sticksLeft.toString()]);
 
     if (num > this.sticksLeft) {
       num = this.sticksLeft;
-      console.log('ERROR: Impossible move chosen, changed');
+      console.log('ERROR: Impossible BOT move chosen, changed');
     }
 
     return num;
