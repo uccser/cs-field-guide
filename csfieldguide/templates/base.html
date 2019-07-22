@@ -200,6 +200,14 @@
                           {% trans "Curriculum Guides" %}
                         </a>
                       </li>
+                      {% if LANGUAGE_CODE == "en" %}
+                        <!-- Archive site is currently only available in English -->
+                        <li>
+                          <a href="https://archive.csfieldguide.org.nz/">
+                            {% trans "Release Archive" %}
+                          </a>
+                        </li>
+                      {% endif %}
                     </ul>
                   </div>
                   <div class="col-6 col-md-2">
