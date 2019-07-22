@@ -25,6 +25,7 @@
             </div>
             <div id="sticks-area" class="row text-left"></div>
             <div id="status-text" class="col-12 text-center"></div>
+            <button type="button" class="btn btn-success m-2" id="button_start">{% trans 'START' %}</button>
             <div id="game-buttons" class="col-12 text-center d-none">
               <button id="button_1" type="button" class="btn btn-success m-2">&nbsp;&nbsp;&nbsp;I&nbsp;&nbsp;&nbsp;</button>
               <button id="button_2" type="button" class="btn btn-success m-2">&nbsp;&nbsp;I I&nbsp;&nbsp;</button>
@@ -38,7 +39,7 @@
               <button id="button_quit" type="button" class="btn btn-danger m-2">{% trans 'Quit' %}</button>
             </div>
             <div id="splash-text" class="d-none"></div>
-            <button id="button_cancel" type="button" class="btn btn-danger btn-lg d-none">{% trans 'CANCEL' %}</button>
+            <button id="button_cancel" type="button" class="btn btn-danger btn-lg d-none">{% trans 'STOP' %}</button>
           </div>
           <table id="data-table" class="col-5"></table>
         </div>
@@ -48,44 +49,20 @@
         <div class="row">
           <div class="col-4 form-group text-left">
             <label for="num-simulations-select">{% trans 'Number of simulations:' %}</label>
-            <select id="num-simulations-select" class="custom-select text-left">
-              <option selected value="0">0</option>
-              <option value="50">50</option>
-              <option value="100">100</option>
-              <option value="500">500</option>
-            </select>
             <small id="num-sims-help" class="form-text text-muted">{% trans 'Nathaniel can practice before we start.' %}</small>
+            <div id="num-simulations-select" class="m-2"></div>
           </div>
           <div class="col-4 form-group text-center">
             <label for="num-sticks-select">{% trans 'Number of sticks:' %}</label>
-            <select id="num-sticks-select" class="custom-select text-center">
-              <option value="15">15</option>
-              <option value="16">16</option>
-              <option selected value="17">17</option>
-              <option value="18">18</option>
-              <option value="19">19</option>
-              <option value="20">20</option>
-              <option value="21">21</option>
-            </select>
             <small id="num-sticks-help" class="form-text text-muted">{% trans 'How many sticks in the pile?' %}</small>
+            <div id="num-sticks-select" class="m-2"></div>
           </div>
           <div class="col-4 form-group text-right">
             <label for="sensitivity-select">{% trans 'AI sensitivity:' %}</label>
-            <select id="sensitivity-select" class="custom-select text-right">
-              <option  value="0">0%</option>
-              <option selected value="5">5%</option>
-              <option value="10">10%</option>
-              <option value="15">15%</option>
-              <option value="20">20%</option>
-              <option value="25">25%</option>
-              <option value="30">30%</option>
-              <option value="35">35%</option>
-              <option value="40">40%</option>
-            </select>
             <small id="sensitivity-help" class="form-text text-muted">{% trans 'Slight adjustments or sweeping changes?' %}</small>
+            <div id="sensitivity-select" class="m-2"></div>
           </div>
         </div>
-        <button type="button" class="btn btn-success" id="button_start">{% trans 'START' %}</button>
       </div>
     </div>
   </div>

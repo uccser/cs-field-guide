@@ -3,6 +3,6 @@
     "version": "1.0.0",
     "private": true,
     "dependencies": {
-        "phaser": "3.16.2"
+        "nouislider": "13.1.5"
     }
 }

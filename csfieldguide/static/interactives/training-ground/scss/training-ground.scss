@@ -1,3 +1,5 @@
+@import "node_modules/nouislider/distribute/nouislider";
+
 #interactive-training-ground {
   max-width: 1000px;
 }
@@ -27,6 +29,10 @@
   top: 60%;
   left: 10%;
   z-index: 101;
+}
+
+#button_start {
+  z-index: 102;
 }
 
 .stick-image-container {

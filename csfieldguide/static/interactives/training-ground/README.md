@@ -29,5 +29,4 @@ Most game assets were created by the original authors, exclusions include:
 
 ## Licences
 
-This interactive was created using [Phaser 3](https://www.phaser.io/phaser3).
-The licence for this is listed in `LICENCE-THIRD-PARTY`, with a full copy available in the `third-party-licences` directory.
+TODO

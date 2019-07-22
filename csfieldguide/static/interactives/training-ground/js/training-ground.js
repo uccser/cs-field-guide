@@ -7,6 +7,7 @@
 var TABLE = require('./html-table.js');
 var IMG_GRID = require('./image-grid.js');
 var AI = require('./ai.js');
+var noUiSlider = require('nouislider');
 
 var numSimulations;
 var numSticks;
@@ -18,6 +19,8 @@ var ai;
 var gamesPlayed;
 var aiWins;
 var isSimulation;
+var isStart;
+var doCancelSims;
 
 var $dataTable = $('#data-table');
 var $sticksArea = $('#sticks-area');
@@ -26,8 +29,9 @@ var $aiWinsText = $('#ai-wins');
 var $playedText = $('#games-played');
 var $statusText = $('#status-text');
 var $splashText = $('#splash-text');
-var isStart;
-var doCancelSims;
+var numSimulationsRange;
+var numSticksRange;
+var sensitivityRange;
 
 const stickPath = base + 'interactives/training-ground/assets/sprites/stick.png';
 const PLAYERS = {
@@ -48,11 +52,10 @@ var TXT_INITIAL = gettext("Set the initial parameters below, then hit start");
 
 $(document).ready(function() {
   isSimulation = false;
+  createSliders();
   reset();
   refresh();
-  $('#button_start').on('click', function() {
-    run();
-  });
+  $('#button_start').on('click', run);
   $('#button_1').on('click', function() {
     applyMove(PLAYERS.HUMAN, 1);
   });
@@ -62,18 +65,15 @@ $(document).ready(function() {
   $('#button_3').on('click', function() {
     applyMove(PLAYERS.HUMAN, 3);
   });
-  $('#button_rematch').on('click', function() {
-    rematch();
-  });
+  $('#button_rematch').on('click', rematch);
   $('#button_simulate').on('click', function() {
     simulate(10);
   });
   $('#button_cancel').on('click', function() {
     doCancelSims = true;
   });
-  $('#button_quit').on('click', function() {
-    reset();
-  });
+  $('#button_quit').on('click', reset);
+  numSticksRange.noUiSlider.on('update', refresh);
 });
 
 /**
@@ -82,6 +82,7 @@ $(document).ready(function() {
 function run() {
   isStart = true;
   $('#game-parameters').addClass('d-none');
+  $('#button_start').addClass('d-none');
   refresh();
   $statusText.html(gettext("Preparing..."));
   ai = new AI.AI(numSticks, aiSensitivity);
@@ -105,9 +106,9 @@ function refresh() {
  * Returns the game to its initial 'page loaded' state
  */
 function reset() {
-  $('#num-simulations-select').val('0');
-  $('#num-sticks-select').val('17');
-  $('#sensitivity-select').val('5');
+  numSimulationsRange.noUiSlider.reset();
+  numSticksRange.noUiSlider.reset();
+  sensitivityRange.noUiSlider.reset();
   $statusText.html(TXT_INITIAL);
   gamesPlayed = 0;
   aiWins = 0;
@@ -118,6 +119,7 @@ function reset() {
   hideEndButtons();
   hideChoiceButtons();
   $('#game-parameters').removeClass('d-none');
+  $('#button_start').removeClass('d-none');
 }
 
 /**
@@ -191,9 +193,9 @@ function endSimulation() {
  * Stores the initial game parameters chosen by the user in appropriate variables
  */
 function getParameters() {
-  numSimulations = $('#num-simulations-select').val();
-  numSticks = $('#num-sticks-select').val();
-  aiSensitivity = $('#sensitivity-select').val();
+  numSimulations = numSimulationsRange.noUiSlider.get();
+  numSticks = Math.round(numSticksRange.noUiSlider.get());
+  aiSensitivity = sensitivityRange.noUiSlider.get();
 }
 
 /**
@@ -203,6 +205,62 @@ function displayBaseVariables() {
   $remainingText.html(remainingSticks);
   $aiWinsText.html(aiWins);
   $playedText.html(gamesPlayed);
+}
+
+/**
+ * Creates the 3 nouislider sliders for choosing initial parameters
+ */
+function createSliders() {
+  numSimulationsRange = document.getElementById('num-simulations-select');
+  noUiSlider.create(numSimulationsRange, {
+    range: {
+      'min': 0,
+      'max': 500
+    },
+    start: 0,
+    step: 50,
+
+    pips: {
+      mode: 'positions',
+      values: [0, 20, 40, 60, 80, 100],
+      density: 10,
+      stepped: true
+    }
+  });
+
+  numSticksRange = document.getElementById('num-sticks-select');
+  noUiSlider.create(numSticksRange, {
+    range: {
+      'min': 15,
+      'max': 21
+    },
+    start: 17,
+    step: 1,
+
+    pips: {
+      mode: 'count',
+      values: 4,
+      density: 14,
+      stepped: true
+    }
+  });
+
+  sensitivityRange = document.getElementById('sensitivity-select');
+  noUiSlider.create(sensitivityRange, {
+    range: {
+      'min': 0,
+      'max': 40
+    },
+    start: 5,
+    step: 5,
+
+    pips: {
+      mode: 'positions',
+      values: [0, 25, 50, 75, 100],
+      density: 15,
+      stepped: true
+    }
+  });
 }
 
 /**
