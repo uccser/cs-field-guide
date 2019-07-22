@@ -2,9 +2,9 @@
 
 Recognising faces has become a widely used computer vision application.
 These days photo album systems like Google Photos and Facebook can try to recognise who is in a photo using face recognition.
-The following photos were recognised in Picasa (now discontinued in favour of Google Photos) as being the same person, so to label the photos with people's names you only need to click one button rather than type each one in.
+The following photos were recognised in an application as being the same person, so to label the photos with people's names you only need to click one button rather than type each one in.
 
-{image file-path="img/chapters/face-recognition-software-screenshot.jpg" alt="Google's Picasa recognises these photos as being the same person"}
+{image file-path="img/chapters/face-recognition-software-screenshot.jpg" alt="An application recognises these photos as being the same person"}
 
 There are lots of other applications.
 Security systems such as customs at country borders use face recognition to identify people and match them with their passport.
