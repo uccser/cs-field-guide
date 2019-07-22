@@ -33,7 +33,7 @@ var numSimulationsRange;
 var numSticksRange;
 var sensitivityRange;
 
-const stickPath = base + 'interactives/training-ground/assets/sprites/stick.png';
+const stickPath = base + 'interactives/training-ground/assets/stick.png';
 const PLAYERS = {
   NONE: 0,
   HUMAN: 1,
@@ -118,6 +118,7 @@ function reset() {
   hideQuitButtons();
   hideEndButtons();
   hideChoiceButtons();
+  $splashText.addClass('d-none');
   $('#game-parameters').removeClass('d-none');
   $('#button_start').removeClass('d-none');
 }

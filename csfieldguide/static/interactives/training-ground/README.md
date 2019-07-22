@@ -23,10 +23,9 @@ Its neural network can be seen by the player on the right side of the screen.
 
 ## Assets
 
-Most game assets were created by the original authors, exclusions include:
-
 - sprites/stick.png: Public domain image from [publicdomainvectors.org](https://publicdomainvectors.org/en/free-clipart/Stick-vector-image/81315.html)
 
 ## Licences
 
-TODO
+This interactive uses noUiSlider by [refreshless](https://refreshless.com/nouislider/).
+Its licence can be found in `LICENCE-THIRD-PARTY` with a full copy available in the `third-party-licences` directory.
