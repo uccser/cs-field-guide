@@ -27,5 +27,5 @@ Its neural network can be seen by the player on the right side of the screen.
 
 ## Licences
 
-This interactive uses noUiSlider by [refreshless](https://refreshless.com/nouislider/).
+This interactive uses [noUiSlider](https://refreshless.com/nouislider/) by Léon Gersen.
 Its licence can be found in `LICENCE-THIRD-PARTY` with a full copy available in the `third-party-licences` directory.
