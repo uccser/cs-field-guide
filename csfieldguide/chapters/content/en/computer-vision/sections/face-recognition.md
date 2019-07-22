@@ -35,7 +35,7 @@ First let's manually try some methods for recognising whether two photographs sh
   Would these features be a reliable way to recognise two images as being the same person?
 - Are there other features you could measure that might improve the accuracy?
 
-You can evaluate the effectiveness of facial recognition in free software such as the Facebook photo tagging system, by uploading photos of a variety of people and seeing if it recognises photos of the same person.
+You can evaluate the effectiveness of facial recognition in free software such as Google Photos or the Facebook photo tagging system, by uploading photos of a variety of people and seeing if it recognises photos of the same person.
 Are there any false negatives or positives?
 How much can you change your face when the photo is being taken to not have it match your face in the system?
 Does it recognise a person as being the same in photos taken several years apart?
