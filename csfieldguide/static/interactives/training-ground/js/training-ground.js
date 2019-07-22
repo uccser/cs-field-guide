@@ -25,6 +25,7 @@ var $playedText = $('#games-played');
 var $statusText = $('#status-text');
 var $splashText = $('#splash-text');
 var isStart;
+var doCancelSims;
 
 const stickPath = base + 'interactives/training-ground/assets/sprites/stick.png';
 const PLAYERS = {
@@ -41,6 +42,7 @@ var TXT_TURN = gettext("Your turn.");
 var TXT_WAIT = gettext("Nathaniel is thinking.");
 var TXT_SIMULATING = gettext("Simulating games...");
 var TXT_SIMULATED = gettext("Simulations finished");
+var TXT_INITIAL = gettext("Set the initial parameters below, then hit start");
 
 $(document).ready(function() {
   isSimulation = false;
@@ -63,6 +65,12 @@ $(document).ready(function() {
   });
   $('#button_simulate').on('click', function() {
     simulate(10);
+  });
+  $('#button_cancel').on('click', function() {
+    doCancelSims = true;
+  });
+  $('#button_quit').on('click', function() {
+    reset();
   });
 });
 
@@ -91,11 +99,14 @@ function refresh() {
   displayBaseVariables();
 }
 
+/**
+ * Returns the game to its initial 'page loaded' state
+ */
 function reset() {
-  //game.destroy() or something
   $('#num-simulations-select').val('0');
   $('#num-sticks-select').val('17');
   $('#sensitivity-select').val('5');
+  $statusText.html(TXT_INITIAL);
   gamesPlayed = 0;
   networkTable = new TABLE.HtmlTable($dataTable);
   sticksGrid = new IMG_GRID.ImageGrid($sticksArea, stickPath, 7);
@@ -104,6 +115,9 @@ function reset() {
   $('#game-parameters').removeClass('d-none');
 }
 
+/**
+ * Starts a new match within the game
+ */
 function rematch() {
   ai.newGame();
   networkTable.uncolourCells();
@@ -118,18 +132,27 @@ function rematch() {
   takeAiTurn();
 }
 
+/**
+ * Simulates the given number of games between the AI and a preset practice bot
+ */
 function simulate(num) {
+  doCancelSims = false;
   isSimulation = true;
   $splashText.html(TXT_SIMULATING);
   $splashText.removeClass('d-none');
   disableChoiceButtons();
   hideChoiceButtons();
   hideEndButtons();
+  showCancelButton();
   recursiveSim(num);
 }
 
+/**
+ * Simulates games between the AI and a preset practice bot recursively until there
+ * are none left to do or the user cancels the simulation
+ */
 function recursiveSim(num) {
-  if (num <= 0) {
+  if (doCancelSims || num <= 0) {
     endSimulation();
   } else {
     setTimeout(function() {recursiveSim(num - 1)}, 100);
@@ -137,7 +160,12 @@ function recursiveSim(num) {
   }
 }
 
+/**
+ * Runs post-simulation setup for the game. If this is the initial game-start simulations
+ * a new match is started immediately
+ */
 function endSimulation() {
+  hideCancelButton();
   $statusText.html(TXT_SIMULATED);
   networkTable.uncolourCells();
   $splashText.addClass('d-none');
@@ -152,53 +180,101 @@ function endSimulation() {
   }
 }
 
+/**
+ * Stores the initial game parameters chosen by the user in appropriate variables
+ */
 function getParameters() {
   numSimulations = $('#num-simulations-select').val();
   numSticks = $('#num-sticks-select').val();
   aiSensitivity = $('#sensitivity-select').val();
 }
 
+/**
+ * Displays base game variables: Number of sticks remaining and Number of games played
+ */
 function displayBaseVariables() {
   $remainingText.html(remainingSticks);
   $playedText.html(gamesPlayed);
 }
 
+/**
+ * Disables controls for the user to choose a number of sticks to remove.
+ * Does not affect visibility
+ */
 function disableChoiceButtons() {
   $('#button_1').prop('disabled', true);
   $('#button_2').prop('disabled', true);
   $('#button_3').prop('disabled', true);
 }
 
+/**
+ * Enables controls for the user to choose a number of sticks to remove.
+ */
 function enableChoiceButtons() {
   $('#button_1').prop('disabled', false);
   $('#button_2').prop('disabled', false);
   $('#button_3').prop('disabled', false);
 }
 
+/**
+ * Hides controls for the user to choose a number of sticks to remove
+ */
 function hideChoiceButtons() {
   $('#game-buttons').addClass('d-none');
 }
 
+/**
+ * Shows controls for the user to choose a number of sticks to remove
+ */
 function showChoiceButtons() {
   $('#game-buttons').removeClass('d-none');
 }
 
-function showEndButtons() {
-  $('#end-buttons').removeClass('d-none');
-}
-
+/**
+ * Hides controls for the user to choose to simulate matches or have a rematch
+ */
 function hideEndButtons() {
   $('#end-buttons').addClass('d-none');
 }
 
-function showQuitButtons() {
-  $('#quit-buttons').removeClass('d-none');
+/**
+ * Shows controls for the user to choose to simulate matches or have a rematch
+ */
+function showEndButtons() {
+  $('#end-buttons').removeClass('d-none');
 }
 
+/**
+ * Hides controls for the user to 'quit', i.e. reset the game to its 'page-loaded' state
+ */
 function hideQuitButtons() {
   $('#quit-buttons').addClass('d-none');
 }
 
+/**
+ * Shows controls for the user to 'quit', i.e. reset the game to its 'page-loaded' state
+ */
+function showQuitButtons() {
+  $('#quit-buttons').removeClass('d-none');
+}
+
+/**
+ * Hides the stop simulating button
+ */
+function hideCancelButton() {
+  $('#button_cancel').addClass('d-none').prop('disabled', true);
+}
+
+/**
+ * Shows the stop simulating button
+ */
+function showCancelButton() {
+  $('#button_cancel').removeClass('d-none').prop('disabled', false);
+}
+
+/**
+ * Runs the AI turn
+ */
 function takeAiTurn() {
   if (remainingSticks <= 0) {
     // The Player/Practice bot won
@@ -220,6 +296,9 @@ function takeAiTurn() {
   }
 }
 
+/**
+ * Applies the turn the AI chose
+ */
 function applyMove(player, numChosen) {
   if (player == PLAYERS.AI) {
     if (!isSimulation) {
@@ -242,12 +321,19 @@ function applyMove(player, numChosen) {
   }
 }
 
+/**
+ * Updates the remaining number of sticks in the AI's internal data, and the game screen
+ */
 function updateRemainingSticks(number) {
   remainingSticks = number;
   ai.sticksLeft = remainingSticks;
   displayBaseVariables();
 }
 
+/**
+ * Prepares appropriate buttons for the Player to take its turn.
+ * If games are being simulated, takes the preset practice bot's turn instead
+ */
 function readyPlayerTurn() {
   if (remainingSticks <= 0) {
     // The AI won
@@ -260,6 +346,9 @@ function readyPlayerTurn() {
   }
 }
 
+/**
+ * Runs post-match processing of match results and AI learning
+ */
 function endGame(winner) {
   gamesPlayed++;
   displayBaseVariables();

@@ -23,7 +23,7 @@
               <div class="col-6">{% trans 'Games played:' %} <span id="games-played"></span></div>
             </div>
             <div id="sticks-area" class="row text-left"></div>
-            <div id="status-text" class="col-12 text-center">{% trans 'Set the initial parameters below, then hit start' %}</div>
+            <div id="status-text" class="col-12 text-center"></div>
             <div id="game-buttons" class="col-12 text-center d-none">
               <button id="button_1" type="button" class="btn btn-success m-2">&nbsp;&nbsp;&nbsp;I&nbsp;&nbsp;&nbsp;</button>
               <button id="button_2" type="button" class="btn btn-success m-2">&nbsp;&nbsp;I I&nbsp;&nbsp;</button>
@@ -37,6 +37,7 @@
               <button id="button_quit" type="button" class="btn btn-danger m-2">{% trans 'Quit' %}</button>
             </div>
             <div id="splash-text" class="d-none"></div>
+            <button id="button_cancel" type="button" class="btn btn-danger btn-lg d-none">{% trans 'CANCEL' %}</button>
           </div>
           <table id="data-table" class="col-5"></table>
         </div>

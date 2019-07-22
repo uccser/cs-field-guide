@@ -87,7 +87,6 @@ class AI {
       console.log('ERROR: Impossible move chosen, changed');
     }
 
-    console.log('chose ' + num + ' sticks w sticksLeft = ' + this.sticksLeft);
     var id = this.sticksLeft.toString();
     this.moves[id] = num;
     return num;
@@ -107,7 +106,6 @@ class AI {
       console.log('ERROR: Impossible move chosen, changed');
     }
 
-    console.log('chose ' + num + ' sticks w sticksLeft = ' + this.sticksLeft);
     return num;
   }
 
