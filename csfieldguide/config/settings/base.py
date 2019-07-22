@@ -280,3 +280,4 @@ INTERACTIVES_LINK_TEMPLATE = "interactives/utils/interactive-link.html"
 MODELTRANSLATION_CUSTOM_FIELDS = ("JSONField",)
 CUSTOM_VERTO_TEMPLATES = os.path.join(str(ROOT_DIR.path("utils")), "custom_converter_templates", "")
 STATICI18N_ROOT = BUILD_ROOT
+PDF_GENERATION_LOCATION = os.path.join(str(ROOT_DIR.path("staticfiles")), "pdf")

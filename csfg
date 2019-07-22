@@ -176,6 +176,13 @@ cmd_migrate() {
 }
 defhelp migrate 'Run Django migrate command.'
 
+# Create content PDFs
+cmd_pdf() {
+  echo "Create PDF..."
+  docker-compose exec django /docker_venv/bin/python3 ./manage.py makepdf
+}
+defhelp migrate 'Create content PDF.'
+
 # Reboot Django Docker container
 cmd_reboot_django() {
   echo "Rebooting Django Docker container..."

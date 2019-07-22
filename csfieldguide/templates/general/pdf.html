@@ -1,0 +1,15 @@
+{% load static render_html_field i18n %}
+
+<html>
+    <head>
+        <title>{{ filename }}</title>
+    </head>
+    <body>
+        {% for chapter in chapters %}
+            <h1>
+                <span class="text-white-50">{{ chapter.number }}.</span> {{ chapter.name }}
+            </h1>
+            {% render_html_field chapter.introduction %}
+        {% endfor %}
+    </body>
+</html>
