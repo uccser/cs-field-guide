@@ -63,3 +63,15 @@
 .red {
   background-color: #dc3545;
 }
+
+@media screen and (min-width: 815px) {
+  #ai-warning {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 725px) {
+  #interactive-training-ground {
+    display: none;
+  }
+}
