@@ -55,6 +55,7 @@ LOCAL_APPS = [
     "appendices.apps.AppendicesConfig",
     "interactives.apps.InteractivesConfig",
     "search.apps.SearchConfig",
+    "pdf.apps.PDFConfig",
 ]
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps

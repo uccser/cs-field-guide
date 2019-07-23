@@ -1,0 +1,58 @@
+@media print {
+  @page {
+    size: a4;
+    margin: 10mm 10mm 20mm 10mm;
+    font-size: 1.5rem;
+  }
+
+  #pdf-content {
+    width: 190mm;
+  }
+
+  .page-break {
+    page-break-after: always;
+  }
+
+  .chapter-heading {
+    background-color: $csfg-light;
+    color: $white;
+  }
+
+  // Hide glossary terms
+  .glossary-term {
+    color: inherit;
+    text-decoration-line: none;
+  }
+
+  // Page numbers
+  @page:right {
+    @bottom-right {
+      color: grey;
+      content: counter(page);
+      font-size: 0.8rem;
+    }
+  }
+  @page:left {
+    @bottom-left {
+      color: grey;
+      content: counter(page);
+      font-size: 0.8rem;
+    }
+  }
+  // Remove page numbers on the first page
+  @page:first {
+    @top-center {
+      content: normal;
+    }
+    @bottom-right {
+      content: normal;
+    }
+    @bottom-left {
+      content: normal;
+    }
+  }
+}
+
+h3, h4, h5, h6 {
+  bookmark-level: none;
+}

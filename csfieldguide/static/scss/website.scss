@@ -45,6 +45,7 @@
 @import "homepage";
 @import "teacher-mode";
 @import "link-item";
+@import "print";
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans');
 
@@ -161,7 +162,6 @@ ol, ul {
     color: white;
   }
 }
-
 
 // Smooth scrolling on the whole document
 html {

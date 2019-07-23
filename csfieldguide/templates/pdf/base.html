@@ -1,0 +1,25 @@
+{% load static render_html_field i18n %}
+
+<html>
+    <head>
+        <title>{{ filename }}</title>
+    </head>
+    <body>
+        <div id="pdf-content">
+            {% for chapter in chapters %}
+                <h1 class="chapter-heading px-2 py-4 mb-3">
+                    <span class="text-white-50">{{ chapter.number }}.</span> {{ chapter.name }}
+                </h1>
+                {% render_html_field chapter.introduction %}
+
+                {% for chapter_section in chapter.chapter_sections.all %}
+                    <h2>
+                        <span class="text-muted">{{ chapter.number }}.{{ chapter_section.number }}.</span> {{ chapter_section.name }}
+                    </h2>
+                    {% render_html_field chapter_section.content %}
+                    <div class="page-break"></div>
+                {% endfor %}
+            {% endfor %}
+        </div>
+    </body>
+</html>
