@@ -23,7 +23,7 @@ Its neural network can be seen by the player on the right side of the screen.
 
 ## Assets
 
-- sprites/stick.png: Public domain image from [publicdomainvectors.org](https://publicdomainvectors.org/en/free-clipart/Stick-vector-image/81315.html)
+- `sprites/stick.png`: Public domain image from [publicdomainvectors.org](https://publicdomainvectors.org/en/free-clipart/Stick-vector-image/81315.html)
 
 ## Licences
 

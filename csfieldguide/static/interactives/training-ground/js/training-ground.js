@@ -41,7 +41,6 @@ const PLAYERS = {
   INTELLIBOT: 3
 }
 
-
 var TXT_LOSS = gettext("Nathaniel wins");
 var TXT_WIN = gettext("You win!");
 var TXT_TURN = gettext("Your turn.");
@@ -195,7 +194,7 @@ function endSimulation() {
  */
 function getParameters() {
   numSimulations = numSimulationsRange.noUiSlider.get();
-  numSticks = Math.round(numSticksRange.noUiSlider.get());
+  numSticks = numSticksRange.noUiSlider.get();
   aiSensitivity = sensitivityRange.noUiSlider.get();
 }
 
@@ -328,13 +327,6 @@ function showChoiceButtons() {
 }
 
 /**
- * Hides controls for the user to choose to simulate matches or have a rematch
- */
-function hideEndButtons() {
-  $('#end-buttons').addClass('d-none');
-}
-
-/**
  * Disables the quit button, does not affect its visibility
  */
 function disableQuitButtons() {
@@ -349,13 +341,6 @@ function enableQuitButtons() {
 }
 
 /**
- * Shows controls for the user to choose to simulate matches or have a rematch
- */
-function showEndButtons() {
-  $('#end-buttons').removeClass('d-none');
-}
-
-/**
  * Hides controls for the user to 'quit', i.e. reset the game to its 'page-loaded' state
  */
 function hideQuitButtons() {
@@ -367,6 +352,20 @@ function hideQuitButtons() {
  */
 function showQuitButtons() {
   $('#quit-buttons').removeClass('d-none');
+}
+
+/**
+ * Hides controls for the user to choose to simulate matches or have a rematch
+ */
+function hideEndButtons() {
+  $('#end-buttons').addClass('d-none');
+}
+
+/**
+ * Shows controls for the user to choose to simulate matches or have a rematch
+ */
+function showEndButtons() {
+  $('#end-buttons').removeClass('d-none');
 }
 
 /**
