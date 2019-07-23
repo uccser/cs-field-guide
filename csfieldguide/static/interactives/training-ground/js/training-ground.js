@@ -8,6 +8,7 @@ var TABLE = require('./html-table.js');
 var IMG_GRID = require('./image-grid.js');
 var AI = require('./ai.js');
 var noUiSlider = require('nouislider');
+var urlParameters = require('../../../js/third-party/url-parameters.js');
 
 var numSimulations;
 var numSticks;
@@ -21,6 +22,8 @@ var aiWins;
 var isSimulation;
 var isStart;
 var doCancelSims;
+var usePracticeBot;
+var chanceOfPlayerStart;
 
 var $dataTable = $('#data-table');
 var $sticksArea = $('#sticks-area');
@@ -45,11 +48,20 @@ var TXT_LOSS = gettext("Nathaniel wins");
 var TXT_WIN = gettext("You win!");
 var TXT_TURN = gettext("Your turn.");
 var TXT_WAIT = gettext("Nathaniel is thinking.");
-var TXT_SIMULATING = gettext("Simulating games...");
+var TXT_SIMULATING_SMART = gettext("Simulating games<br>(default opponent)");
+var TXT_SIMULATING_DUMB = gettext("Simulating games<br>(against itself)");
 var TXT_SIMULATED = gettext("Simulations finished");
 var TXT_INITIAL = gettext("Set the initial parameters below, then hit start");
+var TXT_STARTTURN = gettext("You start, how many sticks will you remove?");
 
 $(document).ready(function() {
+  usePracticeBot = urlParameters.getUrlParameter('selfStudy') == 'true'? false : true;
+  chanceOfPlayerStart = urlParameters.getUrlParameter('playerStart');
+  if (chanceOfPlayerStart == 'true') {
+    chanceOfPlayerStart = 1;
+  } else if (chanceOfPlayerStart == 'false') {
+    chanceOfPlayerStart = 0;
+  }
   isSimulation = false;
   createSliders();
   reset();
@@ -136,7 +148,13 @@ function rematch() {
     hideEndButtons();
     showChoiceButtons();
   }
-  takeAiTurn();
+  if (Math.random() < chanceOfPlayerStart) {
+    // (no need to be more precise)
+    $statusText.html(TXT_STARTTURN);
+    readyPlayerTurn();
+  } else {
+    takeAiTurn();
+  }
 }
 
 /**
@@ -145,7 +163,7 @@ function rematch() {
 function simulate(num) {
   doCancelSims = false;
   isSimulation = true;
-  $splashText.html(TXT_SIMULATING);
+  $splashText.html(usePracticeBot? TXT_SIMULATING_SMART : TXT_SIMULATING_DUMB);
   $splashText.removeClass('d-none');
   disableChoiceButtons();
   hideChoiceButtons();
@@ -446,11 +464,16 @@ function updateRemainingSticks(number) {
  * If games are being simulated, takes the preset practice bot's turn instead
  */
 function readyPlayerTurn() {
+  var num;
   if (remainingSticks <= 0) {
     // The AI won
     endGame(PLAYERS.AI);
   } else if (isSimulation) {
-    var num = ai.takeBotTurn();
+    if (usePracticeBot) {
+      num = ai.takeBotTurn();
+    } else {
+      num = ai.takeTurn(true);
+    }
     applyMove(PLAYERS.INTELLIBOT, num);
   } else {
     enableQuitButtons();

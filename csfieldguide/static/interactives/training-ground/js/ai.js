@@ -72,9 +72,11 @@ class AI {
 
   /**
    * Simulates AI turn being taken, determines the number of sticks to remove based on
-   * its neural net and records the decision.
+   * its neural net and (if dontRecordDecision is not false) records the decision.
+   * 
+   * @param {bool} dontRecordDecision Whether or not to ignore the decision made
    */
-  takeTurn() {
+  takeTurn(dontRecordDecision) {
 
     // Random pick from weighted map of choices
     var num = this.chooseNum(this.map[this.sticksLeft.toString()]);
@@ -84,8 +86,10 @@ class AI {
       console.log('ERROR: Impossible AI move chosen, changed');
     }
 
-    var id = this.sticksLeft.toString();
-    this.moves[id] = num;
+    if (!dontRecordDecision) {
+      var id = this.sticksLeft.toString();
+      this.moves[id] = num;
+    }
     return num;
   }
 
