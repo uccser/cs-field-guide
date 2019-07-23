@@ -19,7 +19,7 @@ class ImageGrid {
     while (i < size) {
       fullHtml += separator;
       while (i < (this.maxWidth * row) && i < size) {
-        fullHtml += container + '<img src="' + this.imagePath + '" id="img-' + i + '"/>\n' + end;
+        fullHtml += container + '<img src="' + this.imagePath + '" id="img-' + i + '" class="img-grid-img"/>\n' + end;
         this.allSticks.push(i);
         i++;
       }

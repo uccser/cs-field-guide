@@ -18,6 +18,7 @@
 
 #splash-text {
   position: absolute;
+  text-align: left;
   top: 40%;
   left: 10%;
   z-index: 100;
@@ -35,8 +36,9 @@
   z-index: 102;
 }
 
+// This is needed to keep remaining sticks from moving about as they are removed
 .stick-image-container {
-  // Height & Width includes padding
+  // Height (112) & Width (21) includes padding
   min-height: 132px;
   max-height: 132px;
   min-width: 51px;
@@ -64,14 +66,53 @@
   background-color: #dc3545;
 }
 
-@media screen and (min-width: 815px) {
+@media screen and (max-width: 830px) {
+  .img-grid-img {
+    transform: scale(0.5);
+  }
+  .stick-image-container {
+    min-width: 30px;
+    max-width: 30px;
+    min-height: 75px;
+    max-height: 75px;
+
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  #data-table {
+    font-size: 0.8rem;
+    td, th {
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+  }
+  label {
+    padding-top: 2rem;
+  }
+  #splash-text {
+    top: 20%;
+  }
+  #button_cancel {
+    top: 55%;
+  }
+}
+
+@media screen and (min-width: 610px) {
   #ai-warning {
     display: none;
   }
 }
 
-@media screen and (max-width: 725px) {
+@media screen and (max-width: 490px) {
   #interactive-training-ground {
     display: none;
   }
+}
+
+.noUi-tooltip {
+  display: none;
+}
+.noUi-active .noUi-tooltip {
+  display: block;
 }

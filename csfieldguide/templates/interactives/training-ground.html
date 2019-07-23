@@ -6,7 +6,7 @@
 {% block html %}
   <div class="my-3 container-fluid interactive text-center">
     <div id="ai-warning" class="row red">
-      {% trans 'Sorry, this interactive is only available on screens wider than 725px, and optimised for those wider than 815px.<br>If you are using a tablet, this could be achieved by holding it in landscape.' %}
+      {% trans 'Sorry, this interactive is only available on screens wider than 490px, and optimised for those wider than 610px.' %}
     </div>
     <div id="interactive-training-ground" class="container start-screen" style="">
       <h1>{% trans 'trAIning ground' %}</h1>
@@ -47,17 +47,17 @@
       <div id="game-parameters">
         <h3>{% trans 'Game parameters' %}</h3>
         <div class="row">
-          <div class="col-4 form-group text-left">
+          <div class="col-12 col-md-4 form-group text-center">
             <label for="num-simulations-select">{% trans 'Number of simulations:' %}</label>
             <small id="num-sims-help" class="form-text text-muted">{% trans 'Nathaniel can practice before we start.' %}</small>
             <div id="num-simulations-select" class="m-2"></div>
           </div>
-          <div class="col-4 form-group text-center">
+          <div class="col-12 col-md-4 form-group text-center">
             <label for="num-sticks-select">{% trans 'Number of sticks:' %}</label>
             <small id="num-sticks-help" class="form-text text-muted">{% trans 'How many sticks in the pile?' %}</small>
             <div id="num-sticks-select" class="m-2"></div>
           </div>
-          <div class="col-4 form-group text-right">
+          <div class="col-12 col-md-4 form-group text-center">
             <label for="sensitivity-select">{% trans 'AI sensitivity (%):' %}</label>
             <small id="sensitivity-help" class="form-text text-muted">{% trans 'Slight adjustments or sweeping changes?' %}</small>
             <div id="sensitivity-select" class="m-2"></div>

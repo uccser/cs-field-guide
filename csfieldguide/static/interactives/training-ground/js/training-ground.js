@@ -209,7 +209,8 @@ function displayBaseVariables() {
 }
 
 /**
- * Creates the 3 nouislider sliders for choosing initial parameters
+ * Creates the 3 nouislider sliders for choosing initial parameters.
+ * 'format:' sections from https://stackoverflow.com/a/38435763
  */
 function createSliders() {
   numSimulationsRange = document.getElementById('num-simulations-select');
@@ -220,6 +221,16 @@ function createSliders() {
     },
     start: 0,
     step: 50,
+
+    tooltips: true,
+    format: {
+      from: function(value) {
+        return parseInt(value);
+      },
+      to: function(value) {
+        return parseInt(value);
+      }
+    },
 
     pips: {
       mode: 'positions',
@@ -237,6 +248,15 @@ function createSliders() {
     },
     start: 17,
     step: 1,
+    tooltips: true,
+    format: {
+      from: function(value) {
+        return parseInt(value);
+      },
+      to: function(value) {
+        return parseInt(value);
+      }
+    },
 
     pips: {
       mode: 'count',
@@ -253,7 +273,16 @@ function createSliders() {
       'max': 40
     },
     start: 5,
-    step: 5,
+    step: 1,
+    tooltips: true,
+    format: {
+      from: function(value) {
+        return parseInt(value);
+      },
+      to: function(value) {
+        return parseInt(value);
+      }
+    },
 
     pips: {
       mode: 'positions',
