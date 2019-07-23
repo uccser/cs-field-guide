@@ -17,6 +17,25 @@ All notable changes to this project will be documented in this file.
 
 We have listed major changes for each release below.
 
+3.0.3
+==============================================================================
+
+- **Release date:** 24th July 2019
+- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/3.0.3>`__
+
+**Changelog:**
+
+- Fix bug where navbar mobile menu is positioned incorrectly.  `#1068 <https://github.com/uccser/cs-field-guide/issues/1068>`__
+- Add link to the release archive in footer. `#1098 <https://github.com/uccser/cs-field-guide/issues/1098>`__
+- Remove references to Picasa. `#1099 <https://github.com/uccser/cs-field-guide/issues/1099>`__
+- Replace brackets with UTF-8 equivalent in archive links. `#1093 <https://github.com/uccser/cs-field-guide/issues/1093>`__
+- Update Google Cloud Platform health checks. `#1105 <https://github.com/uccser/cs-field-guide/pull/1105>`__
+- Dependency updates:
+
+  - Update ``flake8`` from 3.7.7 to 3.7.8.
+  - Update ``pydocstyle`` from 3.0.0 to 4.0.0.
+  - Update ``django-modeltranslation`` from 0.13.2 to 0.13.3.
+
 3.0.2
 ==============================================================================
 
