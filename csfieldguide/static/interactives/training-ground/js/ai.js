@@ -7,11 +7,11 @@ class AI {
     this.floor = 0;     // The lowest value the neural net percentages can individually reach
     this.ceiling = 100; // The highest value the neural net percentages can individually reach
     this.map;           // The AI neural net
-    this.smartMap;      // The model neural net that the AI trains against in simulation
+    this.smartMap;      // A smart model neural net that the AI can train against
+    this.randomMap;     // A default neural net that the AI can train against
     this.startingSticks = initialSticks;
     this.sticksLeft = initialSticks;
     this.sensitivity = initialSensitivity;
-    this.isSimulation = false;
     this.moves = {};    // hashmap that records the current game moves by the AI
   }
 
@@ -22,9 +22,11 @@ class AI {
   init() {
     this.map = {};
     this.smartMap = {};
+    this.randomMap = {};
     var weight;
     for(var i = this.startingSticks; i > 0; i--) {
       this.map[i.toString()] = [i, 33.33, 33.33, 33.34];
+      this.randomMap[i.toString()] = [i, 33.33, 33.33, 33.34];
 
       if(i < 5) {
         weight = 100;
@@ -61,8 +63,13 @@ class AI {
     this.map['1'] = [1, 100, 0, 0];
     this.smartMap['2'] = [2, 0, 100, 0];
     this.smartMap['1'] = [1, 100, 0, 0];
+    this.randomMap['2'] = [2, 50, 50, 0];
+    this.randomMap['1'] = [1, 100, 0, 0];
   }
 
+  /**
+   * Resets the AI for a new game
+   */
   newGame() {
     this.moves = {};
     this.sticksLeft = this.startingSticks;
@@ -91,12 +98,18 @@ class AI {
   }
 
   /**
-   * Simulates the practice bot taking it's turn, returns the number of sticks to remove
+   * Simulates the practice bot taking it's turn, returns the number of sticks to remove.
+   * 
+   * @param {bool} useIntelligentBot Whether to use the smart neural map or random one
    */
-  takeBotTurn() {
+  takeBotTurn(useIntelligentBot) {
 
     // Random pick from weighted map of choices
-    var num = this.chooseNum(this.smartMap[this.sticksLeft.toString()]);
+    if (useIntelligentBot) {
+      var num = this.chooseNum(this.smartMap[this.sticksLeft.toString()]);
+    } else {
+      var num = this.chooseNum(this.randomMap[this.sticksLeft.toString()]);
+    }
 
     if (num > this.sticksLeft) {
       num = this.sticksLeft;
@@ -111,7 +124,7 @@ class AI {
    * slider arrow.
    */
   updateAI(playerWin) {
-    var change = this.sensitivity; // Get percentage from the slider on screen
+    var change = this.sensitivity;
     if (playerWin) {
       change *= -1; // Decrement values for chosen moves
     }
@@ -127,10 +140,6 @@ class AI {
         this.map[key] = this.calculateVals(cur_vals, spot, change);
         cur_vals = [];
       }
-    }
-
-    if (this.isSimulation) {
-      this.trainAI(--simGames); //recursively call trainAI function
     }
   }
 

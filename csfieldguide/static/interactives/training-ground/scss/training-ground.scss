@@ -42,6 +42,19 @@
   padding-right: 15px;
 }
 
+label {
+  padding-top: 2rem;
+}
+
+#ai-warning {
+  padding: 10px;
+  text-align: center;
+  background-color: rgba(244, 67, 54, 0.51);
+  border: 2px solid #FF4336;
+  border-radius: 5px;
+  z-index: 1;
+}
+
 .black-background {
   color: #ffffff;
   background-color: #111111;
@@ -57,15 +70,6 @@
 
 .red {
   background-color: #dc3545;
-}
-
-#ai-warning {
-  padding: 10px;
-  text-align: center;
-  background-color: rgba(244, 67, 54, 0.51);
-  border: 2px solid #FF4336;
-  border-radius: 5px;
-  z-index: 1;
 }
 
 @media screen and (max-width: 830px) {
@@ -88,9 +92,6 @@
       padding-left: 5px;
       padding-right: 5px;
     }
-  }
-  label {
-    padding-top: 2rem;
   }
   #splash-text {
     font-size: 1.5rem;

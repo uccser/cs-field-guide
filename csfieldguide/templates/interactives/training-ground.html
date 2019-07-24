@@ -47,12 +47,12 @@
         </div>
       </div>
       <div id="game-parameters">
-        <h3>{% trans 'Game parameters' %}</h3>
+        <h3>{% trans 'Game parameters:' %}</h3>
         <div class="row">
           <div class="col-12 col-md-4 form-group text-center">
-            <label for="num-simulations-select">{% trans 'Number of simulations:' %}</label>
-            <small id="num-sims-help" class="form-text text-muted">{% trans 'Nathaniel can practice before we start.' %}</small>
-            <div id="num-simulations-select" class="m-2"></div>
+            <label for="who-starts-select">{% trans 'Player starts (%):' %}</label>
+            <small id="who-starts-help" class="form-text text-muted">{% trans 'How likely is the player to start each game.' %}</small>
+            <div id="who-starts-select" class="m-2"></div>
           </div>
           <div class="col-12 col-md-4 form-group text-center">
             <label for="num-sticks-select">{% trans 'Number of sticks:' %}</label>
@@ -61,8 +61,34 @@
           </div>
           <div class="col-12 col-md-4 form-group text-center">
             <label for="sensitivity-select">{% trans 'AI sensitivity (%):' %}</label>
-            <small id="sensitivity-help" class="form-text text-muted">{% trans 'How much will Nathaniel change after each match?' %}</small>
+            <small id="sensitivity-help" class="form-text text-muted">{% trans 'How much to change after each game?' %}</small>
             <div id="sensitivity-select" class="m-2"></div>
+          </div>
+          <div class="col-12 col-md-4 form-group text-center">
+            <label for="num-simulations-select">{% trans 'Number of simulations:' %}</label>
+            <small id="num-sims-help" class="form-text text-muted">{% trans 'Nathaniel can practice before we start.' %}</small>
+            <div id="num-simulations-select" class="m-2"></div>
+          </div>
+          <div class="col-12 col-md-4 form-group text-center">
+            <label for="practice-opponent-select">{% trans 'Practice opponent:' %}</label>
+            <small id="practice-opponent-help" class="form-text text-muted">{% trans 'What is Nathaniel&#39;s opponent during simulations?' %}</small>
+            <div id="practice-opponent-select" class="btn-group btn-group-toggle mt-3" data-toggle="buttons">
+              <label class="btn btn-secondary active">
+                <input type="radio" name="options" id="radio_smartbot" autocomplete="off" value="1" checked>{% trans 'Smart bot' %}
+              </label>
+              <label class="btn btn-secondary">
+                <input type="radio" name="options" id="radio_dumbbot" autocomplete="off" value="2">{% trans 'Random bot' %}
+              </label>
+              <label class="btn btn-secondary">
+                <input type="radio" name="options" id="radio_nathaniel" autocomplete="off" value="3">{% trans 'Nathaniel' %}
+              </label>
+            </div>
+          </div>
+          <div class="col-12 col-md-4 form-group text-center">
+            <label for="num-simulations-select">{% trans 'Quick simulations:' %}</label>
+            <small id="num-sims-help" class="form-text text-muted">{% trans 'Simulations will be hidden but much faster.' %}</small>
+            <button id="button_quick-sims-false" type="button" class="btn btn-danger mt-3">{% trans 'FALSE' %}</button>
+            <button id="button_quick-sims-true" type="button" class="btn btn-success mt-3 d-none">{% trans 'TRUE' %}</button>
           </div>
         </div>
       </div>

@@ -8,12 +8,12 @@ var TABLE = require('./html-table.js');
 var IMG_GRID = require('./image-grid.js');
 var AI = require('./ai.js');
 var noUiSlider = require('nouislider');
-var urlParameters = require('../../../js/third-party/url-parameters.js');
 
-var numSimulations;
+var chanceOfPlayerStart;
 var numSticks;
 var remainingSticks;
 var aiSensitivity;
+var numSimulations;
 var networkTable;
 var sticksGrid;
 var ai;
@@ -22,8 +22,8 @@ var aiWins;
 var isSimulation;
 var isStart;
 var doCancelSims;
-var usePracticeBot;
-var chanceOfPlayerStart;
+var practiceOpponent;
+var quickSims;
 
 var $dataTable = $('#data-table');
 var $sticksArea = $('#sticks-area');
@@ -32,40 +32,42 @@ var $aiWinsText = $('#ai-wins');
 var $playedText = $('#games-played');
 var $statusText = $('#status-text');
 var $splashText = $('#splash-text');
-var numSimulationsRange;
+var whoStartsRange;
 var numSticksRange;
 var sensitivityRange;
+var numSimulationsRange;
 
 const stickPath = base + 'interactives/training-ground/assets/stick.png';
 const PLAYERS = {
   NONE: 0,
-  HUMAN: 1,
-  AI: 2,
-  INTELLIBOT: 3
+  // These next three match their HTML radiobutton value counterparts
+  INTELLIBOT: 1,
+  RANDOBOT: 2,
+  AI_PRACTICE: 3,
+  //
+  HUMAN: 4,
+  AI: 5,
 }
 
 var TXT_LOSS = gettext("Nathaniel wins");
 var TXT_WIN = gettext("You win!");
 var TXT_TURN = gettext("Your turn.");
 var TXT_WAIT = gettext("Nathaniel is thinking.");
-var TXT_SIMULATING_SMART = gettext("Simulating games<br>(default opponent)");
-var TXT_SIMULATING_DUMB = gettext("Simulating games<br>(against itself)");
+var TXT_SIMULATING_SMART = gettext("Simulating games<br>(smart opponent)");
+var TXT_SIMULATING_RANDOM = gettext("Simulating games<br>(random opponent)");
+var TXT_SIMULATING_ITSELF = gettext("Simulating games<br>(against itself)");
 var TXT_SIMULATED = gettext("Simulations finished");
 var TXT_INITIAL = gettext("Set the initial parameters below, then hit start");
 var TXT_STARTTURN = gettext("You start, how many sticks will you remove?");
+var TXT_AI_ALWAYS = gettext("Always Nathaniel");
+var TXT_PLAYER_ALWAYS = gettext("Always the player");
 
 $(document).ready(function() {
-  usePracticeBot = urlParameters.getUrlParameter('selfStudy') == 'true'? false : true;
-  chanceOfPlayerStart = urlParameters.getUrlParameter('playerStart');
-  if (chanceOfPlayerStart == 'true') {
-    chanceOfPlayerStart = 1;
-  } else if (chanceOfPlayerStart == 'false') {
-    chanceOfPlayerStart = 0;
-  }
   isSimulation = false;
   createSliders();
   reset();
   refresh();
+
   $('#button_start').on('click', run);
   $('#button_1').on('click', function() {
     applyMove(PLAYERS.HUMAN, 1);
@@ -84,6 +86,13 @@ $(document).ready(function() {
     doCancelSims = true;
   });
   $('#button_quit').on('click', reset);
+  $('#button_quick-sims-false').on('click', function() {
+    toggleQuickSims(true);
+  });
+  $('#button_quick-sims-true').on('click', function() {
+    toggleQuickSims(false);
+  });
+  
   numSticksRange.noUiSlider.on('update', refresh);
 });
 
@@ -117,9 +126,11 @@ function refresh() {
  * Returns the game to its initial 'page loaded' state
  */
 function reset() {
-  numSimulationsRange.noUiSlider.reset();
+  whoStartsRange.noUiSlider.reset();
   numSticksRange.noUiSlider.reset();
   sensitivityRange.noUiSlider.reset();
+  numSimulationsRange.noUiSlider.reset();
+  toggleQuickSims(false);
   $statusText.html(TXT_INITIAL);
   gamesPlayed = 0;
   aiWins = 0;
@@ -158,13 +169,61 @@ function rematch() {
 }
 
 /**
+ * Simulates the given number of games between the AI and a preset practice bot.
+ * Runs as quickly as possible, without displaying anything to the user 
+ */
+function runQuickSimulation(num) {
+  var aiTurn;
+  var choice;
+  while (num > 0) {
+    ai.newGame();
+    choice = 0;
+    aiTurn = !(Math.random() < chanceOfPlayerStart);
+    while (ai.sticksLeft > 0) {
+      if (aiTurn) {
+        choice = ai.takeTurn();
+        ai.sticksLeft -=choice;
+        aiTurn = false;
+      } else {
+        if (practiceOpponent == PLAYERS.ITSELF) {
+          choice = ai.takeTurn(true);
+        } else {
+          choice = ai.takeBotTurn((practiceOpponent == PLAYERS.INTELLIBOT)? true : false);
+        }
+        ai.sticksLeft -=choice;
+        aiTurn = true;
+      }
+    }
+    ai.updateAI(aiTurn); // If it is currently the AI's turn it's opponent won
+    if (!aiTurn) {
+      aiWins++;
+    }
+    gamesPlayed++;
+    num--;
+  }
+  networkTable.populateTable(ai.map);
+  displayBaseVariables();
+}
+
+/**
  * Simulates the given number of games between the AI and a preset practice bot
  */
 function simulate(num) {
+  if (quickSims) {
+    runQuickSimulation(num);
+    endSimulation();
+    return;
+  }
+  if (practiceOpponent == PLAYERS.INTELLIBOT) {
+    $splashText.html(TXT_SIMULATING_SMART);
+  } else if (practiceOpponent == PLAYERS.RANDOBOT) {
+    $splashText.html(TXT_SIMULATING_RANDOM);
+  } else {
+    $splashText.html(TXT_SIMULATING_ITSELF);
+  }
+  $splashText.removeClass('d-none');
   doCancelSims = false;
   isSimulation = true;
-  $splashText.html(usePracticeBot? TXT_SIMULATING_SMART : TXT_SIMULATING_DUMB);
-  $splashText.removeClass('d-none');
   disableChoiceButtons();
   hideChoiceButtons();
   hideEndButtons();
@@ -205,13 +264,36 @@ function endSimulation() {
   }
 }
 
+function toggleQuickSims(isQuick) {
+  quickSims = isQuick;
+  if (quickSims) {
+    $('#button_quick-sims-false').addClass('d-none');
+    $('#button_quick-sims-true').removeClass('d-none');
+  } else {
+    $('#button_quick-sims-true').addClass('d-none');
+    $('#button_quick-sims-false').removeClass('d-none');
+  }
+}
+
 /**
  * Stores the initial game parameters chosen by the user in appropriate variables
  */
 function getParameters() {
-  numSimulations = numSimulationsRange.noUiSlider.get();
+  chanceOfPlayerStart = whoStartsRange.noUiSlider.get();
+  if (chanceOfPlayerStart == TXT_AI_ALWAYS) {
+    chanceOfPlayerStart = 0;
+  } else if (chanceOfPlayerStart == TXT_PLAYER_ALWAYS) {
+    chanceOfPlayerStart = 1;
+  } else {
+    chanceOfPlayerStart = parseInt(chanceOfPlayerStart) / 100;
+  }
+
   numSticks = numSticksRange.noUiSlider.get();
   aiSensitivity = sensitivityRange.noUiSlider.get();
+  numSimulations = numSimulationsRange.noUiSlider.get();
+
+  // Based on https://stackoverflow.com/a/21674007
+  practiceOpponent = parseInt($('#practice-opponent-select input:radio:checked').val());
 }
 
 /**
@@ -224,32 +306,37 @@ function displayBaseVariables() {
 }
 
 /**
- * Creates the 3 nouislider sliders for choosing initial parameters.
+ * Creates the nouislider sliders for choosing initial parameters.
  * 'format:' sections from https://stackoverflow.com/a/38435763
  */
 function createSliders() {
-  numSimulationsRange = document.getElementById('num-simulations-select');
-  noUiSlider.create(numSimulationsRange, {
+  whoStartsRange = document.getElementById('who-starts-select');
+  noUiSlider.create(whoStartsRange, {
     range: {
       'min': 0,
-      'max': 500
+      'max': 100
     },
     start: 0,
-    step: 50,
-
+    step: 10,
     tooltips: true,
     format: {
-      from: function(value) {
-        return parseInt(value);
-      },
       to: function(value) {
-        return parseInt(value);
+        if (value == 0) {
+          return TXT_AI_ALWAYS;
+        }
+        if (value == 100) {
+          return TXT_PLAYER_ALWAYS;
+        }
+        return value;
+      },
+      from: function(value) {
+        return value;
       }
     },
 
     pips: {
       mode: 'positions',
-      values: [0, 20, 40, 60, 80, 100],
+      values: [0, 50, 100],
       density: 10,
       stepped: true
     }
@@ -303,6 +390,33 @@ function createSliders() {
       mode: 'positions',
       values: [0, 25, 50, 75, 100],
       density: 15,
+      stepped: true
+    }
+  });
+
+  numSimulationsRange = document.getElementById('num-simulations-select');
+  noUiSlider.create(numSimulationsRange, {
+    range: {
+      'min': 0,
+      'max': 500
+    },
+    start: 0,
+    step: 50,
+
+    tooltips: true,
+    format: {
+      from: function(value) {
+        return parseInt(value);
+      },
+      to: function(value) {
+        return parseInt(value);
+      }
+    },
+
+    pips: {
+      mode: 'positions',
+      values: [0, 20, 40, 60, 80, 100],
+      density: 10,
       stepped: true
     }
   });
@@ -424,7 +538,31 @@ function takeAiTurn() {
 }
 
 /**
- * Applies the turn the AI chose
+ * Prepares appropriate buttons for the Player to take its turn.
+ * If games are being simulated, takes the preset bot's turn instead
+ */
+function readyPlayerTurn() {
+  var num;
+  if (remainingSticks <= 0) {
+    // The AI won
+    endGame(PLAYERS.AI);
+  } else if (isSimulation) {
+    if (practiceOpponent == PLAYERS.ITSELF) {
+      num = ai.takeTurn(true);
+    } else if (practiceOpponent == PLAYERS.INTELLIBOT) {
+      num = ai.takeBotTurn(true);
+    } else {
+      num = ai.takeBotTurn(false);
+    }
+    applyMove(practiceOpponent, num);
+  } else {
+    enableQuitButtons();
+    enableChoiceButtons();
+  }
+}
+
+/**
+ * Applies the turn the given player chose
  */
 function applyMove(player, numChosen) {
   if (player == PLAYERS.AI) {
@@ -439,7 +577,7 @@ function applyMove(player, numChosen) {
     $statusText.html(numChosenText + " " + TXT_TURN);
 
     readyPlayerTurn();
-  } else if (player == PLAYERS.HUMAN || player == PLAYERS.INTELLIBOT) {
+  } else if (player != PLAYERS.NONE) {
     if (!isSimulation) {
       sticksGrid.removeSticks(numChosen);
     }
@@ -458,28 +596,6 @@ function updateRemainingSticks(number) {
 }
 
 /**
- * Prepares appropriate buttons for the Player to take its turn.
- * If games are being simulated, takes the preset practice bot's turn instead
- */
-function readyPlayerTurn() {
-  var num;
-  if (remainingSticks <= 0) {
-    // The AI won
-    endGame(PLAYERS.AI);
-  } else if (isSimulation) {
-    if (usePracticeBot) {
-      num = ai.takeBotTurn();
-    } else {
-      num = ai.takeTurn(true);
-    }
-    applyMove(PLAYERS.INTELLIBOT, num);
-  } else {
-    enableQuitButtons();
-    enableChoiceButtons();
-  }
-}
-
-/**
  * Runs post-match processing of match results and AI learning
  */
 function endGame(winner) {
@@ -494,7 +610,7 @@ function endGame(winner) {
       $splashText.html(TXT_LOSS);
       $splashText.removeClass('d-none');
     }
-  } else if (winner == PLAYERS.HUMAN || winner == PLAYERS.INTELLIBOT) {
+  } else if (winner != PLAYERS.NONE) {
     ai.updateAI(true);
     $statusText.html(TXT_WIN);
     networkTable.recolourCells(TABLE.HIGHLIGHTS.LOSS);
