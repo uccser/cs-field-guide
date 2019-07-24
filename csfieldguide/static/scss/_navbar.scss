@@ -1,6 +1,8 @@
 .navbar {
   background-color: $csfg;
   transition: background-color .3s ease 0s;
+  display: block !important;
+  align-items: start !important;
 
   #navbar-brand-logo {
     margin: 0;
