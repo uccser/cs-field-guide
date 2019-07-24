@@ -26,14 +26,14 @@ Its neural network can be seen by the player as a probability table on the right
 Type `?[parameters]` after the interactive URL for the following parameters, where `[parameters]` is any number of the following, in any order, separated by `&`:
 
 - `playerStart=true|false|X` (default = false): Sets the probability of the player taking their turn first.
-  - If `true` or `X`=`1` the player will always go first.
-  - If `false` or `X`=`0` the AI will always go first.
+  - If `true` or `X`>=`1` the player will always go first.
+  - If `false` or `X`<=`0` the AI will always go first.
   - If `X` is between `0` and `1` the given number will be assigned as the probability.
 - `selfStudy=true|false` (default = false): Sets whether the AI will run simulations against itself (`true`) or an intelligent opponent with its own preset probability table (`false`).
 
 ## Assets
 
-- `sprites/stick.png`: Public domain image from [publicdomainvectors.org](https://publicdomainvectors.org/en/free-clipart/Stick-vector-image/81315.html)
+- `stick.png`: Public domain image from [publicdomainvectors.org](https://publicdomainvectors.org/en/free-clipart/Stick-vector-image/81315.html)
 
 ## Licences
 
