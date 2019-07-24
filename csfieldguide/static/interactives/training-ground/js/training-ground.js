@@ -185,7 +185,7 @@ function runQuickSimulation(num) {
         if (practiceOpponent == PLAYERS.ITSELF) {
           choice = ai.takeTurn(true);
         } else {
-          choice = ai.takeBotTurn((practiceOpponent == PLAYERS.INTELLIBOT)? true : false);
+          choice = ai.takeBotTurn((practiceOpponent == PLAYERS.INTELLIBOT) ? true : false);
         }
         ai.sticksLeft -=choice;
         aiTurn = true;
@@ -505,7 +505,7 @@ function showCancelButton() {
 function takeAiTurn() {
   if (remainingSticks <= 0) {
     // The Player/Practice bot won
-    endGame(isSimulation? PLAYERS.INTELLIBOT : PLAYERS.HUMAN);
+    endGame(isSimulation ? PLAYERS.INTELLIBOT : PLAYERS.HUMAN);
   } else {
     disableChoiceButtons();
     disableQuitButtons();
