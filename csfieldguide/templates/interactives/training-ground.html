@@ -51,7 +51,7 @@
         <div class="row">
           <div class="col-12 col-md-4 form-group text-center">
             <label for="who-starts-select">{% trans 'Nathaniel starts (%):' %}</label>
-            <small id="who-starts-help" class="form-text text-muted">{% trans 'How likely is the AI to start each game.' %}</small>
+            <small id="who-starts-help" class="form-text text-muted">{% trans 'How likely is the AI to start each game?' %}</small>
             <div id="who-starts-select" class="m-2"></div>
           </div>
           <div class="col-12 col-md-4 form-group text-center">
@@ -61,7 +61,7 @@
           </div>
           <div class="col-12 col-md-4 form-group text-center">
             <label for="sensitivity-select">{% trans 'AI sensitivity (%):' %}</label>
-            <small id="sensitivity-help" class="form-text text-muted">{% trans 'How much to change after each game?' %}</small>
+            <small id="sensitivity-help" class="form-text text-muted">{% trans 'How much to change after each game.' %}</small>
             <div id="sensitivity-select" class="m-2"></div>
           </div>
           <div class="col-12 col-md-4 form-group text-center">
@@ -88,11 +88,11 @@
             <label for="quick-simulations-select">{% trans 'Quick simulations:' %}</label>
             <small id="quick-sims-help" class="form-text text-muted">{% trans 'Simulations will be hidden but much faster.' %}</small>
             <div id="quick-simulations-select" class="btn-group btn-group-toggle mt-3" data-toggle="buttons">
-              <label class="btn btn-secondary">
-                <input type="radio" name="quick-sim-options" id="radio_true" autocomplete="off" value="true">{% trans 'TRUE' %}
-              </label>
               <label class="btn btn-secondary active">
                 <input type="radio" name="quick-sim-options" id="radio_false" autocomplete="off" value="false" checked>{% trans 'FALSE' %}
+              </label>
+              <label class="btn btn-secondary">
+                <input type="radio" name="quick-sim-options" id="radio_true" autocomplete="off" value="true">{% trans 'TRUE' %}
               </label>
             </div>
           </div>
