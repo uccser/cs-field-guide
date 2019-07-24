@@ -50,8 +50,8 @@
         <h3>{% trans 'Game parameters:' %}</h3>
         <div class="row">
           <div class="col-12 col-md-4 form-group text-center">
-            <label for="who-starts-select">{% trans 'Player starts (%):' %}</label>
-            <small id="who-starts-help" class="form-text text-muted">{% trans 'How likely is the player to start each game.' %}</small>
+            <label for="who-starts-select">{% trans 'Nathaniel starts (%):' %}</label>
+            <small id="who-starts-help" class="form-text text-muted">{% trans 'How likely is the AI to start each game.' %}</small>
             <div id="who-starts-select" class="m-2"></div>
           </div>
           <div class="col-12 col-md-4 form-group text-center">
@@ -85,10 +85,16 @@
             </div>
           </div>
           <div class="col-12 col-md-4 form-group text-center">
-            <label for="num-simulations-select">{% trans 'Quick simulations:' %}</label>
-            <small id="num-sims-help" class="form-text text-muted">{% trans 'Simulations will be hidden but much faster.' %}</small>
-            <button id="button_quick-sims-false" type="button" class="btn btn-danger mt-3">{% trans 'FALSE' %}</button>
-            <button id="button_quick-sims-true" type="button" class="btn btn-success mt-3 d-none">{% trans 'TRUE' %}</button>
+            <label for="quick-simulations-select">{% trans 'Quick simulations:' %}</label>
+            <small id="quick-sims-help" class="form-text text-muted">{% trans 'Simulations will be hidden but much faster.' %}</small>
+            <div id="quick-simulations-select" class="btn-group btn-group-toggle mt-3" data-toggle="buttons">
+              <label class="btn btn-secondary">
+                <input type="radio" name="quick-sim-options" id="radio_true" autocomplete="off" value="true">{% trans 'TRUE' %}
+              </label>
+              <label class="btn btn-secondary active">
+                <input type="radio" name="quick-sim-options" id="radio_false" autocomplete="off" value="false" checked>{% trans 'FALSE' %}
+              </label>
+            </div>
           </div>
         </div>
       </div>

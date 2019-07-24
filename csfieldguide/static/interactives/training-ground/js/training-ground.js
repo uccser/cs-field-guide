@@ -37,7 +37,7 @@ var numSticksRange;
 var sensitivityRange;
 var numSimulationsRange;
 
-const stickPath = base + 'interactives/training-ground/assets/stick.png';
+const stickPath = base + 'interactives/training-ground/img/stick.png';
 const PLAYERS = {
   NONE: 0,
   // These next three match their HTML radiobutton value counterparts
@@ -59,8 +59,8 @@ var TXT_SIMULATING_ITSELF = gettext("Simulating games<br>(against itself)");
 var TXT_SIMULATED = gettext("Simulations finished");
 var TXT_INITIAL = gettext("Set the initial parameters below, then hit start");
 var TXT_STARTTURN = gettext("You start, how many sticks will you remove?");
-var TXT_AI_ALWAYS = gettext("Always Nathaniel");
-var TXT_PLAYER_ALWAYS = gettext("Always the player");
+var TXT_AI_ALWAYS = gettext("Always");
+var TXT_PLAYER_ALWAYS = gettext("Never");
 
 $(document).ready(function() {
   isSimulation = false;
@@ -86,12 +86,6 @@ $(document).ready(function() {
     doCancelSims = true;
   });
   $('#button_quit').on('click', reset);
-  $('#button_quick-sims-false').on('click', function() {
-    toggleQuickSims(true);
-  });
-  $('#button_quick-sims-true').on('click', function() {
-    toggleQuickSims(false);
-  });
   
   numSticksRange.noUiSlider.on('update', refresh);
 });
@@ -130,7 +124,10 @@ function reset() {
   numSticksRange.noUiSlider.reset();
   sensitivityRange.noUiSlider.reset();
   numSimulationsRange.noUiSlider.reset();
-  toggleQuickSims(false);
+  $('#practice-opponent-select input:radio:checked').prop('checked', false).parent().removeClass('active');
+  $('#radio_smartbot').prop('checked', true).parent().addClass('active');
+  $('#quick-simulations-select input:radio:checked').prop('checked', false).parent().removeClass('active');
+  $('#radio_false').prop('checked', true).parent().addClass('active');
   $statusText.html(TXT_INITIAL);
   gamesPlayed = 0;
   aiWins = 0;
@@ -264,17 +261,6 @@ function endSimulation() {
   }
 }
 
-function toggleQuickSims(isQuick) {
-  quickSims = isQuick;
-  if (quickSims) {
-    $('#button_quick-sims-false').addClass('d-none');
-    $('#button_quick-sims-true').removeClass('d-none');
-  } else {
-    $('#button_quick-sims-true').addClass('d-none');
-    $('#button_quick-sims-false').removeClass('d-none');
-  }
-}
-
 /**
  * Stores the initial game parameters chosen by the user in appropriate variables
  */
@@ -285,7 +271,7 @@ function getParameters() {
   } else if (chanceOfPlayerStart == TXT_PLAYER_ALWAYS) {
     chanceOfPlayerStart = 1;
   } else {
-    chanceOfPlayerStart = parseInt(chanceOfPlayerStart) / 100;
+    chanceOfPlayerStart = 1 - (parseInt(chanceOfPlayerStart) / 100);
   }
 
   numSticks = numSticksRange.noUiSlider.get();
@@ -294,6 +280,7 @@ function getParameters() {
 
   // Based on https://stackoverflow.com/a/21674007
   practiceOpponent = parseInt($('#practice-opponent-select input:radio:checked').val());
+  quickSims = $('#quick-simulations-select input:radio:checked').val() == 'true';
 }
 
 /**
@@ -316,15 +303,15 @@ function createSliders() {
       'min': 0,
       'max': 100
     },
-    start: 0,
+    start: 100,
     step: 10,
     tooltips: true,
     format: {
       to: function(value) {
-        if (value == 0) {
+        if (value == 100) {
           return TXT_AI_ALWAYS;
         }
-        if (value == 100) {
+        if (value == 0) {
           return TXT_PLAYER_ALWAYS;
         }
         return value;
