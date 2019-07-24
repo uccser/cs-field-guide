@@ -4,11 +4,11 @@
 {% load static %}
 
 {% block html %}
-  <div class="my-3 container-fluid interactive text-center">
-    <div id="ai-warning" class="row red">
+  <div class="my-3 container-fluid text-center">
+    <div id="ai-warning" class="row">
       {% trans 'Sorry, this interactive is only available on screens wider than 490px, and optimised for those wider than 610px.' %}
     </div>
-    <div id="interactive-training-ground" class="container start-screen" style="">
+    <div id="interactive-training-ground" class="container start-screen">
       <h1>{% trans 'trAIning ground' %}</h1>
       <br>
       <h5>{% blocktrans %}In this game, take turns with the AI (Nathaniel) picking 1, 2, or 3 sticks.
@@ -38,8 +38,10 @@
             <div id="quit-buttons" class="col-12 text-right d-none">
               <button id="button_quit" type="button" class="btn btn-danger m-2">{% trans 'Quit' %}</button>
             </div>
-            <div id="splash-text" class="d-none"></div>
-            <button id="button_cancel" type="button" class="btn btn-danger btn-lg d-none">{% trans 'STOP' %}</button>
+            <div id="splash-text-container">
+              <div id="splash-text" class="col-12 d-none"></div>
+              <button id="button_cancel" type="button" class="btn btn-danger btn-lg d-none">{% trans 'STOP' %}</button>
+            </div>
           </div>
           <table id="data-table" class="col-5"></table>
         </div>
@@ -59,7 +61,7 @@
           </div>
           <div class="col-12 col-md-4 form-group text-center">
             <label for="sensitivity-select">{% trans 'AI sensitivity (%):' %}</label>
-            <small id="sensitivity-help" class="form-text text-muted">{% trans 'Slight adjustments or sweeping changes?' %}</small>
+            <small id="sensitivity-help" class="form-text text-muted">{% trans 'How much will Nathaniel change after each match?' %}</small>
             <div id="sensitivity-select" class="m-2"></div>
           </div>
         </div>

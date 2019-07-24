@@ -1,5 +1,7 @@
-
-
+/**
+ * ImageGrid contains functions for creating a grid of images
+ * and then removing images from it without the remaining ones shifting about
+ */
 class ImageGrid {
   constructor(parentDiv, imgPath, maxWidth) {
     this.$parent = parentDiv;

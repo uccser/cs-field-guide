@@ -169,7 +169,6 @@ function simulate(num) {
   hideChoiceButtons();
   hideEndButtons();
   showCancelButton();
-  console.log('Running ' + num + ' simulations...');
   recursiveSim(num);
 }
 
@@ -196,7 +195,6 @@ function endSimulation() {
   networkTable.uncolourCells();
   $splashText.addClass('d-none');
   isSimulation = false;
-  console.log('simulation ended');
   enableQuitButtons();
   if (isStart) {
     isStart = false;

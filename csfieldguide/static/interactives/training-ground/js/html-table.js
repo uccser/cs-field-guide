@@ -1,6 +1,5 @@
-
 var TXT_REMAINING = gettext("Sticks<br>remaining:");
-var TXT_CHANCE = gettext("Chance to pick (%):");
+var TXT_CHANCE = gettext("Chance AI picks (%):");
 var TXT_STICKS = {
   '1': gettext("1 stick"),
   '2': gettext("2 sticks"),
@@ -13,6 +12,9 @@ const HIGHLIGHTS = {
   UNDECIDED: 'blue'
 }
 
+/**
+ * HtmlTable contains functions for creating and manipulating an HTML probability table
+ */
 class HtmlTable {
   constructor(parentDiv) {
     this.$parent = parentDiv;

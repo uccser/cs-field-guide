@@ -1,7 +1,6 @@
 /**
  * AI contains all functions used by the AI to calculate, save, and update its neural net.
  */
-
 class AI {
 
   constructor(initialSticks, initialSensitivity) {
@@ -21,7 +20,6 @@ class AI {
    * and initializes an intelligent model neural net to train against.
    */
   init() {
-    console.log('Creating AI');
     this.map = {};
     this.smartMap = {};
     var weight;
@@ -83,7 +81,6 @@ class AI {
 
     if (num > this.sticksLeft) {
       num = this.sticksLeft;
-      console.log('ERROR: Impossible AI move chosen, changed');
     }
 
     if (!dontRecordDecision) {
@@ -103,7 +100,6 @@ class AI {
 
     if (num > this.sticksLeft) {
       num = this.sticksLeft;
-      console.log('ERROR: Impossible BOT move chosen, changed');
     }
 
     return num;
