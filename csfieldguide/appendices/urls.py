@@ -6,7 +6,6 @@ from django.views.generic.base import RedirectView
 from . import views
 
 app_name = "appendices"
-
 urlpatterns = [
     # e.g. /appendices/
     url(
