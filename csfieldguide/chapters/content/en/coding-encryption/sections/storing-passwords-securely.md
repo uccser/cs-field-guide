@@ -170,6 +170,34 @@ In easy terms, what it is saying is that there are significantly fewer modificat
 Note that the estimates are based on trying to guess through a login system.
 With a leaked database, the attacker can test billions of passwords a second rather than just a few thousand.
 
+{panel type="project"}
+
+# Password guessing interactive
+
+Have a go at the following interactive.
+It requires you to guess the passwords of users.
+
+- Alice and Bob both used passwords that (by pure coincidence) are among the [top 25 most common passwords of 2018 according to SplashData](https://en.wikipedia.org/wiki/List_of_the_most_common_passwords).
+- Casey picked her password out of an english dictionary.
+  You might find hers a bit more challenging to figure out, although a computer would get it in a second.
+  If you are keen, you might like to do a dictionary attack on it yourself.
+- Dave's password is short, but the 5 characters in it could be symbols, numbers, uppercase or lowercase.
+  You might find his a little more challenging to figure out, but again it is easy for a computer and you might like to write a program to help if you are keen.
+- Evelyn's is also a random mix of characters, but is 16 characters long.
+  We don't think you will ever guess her password, even if you wrote a program to help you!
+  Do let us know if you figure it out though!
+- Frank heard about the complexity of Evelyn's password, but didn't want to risk forgetting such a long sequence of random characters.
+  Instead, he borrowed Casey's english dictionary and chose five random words from it!
+  He finds this password much easier to remember, but does that make it easier to crack?
+
+A database is displayed, along with a simple checker.
+For each user: copy their salt into the box, enter a possible password, and click `Calculate Hash` to check the database.
+The database will highlight an entry if the hash matches (so you don't have to check manually!).
+
+{interactive slug="password-guesser" type="iframe" alt="Interactive for guessing user passwords"}
+
+{panel end}
+
 {comment TODO: ## Real world case studies}
 
 {comment TODO: ### Adobethe challenges}
