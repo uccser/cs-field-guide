@@ -1,7 +1,7 @@
 """Views for the curriculum guides application."""
 
 from django.shortcuts import get_object_or_404
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.views import generic
 from curriculum_guides.models import (
     CurriculumGuide,
