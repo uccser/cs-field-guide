@@ -194,7 +194,7 @@ A database is displayed, along with a simple checker.
 For each user: copy their salt into the box, enter a possible password, and click `Calculate Hash` to check the database.
 The database will highlight an entry if the hash matches (so you don't have to check manually!).
 
-{interactive slug="password-guesser" type="iframe" alt="Interactive for guessing user passwords"}
+{interactive slug="password-guesser" type="in-page" alt="Interactive for guessing user passwords"}
 
 {panel end}
 
