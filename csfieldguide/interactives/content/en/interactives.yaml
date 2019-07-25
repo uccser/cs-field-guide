@@ -110,6 +110,8 @@ packet-attack-level-creator:
   name: Packet Attack Level Creator
 parity:
   name: Parity
+password-guesser:
+  name: Password Guesser
 payment-interface:
   name: Payment Interface
 persona-carousel:

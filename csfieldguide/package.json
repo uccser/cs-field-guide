@@ -26,6 +26,7 @@
     "csfg-interactive-frequency-anaylsis": "file:./static/interactives/frequency-analysis/",
     "csfg-interactive-jpeg-compression": "file:./static/interactives/jpeg-compression/",
     "csfg-interactive-packet-attack": "file:./static/interactives/packet-attack/",
+    "csfg-interactive-password-guesser": "file:./static/interactives/password-guesser/",
     "csfg-interactive-python-interpreter": "file:./static/interactives/python-interpreter/",
     "csfg-interactive-regular-expression-search": "file:./static/interactives/regular-expression-search/",
     "csfg-interactive-rgb-mixer": "file:./static/interactives/rgb-mixer/",
