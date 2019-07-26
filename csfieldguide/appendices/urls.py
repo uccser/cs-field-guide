@@ -1,6 +1,6 @@
 """URL routing for the appendices application."""
 
-from django.conf.urls import url
+from django.urls import path
 from django.views.generic.base import RedirectView
 
 from . import views
@@ -8,34 +8,34 @@ from . import views
 app_name = "appendices"
 urlpatterns = [
     # e.g. /appendices/
-    url(
-        r"^$",
+    path(
+        "",
         views.AppendicesList.as_view(),
         name="appendices"
     ),
-    url(
-        r"^about/$",
+    path(
+        "about/",
         views.AboutView.as_view(),
         name="about"
     ),
-    url(
-        r"^contributors/$",
+    path(
+        "contributors/",
         views.ContributorsView.as_view(),
         name="contributors"
     ),
-    url(
-        r"^sitemap/$",
+    path(
+        "sitemap/",
         views.SitemapView.as_view(),
         name="sitemap"
     ),
     # eg: redirect /appendices/curriculum-guides/ to /curriculum-guides/
-    url(
-        r"^curriculum-guides/$",
+    path(
+        "curriculum-guides/",
         RedirectView.as_view(permanent=True, pattern_name="curriculum_guides:index")
     ),
     # eg: redirect /appendices/curriculum-guides/ncea/ to /curriculum-guides/ncea/
-    url(
-        r"^curriculum-guides/(?P<curriculum_guide_slug>[-\w]+)/$",
+    path(
+        "curriculum-guides/<curriculum_guide_slug>/",
         RedirectView.as_view(permanent=True, pattern_name="curriculum_guides:curriculum_guide")
     ),
 ]
