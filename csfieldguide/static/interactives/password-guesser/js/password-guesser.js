@@ -29,8 +29,8 @@ $(document).ready(function() {
  * Concatenates the guessed password with the given salt, hashes the result,
  * and checks it against hashed passwords on the table.
  * 
- * The salt is interpreted as a string (despite being hex) but that does not affect
- * anything negatively
+ * The salt is interpreted as a string (despite being hex) but there is no
+ * significant disadvantage to this
  */
 function checkGuess() {
   unhighlight('#pg-calculated-hash');
@@ -50,10 +50,16 @@ function checkGuess() {
   }
 }
 
-function highlight(row) {
-  $(row).addClass('highlight');
+/**
+ * Adds the css 'highlight' class to the given HTML element
+ */
+function highlight(element) {
+  $(element).addClass('highlight');
 }
 
-function unhighlight(row) {
-  $(row).removeClass('highlight');
+/**
+ * Removes the css 'highlight' class from the given HTML element
+ */
+function unhighlight(element) {
+  $(element).removeClass('highlight');
 }
