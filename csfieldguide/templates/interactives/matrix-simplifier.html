@@ -1,0 +1,26 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div class="container">
+    <h3>{% trans "Matrix Simplifier" %}</h3>
+    <div class="row">
+      <div class="col-4">
+        <!-- input matrices -->
+      </div>
+      <div class="col-6">
+        <!-- output -->
+      </div>
+    </div>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/matrix-simplifier/css/matrix-simplifier.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'interactives/matrix-simplifier/js/matrix-simplifier.js' %}"></script>
+{% endblock js %}
