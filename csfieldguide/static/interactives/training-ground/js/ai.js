@@ -12,7 +12,8 @@ class AI {
     this.startingSticks = initialSticks;
     this.sticksLeft = initialSticks;
     this.sensitivity = initialSensitivity;
-    this.moves = {};    // hashmap that records the current game moves by the AI
+    this.moves = {};    // Hashmap that records the current game moves by the AI
+    this.opponentMoves = {}; // Hashmap that records the current game moves by the AI (as an opponent)
   }
 
   /**
@@ -24,33 +25,33 @@ class AI {
     this.smartMap = {};
     this.randomMap = {};
     var weight;
-    for(var i = this.startingSticks; i > 0; i--) {
+    for (var i = this.startingSticks; i > 0; i--) {
       this.map[i.toString()] = [i, 33.33, 33.33, 33.34];
       this.randomMap[i.toString()] = [i, 33.33, 33.33, 33.34];
 
-      if(i < 5) {
+      if (i < 5) {
         weight = 100;
       }
-      else if(i < 9) {
+      else if (i < 9) {
         weight = 90;
       }
-      else if(i < 13) {
+      else if (i < 13) {
         weight = 80;
       }
-      else if(i < 17) {
+      else if (i < 17) {
         weight = 70;
       }
       else {
         weight = 60;
       }
 
-      if(i%4 == 1) {
+      if (i%4 == 1) {
         this.smartMap[i.toString()] = [i, weight, (100-weight)/2, (100-weight)/2];
       }
-      else if(i%4 == 2) {
+      else if (i%4 == 2) {
         this.smartMap[i.toString()] = [i, (100-weight)/2, weight, (100-weight)/2];
       }
-      else if(i%4 == 3) {
+      else if (i%4 == 3) {
         this.smartMap[i.toString()] = [i, (100-weight)/2, (100-weight)/2, weight];
       }
       else {
@@ -72,6 +73,7 @@ class AI {
    */
   newGame() {
     this.moves = {};
+    this.opponentMoves = {};
     this.sticksLeft = this.startingSticks;
   }
 
@@ -79,9 +81,9 @@ class AI {
    * Simulates AI turn being taken, determines the number of sticks to remove based on
    * its neural net and (if dontRecordDecision is not false) records the decision.
    * 
-   * @param {bool} dontRecordDecision Whether or not to ignore the decision made
+   * @param {bool} isOpponent Whether or not this is the AI as an opponent
    */
-  takeTurn(dontRecordDecision) {
+  takeTurn(isOpponent) {
 
     // Random pick from weighted map of choices
     var num = this.chooseNum(this.map[this.sticksLeft.toString()]);
@@ -90,8 +92,10 @@ class AI {
       num = this.sticksLeft;
     }
 
-    if (!dontRecordDecision) {
-      var id = this.sticksLeft.toString();
+    var id = this.sticksLeft.toString();
+    if (isOpponent) {
+      this.opponentMoves[id] = num;
+    } else {
       this.moves[id] = num;
     }
     return num;
@@ -120,22 +124,42 @@ class AI {
 
   /**
    * Updates the AI's neural net based on its decisions during the previous game
-   * and the results of that game. Also determines change in percentage based on
-   * slider arrow.
+   * and the results of that game.
+   * The AI, and AI as an opponent (if applicable) are treated separately
    */
   updateAI(playerWin) {
+    var keys, key, cur_vals, spot;
+
     var change = this.sensitivity;
     if (playerWin) {
       change *= -1; // Decrement values for chosen moves
     }
 
-    var keys = Object.keys(this.moves);
+    keys = Object.keys(this.moves);
     for (var i in keys) {
-      var key = keys[i]
+      key = keys[i];
       // If key is in map (should always be true) update map values
-      if(key in this.map){
-        var cur_vals = this.map[key];
-        var spot = this.moves[key];
+      if (key in this.map) {
+        cur_vals = this.map[key];
+        spot = this.moves[key];
+
+        this.map[key] = this.calculateVals(cur_vals, spot, change);
+        cur_vals = [];
+      }
+    }
+
+    // This section will be almost entirely ignored if the AI was not the opponent
+    // Order does not matter as the AI and opponent will always have different keys
+    // (Because the number of sticks remaining is the key, and at least one stick is removed every time)
+
+    change *= -1; // Set as opposite for the opponent's moves
+    keys = Object.keys(this.opponentMoves);
+    for (var j in keys) {
+      key = keys[j];
+      // If key is in map (should always be true) update map values
+      if (key in this.map) {
+        cur_vals = this.map[key];
+        spot = this.opponentMoves[key];
 
         this.map[key] = this.calculateVals(cur_vals, spot, change);
         cur_vals = [];

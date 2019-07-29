@@ -95,10 +95,10 @@ $(document).ready(function() {
  */
 function run() {
   isStart = true;
+  refresh();
   $('#game-parameters').addClass('d-none');
   $('#button_start').addClass('d-none');
-  refresh();
-  $statusText.html(gettext("Preparing..."));
+  $statusText.html("...");
   ai = new AI.AI(numSticks, aiSensitivity);
   ai.init();
   networkTable.populateTable(ai.map);
@@ -182,7 +182,7 @@ function runQuickSimulation(num) {
         ai.sticksLeft -=choice;
         aiTurn = false;
       } else {
-        if (practiceOpponent == PLAYERS.ITSELF) {
+        if (practiceOpponent == PLAYERS.AI_PRACTICE) {
           choice = ai.takeTurn(true);
         } else {
           choice = ai.takeBotTurn((practiceOpponent == PLAYERS.INTELLIBOT) ? true : false);
@@ -265,21 +265,27 @@ function endSimulation() {
  * Stores the initial game parameters chosen by the user in appropriate variables
  */
 function getParameters() {
-  chanceOfPlayerStart = whoStartsRange.noUiSlider.get();
-  if (chanceOfPlayerStart == TXT_AI_ALWAYS) {
+  var chanceOfAiStart = whoStartsRange.noUiSlider.get();
+  if (chanceOfAiStart == TXT_AI_ALWAYS) {
     chanceOfPlayerStart = 0;
-  } else if (chanceOfPlayerStart == TXT_PLAYER_ALWAYS) {
+  } else if (chanceOfAiStart == TXT_PLAYER_ALWAYS) {
     chanceOfPlayerStart = 1;
   } else {
-    chanceOfPlayerStart = 1 - (parseInt(chanceOfPlayerStart) / 100);
+    chanceOfPlayerStart = 1 - (parseInt(chanceOfAiStart) / 100);
   }
 
   numSticks = numSticksRange.noUiSlider.get();
   aiSensitivity = sensitivityRange.noUiSlider.get();
   numSimulations = numSimulationsRange.noUiSlider.get();
 
-  // Based on https://stackoverflow.com/a/21674007
-  practiceOpponent = parseInt($('#practice-opponent-select input:radio:checked').val());
+  var opponent = $('#practice-opponent-select input:radio:checked').val();
+  if (opponent == "smart") {
+    practiceOpponent = PLAYERS.INTELLIBOT;
+  } else if (opponent == "random") {
+    practiceOpponent = PLAYERS.RANDOBOT;
+  } else {
+    practiceOpponent = PLAYERS.AI_PRACTICE;
+  }
   quickSims = $('#quick-simulations-select input:radio:checked').val() == 'true';
 }
 
@@ -534,7 +540,7 @@ function readyPlayerTurn() {
     // The AI won
     endGame(PLAYERS.AI);
   } else if (isSimulation) {
-    if (practiceOpponent == PLAYERS.ITSELF) {
+    if (practiceOpponent == PLAYERS.AI_PRACTICE) {
       num = ai.takeTurn(true);
     } else if (practiceOpponent == PLAYERS.INTELLIBOT) {
       num = ai.takeBotTurn(true);
