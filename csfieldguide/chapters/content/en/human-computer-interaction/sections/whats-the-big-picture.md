@@ -37,7 +37,7 @@ If they decide to use it slowly and carefully they may get the even/odd choices 
 
 {panel end}
 
-The study of Human Computer Interaction involves a lot of psychology (how people behave) because this affects how they will use a system.
+The study of HCI involves a lot of psychology (how people behave) because this affects how they will use a system.
 As a simple example, the human short term memory only lasts for a matter of seconds (even in young people!)
 If a device delays a response for more than about 10 seconds, the user has to make a conscious effort to remember what they were doing, and that’s extra work for the user (which from their point of view, makes the system more tiring to use).
 Another example is that people get "captured" into sequences: if you start biking on a route that you take each day, you'll soon find yourself arriving without thinking about every turn along the way, which is fine unless you were supposed to go somewhere else on the way, or if you have recently moved to a new house or workplace.
@@ -63,7 +63,7 @@ A lot of people might blame themselves for such errors, but basic psychology say
 Designing good interfaces is *very* difficult.
 Just when you think you've got a clever idea, you'll find that a whole group of people struggle to figure out how to use it, or it backfires in some situation.
 Even worse, some computer developers think that their users are dummies and that any interface problems are the user’s fault and not the developer’s.
-But the real problem is that the developer knows the system really well, whereas the user just wants to get their job done without having to spend a lot of time learning the software – if the software is too hard to use and they have a choice, they’ll just find something else that’s easier.
+But the real problem is that the developer knows the system really well, whereas the user just wants to get their job done without having to spend a lot of time learning the software &ndash; if the software is too hard to use and they have a choice, they’ll just find something else that’s easier.
 Good interfaces are worth a lot in the market!
 
 There are many ways to evaluate and fine tune interfaces, and in this chapter we'll look at some of these.
@@ -72,7 +72,7 @@ They know all the details of how it works, they've probably been thinking about 
 It's also important that the interface should be evaluated by someone who is going to be a typical user; if you get a 12-year-old to evaluate a retirement planning system they may not know what the user will be interested in; and if you get a teacher to try out a system that students will use, they may know what the answers are and what the correct process is.
 
 Often interfaces are evaluated by getting typical users to try them out, and carefully noting any problems they have.
-There are companies that do nothing but these kinds of user tests – they will be given a prototype product, and pay groups of people to try it out.
+There are companies that do nothing but these kinds of user tests &ndash; they will be given a prototype product, and pay groups of people to try it out.
 A report on the product is then produced and given to the people who are working on it.
 This is an expensive process, but it makes the product a lot better, and may well give it a huge advantage over its competitors.
 Having it evaluated by a separate company means that you avoid any bias from people in your own company who want to prove (even subconsciously) that they've done a good job designing it, rather than uncover any niggling problems in the software that will annoy users.

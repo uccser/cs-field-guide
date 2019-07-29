@@ -40,7 +40,7 @@ It's very important to think about the whole context when describing a task.
 As an exercise, can you provide an example of a real task, including context, for a real person for each of the following:
 
 - Set an alarm clock
-- Show a slide (Powerpoint) presentation
+- Show a slide (PowerPoint) presentation
 
 Discuss your answers with a classmate or a friend.
 This should help you to evaluate your own answer, and consider other possible examples.
@@ -58,7 +58,7 @@ Some of the ideas that you could prompt for are:
 - Set an alarm clock: the task is often done late at night, and if a mistake is made the user may miss an important appointment or flight in the morning, so it's already challenging.
   Depending on the clock (it might be on a smartphone, or a physical clock), the user needs to set the alarm time (including getting the am/pm part right), switch on the sound for the alarm (perhaps making sure that the device isn't muted), and make sure it has sufficient power to last until the morning.
   All this is being done while tired, and a mistake could be costly!
-- Show a slide (Powerpoint) presentation: this task is often done in front of an audience, and there may be limited time e.g. if the room isn't available until a few minutes before the presentation.
+- Show a slide (PowerPoint) presentation: this task is often done in front of an audience, and there may be limited time e.g. if the room isn't available until a few minutes before the presentation.
   The computer may need to be connected to a projector (a whole interface challenge in itself), the software put into presentation mode with the right image ready to start, the user needs to be able to move to the next slide, and recover from pressing a wrong key.
   To add to the challenges, a projector usually takes a while to warm up, and it can be hard to tell what's happening during that time.
 
@@ -69,7 +69,7 @@ Some of the ideas that you could prompt for are:
 # Dumb users or dumb interfaces?
 
 Computer systems often make people feel dumb &ndash; in fact, there are lots of "dummies" books available, such as "iPad for dummies" or "The Complete Idiot's Guide to Microsoft Windows 10".
-These books sell millions of copies, yet chances are the people who buy them are actually quite intelligent — it's just that the interfaces can make people so frustrated that they feel like a dummy.
+These books sell millions of copies, yet chances are the people who buy them are actually quite intelligent &ndash; it's just that the interfaces can make people so frustrated that they feel like a dummy.
 The truth is that if an interface makes lots of people feel like an idiot, chances are the real problem is with the interface and not the user.
 In the past there has been a culture where the balance of power was with the programmers who designed a system, and they could afford to blame the users for any problems.
 However, now users have a large choice of systems, and there are competitors ready to offer a better interface, so if a programmer continually blame your users for problems, chances are it's the programmer who is the complete idiot!
