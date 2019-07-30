@@ -96,6 +96,22 @@
                     <input type="radio" name="options" id="radio_nathaniel" autocomplete="off" value="itself">{% trans 'Nathaniel' %}
                   </label>
                 </div>
+                <div class="bot-description my-2">
+                  <ul>
+                    <li id="smartbot_description">
+                      {% blocktrans %}The smartbot has a probability table that favours "correct" choices.
+                      The fewer sticks that remain, the more likely it is to choose a number that prevents its opponent from winning.{% endblocktrans %}
+                    </li>
+                    <li id="randobot_description" class="d-none">
+                      {% blocktrans %}The randobot has an equal probability of choosing any valid number of sticks.
+                      It cannot choose more sticks than there are remaining.{% endblocktrans %}
+                    </li>
+                    <li id="nathaniel_description" class="d-none">
+                      {% blocktrans %}Both AI will use the same probability table to face eachother.
+                      Whether they win or lose, both will contribute to Nathaniel's neural network.{% endblocktrans %}
+                    </li>
+                  </ul>
+                </div>
               </div>
               <div class="col-12 col-lg-6 col-xl-4 form-group text-center">
                 <label for="quick-simulations-select">{% trans 'Quick simulations:' %}</label>
@@ -111,9 +127,10 @@
               </div>
             </div>
             <div class="modal-footer">
-              <button id="button_modal_quit" type="button" class="btn btn-danger">{% trans 'Quit current game to make changes' %}</button>
+              <button id="button_modal_cancel" type="button" class="btn btn-danger d-none">{% trans 'Stop simulating' %}</button>
+              <button id="button_modal_quit" type="button" class="btn btn-danger d-none">{% trans 'Quit current game to make changes' %}</button>
               <button type="button" class="btn btn-primary" data-dismiss="modal">{% trans 'Hide game parameters' %}</button>
-              <button id="button_modal_start"  type="button" class="btn btn-success" data-dismiss="modal">{% trans 'Start' %}</button>
+              <button id="button_modal_start" type="button" class="btn btn-success" data-dismiss="modal">{% trans 'Start' %}</button>
             </div>
           </div>
         </div>

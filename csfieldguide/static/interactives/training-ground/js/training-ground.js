@@ -79,11 +79,15 @@ $(document).ready(function() {
   $('#button_3').on('click', function() {
     applyMove(PLAYERS.HUMAN, 3);
   });
+  $('#practice-opponent-select').on('change', updateBotDescription);
   $('#button_rematch').on('click', rematch);
   $('#button_simulate').on('click', function() {
     simulate(10);
   });
   $('#button_cancel').on('click', function() {
+    doCancelSims = true;
+  });
+  $('#button_modal_cancel').on('click', function() {
     doCancelSims = true;
   });
   $('#button_quit').on('click', reset);
@@ -226,7 +230,7 @@ function simulate(num) {
   disableChoiceButtons();
   hideChoiceButtons();
   hideEndButtons();
-  showCancelButton();
+  showCancelButtons();
   recursiveSim(num);
 }
 
@@ -248,7 +252,7 @@ function recursiveSim(num) {
  * a new match is started immediately
  */
 function endSimulation() {
-  hideCancelButton();
+  hideCancelButtons();
   $statusText.html(TXT_SIMULATED);
   networkTable.uncolourCells();
   $splashText.addClass('d-none');
@@ -289,6 +293,23 @@ function getParameters() {
     practiceOpponent = PLAYERS.AI_PRACTICE;
   }
   quickSims = $('#quick-simulations-select input:radio:checked').val() == 'true';
+}
+
+/**
+ * Reveals the description for the currently selected bot. Hides the others
+ */
+function updateBotDescription() {
+  $('#smartbot_description').addClass('d-none');
+  $('#randobot_description').addClass('d-none');
+  $('#nathaniel_description').addClass('d-none');
+  getParameters();
+  if (practiceOpponent == PLAYERS.INTELLIBOT) {
+    $('#smartbot_description').removeClass('d-none');
+  } else if (practiceOpponent == PLAYERS.RANDOBOT) {
+    $('#randobot_description').removeClass('d-none');
+  } else {
+    $('#nathaniel_description').removeClass('d-none');
+  }
 }
 
 /**
@@ -625,13 +646,15 @@ function showEndButtons() {
 /**
  * Hides the stop simulating button
  */
-function hideCancelButton() {
+function hideCancelButtons() {
   $('#button_cancel').addClass('d-none').prop('disabled', true);
+  $('#button_modal_cancel').addClass('d-none').prop('disabled', true);
 }
 
 /**
  * Shows the stop simulating button
  */
-function showCancelButton() {
+function showCancelButtons() {
   $('#button_cancel').removeClass('d-none').prop('disabled', false);
+  $('#button_modal_cancel').removeClass('d-none').prop('disabled', false);
 }
