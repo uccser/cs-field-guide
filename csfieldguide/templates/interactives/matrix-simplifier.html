@@ -19,7 +19,7 @@
     </div>
 
     <div class="row">
-      <div class="col">
+      <div id="matrix-2" class="col">
         \[
           \begin{bmatrix}
           3   &  0  &  0 \\
@@ -43,8 +43,9 @@
     </div>
 
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#matrix-modal">{% trans "Add matrix" %}</button>
-    <button type="button" class="btn btn-primary">{% trans "Add vector" %}</button>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#vector-modal">{% trans "Add vector" %}</button>
 
+    <!-- Modal for adding a matrix -->
     <div id="matrix-modal" class="modal" tabindex="-1" role="dialog">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -75,6 +76,34 @@
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans "Close" %}</button>
             <button id="add-matrix-from-input" type="button" class="btn btn-primary" data-dismiss="modal">{% trans "Add matrix" %}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal for adding a vector -->
+    <div id="vector-modal" class="modal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">{% trans "Add a vector" %}</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="matrix-row">
+              <input class="form-control text-center" id="vector-row-0" value="1"/>
+            </div>
+            <div class="matrix-row">
+              <input class="form-control text-center" id="vector-row-1" value="0"/>
+            </div>
+            <div class="matrix-row">
+              <input class="form-control text-center" id="vector-row-2" value="0"/>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans "Close" %}</button>
+            <button id="add-vector-from-input" type="button" class="btn btn-primary" data-dismiss="modal">{% trans "Add vector" %}</button>
           </div>
         </div>
       </div>

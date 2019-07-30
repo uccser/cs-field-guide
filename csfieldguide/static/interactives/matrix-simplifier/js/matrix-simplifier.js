@@ -7,16 +7,16 @@ const MATRIX_TEMPLATE = "\\begin{bmatrix} %s \\\\ %s \\\\ %s \\end{bmatrix}";
 
 $(document).ready(function() {
   $('#add-matrix-from-input').click(addMatrix);
+  $('#add-vector-from-input').click(addVector);
 });
 
 
 function addMatrix() {
   matrixArray = getMatrix();
   matrix = mathjs.matrix(matrixArray);
-  console.log(matrix);
   matrixString = formatMatrix(matrixArray);
   $('#matrix-1').html(matrixString);
-  // Force re-render
+  // Request re-render. Taken from https://stackoverflow.com/questions/32239378/using-mathjax-in-an-updating-sequence-in-javascript
   MathJax.Hub.Queue(["Typeset", MathJax.Hub, 'matrix-1']);
 }
 
@@ -50,6 +50,20 @@ function formatMatrix(matrix) {
   row2 = vsprintf(ROW_TEMPLATE, matrix[2]);
 
   return sprintf(MATRIX_TEMPLATE, row0, row1, row2);
+}
+
+
+function addVector() {
+  vectorArray = [
+    $('#vector-row-0').val(), 
+    $('#vector-row-1').val(), 
+    $('#vector-row-2').val()
+  ];
+  vector = mathjs.matrix(vectorArray);
+  vectorString = sprintf(MATRIX_TEMPLATE, vectorArray[0], vectorArray[1], vectorArray[2]);
+  $('#matrix-2').html(vectorString);
+  // Request re-render. Taken from https://stackoverflow.com/questions/32239378/using-mathjax-in-an-updating-sequence-in-javascript
+  MathJax.Hub.Queue(["Typeset", MathJax.Hub, 'matrix-2']);
 }
 
 
