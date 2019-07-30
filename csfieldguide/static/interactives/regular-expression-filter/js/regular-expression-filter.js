@@ -7,14 +7,14 @@ $(document).ready(function () {
   $("#interactive-regular-expression-filter-filter").click(processRegularExpression);
 
   // If enter pushed in input box
-  $("#interactive-regular-expression-filter-regex").keyup(function(event){
-    if(event.keyCode == 13){
+  $("#interactive-regular-expression-filter-regex").keyup(function(event) {
+    if (event.keyCode == 13) {
       processRegularExpression();
     }
   });
 
   // Read file if load button clicked
-  $("#interactive-regular-expression-filter-load").click(function(){
+  $("#interactive-regular-expression-filter-load").click(function() {
     readWords();
   });
 });
@@ -66,7 +66,9 @@ function readWords() {
   var base_url = document.getElementById('interactive-regular-expression-filter-link').href;
   var request = new XMLHttpRequest();
   request.addEventListener('load', fileLoaded);
-  request.addEventListener('error', function() { alert('This interactive must be viewed online to load cross origin text file. Sorry for the inconvenience.')});
+  request.addEventListener('error', function() {
+    alert('This interactive must be viewed online to load cross origin text file. Sorry for the inconvenience.');
+  });
   request.open('get', words_file_location);
   request.send();
 };
