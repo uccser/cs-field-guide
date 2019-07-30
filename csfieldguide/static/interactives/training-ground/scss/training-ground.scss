@@ -42,10 +42,6 @@
   padding-right: 15px;
 }
 
-label {
-  padding-top: 2rem;
-}
-
 #ai-warning {
   padding: 10px;
   text-align: center;
@@ -55,9 +51,17 @@ label {
   z-index: 1;
 }
 
+label {
+  padding-top: 2rem;
+}
+
 .black-background {
   color: #ffffff;
   background-color: #111111;
+}
+
+.no-input {
+  pointer-events: none !important;
 }
 
 .blue {

@@ -69,6 +69,7 @@ $(document).ready(function() {
   refresh();
 
   $('#button_start').on('click', run);
+  $('#button_modal_start').on('click', run);
   $('#button_1').on('click', function() {
     applyMove(PLAYERS.HUMAN, 1);
   });
@@ -86,6 +87,7 @@ $(document).ready(function() {
     doCancelSims = true;
   });
   $('#button_quit').on('click', reset);
+  $('#button_modal_quit').on('click', reset);
   
   numSticksRange.noUiSlider.on('update', refresh);
 });
@@ -96,8 +98,8 @@ $(document).ready(function() {
 function run() {
   isStart = true;
   refresh();
-  $('#game-parameters').addClass('d-none');
-  $('#button_start').addClass('d-none');
+  $('#game-parameters').addClass('no-input');
+  hideStartButtons();
   $statusText.html("...");
   ai = new AI.AI(numSticks, aiSensitivity);
   ai.init();
@@ -137,9 +139,9 @@ function reset() {
   hideQuitButtons();
   hideEndButtons();
   hideChoiceButtons();
+  showStartButtons();
   $splashText.addClass('d-none');
-  $('#game-parameters').removeClass('d-none');
-  $('#button_start').removeClass('d-none');
+  $('#game-parameters').removeClass('no-input');
 }
 
 /**
@@ -416,96 +418,6 @@ function createSliders() {
 }
 
 /**
- * Disables controls for the user to choose a number of sticks to remove.
- * Does not affect visibility
- */
-function disableChoiceButtons() {
-  $('#button_1').prop('disabled', true);
-  $('#button_2').prop('disabled', true);
-  $('#button_3').prop('disabled', true);
-}
-
-/**
- * Enables controls for the user to choose a number of sticks to remove.
- * Does not affect visibility
- */
-function enableChoiceButtons() {
-  $('#button_1').prop('disabled', false);
-  $('#button_2').prop('disabled', false);
-  $('#button_3').prop('disabled', false);
-}
-
-/**
- * Hides controls for the user to choose a number of sticks to remove
- */
-function hideChoiceButtons() {
-  $('#game-buttons').addClass('d-none');
-}
-
-/**
- * Shows controls for the user to choose a number of sticks to remove
- */
-function showChoiceButtons() {
-  $('#game-buttons').removeClass('d-none');
-}
-
-/**
- * Disables the quit button, does not affect its visibility
- */
-function disableQuitButtons() {
-  $('#button_quit').prop('disabled', true);
-}
-
-/**
- * Enables the quit button, does not affect its visibility
- */
-function enableQuitButtons() {
-  $('#button_quit').prop('disabled', false);
-}
-
-/**
- * Hides controls for the user to 'quit', i.e. reset the game to its 'page-loaded' state
- */
-function hideQuitButtons() {
-  $('#quit-buttons').addClass('d-none');
-}
-
-/**
- * Shows controls for the user to 'quit', i.e. reset the game to its 'page-loaded' state
- */
-function showQuitButtons() {
-  $('#quit-buttons').removeClass('d-none');
-}
-
-/**
- * Hides controls for the user to choose to simulate matches or have a rematch
- */
-function hideEndButtons() {
-  $('#end-buttons').addClass('d-none');
-}
-
-/**
- * Shows controls for the user to choose to simulate matches or have a rematch
- */
-function showEndButtons() {
-  $('#end-buttons').removeClass('d-none');
-}
-
-/**
- * Hides the stop simulating button
- */
-function hideCancelButton() {
-  $('#button_cancel').addClass('d-none').prop('disabled', true);
-}
-
-/**
- * Shows the stop simulating button
- */
-function showCancelButton() {
-  $('#button_cancel').removeClass('d-none').prop('disabled', false);
-}
-
-/**
  * Runs the AI turn
  */
 function takeAiTurn() {
@@ -615,6 +527,111 @@ function endGame(winner) {
   networkTable.populateTable(ai.map);
   if (!isSimulation) {
     hideChoiceButtons();
+    enableQuitButtons();
     showEndButtons();
   }
+}
+
+function hideStartButtons() {
+  $('#button_start').addClass('d-none');
+  $('#button_modal_start').addClass('d-none');
+}
+
+function showStartButtons() {
+  $('#button_start').removeClass('d-none');
+  $('#button_modal_start').removeClass('d-none');
+}
+
+/**
+ * Disables controls for the user to choose a number of sticks to remove.
+ * Does not affect visibility
+ */
+function disableChoiceButtons() {
+  $('#button_1').prop('disabled', true);
+  $('#button_2').prop('disabled', true);
+  $('#button_3').prop('disabled', true);
+}
+
+/**
+ * Enables controls for the user to choose a number of sticks to remove.
+ * Does not affect visibility
+ */
+function enableChoiceButtons() {
+  $('#button_1').prop('disabled', false);
+  $('#button_2').prop('disabled', false);
+  $('#button_3').prop('disabled', false);
+}
+
+/**
+ * Hides controls for the user to choose a number of sticks to remove
+ */
+function hideChoiceButtons() {
+  $('#game-buttons').addClass('d-none');
+}
+
+/**
+ * Shows controls for the user to choose a number of sticks to remove
+ */
+function showChoiceButtons() {
+  $('#game-buttons').removeClass('d-none');
+}
+
+/**
+ * Disables the quit button, does not affect its visibility
+ */
+function disableQuitButtons() {
+  $('#button_quit').prop('disabled', true);
+  $('#button_modal_quit').prop('disabled', true);
+}
+
+/**
+ * Enables the quit button, does not affect its visibility
+ */
+function enableQuitButtons() {
+  $('#button_quit').prop('disabled', false);
+  $('#button_modal_quit').prop('disabled', false);
+}
+
+/**
+ * Hides controls for the user to 'quit', i.e. reset the game to its 'page-loaded' state
+ */
+function hideQuitButtons() {
+  $('#quit-buttons').addClass('d-none');
+  $('#button_modal_quit').addClass('d-none');
+}
+
+/**
+ * Shows controls for the user to 'quit', i.e. reset the game to its 'page-loaded' state
+ */
+function showQuitButtons() {
+  $('#quit-buttons').removeClass('d-none');
+  $('#button_modal_quit').removeClass('d-none');
+}
+
+/**
+ * Hides controls for the user to choose to simulate matches or have a rematch
+ */
+function hideEndButtons() {
+  $('#end-buttons').addClass('d-none');
+}
+
+/**
+ * Shows controls for the user to choose to simulate matches or have a rematch
+ */
+function showEndButtons() {
+  $('#end-buttons').removeClass('d-none');
+}
+
+/**
+ * Hides the stop simulating button
+ */
+function hideCancelButton() {
+  $('#button_cancel').addClass('d-none').prop('disabled', true);
+}
+
+/**
+ * Shows the stop simulating button
+ */
+function showCancelButton() {
+  $('#button_cancel').removeClass('d-none').prop('disabled', false);
 }
