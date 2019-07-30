@@ -67,7 +67,6 @@ $(document).ready(function() {
   createSliders();
   reset();
   refresh();
-  updateBotDescription();
 
   $('#button_start').on('click', run);
   $('#button_modal_start').on('click', run);
@@ -133,6 +132,7 @@ function reset() {
   numSimulationsRange.noUiSlider.reset();
   $('#practice-opponent-select input:radio:checked').prop('checked', false).parent().removeClass('active');
   $('#radio_smartbot').prop('checked', true).parent().addClass('active');
+  updateBotDescription();
   $('#quick-simulations-select input:radio:checked').prop('checked', false).parent().removeClass('active');
   $('#radio_false').prop('checked', true).parent().addClass('active');
   $statusText.html(TXT_INITIAL);
