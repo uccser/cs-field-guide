@@ -67,6 +67,7 @@ $(document).ready(function() {
   createSliders();
   reset();
   refresh();
+  updateBotDescription();
 
   $('#button_start').on('click', run);
   $('#button_modal_start').on('click', run);
