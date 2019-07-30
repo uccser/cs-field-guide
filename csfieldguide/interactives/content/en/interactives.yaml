@@ -88,6 +88,8 @@ lzw-compression:
   name: LZW Compression
 lzss-compression:
   name: LZSS Compression
+matrix-simplifier:
+  name: Matrix Simplifier
 menu-keystrokes:
   name: Menu Keystrokes
 mips-assembler:

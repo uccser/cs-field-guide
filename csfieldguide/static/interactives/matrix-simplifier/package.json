@@ -1,0 +1,8 @@
+{
+    "name": "csfg-interactive-matrix-simplifier",
+    "version": "1.0.0",
+    "private": true,
+    "dependencies": {
+        "mathjs": "6.0.3"
+    }
+}
