@@ -54,9 +54,9 @@ function displayWords() {
   displayMoreWords(5000);
 };
 
-// Displays 1000 more words (unless val is specified) and moves the 'display more' button to the end of the list
+// Displays 5000 more words (unless val is specified) and moves the 'display more' button to the end of the list
 function displayMoreWords(val) {
-  var num = 1000;
+  var num = 5000;
   if (val > 0) {
     num = val;
   }
