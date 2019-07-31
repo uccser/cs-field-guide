@@ -51,15 +51,12 @@ function displayWords() {
     }
   }
   updateWordCount();
-  displayMoreWords(5000);
+  displayMoreWords();
 };
 
-// Displays 5000 more words (unless val is specified) and moves the 'display more' button to the end of the list
-function displayMoreWords(val) {
+// Displays 5000 more words and moves the 'display more' button to the end of the list
+function displayMoreWords() {
   var num = 5000;
-  if (val > 0) {
-    num = val;
-  }
   var wordsToDisplay = MatchedWords.slice(RegularExpressionFilter.displayed, RegularExpressionFilter.displayed + num);
   var window = document.getElementById('interactive-regular-expression-filter-words');
   window.insertAdjacentHTML('beforeend', wordsToDisplay.join('\n') + '\n');
