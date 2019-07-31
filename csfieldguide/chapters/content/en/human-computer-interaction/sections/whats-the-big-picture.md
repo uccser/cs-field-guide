@@ -62,8 +62,8 @@ A lot of people might blame themselves for such errors, but basic psychology say
 
 Designing good interfaces is *very* difficult.
 Just when you think you've got a clever idea, you'll find that a whole group of people struggle to figure out how to use it, or it backfires in some situation.
-Even worse, some computer developers think that their users are dummies and that any interface problems are the user’s fault and not the developer’s.
-But the real problem is that the developer knows the system really well, whereas the user just wants to get their job done without having to spend a lot of time learning the software &ndash; if the software is too hard to use and they have a choice, they’ll just find something else that’s easier.
+Even worse, some computer developers think that their users are dummies and that any interface problems are the users' fault and not the developer's.
+But the real problem is that the developer knows the system really well, whereas the user just wants to get their job done without having to spend a lot of time learning the software &ndash; if the software is too hard to use and they have a choice, they'll just find something else that's easier.
 Good interfaces are worth a lot in the market!
 
 There are many ways to evaluate and fine tune interfaces, and in this chapter we'll look at some of these.

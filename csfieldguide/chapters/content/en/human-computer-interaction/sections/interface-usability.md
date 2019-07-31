@@ -17,7 +17,7 @@ Key ideas that students should be picking up include:
 {panel end}
 
 Devices are often sold using catch phrases like "user friendly" and "intuitive", but these are vague terms that are hard to pin down.
-In this section we will use the more technical term, [usability](https://en.wikipedia.org/wiki/Usability), which is well understood by HCI experts, and gives us some ways to evaluate how suitable an interface is for a particular task.
+In this section we will use the more technical term, {glossary-link term="usability"}usability{glossary-link end}, which is well understood by HCI experts, and gives us some ways to evaluate how suitable an interface is for a particular task.
 Usability isn't just about an interface being nice to use: poor usability can lead to serious problems, and has been the cause of major disasters, such as airplane crashes, financial disasters, and medical mishaps.
 It is also important because an interface that requires a lot of dexterity, quick reactions or a good memory makes it less accessible to much of the population, when accessibility can be both a moral and legal expectation.
 
