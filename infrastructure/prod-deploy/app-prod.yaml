@@ -16,7 +16,10 @@ resources:
   cpu: 1
   memory_gb: 3.75
 
-health_check:
-  enable_health_check: True
+liveness_check:
+  path: "/_ah/health"
   check_interval_sec: 5
-  timeout_sec: 4
+
+readiness_check:
+  path: "/_ah/health"
+  check_interval_sec: 5

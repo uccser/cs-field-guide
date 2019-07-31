@@ -17,6 +17,48 @@ All notable changes to this project will be documented in this file.
 
 We have listed major changes for each release below.
 
+3.0.3
+==============================================================================
+
+- **Release date:** 24th July 2019
+- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/3.0.3>`__
+
+**Changelog:**
+
+- Fix bug where navbar mobile menu is positioned incorrectly. `#1068 <https://github.com/uccser/cs-field-guide/issues/1068>`__
+- Add link to the release archive in footer. `#1098 <https://github.com/uccser/cs-field-guide/issues/1098>`__
+- Remove references to Picasa. `#1099 <https://github.com/uccser/cs-field-guide/issues/1099>`__
+- Replace brackets with UTF-8 equivalent in archive links. `#1093 <https://github.com/uccser/cs-field-guide/issues/1093>`__
+- Update Google Cloud Platform health checks. `#1105 <https://github.com/uccser/cs-field-guide/pull/1105>`__
+- Dependency updates:
+
+  - Update ``flake8`` from 3.7.7 to 3.7.8.
+  - Update ``pydocstyle`` from 3.0.0 to 4.0.0.
+  - Update ``django-modeltranslation`` from 0.13.2 to 0.13.3.
+
+3.0.2
+==============================================================================
+
+- **Release date:** 18th July 2019
+- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/3.0.2>`__
+
+**Changelog:**
+
+- Add interactive to demonstrate limitations of short term memory.  `#144 <https://github.com/uccser/cs-field-guide/issues/144>`__
+- Add second short term memory interactive. `#1090 <https://github.com/uccser/cs-field-guide/pull/1090>`__
+- Fix broken links to old interactives in the computer graphics chapter.
+- Update about page and introduction chapter. `#1082 <https://github.com/uccser/cs-field-guide/issues/1082>`__
+- Improve consistency in chapter section beginnings. `#1065 <https://github.com/uccser/cs-field-guide/issues/1065>`__
+- Align and resize homepage logos. `#1050 <https://github.com/uccser/cs-field-guide/issues/1050>`__
+- Center homepage icons on Firefox mobile. `#1066 <https://github.com/uccser/cs-field-guide/issues/1066>`__
+- Add link to Vox video on how snapchat filters work in the computer vision chapter. `#367 <https://github.com/uccser/cs-field-guide/issues/367>`__
+- Reduce length of search bar on mobile. `#1080 <https://github.com/uccser/cs-field-guide/pull/1080>`__
+- Dependency updates:
+
+  - Update ``django-modeltranslation`` from 0.13.1 to 0.13.2.
+  - Update ``Pillow`` from 6.0.0 to 6.1.0.
+  - Update ``python-bidi`` from 0.4.0 to 0.4.2.
+
 3.0.1
 ==============================================================================
 
@@ -151,7 +193,7 @@ We have listed major changes for each release below.
 
 **Changelog:**
 
-- Add Bin Packing interactice. `#490 <https://github.com/uccser/cs-field-guide/pull/490>`__
+- Add Bin Packing interactive. `#490 <https://github.com/uccser/cs-field-guide/pull/490>`__
 - Correct Two's Complement text. `#503 <https://github.com/uccser/cs-field-guide/issues/503>`__
 - Remove contributor names from changelogs.
 - Update JPEG interactive. `#488 <https://github.com/uccser/cs-field-guide/pull/488>`__

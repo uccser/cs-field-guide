@@ -1,0 +1,258 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load svg %}
+{% load static %}
+
+{% block html %}
+  <div class="container">
+    <div>
+      <h3 class="text-center">{% trans "Short term memory picture game" %}</h3>
+      <p class="text-center intro-content">{% trans "What items can you remember in 30 seconds? Don't write anything down!<br>When you are ready, click the button below to display the items!" %}</p>
+      <div class="row justify-content-center intro-content">
+        <button id="ready-button" class="btn btn-success">{% trans "Ready" %}</button>
+      </div>
+
+      <div id="stm-timer" class="text-center d-none">
+        {% trans 'Time left: <b><span id="time-left">30</span> seconds</b>' %}
+      </div>
+
+      <p id="items-correct-text" class="text-center d-none">{% trans "Congratulations, you remembered all of the items!" %}</p>
+      <div id="items-missed-text" class="text-center d-none">
+        <p>{% trans 'You remembered <span id="num-correct">0</span> out of 16 items! Here\'s what you missed:' %}</p>
+      </div>
+
+      <div id="items-container" class="row mb-2 d-none">
+        <div id="item-banana" class="stm-item col-3 d-none">
+          {% svg 'picture-memory/icons8-banana' %}
+        </div>
+        <div id="item-scissors" class="stm-item col-3 d-none">
+          {% svg 'picture-memory/icons8-scissors' %}
+        </div>
+        <div id="item-duck" class="stm-item col-3 d-none">
+          {% svg 'picture-memory/icons8-duck' %}
+        </div>
+        <div id="item-guitar" class="stm-item col-3 d-none">
+          {% svg 'picture-memory/icons8-guitar' %}
+        </div>
+
+        <div id="item-bike" class="stm-item col-3 d-none">
+          {% svg 'picture-memory/icons8-bicycle' %}
+        </div>
+        <div id="item-camera" class="stm-item col-3 d-none">
+          {% svg 'picture-memory/icons8-camera' %}
+        </div>
+        <div id="item-football" class="stm-item col-3 d-none">
+          {% svg 'picture-memory/icons8-soccer-ball' %}
+        </div>
+
+        <div id="item-book" class="stm-item col-3 d-none">
+          {% svg 'picture-memory/icons8-book' %}
+        </div>
+        <div id="item-toothbrush" class="stm-item col-3 d-none">
+          {% svg 'picture-memory/icons8-electric-toothbrush' %}
+        </div>
+        <div id="item-teapot" class="stm-item col-3 d-none">
+          {% svg 'picture-memory/icons8-teapot' %}
+        </div>
+        <div id="item-calculator" class="stm-item col-3 d-none">
+          {% svg 'picture-memory/icons8-calculator' %}
+        </div>
+
+        <div id="item-forklift" class="stm-item col-3 d-none">
+          {% svg 'picture-memory/icons8-fork-lift' %}
+        </div>
+        <div id="item-sock" class="stm-item col-3 d-none">
+          {% svg 'picture-memory/icons8-socks' %}
+        </div>
+        <div id="item-cactus" class="stm-item col-3 d-none">
+          {% svg 'picture-memory/icons8-cactus' %}
+        </div>
+
+        <div id="item-mug" class="stm-item col-3 d-none">
+          {% svg 'picture-memory/icons8-cup' %}
+        </div>
+        <div id="item-envelope" class="stm-item col-3 d-none">
+          {% svg 'picture-memory/icons8-envelope' %}
+        </div>
+        <div id="item-glasses" class="stm-item col-3 d-none">
+          {% svg 'picture-memory/icons8-glasses' %}
+        </div>
+        <div id="item-backpack" class="stm-item col-3 d-none">
+          {% svg 'picture-memory/icons8-school-backpack' %}
+        </div>
+
+        <div id="item-t-shirt" class="stm-item col-3 d-none">
+          {% svg 'picture-memory/icons8-t-shirt' %}
+        </div>
+        <div id="item-chair" class="stm-item col-3 d-none">
+          {% svg 'picture-memory/icons8-chair' %}
+        </div>
+        <div id="item-sheep" class="stm-item col-3 d-none">
+          {% svg 'picture-memory/icons8-sheep' %}
+        </div>
+      </div>
+
+      <div id="incorrect-items-div" class="text-center d-none">
+        <p id="incorrect-items-text" class="text-center">{% trans "You thought you saw the following items when they were never shown!" %}</p>
+        <p id="incorrect-items" class="text-center"></p>
+      </div>
+
+      <p id="answer-instructions" class="d-none text-center">{% trans "What items do you remember?" %}</p>
+      <div id="answer-input" class="text-center d-none">
+        <!-- first column of 7 checkboxes -->
+        <div class="row col-4 d-flex flex-column">
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" value="backpack" id="backpack-checkbox" name="answers">
+            <label class="form-check-label" for="backpack-checkbox">
+              {% trans "Backpack" %}
+            </label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" value="banana" id="banana-checkbox" name="answers">
+            <label class="form-check-label" for="banana-checkbox">
+              {% trans "Banana" %}
+            </label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" value="bike" id="bike-checkbox" name="answers">
+            <label class="form-check-label" for="bike-checkbox">
+              {% trans "Bike" %}
+            </label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" value="book" id="book-checkbox" name="answers">
+            <label class="form-check-label" for="book-checkbox">
+              {% trans "Book" %}
+            </label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" value="cactus" id="cactus-checkbox" name="answers">
+            <label class="form-check-label" for="cactus-checkbox">
+              {% trans "Cactus" %}
+            </label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" value="calculator" id="calculator-checkbox" name="answers">
+            <label class="form-check-label" for="calculator-checkbox">
+              {% trans "Calculator" %}
+            </label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" value="camera" id="camera-checkbox" name="answers">
+            <label class="form-check-label" for="camera-checkbox">
+              {% trans "Camera" %}
+            </label>
+          </div>
+        </div>
+        <!-- second column of 7 checkboxes -->
+        <div class="row col-4 d-flex flex-column">
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" value="chair" id="chair-checkbox" name="answers">
+            <label class="form-check-label" for="chair-checkbox">
+              {% trans "Chair" %}
+            </label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" value="mug" id="mug-checkbox" name="answers">
+            <label class="form-check-label" for="mug-checkbox">
+              {% trans "Mug" %}
+            </label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" value="duck" id="duck-checkbox" name="answers">
+            <label class="form-check-label" for="duck-checkbox">
+              {% trans "Duck" %}
+            </label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" value="envelope" id="envelope-checkbox" name="answers">
+            <label class="form-check-label" for="envelope-checkbox">
+              {% trans "Envelope" %}
+            </label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" value="football" id="football-checkbox" name="answers">
+            <label class="form-check-label" for="football-checkbox">
+              {% trans "Football" %}
+            </label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" value="forklift" id="forklift-checkbox" name="answers">
+            <label class="form-check-label" for="forklift-checkbox">
+              {% trans "Forklift" %}
+            </label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" value="glasses" id="glasses-checkbox" name="answers">
+            <label class="form-check-label" for="glasses-checkbox">
+              {% trans "Glasses" %}
+            </label>
+          </div>
+        </div>
+        <!-- third column of 7 checkboxes -->
+        <div class="row col-4 d-flex flex-column">
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" value="guitar" id="guitar-checkbox" name="answers">
+            <label class="form-check-label" for="guitar-checkbox">
+              {% trans "Guitar" %}
+            </label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" value="scissors" id="scissors-checkbox" name="answers">
+            <label class="form-check-label" for="scissors-checkbox">
+              {% trans "Scissors" %}
+            </label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" value="sheep" id="sheep-checkbox" name="answers">
+            <label class="form-check-label" for="sheep-checkbox">
+              {% trans "Sheep" %}
+            </label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" value="sock" id="sock-checkbox" name="answers">
+            <label class="form-check-label" for="sock-checkbox">
+              {% trans "Sock" %}
+            </label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" value="teapot" id="teapot-checkbox" name="answers">
+            <label class="form-check-label" for="teapot-checkbox">
+              {% trans "Teapot" %}
+            </label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" value="t-shirt" id="t-shirt-checkbox" name="answers">
+            <label class="form-check-label" for="t-shirt-checkbox">
+              {% trans "T-Shirt" %}
+            </label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" value="toothbrush" id="toothbrush-checkbox" name="answers">
+            <label class="form-check-label" for="toothbrush-checkbox">
+              {% trans "Toothbrush" %}
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div id="submit-div" class="row justify-content-center d-none">
+        <button id="submit-button" class="btn btn-primary mb-2">{% trans "Submit" %}</button>
+      </div>
+
+      <div id="restart-div" class="row justify-content-center d-none">
+        <button id="restart-button" class="btn btn-danger mt-3">{% trans "Restart" %}</button>
+      </div>
+      
+    </div>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/picture-memory/css/picture-memory.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'interactives/picture-memory/js/picture-memory.js' %}"></script>
+{% endblock js %}

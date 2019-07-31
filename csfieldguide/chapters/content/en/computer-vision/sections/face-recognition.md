@@ -1,10 +1,10 @@
 # Face recognition
 
 Recognising faces has become a widely used computer vision application.
-These days photo album systems like Picasa and Facebook can try to recognise who is in a photo using face recognition.
-For example, the following photos were recognised in Picasa as being the same person, so to label the photos with people's names you only need to click one button rather than type each one in.
+These days photo album systems like Google Photos and Facebook can try to recognise who is in a photo using face recognition.
+The following photos were recognised in an application as being the same person, so to label the photos with people's names you only need to click one button rather than type each one in.
 
-{image file-path="img/chapters/face-recognition-software-screenshot.jpg" alt="Google's Picasa recognises these photos as being the same person"}
+{image file-path="img/chapters/face-recognition-software-screenshot.jpg" alt="An application recognises these photos as being the same person"}
 
 There are lots of other applications.
 Security systems such as customs at country borders use face recognition to identify people and match them with their passport.
@@ -12,6 +12,7 @@ It can also be useful for privacy — Google Maps streetview identifies faces an
 Digital cameras can find faces in a scene and use them to adjust the focus and lighting.
 
 There is some information about [how facial recognition works](http://electronics.howstuffworks.com/gadgets/high-tech-gadgets/facial-recognition.htm) that you can read up as background, and some more information at [i-programmer.info](http://www.i-programmer.info/babbages-bag/1091-face-recognition.html).
+If you're interested, there is also a Vox video on [how Snapchat filters work](https://www.youtube.com/watch?v=Pc2aJxnmzh0) that mentions facial recognition algorithms.
 
 There are some relevant [articles on the cs4fn website](http://www.cs4fn.org/vision/) that also provide some general material on computer vision.
 
@@ -34,7 +35,7 @@ First let's manually try some methods for recognising whether two photographs sh
   Would these features be a reliable way to recognise two images as being the same person?
 - Are there other features you could measure that might improve the accuracy?
 
-You can evaluate the effectiveness of facial recognition in free software such as Google’s Picasa or the Facebook photo tagging system, but uploading photos of a variety of people and seeing if it recognises photos of the same person.
+You can evaluate the effectiveness of facial recognition in free software such as Google Photos or the Facebook photo tagging system, by uploading photos of a variety of people and seeing if it recognises photos of the same person.
 Are there any false negatives or positives?
 How much can you change your face when the photo is being taken to not have it match your face in the system?
 Does it recognise a person as being the same in photos taken several years apart?

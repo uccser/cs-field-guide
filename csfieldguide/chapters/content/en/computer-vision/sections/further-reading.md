@@ -1,4 +1,4 @@
 # Further reading
 
-- [https://en.wikipedia.org/wiki/Computer_vision](https://en.wikipedia.org/wiki/Computer_vision)
-- [https://en.wikipedia.org/wiki/Mri](https://en.wikipedia.org/wiki/Mri)
+- [Computer vision on Wikipedia](https://en.wikipedia.org/wiki/Computer_vision)
+- [Magnetic resonance imaging (MRI) on Wikipedia](https://en.wikipedia.org/wiki/Mri)

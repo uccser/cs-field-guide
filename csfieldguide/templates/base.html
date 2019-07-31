@@ -132,22 +132,22 @@
 
             <div class="container white-footer mt-5 py-5 d-print-none">
               <div class="row align-items-center">
-                <div class="col-12 col-sm-6 col-md-4">
+                <div class="col-12 col-sm-6 col-md-4 text-center text-md-left">
                   <a href="https://www.canterbury.ac.nz/engineering/schools/csse/research/cse/">
                     <img class="img-fluid py-5" src="{% static 'img/logos/uc-computer-science-education-logo.png' %}">
                   </a>
                 </div>
-                <div class="col-12 col-sm-6 col-md-4 text-center">
+                <div class="col-12 col-sm-6 col-md-4 text-center text-md-left">
                   <a href="https://www.google.com">
                     <img class="img-fluid px-3" src="{% static 'img/logos/google-logo-colour.png' %}">
                   </a>
                 </div>
-                <div class="col-12 col-sm-6 col-md-4">
+                <div class="col-12 col-sm-6 col-md-4 text-center text-md-left">
                   <a href="https://www.microsoft.com/about/philanthropies/">
                     <img class="img-fluid" src="{% static 'img/logos/microsoft-philanthropies-logo' %}.png">
                   </a>
                 </div>
-                <div class="col-12 col-sm-6 col-md-4">
+                <div class="col-12 col-sm-6 col-md-4 text-center text-md-left">
                   <a href="https://internetnz.nz/">
                     <img class="img-fluid" src="{% static 'img/logos/internet-new-zealand-logo' %}.png">
                   </a>
@@ -200,6 +200,14 @@
                           {% trans "Curriculum Guides" %}
                         </a>
                       </li>
+                      {% if LANGUAGE_CODE == "en" %}
+                        <!-- Archive site is only available in English -->
+                        <li>
+                          <a href="https://archive.csfieldguide.org.nz/">
+                            {% trans "Release Archive" %}
+                          </a>
+                        </li>
+                      {% endif %}
                     </ul>
                   </div>
                   <div class="col-6 col-md-2">

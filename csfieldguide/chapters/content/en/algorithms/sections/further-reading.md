@@ -1,7 +1,5 @@
 # Further reading
 
-## Other topics in algorithms
-
 - There is another searching algorithm which performs even better than binary search. It is called Hashing and can be investigated with the CS Unplugged [Battleships Game](http://csunplugged.org/searching-algorithms).
 - There are some problems for which no good algorithms have been found (and many people believe they will never be found). For more on these kinds of algorithms see the Complexity and Tractability chapter in the Field Guide.
 
