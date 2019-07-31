@@ -1,6 +1,16 @@
+@import "node_modules/dragula/dist/dragula";
+
 .matrix-row input {
-    display: inline-block;
-    width: 20%;
-    margin-bottom: 3px;
-    font-family: monospace;
+  display: inline-block;
+  width: 20%;
+  margin-bottom: 3px;
+  font-family: monospace;
+}
+
+.matrix {
+  touch-action: none;
+  cursor: grab;
+  &.gu-mirror {
+    cursor: grabbing;
+  }
 }

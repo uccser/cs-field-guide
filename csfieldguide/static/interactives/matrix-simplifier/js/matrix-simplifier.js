@@ -1,3 +1,4 @@
+const dragula = require('./../../../../node_modules/dragula/dragula');
 const mathjs = require('mathjs');
 const sprintf = require('sprintf-js').sprintf;
 const vsprintf = require('sprintf-js').vsprintf;
@@ -81,4 +82,34 @@ function resetMatrices() {
   $('#matrix-row-2-col-0').val(0);
   $('#matrix-row-2-col-1').val(0);
   $('#matrix-row-2-col-2').val(1);
+}
+
+
+/**
+ * Defines draging and button handlers
+ */
+$(function() {
+  var matrix_list = $('.matrix-container').toArray();
+  var drake = dragula(matrix_list);
+  drake.on('drag', function(el, source) {
+    scrollable = false;
+  });
+  drake.on('drop', (matrix, target_container, source_container) => {
+    // If an matrix is dragged on top of another matrix..
+    if (target_container.children.length == 2) {
+        swap(matrix, target_container, source_container);
+    }
+    scrollable = true;
+  });
+});
+
+/**
+* Swaps the matrix in the target container and the matrix in the source container
+*/
+function swap(matrix, target_container, source_container) {
+  // save the original matrix in target_container to a temp var
+  temp = target_container.children[0];
+  // matrix is original matrix in source_container. Swap the matrices.
+  target_container.appendChild(matrix);
+  source_container.appendChild(temp);
 }

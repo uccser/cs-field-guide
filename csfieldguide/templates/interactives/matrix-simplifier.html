@@ -4,46 +4,52 @@
 {% load static %}
 
 {% block html %}
-  <div class="container text-center">
-    <h3>{% trans "Matrix Simplifier" %}</h3>
+  <div class="container">
+    <h3 class='text-center'>{% trans "Matrix Simplifier" %}</h3>
     <div class="row">
-      <div id="matrix-1" class="col">
-        \[
-          \begin{bmatrix}
-          1   &  0  &  0 \\
-          0   &  1  &  0 \\  
-          0   &  0  &  1 \\  
-          \end{bmatrix}
-        \]
+      <div id="matrices-input-container" class="col-3 text-center">
+        <div id="matrix-contianer-1" class="row matrix-container">
+          <div id="matrix-1" class="matrix col"> 
+            \[
+              \begin{bmatrix}
+              1   &  0  &  0 \\
+              0   &  1  &  0 \\  
+              0   &  0  &  1 \\  
+              \end{bmatrix}
+            \]
+          </div>
+        </div>
+    
+        <div id="matrix-contianer-2" class="row matrix-container">
+          <div id="matrix-2" class="matrix col">
+            \[
+              \begin{bmatrix}
+              3   &  0  &  0 \\
+              0   &  3  &  0 \\  
+              0   &  0  &  3 \\  
+              \end{bmatrix}
+            \]
+          </div>
+        </div>
+    
+        <div id="matrix-contianer-3" class="row matrix-container">
+          <div id="matrix-3" class="matrix col">
+            \[
+              \begin{bmatrix}
+              1   &  0  &  0 \\
+              0   &  1  &  0 \\  
+              0   &  0  &  1 \\  
+              \end{bmatrix}
+            \]
+          </div>
+        </div>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#matrix-modal">{% trans "Add matrix" %}</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#vector-modal">{% trans "Add vector" %}</button>
+      </div>
+
+      <div id="output-container" class="col-9">
       </div>
     </div>
-
-    <div class="row">
-      <div id="matrix-2" class="col">
-        \[
-          \begin{bmatrix}
-          3   &  0  &  0 \\
-          0   &  3  &  0 \\  
-          0   &  0  &  3 \\  
-          \end{bmatrix}
-        \]
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col">
-        \[
-          \begin{bmatrix}
-          1   &  0  &  0 \\
-          0   &  1  &  0 \\  
-          0   &  0  &  1 \\  
-          \end{bmatrix}
-        \]
-      </div>
-    </div>
-
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#matrix-modal">{% trans "Add matrix" %}</button>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#vector-modal">{% trans "Add vector" %}</button>
 
     <!-- Modal for adding a matrix -->
     <div id="matrix-modal" class="modal" tabindex="-1" role="dialog">
