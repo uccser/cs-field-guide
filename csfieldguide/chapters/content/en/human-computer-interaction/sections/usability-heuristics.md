@@ -30,7 +30,7 @@ For example, the above error message (it is genuinely real) doesn't help users r
 
 This heuristic states that a user should be able to see what the device is doing (the system's status), at all times.
 This varies from the user being able to tell if the device is turned on or off, to a range of actions.
-A classic example is the "caps lock" key, which may not clearly show if it is on, and when typing a password the user might not know why it is being rejected; a positive example of this is when a password entry box warns you that the caps lock key is on.
+A classic example is the "caps lock" key, which may not clearly show if it is on, and when typing a password the user might not know why it is being rejected; a positive example of this is when a password entry box warns you that caps lock is on.
 
 One of the simplest statuses for a device is on or off, which is usually a coloured light on the outside of the computer.
 However, some devices take a while to show the status (for example, some DVD players take a while to respond when switched on), and the user might press the power button again or otherwise get confused about the status.
@@ -42,10 +42,10 @@ In this situation, one of the most common ways to keep a user informed of the ta
 
 {image file-path="img/chapters/apple-busy-cursor-animation.gif" alt="An Apple busy cursor" alignment="right"}
 
-However, progress indicators aren't always helpful; the spinning wheels above don't indicate if you are going to have to wait a few seconds or a few minutes (or even hours) for the task to complete, which can be frustrating.
+However, progress indicators aren't always helpful; the spinning wheels here don't indicate if you are going to have to wait a few seconds or a few minutes (or even hours) for the task to complete, which can be frustrating.
 
 Giving feedback in a "reasonable time" is really important, and the "reasonable time" is often shorter than what you might think.
-In the section above there was an experiment to find out at what point people perceive a delayed reaction; you probably found that it was around a tenth of a second.
+Earlier there was an experiment to find out at what point people perceive a delayed reaction; you probably found that it was around a tenth of a second.
 If a computer takes longer than that to respond then it can be confusing to use.
 There's more about this in the previous section.
 
@@ -69,7 +69,7 @@ It's not too hard to find these sorts of delays in systems when you're evaluatin
 Follow real-world conventions, making information appear in a natural and logical order.*
 
 The language, colours and notation in an interface should match the user's world, and while this seems obvious and sensible, it's often something that is overlooked.
-Take for example the following two buttons – can you see what is confusing about them?
+Take for example the following two buttons &ndash; can you see what is confusing about them?
 
 {interactive slug="confused-buttons" type="in-page"}
 
@@ -108,7 +108,7 @@ Support undo and redo.*
 
 It is very frustrating to make a mistake and not be able to get out of it.
 It is particularly bad if one small action can wipe a lot of work that can't be recovered.
-The reset button on some web forms is infamous for this – it is often next to the submit button, and you can wipe all your data with an off-by-one error.
+The reset button on some web forms is infamous for this &ndash; it is often next to the submit button, and you can wipe all your data with an off-by-one error.
 
 A common way to provide user freedom is an "undo" feature, which means that not only can mistakes be fixed easily, but the user is encouraged to experiment, trying out features of the interface secure in the knowledge that they can just "undo" to get back to how things were, instead of worrying that they'll end up in a state that they can't fix.
 If "redo" is also available, they can flick back and forth, deciding which is best.
@@ -122,8 +122,8 @@ Here's an example of a button that doesn't provide user control; if you press it
 
 # We DID warn you...
 
-Pressing the yes button below can be very frustrating!
-Most modern web browsers provide some user control and freedom in this case – if your students are frustrated at having pressed the button, refresh the page.
+Pressing the yes button can be very frustrating!
+Most modern web browsers provide some user control and freedom in this case &ndash; anyone who pressed the button can refresh the page and scroll back down.
 
 {panel end}
 
@@ -234,7 +234,7 @@ A similar feature in web browsers saves users from having to remember the exact 
 
 ## Flexibility and efficiency of use
 
-*Accelerators -- unseen by the novice user -- may often speed up the interaction for the expert user such that the system can cater to both inexperienced and experienced users.
+*Accelerators &ndash; unseen by the novice user &ndash; may often speed up the interaction for the expert user such that the system can cater to both inexperienced and experienced users.
 Allow users to tailor frequent actions.*
 
 When someone is using software every day, they will soon have common sequences of operations they do (such as "Open the file, find the next blank space, type in a record of what just happened").
