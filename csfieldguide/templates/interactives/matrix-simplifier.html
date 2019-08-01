@@ -6,9 +6,9 @@
 {% block html %}
   <div class="container">
     <h3 class='text-center'>{% trans "Matrix Simplifier" %}</h3>
-    <p>{% trans "Note that vectors will always be added <i>after</i> matrix multiplication operations have been applied." %}</p>
+    <p class="text-center">{% trans "Note that vectors will always be added <i>after</i> matrix multiplication operations have been applied." %}</p>
     <div class="row">
-      <div id="matrices-input-container" class="col-3 text-center">
+      <div id="matrices-input-container" class="col-2 text-center">
         <div id="matrix-contianer-1" class="row containers">
           <div id="matrix-1" class="draggable matrix col">
             \[
@@ -47,7 +47,7 @@
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#matrix-modal">{% trans "Add matrix" %}</button>
       </div>
 
-      <div id="vector-input-container" class="col-3 text-center">
+      <div id="vector-input-container" class="col-2 text-center">
         <div id="vector-container-1" class="row containers">
           <div id="vector-1" class="draggable vector col">
             \[
@@ -62,7 +62,7 @@
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#vector-modal">{% trans "Add vector" %}</button>
       </div>
 
-      <div id="output-container" class="col-6">
+      <div id="output-container" class="col-8">
       </div>
     </div>
 

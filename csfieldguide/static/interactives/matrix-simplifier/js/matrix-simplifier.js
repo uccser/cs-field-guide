@@ -105,11 +105,9 @@ function calculateOutput() {
 $(function() {
   var matrix_list = $('.containers').toArray();
   var drake = dragula(matrix_list, {
-    accepts: function(el, target, source) {
+    accepts: function(el, target, source, sibling) {
       // Don't allow dragging of vectors to matrices container and vice versa
-      if (target.parentNode.id !== source.parentNode.id) {
-        false;
-      }
+      return target.parentNode.id === source.parentNode.id;
     }
   });
   drake.on('drag', function(el, source) {
@@ -118,7 +116,7 @@ $(function() {
   drake.on('drop', (matrix, target_container, source_container) => {
     // If an matrix is dragged on top of another matrix..
     if (target_container.children.length == 2) {
-        swap(matrix, target_container, source_container);
+      swap(matrix, target_container, source_container);
     }
     scrollable = true;
   });
