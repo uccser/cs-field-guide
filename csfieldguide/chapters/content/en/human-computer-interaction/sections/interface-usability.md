@@ -119,7 +119,7 @@ There's some more information about "time limits" for interfaces in [this articl
 
 ## Human spatial memory
 
-Another important usability consideration is *spatial memory* – our ability to remember where things are located (such as where a button or icon is).
+Another important usability consideration is *spatial memory* &ndash; our ability to remember where things are located (such as where a button or icon is).
 Human spatial memory has a high capacity (you can probably remember the location of many places and objects), it is long lasting (people visiting a town they grew up in can often remember the layout), and we can remember things very quickly.
 A very simple aspect of usability that comes from this is that the layout of an interface shouldn't keep changing.
 The interactive task at the start of this chapter was deliberately set up to be frustrating by swapping the two buttons occasionally; the reason people often make a mistake in that situation is that their spatial memory takes over, so the location of the button is more important than what is written on it.
@@ -182,7 +182,7 @@ It's much easier to observe someone else than do this yourself, partly because i
 In a think aloud protocol, you observe someone else using the interface that you want to evaluate, and encourage them to explain what they're thinking at each step.
 You'll take notes on what they say, and you can reflect on that afterwards to evaluate the interface (it can be helpful to record the session if possible.)
 
-This protocol gives insights into what might be confusing in an interface, and why.
+This {glossary-link term="protocol"}protocol{glossary-link end} gives insights into what might be confusing in an interface, and why.
 
 For example, if someone setting an alarm clock says "I'm pressing the up button until I get to 7am &ndash; oh bother, it stopped at 7:09, now I have to go right around again", that gives some insight into how the interface might get in the way of the users completing a task efficiently.
 
@@ -236,7 +236,7 @@ The goal of the cognitive walkthrough is to identify if the user can see what to
 An experienced HCI evaluator would do this on their own, imagining what a user would do at each step, but it may be easier for you to do this with someone else using the interface, because that lets you see the interface through someone else's eyes.
 So we recommend asking a friend to go through a task for you.
 
-The task only needs to have about 3 or 4 steps (e.g. button presses), as you'll be asking three questions at each step and taking notes on their responses, so it could take a while.
+The task only needs to have about 3 or 4 steps (e.g. button presses); you'll be asking three questions at each step and taking notes on their responses so it could take a while.
 You should know how to do the task yourself as we'll be focussing on the few steps needed to accomplish the task; if the user goes off track, you can put them back on task rather than observe them trying to recover from an HCI problem that shouldn't have been there in the first place.
 The task might be something like recording a 10-second video on a mobile phone, deleting a text message, or setting a microwave oven to reheat food for 45 seconds.
 
@@ -245,7 +245,7 @@ Before they take any action, ask: "*Do you know what to try to do at this step?*
 Then have them look at the interface, and ask: "*Can you see how to do it?*"
 Then have them take the action they suggested, and ask: "*Are you able to tell that you did the right thing?*"
 
-If their decisions go off track, you can reset the interface, and start over, explaining what to do for the step they took wrong if necessary (but noting that this wasn't obvious to them — it will be a point to consider for improving the interface.)
+If their decisions go off track, you can reset the interface, and start over, explaining what to do for the step they took wrong if necessary (but noting that this wasn't obvious to them &ndash; it will be a point to consider for improving the interface.)
 
 Once the first action has been completed, repeat this with the next action required (it might be pressing a button or adjusting a control).
 Once again, ask the three questions above in the process.
