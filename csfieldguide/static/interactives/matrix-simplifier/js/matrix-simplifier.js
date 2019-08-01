@@ -6,6 +6,9 @@ const vsprintf = require('sprintf-js').vsprintf;
 const ROW_TEMPLATE = "%s & %s & %s";
 const MATRIX_TEMPLATE = "\\begin{bmatrix} %s \\\\ %s \\\\ %s \\end{bmatrix}";
 
+var matrices = [];
+var vectors = [];
+
 $(document).ready(function() {
   $('#add-matrix-from-input').click(addMatrix);
   $('#add-vector-from-input').click(addVector);
@@ -15,6 +18,7 @@ $(document).ready(function() {
 function addMatrix() {
   matrixArray = getMatrix();
   matrix = mathjs.matrix(matrixArray);
+  matrices.push(matrix);
   matrixString = formatMatrix(matrixArray);
   $('#matrix-1').html(matrixString);
   // Request re-render. Taken from https://stackoverflow.com/questions/32239378/using-mathjax-in-an-updating-sequence-in-javascript
@@ -61,6 +65,7 @@ function addVector() {
     $('#vector-row-2').val()
   ];
   vector = mathjs.matrix(vectorArray);
+  vectors.push(vector);
   vectorString = sprintf(MATRIX_TEMPLATE, vectorArray[0], vectorArray[1], vectorArray[2]);
   $('#matrix-2').html(vectorString);
   // Request re-render. Taken from https://stackoverflow.com/questions/32239378/using-mathjax-in-an-updating-sequence-in-javascript
@@ -82,6 +87,15 @@ function resetMatrices() {
   $('#matrix-row-2-col-0').val(0);
   $('#matrix-row-2-col-1').val(0);
   $('#matrix-row-2-col-2').val(1);
+
+  $('#vector-row-0').val(1),
+  $('#vector-row-1').val(0),
+  $('#vector-row-2').val(0)
+}
+
+
+function calculateOutput() {
+
 }
 
 
@@ -89,8 +103,15 @@ function resetMatrices() {
  * Defines draging and button handlers
  */
 $(function() {
-  var matrix_list = $('.matrix-container').toArray();
-  var drake = dragula(matrix_list);
+  var matrix_list = $('.containers').toArray();
+  var drake = dragula(matrix_list, {
+    accepts: function(el, target, source) {
+      // Don't allow dragging of vectors to matrices container and vice versa
+      if (target.parentNode.id !== source.parentNode.id) {
+        false;
+      }
+    }
+  });
   drake.on('drag', function(el, source) {
     scrollable = false;
   });
@@ -102,6 +123,7 @@ $(function() {
     scrollable = true;
   });
 });
+
 
 /**
 * Swaps the matrix in the target container and the matrix in the source container
