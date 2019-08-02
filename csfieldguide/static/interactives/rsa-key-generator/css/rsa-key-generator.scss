@@ -3,11 +3,17 @@
   overflow: hidden;
 }
 #interactive-rsa-key-generator textarea {
-  height: initial;
+  min-height: initial;
+  font-family: monospace;
+  min-width: 68ch; // 64 character lines plus padding
 }
 #interactive-rsa-key-generator select {
   border-color: black;
 }
 #interactive-rsa-key-generator-generate {
   height: 3rem;
+}
+
+.textarea-div {
+  overflow: auto;
 }

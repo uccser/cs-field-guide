@@ -1,7 +1,7 @@
 # RSA Key Generation Interactive
 
 **Original Author:** Heidi Newton  
-**Modified By:** Jack Morgan
+**Modified By:** Jack Morgan, Alasdair Smith
 
 This interactive is created for the encryption chapter in providing RSA public and private keys for the encryption and decryption interactives.
 
