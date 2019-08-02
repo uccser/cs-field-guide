@@ -59,10 +59,20 @@
             \]
           </div>
         </div>
+        <div id="vector-container-2" class="row containers">
+          <div id="vector-2" class="draggable vector col">
+          </div>
+        </div>
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#vector-modal">{% trans "Add vector" %}</button>
       </div>
 
       <div id="output-container" class="col-8">
+        <div id="matrix-output">
+
+        </div>
+        <div id="vector-output">
+
+        </div>
       </div>
     </div>
 
@@ -78,20 +88,20 @@
           </div>
           <div class="modal-body">
             <div class="matrix-row">
-              <input class="form-control text-center" id="matrix-row-0-col-0" value="1"/>
-              <input class="form-control text-center" id="matrix-row-0-col-1" value="0"/>
-              <input class="form-control text-center" id="matrix-row-0-col-2" value="0"/>
+              <input class="form-control text-center" id="matrix-row-0-col-0" value=1 type="number"/>
+              <input class="form-control text-center" id="matrix-row-0-col-1" value=0 type="number"/>
+              <input class="form-control text-center" id="matrix-row-0-col-2" value=0 type="number"/>
             </div>
     
             <div class="matrix-row">
-              <input class="form-control text-center" id="matrix-row-1-col-0" value="0"/>
-              <input class="form-control text-center" id="matrix-row-1-col-1" value="1"/>
-              <input class="form-control text-center" id="matrix-row-1-col-2" value="0"/>
+              <input class="form-control text-center" id="matrix-row-1-col-0" value=0 type="number"/>
+              <input class="form-control text-center" id="matrix-row-1-col-1" value=1 type="number"/>
+              <input class="form-control text-center" id="matrix-row-1-col-2" value=0 type="number"/>
             </div>
             <div class="matrix-row">
-              <input class="form-control text-center" id="matrix-row-2-col-0" value="0"/>
-              <input class="form-control text-center" id="matrix-row-2-col-1" value="0"/>
-              <input class="form-control text-center" id="matrix-row-2-col-2" value="1"/>
+              <input class="form-control text-center" id="matrix-row-2-col-0" value=0 type="number"/>
+              <input class="form-control text-center" id="matrix-row-2-col-1" value=0 type="number"/>
+              <input class="form-control text-center" id="matrix-row-2-col-2" value=1 type="number"/>
             </div>
           </div>
           <div class="modal-footer">
@@ -113,13 +123,13 @@
           </div>
           <div class="modal-body">
             <div class="matrix-row">
-              <input class="form-control text-center" id="vector-row-0" value="1"/>
+              <input class="form-control text-center" id="vector-row-0" value=1 type="number"/>
             </div>
             <div class="matrix-row">
-              <input class="form-control text-center" id="vector-row-1" value="0"/>
+              <input class="form-control text-center" id="vector-row-1" value=0 type="number"/>
             </div>
             <div class="matrix-row">
-              <input class="form-control text-center" id="vector-row-2" value="0"/>
+              <input class="form-control text-center" id="vector-row-2" value=0 type="number"/>
             </div>
           </div>
           <div class="modal-footer">
