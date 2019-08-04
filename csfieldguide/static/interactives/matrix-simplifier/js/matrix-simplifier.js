@@ -19,8 +19,6 @@ var vectors = [v1];
 $(document).ready(function() {
   $('#add-matrix-from-input').click(addMatrix);
   $('#add-vector-from-input').click(addVector);
-  console.log(matrices);
-  console.log(vectors);
 });
 
 
@@ -107,18 +105,12 @@ function resetMatrices() {
 
 function showOutput() {
   var result = calculateOutput();
-  console.log(result);
   var matrix = result[0];
   var vector = result[1];
-  console.log(vector);
 
-  var vectorRows = [
-    mathjs.subset(vector, mathjs.index(0)),
-    mathjs.subset(vector, mathjs.index(1)),
-    mathjs.subset(vector, mathjs.index(2)),
-  ];
-
-  matrixString = formatMatrix(matrix);
+  var vectorRows = matrixToArray(vector);
+  var matrixRows = matrixToArray(matrix);
+  matrixString = formatMatrix(matrixRows);
   vectorString = sprintf(MATRIX_TEMPLATE, vectorRows[0], vectorRows[1], vectorRows[2]);
 
   $('#matrix-output').html(matrixString);
@@ -154,22 +146,17 @@ function calculateOutput() {
 
 
 function multiplyMatrices(m) {
-  console.log('hello');
   var multiply = true;
   while (multiply) {
-    console.log(m);
     if (m.length == 2) {
       multiply = false;
       return mathjs.multiply(m[0], m[1]);
     } else {
       result = mathjs.multiply(m[0], m[1]);
       // remove the first matrix in array
-      console.log(m);
       m.shift();
-      console.log(m);
       // replace the new first element in array with result
       m[0] = result;
-      console.log(m);
     }
   }
 }
@@ -178,7 +165,6 @@ function multiplyMatrices(m) {
 function addVectors(v) {
   var add = true;
   while (add) {
-    console.log(v);
     if (v.length == 2) {
       add = false;
       return mathjs.add(v[0], v[1]);
@@ -216,12 +202,28 @@ $(function() {
 
 
 /**
-* Swaps the matrix in the target container and the matrix in the source container
-*/
+  * Swaps the matrix in the target container and the matrix in the source container
+  */
 function swap(matrix, target_container, source_container) {
   // save the original matrix in target_container to a temp var
   temp = target_container.children[0];
   // matrix is original matrix in source_container. Swap the matrices.
   target_container.appendChild(matrix);
   source_container.appendChild(temp);
+}
+
+
+/**
+ * Converts mathjs matrix to an Array
+ */
+function matrixToArray(matrix) {
+  var matrixArray = [[], [], []];
+
+  matrix.forEach(function (value, index, m) {
+    i = index[0];
+    j = index[1];
+    matrixArray[i][j] = value;
+  });
+
+  return matrixArray;
 }
