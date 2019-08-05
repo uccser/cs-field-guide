@@ -23,5 +23,3 @@ IN NO EVENT SHALL TOM WU BE LIABLE FOR ANY SPECIAL, INCIDENTAL, INDIRECT OR CONS
 In addition, the following condition applies:
 
 All redistributions must retain an intact copy of this copyright notice and disclaimer.
-
-Build Status
