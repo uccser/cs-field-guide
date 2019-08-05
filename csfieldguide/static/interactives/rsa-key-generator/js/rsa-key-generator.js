@@ -11,69 +11,69 @@ $(document).ready(function() {
   $('#interactive-rsa-key-generator-key-size').val('512');
   $('#interactive-rsa-key-generator-key-format').val('components');
 
-    $("#interactive-rsa-key-generator-generate").click(function() {
+  $("#interactive-rsa-key-generator-generate").click(function() {
 
-      // Get key size
-      var key_size = parseInt($('#interactive-rsa-key-generator-key-size').val());
+    // Get key size
+    var key_size = parseInt($('#interactive-rsa-key-generator-key-size').val());
 
-      // Create keys
-      var crypt = new nodeRSA();
-      crypt.generateKeyPair(key_size);
+    // Create keys
+    var crypt = new nodeRSA();
+    crypt.generateKeyPair(key_size);
 
-      var format = $('#interactive-rsa-key-generator-key-format').val();
-      if (format == 'components') {
-        var components = crypt.exportKey('components-private-pem');
-        $('#interactive-rsa-key-generator-public-key').val(formatPublicComponents(components));
-        $('#interactive-rsa-key-generator-private-key').val(formatPrivateComponents(components));
-      } else  if (format == 'pkcs1') {
-        $('#interactive-rsa-key-generator-public-key').val(crypt.exportKey('pkcs1-public-pem'));
-        $('#interactive-rsa-key-generator-private-key').val(crypt.exportKey('pkcs1-private-pem'));
+    var format = $('#interactive-rsa-key-generator-key-format').val();
+    if (format == 'components') {
+      var components = crypt.exportKey('components-private-pem');
+      $('#interactive-rsa-key-generator-public-key').val(formatPublicComponents(components));
+      $('#interactive-rsa-key-generator-private-key').val(formatPrivateComponents(components));
+    } else  if (format == 'pkcs1') {
+      $('#interactive-rsa-key-generator-public-key').val(crypt.exportKey('pkcs1-public-pem'));
+      $('#interactive-rsa-key-generator-private-key').val(crypt.exportKey('pkcs1-private-pem'));
+    } else {
+      $('#interactive-rsa-key-generator-public-key').val(crypt.exportKey('pkcs8-public-pem'));
+      $('#interactive-rsa-key-generator-private-key').val(crypt.exportKey('pkcs8-private-pem'));
+    }
+
+    // Enable buttons for use
+    $('.interactive-rsa-key-generator-button').removeClass("disabled").prop('disabled', false);
+
+    $('[data-toggle="tooltip"]').tooltip();
+  });
+
+  $('#interactive-rsa-key-generator-copy-public').click(function() {
+    $('#interactive-rsa-key-generator-public-key').select();
+    try {
+      var successful = document.execCommand('copy');
+      if (successful) {
+        $('#interactive-rsa-key-generator-copy-public').trigger('copied', TXT_COPIED_PUBLIC);
       } else {
-        $('#interactive-rsa-key-generator-public-key').val(crypt.exportKey('pkcs8-public-pem'));
-        $('#interactive-rsa-key-generator-private-key').val(crypt.exportKey('pkcs8-private-pem'));
-      }
-
-      // Enable buttons for use
-      $('.interactive-rsa-key-generator-button').removeClass("disabled").prop('disabled', false);
-
-      $('[data-toggle="tooltip"]').tooltip();
-    });
-
-    $('#interactive-rsa-key-generator-copy-public').click(function() {
-      $('#interactive-rsa-key-generator-public-key').select();
-      try {
-        var successful = document.execCommand('copy');
-        if (successful) {
-          $('#interactive-rsa-key-generator-copy-public').trigger('copied', TXT_COPIED_PUBLIC);
-        } else {
-          $('#interactive-rsa-key-generator-copy-public').trigger('copied', TXT_COPIED_FAIL);
-        }
-      } catch (err) {
         $('#interactive-rsa-key-generator-copy-public').trigger('copied', TXT_COPIED_FAIL);
       }
-    });
+    } catch (err) {
+      $('#interactive-rsa-key-generator-copy-public').trigger('copied', TXT_COPIED_FAIL);
+    }
+  });
 
-    $('#interactive-rsa-key-generator-copy-private').click(function() {
-      $('#interactive-rsa-key-generator-private-key').select();
-      try {
-        var successful = document.execCommand('copy');
-        if (successful) {
-          $('#interactive-rsa-key-generator-copy-private').trigger('copied', TXT_COPIED_PRIVATE);
-        } else {
-          $('#interactive-rsa-key-generator-copy-private').trigger('copied', TXT_COPIED_FAIL);
-        }
-      } catch (err) {
+  $('#interactive-rsa-key-generator-copy-private').click(function() {
+    $('#interactive-rsa-key-generator-private-key').select();
+    try {
+      var successful = document.execCommand('copy');
+      if (successful) {
+        $('#interactive-rsa-key-generator-copy-private').trigger('copied', TXT_COPIED_PRIVATE);
+      } else {
         $('#interactive-rsa-key-generator-copy-private').trigger('copied', TXT_COPIED_FAIL);
       }
-    });
+    } catch (err) {
+      $('#interactive-rsa-key-generator-copy-private').trigger('copied', TXT_COPIED_FAIL);
+    }
+  });
 
-    $('[data-toggle="tooltip"]').on('copied', function(event, message) {
-      $(this).attr('title', message)
-          .tooltip('_fixTitle')
-          .tooltip('show')
-          .attr('title', TXT_COPY)
-          .tooltip('_fixTitle');
-    });
+  $('[data-toggle="tooltip"]').on('copied', function(event, message) {
+    $(this).attr('title', message)
+      .tooltip('_fixTitle')
+      .tooltip('show')
+      .attr('title', TXT_COPY)
+      .tooltip('_fixTitle');
+  });
 });
 
 /**
@@ -91,7 +91,7 @@ function formatPublicComponents(components) {
 }
 
 /**
- * Prapares the components of the public key for display:
+ * Prapares the components of the private key for display:
  * p & q: prime numbers
  * d: private key exponent
  */
