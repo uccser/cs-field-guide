@@ -5,7 +5,7 @@ var TXT_COPIED_PUBLIC = gettext("Public key copied");
 var TXT_COPIED_PRIVATE = gettext("Private key copied");
 var TXT_COPIED_FAIL = gettext("Oops, unable to copy. Please copy manually");
 
-$(document).ready(function(){
+$(document).ready(function() {
   $('#interactive-rsa-key-generator-public-key').val("");
   $('#interactive-rsa-key-generator-private-key').val("");
   $('#interactive-rsa-key-generator-key-size').val('512');
@@ -76,6 +76,11 @@ $(document).ready(function(){
     });
 });
 
+/**
+ * Prapares the components of the public key for display:
+ * e: exponent
+ * n: modulus of p & q (private key primes)
+ */
 function formatPublicComponents(components) {
   var returnText = "e:\n"
                  + parseHex([components.e]) + "\n\n"
@@ -85,6 +90,11 @@ function formatPublicComponents(components) {
   return returnText;
 }
 
+/**
+ * Prapares the components of the public key for display:
+ * p & q: prime numbers
+ * d: private key exponent
+ */
 function formatPrivateComponents(components) {
   var returnText = "p:\n"
                  + parseHex(components.p) + "\n\n"
@@ -96,6 +106,10 @@ function formatPrivateComponents(components) {
   return returnText;
 }
 
+/**
+ * Parses each item in the given list,
+ * creating a space-separated string of hexadecimal representations
+ */
 function parseHex(list) {
   var length = list.length;
   returnString = "";
