@@ -99,8 +99,14 @@ function formatPrivateComponents(components) {
 function parseHex(list) {
   var length = list.length;
   returnString = "";
+  var char;
   for (var i=0; i < length; i++) {
-    returnString += list[i].toString(16);
+    char = list[i].toString(16);
+    // All numbers are 1 byte so 2 characters
+    if (char.length == 1) {
+      char = "0" + char;
+    }
+    returnString += char + " ";
   }
   return returnString.toUpperCase();
 }
