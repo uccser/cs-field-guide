@@ -14,3 +14,11 @@
     cursor: grabbing;
   }
 }
+
+#output-container,
+#matrix-output,
+#vector-output {
+  > span {
+    display: inline !important;
+  }
+}
