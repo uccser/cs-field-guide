@@ -16,6 +16,14 @@ var matrices = [m1, m2, m3];
 var vectors = [v1];
 
 
+var mjaxURL  = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML,Safe.js';
+// load mathjax script
+$.getScript(mjaxURL, function() {
+    // mathjax successfully loaded, let it render
+    showOutput();
+});
+
+
 $(document).ready(function() {
   $('#add-matrix-from-input').click(addMatrix);
   $('#add-vector-from-input').click(addVector);
@@ -28,9 +36,7 @@ function addMatrix() {
   matrices.push(matrix);
   matrixString = formatMatrix(matrixArray);
   $('#matrix-1').html(matrixString);
-  // Request re-render. Taken from https://stackoverflow.com/questions/32239378/using-mathjax-in-an-updating-sequence-in-javascript
-  MathJax.Hub.Queue(["Typeset", MathJax.Hub, 'matrix-1']);
-  showOutput()
+  showOutput();
 }
 
 
@@ -76,9 +82,7 @@ function addVector() {
   vectors.push(vector);
   vectorString = sprintf(MATRIX_TEMPLATE, vectorArray[0], vectorArray[1], vectorArray[2]);
   $('#vector-2').html(vectorString);
-  // Request re-render. Taken from https://stackoverflow.com/questions/32239378/using-mathjax-in-an-updating-sequence-in-javascript
-  MathJax.Hub.Queue(["Typeset", MathJax.Hub, 'vector-2']);
-  showOutput()
+  showOutput();
 }
 
 
@@ -115,8 +119,7 @@ function showOutput() {
 
   $('#matrix-output').html(matrixString);
   $('#vector-output').html(vectorString);
-  MathJax.Hub.Queue(["Typeset", MathJax.Hub, 'matrix-output']);
-  MathJax.Hub.Queue(["Typeset", MathJax.Hub, 'vector-output']);
+  render();
 }
 
 
@@ -226,4 +229,19 @@ function matrixToArray(matrix) {
   });
 
   return matrixArray;
+}
+
+
+function render() {
+  // Request re-render
+  MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+  MathJax.Hub.Queue(
+    function () {
+      $('#matrix-1').removeClass('invisible');
+      $('#matrix-2').removeClass('invisible');
+      $('#matrix-3').removeClass('invisible');
+      $('#vector-1').removeClass('invisible');
+      $('#vector-2').removeClass('invisible');
+      $('#output-container').removeClass('invisible');
+  });
 }
