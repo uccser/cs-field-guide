@@ -6,17 +6,16 @@ const vsprintf = require('sprintf-js').vsprintf;
 const ROW_TEMPLATE = "%s & %s & %s";
 const MATRIX_TEMPLATE = "\\begin{bmatrix} %s \\\\ %s \\\\ %s \\end{bmatrix}";
 
-m1 = mathjs.matrix([[1,0,0],[0,1,0],[0,0,1]]);
-m2 = mathjs.matrix([
+m1 = mathjs.matrix([
   [mathjs.cos(toRadians(45)),0,mathjs.sin(toRadians(45))],
   [0,1,0],
   [-mathjs.sin(toRadians(45)),0,mathjs.cos(toRadians(45))]
 ]);
-m3 = mathjs.matrix([[10,0,0],[0,10,0],[0,0,10]]);
+m2 = mathjs.matrix([[10,0,0],[0,10,0],[0,0,10]]);
 
 v1 = mathjs.matrix([[10], [0], [0]]);
 
-var matrices = [m1, m2, m3];
+var matrices = [m1, m2];
 var vectors = [v1];
 
 
@@ -40,7 +39,7 @@ function addMatrix() {
   matrix = mathjs.matrix(matrixArray);
   matrices.push(matrix);
   matrixString = formatMatrix(matrixArray);
-  $('#matrix-1').html(matrixString);
+  appendInput('matrix', matrixString);
   showOutput();
 }
 
@@ -86,8 +85,17 @@ function addVector() {
   vector = mathjs.matrix(vectorArray);
   vectors.push(vector);
   vectorString = sprintf(MATRIX_TEMPLATE, vectorArray[0], vectorArray[1], vectorArray[2]);
-  $('#vector-2').html(vectorString);
+  appendInput('vector', vectorString);
   showOutput();
+}
+
+
+function appendInput(type, inputHtml) {
+  var $newContainerDiv = $("<div>").addClass('row containers');
+  var $newInputDiv = $("<div>").addClass('draggable col invisible' + type);
+  $newInputDiv.html(inputHtml);
+  $newContainerDiv.append($newInputDiv);
+  $('#add-' + type + '-btn').before($newContainerDiv);
 }
 
 
@@ -116,12 +124,10 @@ function showOutput() {
   var result = calculateOutput();
   var matrix = result[0];
   var vector = result[1];
-
   var vectorRows = matrixToArray(vector);
   var matrixRows = matrixToArray(matrix);
   matrixString = formatMatrix(matrixRows);
   vectorString = sprintf(MATRIX_TEMPLATE, vectorRows[0], vectorRows[1], vectorRows[2]);
-
   $('#matrix-output').html(matrixString);
   $('#vector-output').html(vectorString);
   render();

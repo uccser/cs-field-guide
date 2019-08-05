@@ -10,19 +10,7 @@
     <div class="row">
       <div id="matrices-input-container" class="col-3 text-center">
         <div class="row containers">
-          <div id="matrix-1" class="draggable matrix col invisible">
-            \[
-              \begin{bmatrix}
-              1   &  0  &  0 \\
-              0   &  1  &  0 \\
-              0   &  0  &  1 \\
-              \end{bmatrix}
-            \]
-          </div>
-        </div>
-    
-        <div class="row containers">
-          <div id="matrix-2" class="draggable matrix col invisible">
+          <div class="draggable matrix col invisible">
             \[
               \begin{bmatrix}
               cos(45)   &  0  &  sin(45) \\
@@ -34,22 +22,22 @@
         </div>
     
         <div class="row containers">
-          <div id="matrix-3" class="draggable matrix col invisible">
+          <div class="draggable matrix col invisible">
             \[
               \begin{bmatrix}
-              10   &  0  &  0 \\
-              0    &  10 &  0 \\
-              0    &  0  &  10 \\
+              10  &  0  &  0 \\
+              0   &  10 &  0 \\
+              0   &  0  &  10 \\
               \end{bmatrix}
             \]
           </div>
         </div>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#matrix-modal">{% trans "Add matrix" %}</button>
+        <button id="add-matrix-btn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#matrix-modal">{% trans "Add matrix" %}</button>
       </div>
 
       <div id="vector-input-container" class="col-2 text-center">
         <div class="row containers">
-          <div id="vector-1" class="draggable vector col invisible">
+          <div class="draggable vector col invisible">
             \[
               \begin{bmatrix}
               10 \\
@@ -59,10 +47,7 @@
             \]
           </div>
         </div>
-        <div class="row containers">
-          <div id="vector-2" class="draggable vector col invisible"></div>
-        </div>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#vector-modal">{% trans "Add vector" %}</button>
+        <button id="add-vector-btn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#vector-modal">{% trans "Add vector" %}</button>
       </div>
 
       <div id="output-container" class="col-7 text-center invisible">
