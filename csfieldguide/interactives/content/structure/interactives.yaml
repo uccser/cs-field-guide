@@ -307,6 +307,14 @@ rgb-mixer:
   languages:
     en: interactives/rgb-mixer.html
   is_interactive: true
+rsa-decrypter:
+  languages:
+    en: interactives/rsa-decrypter.html
+  is_interactive: true
+rsa-encrypter:
+  languages:
+    en: interactives/rsa-encrypter.html
+  is_interactive: true
 rsa-jsencrypt:
   languages:
     en: interactives/rsa-jsencrypt.html

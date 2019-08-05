@@ -1,0 +1,88 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div class="container my-3">
+    <div class="row" id="interactive-rsa-encrypter">
+      <div class="col s12">
+        <h3>{% trans "RSA Encrypter" %}</h3>
+
+        <div class="row text-left">
+          <div class="col-6 col-sm-4">       
+            <h5>{% trans "Mode" %}</h5>
+          </div>
+          <div class="col-6 col-sm-4">       
+            <h5>{% trans "Format Scheme" %}</h5>
+          </div>
+        </div>
+        <div class="row mb-2 text-left">
+          <div class="col-6 col-sm-4">
+            <select id="interactive-rsa-encrypter-key-size" class="browser-default form-control">
+              <option value="padding" selected>{% trans "Padding" %}</option>
+              <option value="no-padding">{% trans "No padding" %}</option>
+            </select>
+          </div>
+          <div class="col-6 col-sm-4">
+            <select id="interactive-rsa-encrypter-key-format" class="browser-default form-control">
+              <option value="pkcs">{% trans "PKCS" %}</option>
+              <option value="components" selected>{% trans "Components" %}</option>
+            </select>
+          </div>
+          <div class="col-12 col-sm-4">
+            <button id="interactive-rsa-encrypter-encrypt" class="btn btn-primary my-2 my-sm-0">{% trans "Encrypt" %}</button>
+          </div>
+        </div>
+
+        <div class="row text-left">
+          <div class="col-12">
+            <p><em>{% trans "<strong>Warning:</strong> No padding mode is for demonstration and should not be used for real encryption purposes." %}</em></p>
+          </div>
+        </div>
+
+        <div class="row text-left">
+          <div class="col-12 col-sm-6 col-lg-8">  
+          	<h5>{% trans "Public Key" %}</h5>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-4">
+            <button class="btn btn-primary interactive-rsa-encrypter-button disabled" type="button" data-toggle="tooltip" data-placement="bottom" id="interactive-rsa-encrypter-copy-public" title="{% trans 'Copy to clipboard' %}" disabled="true" aria-disabled="true">
+            	{% trans "Copy Public Key" %}
+            </button>
+          </div>
+        </div>
+        <div class="row mb-2 text-left">
+          <div class="col-12">
+            <textarea id="interactive-rsa-encrypter-public-key" class="form-control" rows="8" readonly></textarea>
+          </div>
+        </div>
+
+
+        <div class="row text-left">
+          <div class="col-12 col-sm-6 col-lg-8">  
+          	<h5>{% trans "Private Key" %}</h5>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-4">
+            <button class="btn btn-primary interactive-rsa-encrypter-button disabled" type="button" data-toggle="tooltip" data-placement="bottom"  id="interactive-rsa-encrypter-copy-private" title="{% trans 'Copy to clipboard' %}" disabled="true" aria-disabled="true">
+            	{% trans "Copy Private Key" %}
+           	</button>
+          </div>
+        </div>
+        <div class="row mb-2 text-left">
+          <div class="col-12">
+            <textarea id="interactive-rsa-encrypter-private-key" class="form-control" rows="12" readonly></textarea>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/rsa-encrypter/css/rsa-encrypter.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'interactives/rsa-encrypter/js/rsa-encrypter.js' %}"></script>
+{% endblock js %}

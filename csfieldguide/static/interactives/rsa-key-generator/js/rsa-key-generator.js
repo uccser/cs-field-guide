@@ -34,7 +34,7 @@ $(document).ready(function() {
     }
 
     // Enable buttons for use
-    $('.interactive-rsa-key-generator-button').removeClass("disabled").prop('disabled', false);
+    $('.interactive-rsa-key-generator-button').removeClass('disabled').prop('disabled', false);
 
     $('[data-toggle="tooltip"]').tooltip();
   });
@@ -79,12 +79,12 @@ $(document).ready(function() {
 /**
  * Prapares the components of the public key for display:
  * e: exponent
- * n: modulus of p & q (private key primes)
+ * n: product of p & q (private key primes)
  */
 function formatPublicComponents(components) {
-  var returnText = "e:\n"
+  var returnText = "e (public key exponent):\n"
                  + parseHex([components.e]) + "\n\n"
-                 + "n:\n"
+                 + "n (n = pq):\n"
                  + parseHex(components.n);
 
   return returnText;
@@ -96,11 +96,11 @@ function formatPublicComponents(components) {
  * d: private key exponent
  */
 function formatPrivateComponents(components) {
-  var returnText = "p:\n"
+  var returnText = "p (distinct prime 1):\n"
                  + parseHex(components.p) + "\n\n"
-                 + "q:\n"
+                 + "q (distinct prime 2):\n"
                  + parseHex(components.q) + "\n\n"
-                 + "d:\n"
+                 + "d (private key exponent):\n"
                  + parseHex(components.d);
 
   return returnText;
