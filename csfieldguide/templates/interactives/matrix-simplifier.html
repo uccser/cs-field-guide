@@ -8,38 +8,38 @@
     <h3 class='text-center'>{% trans "Matrix Simplifier" %}</h3>
     <p class="text-center">{% trans "Note that vectors will always be added <i>after</i> matrix multiplication operations have been applied." %}</p>
     <div class="row">
-      <div id="matrices-input-container" class="col-2 text-center">
-        <div id="matrix-contianer-1" class="row containers">
+      <div id="matrices-input-container" class="col-3 text-center">
+        <div class="row containers">
           <div id="matrix-1" class="draggable matrix col invisible">
             \[
               \begin{bmatrix}
               1   &  0  &  0 \\
-              0   &  1  &  0 \\  
-              0   &  0  &  1 \\  
+              0   &  1  &  0 \\
+              0   &  0  &  1 \\
               \end{bmatrix}
             \]
           </div>
         </div>
     
-        <div id="matrix-contianer-2" class="row containers">
+        <div class="row containers">
           <div id="matrix-2" class="draggable matrix col invisible">
             \[
               \begin{bmatrix}
-              3   &  0  &  0 \\
-              0   &  3  &  0 \\  
-              0   &  0  &  3 \\  
+              cos(45)   &  0  &  sin(45) \\
+              0         &  1  &  0 \\
+              -sin(45)  &  0  &  cos(45) \\
               \end{bmatrix}
             \]
           </div>
         </div>
     
-        <div id="matrix-contianer-3" class="row containers">
+        <div class="row containers">
           <div id="matrix-3" class="draggable matrix col invisible">
             \[
               \begin{bmatrix}
-              1   &  0  &  0 \\
-              0   &  1  &  0 \\  
-              0   &  0  &  1 \\  
+              10   &  0  &  0 \\
+              0    &  10 &  0 \\
+              0    &  0  &  10 \\
               \end{bmatrix}
             \]
           </div>
@@ -48,25 +48,24 @@
       </div>
 
       <div id="vector-input-container" class="col-2 text-center">
-        <div id="vector-container-1" class="row containers">
+        <div class="row containers">
           <div id="vector-1" class="draggable vector col invisible">
             \[
               \begin{bmatrix}
-              1 \\
+              10 \\
               0 \\
               0 \\
               \end{bmatrix}
             \]
           </div>
         </div>
-        <div id="vector-container-2" class="row containers">
-          <div id="vector-2" class="draggable vector col invisible">
-          </div>
+        <div class="row containers">
+          <div id="vector-2" class="draggable vector col invisible"></div>
         </div>
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#vector-modal">{% trans "Add vector" %}</button>
       </div>
 
-      <div id="output-container" class="col-8 text-center invisible">
+      <div id="output-container" class="col-7 text-center invisible">
         \[
           \begin{bmatrix}
           x^\prime \\

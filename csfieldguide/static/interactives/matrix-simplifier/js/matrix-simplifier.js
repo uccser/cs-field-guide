@@ -7,15 +7,20 @@ const ROW_TEMPLATE = "%s & %s & %s";
 const MATRIX_TEMPLATE = "\\begin{bmatrix} %s \\\\ %s \\\\ %s \\end{bmatrix}";
 
 m1 = mathjs.matrix([[1,0,0],[0,1,0],[0,0,1]]);
-m2 = mathjs.matrix([[3,0,0],[0,3,0],[0,0,3]]);
-m3 = mathjs.matrix([[1,0,0],[0,1,0],[0,0,1]]);
+m2 = mathjs.matrix([
+  [mathjs.cos(toRadians(45)),0,mathjs.sin(toRadians(45))],
+  [0,1,0],
+  [-mathjs.sin(toRadians(45)),0,mathjs.cos(toRadians(45))]
+]);
+m3 = mathjs.matrix([[10,0,0],[0,10,0],[0,0,10]]);
 
-v1 = mathjs.matrix([[1], [0], [0]]);
+v1 = mathjs.matrix([[10], [0], [0]]);
 
 var matrices = [m1, m2, m3];
 var vectors = [v1];
 
 
+// only show equations once they are rendered
 var mjaxURL  = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML,Safe.js';
 // load mathjax script
 $.getScript(mjaxURL, function() {
@@ -225,7 +230,8 @@ function matrixToArray(matrix) {
   matrix.forEach(function (value, index, m) {
     i = index[0];
     j = index[1];
-    matrixArray[i][j] = value;
+    // round to 2dp
+    matrixArray[i][j] = mathjs.round(value, 2);
   });
 
   return matrixArray;
@@ -237,11 +243,14 @@ function render() {
   MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
   MathJax.Hub.Queue(
     function () {
-      $('#matrix-1').removeClass('invisible');
-      $('#matrix-2').removeClass('invisible');
-      $('#matrix-3').removeClass('invisible');
-      $('#vector-1').removeClass('invisible');
-      $('#vector-2').removeClass('invisible');
-      $('#output-container').removeClass('invisible');
+      $('.invisible').removeClass('invisible');
   });
+}
+
+
+/**
+ * Converts degrees to radians
+ */
+function toRadians(angle) {
+  return angle * (Math.PI / 180);
 }
