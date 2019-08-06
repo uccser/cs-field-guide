@@ -19,9 +19,6 @@
               \end{bmatrix}
             \]
           </div>
-          <div class="drag-indicator col p-0 d-none">
-            <hr>
-          </div>
         </div>
     
         <div class="row draggable">
@@ -34,11 +31,7 @@
               \end{bmatrix}
             \]
           </div>
-          <div class="drag-indicator col p-0 d-none">
-            <hr>
-          </div>
         </div>
-        <button id="add-matrix-btn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#matrix-modal">{% trans "Add matrix" %}</button>
       </div>
 
       <div id="vector-input-container" class="containers col-2 text-center">
@@ -52,11 +45,7 @@
               \end{bmatrix}
             \]
           </div>
-          <div class="drag-indicator col p-0 d-none">
-            <hr>
-          </div>
         </div>
-        <button id="add-vector-btn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#vector-modal">{% trans "Add vector" %}</button>
       </div>
 
       <div id="output-container" class="col-7 text-center invisible">
@@ -76,6 +65,15 @@
           \end{bmatrix}
         \] +
         <div id="vector-output" class="d-inline"></div>
+      </div>
+    </div>
+
+    <div id="add-matrices-btns" class="row d-none">
+      <div class="col-3 text-center">
+        <button id="add-matrix-btn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#matrix-modal">{% trans "Add matrix" %}</button>
+      </div>
+      <div class="col-2 text-center">
+        <button id="add-vector-btn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#vector-modal">{% trans "Add vector" %}</button>
       </div>
     </div>
 

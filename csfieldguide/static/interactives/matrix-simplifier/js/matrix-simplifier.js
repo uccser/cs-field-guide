@@ -206,6 +206,7 @@ $(function() {
     }
   });
   drake.on('drag', function(el, source) {
+    $('.gu-mirror').addClass('shadow p-3 mb-5 bg-white rounded');
     scrollable = false;
   });
   drake.on('drop', (matrix, target_container, source_container) => {
@@ -237,6 +238,8 @@ function render() {
   MathJax.Hub.Queue(
     function () {
       $('.invisible').removeClass('invisible');
+      // stop buttons jumping around on load
+      $('#add-matrices-btns').removeClass('d-none');
   });
 }
 

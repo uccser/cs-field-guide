@@ -12,17 +12,11 @@
   cursor: grab;
   &.gu-mirror {
     cursor: grabbing;
-    border: 3px solid #ffc107 !important;
+    border-left: 2px #ffc107 !important;
     opacity: 1 !important;
   }
   &.gu-transit {
     opacity: 1 !important;
-    .content {
-      display: none;
-    }
-    .drag-indicator {
-      display: block !important;
-    }
   }
 }
 
