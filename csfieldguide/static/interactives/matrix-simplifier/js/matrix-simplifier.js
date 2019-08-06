@@ -30,6 +30,7 @@ $.getScript(mjaxURL, function() {
 $(document).ready(function() {
   $('#add-matrix-from-input').click(addMatrix);
   $('#add-vector-from-input').click(addVector);
+  $('.dismiss-eqtn').click(dismissEquation);
 });
 
 
@@ -40,6 +41,7 @@ function addMatrix() {
   matrixString = formatMatrix(matrixArray);
   appendInput('matrix', matrixString);
   showOutput();
+  resetModalMatrices();
 }
 
 
@@ -86,6 +88,7 @@ function addVector() {
   vectorString = sprintf(MATRIX_TEMPLATE, vectorArray[0], vectorArray[1], vectorArray[2]);
   appendInput('vector', vectorString);
   showOutput();
+  resetModalMatrices();
 }
 
 
@@ -94,6 +97,9 @@ function appendInput(type, inputHtml) {
   var $closeButton = $('<button type="button" class="close dismiss-eqtn" aria-label="Close">');
   if (type == 'vector') {
     $closeButton.addClass('vector');
+    $closeButton.attr('id', 'close-vector-' + vectors.length);
+  } else {
+    $closeButton.attr('id', 'close-matrix-' + matrices.length);
   }
   $closeButton.append($('<span aria-hidden="true">&times;</span>'));
   $newContainerDiv.append($closeButton);
@@ -101,12 +107,14 @@ function appendInput(type, inputHtml) {
   $newInputDiv.html(inputHtml);
   $newContainerDiv.append($newInputDiv);
   $('#' + type + '-input-container').append($newContainerDiv);
+  // add event handler for close button
+  $('.dismiss-eqtn').click(dismissEquation);
 }
 
 
-/* Set the matrices to the default values */
-function resetMatrices() {
-  // reset to default values of matrices
+/* Set the matrices in modal to the default values */
+function resetModalMatrices() {
+  // reset to default values of modal matrices
   $('#matrix-row-0-col-0').val(1);
   $('#matrix-row-0-col-1').val(0);
   $('#matrix-row-0-col-2').val(0);
@@ -250,4 +258,30 @@ function render() {
  */
 function toRadians(angle) {
   return angle * (Math.PI / 180);
+}
+
+
+/**
+ * Removes equation and updates output to match
+ */
+function dismissEquation() {
+  button = $(this)[0];
+  // id is of form close-matrix-1 or close-vector-1.
+  // split by '-' and get the type (matrix or vector) and number.
+  buttonIdSplit = button.id.split('-');
+  eqtnType = buttonIdSplit[1]; // get type
+  eqtnNum = Number(buttonIdSplit[2]); // get the number of button that was clicked
+  
+  // eqtnNum identifies the equation to remove, minus one to convert to an index so we can remove it from the array
+  toRemoveIndex = eqtnNum - 1;
+  // remove from appropriate array
+  if (eqtnType == 'matrix') {
+    matrices.splice(toRemoveIndex, 1);
+  } else {
+    vectors.splice(toRemoveIndex, 1);
+  }
+  // remove DOM element
+  $(this)[0].parentNode.remove();
+  // Re-calculate and show output
+  showOutput();
 }
