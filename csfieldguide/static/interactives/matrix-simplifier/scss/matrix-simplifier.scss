@@ -12,18 +12,9 @@
   cursor: grab;
   &.gu-mirror {
     cursor: grabbing;
-    border-left: 2px #ffc107 !important;
     opacity: 1 !important;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
   }
-  &.gu-transit {
-    opacity: 1 !important;
-  }
-}
-
-.drag-indicator hr {
-  border-top: 3px solid #ffc107 !important;
-  color: #ffc107;
-  background-color: #ffc107;
 }
 
 .content {
