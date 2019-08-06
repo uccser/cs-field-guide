@@ -10,28 +10,34 @@
         <h3>{% trans "RSA Decrypter" %}</h3>
 
         <div class="row text-left">
-          <div class="col-6 col-sm-4">       
+          <div class="col-4">       
             <h5>{% trans "Mode" %}</h5>
           </div>
-          <div class="col-6 col-sm-4">       
+          <div class="col-4">       
             <h5>{% trans "Format Scheme" %}</h5>
+          </div>
+          <div class="col-4">       
+            <h5>{% trans "Padding" %}</h5>
           </div>
         </div>
         <div class="row mb-2 text-left">
-          <div class="col-6 col-sm-4">
+          <div class="col-4">
             <select id="interactive-rsa-decrypter-key-size" class="browser-default form-control">
-              <option value="padding" selected>{% trans "Padding" %}</option>
-              <option value="no-padding">{% trans "No padding" %}</option>
+              <option value="public">{% trans "Public key decryption" %}</option>
+              <option value="private" selected>{% trans "Private key decryption" %}</option>
             </select>
           </div>
-          <div class="col-6 col-sm-4">
+          <div class="col-4">
             <select id="interactive-rsa-decrypter-key-format" class="browser-default form-control">
               <option value="pkcs">{% trans "PKCS" %}</option>
               <option value="components" selected>{% trans "Components" %}</option>
             </select>
           </div>
-          <div class="col-12 col-sm-4">
-            <button id="interactive-rsa-decrypter-encrypt" class="btn btn-primary my-2 my-sm-0">{% trans "Decrypt" %}</button>
+          <div class="col-4">
+            <select id="interactive-rsa-decrypter-key-size" class="browser-default form-control">
+              <option value="padding" selected>{% trans "Padding" %}</option>
+              <option value="no-padding">{% trans "No padding" %}</option>
+            </select>
           </div>
         </div>
 
@@ -42,38 +48,39 @@
         </div>
 
         <div class="row text-left">
-          <div class="col-12 col-sm-6 col-lg-8">  
-          	<h5>{% trans "Public Key" %}</h5>
-          </div>
-          <div class="col-12 col-sm-6 col-lg-4">
-            <button class="btn btn-primary interactive-rsa-decrypter-button disabled" type="button" data-toggle="tooltip" data-placement="bottom" id="interactive-rsa-decrypter-copy-public" title="{% trans 'Copy to clipboard' %}" disabled="true" aria-disabled="true">
-            	{% trans "Copy Public Key" %}
-            </button>
+          <div class="col-12">  
+          	<h5>{% trans "Key" %}</h5>
           </div>
         </div>
         <div class="row mb-2 text-left">
           <div class="col-12">
-            <textarea id="interactive-rsa-decrypter-public-key" class="form-control" rows="8" readonly></textarea>
+            <textarea id="interactive-rsa-decrypter-key" class="form-control" rows="8"></textarea>
           </div>
         </div>
 
 
         <div class="row text-left">
-          <div class="col-12 col-sm-6 col-lg-8">  
-          	<h5>{% trans "Private Key" %}</h5>
-          </div>
-          <div class="col-12 col-sm-6 col-lg-4">
-            <button class="btn btn-primary interactive-rsa-decrypter-button disabled" type="button" data-toggle="tooltip" data-placement="bottom"  id="interactive-rsa-decrypter-copy-private" title="{% trans 'Copy to clipboard' %}" disabled="true" aria-disabled="true">
-            	{% trans "Copy Private Key" %}
-           	</button>
+          <div class="col-12">  
+          	<h5>{% trans "Encrypted Message" %}</h5>
           </div>
         </div>
         <div class="row mb-2 text-left">
           <div class="col-12">
-            <textarea id="interactive-rsa-decrypter-private-key" class="form-control" rows="12" readonly></textarea>
+            <textarea id="interactive-rsa-decrypter-ciphertext" class="form-control" rows="4"></textarea>
           </div>
         </div>
 
+
+        <div class="row text-left">
+          <div class="col-12">  
+          	<h5>{% trans "Decrypted Message" %}</h5>
+          </div>
+        </div>
+        <div class="row mb-2 text-left">
+          <div class="col-12">
+            <textarea id="interactive-rsa-decrypter-plaintext" class="form-control" rows="4" readonly></textarea>
+          </div>
+        </div>
       </div>
     </div>
   </div>
