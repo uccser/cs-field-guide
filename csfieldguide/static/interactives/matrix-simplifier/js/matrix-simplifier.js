@@ -91,10 +91,13 @@ function addVector() {
 
 
 function appendInput(type, inputHtml) {
-  var $newContainerDiv = $("<div>").addClass('row containers');
-  var $newInputDiv = $("<div>").addClass('draggable col invisible' + type);
+  var $newContainerDiv = $("<div>").addClass('row draggable');
+  var $newInputDiv = $("<div>").addClass('col invisible' + type);
+  var $indicator = $("<div>").addClass('drag-indicator');
+  $indicator.append('<hr>');
   $newInputDiv.html(inputHtml);
   $newContainerDiv.append($newInputDiv);
+  $newContainerDiv.append($indicator);
   $('#add-' + type + '-btn').before($newContainerDiv);
 }
 
@@ -199,32 +202,16 @@ $(function() {
   var drake = dragula(matrix_list, {
     accepts: function(el, target, source, sibling) {
       // Don't allow dragging of vectors to matrices container and vice versa
-      return target.parentNode.id === source.parentNode.id;
+      return target.id === source.id;
     }
   });
   drake.on('drag', function(el, source) {
     scrollable = false;
   });
   drake.on('drop', (matrix, target_container, source_container) => {
-    // If an matrix is dragged on top of another matrix..
-    if (target_container.children.length == 2) {
-      swap(matrix, target_container, source_container);
-    }
     scrollable = true;
   });
 });
-
-
-/**
-  * Swaps the matrix in the target container and the matrix in the source container
-  */
-function swap(matrix, target_container, source_container) {
-  // save the original matrix in target_container to a temp var
-  temp = target_container.children[0];
-  // matrix is original matrix in source_container. Swap the matrices.
-  target_container.appendChild(matrix);
-  source_container.appendChild(temp);
-}
 
 
 /**

@@ -8,9 +8,9 @@
     <h3 class='text-center'>{% trans "Matrix Simplifier" %}</h3>
     <p class="text-center">{% trans "Note that vectors will always be added <i>after</i> matrix multiplication operations have been applied." %}</p>
     <div class="row">
-      <div id="matrices-input-container" class="col-3 text-center">
-        <div class="row containers">
-          <div class="draggable matrix col invisible">
+      <div id="matrices-input-container" class="containers col-3 text-center">
+        <div class="row draggable">
+          <div class="matrix col invisible content border rounded m-1">
             \[
               \begin{bmatrix}
               cos(45)   &  0  &  sin(45) \\
@@ -19,10 +19,13 @@
               \end{bmatrix}
             \]
           </div>
+          <div class="drag-indicator col p-0 d-none">
+            <hr>
+          </div>
         </div>
     
-        <div class="row containers">
-          <div class="draggable matrix col invisible">
+        <div class="row draggable">
+          <div class="matrix col invisible content border rounded m-1">
             \[
               \begin{bmatrix}
               10  &  0  &  0 \\
@@ -31,13 +34,16 @@
               \end{bmatrix}
             \]
           </div>
+          <div class="drag-indicator col p-0 d-none">
+            <hr>
+          </div>
         </div>
         <button id="add-matrix-btn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#matrix-modal">{% trans "Add matrix" %}</button>
       </div>
 
-      <div id="vector-input-container" class="col-2 text-center">
-        <div class="row containers">
-          <div class="draggable vector col invisible">
+      <div id="vector-input-container" class="containers col-2 text-center">
+        <div class="row draggable">
+          <div class="vector col invisible content border rounded m-1">
             \[
               \begin{bmatrix}
               10 \\
@@ -45,6 +51,9 @@
               0 \\
               \end{bmatrix}
             \]
+          </div>
+          <div class="drag-indicator col p-0 d-none">
+            <hr>
           </div>
         </div>
         <button id="add-vector-btn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#vector-modal">{% trans "Add vector" %}</button>
