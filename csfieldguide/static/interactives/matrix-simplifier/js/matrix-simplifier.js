@@ -5,7 +5,6 @@ const vsprintf = require('sprintf-js').vsprintf;
 
 const ROW_TEMPLATE = "%s & %s & %s";
 const MATRIX_TEMPLATE = "\\begin{bmatrix} %s \\\\ %s \\\\ %s \\end{bmatrix}";
-
 m1 = mathjs.matrix([
   [mathjs.cos(toRadians(45)),0,mathjs.sin(toRadians(45))],
   [0,1,0],
@@ -91,14 +90,17 @@ function addVector() {
 
 
 function appendInput(type, inputHtml) {
-  var $newContainerDiv = $("<div>").addClass('row draggable');
+  var $newContainerDiv = $("<div>").addClass('row draggable content border rounded m-1');
+  var $closeButton = $('<button type="button" class="close dismiss-eqtn" aria-label="Close">');
+  if (type == 'vector') {
+    $closeButton.addClass('vector');
+  }
+  $closeButton.append($('<span aria-hidden="true">&times;</span>'));
+  $newContainerDiv.append($closeButton);
   var $newInputDiv = $("<div>").addClass('col invisible' + type);
-  var $indicator = $("<div>").addClass('drag-indicator');
-  $indicator.append('<hr>');
   $newInputDiv.html(inputHtml);
   $newContainerDiv.append($newInputDiv);
-  $newContainerDiv.append($indicator);
-  $('#add-' + type + '-btn').before($newContainerDiv);
+  $('#' + type + '-input-container').append($newContainerDiv);
 }
 
 
@@ -206,7 +208,6 @@ $(function() {
     }
   });
   drake.on('drag', function(el, source) {
-    $('.gu-mirror').addClass('shadow p-3 mb-5 bg-white rounded');
     scrollable = false;
   });
   drake.on('drop', (matrix, target_container, source_container) => {
