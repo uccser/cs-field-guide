@@ -1,0 +1,120 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div class="container my-3">
+    <div class="row" id="rsa-encryption">
+      <div class="col s12">
+        <h3>{% trans "RSA Encryption" %}</h3>
+
+        <div class="row mb-2 text-left">
+          <div class="col-12 col-md-4 mt-2">
+            <h5>{% trans "Mode:" %}</h5>
+            <select id="rsa-encryption-key-type" class="browser-default form-control">
+              <option value="public" selected>{% trans "Public key encryption" %}</option>
+              <option value="private">{% trans "Private key encryption" %}</option>
+            </select>
+          </div>
+
+          <div class="col-12 col-md-4 mt-2">
+            <h5>{% trans "Format Scheme:" %}</h5>
+            <select id="rsa-encryption-key-format" class="browser-default form-control">
+              <option value="pkcs" selected>{% trans "PKCS" %}</option>
+              <option value="components">{% trans "Components" %}</option>
+            </select>
+          </div>
+
+          <div class="col-12 col-md-4 mt-2">
+            <h5>{% trans "Padding:" %}</h5>
+            <select id="rsa-encryption-key-padding" class="browser-default form-control">
+              <option value="padding" selected>{% trans "Padding" %}</option>
+              <option value="no-padding">{% trans "No padding" %}</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row text-left">
+          <div class="col-12">
+            <p class="text-muted"><em>{% trans "<strong>Warning:</strong> Do not trust this interactive for any real encryption purposes." %}</em></p>
+            <p id="rsa-encryption-autoswitch-text" class="text-danger"></p>
+          </div>
+        </div>
+
+        <div class="row mb-2 text-left">
+          <div class="col-12">
+            <h5>{% trans "Key:" %}</h5>
+            <textarea id="rsa-encryption-key" class="form-control d-none" rows="8"></textarea>
+            <div id="rsa-encryption-key-components" class="col-12">
+              <div class="col-12">
+                <textarea id="rsa-encryption-components-box" class="form-control" rows="3" placeholder="{% trans 'Paste your key into this box or enter the components individually' %}"></textarea>
+              </div>
+
+              <div id="rsa-encryption-public-key-components" class="col-12">
+                <form>
+                  <div class="form-group">
+                    <label for="rsa-encryption-key-e">e:</label>
+                    <input id="rsa-encryption-key-e" type="text" class="form-control" placeholder="10001">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="rsa-encryption-key-n">n:</label>
+                    <textarea id="rsa-encryption-key-n" class="form-control" rows="1" placeholder="01 23 45 67 89 AB CD EF"></textarea>
+                  </div>
+                </form>
+              </div>
+
+              <div id="rsa-encryption-private-key-components" class="col-12 d-none">
+                <form>
+                  <div class="form-group">
+                    <label for="rsa-encryption-key-p">p:</label>
+                    <textarea id="rsa-encryption-key-p" class="form-control" rows="1" placeholder="01 23 45 67 89 AB CD EF"></textarea>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="rsa-encryption-key-q">q:</label>
+                    <textarea id="rsa-encryption-key-q" class="form-control" rows="1" placeholder="01 23 45 67 89 AB CD EF"></textarea>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="rsa-encryption-key-d">d:</label>
+                    <textarea id="rsa-encryption-key-d" class="form-control" rows="1" placeholder="01 23 45 67 89 AB CD EF"></textarea>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mb-2 text-left">
+          <div class="col-12">
+            <h5>{% trans "Plain Message:" %}</h5>
+            <textarea id="rsa-encryption-plaintext" class="form-control" rows="4"></textarea>
+          </div>
+        </div>
+
+        <div class="row text-left">
+          <div class="col-12 my-2">
+            <button id="rsa-encryption-button" class="btn btn-primary">{% trans "Encrypt" %}</button>
+          </div>
+        </div>
+
+        <div class="row mb-2 text-left">
+          <div class="col-12">
+            <h5>{% trans "Encrypted Message:" %}</h5>
+            <textarea id="rsa-encryption-ciphertext" class="form-control" rows="4" readonly></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/rsa-encryption/css/rsa-encryption.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'interactives/rsa-encryption/js/rsa-encryption.js' %}"></script>
+{% endblock js %}

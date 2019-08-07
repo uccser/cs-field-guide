@@ -136,10 +136,10 @@ remote-simple:
   name: Simple Remote
 rgb-mixer:
   name: RGB Mixer
-rsa-decrypter:
-  name: RSA Decrypter
-rsa-encrypter:
-  name: RSA Encrypter
+rsa-decryption:
+  name: RSA Decryption
+rsa-encryption:
+  name: RSA Encryption
 rsa-jsencrypt:
   name: RSA jsencrypt
 rsa-key-generator:

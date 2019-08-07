@@ -5,28 +5,28 @@
 
 {% block html %}
   <div class="container my-3">
-    <div class="row" id="interactive-rsa-decrypter">
+    <div class="row" id="rsa-decryption">
       <div class="col s12">
-        <h3>{% trans "RSA Decrypter" %}</h3>
+        <h3>{% trans "RSA Decryption" %}</h3>
 
         <div class="row mb-2 text-left">
           <div class="col-12 col-md-4 mt-2">
             <h5>{% trans "Mode:" %}</h5>
-            <select id="interactive-rsa-decrypter-key-size" class="browser-default form-control">
+            <select id="rsa-decryption-key-size" class="browser-default form-control">
               <option value="public">{% trans "Public key decryption" %}</option>
               <option value="private" selected>{% trans "Private key decryption" %}</option>
             </select>
           </div>
           <div class="col-12 col-md-4 mt-2">
             <h5>{% trans "Format Scheme:" %}</h5>
-            <select id="interactive-rsa-decrypter-key-format" class="browser-default form-control">
+            <select id="rsa-decryption-key-format" class="browser-default form-control">
               <option value="pkcs">{% trans "PKCS" %}</option>
               <option value="components" selected>{% trans "Components" %}</option>
             </select>
           </div>
           <div class="col-12 col-md-4 mt-2">
             <h5>{% trans "Padding:" %}</h5>
-            <select id="interactive-rsa-decrypter-key-size" class="browser-default form-control">
+            <select id="rsa-decryption-key-size" class="browser-default form-control">
               <option value="padding" selected>{% trans "Padding" %}</option>
               <option value="no-padding">{% trans "No padding" %}</option>
             </select>
@@ -35,34 +35,34 @@
 
         <div class="row text-left">
           <div class="col-12">
-            <p><em>{% trans "<strong>Warning:</strong> No padding mode is for demonstration and should not be used for real encryption purposes." %}</em></p>
+              <p class="text-muted"><em>{% trans "<strong>Warning:</strong> Do not trust this interactive for any real encryption purposes." %}</em></p>
           </div>
         </div>
 
         <div class="row mb-2 text-left">
           <div class="col-12">
             <h5>{% trans "Key:" %}</h5>
-            <textarea id="interactive-rsa-decrypter-key" class="form-control" rows="8"></textarea>
+            <textarea id="rsa-decryption-key" class="form-control" rows="8"></textarea>
           </div>
         </div>
 
         <div class="row mb-2 text-left">
           <div class="col-12">
             <h5>{% trans "Encrypted Message:" %}</h5>
-            <textarea id="interactive-rsa-decrypter-ciphertext" class="form-control" rows="4"></textarea>
+            <textarea id="rsa-decryption-ciphertext" class="form-control" rows="4"></textarea>
           </div>
         </div>
 
         <div class="row text-left">
           <div class="col-12 my-2">
-            <button id="interactive-rsa-decrypter-button" class="btn btn-primary">{% trans "Decrypt" %}</button>
+            <button id="rsa-decryption-button" class="btn btn-primary">{% trans "Decrypt" %}</button>
           </div>
         </div>
 
         <div class="row mb-2 text-left">
           <div class="col-12">
             <h5>{% trans "Decrypted Message:" %}</h5>
-            <textarea id="interactive-rsa-decrypter-plaintext" class="form-control" rows="4" readonly></textarea>
+            <textarea id="rsa-decryption-plaintext" class="form-control" rows="4" readonly></textarea>
           </div>
         </div>
       </div>
@@ -71,9 +71,9 @@
 {% endblock html %}
 
 {% block css %}
-  <link rel="stylesheet" href="{% static 'interactives/rsa-decrypter/css/rsa-decrypter.css' %}">
+  <link rel="stylesheet" href="{% static 'interactives/rsa-decryption/css/rsa-decryption.css' %}">
 {% endblock css %}
 
 {% block js %}
-  <script type="text/javascript" src="{% static 'interactives/rsa-decrypter/js/rsa-decrypter.js' %}"></script>
+  <script type="text/javascript" src="{% static 'interactives/rsa-decryption/js/rsa-decryption.js' %}"></script>
 {% endblock js %}

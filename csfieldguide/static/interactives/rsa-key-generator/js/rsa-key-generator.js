@@ -82,9 +82,9 @@ $(document).ready(function() {
  * n: product of p & q (private key primes)
  */
 function formatPublicComponents(components) {
-  var returnText = "e (public key exponent):\n"
+  var returnText = "e:\n"
                  + parseHex([components.e]) + "\n\n"
-                 + "n (n = pq):\n"
+                 + "n:\n"
                  + parseHex(components.n);
 
   return returnText;
@@ -96,11 +96,11 @@ function formatPublicComponents(components) {
  * d: private key exponent
  */
 function formatPrivateComponents(components) {
-  var returnText = "p (distinct prime 1):\n"
+  var returnText = "p:\n"
                  + parseHex(components.p) + "\n\n"
-                 + "q (distinct prime 2):\n"
+                 + "q:\n"
                  + parseHex(components.q) + "\n\n"
-                 + "d (private key exponent):\n"
+                 + "d:\n"
                  + parseHex(components.d);
 
   return returnText;
