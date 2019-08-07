@@ -17,6 +17,9 @@ v1 = mathjs.matrix([[10], [0], [0]]);
 var matrices = [m1, m2];
 var vectors = [v1];
 
+var currentMatricesOrder = [m1, m2];
+var currentVectorsOrder = [v1];
+
 
 // only show equations once they are rendered
 var mjaxURL  = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML,Safe.js';
@@ -103,7 +106,7 @@ function appendInput(type, inputHtml) {
   }
   $closeButton.append($('<span aria-hidden="true">&times;</span>'));
   $newContainerDiv.append($closeButton);
-  var $newInputDiv = $("<div>").addClass('col invisible' + type);
+  var $newInputDiv = $("<div>").addClass('col invisible ' + type);
   $newInputDiv.html(inputHtml);
   $newContainerDiv.append($newInputDiv);
   $('#' + type + '-input-container').append($newContainerDiv);
@@ -155,7 +158,7 @@ function calculateOutput() {
     matrixResult = matrices[0];
   } else if (matrices.length > 1) {
     // 2 or more matrices
-    matricesCopy = matrices; // copy list for recursive multiplying in place
+    matricesCopy = currentMatricesOrder; // copy list for multiplying in place
     matrixResult = multiplyMatrices(matricesCopy);
   }
 
@@ -163,12 +166,11 @@ function calculateOutput() {
     vectorResult = vectors[0];
   } else if (vectors.length > 1) {
     // 2 or more vectors
-    vectorsCopy = vectors; // copy list for recursive adding in place
+    vectorsCopy = currentVectorsOrder; // copy list for adding in place
     vectorResult = addVectors(vectorsCopy);
   }
 
   return [matrixResult, vectorResult];
-
 }
 
 
@@ -218,7 +220,31 @@ $(function() {
   drake.on('drag', function(el, source) {
     scrollable = false;
   });
-  drake.on('drop', (matrix, target_container, source_container) => {
+  drake.on('drop', (matrix, target_container, source_container, sibling) => {
+    var matrixId = matrix.children[0].id;
+    var siblingId = sibling.children[0].id;
+
+    var matrixInfo = getEqtnInfoFromId(matrixId);
+    var siblingInfo = getEqtnInfoFromId(siblingId);
+
+    var matrixIndex = matrixInfo[1] - 1;
+    var siblingIndex = siblingInfo[1] - 1;
+    var type = matrixInfo[0]; // matrix and sibling will be of same type
+
+    if (type == 'matrix') {
+      console.log(currentMatricesOrder[matrixIndex]);
+      var tmp = currentMatricesOrder[matrixIndex];
+      currentMatricesOrder[matrixIndex] = currentMatricesOrder[siblingIndex];
+      console.log(currentMatricesOrder[matrixIndex]);
+      currentMatricesOrder[siblingIndex] = tmp;
+    } else {
+      // vector
+      var tmp = currentVectorsOrder[matrixIndex];
+      currentVectorsOrder[matrixIndex] = currentVectorsOrder[siblingIndex];
+      currentVectorsOrder[siblingIndex] = tmp;
+    }
+
+    //showOutput();
     scrollable = true;
   });
 });
@@ -261,17 +287,26 @@ function toRadians(angle) {
 }
 
 
+function getEqtnInfoFromId(id) {
+  // id is of form close-matrix-1 or close-vector-1.
+  // split by '-' and get the type (matrix or vector) and number.
+  idSplit = id.split('-');
+  eqtnType = idSplit[1]; // get type
+  eqtnNum = Number(idSplit[2]); // get the number
+  return [eqtnType, eqtnNum];
+}
+
+
 /**
  * Removes equation and updates output to match
  */
 function dismissEquation() {
   button = $(this)[0];
-  // id is of form close-matrix-1 or close-vector-1.
-  // split by '-' and get the type (matrix or vector) and number.
-  buttonIdSplit = button.id.split('-');
-  eqtnType = buttonIdSplit[1]; // get type
-  eqtnNum = Number(buttonIdSplit[2]); // get the number of button that was clicked
-  
+  eqtnInfo = getEqtnInfoFromId(button.id);
+
+  eqtnType = eqtnInfo[0]; // type
+  eqtnNum = eqtnInfo[1]; // number of button that was clicked
+
   // eqtnNum identifies the equation to remove, minus one to convert to an index so we can remove it from the array
   toRemoveIndex = eqtnNum - 1;
   // remove from appropriate array
