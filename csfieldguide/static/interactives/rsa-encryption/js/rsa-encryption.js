@@ -1,10 +1,11 @@
-/**
- * woo
- */
+const nodeRSA = require('node-rsa');
 
 var isPublicKey;
 var isPkcs;
 var isPadded;
+
+var Key;
+var Message;
 
 var TXT_AUTOSWITCH_PKCS_PUBLIC = gettext("Detected a public PKCS key; mode and format scheme set appropriately.");
 var TXT_AUTOSWITCH_PKCS_PRIVATE = gettext("Detected a private PKCS key; mode and format scheme set appropriately.");
@@ -12,6 +13,8 @@ var TXT_AUTOSWITCH_COMPONENTS_PUBLIC = gettext("Detected a public key in the com
 var TXT_AUTOSWITCH_COMPONENTS_PRIVATE = gettext("Detected a private key in the components format; mode and format scheme set appropriately.");
 var TXT_AUTOSWITCH_PUBLIC = gettext("Detected a public key, mode changed to public key encryption.");
 var TXT_AUTOSWITCH_PRIVATE = gettext("Detected a private key, mode changed to private key encryption.");
+var TXT_SUCCESS = gettext("Encryption successful!");
+var TXT_KEY_ERROR = gettext("Detected a problem with the given key, ensure it is entered exactly as it was given.");
 
 $(document).ready(function() {
   init();
@@ -26,10 +29,12 @@ $(document).ready(function() {
     setTimeout(interpretKeyComponents, 1);
   });
   $('#rsa-encryption-key').on('paste', function() {
+    $('#rsa-encryption-autoswitch-text').html("");
     // If we run this immediately it happens before the content is actually pasted
     setTimeout(interpretKeyPkcs, 1);
   });
 
+  $('#rsa-encryption-button').click(encrypt);
 
 
   // We only want users to paste content into the components box
@@ -56,9 +61,13 @@ $(document).ready(function() {
  * Prepare the interactive as it should be on page load
  */
 function init() {
+  Key = "";
+  Message = "";
+
   $('#rsa-encryption-components-box').val("");
   $('#rsa-encryption-key').val("");
   $('#rsa-encryption-autoswitch-text').html("");
+  $('#rsa-encryption-status-text').html("");
   $('#rsa-encryption-plaintext').val("");
   $('#rsa-encryption-ciphertext').val("");
   $('#rsa-encryption-key-e').val("");
@@ -69,7 +78,10 @@ function init() {
 
   $('#rsa-encryption-key-type').val('public');
   interpretEncryptionType();
-  $('#rsa-encryption-key-format').val('components');
+  // Default to PKCS (even though the generator defaults to Components).
+  // This is to reduce the complexity of what the user sees initially.
+  // Mode errors are fixed automatically anyway
+  $('#rsa-encryption-key-format').val('pkcs');
   interpretEncryptionFormat();
   $('#rsa-encryption-key-padding').val('padding');
   interpretEncryptionPadding();
@@ -78,6 +90,7 @@ function init() {
 //--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--
                             // INTERFACE  LOGIC //
 //--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--
+// (Mostly to auto-detect and fix mode errors)
 
 /**
  * Decides whether to use Public or Private key encryption
@@ -262,22 +275,88 @@ function interpretKeyPkcs() {
     interpretKeyComponents();
     $('#rsa-encryption-autoswitch-text').html(TXT_AUTOSWITCH_COMPONENTS_PRIVATE);
     $('#rsa-encryption-key').val("");
-  } else if (isPublickey && pastedContent.includes("PRIVATE")) {
-    // Likely pasted a PRIVATE key
-    $('#rsa-encryption-key-type').val('private');
-    interpretEncryptionType();
-    $('#rsa-encryption-autoswitch-text').html(TXT_AUTOSWITCH_PRIVATE);
   } else if (!isPublicKey && pastedContent.includes("PUBLIC")) {
     // Likely pasted a PUBLIC key
     $('#rsa-encryption-key-type').val('public');
     interpretEncryptionType();
     $('#rsa-encryption-autoswitch-text').html(TXT_AUTOSWITCH_PUBLIC);
+  } else if (isPublicKey && pastedContent.includes("PRIVATE")) {
+    // Likely pasted a PRIVATE key
+    $('#rsa-encryption-key-type').val('private');
+    interpretEncryptionType();
+    $('#rsa-encryption-autoswitch-text').html(TXT_AUTOSWITCH_PRIVATE);
   }
 }
 
 //--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--
                             // ENCRYPTION LOGIC //
 //--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--
+
+/**
+ * Takes the text in the input box, encrypts it with the key and prints it to the output box
+ */
+function encrypt() {
+  $('#rsa-encryption-status-text').html("");
+  $('#rsa-encryption-autoswitch-text').html("");
+  if (isPkcs) {
+    // If the user typed in the key then the mode-error checking hasn't been done, so repeat just in case.
+    interpretKeyPkcs();
+  }
+  // The previous statement could have changed this value so check again
+  if (isPkcs) {
+    try {
+      Key = new nodeRSA($('#rsa-encryption-key').val().trim());
+    } catch (error) {
+      $('#rsa-encryption-status-text').html('<span class="text-danger">' + TXT_KEY_ERROR + '</span>');
+      console.log(error);
+      return;
+    }
+  } else {
+    Key = new nodeRSA();
+    var components = {};
+    if (isPublicKey) {
+      components.e = parseInt($('#rsa-encryption-key-e').val().trim(), 16),
+      components.n = $('#rsa-encryption-key-n').val().trim().split(' ').join('').toLowerCase();
+      Key.importKey({
+        n: Buffer.from(components.n, 'hex'),
+        e: components.e
+      }, 'components-public');
+    } else {
+      components.p = $('#rsa-encryption-key-p').val().trim().split(' ').join('').toLowerCase();
+      components.q = $('#rsa-encryption-key-q').val().trim().split(' ').join('').toLowerCase();
+      components.d = $('#rsa-encryption-key-d').val().trim().split(' ').join('').toLowerCase();
+      console.log(components.d);
+      Key.importKey({
+        d: Buffer.from(components.d, 'hex'),
+        p: Buffer.from(components.p, 'hex'),
+        q: Buffer.from(components.q, 'hex')
+      }, 'components');
+    }
+    console.log(Key);
+  }
+  Message = $('#rsa-encryption-plaintext').val();
+  if (isPadded) {
+    // We can use the included JS library for encryption
+    libraryEncrypt();
+  } else {
+    // We have to encrypt it manually
+    manualEncrypt();
+  }
+}
+
+/**
+ * Encrypts the message using the included JS library, with appropriate padding
+ */
+function libraryEncrypt() {
+
+}
+
+/**
+ * Encrypts the message using the RSA formula, without any additional padding
+ */
+function manualEncrypt() {
+
+}
 
 /**
  * Takes a string of space-separated hexadecimal numbers and returns a list of the integers it represents

@@ -140,12 +140,8 @@ rsa-decryption:
   name: RSA Decryption
 rsa-encryption:
   name: RSA Encryption
-rsa-jsencrypt:
-  name: RSA jsencrypt
 rsa-key-generator:
   name: RSA Key Generator
-rsa-no-padding:
-  name: RSA No Padding
 run-length-encoding:
   name: Run Length Encoding
 searching-algorithms:

@@ -1,4 +1,4 @@
-require('jsencrypt');
+
 var urlParameters = require('../../../js/third-party/url-parameters.js');
 var RSAEncrypt = {};
 

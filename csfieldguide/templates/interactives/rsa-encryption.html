@@ -45,8 +45,8 @@
         <div class="row mb-2 text-left">
           <div class="col-12">
             <h5>{% trans "Key:" %}</h5>
-            <textarea id="rsa-encryption-key" class="form-control d-none" rows="8"></textarea>
-            <div id="rsa-encryption-key-components" class="col-12">
+            <textarea id="rsa-encryption-key" class="form-control" rows="8"></textarea>
+            <div id="rsa-encryption-key-components" class="col-12 d-none">
               <div class="col-12">
                 <textarea id="rsa-encryption-components-box" class="form-control" rows="3" placeholder="{% trans 'Paste your key into this box or enter the components individually' %}"></textarea>
               </div>
@@ -97,6 +97,7 @@
         <div class="row text-left">
           <div class="col-12 my-2">
             <button id="rsa-encryption-button" class="btn btn-primary">{% trans "Encrypt" %}</button>
+            <p id="rsa-encryption-status-text"></p>
           </div>
         </div>
 

@@ -315,17 +315,9 @@ rsa-encryption:
   languages:
     en: interactives/rsa-encryption.html
   is_interactive: true
-rsa-jsencrypt:
-  languages:
-    en: interactives/rsa-jsencrypt.html
-  is_interactive: true
 rsa-key-generator:
   languages:
     en: interactives/rsa-key-generator.html
-  is_interactive: true
-rsa-no-padding:
-  languages:
-    en: interactives/rsa-no-padding.html
   is_interactive: true
 run-length-encoding:
   languages:

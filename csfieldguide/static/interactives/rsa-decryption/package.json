@@ -1,0 +1,8 @@
+{
+  "name": "csfg-interactive-rsa-decryption",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "node-rsa": "1.0.5"
+  }
+}

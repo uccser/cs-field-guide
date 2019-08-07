@@ -107,7 +107,7 @@ Then when the students would like to send an encrypted message to one of their c
 This next interactive is the encrypter, and it is used to encrypt messages with your **public key**.
 Your friends should use this to encrypt messages for you.
 
-{interactive slug="rsa-no-padding" type="iframe"}
+{interactive slug="rsa-encryption" type="in-page"}
 
 To ensure you understand, try encrypting a short message with your **public key**.
 In the next section, there is an interactive that you can then use to decrypt the message with your private key.
@@ -118,7 +118,7 @@ Finally, this interactive is the decrypter.
 It is used to decrypt messages that were encrypted with your public key.
 In order to decrypt the messages, you will need your **private key**.
 
-{interactive slug="rsa-no-padding" type="iframe" parameters="mode=decrypt"}
+{interactive slug="rsa-decryption" type="in-page"}
 
 Despite even your enemies knowing your public key (as you publicly announced it), they cannot use it to decrypt your messages which were encrypted using the public key.
 You are the only one who can decrypt messages, as that requires the private key which hopefully you are the only one who has access to.
@@ -208,12 +208,6 @@ Some email systems use this so that you can be sure an email came from the perso
 {comment The following comments are for a section on RSA is to write at a later time}
 
 {comment ## RSA in practice}
-
-{comment Links to RSA interactives using real world jsencrypt library.}
-
-{comment interactive name="rsa-jsencrypt" type="whole-page" text="RSA Encrypter (using padding)"}
-
-{comment interactive name="rsa-jsencrypt" type="whole-page" text="RSA Decrypter (using padding)" parameters="mode=decrypt"}
 
 {comment ### How does RSA Work?}
 
