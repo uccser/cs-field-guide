@@ -6,7 +6,8 @@ var isPublicKey;
 var isPkcs;
 var isPadded;
 
-var TXT_AUTOSWITCH_PKCS = gettext("Detected a PKCS key, format sceme changed to PKCS.");
+var TXT_AUTOSWITCH_PKCS_PUBLIC = gettext("Detected a public PKCS key; mode and format scheme set appropriately.");
+var TXT_AUTOSWITCH_PKCS_PRIVATE = gettext("Detected a private PKCS key; mode and format scheme set appropriately.");
 var TXT_AUTOSWITCH_COMPONENTS_PUBLIC = gettext("Detected a public key in the components format; mode and format scheme set appropriately.");
 var TXT_AUTOSWITCH_COMPONENTS_PRIVATE = gettext("Detected a private key in the components format; mode and format scheme set appropriately.");
 var TXT_AUTOSWITCH_PUBLIC = gettext("Detected a public key, mode changed to public key encryption.");
@@ -34,8 +35,8 @@ $(document).ready(function() {
   // We only want users to paste content into the components box
   // Adapted from https://stackoverflow.com/a/2904944
   var ctrlDown = false;
-  var ctrlKey = 17;
-  var cmdKey = 91;
+  var ctrlKey = 17; // Windows
+  var cmdKey = 91;  // Mac
   var vKey = 86;
   $('#rsa-encryption-components-box').keydown(function(e) {
     if (e.keyCode == ctrlKey || e.keyCode == cmdKey) {
@@ -114,6 +115,12 @@ function interpretEncryptionPadding() {
  * Replaces the variables used in the components scheme, no visible change for PKCS scheme
  */
 function changeEncryptionType() {
+  $('#rsa-encryption-key-e').val("");
+  $('#rsa-encryption-key-n').val("");
+  $('#rsa-encryption-key-p').val("");
+  $('#rsa-encryption-key-q').val("");
+  $('#rsa-encryption-key-d').val("");
+
   if (isPublicKey) {
     $('#rsa-encryption-private-key-components').addClass('d-none');
     $('#rsa-encryption-public-key-components').removeClass('d-none');
@@ -128,6 +135,13 @@ function changeEncryptionType() {
  * Replaces the input boxes used for entering the key
  */
 function changeEncryptionFormat() {
+  $('#rsa-encryption-key-e').val("");
+  $('#rsa-encryption-key-n').val("");
+  $('#rsa-encryption-key-p').val("");
+  $('#rsa-encryption-key-q').val("");
+  $('#rsa-encryption-key-d').val("");
+  $('#rsa-encryption-key').val("");
+
   if (isPkcs) {
     $('#rsa-encryption-key-components').addClass('d-none');
     $('#rsa-encryption-key').removeClass('d-none');
@@ -147,11 +161,22 @@ function interpretKeyComponents() {
   var pastedContent = $('#rsa-encryption-components-box').val().trim();
   $('#rsa-encryption-components-box').val("");
   if (pastedContent.startsWith('--')) {
-    // Likely pasted a PKCS key
-    $('#rsa-encryption-key-format').val('pkcs');
-    interpretEncryptionFormat();
+    if (pastedContent.includes('PUBLIC')) {
+      // Likely pasted a PUBLIC PKCS key
+      $('#rsa-encryption-key-format').val('pkcs');
+      interpretEncryptionFormat();
+      $('#rsa-encryption-key-type').val('public');
+      interpretEncryptionType();
+      $('#rsa-encryption-autoswitch-text').html(TXT_AUTOSWITCH_PKCS_PUBLIC);
+    } else {
+      // Likely pasted a PRIVATE PKCS key
+      $('#rsa-encryption-key-format').val('pkcs');
+      interpretEncryptionFormat();
+      $('#rsa-encryption-key-type').val('private');
+      interpretEncryptionType();
+      $('#rsa-encryption-autoswitch-text').html(TXT_AUTOSWITCH_PKCS_PRIVATE);
+    }
     $('#rsa-encryption-key').val(pastedContent);
-    $('#rsa-encryption-autoswitch-text').html(TXT_AUTOSWITCH_PKCS);
   } else {
     if (isPublicKey) {
       if (pastedContent.startsWith("p:")) {
@@ -218,7 +243,7 @@ function parsePrivateKeyComponents(text) {
 function interpretKeyPkcs() {
   var pastedContent = $('#rsa-encryption-key').val().trim();
   if (pastedContent.startsWith("e:")) {
-    // Likely pasted a public Components key
+    // Likely pasted a PUBLIC Components key
     $('#rsa-encryption-key-format').val('components');
     interpretEncryptionFormat();
     $('#rsa-encryption-key-type').val('public');
@@ -228,7 +253,7 @@ function interpretKeyPkcs() {
     $('#rsa-encryption-autoswitch-text').html(TXT_AUTOSWITCH_COMPONENTS_PUBLIC);
     $('#rsa-encryption-key').val("");
   } else if (pastedContent.startsWith("p:")) {
-    // Likely pasted a private Components key
+    // Likely pasted a PRIVATE Components key
     $('#rsa-encryption-key-format').val('components');
     interpretEncryptionFormat();
     $('#rsa-encryption-key-type').val('private');
@@ -242,7 +267,7 @@ function interpretKeyPkcs() {
     $('#rsa-encryption-key-type').val('private');
     interpretEncryptionType();
     $('#rsa-encryption-autoswitch-text').html(TXT_AUTOSWITCH_PRIVATE);
-  } else  if (!isPublicKey && pastedContent.includes("PUBLIC")) {
+  } else if (!isPublicKey && pastedContent.includes("PUBLIC")) {
     // Likely pasted a PUBLIC key
     $('#rsa-encryption-key-type').val('public');
     interpretEncryptionType();
