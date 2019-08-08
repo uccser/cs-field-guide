@@ -8,8 +8,18 @@
     <h3 class='text-center'>{% trans "Matrix Simplifier" %}</h3>
     <p class="text-center">{% trans "Note that vectors will always be added <i>after</i> matrix multiplication operations have been applied." %}</p>
     <div class="row">
-      <div id="matrix-input-container" class="containers col-3 text-center">
+      <div class="col-3 text-center">
         <h5>{% trans "Matrices" %}</h5>
+      </div>
+      <div class="col-2 text-center">
+        <h5>{% trans "Vectors" %}</h5>
+      </div>
+      <div class="col-7 text-center">
+        <h5>{% trans "Output" %}</h5>
+      </div>
+    </div>
+    <div class="row">
+      <div id="matrix-input-container" class="containers col-3 text-center">
         <div class="row draggable content border rounded m-1">
           <button id="close-matrix-1" type="button" class="close dismiss-eqtn" aria-label="Close">
             <span aria-hidden="true">&times;</span>
@@ -42,7 +52,6 @@
       </div>
 
       <div id="vector-input-container" class="containers col-2 text-center">
-        <h5>{% trans "Vectors" %}</h5>
         <div class="row draggable content border rounded m-1">
           <button id="close-vector-1" type="button" class="close dismiss-eqtn vector" aria-label="Close">
             <span aria-hidden="true">&times;</span>
@@ -60,7 +69,6 @@
       </div>
 
       <div id="output-container" class="col-7 text-center invisible">
-        <h5>{% trans "Output" %}</h5>
         \[
           \begin{bmatrix}
           x^\prime \\

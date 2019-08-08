@@ -41,8 +41,10 @@ function addMatrix() {
   matrixArray = getMatrix();
   matrix = mathjs.matrix(matrixArray);
   matrices.push(matrix);
+  currentMatricesOrder.push(matrix);
   matrixString = formatMatrix(matrixArray);
   appendInput('matrix', matrixString);
+  console.log('added');
   showOutput();
   resetModalMatrices();
 }
@@ -50,21 +52,21 @@ function addMatrix() {
 
 function getMatrix() {
   row0 = [
-    $('#matrix-row-0-col-0').val(),
-    $('#matrix-row-0-col-1').val(),
-    $('#matrix-row-0-col-2').val(),
+    Number($('#matrix-row-0-col-0').val()),
+    Number($('#matrix-row-0-col-1').val()),
+    Number($('#matrix-row-0-col-2').val()),
   ];
 
   row1 = [
-    $('#matrix-row-1-col-0').val(),
-    $('#matrix-row-1-col-1').val(),
-    $('#matrix-row-1-col-2').val(),
+    Number($('#matrix-row-1-col-0').val()),
+    Number($('#matrix-row-1-col-1').val()),
+    Number($('#matrix-row-1-col-2').val()),
   ];
 
   row2 = [
-    $('#matrix-row-2-col-0').val(),
-    $('#matrix-row-2-col-1').val(),
-    $('#matrix-row-2-col-2').val(),
+    Number($('#matrix-row-2-col-0').val()),
+    Number($('#matrix-row-2-col-1').val()),
+    Number($('#matrix-row-2-col-2').val()),
   ];
 
   return [row0, row1, row2];
@@ -82,12 +84,13 @@ function formatMatrix(matrix) {
 
 function addVector() {
   vectorArray = [
-    [$('#vector-row-0').val()], 
-    [$('#vector-row-1').val()], 
-    [$('#vector-row-2').val()]
+    [Number($('#vector-row-0').val())], 
+    [Number($('#vector-row-1').val())], 
+    [Number($('#vector-row-2').val())]
   ];
   vector = mathjs.matrix(vectorArray);
   vectors.push(vector);
+  currentVectorsOrder.push(matrix);
   vectorString = sprintf(MATRIX_TEMPLATE, vectorArray[0], vectorArray[1], vectorArray[2]);
   appendInput('vector', vectorString);
   showOutput();
@@ -154,17 +157,18 @@ function calculateOutput() {
   var matrixResult = mathjs.zeros(3, 3);
   var vectorResult = mathjs.zeros(3, 1);
 
-  if (matrices.length == 1) {
-    matrixResult = matrices[0];
-  } else if (matrices.length > 1) {
+  if (currentMatricesOrder.length == 1) {
+    matrixResult = currentMatricesOrder[0];
+  } else if (currentMatricesOrder.length > 1) {
     // 2 or more matrices
     matricesCopy = currentMatricesOrder; // copy list for multiplying in place
+    console.log(matricesCopy);
     matrixResult = multiplyMatrices(matricesCopy);
   }
 
-  if (vectors.length == 1) {
-    vectorResult = vectors[0];
-  } else if (vectors.length > 1) {
+  if (currentVectorsOrder.length == 1) {
+    vectorResult = currentVectorsOrder[0];
+  } else if (currentVectorsOrder.length > 1) {
     // 2 or more vectors
     vectorsCopy = currentVectorsOrder; // copy list for adding in place
     vectorResult = addVectors(vectorsCopy);
@@ -175,6 +179,7 @@ function calculateOutput() {
 
 
 function multiplyMatrices(m) {
+  console.log(m);
   var multiply = true;
   while (multiply) {
     if (m.length == 2) {
@@ -221,33 +226,43 @@ $(function() {
     scrollable = false;
   });
   drake.on('drop', (matrix, target_container, source_container, sibling) => {
-    var matrixId = matrix.children[0].id;
-    var siblingId = sibling.children[0].id;
-
-    var matrixInfo = getEqtnInfoFromId(matrixId);
-    var siblingInfo = getEqtnInfoFromId(siblingId);
-
-    var matrixIndex = matrixInfo[1] - 1;
-    var siblingIndex = siblingInfo[1] - 1;
-    var type = matrixInfo[0]; // matrix and sibling will be of same type
-
-    if (type == 'matrix') {
-      console.log(currentMatricesOrder[matrixIndex]);
-      var tmp = currentMatricesOrder[matrixIndex];
-      currentMatricesOrder[matrixIndex] = currentMatricesOrder[siblingIndex];
-      console.log(currentMatricesOrder[matrixIndex]);
-      currentMatricesOrder[siblingIndex] = tmp;
+    console.log(matrix);
+    console.log(sibling);
+    if (sibling == null) {
+      // matrix has been inserted last
+      siblingIndex = -1;
     } else {
-      // vector
-      var tmp = currentVectorsOrder[matrixIndex];
-      currentVectorsOrder[matrixIndex] = currentVectorsOrder[siblingIndex];
-      currentVectorsOrder[siblingIndex] = tmp;
+      var siblingId = sibling.children[0].id;
+      var siblingInfo = getEqtnInfoFromId(siblingId);
     }
+    // var matrixId = matrix.children[0].id;
+    // var siblingId = sibling.children[0].id;
 
-    //showOutput();
+    // var matrixInfo = getEqtnInfoFromId(matrixId);
+    // var siblingInfo = getEqtnInfoFromId(siblingId);
+
+    // var matrixIndex = matrixInfo[1] - 1;
+    // var siblingIndex = siblingInfo[1] - 1;
+    // var type = matrixInfo[0]; // matrix and sibling will be of same type
+    // if (type == 'matrix') {
+    //   var tmp = currentMatricesOrder[matrixIndex];
+    //   currentMatricesOrder[matrixIndex] = currentMatricesOrder[siblingIndex];
+    //   currentMatricesOrder[siblingIndex] = tmp;
+    // } else {
+    //   // vector
+    //   var tmp = currentVectorsOrder[matrixIndex];
+    //   currentVectorsOrder[matrixIndex] = currentVectorsOrder[siblingIndex];
+    //   currentVectorsOrder[siblingIndex] = tmp;
+    // }
+    // showOutput();
     scrollable = true;
   });
 });
+
+
+function swapOrder() {
+
+}
 
 
 /**
