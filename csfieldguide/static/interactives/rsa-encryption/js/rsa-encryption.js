@@ -1,4 +1,7 @@
 const nodeRSA = require('node-rsa');
+const constants = require('constants'); // native node.js module
+// JS now supports big integers natively but not for more than a year (as at the time of writing)
+const bigInt = require('big-integer');
 
 var isPublicKey;
 var isPkcs;
@@ -13,8 +16,13 @@ var TXT_AUTOSWITCH_COMPONENTS_PUBLIC = gettext("Detected a public key in the com
 var TXT_AUTOSWITCH_COMPONENTS_PRIVATE = gettext("Detected a private key in the components format; mode and format scheme set appropriately.");
 var TXT_AUTOSWITCH_PUBLIC = gettext("Detected a public key, mode changed to public key encryption.");
 var TXT_AUTOSWITCH_PRIVATE = gettext("Detected a private key, mode changed to private key encryption.");
-var TXT_SUCCESS = gettext("Encryption successful!");
+var TXT_SUCCESS_BASE64 = gettext("Encryption successful! Result displayed in base64.");
+var TXT_SUCCESS_HEX = gettext("Encryption successful! Result displayed in hexadecimal.");
 var TXT_KEY_ERROR = gettext("Detected a problem with the given key, ensure it is entered exactly as it was given.");
+var TXT_P_ERROR = gettext("Detected a problem with the given 'p' component, ensure it is entered exactly as it was given.");
+var TXT_Q_ERROR = gettext("Detected a problem with the given 'q' component, ensure it is entered exactly as it was given.");
+var TXT_D_ERROR = gettext("Detected a problem with the given 'd' component, ensure it is entered exactly as it was given.");
+var TXT_ERROR_UNKNOWN = gettext("Encryption failed! Cause unidentified.");
 
 $(document).ready(function() {
   init();
@@ -308,7 +316,6 @@ function encrypt() {
       Key = new nodeRSA($('#rsa-encryption-key').val().trim());
     } catch (error) {
       $('#rsa-encryption-status-text').html('<span class="text-danger">' + TXT_KEY_ERROR + '</span>');
-      console.log(error);
       return;
     }
   } else {
@@ -317,54 +324,166 @@ function encrypt() {
     if (isPublicKey) {
       components.e = parseInt($('#rsa-encryption-key-e').val().trim(), 16),
       components.n = $('#rsa-encryption-key-n').val().trim().split(' ').join('').toLowerCase();
-      Key.importKey({
-        n: Buffer.from(components.n, 'hex'),
-        e: components.e
-      }, 'components-public');
+      try {
+        Key.importKey({
+          n: Buffer.from(components.n, 'hex'),
+          e: components.e
+        }, 'components-public');
+      } catch (error) {
+        $('#rsa-encryption-status-text').html('<span class="text-danger">' + TXT_KEY_ERROR + '</span>');
+        return;
+      }
     } else {
-      components.p = $('#rsa-encryption-key-p').val().trim().split(' ').join('').toLowerCase();
-      components.q = $('#rsa-encryption-key-q').val().trim().split(' ').join('').toLowerCase();
-      components.d = $('#rsa-encryption-key-d').val().trim().split(' ').join('').toLowerCase();
-      console.log(components.d);
-      Key.importKey({
-        d: Buffer.from(components.d, 'hex'),
-        p: Buffer.from(components.p, 'hex'),
-        q: Buffer.from(components.q, 'hex')
-      }, 'components');
+      try {
+        components = getPrivateComponents();
+      } catch (error) {
+        if (error == "P_ERROR") {
+          $('#rsa-encryption-status-text').html('<span class="text-danger">' + TXT_P_ERROR + '</span>');
+        } else if (error == "Q_ERROR") {
+          $('#rsa-encryption-status-text').html('<span class="text-danger">' + TXT_Q_ERROR + '</span>');
+        } else if (error == "D_ERROR") {
+          $('#rsa-encryption-status-text').html('<span class="text-danger">' + TXT_D_ERROR + '</span>');
+        }
+        return;
+      }
+      try {
+        Key.importKey(components, 'components');
+      } catch (error) {
+        $('#rsa-encryption-status-text').html('<span class="text-danger">' + TXT_KEY_ERROR + '</span>');
+        return;
+      }
     }
-    console.log(Key);
   }
+  console.log(Key);
   Message = $('#rsa-encryption-plaintext').val();
   if (isPadded) {
-    // We can use the included JS library for encryption
-    libraryEncrypt();
-  } else {
-    // We have to encrypt it manually
-    manualEncrypt();
+    Key.setOptions({
+      encryptionScheme: {
+        scheme: 'pkcs1',
+        padding: constants.RSA_NO_PADDING
+      }
+    });
   }
+  libraryEncrypt();
 }
 
 /**
- * Encrypts the message using the included JS library, with appropriate padding
+ * Returns a dictionary of the 8 required components to form a private key in our encryption library, in the format required by it
+ * n, e, d, p, q, dmp1, dmq1, coeff
+ * d, p & q are entered by the user, e is left as default, the rest can be calculated
+ * TODO: investigate if these calculated values get used at all during the process, as only d, p & q are required for encryption
+ */
+function getPrivateComponents() {
+  var defaultE = 65537;
+
+  // User entered values
+  var strP = $('#rsa-encryption-key-p').val().trim().split(' ').join('').toLowerCase();
+  var strQ = $('#rsa-encryption-key-q').val().trim().split(' ').join('').toLowerCase();
+  var strD = $('#rsa-encryption-key-d').val().trim().split(' ').join('').toLowerCase();
+
+  // Error control
+  try {
+    var intP = new bigInt(strP, 16);
+  } catch (error) {
+    throw "P_ERROR";
+  }
+  try {
+    var intQ = new bigInt(strQ, 16);
+  } catch (error) {
+    throw "Q_ERROR";
+  }
+  try {
+    var intD = new bigInt(strD, 16);
+  } catch (error) {
+    throw "D_ERROR";
+  }
+
+  // Calculate remaining values
+  var intN = intP.times(intQ);
+  var intDmp1 = intD.mod(intP - 1);
+  var intDmq1 = intD.mod(intQ - 1);
+  var intCoeff = modInverse(intQ, intP);
+
+  // Format appropriately for use
+  components = {
+    n: Buffer.from(intN.toString(16), 'hex'),
+    e: defaultE,
+    d: Buffer.from(strD, 'hex'),
+    p: Buffer.from(strP, 'hex'),
+    q: Buffer.from(strQ, 'hex'),
+    dmp1: Buffer.from(intDmp1.toString(16), 'hex'), // Buffer(?) as string -> bigInt -> calculations -> string -> hex -> Buffer
+    dmq1: Buffer.from(intDmq1.toString(16), 'hex'), // TODO: Investigate how the process can be done more efficiently
+    coeff: Buffer.from(intCoeff.toString(16), 'hex')
+  }
+
+  return components;
+}
+
+/**
+ * Encrypts the message using the included JS library, with appropriate padding.
+ * Padding scheme is pkcs1 type (library limitation)
  */
 function libraryEncrypt() {
-
-}
-
-/**
- * Encrypts the message using the RSA formula, without any additional padding
- */
-function manualEncrypt() {
-
-}
-
-/**
- * Takes a string of space-separated hexadecimal numbers and returns a list of the integers it represents
- */
-function parseHexNumbers(text) {
-  var vals = text.trim().split(' ');
-  for (var i=0; i < vals.length; i++) {
-    vals[i] = parseInt(vals[i], 16);
+  var encryptedData;
+  try {
+    if (isPkcs) {
+      if (isPublicKey) {
+        encryptedData = Key.encrypt(Message, 'base64');
+      } else {
+        encryptedData = Key.encryptPrivate(Message, 'base64');
+      }
+      $('#rsa-encryption-ciphertext').val(encryptedData);
+      $('#rsa-encryption-status-text').html('<span class="text-success">' + TXT_SUCCESS_BASE64 + '</span>');
+    } else {
+      if (isPublicKey) {
+        encryptedData = Key.encrypt(Message, 'hex');
+      } else {
+        encryptedData = Key.encryptPrivate(Message, 'hex');
+      }
+      $('#rsa-encryption-ciphertext').val(encryptedData.toUpperCase());
+      $('#rsa-encryption-status-text').html('<span class="text-success">' + TXT_SUCCESS_HEX + '</span>');
+    }
+  } catch (error) {
+    $('#rsa-encryption-status-text').html('<span class="text-danger">' + TXT_ERROR_UNKNOWN + '</span>');
+    console.log(error);
+    return;
   }
-  return vals;
+}
+
+//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--
+                            //   OTHER  LOGIC   //
+//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--
+// (Functions copied from a third party)
+
+/**
+ * Calculates the modular multiplicative inverse of a, m.
+ * Copied directly from Dipu on stackoverflow: https://stackoverflow.com/a/51562038
+ */
+function modInverse(a, m) {
+  // validate inputs
+  [a, m] = [Number(a), Number(m)]
+  if (Number.isNaN(a) || Number.isNaN(m)) {
+    return NaN // invalid input
+  }
+  a = (a % m + m) % m
+  if (!a || m < 2) {
+    return NaN // invalid input
+  }
+  // find the gcd
+  const s = []
+  let b = m
+  while(b) {
+    [a, b] = [b, a % b]
+    s.push({a, b})
+  }
+  if (a !== 1) {
+    return NaN // inverse does not exist
+  }
+  // find the inverse
+  let x = 1
+  let y = 0
+  for(let i = s.length - 2; i >= 0; --i) {
+    [x, y] = [y,  x - y * Math.floor(s[i].a / s[i].b)]
+  }
+  return (y % m + m) % m
 }
