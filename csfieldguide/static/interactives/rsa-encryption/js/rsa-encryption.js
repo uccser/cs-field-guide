@@ -227,7 +227,6 @@ function interpretKeyComponents() {
 
 /**
  * Splits the given text and fills the component inputs appropriately.
- * TODO show a warning for a period if it fails in some way
  */
 function parsePublicKeyComponents(text) {
   var textComponents = text.split('\n');
@@ -242,7 +241,6 @@ function parsePublicKeyComponents(text) {
 
 /**
  * Splits the given text and fills the component inputs appropriately.
- * TODO show a warning for a period if it fails in some way
  */
 function parsePrivateKeyComponents(text) {
   var textComponents = text.split('\n');
@@ -259,7 +257,7 @@ function parsePrivateKeyComponents(text) {
 
 /**
  * Checks for and resolves any mode error
- * (pasted a Components key instead of PKCS, or a private/public key instead of public/private)
+ * (entered a Components key instead of PKCS, or a private/public key instead of public/private)
  */
 function interpretKeyPkcs() {
   var pastedContent = $('#rsa-encryption-key').val().trim();
@@ -380,7 +378,10 @@ function encrypt() {
  * Unsure if these calculated values get used at all during the process, as only d, p & q are required for encryption
  */
 function getPrivateComponents() {
-  var defaultE = 65537;
+  // Data has had a lot of changes: Buffer(?) as string -> bigInt -> calculations -> string -> hex -> Buffer
+  // There is no perceivable delay but the efficiency could be investigated further in future
+  
+  var defaultE = 65537; // TODO: calculate e also (we can't assume this is true for people who don't use the key generator)
 
   // User entered values
   var strP = $('#rsa-encryption-key-p').val().trim().split(' ').join('').toLowerCase();
@@ -417,8 +418,8 @@ function getPrivateComponents() {
     d: Buffer.from(strD, 'hex'),
     p: Buffer.from(strP, 'hex'),
     q: Buffer.from(strQ, 'hex'),
-    dmp1: Buffer.from(intDmp1.toString(16), 'hex'), // Buffer(?) as string -> bigInt -> calculations -> string -> hex -> Buffer
-    dmq1: Buffer.from(intDmq1.toString(16), 'hex'), // TODO: Investigate how the process can be done more efficiently
+    dmp1: Buffer.from(intDmp1.toString(16), 'hex'),
+    dmq1: Buffer.from(intDmq1.toString(16), 'hex'),
     coeff: Buffer.from(intCoeff.toString(16), 'hex')
   }
 
