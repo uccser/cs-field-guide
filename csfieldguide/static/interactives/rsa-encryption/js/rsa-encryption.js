@@ -362,6 +362,10 @@ function encrypt() {
         padding: constants.RSA_NO_PADDING
       }
     });
+  } else {
+    Key.setOptions({
+      encryptionScheme: 'pkcs1'
+    });
   }
   console.log(Key);
   libraryEncrypt();
