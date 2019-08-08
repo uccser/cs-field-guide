@@ -343,6 +343,9 @@ function encrypt() {
           $('#rsa-encryption-status-text').html('<span class="text-danger">' + TXT_Q_ERROR + '</span>');
         } else if (error == "D_ERROR") {
           $('#rsa-encryption-status-text').html('<span class="text-danger">' + TXT_D_ERROR + '</span>');
+        } else {
+          $('#rsa-encryption-status-text').html('<span class="text-danger">' + TXT_ERROR_UNKNOWN + '</span>');
+          console.log(error); // If the user is tech-savvy enough maybe they can see what's wrong themselves
         }
         return;
       }
@@ -367,15 +370,14 @@ function encrypt() {
       }
     });
   }
-  console.log(Key);
   libraryEncrypt();
 }
 
 /**
- * Returns a dictionary of the 8 required components to form a private key in our encryption library, in the format required by it
- * n, e, d, p, q, dmp1, dmq1, coeff
- * d, p & q are entered by the user, e is left as default, the rest can be calculated
- * TODO: investigate if these calculated values get used at all during the process, as only d, p & q are required for encryption
+ * Returns a dictionary of the 8 required components to form a private key in our encryption library, in the format required by it:
+ * [n, e, d, p, q, dmp1, dmq1, coeff]
+ * d, p & q are entered by the user, e is left as default, the rest can be calculated.
+ * Unsure if these calculated values get used at all during the process, as only d, p & q are required for encryption
  */
 function getPrivateComponents() {
   var defaultE = 65537;
@@ -407,9 +409,6 @@ function getPrivateComponents() {
   var intDmp1 = intD.mod(intP - 1);
   var intDmq1 = intD.mod(intQ - 1);
   var intCoeff = modInverse(intQ, intP);
-  if (intCoeff == NaN) {
-    $('#rsa-encryption-status-text').html('<span class="text-danger">' + 'NAN ERROR TODO' + '</span>');
-  }
 
   // Format appropriately for use
   components = {
@@ -452,7 +451,7 @@ function libraryEncrypt() {
     }
   } catch (error) {
     $('#rsa-encryption-status-text').html('<span class="text-danger">' + TXT_ERROR_UNKNOWN + '</span>');
-    console.log(error);
+    console.log(error); // If the user is tech-savvy enough maybe they can see what's wrong themselves
     return;
   }
 }

@@ -75,6 +75,15 @@ third-party-licences/bigjs.txt
 ==============================================================================
 
 ==============================================================================
+BigInteger.js
+------------------------------------------------------------------------------
+https://github.com/peterolson/BigInteger.js
+Created by Peter Olson
+licensed under The Unlicense.
+third-party-licences/biginteger.txt
+==============================================================================
+
+==============================================================================
 Bootstrap
 ------------------------------------------------------------------------------
 https://github.com/twbs/bootstrap
@@ -567,6 +576,15 @@ https://github.com/wenzhixin/multiple-select
 Copyright 2012-2014 Zhixin Wen
 licensed under MIT licence.
 third-party-licences/multiple-select.txt
+==============================================================================
+
+==============================================================================
+node (AKA Node.js)
+------------------------------------------------------------------------------
+https://github.com/nodejs/node
+Copyright Node.js contributors
+licensed under a number of licences.
+third-party-licences/node.txt
 ==============================================================================
 
 ==============================================================================
