@@ -25,5 +25,5 @@ Keys in PKCS formats (and messages encrypted with them) are in base64, while tho
 
 ## Licences
 
-This interactive uses a portion of [Node.js](https://nodejs.org/en/), as well as [node-rsa](https://github.com/rzcoder/node-rsa) and [BigInteger.js](https://github.com/peterolson/BigInteger.js).
-Licences for these can be found in `LICENCE-THIRD-PARTY` , with full copies available in the `third_party_licences` directory.
+This interactive uses a small portion of [Node.js](https://nodejs.org/en/), as well as [node-rsa](https://github.com/rzcoder/node-rsa) and [BigInteger.js](https://github.com/peterolson/BigInteger.js).
+Licences for these can be found in `LICENCE-THIRD-PARTY`, with full copies available in the `third_party_licences` directory.
