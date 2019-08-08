@@ -354,9 +354,8 @@ function encrypt() {
       }
     }
   }
-  console.log(Key);
   Message = $('#rsa-encryption-plaintext').val();
-  if (isPadded) {
+  if (!isPadded) {
     Key.setOptions({
       encryptionScheme: {
         scheme: 'pkcs1',
@@ -364,6 +363,7 @@ function encrypt() {
       }
     });
   }
+  console.log(Key);
   libraryEncrypt();
 }
 
@@ -403,6 +403,9 @@ function getPrivateComponents() {
   var intDmp1 = intD.mod(intP - 1);
   var intDmq1 = intD.mod(intQ - 1);
   var intCoeff = modInverse(intQ, intP);
+  if (intCoeff == NaN) {
+    $('#rsa-encryption-status-text').html('<span class="text-danger">' + 'NAN ERROR TODO' + '</span>');
+  }
 
   // Format appropriately for use
   components = {
