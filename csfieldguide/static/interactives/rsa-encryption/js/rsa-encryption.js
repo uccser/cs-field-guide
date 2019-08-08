@@ -355,16 +355,16 @@ function encrypt() {
     }
   }
   Message = $('#rsa-encryption-plaintext').val();
-  if (!isPadded) {
+  if (isPadded) {
+    Key.setOptions({
+      encryptionScheme: 'pkcs1'
+    });
+  } else {
     Key.setOptions({
       encryptionScheme: {
         scheme: 'pkcs1',
         padding: constants.RSA_NO_PADDING
       }
-    });
-  } else {
-    Key.setOptions({
-      encryptionScheme: 'pkcs1'
     });
   }
   console.log(Key);
