@@ -27,7 +27,19 @@ Another important thing to do when designing and evaluating an interface is to t
 Advertisements for digital devices often hide the complexity of a task, and simply point out the features available for doing the task.
 For example, suppose a smartphone is advertised as having a high resolution camera.
 The real task that someone might want to do is to take a photo of something they've just spotted, and send it to a friend.
-If you look at what happens in reality, the smartphone might be in their pocket or bag, and if they see something cool going past, they need to: get it out; perhaps unlock it; open the camera app; adjust the lighting and other settings; press a button (is it easy to find when you're holding the camera up?); select the photo; choose a sharing option; select a friend to share it with (does the system help with that?); send it (what happens if you're out of reception range?); and then put the phone away.
+If you look at what happens in reality, the smartphone might be in their pocket or bag, and if they see something cool going past, they need to:
+
+1. Get it out.
+2. Unlock it.
+3. Open the camera app.
+4. Adjust the lighting and other settings.
+5. Press a button (is it easy to find when you're holding the camera up?).
+6. Select the photo.
+7. Choose a sharing option.
+8. Select a friend to share it with (does the system help with that?).
+9. Send it (what happens if you're out of reception range?).
+10. Put the phone away.
+
 If any one of these steps is slow or hard to remember, the whole experience can be frustrating, and it's possible the photo opportunity will be missed, or for some other reason the friend won't receive the photo.
 
 It's important to think through all the parts of a task when discussing an interface, as it's the small steps in a task that make all the difference between using the interface in a real situation, compared with a demonstration of some features of the device.
