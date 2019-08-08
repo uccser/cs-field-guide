@@ -428,7 +428,7 @@ function getPrivateComponents() {
 
 /**
  * Encrypts the message using the included JS library, with appropriate padding.
- * Padding scheme is pkcs1 type (library limitation)
+ * Padding scheme is pkcs1 type (library limitation) or none - as defined by the user
  */
 function libraryEncrypt() {
   var encryptedData;
@@ -463,7 +463,7 @@ function libraryEncrypt() {
 // (Functions copied from a third party)
 
 /**
- * Calculates the modular multiplicative inverse of a, m.
+ * Calculates the modular multiplicative inverse of two values.
  * Copied directly from Dipu on stackoverflow: https://stackoverflow.com/a/51562038
  */
 function modInverse(a, m) {
