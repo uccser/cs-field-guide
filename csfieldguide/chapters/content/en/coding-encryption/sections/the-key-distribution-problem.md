@@ -107,10 +107,10 @@ But, if you are curious, these are what the variables represent:
 - q: Large prime number #2.
 - d: Private key exponent.
 
-When you generate a key in one of the PKCS (Public Key Cryptography Standards) formats, the interactive gives you keys in a format that is nicer for computers to use.
+When you generate a key in one of the PKCS (Public Key Cryptography Standards) formats, the interactive gives you the same keys in a format that is nicer for computers to use.
 These keys are what get passed around in actual RSA cryptography, but are a lot harder to understand just by looking at them.
 
-You can find out more about the algorithm and variables used [on Wikipedia](https://simple.wikipedia.org/wiki/RSA_algorithm).
+You can find out more about [the algorithm and variables used on Wikipedia](https://simple.wikipedia.org/wiki/RSA_algorithm).
 
 {panel end}
 
