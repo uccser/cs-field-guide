@@ -26,6 +26,7 @@ var TXT_KEY_ERROR = gettext("Detected a problem with the given key, ensure it is
 var TXT_P_ERROR = gettext("Detected a problem with the given 'p' component, ensure it is entered exactly as it was given.");
 var TXT_Q_ERROR = gettext("Detected a problem with the given 'q' component, ensure it is entered exactly as it was given.");
 var TXT_D_ERROR = gettext("Detected a problem with the given 'd' component, ensure it is entered exactly as it was given.");
+var TXT_DECRYPT_ERROR = gettext("Decryption failed! There is a problem with the given key or data.");
 var TXT_ERROR_UNKNOWN = gettext("Decryption failed! Cause unidentified.");
 
 $(document).ready(function() {
@@ -438,6 +439,7 @@ function libraryDecrypt() {
   var decryptedData;
   try {
     if (!isPkcs) {
+      // Need to use base64 data for decryption
       Message = Buffer.from(Message, 'hex').toString('base64');
     }
     if (isPublicKey) {
@@ -448,8 +450,7 @@ function libraryDecrypt() {
     $('#rsa-decryption-plaintext').val(decryptedData);
     $('#rsa-decryption-status-text').html('<span class="text-success">' + TXT_SUCCESS + '</span>');
   } catch (error) {
-    $('#rsa-decryption-status-text').html('<span class="text-danger">' + TXT_ERROR_UNKNOWN + '</span>');
-    console.log(error); // If the user is tech-savvy enough maybe they can see what's wrong themselves
+    $('#rsa-decryption-status-text').html('<span class="text-danger">' + TXT_DECRYPT_ERROR + '</span>');
     return;
   }
 }
