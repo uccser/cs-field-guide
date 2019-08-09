@@ -89,9 +89,30 @@ For this section on public key systems, we will use RSA as an example.
 
 Firstly, you will need to generate a pair of keys using the key generator interactive.
 You should *keep the private key secret*, and *publicly announce the public key* so that your friends can send you messages (e.g. put it on the whiteboard, or email it to some friends).
-Make sure you save your keys somewhere so you don’t forget them – a text file would be best.
+Make sure you save your keys somewhere so you don’t forget them &ndash; a text file would be best.
 
 {interactive slug="rsa-key-generator" type="in-page"}
+
+{panel type="curiosity"}
+
+# What do those characters mean?
+
+When you generate a key in the components format, the interactive gives you five variables required for the RSA algorithm.
+We won't go into the algorithm itself, nor how these values are calculated.
+But, if you are curious, these are what the variables represent:
+
+- e: Public key exponent.
+- n: The product of two large prime numbers, p & q.
+- p: Large prime number #1.
+- q: Large prime number #2.
+- d: Private key exponent.
+
+When you generate a key in one of the PKCS (Public Key Cryptography Standards) formats, the interactive gives you keys in a format that is nicer for computers to use.
+These keys are what get passed around in actual RSA cryptography, but are a lot harder to understand just by looking at them.
+
+You can find out more about the algorithm and variables used [on Wikipedia](https://simple.wikipedia.org/wiki/RSA_algorithm).
+
+{panel end}
 
 {panel type="teacher-note"}
 
