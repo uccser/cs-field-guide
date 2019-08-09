@@ -147,7 +147,7 @@ function interpretDecryptionFormat() {
 }
 
 /**
- * Decides whether or not to add padding to the decrypted message
+ * Decides whether or not to interpret the encrypted message as being padded
  */
 function interpretDecryptionPadding() {
   isPadded = true // See note at top of program: $('#rsa-decryption-key-padding').val() == 'padding';
@@ -450,7 +450,7 @@ function getPrivateComponents() {
 
 /**
  * Decrypts the message using the included JS library, with appropriate padding.
- * Padding scheme is pkcs1 type (library limitation) or none - as defined by the user
+ * Padding scheme is pkcs1 type (library limitation) or none - as defined by the user who encrypted the message
  */
 function libraryDecrypt() {
   var decryptedData;

@@ -77,7 +77,7 @@ $(document).ready(function() {
 });
 
 /**
- * Prapares the components of the public key for display:
+ * prepares the components of the public key for display:
  * e: exponent
  * n: product of p & q (private key primes)
  */
@@ -91,7 +91,7 @@ function formatPublicComponents(components) {
 }
 
 /**
- * Prapares the components of the private key for display:
+ * prepares the components of the private key for display:
  * p & q: prime numbers
  * d: private key exponent
  */
