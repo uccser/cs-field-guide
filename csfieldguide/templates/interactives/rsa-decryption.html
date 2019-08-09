@@ -10,7 +10,7 @@
         <h3>{% trans "RSA Decryption" %}</h3>
 
         <div class="row mb-2 text-left">
-          <div class="col-12 col-md-4 mt-2">
+          <div class="col-12 col-md-6 mt-2">
             <h5>{% trans "Mode:" %}</h5>
             <select id="rsa-decryption-key-type" class="browser-default form-control">
               <option value="public">{% trans "Public key decryption" %}</option>
@@ -18,19 +18,11 @@
             </select>
           </div>
 
-          <div class="col-12 col-md-4 mt-2">
+          <div class="col-12 col-md-6 mt-2">
             <h5>{% trans "Key Format Scheme:" %}</h5>
             <select id="rsa-decryption-key-format" class="browser-default form-control">
               <option value="pkcs" selected>{% trans "PKCS" %}</option>
               <option value="components">{% trans "Components" %}</option>
-            </select>
-          </div>
-
-          <div class="col-12 col-md-4 mt-2">
-            <h5>{% trans "Padding:" %}</h5>
-            <select id="rsa-decryption-key-padding" class="browser-default form-control">
-              <option value="padding" selected>{% trans "Padding" %}</option>
-              <option value="no-padding">{% trans "No padding" %}</option>
             </select>
           </div>
         </div>

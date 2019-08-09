@@ -1,7 +1,20 @@
 /**
  * This and rsa-encryption.js are nearly identical.
  * Ensure changes to this are made to that file also if appropriate
+ * 
+ * 09/08/2019
+ * isPadded may not be needed but the logic has been left in anyway just in case it is needed in future
  */
+
+/* This block of html will need to be put back in if isPadded is needed:
+<div class="col-12 col-md-4 mt-2">
+<h5>{% trans "Padding:" %}</h5>
+<select id="rsa-decryption-key-padding" class="browser-default form-control">
+  <option value="padding" selected>{% trans "Padding" %}</option>
+  <option value="no-padding">{% trans "No padding" %}</option>
+</select>
+</div>
+*/
 
 const nodeRSA = require('node-rsa');
 const constants = require('constants'); // native node.js module
@@ -38,11 +51,13 @@ $(document).ready(function() {
 
   $('#rsa-decryption-components-box').on('paste', function() {
     $('#rsa-decryption-autoswitch-text').html("");
+    $('#rsa-decryption-status-text').html("");
     // If we run this immediately it happens before the content is actually pasted
     setTimeout(interpretKeyComponents, 1);
   });
   $('#rsa-decryption-key').on('paste', function() {
     $('#rsa-decryption-autoswitch-text').html("");
+    $('#rsa-decryption-status-text').html("");
     // If we run this immediately it happens before the content is actually pasted
     setTimeout(interpretKeyPkcs, 1);
   });
@@ -89,7 +104,7 @@ function init() {
   $('#rsa-decryption-key-q').val("");
   $('#rsa-decryption-key-d').val("");
 
-  $('#rsa-decryption-key-type').val('public');
+  $('#rsa-decryption-key-type').val('private');
   interpretDecryptionType();
   // Default to PKCS (even though the generator defaults to Components).
   // This is to reduce the complexity of what the user sees initially.
@@ -115,6 +130,7 @@ function interpretDecryptionType() {
     changeDecryptionType();
   }
   $('#rsa-decryption-autoswitch-text').html("");
+  $('#rsa-decryption-status-text').html("");
 }
 
 /**
@@ -127,13 +143,14 @@ function interpretDecryptionFormat() {
     changeDecryptionFormat();
   }
   $('#rsa-decryption-autoswitch-text').html("");
+  $('#rsa-decryption-status-text').html("");
 }
 
 /**
  * Decides whether or not to add padding to the decrypted message
  */
 function interpretDecryptionPadding() {
-  isPadded = $('#rsa-decryption-key-padding').val() == 'padding';
+  isPadded = true // See note at top of program: $('#rsa-decryption-key-padding').val() == 'padding';
 }
 
 /**

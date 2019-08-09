@@ -4,7 +4,7 @@
 
 Allows the encryption of text using the RSA algorithm.
 
-This and `RSA Decryption` were built from scratch to replace `RSA JSEncrypt` by Jack Morgan, and `RSA No Padding` by Heidi Newton and James Browning.
+This and `RSA Decryption` were built from scratch to replace `RSA JSEncrypt` by Jack Morgan and `RSA No Padding` by Heidi Newton and James Browning.
 
 ## Modes and Formats
 

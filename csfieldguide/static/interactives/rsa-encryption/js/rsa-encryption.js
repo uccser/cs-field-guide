@@ -38,11 +38,13 @@ $(document).ready(function() {
 
   $('#rsa-encryption-components-box').on('paste', function() {
     $('#rsa-encryption-autoswitch-text').html("");
+    $('#rsa-encryption-status-text').html("");
     // If we run this immediately it happens before the content is actually pasted
     setTimeout(interpretKeyComponents, 1);
   });
   $('#rsa-encryption-key').on('paste', function() {
     $('#rsa-encryption-autoswitch-text').html("");
+    $('#rsa-encryption-status-text').html("");
     // If we run this immediately it happens before the content is actually pasted
     setTimeout(interpretKeyPkcs, 1);
   });
@@ -115,6 +117,7 @@ function interpretEncryptionType() {
     changeEncryptionType();
   }
   $('#rsa-encryption-autoswitch-text').html("");
+  $('#rsa-encryption-status-text').html("");
 }
 
 /**
@@ -127,6 +130,7 @@ function interpretEncryptionFormat() {
     changeEncryptionFormat();
   }
   $('#rsa-encryption-autoswitch-text').html("");
+  $('#rsa-encryption-status-text').html("");
 }
 
 /**
