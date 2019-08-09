@@ -10,14 +10,14 @@ Key ideas that students should be picking up include:
 - Many people get frustrated with digital devices.
   Sometimes they will put up with it because it’s the only option, but in other cases devices and software with good interfaces sell much better or can be priced higher because they help the user get their job done.
 - The worst person to evaluate an interface is the person who designed it.
-  They know exactly how it should work; but if someone else tries it you’ll find out how it looks to a typical user (for this reason the projects here aren't about having a student write their own program and evaluate its interface – that would be evidence that they don’t understand HCI evaluation!)
+  They know exactly how it should work; but if someone else tries it you’ll find out how it looks to a typical user (for this reason the projects here aren't about having a student write their own program and evaluate its interface &ndash; that would be evidence that they don’t understand HCI evaluation!)
 - An interface is used to do a task, so it makes the most sense to identify the tasks that a particular interface is for, and then consider how difficult those tasks are using that interface.
   The common mistake is to focus on features of an interface, but in the real world the question is whether or not those features can be used to do a task from beginning to end.
 
 {panel end}
 
 Devices are often sold using catch phrases like "user friendly" and "intuitive", but these are vague terms that are hard to pin down.
-In this section we will use the more technical term, [Usability](https://en.wikipedia.org/wiki/Usability), which is well understood by HCI experts, and gives us some ways to evaluate how suitable an interface is for a particular task.
+In this section we will use the more technical term, {glossary-link term="usability"}usability{glossary-link end}, which is well understood by HCI experts, and gives us some ways to evaluate how suitable an interface is for a particular task.
 Usability isn't just about an interface being nice to use: poor usability can lead to serious problems, and has been the cause of major disasters, such as airplane crashes, financial disasters, and medical mishaps.
 It is also important because an interface that requires a lot of dexterity, quick reactions or a good memory makes it less accessible to much of the population, when accessibility can be both a moral and legal expectation.
 
@@ -51,7 +51,7 @@ In all these cases the fault could be blamed on the user (the pilots, the bank t
 {panel end}
 
 There are many elements that can be considered in usability, and we will mention a few that you are likely to come across when evaluating everyday interfaces.
-Bear in mind that the interfaces might not just be a computer – any digital device such as an alarm clock, air conditioning remote control, microwave oven, or burglar alarms can suffer from usability problems.
+Bear in mind that the interfaces might not just be a computer &ndash; any digital device such as an alarm clock, air conditioning remote control, microwave oven, or burglar alarms can suffer from usability problems.
 
 ## Consistency
 
@@ -96,7 +96,7 @@ Try clicking the following checkbox just enough times to make it show as selecte
 
 So, as you evaluate interfaces, bear in mind that even very small delays can make a system hard to use.
 
-The following video is of an experiment that was done with virtual reality goggles to simulate Internet lag in real life situations.
+The following video is of an experiment that was done with virtual reality goggles to simulate internet lag in real life situations.
 It has English captions, but the most interesting part is what is happening in the action.
 
 {video url="https://www.youtube.com/watch?v=_fNp37zFn9Q"}
@@ -119,7 +119,7 @@ There's some more information about "time limits" for interfaces in [this articl
 
 ## Human spatial memory
 
-Another important usability consideration is *spatial memory* – our ability to remember where things are located (such as where a button or icon is).
+Another important usability consideration is *spatial memory* &ndash; our ability to remember where things are located (such as where a button or icon is).
 Human spatial memory has a high capacity (you can probably remember the location of many places and objects), it is long lasting (people visiting a town they grew up in can often remember the layout), and we can remember things very quickly.
 A very simple aspect of usability that comes from this is that the layout of an interface shouldn't keep changing.
 The interactive task at the start of this chapter was deliberately set up to be frustrating by swapping the two buttons occasionally; the reason people often make a mistake in that situation is that their spatial memory takes over, so the location of the button is more important than what is written on it.
@@ -141,7 +141,7 @@ Here are some examples:
 - Layouts often change with new versions of software (which is one reason that upgrading every time a new version comes out may not be the best plan).
 - Using the same software on a different operating system may have subtly different layout (e.g. if someone who uses the Chrome browser all the time on Windows starts using Chrome under MacOS).
   This can be particularly frustrating because the location of common controls (close/maximise window, and even the control key on the keyboard) is different, which frustrates the user's spatial memory.
-- The Microsoft Word "ribbon" was particularly frustrating for users when it came out for several of the reasons already mentioned -- the position of each item was quite different to the previous versions.
+- The Microsoft Word "ribbon" was particularly frustrating for users when it came out for several of the reasons already mentioned &ndash; the position of each item was quite different to the previous versions.
 - Adaptive interfaces can also be a problem; it might seem like a good idea to gradually change a menu in a program so that the frequently used items are near the top, or unused items are hidden, but this can lead to a frustrating treasure hunt for the user as they can't rely on their spatial memory to find things.
 
 {panel end}
@@ -182,7 +182,7 @@ It's much easier to observe someone else than do this yourself, partly because i
 In a think aloud protocol, you observe someone else using the interface that you want to evaluate, and encourage them to explain what they're thinking at each step.
 You'll take notes on what they say, and you can reflect on that afterwards to evaluate the interface (it can be helpful to record the session if possible.)
 
-This protocol gives insights into what might be confusing in an interface, and why.
+This {glossary-link term="protocol"}protocol{glossary-link end} gives insights into what might be confusing in an interface, and why.
 
 For example, if someone setting an alarm clock says "I'm pressing the up button until I get to 7am &ndash; oh bother, it stopped at 7:09, now I have to go right around again", that gives some insight into how the interface might get in the way of the users completing a task efficiently.
 
@@ -236,7 +236,7 @@ The goal of the cognitive walkthrough is to identify if the user can see what to
 An experienced HCI evaluator would do this on their own, imagining what a user would do at each step, but it may be easier for you to do this with someone else using the interface, because that lets you see the interface through someone else's eyes.
 So we recommend asking a friend to go through a task for you.
 
-The task only needs to have about 3 or 4 steps (e.g. button presses), as you'll be asking three questions at each step and taking notes on their responses, so it could take a while.
+The task only needs to have about 3 or 4 steps (e.g. button presses); you'll be asking three questions at each step and taking notes on their responses so it could take a while.
 You should know how to do the task yourself as we'll be focussing on the few steps needed to accomplish the task; if the user goes off track, you can put them back on task rather than observe them trying to recover from an HCI problem that shouldn't have been there in the first place.
 The task might be something like recording a 10-second video on a mobile phone, deleting a text message, or setting a microwave oven to reheat food for 45 seconds.
 
@@ -245,7 +245,7 @@ Before they take any action, ask: "*Do you know what to try to do at this step?*
 Then have them look at the interface, and ask: "*Can you see how to do it?*"
 Then have them take the action they suggested, and ask: "*Are you able to tell that you did the right thing?*"
 
-If their decisions go off track, you can reset the interface, and start over, explaining what to do for the step they took wrong if necessary (but noting that this wasn't obvious to them — it will be a point to consider for improving the interface.)
+If their decisions go off track, you can reset the interface, and start over, explaining what to do for the step they took wrong if necessary (but noting that this wasn't obvious to them &ndash; it will be a point to consider for improving the interface.)
 
 Once the first action has been completed, repeat this with the next action required (it might be pressing a button or adjusting a control).
 Once again, ask the three questions above in the process.
