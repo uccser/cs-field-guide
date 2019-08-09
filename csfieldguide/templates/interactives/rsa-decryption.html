@@ -12,21 +12,23 @@
         <div class="row mb-2 text-left">
           <div class="col-12 col-md-4 mt-2">
             <h5>{% trans "Mode:" %}</h5>
-            <select id="rsa-decryption-key-size" class="browser-default form-control">
+            <select id="rsa-decryption-key-type" class="browser-default form-control">
               <option value="public">{% trans "Public key decryption" %}</option>
               <option value="private" selected>{% trans "Private key decryption" %}</option>
             </select>
           </div>
+
           <div class="col-12 col-md-4 mt-2">
             <h5>{% trans "Key Format Scheme:" %}</h5>
             <select id="rsa-decryption-key-format" class="browser-default form-control">
-              <option value="pkcs">{% trans "PKCS" %}</option>
-              <option value="components" selected>{% trans "Components" %}</option>
+              <option value="pkcs" selected>{% trans "PKCS" %}</option>
+              <option value="components">{% trans "Components" %}</option>
             </select>
           </div>
+
           <div class="col-12 col-md-4 mt-2">
             <h5>{% trans "Padding:" %}</h5>
-            <select id="rsa-decryption-key-size" class="browser-default form-control">
+            <select id="rsa-decryption-key-padding" class="browser-default form-control">
               <option value="padding" selected>{% trans "Padding" %}</option>
               <option value="no-padding">{% trans "No padding" %}</option>
             </select>
@@ -35,7 +37,8 @@
 
         <div class="row text-left">
           <div class="col-12">
-              <p class="text-muted"><em>{% trans "<strong>Warning:</strong> Do not trust this interactive for any real encryption purposes." %}</em></p>
+            <p class="text-muted"><em>{% trans "<strong>Warning:</strong> Do not trust this interactive for any real decryption purposes." %}</em></p>
+            <p id="rsa-decryption-autoswitch-text" class="text-danger"></p>
           </div>
         </div>
 
@@ -43,6 +46,44 @@
           <div class="col-12">
             <h5>{% trans "Key:" %}</h5>
             <textarea id="rsa-decryption-key" class="form-control" rows="8"></textarea>
+            <div id="rsa-decryption-key-components" class="col-12 d-none">
+              <div class="col-12">
+                <textarea id="rsa-decryption-components-box" class="form-control" rows="3" placeholder="{% trans 'Paste your key into this box or enter the components individually' %}"></textarea>
+              </div>
+
+              <div id="rsa-decryption-public-key-components" class="col-12">
+                <form>
+                  <div class="form-group">
+                    <label for="rsa-decryption-key-e">e:</label>
+                    <input id="rsa-decryption-key-e" type="text" class="form-control" placeholder="10001">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="rsa-decryption-key-n">n:</label>
+                    <textarea id="rsa-decryption-key-n" class="form-control" rows="1" placeholder="01 23 45 67 89 AB CD EF"></textarea>
+                  </div>
+                </form>
+              </div>
+
+              <div id="rsa-decryption-private-key-components" class="col-12 d-none">
+                <form>
+                  <div class="form-group">
+                    <label for="rsa-decryption-key-p">p:</label>
+                    <textarea id="rsa-decryption-key-p" class="form-control" rows="1" placeholder="01 23 45 67 89 AB CD EF"></textarea>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="rsa-decryption-key-q">q:</label>
+                    <textarea id="rsa-decryption-key-q" class="form-control" rows="1" placeholder="01 23 45 67 89 AB CD EF"></textarea>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="rsa-decryption-key-d">d:</label>
+                    <textarea id="rsa-decryption-key-d" class="form-control" rows="1" placeholder="01 23 45 67 89 AB CD EF"></textarea>
+                  </div>
+                </form>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -56,6 +97,7 @@
         <div class="row text-left">
           <div class="col-12 my-2">
             <button id="rsa-decryption-button" class="btn btn-primary">{% trans "Decrypt" %}</button>
+            <p id="rsa-decryption-status-text"></p>
           </div>
         </div>
 
