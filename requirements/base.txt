@@ -20,10 +20,10 @@ django-widget-tweaks==1.4.5
 
 # XML Parsing
 lxml==4.4.0
-cssselect==1.0.3
+cssselect==1.1.0
 
 # YAML Loading
-PyYAML==5.1.1
+PyYAML==5.1.2
 
 # I18n
 django-modeltranslation==0.13.3
