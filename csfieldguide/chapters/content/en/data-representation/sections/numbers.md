@@ -7,7 +7,7 @@
 If you are doing a warm up exercise with the class, the [CS Unplugged binary numbers lesson](https://csunplugged.org/en/topics/binary-numbers/unit-plan/how-binary-digits-work/) provides scaffolding and can be used to teach concepts around binary numbers using only counting or simple addition.
 We also have an interactive which emulates the physical binary cards here:
 
-{interactive slug="binary-cards" type="whole-page" text="Binary Cards"}
+{interactive slug="binary-cards" type="whole-page" alt="Binary Cards"}
 
 In the chapter we have decided to approach this section by starting with number systems.
 While this may appear "scary" because of the math, most students should be quite familiar with it as it is first introduced very early in primary school in the form of recognising that numbers are made up of the "ones", "tens", "hundreds", etc, and is further built on until eventually in high school they learn about the exponent notation, i.e. \( 541 = 5 \times 10^2 + 4 \times 10^1 + 1 \times 10^0 \).
@@ -15,14 +15,14 @@ As explained in this section, binary numbers are a base 2 number system, rather 
 The idea of number systems provides a good stepping stone into binary numbers
 
 We are assuming that students already know about base 10 number systems, including the exponent notation.
-The initial information in this section on them is only intended to trigger recall, rather than actually teaching them the concept.
+The initial information in this section on them is only intended to trigger recall, rather than actually teach the concept.
 
 Less mathematically able students who are really struggling with number systems should be able to skip over it, and instead go directly to making binary numbers in the interactive.
 
 {panel end}
 
 In this section, we will look at how computers represent numbers.
-To begin with, we'll revise how the {glossary-link term="decimal-number-system"}base-10 number system{glossary-link end} that we use every day works, and then look at {glossary-link term="binary-number-system"}binary{glossary-link end}, which is base-2.
+To begin with, we'll revise how the {glossary-link term="decimal-number-system"}base 10 number system{glossary-link end} that we use every day works, and then look at {glossary-link term="binary-number-system"}binary{glossary-link end}, which is base 2.
 After that, we'll look at some other charactertistics of numbers that computers must deal with, such as negative numbers and numbers with decimal points.
 
 ## Understanding the base 10 number system
@@ -90,7 +90,7 @@ It can be [downloaded on the CS Unplugged website](https://csunplugged.org/en/re
 
 {panel end}
 
-As discussed earlier, computers can only store information using bits, which only have 2 possible states.
+As discussed earlier, computers can only store information using bits, which have 2 possible states.
 This means that they cannot represent base 10 numbers using digits 0 to 9, the way we write down numbers in decimal.
 Instead, they must represent numbers using just 2 digits &ndash; 0 and 1.
 
@@ -110,9 +110,7 @@ The term "denary" seems to be used mainly in the UK; in the US, Australia and Ne
 The interactive below illustrates how this binary number system represents numbers.
 Have a play around with it to see what patterns you can see.
 
-{interactive slug="base-calculator" type="whole-page" text="Binary Number Calculator"}
-
-**To ensure you are understanding correctly how to use the interactive, verify that when you enter the binary number 101101 it shows that the decimal representation is 45, that when you enter 100000 it shows that the decimal representation is 32, and when you enter 001010 it shows the decimal representation is 10.**
+{interactive slug="base-calculator" type="whole-page" alt="Binary Number Calculator"}
 
 {panel type="teacher-note"}
 
@@ -250,7 +248,7 @@ The answers are (spaces are added to make the answers easier to read, but are no
 {panel end}
 
 An important concept with binary numbers is the range of values that can be represented using a given number of bits.
-When we have 8 bits the binary numbers start to get useful — they can represent values from 0 to 255, so it is enough to store someone's age, the day of the month, and so on.
+When we have 8 bits the binary numbers start to get useful &ndash; they can represent values from 0 to 255, so it is enough to store someone's age, the day of the month, and so on.
 
 {panel type="jargon-buster"}
 
@@ -274,11 +272,11 @@ This is because these are full numbers of bytes (a byte is 8 bits), and makes it
 
 Candles on birthday cakes use the base 1 numbering system, where each place is worth 1 more than the one to its right.
 For example, the number 3 is 111, and 10 is 1111111111.
-This can cause problems as you get older — if you've ever seen a cake with 100 candles on it, you'll be aware that it's a serious fire hazard.
+This can cause problems as you get older &ndash; if you've ever seen a cake with 100 candles on it, you'll be aware that it's a serious fire hazard.
 
 {image file-path="img/chapters/binary-cakes.png" alt="The image shows two people with birthday cakes, however a cake with 100 candles on it turns into a big fireball!"}
 
-Luckily it's possible to use binary notation for birthday candles — each candle is either lit or not lit.
+Luckily it's possible to use binary notation for birthday candles &ndash; each candle is either lit or not lit.
 For example, if you are 18, the binary notation is 10010, and you need 5 candles (with only two of them lit).
 
 There's a [video on using binary notation for counting up to 1023 on your hands, as well as using it for birthday cakes](https://www.youtube.com/watch?v=GUqle9RE3Y8).
@@ -296,7 +294,7 @@ It's a lot smarter to use binary notation on candles for birthdays as you get ol
 Most of the time binary numbers are stored electronically, and we don't need to worry about making sense of them.
 But sometimes it's useful to be able to write down and share numbers, such as the unique identifier assigned to each digital device (MAC address), or the colours specified in an HTML page.
 
-Writing out long binary numbers is tedious — for example, suppose you need to copy down the 16-bit number 0101001110010001.
+Writing out long binary numbers is tedious &ndash; for example, suppose you need to copy down the 16-bit number 0101001110010001.
 A widely used shortcut is to break the number up into 4-bit groups (in this case, 0101 0011 1001 0001), and then write down the digit that each group represents (giving 5391).
 There's just one small problem: each group of 4 bits can go up to 1111, which is 15, and the digits only go up to 9.
 
@@ -346,7 +344,7 @@ These can be entered either through a spreadsheet program or database program, t
 Some of the things that we might think of as numbers, such as the telephone number (03) 555-1234, aren't actually stored as numbers, as they contain important characters (like dashes and spaces) as well as the leading 0 which would be lost if it was stored as a number (the above number would come out as 35551234, which isn't quite right).
 These are stored as **text**, which is discussed in the next section.
 
-On the other hand, things that don't look like a number (such as "30 January 2014") are often stored using a value that is converted to a format that is meaningful to the reader (try typing two dates into Excel, and then subtract one from the other — the result is a useful number).
+On the other hand, things that don't look like a number (such as "30 January 2014") are often stored using a value that is converted to a format that is meaningful to the reader (try typing two dates into Excel, and then subtract one from the other &ndash; the result is a useful number).
 In the underlying representation, a number is used.
 Program code is used to translate the underlying representation into a meaningful date on the user interface.
 
@@ -355,7 +353,7 @@ Program code is used to translate the underlying representation into a meaningfu
 # More on date representation
 
 The difference between two dates in Excel is the number of days between them; the date itself (as in many systems) is stored as the amount of time elapsed since a fixed date (such as 1 January 1900).
-You can test this by typing a date like "1 January 1850" — chances are that it won't be formatted as a normal date.
+You can test this by typing a date like "1 January 1850" &ndash; chances are that it won't be formatted as a normal date.
 Likewise, a date sufficiently in the future may behave strangely due to the limited number of bits available to store the date.
 
 {panel end}
@@ -520,11 +518,11 @@ And **00000000** is **+0**.
 Since -0 and +0 are both just 0, it is very strange to have two different representations for the same number.
 
 This is one of the reasons that we don't use a simple sign bit in practice.
-Instead, computers usually use a more sophisticated representation for negative binary numbers called *Two's Complement*.
+Instead, computers usually use a more sophisticated representation for negative binary numbers called *two's complement*.
 
-### Two's Complement
+### Two's complement
 
-There's an alternative representation called *Two's Complement*, which avoids having two representations for 0, and more importantly, makes it easier to do arithmetic with negative numbers.
+There's an alternative representation called *two's complement*, which avoids having two representations for 0, and more importantly, makes it easier to do arithmetic with negative numbers.
 
 ***Representing positive numbers with two's complement***
 
@@ -757,11 +755,11 @@ It means that positive numbers and negative numbers can be handled by the same c
 
 {panel type="curiosity"}
 
-# What's going on with Two's complement?
+# What's going on with two's complement?
 
 The idea of using a "complementary" number to change subtraction to addition can be seen by doing the same in decimal.
-The complement of a decimal digit is the digit that adds up to 10; for example, the complement of 4 is 6, and the complement of 8 is 2.
-(The word "complement" comes from the root "complete" - it completes it to a nice round number.)
+The {glossary-link term="complement"}complement{glossary-link end} of a decimal digit is the digit that adds up to 10; for example, the complement of 4 is 6, and the complement of 8 is 2.
+(The word "complement" comes from the root "complete" &ndash; it completes it to a nice round number.)
 
 Subtracting 2 from 6 is the same as adding the complement, and ignoring the extra 1 digit on the left.
 The complement of 2 is 8, so we add 8 to 6, giving (1)4.
@@ -773,7 +771,7 @@ Working out complements in binary is way easier because there are only two digit
 
 {panel end}
 
-### Using sign bits vs using Two's Complement
+### Using sign bits vs using two's complement
 
 We have now looked at two different ways of representing negative numbers on a computer.
 In practice, a simple sign bit is rarely used, because of having two different representations of zero, and requiring a different computer circuit to handle negative and positive numbers, and to do addition and subtraction.

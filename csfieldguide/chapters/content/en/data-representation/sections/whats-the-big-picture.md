@@ -5,7 +5,7 @@ You may have seen these two values represented as 0 and 1, but on a computer the
 For example, in memory a low or high voltage is used to store each 0 or 1.
 On a magnetic disk it's stored with magnetism (whether a tiny spot on the disk is magnetised north or south).
 
-The idea that *everything* stored and transmitted in our digital world is stored using just two values might seem somewhat fantastic, but here's an exercise that will give you a little experience using just black and white cards to represent numbers.
+The idea that *everything* stored and transmitted in our digital world is represented using just two values might seem somewhat fantastic, but here's an exercise that will give you a little experience using just black and white cards to represent numbers.
 In the following interactive, click on the last card (on the right) to reveal that it has one dot on it.
 Now click on the previous card, which should have two dots on it.
 Before clicking on the next one, how many dots do you predict it will have?
@@ -51,7 +51,7 @@ You should have found that any number from 0 to 31 can be represented with 5 car
 Each of the numbers could be communicated using just two words: black and white.
 For example, 22 dots is "white, black, white, white, black".
 Or you could decode "black, black, white, white, white" to the number 7.
-This is the basis of data representation - anything that can have two different states can represent anything on a digital device.
+This is the basis of data representation &ndash; anything that can have two different states can represent anything on a digital device.
 
 When we write what is stored in a computer on paper, we normally use "0" for one of the states, and "1" for the other state.
 For example, a piece of computer memory could have the following voltages:
