@@ -20,6 +20,8 @@ var vectors = [v1];
 var currentMatricesOrder = [m1, m2];
 var currentVectorsOrder = [v1];
 
+var hack = 'hi';
+
 
 // only show equations once they are rendered
 var mjaxURL  = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML,Safe.js';
@@ -49,6 +51,8 @@ function addMatrix() {
   appendInput('matrix', matrixString);
   showOutput();
   resetModalMatrices();
+  MathJax.Hub.Queue(["Typeset", MathJax.Hub, 'matrix-' + matrices.length]);
+  render();
 }
 
 
@@ -114,21 +118,25 @@ function addVector() {
  */
 function appendInput(type, inputHtml) {
   var $newContainerDiv = $("<div>").addClass('row draggable content border rounded m-1');
+  var $newInputDiv = $("<div>").addClass('col invisible ' + type);
   var $closeButton = $('<button type="button" class="close dismiss-eqtn" aria-label="Close">');
   if (type == 'vector') {
     $closeButton.addClass('vector');
     $closeButton.attr('id', 'close-vector-' + vectors.length);
+    $newInputDiv.attr('id', 'vector-' + vectors.length);
   } else {
     $closeButton.attr('id', 'close-matrix-' + matrices.length);
+    $newInputDiv.attr('id', 'matrix-' + matrices.length);
   }
   $closeButton.append($('<span aria-hidden="true">&times;</span>'));
   $newContainerDiv.append($closeButton);
-  var $newInputDiv = $("<div>").addClass('col invisible ' + type);
-  $newInputDiv.html(inputHtml);
+  
+  $newInputDiv.html(inputHtml); // might change this to use mathjax method
   $newContainerDiv.append($newInputDiv);
   $('#' + type + '-input-container').append($newContainerDiv);
   // add event handler for close button
   $('.dismiss-eqtn').click(dismissEquation);
+  MathJax.Hub.Queue(["Typeset", MathJax.Hub, 'matrix-' + matrices.length]);
 }
 
 
@@ -164,9 +172,15 @@ function showOutput() {
   var matrixRows = matrixToArray(matrix);
   matrixString = formatMatrix(matrixRows);
   vectorString = sprintf(MATRIX_TEMPLATE, vectorRows[0], vectorRows[1], vectorRows[2]);
+
   $('#matrix-output').html(matrixString);
   $('#vector-output').html(vectorString);
-  render();
+  MathJax.Hub.Queue(["Typeset", MathJax.Hub, "output-container"]);
+  if (hack == 'hi') {
+    render();
+    hack = 'no';
+  }
+  // render();
 }
 
 
@@ -309,7 +323,7 @@ function matrixToArray(matrix) {
  */
 function render() {
   // Request re-render
-  MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+  // MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
   MathJax.Hub.Queue(
     function () {
       $('.invisible').removeClass('invisible');
