@@ -20,8 +20,6 @@ var vectors = [v1];
 var currentMatricesOrder = [m1, m2];
 var currentVectorsOrder = [v1];
 
-var hack = 'hi';
-
 
 // only show equations once they are rendered
 var mjaxURL  = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML,Safe.js';
@@ -49,9 +47,9 @@ function addMatrix() {
   currentMatricesOrder.push(matrix);
   matrixString = formatMatrix(matrixArray);
   appendInput('matrix', matrixString);
-  showOutput();
   resetModalMatrices();
   MathJax.Hub.Queue(["Typeset", MathJax.Hub, 'matrix-' + matrices.length]);
+  showOutput();
   render();
 }
 
@@ -176,11 +174,7 @@ function showOutput() {
   $('#matrix-output').html(matrixString);
   $('#vector-output').html(vectorString);
   MathJax.Hub.Queue(["Typeset", MathJax.Hub, "output-container"]);
-  if (hack == 'hi') {
-    render();
-    hack = 'no';
-  }
-  // render();
+  render();
 }
 
 
