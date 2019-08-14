@@ -50,7 +50,7 @@ function addMatrix() {
   resetModalMatrices();
   MathJax.Hub.Queue(["Typeset", MathJax.Hub, 'matrix-' + matrices.length]);
   showOutput();
-  render();
+  showEquations();
 }
 
 
@@ -174,7 +174,7 @@ function showOutput() {
   $('#matrix-output').html(matrixString);
   $('#vector-output').html(vectorString);
   MathJax.Hub.Queue(["Typeset", MathJax.Hub, "output-container"]);
-  render();
+  showEquations();
 }
 
 
@@ -190,10 +190,8 @@ function calculateOutput() {
     matrixResult = currentMatricesOrder[0];
   } else if (currentMatricesOrder.length > 1) {
     // 2 or more matrices
-    console.log(currentMatricesOrder);
     matricesCopy = currentMatricesOrder.slice(); // copy list for multiplying in place
     matrixResult = multiplyMatrices(matricesCopy);
-    console.log(currentMatricesOrder);
   }
 
   if (currentVectorsOrder.length == 1) {
@@ -313,11 +311,9 @@ function matrixToArray(matrix) {
 
 
 /**
- * Render the mathjax equations and show to user once rendered
+ * Only show equations once they are rendered
  */
-function render() {
-  // Request re-render
-  // MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+function showEquations() {
   MathJax.Hub.Queue(
     function () {
       $('.invisible').removeClass('invisible');
@@ -366,9 +362,15 @@ function dismissEquation() {
   if (eqtnType == 'matrix') {
     matrices.splice(toRemoveIndex, 1);
     // need to also remove it from order array
+    var eqtn = matrices[toRemoveIndex];
+    var orderIndex = currentMatricesOrder.indexOf(eqtn); // find index
+    currentMatricesOrder.splice(orderIndex, 1);
   } else {
     vectors.splice(toRemoveIndex, 1);
     // need to also remove it from order array
+    var eqtn = vectors[toRemoveIndex];
+    var orderIndex = currentVectorsOrder.indexOf(eqtn); // find index
+    currentVectorsOrder.splice(orderIndex, 1);
   }
   // remove DOM element
   $(this)[0].parentNode.remove();
