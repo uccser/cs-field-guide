@@ -120,7 +120,7 @@ function appendInput(type, inputHtml) {
   var $closeButton = $('<button type="button" class="close dismiss-eqtn" aria-label="Close">');
   $closeButton.append($('<span aria-hidden="true">&times;</span>'));
   $newContainerDiv.append($closeButton);
-  $newInputDiv.html(inputHtml); // might change this to use mathjax method
+  $newInputDiv.html(inputHtml);
   $newContainerDiv.append($newInputDiv);
   $('#' + type + '-input-container').append($newContainerDiv);
   // add event handler for close button
@@ -163,6 +163,10 @@ function resetModalMatrices() {
  * Displays the output of calculations
  */
 function showOutput() {
+  // If output container is showing, hide it while mathjax renders.
+  if (!$('#output-container').hasClass('invisible')) {
+    $('#output-container').addClass('invisible');
+  }
   var result = calculateOutput();
   var matrix = result[0];
   var vector = result[1];
