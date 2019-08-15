@@ -112,7 +112,7 @@ function addVector() {
 
 
 /**
- * Displays the output of calculations
+ * Appends either a new matrix or vector to the DOM
  */
 function appendInput(type, inputHtml) {
   var $newContainerDiv = $("<div>").addClass('row draggable content border rounded m-1');
