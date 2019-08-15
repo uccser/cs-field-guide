@@ -94,6 +94,41 @@ function formatMatrix(matrix, rowTemplate) {
 }
 
 
+function simplifyResult(matrix, vector) {
+  var result = [];
+  for (i=0; i < 3; i++) {
+    row = "";
+    var hasX = false;
+    var hasY = false;
+    if (!(matrix[i][0] == 0)) {
+      row += matrix[i][0] + 'x';
+      hasX = true;
+    }
+    if (!(matrix[i][1] == 0)) {
+      if (hasX) {
+        row += ' + '
+      }
+      row += matrix[i][1] + 'y';
+      hasY = true;
+    }
+    if (!(matrix[i][2] == 0)) {
+      if (hasX || hasY) {
+        row += ' + '
+      }
+      row += matrix[i][2] + 'z';
+    }
+    if (!(vector[i] == 0)) {
+      row += ' + ' + vector[i];
+    }
+    if (row == "") {
+      row = "0";
+    }
+    result[i] = row;
+  }
+  return sprintf(MATRIX_TEMPLATE, result[0], result[1], result[2]);
+}
+
+
 /**
  * Add a new vector to the calculation
  */
@@ -172,16 +207,19 @@ function showOutput() {
   var result = calculateOutput();
   var matrix = result[0];
   var vector = result[1];
-  var vectorRows = matrixToArray(vector);
   var matrixRows = matrixToArray(matrix);
+  var vectorRows = matrixToArray(vector);
+
   matrixString = formatMatrix(matrixRows, ROW_TEMPLATE);
   vectorString = sprintf(MATRIX_TEMPLATE, vectorRows[0], vectorRows[1], vectorRows[2]);
   expandedMatrixString = formatMatrix(matrixRows, EXPANDED_ROW_TEMPLATE);
+  simplifiedMatrixString = simplifyResult(matrixRows, vectorRows);
 
   $('#matrix-output').html(matrixString);
   $('#vector-output').html(vectorString);
   $('#expanded-matrix').html(expandedMatrixString);
   $('#vector-copy').html(vectorString);
+  $('#simplified-matrix').html(simplifiedMatrixString);
   MathJax.Hub.Queue(["Typeset", MathJax.Hub, "output-container"]);
   showEquations();
 }
