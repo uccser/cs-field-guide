@@ -5,7 +5,7 @@ const vsprintf = require('sprintf-js').vsprintf;
 
 const ROW_TEMPLATE = "%s & %s & %s";
 const MATRIX_TEMPLATE = "\\begin{bmatrix} %s \\\\ %s \\\\ %s \\end{bmatrix}";
-const EXPANDED_ROW_TEMPLATE = "%s * x + %s * y + %s * z";
+const EXPANDED_ROW_TEMPLATE = "%sx + %sy + %sz";
 
 m1 = mathjs.matrix([
   [mathjs.cos(toRadians(45)),0,mathjs.sin(toRadians(45))],
