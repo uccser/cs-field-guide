@@ -181,6 +181,7 @@ function showOutput() {
   $('#matrix-output').html(matrixString);
   $('#vector-output').html(vectorString);
   $('#expanded-matrix').html(expandedMatrixString);
+  $('#vector-copy').html(vectorString);
   MathJax.Hub.Queue(["Typeset", MathJax.Hub, "output-container"]);
   showEquations();
 }
