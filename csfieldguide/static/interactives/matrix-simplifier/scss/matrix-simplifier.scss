@@ -21,9 +21,18 @@
   background-color: #fff;
 }
 
-#output-container,
+#output-container {
+  > div {
+    > span {
+      display: inline !important;
+    }
+  }
+}
+
+
 #matrix-output,
-#vector-output {
+#vector-output,
+#expanded-matrix {
   > span {
     display: inline !important;
   }

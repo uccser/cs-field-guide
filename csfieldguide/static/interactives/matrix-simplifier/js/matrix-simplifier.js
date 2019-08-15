@@ -5,6 +5,8 @@ const vsprintf = require('sprintf-js').vsprintf;
 
 const ROW_TEMPLATE = "%s & %s & %s";
 const MATRIX_TEMPLATE = "\\begin{bmatrix} %s \\\\ %s \\\\ %s \\end{bmatrix}";
+const EXPANDED_ROW_TEMPLATE = "%s * x + %s * y + %s * z";
+
 m1 = mathjs.matrix([
   [mathjs.cos(toRadians(45)),0,mathjs.sin(toRadians(45))],
   [0,1,0],
@@ -45,7 +47,7 @@ function addMatrix() {
   matrix = mathjs.matrix(matrixArray);
   matrices.push(matrix);
   currentMatricesOrder.push(matrix);
-  matrixString = formatMatrix(matrixArray);
+  matrixString = formatMatrix(matrixArray, ROW_TEMPLATE);
   appendInput('matrix', matrixString);
   resetModalMatrices();
   MathJax.Hub.Queue(["Typeset", MathJax.Hub, 'matrix-' + matrices.length]);
@@ -83,10 +85,10 @@ function getMatrix() {
 /**
  * Puts matrix in LaTeX format to be correctly rendered by MathJax
  */
-function formatMatrix(matrix) {
-  row0 = vsprintf(ROW_TEMPLATE, matrix[0]);
-  row1 = vsprintf(ROW_TEMPLATE, matrix[1]);
-  row2 = vsprintf(ROW_TEMPLATE, matrix[2]);
+function formatMatrix(matrix, rowTemplate) {
+  row0 = vsprintf(rowTemplate, matrix[0]);
+  row1 = vsprintf(rowTemplate, matrix[1]);
+  row2 = vsprintf(rowTemplate, matrix[2]);
 
   return sprintf(MATRIX_TEMPLATE, row0, row1, row2);
 }
@@ -172,11 +174,13 @@ function showOutput() {
   var vector = result[1];
   var vectorRows = matrixToArray(vector);
   var matrixRows = matrixToArray(matrix);
-  matrixString = formatMatrix(matrixRows);
+  matrixString = formatMatrix(matrixRows, ROW_TEMPLATE);
   vectorString = sprintf(MATRIX_TEMPLATE, vectorRows[0], vectorRows[1], vectorRows[2]);
+  expandedMatrixString = formatMatrix(matrixRows, EXPANDED_ROW_TEMPLATE);
 
   $('#matrix-output').html(matrixString);
   $('#vector-output').html(vectorString);
+  $('#expanded-matrix').html(expandedMatrixString);
   MathJax.Hub.Queue(["Typeset", MathJax.Hub, "output-container"]);
   showEquations();
 }
