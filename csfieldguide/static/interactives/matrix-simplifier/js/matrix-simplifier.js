@@ -103,7 +103,7 @@ function addVector() {
   ];
   vector = mathjs.matrix(vectorArray);
   vectors.push(vector);
-  currentVectorsOrder.push(matrix);
+  currentVectorsOrder.push(vector);
   vectorString = sprintf(MATRIX_TEMPLATE, vectorArray[0], vectorArray[1], vectorArray[2]);
   appendInput('vector', vectorString);
   showOutput();
@@ -118,23 +118,23 @@ function appendInput(type, inputHtml) {
   var $newContainerDiv = $("<div>").addClass('row draggable content border rounded m-1');
   var $newInputDiv = $("<div>").addClass('col invisible ' + type);
   var $closeButton = $('<button type="button" class="close dismiss-eqtn" aria-label="Close">');
-  if (type == 'vector') {
-    $closeButton.addClass('vector');
-    $closeButton.attr('id', 'close-vector-' + vectors.length);
-    $newInputDiv.attr('id', 'vector-' + vectors.length);
-  } else {
-    $closeButton.attr('id', 'close-matrix-' + matrices.length);
-    $newInputDiv.attr('id', 'matrix-' + matrices.length);
-  }
   $closeButton.append($('<span aria-hidden="true">&times;</span>'));
   $newContainerDiv.append($closeButton);
-  
   $newInputDiv.html(inputHtml); // might change this to use mathjax method
   $newContainerDiv.append($newInputDiv);
   $('#' + type + '-input-container').append($newContainerDiv);
   // add event handler for close button
   $('.dismiss-eqtn').click(dismissEquation);
-  MathJax.Hub.Queue(["Typeset", MathJax.Hub, 'matrix-' + matrices.length]);
+  if (type == 'vector') {
+    $closeButton.addClass('vector');
+    $closeButton.attr('id', 'close-vector-' + vectors.length);
+    $newInputDiv.attr('id', 'vector-' + vectors.length);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, 'vector-' + vectors.length]);
+  } else {
+    $closeButton.attr('id', 'close-matrix-' + matrices.length);
+    $newInputDiv.attr('id', 'matrix-' + matrices.length);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, 'matrix-' + matrices.length]);
+  }
 }
 
 
