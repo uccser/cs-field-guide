@@ -93,13 +93,16 @@ function formatMatrix(matrix, rowTemplate) {
   return sprintf(MATRIX_TEMPLATE, row0, row1, row2);
 }
 
-
+/** Remove zeros if they are insignificant.
+ *  i.e only remove zeros if they are not the only number in the row
+ */
 function simplifyResult(matrix, vector) {
   var result = [];
   for (i=0; i < 3; i++) {
     row = "";
     var hasX = false;
     var hasY = false;
+    var hasZ = false;
     if (!(matrix[i][0] == 0)) {
       row += matrix[i][0] + 'x';
       hasX = true;
@@ -116,9 +119,12 @@ function simplifyResult(matrix, vector) {
         row += ' + '
       }
       row += matrix[i][2] + 'z';
+      hasZ = true;
     }
-    if (!(vector[i] == 0)) {
+    if (!(vector[i] == 0) && (hasX || hasY || hasZ)) {
       row += ' + ' + vector[i];
+    } else if (!(hasX || hasY || hasZ)) {
+      row += vector[i];
     }
     if (row == "") {
       row = "0";
