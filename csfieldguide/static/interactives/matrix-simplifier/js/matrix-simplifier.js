@@ -100,6 +100,7 @@ function simplifyResult(matrix, vector) {
   var result = [];
   for (i=0; i < 3; i++) {
     row = "";
+    // below variables to determine whether or not to prefix with '+'
     var hasX = false;
     var hasY = false;
     var hasZ = false;
@@ -121,6 +122,7 @@ function simplifyResult(matrix, vector) {
       row += matrix[i][2] + 'z';
       hasZ = true;
     }
+    // if the value isn't zero and either an x, y or z value exists
     if (!(vector[i] == 0) && (hasX || hasY || hasZ)) {
       row += ' + ' + vector[i];
     } else if (!(hasX || hasY || hasZ)) {
