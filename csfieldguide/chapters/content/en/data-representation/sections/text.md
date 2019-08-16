@@ -8,14 +8,14 @@ In this section, we will look at some common ones and then look at the pros and 
 We saw earlier that 64 unique patterns can be made using 6 dots in Braille.
 A dot corresponds to a bit, because both dots and bits have 2 different possible values.
 
-Count how many different characters &ndash; upper case letters, lower case letters, numbers, and symbols &ndash; that you could type into a text editor using your keyboard.
+Count how many different {glossary-link term="character"}characters{glossary-link end} that you could type into a text editor using your keyboard.
 (Don’t forget to count both of the symbols that share the number keys, and the symbols to the side that are for punctuation!)
 
 {panel type="jargon-buster"}
 
 # Characters
 
-The collective name for upper case letters, lower case letters, numbers, and symbols is *characters* e.g. a, D, 1, h, 6, \*, ], and ~ are all characters.
+The collective name for upper case letters, lower case letters, numbers, and symbols is {glossary-link term="character"}characters{glossary-link end} e.g. a, D, 1, h, 6, \*, ], and ~ are all characters.
 Importantly, a space is also a character.
 
 {panel end}
@@ -26,7 +26,7 @@ This is exactly what the {glossary-link term="ascii"}ASCII{glossary-link end} re
 
 {panel type="challenge"}
 
-# Why 7 bits?
+# Why at least 7 bits?
 
 In the previous section, we explained what happens when the number of dots was increased by 1 (remember that a dot in Braille is effectively a bit).
 Can you explain how we knew that if 6 bits is enough to represent 64 characters, then 7 bits must be enough to represent 128 characters?
@@ -113,7 +113,7 @@ Have a go at the following ASCII exercises:
 - How would you represent "science" in ASCII? (ignore the `"` marks)
 - How would you represent "Wellington" in ASCII? (note that it starts with an upper case "W")
 - How would you represent "358" in ASCII? (it is three characters, even though it looks like a number)
-- How would you represent "Hello, how are you?" in ASCII? (look for the comma, question mark, and space characters in ASCII table)
+- How would you represent "Hello, how are you?" in ASCII? (look for the comma, question mark, and space characters in the ASCII table)
 
 Be sure to have a go at all of them before checking the answer!
 
