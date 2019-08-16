@@ -1,3 +1,8 @@
 #rsa-encryption textarea, input {
   font-family: monospace;
 }
+
+#rsa-encryption-copy-button {
+  width: 100%;
+  overflow: hidden;
+}

@@ -28,6 +28,8 @@ var TXT_P_ERROR = gettext("Detected a problem with the given 'p' component, ensu
 var TXT_Q_ERROR = gettext("Detected a problem with the given 'q' component, ensure it is entered exactly as it was given.");
 var TXT_D_ERROR = gettext("Detected a problem with the given 'd' component, ensure it is entered exactly as it was given.");
 var TXT_ERROR_UNKNOWN = gettext("Encryption failed! Cause unidentified.");
+var TXT_COPIED_SUCCESS = gettext("Encrypted message copied");
+var TXT_COPIED_FAIL = gettext("Oops, unable to copy. Please copy manually");
 
 $(document).ready(function() {
   init();
@@ -50,6 +52,16 @@ $(document).ready(function() {
   });
 
   $('#rsa-encryption-button').click(encrypt);
+
+
+  $('#rsa-encryption-copy-button').click(copy);
+  $('[data-toggle="tooltip"]').on('copied', function(event, message) {
+    $(this).attr('title', message)
+      .tooltip('_fixTitle')
+      .tooltip('show')
+      .attr('title', TXT_COPY)
+      .tooltip('_fixTitle');
+  });
 
 
   // We only want users to paste content into the components box
@@ -378,6 +390,10 @@ function encrypt() {
     });
   }
   libraryEncrypt();
+
+  $('#rsa-encryption-copy-button').removeClass('disabled').prop('disabled', false);
+
+  $('[data-toggle="tooltip"]').tooltip();
 }
 
 /**
@@ -463,6 +479,20 @@ function libraryEncrypt() {
     $('#rsa-encryption-status-text').html('<span class="text-danger">' + TXT_ERROR_UNKNOWN + '</span>');
     console.log(error); // If the user is tech-savvy enough maybe they can see what's wrong themselves
     return;
+  }
+}
+
+function copy() {
+  $('#rsa-encryption-ciphertext').select();
+  try {
+    var successful = document.execCommand('copy');
+    if (successful) {
+      $('#rsa-encryption-copy-button').trigger('copied', TXT_COPIED_SUCCESS);
+    } else {
+      $('#rsa-encryption-copy-button').trigger('copied', TXT_COPIED_FAIL);
+    }
+  } catch (err) {
+    $('#rsa-encryption-copy-button').trigger('copied', TXT_COPIED_FAIL);
   }
 }
 

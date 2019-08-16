@@ -110,6 +110,10 @@ But, if you are curious, these are what the variables represent:
 When you generate a key in one of the PKCS (Public Key Cryptography Standards) formats, the interactive gives you the same keys in a format that is nicer for computers to use.
 These keys are what get passed around in actual RSA cryptography, but are a lot harder to understand just by looking at them.
 
+Remember that all of this data is just stored in {glossary-link term="binary-number-system"}binary{glossary-link end} (base 2).
+We used {glossary-link term="hexadecimal"}hexadecimal{glossary-link end} (base 16) to display the components because it is a common way of presenting numbers.
+[Base 64](https://en.wikipedia.org/wiki/Base64#Base64_table) is the accepted way to display PKCS keys so that noone would misinterpret a key sent to them.
+
 You can find out more about [the algorithm and variables used on Wikipedia](https://simple.wikipedia.org/wiki/RSA_algorithm).
 
 {panel end}
