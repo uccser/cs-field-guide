@@ -169,7 +169,7 @@ function appendInput(type, inputHtml) {
   $newContainerDiv.append($newInputDiv);
   $('#' + type + '-input-container').append($newContainerDiv);
   // add event handler for close button
-  $('.dismiss-eqtn').click(dismissEquation);
+  $closeButton.click(dismissEquation);
   if (type == 'vector') {
     $closeButton.addClass('vector');
     $closeButton.attr('id', 'close-vector-' + vectors.length);
@@ -407,28 +407,37 @@ function getEqtnInfoFromId(id) {
 function dismissEquation() {
   button = $(this)[0];
   eqtnInfo = getEqtnInfoFromId(button.id);
+  console.log(eqtnInfo);
 
   eqtnType = eqtnInfo[0]; // type
   eqtnNum = eqtnInfo[1]; // number of button that was clicked
 
   // eqtnNum identifies the equation to remove, minus one to convert to an index so we can remove it from the array
   toRemoveIndex = eqtnNum - 1;
+  console.log(toRemoveIndex);
   // remove from appropriate array
   if (eqtnType == 'matrix') {
-    matrices.splice(toRemoveIndex, 1);
-    // need to also remove it from order array
+    // remove it from order array
     var eqtn = matrices[toRemoveIndex];
     var orderIndex = currentMatricesOrder.indexOf(eqtn); // find index
     currentMatricesOrder.splice(orderIndex, 1);
+
+    // remove from original array
+    matrices.splice(toRemoveIndex, 1);
+
   } else {
-    vectors.splice(toRemoveIndex, 1);
-    // need to also remove it from order array
+    // remove it from order array
     var eqtn = vectors[toRemoveIndex];
     var orderIndex = currentVectorsOrder.indexOf(eqtn); // find index
     currentVectorsOrder.splice(orderIndex, 1);
+
+    // remove from original array
+    vectors.splice(toRemoveIndex, 1);
   }
   // remove DOM element
   $(this)[0].parentNode.remove();
   // re-calculate and show output
+  console.log(matrices);
+  console.log(currentMatricesOrder);
   showOutput();
 }
