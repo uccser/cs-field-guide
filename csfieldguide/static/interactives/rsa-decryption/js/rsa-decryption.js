@@ -8,11 +8,11 @@
 
 /* This block of html will need to be put back in if isPadded is needed:
 <div class="col-12 col-md-4 mt-2">
-<h5>{% trans "Padding:" %}</h5>
-<select id="rsa-decryption-key-padding" class="browser-default form-control">
-  <option value="padding" selected>{% trans "Padding" %}</option>
-  <option value="no-padding">{% trans "No padding" %}</option>
-</select>
+  <h5>{% trans "Padding:" %}</h5>
+  <select id="rsa-decryption-key-padding" class="browser-default form-control">
+    <option value="padding" selected>{% trans "Padding" %}</option>
+    <option value="no-padding">{% trans "No padding" %}</option>
+  </select>
 </div>
 */
 
@@ -400,7 +400,7 @@ function decrypt() {
  * Unsure if these calculated values get used at all during the process, as only d, p & q are required for decryption
  */
 function getPrivateComponents() {
-  // Data has had a lot of changes: Buffer(?) as string -> bigInt -> calculations -> string -> hex -> Buffer
+  // Data gets a lot of changes: Buffer(?) as string -> bigInt -> calculations -> string -> hex -> Buffer
   // There is no perceivable delay but the efficiency could be investigated further in future
   
   var defaultE = 65537; // TODO: calculate e also (we can't assume this is true for people who don't use the key generator)

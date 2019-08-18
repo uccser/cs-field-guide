@@ -113,7 +113,7 @@ These keys are what get passed around in actual RSA cryptography, but are a lot 
 Remember that all of this data is just stored in {glossary-link term="binary-number-system"}binary{glossary-link end} (base2).
 We use {glossary-link term="hexadecimal"}hexadecimal{glossary-link end} (base16) to display the components because it is a common way of presenting numbers.
 [Base64](https://en.wikipedia.org/wiki/Base64#Base64_table) is the accepted way to display PKCS keys, chosen because it is more space-saving than base16.
-If we tried to go higher (for example to base128 {glossary-link term="ascii"}ASCII{glossary-link end}), we would encounter characters with no text representation, such as space or tab, which are much harder to interpret as text.
+If we tried to go higher (for example to base128 {glossary-link term="ascii"}ASCII{glossary-link end}), we would encounter characters with no visual representation, such as space or tab, which are much harder to interpret as text.
 
 You can find out more about [the algorithm and variables used on Wikipedia](https://simple.wikipedia.org/wiki/RSA_algorithm).
 
