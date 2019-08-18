@@ -109,7 +109,7 @@ function simplifyResult(matrix, vector) {
       hasX = true;
     }
     if (!(matrix[i][1] == 0)) {
-      if (hasX) {
+      if (hasX && matrix[i][1] > 0) {
         row += ' + '
       }
       row += matrix[i][1] + 'y';
@@ -124,7 +124,10 @@ function simplifyResult(matrix, vector) {
     }
     // if the value isn't zero and either an x, y or z value exists
     if (!(vector[i] == 0) && (hasX || hasY || hasZ)) {
-      row += ' + ' + vector[i];
+      if (vector[i] > 0) {
+        row += ' + ';
+      }
+      row += vector[i];
     } else if (!(hasX || hasY || hasZ)) {
       row += vector[i];
     }
