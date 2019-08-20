@@ -1,4 +1,7 @@
 @import "node_modules/dragula/dist/dragula";
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+@import "node_modules/bootstrap/scss/mixins";
 
 .matrix-row input {
   display: inline-block;
@@ -20,6 +23,13 @@
 .content {
   background-color: #fff;
   width: 70%;
+}
+
+@include media-breakpoint-down(sm) {
+  .content {
+    background-color: #fff;
+    width: 100%;
+  }
 }
 
 #output-container {
