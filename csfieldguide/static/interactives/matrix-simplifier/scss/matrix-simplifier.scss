@@ -42,10 +42,9 @@
 }
 
 .dismiss-eqtn {
-  margin-left: 14rem;
-  &.vector {
-    margin-left: 8rem;
-  }
+  top: 0;
+  right: 3px;
+  position: relative;
 }
 
 // Copy bootstrap helper class but add !important

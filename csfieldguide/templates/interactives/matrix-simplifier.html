@@ -7,13 +7,18 @@
   <div class="container">
     <h3 class='text-center'>{% trans "Matrix Simplifier" %}</h3>
     <p class="text-center">{% trans "Note that vectors will always be added <i>after</i> matrix multiplication operations have been applied." %}</p>
+
+    <div class="row">
+      <h5 class="col-6 text-center">{% trans "Matrices" %}</h5>
+      <h5 class="col-6 text-center">{% trans "Vectors" %}</h5>
+    </div>
+
     <div class="row">
       <div id="matrix-input-container" class="containers col-6 text-center">
-        <h5>{% trans "Matrices" %}</h5>
         <div class="draggable content border rounded m-1 center-block">
-          <!-- <button id="close-matrix-1" type="button" class="close dismiss-eqtn" aria-label="Close">
+          <button id="close-matrix-1" type="button" class="close dismiss-eqtn" aria-label="Close">
             <span aria-hidden="true">&times;</span>
-          </button> -->
+          </button>
           <div id="matrix-1" class="matrix invisible">
             \[
               \begin{bmatrix}
@@ -26,9 +31,9 @@
         </div>
     
         <div class="draggable content border rounded m-1 center-block">
-          <!-- <button id="close-matrix-2" type="button" class="close dismiss-eqtn" aria-label="Close">
+          <button id="close-matrix-2" type="button" class="close dismiss-eqtn" aria-label="Close">
             <span aria-hidden="true">&times;</span>
-          </button> -->
+          </button>
           <div id="matrix-2" class="matrix invisible">
             \[
               \begin{bmatrix}
@@ -42,11 +47,10 @@
       </div>
 
       <div id="vector-input-container" class="containers col-6 text-center">
-        <h5>{% trans "Vectors" %}</h5>
         <div class="draggable content border rounded m-1 center-block">
-          <!-- <button id="close-vector-1" type="button" class="close dismiss-eqtn vector" aria-label="Close">
+          <button id="close-vector-1" type="button" class="close dismiss-eqtn" aria-label="Close">
             <span aria-hidden="true">&times;</span>
-          </button> -->
+          </button>
           <div id="vector-1" class="vector invisible">
             \[
               \begin{bmatrix}
@@ -60,9 +64,21 @@
       </div>
     </div>
 
+    <div id="add-matrices-btns" class="row d-none mb-5">
+      <div class="col-6 text-center">
+        <button id="add-matrix-btn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#matrix-modal">{% trans "Add matrix" %}</button>
+      </div>
+      <div class="col-6 text-center">
+        <button id="add-vector-btn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#vector-modal">{% trans "Add vector" %}</button>
+      </div>
+    </div>
+
+    <div class="row">
+      <h5 class="col-12 text-center">{% trans "Output" %}</h5>
+    </div>
+
     <div class="row">
       <div id="output-container" class="col-12 text-center invisible">
-        <h5 class="text-center">{% trans "Output" %}</h5>
         <div class="mb-3">
           \[
             \begin{bmatrix}
@@ -103,15 +119,6 @@
           \] =
           <div id="simplified-matrix" class="d-inline"></div>
         </div>
-      </div>
-    </div>
-
-    <div id="add-matrices-btns" class="row d-none">
-      <div class="col-3 text-center">
-        <button id="add-matrix-btn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#matrix-modal">{% trans "Add matrix" %}</button>
-      </div>
-      <div class="col-2 text-center">
-        <button id="add-vector-btn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#vector-modal">{% trans "Add vector" %}</button>
       </div>
     </div>
 

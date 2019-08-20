@@ -174,7 +174,6 @@ function appendInput(type, inputHtml) {
   // add event handler for close button
   $closeButton.click(dismissEquation);
   if (type == 'vector') {
-    $closeButton.addClass('vector');
     $closeButton.attr('id', 'close-vector-' + vectors.length);
     $newInputDiv.attr('id', 'vector-' + vectors.length);
     MathJax.Hub.Queue(["Typeset", MathJax.Hub, 'vector-' + vectors.length]);
