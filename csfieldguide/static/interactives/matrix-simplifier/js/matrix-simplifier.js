@@ -45,11 +45,14 @@ $(document).ready(function() {
  * Add a new matrix to the calculation
  */
 function addMatrix() {
-  matrixArray = getMatrix();
-  matrix = mathjs.matrix(matrixArray);
+  // inputs get evaluated as math
+  matrixArrayMath = getMatrix(true);
+  // inputs remain as strings
+  matrixArrayString = getMatrix(false);
+  matrix = mathjs.matrix(matrixArrayMath);
   matrices.push(matrix);
   currentMatricesOrder.push(matrix);
-  matrixString = formatMatrix(matrixArray, ROW_TEMPLATE);
+  matrixString = formatMatrix(matrixArrayString, ROW_TEMPLATE);
   appendInput('matrix', matrixString);
   resetModalMatrices();
   MathJax.Hub.Queue(["Typeset", MathJax.Hub, 'matrix-' + matrices.length]);
@@ -62,15 +65,25 @@ function addMatrix() {
  * Add a new vector to the calculation
  */
 function addVector() {
-  vectorArray = [
-    [Number($('#vector-row-0').val())],
-    [Number($('#vector-row-1').val())],
-    [Number($('#vector-row-2').val())]
+  vectorArrayMath = [
+    [mathjs.eval($('#vector-row-0').val())],
+    [mathjs.eval($('#vector-row-1').val())],
+    [mathjs.eval($('#vector-row-2').val())]
   ];
-  vector = mathjs.matrix(vectorArray);
+  vectorArrayString = [
+    [$('#vector-row-0').val()],
+    [$('#vector-row-1').val()],
+    [$('#vector-row-2').val()]
+  ];
+  vector = mathjs.matrix(vectorArrayMath);
   vectors.push(vector);
   currentVectorsOrder.push(vector);
-  vectorString = sprintf(MATRIX_TEMPLATE, vectorArray[0], vectorArray[1], vectorArray[2]);
+  vectorString = sprintf(
+    MATRIX_TEMPLATE,
+    vectorArrayString[0],
+    vectorArrayString[1],
+    vectorArrayString[2]
+  );
   appendInput('vector', vectorString);
   showOutput();
   resetModalMatrices();
@@ -104,26 +117,50 @@ function appendInput(type, inputHtml) {
 
 
 /**
- * Gets matrix entries from modal and returns a matrix in array form
+ * Gets matrix entries from modal and returns a matrix in array form.
+ * If evalAsMath is true, each entry will be evaluated as a mathematical expression.
+ * If evalAsMath is false, each entry will remain as a string.
+ * This is implemented so we can choose whether trig functions appear to the user as 'cos(45)`
+ * or as their evaluated value, e.g '0.71'.
  */
-function getMatrix() {
-  row0 = [
-    Number($('#matrix-row-0-col-0').val()),
-    Number($('#matrix-row-0-col-1').val()),
-    Number($('#matrix-row-0-col-2').val()),
-  ];
+function getMatrix(evalAsMath) {
+  if (evalAsMath){
+    row0 = [
+      mathjs.eval($('#matrix-row-0-col-0').val()),
+      mathjs.eval($('#matrix-row-0-col-1').val()),
+      mathjs.eval($('#matrix-row-0-col-2').val()),
+    ];
 
-  row1 = [
-    Number($('#matrix-row-1-col-0').val()),
-    Number($('#matrix-row-1-col-1').val()),
-    Number($('#matrix-row-1-col-2').val()),
-  ];
+    row1 = [
+      mathjs.eval($('#matrix-row-1-col-0').val()),
+      mathjs.eval($('#matrix-row-1-col-1').val()),
+      mathjs.eval($('#matrix-row-1-col-2').val()),
+    ];
 
-  row2 = [
-    Number($('#matrix-row-2-col-0').val()),
-    Number($('#matrix-row-2-col-1').val()),
-    Number($('#matrix-row-2-col-2').val()),
-  ];
+    row2 = [
+      mathjs.eval($('#matrix-row-2-col-0').val()),
+      mathjs.eval($('#matrix-row-2-col-1').val()),
+      mathjs.eval($('#matrix-row-2-col-2').val()),
+    ]; 
+  } else {
+    row0 = [
+      $('#matrix-row-0-col-0').val(),
+      $('#matrix-row-0-col-1').val(),
+      $('#matrix-row-0-col-2').val(),
+    ];
+
+    row1 = [
+      $('#matrix-row-1-col-0').val(),
+      $('#matrix-row-1-col-1').val(),
+      $('#matrix-row-1-col-2').val(),
+    ];
+
+    row2 = [
+      $('#matrix-row-2-col-0').val(),
+      $('#matrix-row-2-col-1').val(),
+      $('#matrix-row-2-col-2').val(),
+    ];
+  }
 
   return [row0, row1, row2];
 }
