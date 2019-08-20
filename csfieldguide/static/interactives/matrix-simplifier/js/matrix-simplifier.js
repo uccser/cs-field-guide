@@ -375,7 +375,8 @@ function showEquations() {
     function () {
       $('.invisible').removeClass('invisible');
       // stop buttons jumping around on load
-      $('#add-matrices-btns').removeClass('d-none');
+      $('#add-matrix-btn').removeClass('d-none');
+      $('#add-vector-btn').removeClass('d-none');
   });
 }
 

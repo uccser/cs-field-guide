@@ -9,69 +9,72 @@
     <p class="text-center">{% trans "Note that vectors will always be added <i>after</i> matrix multiplication operations have been applied." %}</p>
 
     <div class="row">
-      <h5 class="col-6 text-center">{% trans "Matrices" %}</h5>
-      <h5 class="col-6 text-center">{% trans "Vectors" %}</h5>
-    </div>
-
-    <div class="row">
-      <div id="matrix-input-container" class="containers col-6 text-center">
-        <div class="draggable content border rounded m-1 center-block">
-          <button id="close-matrix-1" type="button" class="close dismiss-eqtn" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <div id="matrix-1" class="matrix invisible">
-            \[
-              \begin{bmatrix}
-              cos(45)   &  0  &  sin(45) \\
-              0         &  1  &  0 \\
-              -sin(45)  &  0  &  cos(45) \\
-              \end{bmatrix}
-            \]
+      <div class="col-md-6 col-sm-12 text-center mb-3">
+        <h5>{% trans "Matrices" %}</h5>
+        <div id="matrix-input-container" class="containers">
+          <div class="draggable content border rounded m-1 center-block">
+            <button id="close-matrix-1" type="button" class="close dismiss-eqtn" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <div id="matrix-1" class="matrix invisible">
+              \[
+                \begin{bmatrix}
+                cos(45)   &  0  &  sin(45) \\
+                0         &  1  &  0 \\
+                -sin(45)  &  0  &  cos(45) \\
+                \end{bmatrix}
+              \]
+            </div>
+          </div>
+      
+          <div class="draggable content border rounded m-1 center-block">
+            <button id="close-matrix-2" type="button" class="close dismiss-eqtn" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <div id="matrix-2" class="matrix invisible">
+              \[
+                \begin{bmatrix}
+                10  &  0  &  0 \\
+                0   &  10 &  0 \\
+                0   &  0  &  10 \\
+                \end{bmatrix}
+              \]
+            </div>
           </div>
         </div>
-    
-        <div class="draggable content border rounded m-1 center-block">
-          <button id="close-matrix-2" type="button" class="close dismiss-eqtn" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <div id="matrix-2" class="matrix invisible">
-            \[
-              \begin{bmatrix}
-              10  &  0  &  0 \\
-              0   &  10 &  0 \\
-              0   &  0  &  10 \\
-              \end{bmatrix}
-            \]
-          </div>
-        </div>
+        <button id="add-matrix-btn" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#matrix-modal">{% trans "Add matrix" %}</button>
       </div>
 
-      <div id="vector-input-container" class="containers col-6 text-center">
-        <div class="draggable content border rounded m-1 center-block">
-          <button id="close-vector-1" type="button" class="close dismiss-eqtn" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <div id="vector-1" class="vector invisible">
-            \[
-              \begin{bmatrix}
-              10 \\
-              0 \\
-              0 \\
-              \end{bmatrix}
-            \]
+      <div class="col-md-6 col-sm-12 text-center mb-3">
+        <h5>{% trans "Vectors" %}</h5>
+        <div id="vector-input-container" class="containers">
+          <div class="draggable content border rounded m-1 center-block">
+            <button id="close-vector-1" type="button" class="close dismiss-eqtn" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <div id="vector-1" class="vector invisible">
+              \[
+                \begin{bmatrix}
+                10 \\
+                0 \\
+                0 \\
+                \end{bmatrix}
+              \]
+            </div>
           </div>
         </div>
+        <button id="add-vector-btn" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#vector-modal">{% trans "Add vector" %}</button>
       </div>
     </div>
 
-    <div id="add-matrices-btns" class="row d-none mb-5">
-      <div class="col-6 text-center">
+    <!-- <div id="add-matrices-btns" class="row d-none mb-5">
+      <div class="col-md-6 col-sm-12 text-center">
         <button id="add-matrix-btn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#matrix-modal">{% trans "Add matrix" %}</button>
       </div>
-      <div class="col-6 text-center">
+      <div class="col-md-6 col-sm-12 text-center">
         <button id="add-vector-btn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#vector-modal">{% trans "Add vector" %}</button>
       </div>
-    </div>
+    </div> -->
 
     <div class="row">
       <h5 class="col-12 text-center">{% trans "Output" %}</h5>
