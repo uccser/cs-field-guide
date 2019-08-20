@@ -47,3 +47,10 @@
     margin-left: 8rem;
   }
 }
+
+// Copy bootstrap helper class but add !important
+.center-block {
+  display: block;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}

@@ -163,8 +163,8 @@ function addVector() {
  * Appends either a new matrix or vector to the DOM
  */
 function appendInput(type, inputHtml) {
-  var $newContainerDiv = $("<div>").addClass('row draggable content border rounded m-1');
-  var $newInputDiv = $("<div>").addClass('col invisible ' + type);
+  var $newContainerDiv = $("<div>").addClass('draggable content border rounded m-1 center-block');
+  var $newInputDiv = $("<div>").addClass('invisible ' + type);
   var $closeButton = $('<button type="button" class="close dismiss-eqtn" aria-label="Close">');
   $closeButton.append($('<span aria-hidden="true">&times;</span>'));
   $newContainerDiv.append($closeButton);
