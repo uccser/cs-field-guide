@@ -6,6 +6,7 @@ const vsprintf = require('sprintf-js').vsprintf;
 const ROW_TEMPLATE = "%s & %s & %s";
 const MATRIX_TEMPLATE = "\\begin{bmatrix} %s \\\\ %s \\\\ %s \\end{bmatrix}";
 const EXPANDED_ROW_TEMPLATE = "%sx + %sy + %sz";
+const INPUT_ERROR = "Sorry, the input '<b>%s</b>' is not a valid mathematical expression."
 
 
 // might need to add text to say angles should be in radians
@@ -38,6 +39,7 @@ $(document).ready(function() {
   $('#add-matrix-from-input').click(addMatrix);
   $('#add-vector-from-input').click(addVector);
   $('.dismiss-eqtn').click(dismissEquation);
+  $(".matrix-row input").on("keyup bind cut copy paste", validateInput);
 });
 
 
@@ -141,7 +143,7 @@ function getMatrix(evalAsMath) {
       mathjs.eval($('#matrix-row-2-col-0').val()),
       mathjs.eval($('#matrix-row-2-col-1').val()),
       mathjs.eval($('#matrix-row-2-col-2').val()),
-    ]; 
+    ];
   } else {
     row0 = [
       $('#matrix-row-0-col-0').val(),
@@ -476,4 +478,21 @@ function dismissEquation() {
   $(this)[0].parentNode.remove();
   // re-calculate and show output
   showOutput();
+}
+
+
+function validateInput() {
+  var input = $(this).val();
+  console.log($(this));
+  console.log(input);
+  var regex = new RegExp("(?:[0-9-+*/^()x]|abs|\s|e\^x|ln|log|a?(?:sin|cos|tan)h?)+");
+  if (!(regex.test(input))) {
+    $(this).css('border','1px solid red');
+    errorMsg = sprintf(INPUT_ERROR, input);
+    $(this).parent().parent().append('<p>' + errorMsg + '</p>');
+    // alert(errorMsg);
+  } else {
+    $(this).parent().parent().remove("p");
+    $(this).css('border','1px solid #ced4da');
+  }
 }
