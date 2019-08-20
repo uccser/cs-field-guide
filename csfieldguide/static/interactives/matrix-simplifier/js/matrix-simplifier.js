@@ -7,6 +7,8 @@ const ROW_TEMPLATE = "%s & %s & %s";
 const MATRIX_TEMPLATE = "\\begin{bmatrix} %s \\\\ %s \\\\ %s \\end{bmatrix}";
 const EXPANDED_ROW_TEMPLATE = "%sx + %sy + %sz";
 
+
+// might need to add text to say angles should be in radians
 m1 = mathjs.matrix([
   [mathjs.cos(toRadians(45)),0,mathjs.sin(toRadians(45))],
   [0,1,0],
@@ -53,6 +55,51 @@ function addMatrix() {
   MathJax.Hub.Queue(["Typeset", MathJax.Hub, 'matrix-' + matrices.length]);
   showOutput();
   showEquations();
+}
+
+
+/**
+ * Add a new vector to the calculation
+ */
+function addVector() {
+  vectorArray = [
+    [Number($('#vector-row-0').val())],
+    [Number($('#vector-row-1').val())],
+    [Number($('#vector-row-2').val())]
+  ];
+  vector = mathjs.matrix(vectorArray);
+  vectors.push(vector);
+  currentVectorsOrder.push(vector);
+  vectorString = sprintf(MATRIX_TEMPLATE, vectorArray[0], vectorArray[1], vectorArray[2]);
+  appendInput('vector', vectorString);
+  showOutput();
+  resetModalMatrices();
+}
+
+
+/**
+ * Appends either a new matrix or vector to the DOM
+ */
+function appendInput(type, inputHtml) {
+  var $newContainerDiv = $("<div>").addClass('draggable content border rounded m-1 center-block');
+  var $newInputDiv = $("<div>").addClass('invisible ' + type);
+  var $closeButton = $('<button type="button" class="close dismiss-eqtn" aria-label="Close">');
+  $closeButton.append($('<span aria-hidden="true">&times;</span>'));
+  $newContainerDiv.append($closeButton);
+  $newInputDiv.html(inputHtml);
+  $newContainerDiv.append($newInputDiv);
+  $('#' + type + '-input-container').append($newContainerDiv);
+  // add event handler for close button
+  $closeButton.click(dismissEquation);
+  if (type == 'vector') {
+    $closeButton.attr('id', 'close-vector-' + vectors.length);
+    $newInputDiv.attr('id', 'vector-' + vectors.length);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, 'vector-' + vectors.length]);
+  } else {
+    $closeButton.attr('id', 'close-matrix-' + matrices.length);
+    $newInputDiv.attr('id', 'matrix-' + matrices.length);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, 'matrix-' + matrices.length]);
+  }
 }
 
 
@@ -140,51 +187,6 @@ function simplifyResult(matrix, vector) {
 }
 
 
-/**
- * Add a new vector to the calculation
- */
-function addVector() {
-  vectorArray = [
-    [Number($('#vector-row-0').val())],
-    [Number($('#vector-row-1').val())],
-    [Number($('#vector-row-2').val())]
-  ];
-  vector = mathjs.matrix(vectorArray);
-  vectors.push(vector);
-  currentVectorsOrder.push(vector);
-  vectorString = sprintf(MATRIX_TEMPLATE, vectorArray[0], vectorArray[1], vectorArray[2]);
-  appendInput('vector', vectorString);
-  showOutput();
-  resetModalMatrices();
-}
-
-
-/**
- * Appends either a new matrix or vector to the DOM
- */
-function appendInput(type, inputHtml) {
-  var $newContainerDiv = $("<div>").addClass('draggable content border rounded m-1 center-block');
-  var $newInputDiv = $("<div>").addClass('invisible ' + type);
-  var $closeButton = $('<button type="button" class="close dismiss-eqtn" aria-label="Close">');
-  $closeButton.append($('<span aria-hidden="true">&times;</span>'));
-  $newContainerDiv.append($closeButton);
-  $newInputDiv.html(inputHtml);
-  $newContainerDiv.append($newInputDiv);
-  $('#' + type + '-input-container').append($newContainerDiv);
-  // add event handler for close button
-  $closeButton.click(dismissEquation);
-  if (type == 'vector') {
-    $closeButton.attr('id', 'close-vector-' + vectors.length);
-    $newInputDiv.attr('id', 'vector-' + vectors.length);
-    MathJax.Hub.Queue(["Typeset", MathJax.Hub, 'vector-' + vectors.length]);
-  } else {
-    $closeButton.attr('id', 'close-matrix-' + matrices.length);
-    $newInputDiv.attr('id', 'matrix-' + matrices.length);
-    MathJax.Hub.Queue(["Typeset", MathJax.Hub, 'matrix-' + matrices.length]);
-  }
-}
-
-
 /* Set the matrices in modal to the default values */
 function resetModalMatrices() {
   // reset to default values of modal matrices
@@ -203,35 +205,6 @@ function resetModalMatrices() {
   $('#vector-row-0').val(1);
   $('#vector-row-1').val(0);
   $('#vector-row-2').val(0);
-}
-
-
-/**
- * Displays the output of calculations
- */
-function showOutput() {
-  // If output container is showing, hide it while mathjax renders.
-  if (!$('#output-container').hasClass('invisible')) {
-    $('#output-container').addClass('invisible');
-  }
-  var result = calculateOutput();
-  var matrix = result[0];
-  var vector = result[1];
-  var matrixRows = matrixToArray(matrix);
-  var vectorRows = matrixToArray(vector);
-
-  matrixString = formatMatrix(matrixRows, ROW_TEMPLATE);
-  vectorString = sprintf(MATRIX_TEMPLATE, vectorRows[0], vectorRows[1], vectorRows[2]);
-  expandedMatrixString = formatMatrix(matrixRows, EXPANDED_ROW_TEMPLATE);
-  simplifiedMatrixString = simplifyResult(matrixRows, vectorRows);
-
-  $('#matrix-output').html(matrixString);
-  $('#vector-output').html(vectorString);
-  $('#expanded-matrix').html(expandedMatrixString);
-  $('#vector-copy').html(vectorString);
-  $('#simplified-matrix').html(simplifiedMatrixString);
-  MathJax.Hub.Queue(["Typeset", MathJax.Hub, "output-container"]);
-  showEquations();
 }
 
 
@@ -298,6 +271,35 @@ function addVectors(v) {
       v[0] = result;
     }
   }
+}
+
+
+/**
+ * Displays the output of calculations
+ */
+function showOutput() {
+  // If output container is showing, hide it while mathjax renders.
+  if (!$('#output-container').hasClass('invisible')) {
+    $('#output-container').addClass('invisible');
+  }
+  var result = calculateOutput();
+  var matrix = result[0];
+  var vector = result[1];
+  var matrixRows = matrixToArray(matrix);
+  var vectorRows = matrixToArray(vector);
+
+  matrixString = formatMatrix(matrixRows, ROW_TEMPLATE);
+  vectorString = sprintf(MATRIX_TEMPLATE, vectorRows[0], vectorRows[1], vectorRows[2]);
+  expandedMatrixString = formatMatrix(matrixRows, EXPANDED_ROW_TEMPLATE);
+  simplifiedMatrixString = simplifyResult(matrixRows, vectorRows);
+
+  $('#matrix-output').html(matrixString);
+  $('#vector-output').html(vectorString);
+  $('#expanded-matrix').html(expandedMatrixString);
+  $('#vector-copy').html(vectorString);
+  $('#simplified-matrix').html(simplifiedMatrixString);
+  MathJax.Hub.Queue(["Typeset", MathJax.Hub, "output-container"]);
+  showEquations();
 }
 
 
