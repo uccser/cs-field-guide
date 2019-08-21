@@ -6,7 +6,10 @@
 
 This interactive allows the user to experience the effects of salting and how some passwords are much easier to guess than others.
 
-The unencrypted passwords are not stored anywhere in this interactive nor the greater website.
+## URL Parameters
+
+Salts are enabled by default.
+To disable salting, add `?salted=false` to the end of the URL
 
 ## Third Party Files
 

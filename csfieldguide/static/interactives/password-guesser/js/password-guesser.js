@@ -15,7 +15,7 @@ var isSalted;
 var allPasswords = [];
 
 $(document).ready(function() {
-  isSalted = (urlParameters.getUrlParameter('salted') == "true");
+  isSalted = !(urlParameters.getUrlParameter('salted') == "false"); // Default should be true
   if (isSalted) {
     $('#salt-header').removeClass('d-none');
     $('#salt-input').removeClass('d-none');
@@ -48,13 +48,6 @@ function setUpTable() {
   x = Passwords.WordPasswords.length;
   while (i < x) {
     addToTable(Passwords.WordPasswords[i], j);
-    i++;
-    j++;
-  }
-  i = 0;
-  x = Passwords.SentencePasswords.length;
-  while (i < x) {
-    addToTable(Passwords.SentencePasswords[i], j);
     i++;
     j++;
   }
