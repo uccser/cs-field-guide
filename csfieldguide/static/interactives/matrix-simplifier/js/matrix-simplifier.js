@@ -6,7 +6,7 @@ const vsprintf = require('sprintf-js').vsprintf;
 const ROW_TEMPLATE = "%s & %s & %s";
 const MATRIX_TEMPLATE = "\\begin{bmatrix} %s \\\\ %s \\\\ %s \\end{bmatrix}";
 const EXPANDED_ROW_TEMPLATE = "%sx + %sy + %sz";
-const INPUT_ERROR = "Sorry, the input '<b>%s</b>' is not a valid mathematical expression."
+const INPUT_ERROR = gettext("Sorry, at least one of your inputs is not a valid mathematical expression.");
 
 
 // might need to add text to say angles should be in radians
@@ -481,18 +481,26 @@ function dismissEquation() {
 }
 
 
+var hasError = false;
+var numErrors = 0;
 function validateInput() {
   var input = $(this).val();
-  console.log($(this));
-  console.log(input);
   var regex = new RegExp("(?:[0-9-+*/^()x]|abs|\s|e\^x|ln|log|a?(?:sin|cos|tan)h?)+");
   if (!(regex.test(input))) {
-    $(this).css('border','1px solid red');
-    errorMsg = sprintf(INPUT_ERROR, input);
-    $(this).parent().parent().append('<p>' + errorMsg + '</p>');
-    // alert(errorMsg);
+    $(this).addClass('input-error');
+    if (!hasError) {
+      $(this).parent().parent().append('<p id="error">' + INPUT_ERROR + '</p>');
+      hasError = true;
+      numErrors += 1;
+    }
   } else {
-    $(this).parent().parent().remove("p");
-    $(this).css('border','1px solid #ced4da');
+    if ($(this).hasClass('input-error')) {
+      numErrors -= 1;
+      $(this).removeClass('input-error');
+    }
+    if (numErrors == 0) {
+      $("#error").remove();
+      hasError = false;
+    }
   }
 }
