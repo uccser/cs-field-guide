@@ -28,6 +28,7 @@ var TXT_P_ERROR = gettext("Detected a problem with the given 'p' component, ensu
 var TXT_Q_ERROR = gettext("Detected a problem with the given 'q' component, ensure it is entered exactly as it was given.");
 var TXT_D_ERROR = gettext("Detected a problem with the given 'd' component, ensure it is entered exactly as it was given.");
 var TXT_ERROR_UNKNOWN = gettext("Encryption failed! Cause unidentified.");
+var TXT_COPY = gettext("Copy to clipboard");
 var TXT_COPIED_SUCCESS = gettext("Encrypted message copied");
 var TXT_COPIED_FAIL = gettext("Oops, unable to copy. Please copy manually");
 
