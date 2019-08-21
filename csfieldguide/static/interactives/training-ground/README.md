@@ -28,4 +28,4 @@ Its neural network can be seen by the player as a probability table on the right
 ## Licences
 
 This interactive uses [noUiSlider](https://refreshless.com/nouislider/) by Léon Gersen.
-Its licence can be found in `LICENCE-THIRD-PARTY` with a full copy available in the `third-party-licences` directory.
+Its licence, and that of the original game, can be found in `LICENCE-THIRD-PARTY` with a full copy available in the `third-party-licences` directory.
