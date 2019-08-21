@@ -9,6 +9,10 @@ class ImageGrid {
     this.maxWidth = maxWidth;
   }
 
+  /**
+   * Creates a grid of the given number of images.
+   * Bound by the variables set at creation
+   */
   createGrid(size) {
     this.allSticks = [];
     this.$parent.html('');
@@ -32,6 +36,10 @@ class ImageGrid {
     this.$parent.html(fullHtml)
   }
 
+  /**
+   * Hides the given number of top-left-most visible sticks by adding the d-none class.
+   * As such the remaining sticks don't move
+   */
   removeSticks(num) {
     for (var i=0; i < num; i++) {
       $('#img-' + this.allSticks[0]).addClass('d-none'); // Hide item 0 from user

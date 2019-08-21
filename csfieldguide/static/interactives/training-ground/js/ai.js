@@ -18,7 +18,7 @@ class AI {
 
   /**
    * Initializes the AI neural net with an equal chance of choosing 1, 2, or 3,
-   * and initializes an intelligent model neural net to train against.
+   * and initializes the two model neural nets the AI can train against.
    */
   init() {
     this.map = {};
@@ -79,7 +79,7 @@ class AI {
 
   /**
    * Simulates AI turn being taken, determines the number of sticks to remove based on
-   * its neural net and (if dontRecordDecision is not false) records the decision.
+   * its neural net and records the decision.
    * 
    * @param {bool} isOpponent Whether or not this is the AI as an opponent
    */

@@ -21,6 +21,9 @@ class HtmlTable {
     this.$parent = parentDiv;
   }
 
+  /**
+   * Builds the table, with the number of rows being the given size + 2 (for the headers)
+   */
   createTable(size) {
     this.rows = size;
     var baseTable = '<tr>\n';
@@ -46,21 +49,34 @@ class HtmlTable {
     this.$parent.html(baseTable);
   }
 
+  /**
+   * Highlights a row by adding the given css class 'colour' to two cells in the row:
+   * The number of sticks 'remaining' (leftmost cell) and the 'number' of sticks chosen (one of the remaining three)
+   */
   highlightCell(remaining, number, colour) {
     $('#' + remaining + '-remaining').addClass(colour);
     $('#' + remaining + '-' + number + '-sticks').addClass(colour);
   }
 
+  /**
+   * Replaces the class of any highlighted cell with the given colour class
+   */
   recolourCells(colour) {
     $('.' + HIGHLIGHTS.UNDECIDED).addClass(colour).removeClass(HIGHLIGHTS.UNDECIDED);
   }
 
+  /**
+   * Removes all highlight css classes from all cells
+   */
   uncolourCells() {
     $('.' + HIGHLIGHTS.UNDECIDED).removeClass(HIGHLIGHTS.UNDECIDED);
     $('.' + HIGHLIGHTS.WIN).removeClass(HIGHLIGHTS.WIN);
     $('.' + HIGHLIGHTS.LOSS).removeClass(HIGHLIGHTS.LOSS);
   }
 
+  /**
+   * Populates the probability values in the table with the given neural network map
+   */
   populateTable(networkMap) {
     var entry;
     for (var value in networkMap) {
