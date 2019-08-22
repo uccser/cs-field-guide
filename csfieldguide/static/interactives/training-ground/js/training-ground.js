@@ -25,13 +25,6 @@ var doCancelSims;
 var practiceOpponent;
 var quickSims;
 
-var $dataTable = $('#data-table');
-var $sticksArea = $('#sticks-area');
-var $remainingText = $('#remaining-sticks');
-var $aiWinsText = $('#ai-wins');
-var $playedText = $('#games-played');
-var $statusText = $('#status-text');
-var $splashText = $('#splash-text');
 var whoStartsRange;
 var numSticksRange;
 var sensitivityRange;
@@ -104,7 +97,7 @@ function run() {
   refresh();
   $('#game-parameters').addClass('no-input');
   hideStartButtons();
-  $statusText.html("...");
+  $('#status-text').html("...");
   ai = new AI.AI(numSticks, aiSensitivity);
   ai.init();
   networkTable.populateTable(ai.map);
@@ -135,17 +128,17 @@ function reset() {
   updateBotDescription();
   $('#quick-simulations-select input:radio:checked').prop('checked', false).parent().removeClass('active');
   $('#radio_false').prop('checked', true).parent().addClass('active');
-  $statusText.html(TXT_INITIAL);
+  $('#status-text').html(TXT_INITIAL);
   gamesPlayed = 0;
   aiWins = 0;
-  networkTable = new TABLE.HtmlTable($dataTable);
-  sticksGrid = new IMG_GRID.ImageGrid($sticksArea, stickPath, 7);
+  networkTable = new TABLE.HtmlTable($('#data-table'));
+  sticksGrid = new IMG_GRID.ImageGrid($('#sticks-area'), stickPath, 7);
   refresh();
   hideQuitButtons();
   hideEndButtons();
   hideChoiceButtons();
   showStartButtons();
-  $splashText.addClass('d-none');
+  $('#splash-text').addClass('d-none');
   $('#game-parameters').removeClass('no-input');
 }
 
@@ -159,13 +152,13 @@ function rematch() {
   displayBaseVariables();
   if (!isSimulation) {
     sticksGrid.createGrid(numSticks);
-    $splashText.addClass('d-none');
+    $('#splash-text').addClass('d-none');
     hideEndButtons();
     showChoiceButtons();
   }
   if (Math.random() < chanceOfPlayerStart) {
     // (no need to be more precise)
-    $statusText.html(TXT_STARTTURN);
+    $('#status-text').html(TXT_STARTTURN);
     readyPlayerTurn();
   } else {
     takeAiTurn();
@@ -186,7 +179,7 @@ function runQuickSimulation(num) {
     while (ai.sticksLeft > 0) {
       if (aiTurn) {
         choice = ai.takeTurn();
-        ai.sticksLeft -=choice;
+        ai.sticksLeft -= choice;
         aiTurn = false;
       } else {
         if (practiceOpponent == PLAYERS.AI_PRACTICE) {
@@ -194,11 +187,11 @@ function runQuickSimulation(num) {
         } else {
           choice = ai.takeBotTurn((practiceOpponent == PLAYERS.INTELLIBOT) ? true : false);
         }
-        ai.sticksLeft -=choice;
+        ai.sticksLeft -= choice;
         aiTurn = true;
       }
     }
-    ai.updateAI(aiTurn); // If it is currently the AI's turn it's opponent won
+    ai.updateAI(aiTurn); // If it is currently the AI's turn then its opponent won
     if (!aiTurn) {
       aiWins++;
     }
@@ -219,13 +212,13 @@ function simulate(num) {
     return;
   }
   if (practiceOpponent == PLAYERS.INTELLIBOT) {
-    $splashText.html(TXT_SIMULATING_SMART);
+    $('#splash-text').html(TXT_SIMULATING_SMART);
   } else if (practiceOpponent == PLAYERS.RANDOBOT) {
-    $splashText.html(TXT_SIMULATING_RANDOM);
+    $('#splash-text').html(TXT_SIMULATING_RANDOM);
   } else {
-    $splashText.html(TXT_SIMULATING_ITSELF);
+    $('#splash-text').html(TXT_SIMULATING_ITSELF);
   }
-  $splashText.removeClass('d-none');
+  $('#splash-text').removeClass('d-none');
   doCancelSims = false;
   isSimulation = true;
   disableChoiceButtons();
@@ -254,9 +247,9 @@ function recursiveSim(num) {
  */
 function endSimulation() {
   hideCancelButtons();
-  $statusText.html(TXT_SIMULATED);
+  $('#status-text').html(TXT_SIMULATED);
   networkTable.uncolourCells();
-  $splashText.addClass('d-none');
+  $('#splash-text').addClass('d-none');
   isSimulation = false;
   enableQuitButtons();
   if (isStart) {
@@ -317,9 +310,9 @@ function updateBotDescription() {
  * Displays base game variables: number of sticks remaining, number of wins, and number of games played
  */
 function displayBaseVariables() {
-  $remainingText.html(remainingSticks);
-  $aiWinsText.html(aiWins);
-  $playedText.html(gamesPlayed);
+  $('#remaining-sticks').html(remainingSticks);
+  $('#ai-wins').html(aiWins);
+  $('#games-played').html(gamesPlayed);
 }
 
 /**
@@ -444,12 +437,12 @@ function createSliders() {
  */
 function takeAiTurn() {
   if (remainingSticks <= 0) {
-    // The Player/Practice bot won
+    // The Player/Practice bot won, doesn't matter which bot
     endGame(isSimulation ? PLAYERS.INTELLIBOT : PLAYERS.HUMAN);
   } else {
     disableChoiceButtons();
     disableQuitButtons();
-    $statusText.html(TXT_WAIT);
+    $('#status-text').html(TXT_WAIT);
     var num = ai.takeTurn();
     if (!isSimulation) {
       // Create time lag if this is against a real player
@@ -501,7 +494,7 @@ function applyMove(player, numChosen) {
 
     var format = ngettext("Nathaniel chose 1 stick.", "Nathaniel chose %(num_sticks)s sticks.", numChosen);
     var numChosenText = interpolate(format, {'num_sticks': numChosen}, true);
-    $statusText.html(numChosenText + " " + TXT_TURN);
+    $('#status-text').html(numChosenText + " " + TXT_TURN);
 
     readyPlayerTurn();
   } else if (player != PLAYERS.NONE) {
@@ -530,20 +523,20 @@ function endGame(winner) {
   displayBaseVariables();
   if (winner == PLAYERS.AI) {
     aiWins++;
-    $statusText.html(TXT_LOSS);
+    $('#status-text').html(TXT_LOSS);
     ai.updateAI(false);
     networkTable.recolourCells(TABLE.HIGHLIGHTS.WIN);
     if (!isSimulation) {
-      $splashText.html(TXT_LOSS);
-      $splashText.removeClass('d-none');
+      $('#splash-text').html(TXT_LOSS);
+      $('#splash-text').removeClass('d-none');
     }
   } else if (winner != PLAYERS.NONE) {
     ai.updateAI(true);
-    $statusText.html(TXT_WIN);
+    $('#status-text').html(TXT_WIN);
     networkTable.recolourCells(TABLE.HIGHLIGHTS.LOSS);
     if (!isSimulation) {
-      $splashText.html(TXT_WIN);
-      $splashText.removeClass('d-none');
+      $('#splash-text').html(TXT_WIN);
+      $('#splash-text').removeClass('d-none');
     }
   }
   networkTable.populateTable(ai.map);
@@ -599,7 +592,7 @@ function showChoiceButtons() {
 }
 
 /**
- * Disables the quit button, does not affect its visibility
+ * Disables the quit buttons, does not affect visibility
  */
 function disableQuitButtons() {
   $('#button_quit').prop('disabled', true);
@@ -607,7 +600,7 @@ function disableQuitButtons() {
 }
 
 /**
- * Enables the quit button, does not affect its visibility
+ * Enables the quit buttons, does not affect visibility
  */
 function enableQuitButtons() {
   $('#button_quit').prop('disabled', false);
@@ -615,7 +608,7 @@ function enableQuitButtons() {
 }
 
 /**
- * Hides controls for the user to 'quit', i.e. reset the game to its 'page-loaded' state
+ * Hides controls for the user to 'quit', i.e. reset the game to its page-loaded state
  */
 function hideQuitButtons() {
   $('#quit-buttons').addClass('d-none');
@@ -623,7 +616,7 @@ function hideQuitButtons() {
 }
 
 /**
- * Shows controls for the user to 'quit', i.e. reset the game to its 'page-loaded' state
+ * Shows controls for the user to 'quit', i.e. reset the game to its page-loaded state
  */
 function showQuitButtons() {
   $('#quit-buttons').removeClass('d-none');
@@ -645,7 +638,7 @@ function showEndButtons() {
 }
 
 /**
- * Hides the stop simulating button
+ * Hides the stop simulating buttons
  */
 function hideCancelButtons() {
   $('#button_cancel').addClass('d-none').prop('disabled', true);
@@ -653,7 +646,7 @@ function hideCancelButtons() {
 }
 
 /**
- * Shows the stop simulating button
+ * Shows the stop simulating buttons
  */
 function showCancelButtons() {
   $('#button_cancel').removeClass('d-none').prop('disabled', false);
