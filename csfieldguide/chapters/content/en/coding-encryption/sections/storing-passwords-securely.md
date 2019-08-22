@@ -68,6 +68,26 @@ You could determine their passwords by putting various possibilities through SHA
 
 {image file-path="img/chapters/hash-passwords-table.png" alt="A table of four passwords and their corresponding hashes."}
 
+{panel type="project"}
+
+# Password guessing interactive - Part 1
+
+You can investigate hashing further with this interactive.
+It requires you to guess the passwords of users.
+
+A database is displayed, along with a simple checker and some clues.
+For each user: enter a possible password, and click `Calculate Hash` to check the database.
+The database will highlight an entry if the hash matches (so you don't have to check manually!).
+
+Note that two passwords are the same, you can see them in the database.
+This will be expanded upon next.
+
+Have a go at just the simpler passwords, we don't expect you to be able to guess all of them.
+
+{interactive slug="password-guesser" parameters="salted=false" type="whole-page" alt="Interactive for guessing user passwords"}
+
+{panel end}
+
 It might initially sound like we have the perfect system.
 But unfortunately, there is still a big problem.
 You can find *rainbow tables* online, which are precomputed lists of common passwords with what value they hash to.
@@ -83,7 +103,7 @@ The next idea, salting, addresses this issue.
 
 When we said that if the hashed password matches the one in the database, then the user has to have entered the correct password, we were not telling the full truth.
 Mathematically, we know that there have to be passwords which would hash to the same value.
-This is because the length of the output hash has a maximum length, whereas the password length (or other data being hashed) could be much larger.
+This is because the output hash has a maximum length, whereas the password length (or other data being hashed) could be much larger.
 Therefore, there are more possible inputs than outputs, so some inputs must have the same output.
 When two different inputs have the same output hash, we call it a *collision*.
 
@@ -117,6 +137,21 @@ Therefore, a common practice is to store it in plaintext in the database.
 
 So now when a user registers, a long random salt value is generated, added to the end of their password, and the combined password and salt is hashed.
 The plaintext salt is stored next to the hash.
+
+{panel type="project"}
+
+# Password guessing interactive - Part 2
+
+Here is the same interactive as before, but this time everyone's passwords have been salted.
+Now you can't just guess a password and check the whole database; you need to copy the salt for each password you are guessing.
+
+Can you see how these extra steps can affect the time it takes to guess passwords?
+
+Remember that two passwords are the same, is that still obvious just by looking at the database?
+
+{interactive slug="password-guesser" type="whole-page" alt="Interactive for guessing salted user passwords"}
+
+{panel end}
 
 {comment add Extra for Experts: Hashing passwords with a salt and stretching}
 
@@ -169,34 +204,6 @@ You might not know what some of the words mean.
 In easy terms, what it is saying is that there are significantly fewer modifications of common dictionary words than there is of a random selection of four of the 2000 most common dictionary words.
 Note that the estimates are based on trying to guess through a login system.
 With a leaked database, the attacker can test billions of passwords a second rather than just a few thousand.
-
-{panel type="project"}
-
-# Password guessing interactive
-
-Have a go at the following interactive.
-It requires you to guess the passwords of users.
-
-- Alice and Bob both used passwords that (by pure coincidence) are among the [top 25 most common passwords of 2018 according to SplashData](https://en.wikipedia.org/wiki/List_of_the_most_common_passwords).
-- Casey picked her password out of an english dictionary.
-  You might find hers a bit more challenging to figure out, although a computer would get it in a second.
-  If you are keen, you might like to do a dictionary attack on it yourself.
-- Dave's password is short, but the 5 characters in it could be symbols, numbers, uppercase or lowercase.
-  You might find his a little more challenging to figure out, but again it is easy for a computer and you might like to write a program to help if you are keen.
-- Evelyn's is also a random mix of characters, but is 16 characters long.
-  We don't think you will ever guess her password, even if you wrote a program to help you!
-  Do let us know if you figure it out though!
-- Frank heard about the complexity of Evelyn's password, but didn't want to risk forgetting such a long sequence of random characters.
-  Instead, he borrowed Casey's english dictionary and chose five random words from it!
-  He finds this password much easier to remember, but does that make it easier to crack?
-
-A database is displayed, along with a simple checker.
-For each user: copy their salt into the box, enter a possible password, and click `Calculate Hash` to check the database.
-The database will highlight an entry if the hash matches (so you don't have to check manually!).
-
-{interactive slug="password-guesser" type="in-page" alt="Interactive for guessing user passwords"}
-
-{panel end}
 
 {comment TODO: ## Real world case studies}
 
