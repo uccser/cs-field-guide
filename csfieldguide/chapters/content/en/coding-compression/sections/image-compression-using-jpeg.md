@@ -3,10 +3,10 @@
 Images can take up a lot of space, and most of the time that pictures are stored on a computer they are compressed to avoid wasting too much space.
 With a lot of images (especially photographs), there's no need to store the image exactly as it was originally, because it contains way more detail than anyone can see.
 This can lead to considerable savings in space, especially if the details that are missing are the kind that people have trouble perceiving.
-This kind of compression is called lossy compression.
+This kind of compression is called {glossary-link term="lossy"}lossy{glossry-link end} compression.
 There are other situations where images need to be stored exactly as they were in the original, such as for medical scans or very high quality photograph processing, and in these cases lossless methods are used, or the images aren't compressed at all (e.g. using RAW format on cameras).
 
-In the data representation section we looked at how the size of an image file can be reduced by using fewer bits to describe the colour of each pixel.
+In the [data representation chapter]('chapters:chapter' 'data-representation') we looked at how the size of an image file can be reduced by using fewer bits to describe the colour of each pixel.
 However, image compression methods such as JPEG take advantage of patterns in the image to reduce the space needed to represent it, without impacting the image unnecessarily.
 
 The following three images show the difference between reducing bit depth and using a specialised image compression system.
@@ -17,7 +17,7 @@ Even though it has lost just as many bits, the information removed has had much 
 This is the advantage of JPEG: it removes information in the image that doesn't have so much impact on the perceived quality.
 Furthermore, with JPEG, you can choose the tradeoff between quality and file size.
 
-Reducing the number of bits (the colour depth) is sufficiently crude that we don't really regard it as a compression method, but just a low quality representation.
+Reducing the number of bits (the colour depth) is sufficiently crude that we don't really regard it as a compression method, but rather just a low quality representation.
 Image compression methods like JPEG, GIF and PNG are designed to take advantage of the patterns in an image to get a good reduction in file size without losing more quality than necessary.
 
 {image file-path="img/chapters/compression-comparison.png" alt="This image compares three images, two of which are good quality with no perceived difference. The third image is very poor quality."}
@@ -33,7 +33,7 @@ For example, the pixels shown in the red box below just change gradually from ve
 
 {image file-path="img/chapters/zoomed-eye-highlighted.png" alt="This image has a red box around five pixels that gradually change from very dark to very light in colour."}
 
-Run-length encoding wouldn't work in this situation.
+Run length encoding wouldn't work in this situation.
 You could use a variation that specifies a pixel's colour, and then says how many of the following pixels are the same colour, but although most adjacent pixels are nearly the same, the chances of them being identical are very low, and there would be almost no runs of identical colours.
 
 But there is a way to take advantage of the gradually changing colours.
@@ -63,7 +63,7 @@ And instead of estimating the values with a linear function, it uses combination
 
 # What are cosine waves
 
-A cosine wave form is from the trig function that is often used for calculating the sides of a triangle.
+A cosine wave form is from the trigonometry function that is often used for calculating the sides of a triangle.
 If you plot the cosine value from 0 to 180 degrees, you get a smooth curve going from 1 to -1.
 Variations of this plot can be used to approximate the value of pixels, going from one colour to another.
 If you add in a higher frequency cosine wave, you can produce interesting shapes.

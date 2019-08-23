@@ -10,7 +10,7 @@ Run length encoding (RLE) is a technique that isn't so widely used these days, b
 
 [Run-length_encoding](https://en.wikipedia.org/wiki/Run-length_encoding) was widely used when black and white images were the norm.
 One of its key roles was as the compression method that made Fax (facsimile) machines possible in a standard that was adopted in 1980.
-The pixels in a fax image are only black or white, and typically there are long runs of white pixels in the margins, so RLE is particularly effective.
+The {glossary-link term="pixel}pixels{glossary-link end} in a fax image are only black or white, and typically there are long runs of white pixels in the margins, so RLE is particularly effective.
 Also, the method is very simple, and in the 1980s this was important since it reduced the cost of the electronics inside the machine.
 
 Run length encoding is still used as part of JPEG compression, although not to code runs of pixels (in a photo it's unusual to have runs of exactly the same colour).
@@ -23,7 +23,7 @@ Imagine we have the following simple black and white image.
 
 {image file-path="img/chapters/pixel-diamond.png" alt="A diamond shape made out of pixels"}
 
-One very simple way a computer can store this image in binary is by using a format where '0' means white and '1' means black (this is a "bit map", because we've mapped the pixels onto the values of bits).
+One very simple way a computer can store this image in {glossary-link term="binary-number-system}binary{glossary-link end} is by using a format where '0' means white and '1' means black (this is a "bitmap", because we've mapped the pixels onto the values of bits).
 Using this method, the above image would be represented in the following way:
 
 ```text
@@ -88,7 +88,7 @@ If you have a program on your computer able to open PBM files, you could then vi
 You could even write a program to output these files, and then display them as images.
 
 Because the digits are represented using ASCII in this format, it isn't very efficient, but it is useful if you want to read what's inside the file.
-There are variations of this format that pack the pixels into bits instead of characters, and variations that can be used for grey scale and colour images.
+There are variations of this format that pack the pixels into bits instead of characters, and variations that can be used for greyscale and colour images.
 More [information about this format is available on Wikipedia](https://en.wikipedia.org/wiki/Netpbm_format).
 
 {panel end}
@@ -99,7 +99,7 @@ It turns out we can.
 There are many ways of going about it, but in this section we are focussing on a method called *run length encoding*.
 
 Imagine that you had to read the bits above out to someone who was copying them down... after a while you might say things like "five zeroes" instead of "zero zero zero zero zero".
-Is the basic idea behind run length encoding (RLE), which is used to save space for storing digital images.
+This is the basic idea behind run length encoding (RLE), which is used to save space when storing digital images.
 In run length encoding, we replace each row with numbers that say how many consecutive pixels are the same colour, *always starting with the number of white pixels*.
 For example, the first row in the image above contains one white, two black, four white, one black, four white, two black, and one white pixel.
 
@@ -175,7 +175,7 @@ The remaining rows are
 
 # Run length encoding in the CS Unplugged show
 
-In this video from a Computer Science Unplugged show, a Run length encoded image is decoded using very large pixels (the printer is a spray can!).
+In this video from a Computer Science Unplugged show, a run length encoded image is decoded using very large pixels (the printer is a spray can!).
 
 {video url="https://www.youtube.com/watch?v=VsjpPs146d8"}
 
@@ -215,7 +215,8 @@ The following interactive allows you to experiment further with run length encod
 
 ## Analysing run length encoding
 
-How much space have we saved using this alternate representation, and how can we measure it? One simple way to consider this is to imagine you were typing these representations, so you could think of each of the original bits being stored as one character, and each of the RLE codes using a character for each digit and comma (this is a bit crude, but it's a starting point).
+How much space have we saved using this alternate representation, and how can we measure it?
+One simple way to consider this is to imagine you were typing these representations, so you could think of each of the original bits being stored as one character, and each of the RLE codes using a character for each digit and comma (this is a bit crude, but it's a starting point).
 
 In the original representation, 225 digits (ones and zeroes) were required to represent the image.
 Count up the number of commas and digits (but not spaces or newlines, ignore those) in the new representation.
@@ -228,12 +229,12 @@ The new representation is a *compressed* form of the old one.
 
 {panel type="curiosity"}
 
-# Run length coding representation in practice
+# Run length encoding representation in practice
 
 In practice this method (with some extra tricks) can be used to compress images to about 15% of their original size.
 In real systems, the original image only uses one bit for every pixel to store the black and white values (not one character, which we used for our calculations).
 However, the run length numbers are also stored much more efficiently, again using bit patterns that take very little space to represent the numbers.
-The bit patterns used are usually based on a technique called Huffman coding, but that is beyond what we want to get into here.
+The bit patterns used are usually based on a technique called Huffman coding, but we will get to that later.
 
 {panel end}
 
@@ -250,20 +251,21 @@ In fact, fax machines would take 7 times longer to send pages if they didn't use
 
 # Using run length encoding for yourself
 
-Now that you know how run length encoding works, you can come up with and compress your own black and white image, as well as uncompress an image that somebody else has given you.
+Now that you know how run length encoding works, you can come up with and compress your own black and white image, as well as decompress an image that somebody else has given you.
 
-Start by making your own picture with ones and zeroes.
-(Make sure it is rectangular – all the rows should have the same length.)  You can either draw this on paper or prepare it on a computer (using a fixed width font, otherwise it can become really frustrating and confusing!) In order to make it easier, you could start by working out what you want your image to be on grid paper (such as that from a math exercise book) by shading in squares to represent the black ones, and leaving them blank to represent the white ones.
+Start by making your own picture with ones and zeroes (make sure it is rectangular &ndash; all the rows should have the same length).
+You can either draw this on paper or prepare it on a computer (using a fixed width font, otherwise it can become really frustrating and confusing!).
+In order to make it easier, you could start by working out what you want your image to be on grid paper (such as that from a math exercise book) by shading in squares to represent the black ones, and leaving them blank to represent the white ones.
 Once you have done that, you could then write out the zeroes and ones for the image.
 
-Work out the compressed representation of your image using run length coding, i.e. the run lengths separated by commas form that was explained above.
+Work out the compressed representation of your image using run length encoding, i.e. the run lengths separated by commas form that was explained above.
 
 Now give a copy of the *compressed representation* (the run length codes, not the original uncompressed representation) to a friend or classmate, along with an explanation of how it is compressed.
 Ask them to try and draw the image on some grid paper.
 Once they are done, check their conversion against your original.
 
-Imagining that you and your friend are both computers, by doing this you have shown that images using these systems of representations can be compressed on one computer, and decompressed on another, as long as you have standards that you've agreed on (e.g. that every line begins with a white pixel).
-It is very important for compression algorithms to follow standards so that a file compressed on one computer can be decompressed on another;
-for example, songs often follow the "mp3" standard so that when they are downloaded they can be played on a variety of devices.
+Imagine that you and your friend are both computers; by doing this you have shown that images using these systems of representations can be compressed on one computer, and decompressed on another, as long as you have standards that you've agreed on (e.g. that every line begins with a white pixel).
+It is very important for compression algorithms to follow standards so that a file compressed on one computer can be decompressed on another.
+For example, songs often follow the "mp3" standard so that when they are downloaded they can be played on a variety of devices.
 
 {panel end}
