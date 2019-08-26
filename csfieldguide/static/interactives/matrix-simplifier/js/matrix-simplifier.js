@@ -231,7 +231,6 @@ function simplifyResult(matrix, vector) {
 /* Set the matrices in modal to the default values */
 function resetModalMatrices() {
   // reset to default values of modal matrices
-  console.log('hi');
   $('#matrix-row-0-col-0').val(1);
   $('#matrix-row-0-col-1').val(0);
   $('#matrix-row-0-col-2').val(0);
