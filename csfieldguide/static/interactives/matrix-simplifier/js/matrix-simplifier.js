@@ -39,7 +39,9 @@ $(document).ready(function() {
   $('#add-matrix-from-input').click(addMatrix);
   $('#add-vector-from-input').click(addVector);
   $('.dismiss-eqtn').click(dismissEquation);
-  $(".matrix-row input").on("keyup bind cut copy paste", validateInput);
+  $('.matrix-row input').on('keyup bind cut copy paste', validateInput);
+  $('#matrix-modal').on('hidden.bs.modal', resetModalMatrices);
+  $('#vector-modal').on('hidden.bs.modal', resetModalMatrices);
 });
 
 
@@ -229,6 +231,7 @@ function simplifyResult(matrix, vector) {
 /* Set the matrices in modal to the default values */
 function resetModalMatrices() {
   // reset to default values of modal matrices
+  console.log('hi');
   $('#matrix-row-0-col-0').val(1);
   $('#matrix-row-0-col-1').val(0);
   $('#matrix-row-0-col-2').val(0);
@@ -244,6 +247,9 @@ function resetModalMatrices() {
   $('#vector-row-0').val(1);
   $('#vector-row-1').val(0);
   $('#vector-row-2').val(0);
+
+  $('.matrix-row input').removeClass('input-error');
+  $('.add-from-input').prop('disabled', false);
 }
 
 
@@ -480,21 +486,25 @@ function dismissEquation() {
   showOutput();
 }
 
-// This accepts units because of mathjs
-// need to adapt
+/** Checks user input as they are typing.
+ *  Highlights input box red if the input is invalid and disables the add button.
+ */
 function validateInput() {
   var input = $(this).val();
   var success = false;
   try {
-    mathjs.eval(input);
+    inputEvaluated = mathjs.eval(input);
+    mathjs.number(inputEvaluated);
     success = true;
-    console.log(mathjs.eval(input));
   }
   catch {
-    console.log('error');
     $(this).addClass('input-error');
+    $('.add-from-input').prop('disabled', true);
   }
   if (success && $(this).hasClass('input-error')) {
     $(this).removeClass('input-error');
+  }
+  if ($('.input-error').length == 0) {
+    $('.add-from-input').prop('disabled', false);
   }
 }
