@@ -19,7 +19,9 @@ In most cases this isn’t an issue though, as a good lossless compression algor
 What is the image with the best compression (i.e. an image that has a size that is a very small percentage of the original) that you can come up with?
 This is the best case performance for this compression algorithm.
 
-What about the worst compression? Can you find an image that actually has a *larger* compressed representation (don’t forget the commas in the version we used!)? This is the worst case performance for this compression algorithm.
+What about the worst compression?
+Can you find an image that actually has a *larger* compressed representation (don’t forget the commas in the version we used!)?
+This is the worst case performance for this compression algorithm.
 
 {panel end}
 

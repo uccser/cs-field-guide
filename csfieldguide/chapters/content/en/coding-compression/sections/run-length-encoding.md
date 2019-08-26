@@ -8,7 +8,7 @@ Run length encoding (RLE) is a technique that isn't so widely used these days, b
 
 # Who uses run length encoding?
 
-[Run-length_encoding](https://en.wikipedia.org/wiki/Run-length_encoding) was widely used when black and white images were the norm.
+[Run length encoding](https://en.wikipedia.org/wiki/Run-length_encoding) was widely used when black and white images were the norm.
 One of its key roles was as the compression method that made Fax (facsimile) machines possible in a standard that was adopted in 1980.
 The {glossary-link term="pixel"}pixels{glossary-link end} in a fax image are only black or white, and typically there are long runs of white pixels in the margins, so RLE is particularly effective.
 Also, the method is very simple, and in the 1980s this was important since it reduced the cost of the electronics inside the machine.
