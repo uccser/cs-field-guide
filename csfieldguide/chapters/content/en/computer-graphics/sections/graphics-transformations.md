@@ -665,7 +665,7 @@ The following interactive can do those calculations for you.
 For example, in the following interactive, type in the matrix for doubling the size of an object (put the number 2 instead of 1 on the main diagonal values), then add another matrix that triples the size of the image (3 on the main diagonal).
 The interactive shows a matrix on the right that combines the two &ndash; does it look right?
 
-{button-link link="https://archive.csfieldguide.org.nz/1.9.9/_static/widgets/CG/CG-matrix-simplifier/CG-matrix-simplifier.html?info=Multiple%20transforms" text="Click for interactive: matrix simplifier"}
+{interactive slug="matrix-simplifier" type="whole-page" alt="Matrix simplifier interactive"}
 
 {panel type="teacher-note"}
 
@@ -739,7 +739,7 @@ The scene-creation interactive can be run from here:
 
 To generate combined transformations, you can use the following transform simplifier interactive:
 
-{button-link link="https://archive.csfieldguide.org.nz/1.9.9/_static/widgets/CG/CG-matrix-simplifier/CG-matrix-simplifier.html?info=Multiple%20transforms" text="Click for interactive: matrix simplifier"}
+{interactive slug="matrix-simplifier" type="whole-page" alt="Matrix simplifier interactive"}
 
 Because you can't save your work in the interactives, keep notes and screen shots as you go along.
 These will be useful for your report, and also can be used if you need to start over again.
