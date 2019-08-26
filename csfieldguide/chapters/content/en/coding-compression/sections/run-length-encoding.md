@@ -10,7 +10,7 @@ Run length encoding (RLE) is a technique that isn't so widely used these days, b
 
 [Run-length_encoding](https://en.wikipedia.org/wiki/Run-length_encoding) was widely used when black and white images were the norm.
 One of its key roles was as the compression method that made Fax (facsimile) machines possible in a standard that was adopted in 1980.
-The {glossary-link term="pixel}pixels{glossary-link end} in a fax image are only black or white, and typically there are long runs of white pixels in the margins, so RLE is particularly effective.
+The {glossary-link term="pixel"}pixels{glossary-link end} in a fax image are only black or white, and typically there are long runs of white pixels in the margins, so RLE is particularly effective.
 Also, the method is very simple, and in the 1980s this was important since it reduced the cost of the electronics inside the machine.
 
 Run length encoding is still used as part of JPEG compression, although not to code runs of pixels (in a photo it's unusual to have runs of exactly the same colour).
@@ -23,7 +23,7 @@ Imagine we have the following simple black and white image.
 
 {image file-path="img/chapters/pixel-diamond.png" alt="A diamond shape made out of pixels"}
 
-One very simple way a computer can store this image in {glossary-link term="binary-number-system}binary{glossary-link end} is by using a format where '0' means white and '1' means black (this is a "bitmap", because we've mapped the pixels onto the values of bits).
+One very simple way a computer can store this image in {glossary-link term="binary-number-system"}binary{glossary-link end} is by using a format where '0' means white and '1' means black (this is a "bitmap", because we've mapped the pixels onto the values of bits).
 Using this method, the above image would be represented in the following way:
 
 ```text
