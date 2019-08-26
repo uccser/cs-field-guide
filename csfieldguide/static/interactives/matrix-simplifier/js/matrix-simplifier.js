@@ -480,27 +480,21 @@ function dismissEquation() {
   showOutput();
 }
 
-
-var hasError = false;
-var numErrors = 0;
+// This accepts units because of mathjs
+// need to adapt
 function validateInput() {
   var input = $(this).val();
-  var regex = new RegExp("(?:[0-9-+*/^()x]|abs|\s|e\^x|ln|log|a?(?:sin|cos|tan)h?)+");
-  if (!(regex.test(input))) {
+  var success = false;
+  try {
+    mathjs.eval(input);
+    success = true;
+    console.log(mathjs.eval(input));
+  }
+  catch {
+    console.log('error');
     $(this).addClass('input-error');
-    if (!hasError) {
-      $(this).parent().parent().append('<p id="error">' + INPUT_ERROR + '</p>');
-      hasError = true;
-      numErrors += 1;
-    }
-  } else {
-    if ($(this).hasClass('input-error')) {
-      numErrors -= 1;
-      $(this).removeClass('input-error');
-    }
-    if (numErrors == 0) {
-      $("#error").remove();
-      hasError = false;
-    }
+  }
+  if (success && $(this).hasClass('input-error')) {
+    $(this).removeClass('input-error');
   }
 }
