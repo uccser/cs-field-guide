@@ -8,11 +8,47 @@ const MATRIX_TEMPLATE = "\\begin{bmatrix} %s \\\\ %s \\\\ %s \\end{bmatrix}";
 const EXPANDED_ROW_TEMPLATE = "%sx + %sy + %sz";
 
 
-// might need to add text to say angles should be in radians
+/**
+ * Below is adapted from https://mathjs.org/examples/browser/angle_configuration.html.html
+ * This is used to configure mathjs to use degrees for trig functions.
+ */
+
+let replacements = {};
+
+// the trigonometric functions that we are configuring to handle inputs of degrees instead of radians
+const fns1 = [
+  'sin', 'cos', 'tan', 'sec', 'cot', 'csc',
+  'asin', 'acos', 'atan', 'atan2', 'acot', 'acsc', 'asec',
+  'sinh', 'cosh', 'tanh', 'sech', 'coth', 'csch',
+  'asinh', 'acosh', 'atanh', 'acoth', 'acsch', 'asech',
+];
+
+fns1.forEach(function(name) {
+  const fn = mathjs[name]; // the original function
+
+  const fnNumber = function (x) {
+    // convert from degrees to radians
+    return fn(x * (Math.PI / 180));
+  }
+
+  // create a typed-function which check the input types
+  replacements[name] = mathjs.typed(name, {
+    'number': fnNumber,
+    'Array | Matrix': function (x) {
+      return mathjs.map(x, fnNumber);
+    }
+  });
+});
+
+// import all replacements into math.js, override existing trigonometric functions
+mathjs.import(replacements, {override: true});
+/////////////////////////////// End of adapted file ///////////////////////////////
+
+
 m1 = mathjs.matrix([
-  [mathjs.cos(toRadians(45)),0,mathjs.sin(toRadians(45))],
+  [mathjs.cos(45),0,mathjs.sin(45)],
   [0,1,0],
-  [-mathjs.sin(toRadians(45)),0,mathjs.cos(toRadians(45))]
+  [-mathjs.sin(45),0,mathjs.cos(45)]
 ]);
 m2 = mathjs.matrix([[10,0,0],[0,10,0],[0,0,10]]);
 
@@ -428,14 +464,6 @@ function showEquations() {
 
 
 /**
- * Converts degrees to radians
- */
-function toRadians(angle) {
-  return angle * (Math.PI / 180);
-}
-
-
-/**
  * Gets the type of equation (matrix or vector) and the equation number.
  * The equation number represents the order it was added in.
  * E.g the third matrix added will be number 3, the second vector added will be number 2 etc.
@@ -492,6 +520,7 @@ function validateInput() {
   var input = $(this).val();
   var success = false;
   try {
+    console.log(mathjs.eval(input));
     inputEvaluated = mathjs.eval(input);
     mathjs.number(inputEvaluated);
     success = true;
