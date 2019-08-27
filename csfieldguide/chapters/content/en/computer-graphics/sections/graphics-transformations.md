@@ -662,7 +662,8 @@ The following interactive allows you to combine 3D matrices.
 In the above examples, when you have several matrices being applied to every point in the image, a lot of time can be saved by converting the series of matrices and transforms to just one formula that does all of the transforms in one go.
 The following interactive can do those calculations for you.
 
-For example, in the following interactive, type in the matrix for doubling the size of an object (put the number 2 instead of 1 on the main diagonal values), then add another matrix that triples the size of the image (3 on the main diagonal).
+For example, in the following interactive, remove the existing matrices and type in the matrix for doubling the size of an object (put the number 2 instead of 1 on the main diagonal values).
+Then add another matrix that triples the size of the image (3 on the main diagonal).
 The interactive shows a matrix on the right that combines the two &ndash; does it look right?
 
 {interactive slug="matrix-simplifier" type="whole-page" alt="Matrix simplifier interactive"}
