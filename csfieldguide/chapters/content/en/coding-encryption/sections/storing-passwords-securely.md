@@ -127,7 +127,7 @@ With current computing power and storage, it is impossible to generate rainbow t
 This slows the attacker down greatly, however they can still try and guess each password one by one.
 They simply need to guess passwords, add the salt to them, and then check if the hash is the one in the database.
 
-A common brute force attack is a {glossary-link term="dictionary-attack}dictionary attack{glossary-link end}.
+A common brute force attack is a {glossary-link term="dictionary-attack"}dictionary attack{glossary-link end}.
 This is where the attacker writes a simple program that goes through a long list of dictionary words, other common passwords, and all combinations of characters under a certain length.
 For each entry in the list, the program adds the salt to the entry and then hashes to see if it matches the hash they are trying to determine the password for.
 Good hardware can check millions, or even billions, of entries a second.
