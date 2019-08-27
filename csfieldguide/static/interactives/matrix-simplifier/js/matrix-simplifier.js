@@ -6,7 +6,6 @@ const vsprintf = require('sprintf-js').vsprintf;
 const ROW_TEMPLATE = "%s & %s & %s";
 const MATRIX_TEMPLATE = "\\begin{bmatrix} %s \\\\ %s \\\\ %s \\end{bmatrix}";
 const EXPANDED_ROW_TEMPLATE = "%sx + %sy + %sz";
-const INPUT_ERROR = gettext("Sorry, at least one of your inputs is not a valid mathematical expression.");
 
 
 // might need to add text to say angles should be in radians
