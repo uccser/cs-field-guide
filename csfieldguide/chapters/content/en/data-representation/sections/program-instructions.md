@@ -22,7 +22,7 @@ add $a0, $t0, $t1
 In the above machine code program li and add are considered to be operations to "load an integer" and "add two integers" respectively.
 $t0, $t1, and $a0 are register operands and represent a place to store values inside of the machine.
 10 and 20 are literal operands and allow instructions to represent the exact integer values 10 and 20.
-If we were using a 32-bit operating system we might encode the above instructions with each instruction broken into 4 8-bit pieces as follows:
+If we were using a 32-bit operating system we might encode the above instructions with each instruction broken into four 8-bit pieces as follows:
 
 | Operation |    Op1   |    Op2   |   Op3    |
 |-----------|----------|----------|----------|
