@@ -180,6 +180,7 @@ function formatMatrix(matrix, rowTemplate) {
   return sprintf(MATRIX_TEMPLATE, row0, row1, row2);
 }
 
+
 /** Remove zeros if they are insignificant.
  *  i.e only remove zeros if they are not the only number in the row
  */
