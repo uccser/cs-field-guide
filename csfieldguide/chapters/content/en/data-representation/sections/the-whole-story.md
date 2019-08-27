@@ -1,6 +1,6 @@
 # The whole story!
 
-The kind of image representations covered here are the basic ones used in most digital systems, and the main point of this chapter is to understand how digital representations work, and the compromises needed between the number of bits, storage used, and quality.
+The kind of image representations covered here are the basic ones used in most digital systems, and the main point of this chapter is to understand how digital representations work, as well as the compromises needed between the number of bits, storage used, and quality.
 
 The colour representation discussed is what is often referred to as "raw" or "bitmap" (bmp) representation.
 For large images, real systems use compression methods such as JPEG, GIF or PNG to reduce the space needed to store an image, but at the point where an image is being captured or displayed it is inevitably represented using the raw bits as described in this chapter, and the basic choices for capturing and displaying images will affect the quality and cost of a device.
