@@ -4,7 +4,7 @@ A really interesting puzzle in encryption is storing passwords in a way that eve
 Such a system has many seemingly conflicting requirements.
 
 - When a user logs in, it must be possible to check that they have entered the correct password.
-- Even if the database is leaked, and the attacker has huge amounts of computing power...
+- Even if the database is leaked, and the attacker has huge amounts of computing power:
     - The database should not give away obvious information, such as password lengths, users who chose the same passwords, letter frequencies of the passwords, or patterns in the passwords.
     - At the very least, users should have several days/weeks to be able to change their password before the attacker cracks it.
   Ideally, it should not be possible for them to ever recover the passwords.
@@ -25,7 +25,7 @@ Learning about password storage might also help you to understand the importance
 
 ## Hashing passwords
 
-A *hashing algorithm* is an algorithm that takes a password and performs complex computations on it and then outputs a seemingly random string of characters called a *hash*.
+A {glossary-link term="hash-function"}hashing algorithm{glossary-link end} is an {glossary-link term="algorithm"}algorithm{glossary-link end} that takes a password and performs complex computations on it and then outputs a seemingly random string of characters called a *hash*.
 This process is called *hashing*.
 Good hashing algorithms have the following properties:
 
@@ -42,11 +42,11 @@ The remainder of this chapter will focus on SHA-256.
 
 # What is meant by brute force?
 
-In the Caesar cipher section, we talked briefly about brute force attacks.
+In the [Caesar cipher section]('chapters:chapter_section' 'coding-encryption' 'substitution-ciphers'), we talked briefly about brute force attacks.
 Brute force attack in that context meant trying every possible key until the correct one was found.
 
 More generally, brute force is trying every possibility until a solution is found.
-For hashing, this means going through a long list of possible passwords, running each through the hashing algorithm, and then checking if the outputted hash is identical to the one that we are trying to reverse.
+For hashing, this means going through a long list of possible passwords, running each through the hashing algorithm, and then checking if the resulting hash is identical to the one that we are trying to reverse.
 
 {panel end}
 
@@ -108,7 +108,7 @@ For those applications, it is important to ensure collisions cannot be found.
 ## Hashing passwords with a salt
 
 A really clever technique which solves some of the problems of using a plain hash is salting.
-Salting simply means to attach some extra data, called *salt*, onto the end of the password and then hash the combined password and salt.
+Salting simply means to attach some extra data, called {glossary-link term="salt"}salt{glossary-link end}, onto the end of the password and then hash the combined password and salt.
 Normally the salt is quite large (e.g. 128 bits).
 When a user tries to log in, we will need to know the salt for their password so that it can be added to the password before hashing and checking.
 While this initially sounds challenging, the salt should not be treated as a secret.
@@ -127,11 +127,11 @@ With current computing power and storage, it is impossible to generate rainbow t
 This slows the attacker down greatly, however they can still try and guess each password one by one.
 They simply need to guess passwords, add the salt to them, and then check if the hash is the one in the database.
 
-A common brute force attack is a *dictionary attack*.
+A common brute force attack is a {glossary-link term="dictionary-attack}dictionary attack{glossary-link end}.
 This is where the attacker writes a simple program that goes through a long list of dictionary words, other common passwords, and all combinations of characters under a certain length.
 For each entry in the list, the program adds the salt to the entry and then hashes to see if it matches the hash they are trying to determine the password for.
 Good hardware can check millions, or even billions, of entries a second.
-Many user passwords can be recovered in less than a second using a dictionary attack.
+Many user passwords can be discovered in less than a second using a dictionary attack.
 
 Unfortunately for end users, many companies keep database leaks very quiet as it is a huge embarrassment that could cripple the company.
 Sometimes the company doesn't know its database was leaked, or has suspicions that it was but for PR reasons they choose to deny it.
@@ -157,7 +157,8 @@ Unfortunately though, these requirements don't work well for getting users to pi
 Attackers know the tricks users use to make passwords that meet the restrictions, but can be remembered.
 For example, P@$$w0rd contains 8 characters (a commonly used minimum), and contains a mix of different types of characters.
 But attackers know that users like to replace S's with $'s, mix o and 0, replace i with !, etc.
-In fact, they can just add these tricks into their list they use for dictionary attacks! For websites that require passwords to have at least one digit, the result is even worse.
+In fact, they can just add these tricks into their list they use for dictionary attacks!
+For websites that require passwords to have at least one digit, the result is even worse.
 Many users pick a standard English word and then add a single digit to the end of it.
 This again is easy work for a dictionary attack to crack!
 

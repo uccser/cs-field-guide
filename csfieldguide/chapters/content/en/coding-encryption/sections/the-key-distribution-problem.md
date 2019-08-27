@@ -6,7 +6,7 @@
 
 When describing an encryption scenario, cryptographers often use the fictitious characters "Alice" and "Bob", with a message being sent from Alice to Bob (A to B).
 We always assume that someone is eavesdropping on the conversation (in fact, if you're using a wireless connection, it's trivial to pick up the transmissions between Alice and Bob as long as you're in reach of the wireless network that one of them is using).
-The fictitious name for the eavesdropper is usually Eve.
+The fictitious name for the eavesdropper is usually Eve (E).
 
 {image file-path="img/chapters/xkcd-protocol.png" alt="A xkcd comic on protocols" hover-text="Changing the names would be easier, but if you're not comfortable lying, try only making friends with people named Alice, Bob, Carol, etc." source="https://xkcd.com/1323/"}
 
@@ -16,10 +16,12 @@ There are several other characters used to describe activities around encryption
 
 If Alice is sending an encrypted message to Bob, this raises an interesting problem in encryption.
 The ciphertext itself can safely be sent across an "unsafe" network (one that Eve is listening on), but the key cannot.
-How can Alice get the key to Bob? Remember the key is the thing that tells Bob how to convert the ciphertext back to plaintext.
+How can Alice get the key to Bob?
+Remember the key is the thing that tells Bob how to convert the ciphertext back to plaintext.
 So Alice can’t include it in the encrypted message, because then Bob would be unable to access it.
 Alice can’t just include it as plaintext either, because then Eve will be able to get ahold of it and use it to decrypt any messages that come through using it.
-You might ask why Alice doesn’t just encrypt the key using a different encryption scheme, but then how will Bob know the new key? Alice would need to tell Bob the key that was used to encrypt it... and so on... this idea is definitely out!
+You might ask why Alice doesn’t just encrypt the key using a different encryption scheme, but then how will Bob know the new key?
+Alice would need to tell Bob the key that was used to encrypt it... and so on... this idea is definitely out!
 
 Remember that Alice and Bob might be in different countries, and can only communicate through the internet.
 This also rules out Alice simply passing Bob the key in person.
@@ -70,13 +72,13 @@ Some of the language may not be suitable for use in class, so discretion is need
 
 ## Public key systems
 
-One of the remarkable discoveries in computer science in the 1970s was a method called *public key encryption*, where it's fine to tell everyone what the key is to encrypt any messages, but you need a special private key to decrypt it.
+One of the remarkable discoveries in computer science in the 1970s was a method called {glossary-link term="public-key-cryptography"}public key encryption{glossary-link end}, where it's fine to tell everyone what the key is to encrypt any messages, but you need a special private key to decrypt it.
 Because Alice and Bob use different keys, this is called an *asymmetric* encryption system.
 
 It's like giving out padlocks to all your friends, so anyone can lock a box and send it to you, but if you have the only (private) key, then you are the only person who can open the boxes.
 Once your friend locks a box, even they can't unlock it.
 It's really easy to distribute the padlocks.
-Public keys are the same – you can make them completely public – often people put them on their website or attach them to all emails they send.
+Public keys are the same &ndash; you can make them completely public &ndash; often people put them on their website or attach them to all emails they send.
 That's quite different to having to hire a security firm to deliver them to your colleagues.
 
 Public key encryption is very heavily used for online commerce (such as internet banking and credit card payment) because your computer can set up a connection with the business or bank automatically using a public key system without you having to get together in advance to set up a key.
@@ -89,7 +91,7 @@ For this section on public key systems, we will use RSA as an example.
 
 Firstly, you will need to generate a pair of keys using the key generator interactive.
 You should *keep the private key secret*, and *publicly announce the public key* so that your friends can send you messages (e.g. put it on the whiteboard, or email it to some friends).
-Make sure you save your keys somewhere so you don’t forget them – a text file would be best.
+Make sure you save your keys somewhere so you don’t forget them &ndash; a text file would be best.
 
 {interactive slug="rsa-key-generator" type="in-page"}
 
@@ -151,7 +153,8 @@ If we could solve the second problem and find the multiples for a big number, we
 However, no one knows a fast way to do that.
 This is called a "trapdoor" function &ndash; it's easy to go into the trapdoor (multiply two numbers), but it's pretty much impossible to get back out (find the two factors).
 
-So why is it that despite these two problems being similar, one of them is "easy" and the other one is "hard"? Well, it comes down to the algorithms we have to solve each of the problems.
+So why is it that despite these two problems being similar, one of them is "easy" and the other one is "hard"?
+Well, it comes down to the algorithms we have to solve each of the problems.
 
 You have probably done long multiplication in school by making one line for each digit in the second number and then adding all the rows together.
 We can analyse the speed of this algorithm, much like we did in the algorithms chapter for sorting and searching.
@@ -161,19 +164,22 @@ That gives us \(n \times n\) little multiplications.
 We need to add the \(n\) rows together at the end as well, but that doesn’t take long so lets ignore that part.
 We have determined that the number of small multiplications needed to multiply two big numbers is approximately the square of the number of digits.
 So for two numbers with 1000 digits, that’s 1,000,000 little multiplication operations.
-A computer can do that in less than a second! If you know about Big-O notation, this is an \( O(n^2) \) algorithm, where \(n\) is the number of digits.
+A computer can do that in less than a second!
+If you know about {glossary-link term="big-o"}Big-O notation{glossary-link end}, this is an \( O(n^2) \) algorithm, where \(n\) is the number of digits.
 Note that some slightly better algorithms have been designed, but this estimate is good enough for our purposes.
 
 For the second problem, we’d need an algorithm that could find the two numbers that were multiplied together.
-You might initially say, why can’t we just reverse the multiplication? The reverse of multiplication is division, so can’t we just divide to get the two numbers?
+You might initially say, why can’t we just reverse the multiplication?
+The reverse of multiplication is division, so can’t we just divide to get the two numbers?
 It’s a good idea, but it won’t work.
 For division we need to know the big number, and one of the small numbers we want to divide into it, and that will give us the other small number.
 But in this case, we *only* know the big number.
 So it isn’t a straightforward long division problem at all!
 It turns out that there is no known fast algorithm to solve the problem.
-One way is to just try dividing by every number that is less than the number (well, we only need to go up to the square root, but that doesn’t help much!) There are still billions of billions of billions of numbers we need to check.
+One way is to just try dividing by every number that is less than the number (well, we only need to go up to the square root, but that doesn’t help much!).
+There are billions of billions of billions of numbers we need to check.
 Even a computer that could check 1 billion possibilities a second isn’t going to help us much with this!
-If you know about Big-O notation, this is an \( O(10^n) \) algorithm, where n is the number of digits -- even small numbers of digits are just too much to deal with!
+If you know about Big-O notation, this is an \( O(10^n) \) algorithm, where n is the number of digits &ndash; even small numbers of digits are just too much to deal with!
 There are slightly better solutions, but none of them shave off enough time to actually be useful for problems of the size of the one above!
 
 The chapter on [complexity and tractability]('chapters:chapter' 'complexity-and-tractability') looks at more computer science problems that are surprisingly challenging to solve.
