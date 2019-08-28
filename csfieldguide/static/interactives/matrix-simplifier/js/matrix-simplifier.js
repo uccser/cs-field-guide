@@ -7,10 +7,9 @@ const ROW_TEMPLATE = "%s & %s & %s";
 const MATRIX_TEMPLATE = "\\begin{bmatrix} %s \\\\ %s \\\\ %s \\end{bmatrix}";
 const EXPANDED_ROW_TEMPLATE = "%sx + %sy + %sz";
 
-
 /**
  * Below is adapted from https://mathjs.org/examples/browser/angle_configuration.html.html
- * This is used to configure mathjs to use degrees for trig functions.
+ * This is used to configure mathjs to accept degrees as input for trig functions.
  */
 
 let replacements = {};
@@ -44,19 +43,19 @@ fns1.forEach(function(name) {
 mathjs.import(replacements, {override: true});
 /////////////////////////////// End of adapted file ///////////////////////////////
 
-
+// matrices and vector that will appear onload
 m1 = mathjs.matrix([
   [mathjs.cos(45),0,mathjs.sin(45)],
   [0,1,0],
   [-mathjs.sin(45),0,mathjs.cos(45)]
 ]);
 m2 = mathjs.matrix([[10,0,0],[0,10,0],[0,0,10]]);
-
 v1 = mathjs.matrix([[10], [0], [0]]);
 
 var matrices = [m1, m2];
 var vectors = [v1];
 
+// Arrays that will keep track of the order the matrices and vectors are in
 var currentMatricesOrder = [m1, m2];
 var currentVectorsOrder = [v1];
 
@@ -86,17 +85,17 @@ $(document).ready(function() {
 function addMatrix() {
   // inputs get evaluated as math
   matrixArrayMath = getMatrix(true);
-  // inputs remain as strings
+  // inputs remain as strings for display
   matrixArrayString = getMatrix(false);
-  matrix = mathjs.matrix(matrixArrayMath);
+  matrix = mathjs.matrix(matrixArrayMath); // convert to mathjs matrix so we can do caluclations
   matrices.push(matrix);
   currentMatricesOrder.push(matrix);
   matrixString = formatMatrix(matrixArrayString, ROW_TEMPLATE);
   appendInput('matrix', matrixString);
-  resetModalMatrices();
-  MathJax.Hub.Queue(["Typeset", MathJax.Hub, 'matrix-' + matrices.length]);
+  //resetModalMatrices();
+  // MathJax.Hub.Queue(["Typeset", MathJax.Hub, 'matrix-' + matrices.length]); // typeset the new matrix
   showOutput();
-  showEquations();
+  //showEquations();
 }
 
 
@@ -104,17 +103,19 @@ function addMatrix() {
  * Add a new vector to the calculation
  */
 function addVector() {
+  // inputs get evaluated as math
   vectorArrayMath = [
     [mathjs.eval($('#vector-row-0').val())],
     [mathjs.eval($('#vector-row-1').val())],
     [mathjs.eval($('#vector-row-2').val())]
   ];
+  // inputs remain as strings for display
   vectorArrayString = [
     [$('#vector-row-0').val()],
     [$('#vector-row-1').val()],
     [$('#vector-row-2').val()]
   ];
-  vector = mathjs.matrix(vectorArrayMath);
+  vector = mathjs.matrix(vectorArrayMath); // convert to mathjs matrix so we can do caluclations
   vectors.push(vector);
   currentVectorsOrder.push(vector);
   vectorString = sprintf(
@@ -124,8 +125,9 @@ function addVector() {
     vectorArrayString[2]
   );
   appendInput('vector', vectorString);
+  // MathJax.Hub.Queue(["Typeset", MathJax.Hub, 'vector-' + vectors.length]); // typeset the new matrix
   showOutput();
-  resetModalMatrices();
+  //resetModalMatrices();
 }
 
 
@@ -146,11 +148,12 @@ function appendInput(type, inputHtml) {
   if (type == 'vector') {
     $closeButton.attr('id', 'close-vector-' + vectors.length);
     $newInputDiv.attr('id', 'vector-' + vectors.length);
-    MathJax.Hub.Queue(["Typeset", MathJax.Hub, 'vector-' + vectors.length]);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, 'vector-' + vectors.length]); // typeset the new vector
   } else {
     $closeButton.attr('id', 'close-matrix-' + matrices.length);
     $newInputDiv.attr('id', 'matrix-' + matrices.length);
-    MathJax.Hub.Queue(["Typeset", MathJax.Hub, 'matrix-' + matrices.length]);
+    console.log(matrices.length);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, 'matrix-' + matrices.length]); // typeset the new matrix
   }
 }
 
@@ -222,7 +225,7 @@ function formatMatrix(matrix, rowTemplate) {
  */
 function simplifyResult(matrix, vector) {
   var result = [];
-  for (i=0; i < 3; i++) {
+  for (i = 0; i < 3; i++) {
     row = "";
     // below variables to determine whether or not to prefix with '+'
     var hasX = false;
@@ -283,6 +286,7 @@ function resetModalMatrices() {
   $('#vector-row-1').val(0);
   $('#vector-row-2').val(0);
 
+  // remove red borders on inputs that had errors and enable add button
   $('.matrix-row input').removeClass('input-error');
   $('.add-from-input').prop('disabled', false);
 }
@@ -290,7 +294,7 @@ function resetModalMatrices() {
 
 /**
  * Calculates result of matrix multiplication and vector addition.
- * Returns array containing a matrix and a vector.
+ * Returns array containing result matrix and vector.
  */
 function calculateOutput() {
   var matrixResult = mathjs.zeros(3, 3);
@@ -347,7 +351,9 @@ function addVectors(v) {
       return mathjs.add(v[0], v[1]);
     } else {
       result = mathjs.add(v[0], v[1]);
+      // remove the first vector in array
       v.shift();
+      // replace the new first element in array with result
       v[0] = result;
     }
   }
@@ -378,7 +384,7 @@ function showOutput() {
   $('#expanded-matrix').html(expandedMatrixString);
   $('#vector-copy').html(vectorString);
   $('#simplified-matrix').html(simplifiedMatrixString);
-  MathJax.Hub.Queue(["Typeset", MathJax.Hub, "output-container"]);
+  MathJax.Hub.Queue(["Typeset", MathJax.Hub, "output-container"]); // typeset calculated result
   showEquations();
 }
 
@@ -400,9 +406,11 @@ $(function() {
   drake.on('drop', (matrix, target_container, source_container, sibling) => {
     var matrixId = matrix.children[0].id;
     var matrixInfo = getEqtnInfoFromId(matrixId);
+    // matrixInfo[1] represents the order it was added in, so minus 1 to get the index.
+    // E.g matrix 3 will be at index 2
     var matrixIndex = matrixInfo[1] - 1;
 
-    var type = matrixInfo[0]; // matrix and sibling will be of same type
+    var type = matrixInfo[0]; // matrix and sibling will be of same type (can only drag and drop in same container)
     if (sibling == null) {
       // matrix has been inserted last
       if (type == 'matrix') {
@@ -411,11 +419,12 @@ $(function() {
         var siblingIndex = vectors.length - 1;
       }
     } else {
+      // Get the matrix/vector it is being swapped with
       var siblingId = sibling.children[0].id;
       var siblingInfo = getEqtnInfoFromId(siblingId);
       var siblingIndex = siblingInfo[1] - 1;  
     }
-
+    // swap
     if (type == 'matrix') {
       var tmp = currentMatricesOrder[matrixIndex];
       currentMatricesOrder[matrixIndex] = currentMatricesOrder[siblingIndex];
@@ -482,7 +491,7 @@ function getEqtnInfoFromId(id) {
  * Removes equation and updates output to match
  */
 function dismissEquation() {
-  button = $(this)[0];
+  button = $(this)[0]; // button that was clicked
   eqtnInfo = getEqtnInfoFromId(button.id);
 
   eqtnType = eqtnInfo[0]; // type
@@ -498,7 +507,6 @@ function dismissEquation() {
     currentMatricesOrder.splice(orderIndex, 1);
     // remove from original array
     matrices.splice(toRemoveIndex, 1);
-
   } else {
     // remove it from order array
     var eqtn = vectors[toRemoveIndex];
@@ -513,6 +521,7 @@ function dismissEquation() {
   showOutput();
 }
 
+
 /** Checks user input as they are typing.
  *  Highlights input box red if the input is invalid and disables the add button.
  */
@@ -520,7 +529,6 @@ function validateInput() {
   var input = $(this).val();
   var success = false;
   try {
-    console.log(mathjs.eval(input));
     inputEvaluated = mathjs.eval(input);
     mathjs.number(inputEvaluated);
     success = true;
@@ -532,6 +540,7 @@ function validateInput() {
   if (success && $(this).hasClass('input-error')) {
     $(this).removeClass('input-error');
   }
+  // if there are no input erros, enable add button
   if ($('.input-error').length == 0) {
     $('.add-from-input').prop('disabled', false);
   }
