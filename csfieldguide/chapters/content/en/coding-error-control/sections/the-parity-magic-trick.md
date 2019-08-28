@@ -5,7 +5,7 @@
 # Using the parity trick in a classroom
 
 The parity magic trick can be an intriguing introduction to the idea of error correction, and we recommend using it at the start of teaching this topic.
-You need to practise it in advance, and for high school students we recommend a grid of about 7x7 or 8x8 cards to have a good impact.
+You need to practice it in advance, and for high school students we recommend a grid of about 7x7 or 8x8 cards to have a good impact.
 Details are in the [Card flip magic section](http://csunplugged.org/error-detection) of the [CS Unplugged site](https://www.csunplugged.org/).
 
 {panel end}
@@ -25,7 +25,7 @@ Let's look more closely at that…
 
 ## Carrying out the parity trick
 
-In the interactive, the computer has a 7x7 grid of black and white cards.
+In the following interactive, the computer has a 7x7 grid of black and white cards.
 You must choose the colour of an extra card for each row (at the right) and column (at the bottom), making an 8x8 grid of cards.
 Each extra card should be chosen so that each row and column has an even number of black cards (since there are 8 cards, there will also be an even number of white cards).
 The bottom right-hand card can be chosen from either its row or column; they should both give the same colour.
@@ -78,8 +78,8 @@ You could use playing cards, but the markings can be distracting, and cards with
 
 You can find details and lots of ideas relating to the trick [here](https://www.csunplugged.org/error-detection), or follow these instructions:
 
-1. Ask a friend to lay out 25 cards in a 5 by 5 grid, trying to have a reasonably random mix of blacks and whites (this is smaller than the one in the interactive, but it is easier to have fewer cards to avoid errors in the next step!)
-2. Take all the remaining cards, and then say that actually, 5 by 5 is too easy so you are going to make it 6 by 6.
+1. Ask a friend to lay out 25 cards in a 5x5 grid, trying to have a reasonably random mix of blacks and whites (this is smaller than the one in the interactive, but it is easier to have fewer cards to avoid errors in the next step!)
+2. Take all the remaining cards, and then say that actually, 5x5 is too easy so you are going to make it 6x6.
   Instead of adding the new row and column randomly though, you are adding them in the way you did in the interactive (even parity).
   Do this as fast as you can without making errors (it can look very casual if you practise this, even though the cards are being carefully selected).
 3. Tell your friend that you are going to face the other way, and you want them to flip over one card while you are not looking. Check that they've flipped exactly one card.
@@ -112,9 +112,7 @@ The remainder of this section is focussed on exploring further ideas in error co
 
 It would be ideal to have some physical parity cards at this point that you can layout in front of you and play around with to explore the questions raised.
 
-{comment could we provide an interactive that was just a parity trick sandbox? - Done, need to add}
-
-An error control coding algorithm can often detect errors more easily than it can correct them.
+An error control coding {glossary-link term="algorithm"}algorithm{glossary-link end} can often detect errors more easily than it can correct them.
 Errors involving multiple bits can sometimes even go undetected.
 What if the computer (or your friend if you were being a magician with actual parity cards) had been sneaky and turned over two cards instead of one?
 You could start by getting a friend or classmate to actually do this.
@@ -148,8 +146,8 @@ In what situations do errors go undetected (think when you have multiple errors,
 With only one extra card for parity checking, a single bit error can be detected (the total number of black cards will become odd), but a 2-bit error won't be detected because the number of black cards will be even again.
 A 3-bit error will be detected, but in general the system isn't very reliable.
 
-So going back to the actual parity trick that has the 7 by 7 grid, and 15 parity cards to make it 8 by 8, it is interesting to note  that only 1 extra card was needed to detect that an error had occurred, but an extra 15 cards were needed to be able to correct the error.
-In terms of the cost of an algorithm, it costs a lot more space to be able to correct errors than it does to be able to simply detect them!
+So going back to the actual parity trick that has the 7x7 grid, and 15 parity cards to make it 8x8, it is interesting to note that only 1 extra card was needed to detect that an error had occurred, but an extra 15 cards were needed to be able to correct the error.
+In terms of the {glossary-link term="cost"}cost{glossary-link end} of an algorithm, it costs a lot more space to be able to correct errors than it does to be able to simply detect them!
 
 What happens when you use grids of different sizes?
 The grid doesn’t have to have an even number of black cards *and* an even number of white cards, it just happens that whenever you have an even number sized grid with the parity bits added (e.g. the 8x8 we have mostly used in this section) and you have an even number of black cards, you will also have to have an even number of whites, which makes it a bit easier to keep track of.
