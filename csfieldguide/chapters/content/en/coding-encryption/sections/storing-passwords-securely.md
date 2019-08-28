@@ -25,7 +25,7 @@ Learning about password storage might also help you to understand the importance
 
 ## Hashing passwords
 
-A {glossary-link term="hash-function"}hashing algorithm{glossary-link end} is an {glossary-link term="algorithm"}algorithm{glossary-link end} that takes a password and performs complex computations on it and then outputs a seemingly random string of characters called a *hash*.
+A {glossary-link term="hash-function"}hashing algorithm{glossary-link end} is an {glossary-link term="algorithm"}algorithm{glossary-link end} that takes a password and performs complex computations on it and then outputs a seemingly random {glossary-link term="string"}string{glossary-link end} of characters called a *hash*.
 This process is called *hashing*.
 Good hashing algorithms have the following properties:
 

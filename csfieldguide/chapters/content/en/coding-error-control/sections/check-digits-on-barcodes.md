@@ -1,12 +1,12 @@
 # Check digits on barcodes and other numbers
 
-You probably wouldn’t be very happy if you bought a book online by entering the ISBN (International Standard Book Number), and the wrong book was sent to you, or if a few days after you ordered it, you got an email saying that the credit card number you entered was not yours, but was instead one that was one digit different and another credit card holder had complained about a false charge.
+You probably wouldn’t be very happy if you bought a book online by entering the {glossary-link term="isbn"}ISBN{glossary-link end}, and the wrong book was sent to you, or if a few days after you ordered it, you got an email saying that the credit card number you entered was not yours, but was instead one that was one digit different and another credit card holder had complained about a false charge.
 Or if you went to the shop to buy a can of drink and the scanner read it as being a more expensive product.
 Sometimes, the scanner won’t even read the barcode at all, and the checkout operator has to manually enter the number into the computer &ndash; but if they don't enter it exactly as it is on the barcode you could end up being charged for the wrong product.
 These are all examples of situations that error control coding can help prevent.
 
 Barcode numbers, credit card numbers, bank account numbers, ISBNs, national health and social security numbers, shipping labels (serial shipping container codes, or SSCC) and tax numbers all have error control coding in them to help reduce the chance of errors.
-The last digit in each of these numbers is a check digit, which is obtained doing a special calculation on all the other digits in the number.
+The last digit in each of these numbers is a {glossary-link term="check-digit"}check digit{glossary-link end}, which is obtained by doing a special {glossary-link term="check-equation"}calculation{glossary-link end} on all the other digits in the number.
 If, for example, you enter your credit card number into a web form to buy something, it will calculate what the 16th digit should be, using the first 15 digits and the special calculation (there are 16 digits in a credit card number).
 If the 16th digit that it expected is not the one you entered, it can tell that there was an error made when the number was entered and will notify you that the credit card number is not valid.
 

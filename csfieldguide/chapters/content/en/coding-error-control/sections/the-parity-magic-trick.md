@@ -47,7 +47,7 @@ Remember how you made it so that each column had an even number of black cards?
 When a card is flipped, this results in the row and column that the card was in having an odd number of black cards.
 So all you need to do is to identify the row and column that have an odd number of black and white cards, and the card that is at the intersection of them must be the one that was flipped!
 
-What we saw above is a simple error control coding algorithm, known as *2-dimensional parity*.
+What we saw above is a simple error control coding {glossary-link term="algorithm"}algorithm{glossary-link end}, known as 2-dimensional {glossary-link term="parity"}parity{glossary-link end}.
 
 ## How does the parity trick relate to error control coding?
 
@@ -112,7 +112,7 @@ The remainder of this section is focussed on exploring further ideas in error co
 
 It would be ideal to have some physical parity cards at this point that you can layout in front of you and play around with to explore the questions raised.
 
-An error control coding {glossary-link term="algorithm"}algorithm{glossary-link end} can often detect errors more easily than it can correct them.
+An error control coding algorithm can often detect errors more easily than it can correct them.
 Errors involving multiple bits can sometimes even go undetected.
 What if the computer (or your friend if you were being a magician with actual parity cards) had been sneaky and turned over two cards instead of one?
 You could start by getting a friend or classmate to actually do this.
