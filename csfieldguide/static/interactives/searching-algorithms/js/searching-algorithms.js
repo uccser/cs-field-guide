@@ -65,8 +65,8 @@ function setInterfaceParameters(url_string) {
         console.log('Start level paramater cannot be less than 0. Reverting to default.');
         start_level = min_level;
     }
-    if (end_level > max_level) {
-        console.log('Start level paramater invalid. Reverting to default.');
+    if (end_level > max_level || end_level == null) {
+        console.log('End level paramater invalid. Reverting to default.');
         end_level = max_level;
     }
     if (start_level != null && end_level != null) {
