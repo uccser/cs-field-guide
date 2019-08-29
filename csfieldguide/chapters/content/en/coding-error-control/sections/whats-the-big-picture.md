@@ -8,7 +8,7 @@ Errors can also occur when numbers are typed in, such as entering a bank account
 A barcode on a product might be slightly scratched or have a black mark on it, or perhaps the package is bent or is unable to be read properly due to the scanner being waved too fast over it.
 Bits getting changed on permanent storage (such as hard drives, optical disks, and solid state drives) is sometimes referred to as data rot, and the [wikipedia page on bit rot](https://en.wikipedia.org/wiki/Data_degradation) has a list of more ways that these errors can occur.
 
-Nobody wants a computer that is unreliable and won’t do what it's supposed to do in a real-world scenario!
+Nobody wants a computer that is unreliable and won’t do what it's supposed to do because of bits being changed!
 So, how can we deal with these problems?
 
 Error control coding is concerned with {glossary-link term="error-detection"}detecting{glossary-link end} when these errors occur and, if possible, {glossary-link term="error-correction"}correcting{glossary-link end} the data to what it is supposed to be.
