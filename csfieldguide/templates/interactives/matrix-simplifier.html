@@ -12,10 +12,10 @@
         <h5>{% trans "Matrices" %}</h5>
         <div id="matrix-input-container" class="containers">
           <div class="draggable content border rounded m-1 center-block">
-            <button id="close-matrix-1" type="button" class="close dismiss-eqtn" aria-label="Close">
+            <button id="close-matrix-0" type="button" class="close dismiss-eqtn" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
-            <div id="matrix-1" class="matrix invisible">
+            <div id="matrix-0" class="matrix invisible" data-matrix-order=0>
               \[
                 \begin{bmatrix}
                 cos(45)   &  0  &  sin(45) \\
@@ -27,10 +27,10 @@
           </div>
       
           <div class="draggable content border rounded m-1 center-block">
-            <button id="close-matrix-2" type="button" class="close dismiss-eqtn" aria-label="Close">
+            <button id="close-matrix-1" type="button" class="close dismiss-eqtn" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
-            <div id="matrix-2" class="matrix invisible">
+            <div id="matrix-1" class="matrix invisible" data-matrix-order=1>
               \[
                 \begin{bmatrix}
                 10  &  0  &  0 \\
@@ -48,10 +48,10 @@
         <h5>{% trans "Vectors" %}</h5>
         <div id="vector-input-container" class="containers">
           <div class="draggable content border rounded m-1 center-block">
-            <button id="close-vector-1" type="button" class="close dismiss-eqtn" aria-label="Close">
+            <button id="close-vector-0" type="button" class="close dismiss-eqtn" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
-            <div id="vector-1" class="vector invisible">
+            <div id="vector-0" class="vector invisible" data-vector-order=0>
               \[
                 \begin{bmatrix}
                 10 \\

@@ -92,10 +92,7 @@ function addMatrix() {
   currentMatricesOrder.push(matrix);
   matrixString = formatMatrix(matrixArrayString, ROW_TEMPLATE);
   appendInput('matrix', matrixString);
-  //resetModalMatrices();
-  // MathJax.Hub.Queue(["Typeset", MathJax.Hub, 'matrix-' + matrices.length]); // typeset the new matrix
   showOutput();
-  //showEquations();
 }
 
 
@@ -125,9 +122,7 @@ function addVector() {
     vectorArrayString[2]
   );
   appendInput('vector', vectorString);
-  // MathJax.Hub.Queue(["Typeset", MathJax.Hub, 'vector-' + vectors.length]); // typeset the new matrix
   showOutput();
-  //resetModalMatrices();
 }
 
 
@@ -146,14 +141,17 @@ function appendInput(type, inputHtml) {
   // add event handler for close button
   $closeButton.click(dismissEquation);
   if (type == 'vector') {
-    $closeButton.attr('id', 'close-vector-' + vectors.length);
-    $newInputDiv.attr('id', 'vector-' + vectors.length);
-    MathJax.Hub.Queue(["Typeset", MathJax.Hub, 'vector-' + vectors.length]); // typeset the new vector
+    var vectorNum = vectors.length - 1;
+    $closeButton.attr('id', 'close-vector-' + vectorNum);
+    $newInputDiv.attr('id', 'vector-' + vectorNum);
+    $newInputDiv.attr('data-vector-order', currentVectorsOrder.length - 1);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, 'vector-' + vectorNum]); // typeset the new vector
   } else {
-    $closeButton.attr('id', 'close-matrix-' + matrices.length);
-    $newInputDiv.attr('id', 'matrix-' + matrices.length);
-    console.log(matrices.length);
-    MathJax.Hub.Queue(["Typeset", MathJax.Hub, 'matrix-' + matrices.length]); // typeset the new matrix
+    var matrixNum = matrices.length - 1;
+    $closeButton.attr('id', 'close-matrix-' + matrixNum);
+    $newInputDiv.attr('id', 'matrix-' + matrixNum);
+    $newInputDiv.attr('data-matrix-order', currentMatricesOrder.length - 1);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, 'matrix-' + matrixNum]); // typeset the new matrix
   }
 }
 
@@ -403,37 +401,46 @@ $(function() {
   drake.on('drag', function(el, source) {
     scrollable = false;
   });
-  drake.on('drop', (matrix, target_container, source_container, sibling) => {
-    var matrixId = matrix.children[0].id;
-    var matrixInfo = getEqtnInfoFromId(matrixId);
-    // matrixInfo[1] represents the order it was added in, so minus 1 to get the index.
-    // E.g matrix 3 will be at index 2
-    var matrixIndex = matrixInfo[1] - 1;
-
-    var type = matrixInfo[0]; // matrix and sibling will be of same type (can only drag and drop in same container)
+  drake.on('drop', (eqtn, target_container, source_container, sibling) => {
+    var eqtnDiv = $(eqtn.children[1]);
     if (sibling == null) {
-      // matrix has been inserted last
-      if (type == 'matrix') {
-        var siblingIndex = matrices.length - 1;
+      // eqtn has been inserted last
+      if (eqtnDiv.hasClass('matrix')) {
+        var siblingOrder = currentMatricesOrder.length - 1; // because it's last in order
+        var siblingDiv = $("div").find("[data-matrix-order='" + siblingOrder + "']");
       } else {
-        var siblingIndex = vectors.length - 1;
+        var siblingOrder = currentVectorsOrder.length - 1; // because it's last in order
+        var siblingDiv = $("div").find("[data-vector-order='" + siblingOrder + "']");
       }
     } else {
       // Get the matrix/vector it is being swapped with
-      var siblingId = sibling.children[0].id;
-      var siblingInfo = getEqtnInfoFromId(siblingId);
-      var siblingIndex = siblingInfo[1] - 1;  
+      var siblingDiv = $(sibling.children[1]);
+      if (eqtnDiv.hasClass('matrix')) {
+        var siblingOrder = siblingDiv.attr('data-matrix-order');
+      } else {
+        var siblingOrder = siblingDiv.attr('data-vector-order');
+      }
     }
     // swap
-    if (type == 'matrix') {
-      var tmp = currentMatricesOrder[matrixIndex];
-      currentMatricesOrder[matrixIndex] = currentMatricesOrder[siblingIndex];
-      currentMatricesOrder[siblingIndex] = tmp;
+    if (eqtnDiv.hasClass('matrix')) {
+      var matrixOrder = eqtnDiv.attr('data-matrix-order');
+
+      var tmp = currentMatricesOrder[matrixOrder];
+      currentMatricesOrder[matrixOrder] = currentMatricesOrder[siblingOrder];
+      currentMatricesOrder[siblingOrder] = tmp;
+      // swap data-order attributes
+      eqtnDiv.attr('data-matrix-order', siblingOrder);
+      siblingDiv.attr('data-matrix-order', matrixOrder);
     } else {
       // vector
-      var tmp = currentVectorsOrder[matrixIndex];
-      currentVectorsOrder[matrixIndex] = currentVectorsOrder[siblingIndex];
-      currentVectorsOrder[siblingIndex] = tmp;
+      var vectorOrder = eqtnDiv.attr('data-vector-order');
+
+      var tmp = currentVectorsOrder[vectorOrder];
+      currentVectorsOrder[vectorOrder] = currentVectorsOrder[siblingOrder];
+      currentVectorsOrder[siblingOrder] = tmp;
+      // swap data-order attributes
+      eqtnDiv.attr('data-vector-order', siblingOrder);
+      siblingDiv.attr('data-vector-order', matrixOrder);
     }
     showOutput();
     scrollable = true;
@@ -473,50 +480,39 @@ function showEquations() {
 
 
 /**
- * Gets the type of equation (matrix or vector) and the equation number.
- * The equation number represents the order it was added in.
- * E.g the third matrix added will be number 3, the second vector added will be number 2 etc.
- */
-function getEqtnInfoFromId(id) {
-  // id is of form close-matrix-1 or close-vector-1.
-  // split by '-' and get the type (matrix or vector) and number.
-  idSplit = id.split('-');
-  eqtnType = idSplit[1]; // get type
-  eqtnNum = Number(idSplit[2]); // get the number
-  return [eqtnType, eqtnNum];
-}
-
-
-/**
  * Removes equation and updates output to match
  */
 function dismissEquation() {
-  button = $(this)[0]; // button that was clicked
-  eqtnInfo = getEqtnInfoFromId(button.id);
-
-  eqtnType = eqtnInfo[0]; // type
-  eqtnNum = eqtnInfo[1]; // number of button that was clicked
-
-  // eqtnNum identifies the equation to remove, minus one to convert to an index so we can remove it from the array
-  toRemoveIndex = eqtnNum - 1;
-  // remove from appropriate array
-  if (eqtnType == 'matrix') {
-    // remove it from order array
-    var eqtn = matrices[toRemoveIndex];
-    var orderIndex = currentMatricesOrder.indexOf(eqtn); // find index
+  eqtnToRemove = $(this).next(); // div of matrix/vector to remove
+  if (eqtnToRemove.hasClass('matrix')) {
+    orderIndex = eqtnToRemove.attr('data-matrix-order');
+    // remove from order array
     currentMatricesOrder.splice(orderIndex, 1);
-    // remove from original array
-    matrices.splice(toRemoveIndex, 1);
-  } else {
-    // remove it from order array
-    var eqtn = vectors[toRemoveIndex];
-    var orderIndex = currentVectorsOrder.indexOf(eqtn); // find index
+    // remove DOM element
+    eqtnToRemove.parent().remove();
+    // update data-order attributes
+    $('div[data-matrix-order]').each(function() {
+      order = $(this).data('matrix-order');
+      if (order > orderIndex) {
+        order = order - 1;
+        $(this).attr('data-matrix-order', order);
+      }
+    });
+  } else { //vector
+    orderIndex = eqtnToRemove.attr('data-vector-order');
+    // remove from order array
     currentVectorsOrder.splice(orderIndex, 1);
-    // remove from original array
-    vectors.splice(toRemoveIndex, 1);
+    // remove DOM element
+    eqtnToRemove.parent().remove();
+    // update data-order attributes
+    $('div[data-vector-order]').each(function() {
+      order = $(this).data('vector-order');
+      if (order > orderIndex) {
+        order = order - 1;
+        $(this).attr('data-vector-order', order);
+      }
+    });
   }
-  // remove DOM element
-  $(this)[0].parentNode.remove();
   // re-calculate and show output
   showOutput();
 }
