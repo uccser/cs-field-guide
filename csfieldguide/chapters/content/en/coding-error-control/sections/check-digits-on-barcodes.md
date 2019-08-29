@@ -6,7 +6,7 @@ Sometimes, the scanner won’t even read the barcode at all, and the checkout op
 These are all examples of situations that error control coding can help prevent.
 
 Barcode numbers, credit card numbers, bank account numbers, ISBNs, national health and social security numbers, shipping labels (serial shipping container codes, or SSCC) and tax numbers all have error control coding in them to help reduce the chance of errors.
-The last digit in each of these numbers is a {glossary-link term="check-digit"}check digit{glossary-link end}, which is obtained by doing a special {glossary-link term="check-equation"}calculation{glossary-link end} on all the other digits in the number.
+The last digit in each of these numbers is a {glossary-link term="check-digit"}check digit{glossary-link end}, which is obtained by doing a special calculation on all the other digits in the number.
 If, for example, you enter your credit card number into a web form to buy something, it will calculate what the 16th digit should be, using the first 15 digits and the special calculation (there are 16 digits in a credit card number).
 If the 16th digit that it expected is not the one you entered, it can tell that there was an error made when the number was entered and will notify you that the credit card number is not valid.
 
