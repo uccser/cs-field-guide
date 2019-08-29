@@ -1,0 +1,16 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/scene-editor/css/scene-editor.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script src="https://threejs.org/build/three.js"></script>
+  <script type="text/javascript" src="{% static 'interactives/scene-editor/js/scene-editor.js' %}"></script>
+{% endblock js %}

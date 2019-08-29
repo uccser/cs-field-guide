@@ -144,6 +144,8 @@ rsa-no-padding:
   name: RSA No Padding
 run-length-encoding:
   name: Run Length Encoding
+scene-editor:
+  name: Scene Editor
 searching-algorithms:
   name: Searching Algorithms
 sha2:

@@ -1,0 +1,8 @@
+{
+    "name": "csfg-interactive-scene-editor",
+    "version": "1.0.0",
+    "private": true,
+    "dependencies": {
+        "three": "0.108.0"
+    }
+}

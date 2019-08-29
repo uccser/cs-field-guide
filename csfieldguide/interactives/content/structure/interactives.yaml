@@ -323,6 +323,10 @@ run-length-encoding:
   languages:
     en: interactives/run-length-encoding.html
   is_interactive: true
+scene-editor:
+  languages:
+    en: interactives/scene-editor.html
+  is_interactive: true
 searching-algorithms:
   languages:
     en: interactives/searching-algorithms.html
