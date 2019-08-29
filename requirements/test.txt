@@ -2,10 +2,10 @@
 
 # Check Python style
 flake8==3.7.8
-pydocstyle==4.0.0
+pydocstyle==4.0.1
 
 #Coverage Tools
-coverage==4.5.3
+coverage==4.5.4
 
 # Skip migration files for local testing
 django-test-without-migrations==0.6

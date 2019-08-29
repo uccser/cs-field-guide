@@ -8,16 +8,17 @@
     <div class="row text-center">
       <div class="col-12">
         <div id="interactive-regular-expression-filter">
-          <h3>{% trans "Word Filter" %}</h3>
+          <h3>{% trans "Regular Expression Filter" %}</h3>
 
           <button id="interactive-regular-expression-filter-load" class="btn btn-primary">{% trans "Load word file (2.8MB)" %}</button>
+          <button id="interactive-regular-expression-filter-load-more" class="btn btn-sm btn-primary d-none">{% trans 'Load more' %}</button>
 
-          <div id="interactive-regular-expression-filter-loading-progress">
-            <h6>{% trans "Loading word file - may take longer than 10 seconds." %}</h6>
+          <div id="interactive-regular-expression-filter-loading">
+            <h6>{% trans "Loading word file..." %}</h6>
           </div>
 
           <div class="row justify-content-center">
-            <div class="col-6"  id="interactive-regular-expression-filter-controls">
+            <div class="col-8"  id="interactive-regular-expression-filter-controls">
               <h5>{% trans "Regular Expression" %}</h5>
               <input id="interactive-regular-expression-filter-regex" type="text" placeholder="Enter expression here" class="form-control mb-2">
               <button id="interactive-regular-expression-filter-filter" class="btn btn-primary btn-expand">{% trans "Filter words" %}</button>
@@ -25,7 +26,7 @@
               <p id="interactive-regular-expression-filter-feedback"></p>
             </div>
 
-            <div class="col-3">
+            <div class="col-6">
               <p id="interactive-regular-expression-filter-words" class="text-left">
               </p>
             </div>
