@@ -1,6 +1,6 @@
 # Cryptosystems used in practice
 
-The substitution systems described above don't provide any security for modern digital systems.
+The substitution systems described before don't provide any security for modern digital systems.
 In the remainder of this chapter we will look at encryption systems that are used in practice.
 The first challenge is to find a way to exchange keys &ndash; after all, if you're communicating to someone over the internet, how are you going to send the key for your secret message to them conveniently?
 
