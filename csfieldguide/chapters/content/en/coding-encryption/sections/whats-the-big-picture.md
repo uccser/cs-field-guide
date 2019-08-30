@@ -1,7 +1,7 @@
 # What's the big picture?
 
-An encryption system often consists of two computer programs: one to *encrypt* some data (referred to as *plaintext*) into a form that looks like nonsense (the *ciphertext*), and a second program that can *decrypt* the ciphertext back into the plaintext form.
-The encryption and decryption is carried out using some very clever math on the text with a chosen *key*.
+An encryption system often consists of two computer programs: one to *encrypt* some data (referred to as {glossary-link term="plaintext"}plaintext{glossary-link end}) into a form that looks like nonsense (the {glossary-link term="ciphertext"}ciphertext{glossary-link end}), and a second program that can *decrypt* the ciphertext back into the plaintext form.
+The encryption and decryption is carried out using some very clever math on the text with a chosen {glossary-link term="encryption-key"}key{glossary-link end}.
 You will learn more about these concepts shortly.
 
 Of course, we wouldn't need encryption if we lived in a world where everyone was honest and could be trusted, and it was ok for anyone to have access to all your personal information such as health records, online discussions, bank accounts and so on, and if you knew that no-one would interfere with things like aircraft control systems and computer controlled weapons.
