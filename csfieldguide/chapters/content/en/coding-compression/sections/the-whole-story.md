@@ -1,9 +1,8 @@
 # The whole story!
 
-The details of how compression systems work have been glossed over in this chapter, as we have been more concerned about the file sizes and speed of the methods than how they work.
-Most compression systems are variations of the ideas that have been covered here, although one fundamental method that we haven't mentioned is Huffman coding, which turns out to be useful as the final stage of *all* of the above methods, and is often one of the first topics mentioned in textbooks discussing compression (there's a brief [explanation of it here](http://www.cimt.org.uk/resources/codes/codes_u17_text.pdf)).
+The details of how several compression systems work have been glossed over in this chapter, as we have been more concerned about the file sizes and speed of the methods than how they work.
 A closely related system is Arithmetic coding (there's an [explanation of it here](http://www.cimt.org.uk/resources/codes/codes_u18_text.pdf)).
-Also, video compression has been omitted, even though compressing videos saves more space than most kinds of compression.
+Also, video compression has been mentioned only briefly, even though compressing videos saves more space than most kinds of compression.
 Most video compression is based on the "MPEG" standard (Moving Pictures Experts Group).
 There is some information about how this works in the [CS4FN article on "Movie Magic"](http://www.cs4fn.org/films/mpegit.php).
 

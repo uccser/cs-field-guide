@@ -1,6 +1,6 @@
 # Substitution ciphers
 
-A substitution cipher takes each character (sometimes groups of characters) in a message and replaces it with a different character according to fixed rules.
+A {glossary-link term="substitution-cipher"}substitution cipher{glossary-link end} takes each {glossary-link term="character"}character{glossary-link end} (sometimes groups of characters) in a message and replaces it with a different character according to fixed rules.
 Every occurrence of one character will be *substituted* with the same replacement character.
 
 An encrypted message can then be decrypted with another substitution cipher, this time set to substitute each character with the one that it originally replaced.
@@ -110,7 +110,7 @@ We'll assume that the only way to open the box is to work out the combination nu
 The combination number is the *key* for the box.
 If it's a three-digit lock, you'll only have 1000 values to try out, which might not take too long.
 A four-digit lock has 10 times as many values to try out, so is way more secure.
-Of course, there may be ways to reduce the amount of work required - for example, if you know that the person who locked it never has a correct digit showing, then you only have 9 digits to guess for each place, rather than 10, which would take less than three quarters of the time!
+Of course, there may be ways to reduce the amount of work required &ndash; for example, if you know that the person who locked it never has a correct digit showing, then you only have 9 digits to guess for each place, rather than 10, which would take less than three quarters of the time!
 
 {panel end}
 
@@ -235,7 +235,7 @@ DOMN UHINBYL LUHXIG GYMMUAY NI YHWLSJN
 Note that if students subtracted instead of added, or used the interactive incorrectly, then they will get the wrong answer.
 
 For the second challenge, the answer is hopefully obvious to the students.
-Using a key of 26 makes the plaintext and the ciphertext the same – the equivalent of not using encryption at all!
+Using a key of 26 makes the plaintext and the ciphertext the same &ndash; the equivalent of not using encryption at all!
 
 {panel end}
 
@@ -286,7 +286,7 @@ Understanding various common attacks on ciphers is important when looking at sop
 
 ### Frequency analysis attacks
 
-Frequency analysis means looking at how many times each letter appears in the encrypted message, and using this information to crack the code.
+A {glossary-link term="frequency-analysis-attack"}frequency analysis attack{glossary-link end} involves looking at how many times each letter appears in the encrypted message, and using this information to crack the code.
 A letter that appears many times in a message is far more likely to be "T" than "Z", for example.
 
 The following interactive will help you analyze a piece of text by counting up the letter frequencies.
@@ -440,7 +440,7 @@ The Vigenere cipher is known as a *polyalphabetic substitution cipher*, since it
 
 ### Known plaintext attacks
 
-Another kind of attack is the *known plaintext* attack, where you know part or all of the solution.
+Another kind of attack is the {glossary-link term="known-plaintext-attack"}known plaintext attack{glossary-link end}, where you know part or all of the solution.
 For example, if you know that I start all my messages with "HI THERE", you can easily determine the key for the following message.
 
 ```text
@@ -485,7 +485,7 @@ It may initially sound impossible to achieve this, although there are several cl
 
 While Caesar cipher has a key specifying a rotation, a more general substitution cipher could randomly scramble the entire alphabet.
 This requires a key consisting of a sequence of 26 letters or numbers, specifying which letter maps onto each other one.
-For example, the first part of the key could be "D, Z, E", which would mean D: A, Z: B, E:C.
+For example, the first part of the key could be "D, Z, E", which would mean D: A, Z: B, E: C.
 The key would have to have another 23 letters in order to specify the rest of the mapping.
 
 This increases the number of possible keys, and thus reduces the risk of a brute force attack.
@@ -509,7 +509,7 @@ For this reason, we need better ciphers in practice, which we will look at short
 
 ### Brute force attacks
 
-Another approach to cracking a ciphertext is a *brute force attack*, which involves trying out all possible keys, and seeing if any of them produce intelligible text.
+Another approach to cracking a ciphertext is a {glossary-link term="brute-force-attack"}brute force attack{glossary-link end}, which involves trying out all possible keys, and seeing if any of them produce intelligible text.
 This is easy for a Caesar cipher because there are only 25 possible keys.
 For example, the following ciphertext is a single word, but is too short for a statistical attack.
 Try putting it into the decoder above, and trying keys until you decipher it.
@@ -528,7 +528,7 @@ The word is "ostentatious", and has been coded by shifting 16 letters to the rig
 
 These days encryption keys are normally numbers that are 128 bits or longer.
 You could calculate how long it would take to try out every possible 128 bit number if a computer could test a million every second (including testing if each decoded text contains English words).
-It will eventually crack the message, but after the amount of time it would take, it's unlikely to be useful anymore – and the user of the key has probably changed it!
+It will eventually crack the message, but after the amount of time it would take, it's unlikely to be useful anymore &ndash; and the user of the key has probably changed it!
 
 In fact, if we analyse it, a 128 bit key at 1,000,000 per second would take 10,790,283,070,000,000,000,000,000 years to test.
 Of course, it might find something in the first year, but the chances of that are ridiculously low, and it would be more realistic to hope to win the top prize in Lotto three times consecutively (and you'd probably get more money).
@@ -538,11 +538,13 @@ Even if you could get one million of those computers (even more unrealistic in p
 
 And even if you did have the hardware that was considered above, then people would start using bigger keys.
 Every bit added to the key will double the number of years required to guess it.
-Just adding an extra 15 or 20 bits to the key in the above example will safely push the time required back to well beyond the expected life span of the Earth and Sun! This is how real cryptosystems protect themselves from brute force attacks.
+Just adding an extra 15 or 20 bits to the key in the above example will safely push the time required back to well beyond the expected life span of the Earth and Sun!
+This is how real cryptosystems protect themselves from brute force attacks.
 Cryptography relies a lot on low probabilities of success.
 
 The calculator below can handle really big numbers.
-You can double check our calculations above if you want! Also, work out what would happen if the key size was double (i.e. 256 bits), or if a 1024 or 2048 bit key (common these days) was used.
+You can double check our calculations above if you want!
+Also, work out what would happen if the key size was double (i.e. 256 bits), or if a 1024 or 2048 bit key (common these days) was used.
 
 {interactive slug="big-number-calculator" type="in-page"}
 
@@ -553,10 +555,8 @@ You can double check our calculations above if you want! Also, work out what wou
 Brute force attacks try out every possible key, and the number of possible keys grows *exponentially* as the key gets longer.
 As we saw above, no modern computer system could try out all possible 128 bit key values in a useful amount of time, and even if it were possible, adding just one more bit would double how long it would take.
 
-In computer science, problems that take an exponential amount of time to solve are generally regarded as not being
-{glossary-link term="tractable" reference-text="encryption"}tractable{glossary-link end}
-— that is, you can't get any traction on them; it's as if you're spinning your wheels.
-Working out which problems are tractable and which are intractable is a major area of research in computer science — many other problems that we care about appear to be intractable, much to our frustration.
+In computer science, problems that take an exponential amount of time to solve are generally regarded as not being {glossary-link term="tractable" reference-text="encryption"}tractable{glossary-link end} &ndash; that is, you can't get any traction on them; it's as if you're spinning your wheels.
+Working out which problems are tractable and which are intractable is a major area of research in computer science &ndash; many other problems that we care about appear to be intractable, much to our frustration.
 The area of encryption is one of the few situations where we're pleased that an algorithm is intractible!
 
 This guide has a [whole chapter about tractability]('chapters:chapter' 'complexity-and-tractability'), where you can explore these issues further.
@@ -567,8 +567,8 @@ This guide has a [whole chapter about tractability]('chapters:chapter' 'complexi
 
 # Terminology you should now be familiar with
 
-The main terminology you should be familiar with now is that a *plaintext* is *encrypted* by a *cipher* to create a *ciphertext* using an *encryption key*.
-Someone without the encryption key who wants to *attack* the cipher could try various approaches, including a *brute force attack* (trying out all possible keys), a *frequency analysis attack* (looking for statistical patterns), and a *known plaintext attack* (matching some known text with the cipher to work out the key).
+The main terminology you should be familiar with now is that a {glossary-link term="plaintext"}plaintext{glossary-link end} is {glossary-link term="encryption"}encrypted{glossary-link end} by a {glossary-link term="cipher"}cipher{glossary-link end} with an {glossary-link term="encryption-key"}encryption key{glossary-link end} to create {glossary-link term="ciphertext"}ciphertext{glossary-link end}.
+Someone without the encryption key who wants to {glossary-link term="attack"}attack{glossary-link end} the cipher could try various approaches, including a {glossary-link term="brute-force-attack"}brute force attack{glossary-link end} (trying out all possible keys), a {glossary-link term="frequency-analysis-attack"}frequency analysis attack{glossary-link end} (looking for statistical patterns), and a {glossary-link term="known-plaintext-attack"}known plaintext attack{glossary-link end} (matching some known text with the cipher to work out the key).
 
 If you were given an example of a simple cipher being used, you should be able to talk about it using the proper terminology.
 
