@@ -4,7 +4,7 @@
 
 {comment image from http://csunplugged.org/information-theory/}
 
-The idea of encoding data to make the representation more compact, robust or secure is centuries old, but the solid theory needed to support codes in the information age was developed in the 1940s — not surprisingly considering that technology played such an important role in World War II, where efficiency, reliability and secrecy were all very important.
+The idea of encoding data to make the representation more compact, robust or secure is centuries old, but the solid theory needed to support codes in the information age was developed in the 1940s &ndash; not surprisingly considering that technology played such an important role in World War II, where efficiency, reliability and secrecy were all very important.
 One of the most celebrated researchers in this area was Claude Shannon, who developed the field of "information theory", which is all about how data can be represented effectively (Shannon was also a juggler, unicyclist, and inventor of fanciful machines).
 
 {panel type="curiosity"}

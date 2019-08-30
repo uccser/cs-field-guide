@@ -20,7 +20,8 @@ On the positive side, [quantum information transfer protocols](https://en.wikipe
 Because of the need for specialised equipment, they are only used in high security environments such as banking.
 
 Of course, encryption doesn't fix all our security problems, and because we have such good encryption systems available, information thieves must turn to other approaches, especially social engineering.
-The easiest way to get a user's password is to ask them! A [phishing attack](https://en.wikipedia.org/wiki/Phishing) does just that, and there are estimates that as many as 1 in 20 computer users have given out secret information this way at some stage.
+The easiest way to get a user's password is to ask them!
+A [phishing attack](https://en.wikipedia.org/wiki/Phishing) does just that, and there are estimates that as many as 1 in 20 computer users have given out secret information this way at some stage.
 
 Other social engineering approaches that can be used include bribing or blackmailing people who have access to a system, or simply looking for a password written on a sticky note on someone's monitor!
 Gaining access to someone's email account is a particularly easy way to get lots of passwords, because many "lost password" systems will send a new password to their email account.

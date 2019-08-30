@@ -3,26 +3,26 @@
 Images can take up a lot of space, and most of the time that pictures are stored on a computer they are compressed to avoid wasting too much space.
 With a lot of images (especially photographs), there's no need to store the image exactly as it was originally, because it contains way more detail than anyone can see.
 This can lead to considerable savings in space, especially if the details that are missing are the kind that people have trouble perceiving.
-This kind of compression is called lossy compression.
+This kind of compression is called {glossary-link term="lossy"}lossy{glossary-link end} compression.
 There are other situations where images need to be stored exactly as they were in the original, such as for medical scans or very high quality photograph processing, and in these cases lossless methods are used, or the images aren't compressed at all (e.g. using RAW format on cameras).
 
-In the data representation section we looked at how the size of an image file can be reduced by using fewer bits to describe the colour of each pixel.
+In the [data representation chapter]('chapters:chapter' 'data-representation') we looked at how the size of an image file can be reduced by using fewer bits to describe the colour of each pixel.
 However, image compression methods such as JPEG take advantage of patterns in the image to reduce the space needed to represent it, without impacting the image unnecessarily.
 
 The following three images show the difference between reducing bit depth and using a specialised image compression system.
-The left hand image is the original, which was 24 bits per pixel.
-The middle image has been compressed to one third of the original size using JPEG; while it is a "lossy" version of the original, the difference is unlikely to be perceptible.
+The middle image is the original, which was 24 bits per pixel.
+The left hand image has been compressed to one third of the original size using JPEG; while it is a "lossy" version of the original, the difference is unlikely to be perceptible.
 The right hand one has had the number of colours reduced to 256, so there are 8 bits per pixel instead of 24, which means it is also stored in a third of the original size.
 Even though it has lost just as many bits, the information removed has had much more impact on how it looks.
 This is the advantage of JPEG: it removes information in the image that doesn't have so much impact on the perceived quality.
 Furthermore, with JPEG, you can choose the tradeoff between quality and file size.
 
-Reducing the number of bits (the colour depth) is sufficiently crude that we don't really regard it as a compression method, but just a low quality representation.
+Reducing the number of bits (the colour depth) is sufficiently crude that we don't really regard it as a compression method, but rather just a low quality representation.
 Image compression methods like JPEG, GIF and PNG are designed to take advantage of the patterns in an image to get a good reduction in file size without losing more quality than necessary.
 
 {image file-path="img/chapters/compression-comparison.png" alt="This image compares three images, two of which are good quality with no perceived difference. The third image is very poor quality."}
 
-{comment xtcb low priority: these are all jpgs of the originals; consider replacing them with actual originals (as long as the browser can render them all). ..ajb these images seem to appear in the wrong order to what is described for me… The middle one and left one should be swapped around?}
+{comment xtcb low priority: these are all jpgs of the originals; consider replacing them with actual originals (as long as the browser can render them all). ..ajb}
 
 For example, the following image shows a zoomed in view of the pixels that are part of the detail around an eye from the above (high quality) image.
 
@@ -33,7 +33,7 @@ For example, the pixels shown in the red box below just change gradually from ve
 
 {image file-path="img/chapters/zoomed-eye-highlighted.png" alt="This image has a red box around five pixels that gradually change from very dark to very light in colour."}
 
-Run-length encoding wouldn't work in this situation.
+Run length encoding wouldn't work in this situation.
 You could use a variation that specifies a pixel's colour, and then says how many of the following pixels are the same colour, but although most adjacent pixels are nearly the same, the chances of them being identical are very low, and there would be almost no runs of identical colours.
 
 But there is a way to take advantage of the gradually changing colours.
@@ -63,7 +63,7 @@ And instead of estimating the values with a linear function, it uses combination
 
 # What are cosine waves
 
-A cosine wave form is from the trig function that is often used for calculating the sides of a triangle.
+A cosine wave form is from the trigonometry function that is often used for calculating the sides of a triangle.
 If you plot the cosine value from 0 to 180 degrees, you get a smooth curve going from 1 to -1.
 Variations of this plot can be used to approximate the value of pixels, going from one colour to another.
 If you add in a higher frequency cosine wave, you can produce interesting shapes.
@@ -87,7 +87,7 @@ You can experiment with adding sine waves together to generate other shapes usin
 {button-link link="files/Adding-Sine-Waves.xls" text="Download sine waves spreadsheet" file="yes"}
 
 In this spreadsheet, the yellow region on the first sheet allows you to choose which sine waves to add.
-Try setting the 4 sine waves to frequencies that are 3, 9, 15, and 21 times the fundamental frequency respectively (the "fundamental" is the lowest frequency).
+Try setting the four sine waves to frequencies that are 3, 9, 15, and 21 times the fundamental frequency respectively (the "fundamental" is the lowest frequency).
 Now set the "amplitude" (equivalent to volume level) of the four to 0.5, 0.25, 0.125 and 0.0625 respectively (each is half of the previous one).
 This should produce the following four sine waves:
 
@@ -98,7 +98,7 @@ When the above four waves are added together, they interfere with each other, an
 {image file-path="img/chapters/sine-waves-sum.png" alt="The four sine waves added together"}
 
 In fact, if you were to continue the pattern with more than four sine waves, this shape would become a "square wave", which is one that suddenly goes to the maximum value, and then suddenly to the minimum.
-The one shown above is bumpy because we've only used 4 sine waves to describe it.
+The one shown above is bumpy because we've only used four sine waves to describe it.
 
 This is exactly what is going on in JPEG if you compress a black and white image.
 The "colour" of pixels as you go across the image will either be 0 (black) or full intensity (white), but JPEG will approximate it with a small number of cosine waves (which have basically the same properties as sine waves.)
@@ -124,7 +124,7 @@ The basis function in the top left is the average colour of the 8 by 8 block.
 By adding more of it (increasing the coefficient that it is multiplied by) the resultant 8 by 8 block will become darker.
 The basis functions become more complex towards the bottom right, and are therefore used less commonly.
 How often would an image have every pixel a different color, as in the bottom right basis function?
-To investigate how the 64 basis functions can be combined to form any pattern in 8 by 8 block of pixels - try out this puzzle!
+To investigate how the 64 basis functions can be combined to form any pattern in 8 by 8 block of pixels, try out this puzzle!
 
 {interactive slug="jpeg-compression" type="whole-page" parameters="puzzle=true" text="JPEG puzzle interactive"}
 
@@ -146,7 +146,7 @@ Because some file extensions are limited to three characters, it is often seen a
 # More about cosine waves
 
 The cosine waves used for JPEG images are based on a "Discrete Cosine Transform".
-The "Discrete" means that the waveform is digital – it is the opposite of continuous, where any value can occur.
+The "Discrete" means that the waveform is digital &ndash; it is the opposite of continuous, where any value can occur.
 In a JPEG wave, there are only 8 x 8 values (for the block being coded), and each of those values can have a limited range of numbers (binary integers), rather than any value at all.
 
 {panel end}
@@ -196,7 +196,7 @@ Instead of writing 20 zeros we can store the fact that there are 20 zeros using 
 And finally, the numbers that we are left with are converted to bits using Huffman coding, so that more common values take less space and vice versa.
 
 All those things happen every time you take a photo and save it as a JPEG file, and it happens to every 8 by 8 block of pixels.
-When you display the image, the software needs to reverse the process, adding all the basis functions together for each block - and there will be hundereds of thousands of blocks for each image.
+When you display the image, the software needs to reverse the process, adding all the basis functions together for each block &ndash; and there will be hundreds of thousands of blocks for each image.
 
 An important issue arises because JPEG represents images as smoothly varying colours: what happens if the colours change suddenly?
 In that case, lots of values need to be stored so that lots of cosine waves can be added together to make the sudden change in colour, or else the edges of the image become fuzzy.

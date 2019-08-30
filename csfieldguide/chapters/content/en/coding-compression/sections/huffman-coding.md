@@ -4,21 +4,21 @@ A common way to compress data is to give short codes to common symbols, and long
 For example, Morse code represents the letter "e" with a single dot, whereas the letter "z" is two dashes followed by two dots.
 On average, this is better than using the same length code for every symbol.
 
-But working out the optimal code for each symbol is harder than it might seem - in fact, no-one could work out an algorithm to compute the best code until a student called David Huffman did it in 1951, and his achievement was impressive enough that he was allowed to pass his course without sitting the final exam.
+But working out the optimal code for each symbol is harder than it might seem &ndash; in fact, no one could work out an {glossary-link term="algorithm"}algorithm{glossary-link end} to compute the best code until a student called David Huffman did it in 1951, and his achievement was impressive enough that he was allowed to pass his course without sitting the final exam.
 
 The technique of Huffman coding is the final stage in many compression methods, including JPEG, MP3, and zip.
-The purpose of Huffman coding is to take a set of "symbols" (which could be characters in text, run lengths in RLE, pointer values in a Ziv-Lempel system, or parameters in lossy systems), and provide the optimal bit patterns with which they can be represented.
-It's normally presented as a way of compressing textual documents, and while it can do that reasonably well, it works much better in combination with Ziv-Lempel coding (see below).
+The purpose of Huffman coding is to take a set of "symbols" (which could be characters in text, run lengths in RLE, pointer values in a Ziv-Lempel system, or parameters in {glossary-link term="lossy"}lossy{glossary-link end} systems), and provide the optimal bit patterns with which they can be represented.
+It's normally presented as a way of compressing textual documents, and while it can do that reasonably well, it works much better in combination with Ziv-Lempel coding (we'll get to that later).
 
 But let's start with a very simple textual example.
-This example language uses only 4 different characters, and yet is incredibly important to us: it's the language used to represent DNA, which is made up of sequences of four characters A, C, G and T.
+This example language uses only four different characters, and yet is incredibly important to us: it's the language used to represent DNA, which is made up of sequences of four characters A, C, G and T.
 For example, the 4.6 million characters representing an *E.coli* DNA sequence happens to start with:
 
 ```text
 agcttttcattct
 ```
 
-Using a simple data representation, with four characters you'd expect to represent each character using 2 bits, such as:
+Using a simple data representation, with four characters you'd expect to represent each character using two bits, such as:
 
 ```text
 a: 00
@@ -27,7 +27,7 @@ g: 10
 t: 11
 ```
 
-The 13 characters above would be written using 26 bits as follows - notice that we don't need gaps between the codes for each bits.
+The 13 characters above would be written using 26 bits as follows &ndash; notice that we don't need gaps between the codes for each pair of bits.
 
 ```text
 00100111111111010011110111
@@ -72,7 +72,8 @@ This leaves a 1 at the end, which is a "t".
 
 {panel end}
 
-But is the code above the best possible code for these characters?  (As it happens, this one is optimal for this case.) And how can we be sure the codes can be decoded?
+But is the code above the best possible code for these characters (as it happens, this one is optimal for this case)?
+And how can we be sure the codes can be decoded?
 For example, if we just reduced the length for "t" like this:
 
 - a: 00
@@ -86,7 +87,7 @@ try decoding the message "11001".
 
 # Decoding 11001
 
-This message wasn't generated properly, and it can't be worked out because the original could have been "tgc" or "ttat".
+This message can't be worked out with certainty because the original could have been "tgc" or "ttat".
 The clever thing about a Huffman code is that it won't let this happen.
 
 {panel end}
@@ -140,11 +141,11 @@ t: 7 times
 
 We build the tree from the bottom by finding the two characters that have the smallest counts ("a" and "g" in this example).
 These are made to be a branch at the bottom of the tree, and at the top of the branch we write the sum of their two values (2+1, which is 3).
-The branches are labelled with a 0 and 1 respectively (it doesn't matter which way around you do it).
+The branches are labelled with a 0 and 1 (it doesn't matter which way around you do it).
 
 {image file-path="img/chapters/huffman-tree-dna-building-1.png" alt="This image shows the Huffman tree for the description above."}
 
-We then forget about the counts for the two characters just combined, but we use the combined total to repeat the same step: the counts to choose from are 3 (for the combined total), 3 (for "c"), and 7 (for "t"), so we combine the two smallest values (3 and 3) to make a new branch:
+We then forget about the counts for the two characters we just combined, but we use the combined total to repeat the same step: the counts to choose from are 3 (for the combined total), 3 (for "c"), and 7 (for "t"), so we combine the two smallest values (3 and 3) to make a new branch:
 
 {image file-path="img/chapters/huffman-tree-dna-building-2.png" alt="This image builds upon the previous Huffman tree as per description above."}
 
@@ -157,7 +158,7 @@ You can then read off the codes for each character by following the 0 and 1 labe
 If you look at other textbooks about Huffman coding, you might find English text used as an example, where letters like "e" and "t" get shorter codes while "z" and "q" get longer ones.
 As long as the codes are calculated using Huffman's method of combining the two smallest values, you'll end up with the optimal code.
 
-Huffman trees aren't built manually - in fact, a Huffman trees are built every time you take a photo as a JPG, or zip a file, or record a video.
+Huffman trees aren't built manually &ndash; in fact, a Huffman tree is built every time you take a photo as a JPG, or zip a file, or record a video.
 You can generate your own Huffman Trees using the interactive below.
 Try some different texts, such as one with only two different characters; one where all the characters are equally likely; and one where one character is way more likely than the others.
 
@@ -173,8 +174,7 @@ and another by [Tom Scott](https://www.youtube.com/watch?v=JsTptu56GM8)
 
 {panel end}
 
-In practice Huffman's code isn't usually applied to letters, but to things like the lengths of run length codes (some lengths will be more common than others), or the match length of a point for a Ziv-Lempel code (again, some lengths will be more common than others),
-or the parameters in a JPEG or MP3 file.
+In practice Huffman's code isn't usually applied to letters, but to things like the lengths of run length codes (some lengths will be more common than others), or the match length of a point for a Ziv-Lempel code (again, some lengths will be more common than others), or the parameters in a JPEG or MP3 file.
 By using a Huffman code instead of a simple binary code, these methods get just a little more compression for the data.
 
 As an experiment, try calculating a Huffman code for the four letters a, b, c and d, for each of the following:
