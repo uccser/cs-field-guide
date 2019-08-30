@@ -72,7 +72,7 @@ Some of the language may not be suitable for use in class, so discretion is need
 
 ## Public key systems
 
-One of the remarkable discoveries in computer science in the 1970s was a method called {glossary-link term="public-key-cryptography"}public key encryption{glossary-link end}, where it's fine to tell everyone what the key is to encrypt any messages, but you need a special private key to decrypt it.
+One of the remarkable discoveries in computer science in the 1970s was a method called public key encryption, where it's fine to tell everyone what the key is to encrypt any messages, but you need a special private key to decrypt it.
 Because Alice and Bob use different keys, this is called an *asymmetric* encryption system.
 
 It's like giving out padlocks to all your friends, so anyone can lock a box and send it to you, but if you have the only (private) key, then you are the only person who can open the boxes.
@@ -84,7 +84,7 @@ That's quite different to having to hire a security firm to deliver them to your
 Public key encryption is very heavily used for online commerce (such as internet banking and credit card payment) because your computer can set up a connection with the business or bank automatically using a public key system without you having to get together in advance to set up a key.
 Public key systems are generally slower than symmetric systems, so the public key system is often used to then send a new key for a symmetric system just once per session, and the symmetric key can be used from then on with a faster symmetric encryption system.
 
-A very popular public key system is RSA.
+A very popular {glossary-link term="public-key-cryptography"}public key cryptography{glossary-link end} system is RSA.
 For this section on public key systems, we will use RSA as an example.
 
 ### Generating the encryption and decryption keys
