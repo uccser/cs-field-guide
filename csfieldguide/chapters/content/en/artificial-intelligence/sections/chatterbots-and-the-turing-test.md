@@ -4,7 +4,7 @@
 
 Many humans take for granted the fact that they can easily have a conversation with another person, and choose appropriate things to say based on the conversation.
 The ability to do this is a form of intelligence, and for computers it isn’t so easy!
-Many attempts have been made to design computer programs that can have a conversation with a human and sound intelligent.
+Many attempts have been made to design {glossary-link term="program"}computer programs{glossary-link end} that can have a conversation with a human and sound intelligent.
 These computer programs are called *chatterbots*, or just *chatbots*.
 
 You may come across chatterbots online for serious uses (such as giving help on a booking website).
@@ -44,7 +44,8 @@ Go to the link just below and have a conversation with Eliza (keeping in mind th
 
 Do you think Eliza is as smart as a human? Would you believe she was a human if somebody told you she was?
 
-You will probably agree that while Eliza sounds somewhat intelligent at times, she gives very vague and general replies, forgets earlier parts of the conversation, and says some things that sound very strange! As an example, here is a conversation with Eliza:
+You will probably agree that while Eliza sounds somewhat intelligent at times, she gives very vague and general replies, forgets earlier parts of the conversation, and says some things that sound very strange!
+As an example, here is a conversation with Eliza:
 
 **Eliza**: Hello, I am Eliza.  
 **Human**: Hello I am a human  
@@ -95,7 +96,7 @@ Does Alice sound more intelligent than Eliza?
 Does she sound as intelligent as a human, or can you trick her into saying things that make no sense?
 Try using the same tricks you used to fool Eliza and see if they fool Alice as well (look back at the list of bullet points in the Eliza section just above).
 
-Like Eliza, Alice also uses hard coded rules to know what to say, although she has a lot more of these rules and a more sophisticated algorithm for choosing which rules should be used to determine what to say.
+Like Eliza, Alice also uses predetermined rules to know what to say, although she has a lot more of these rules and a more sophisticated algorithm for choosing which rules should be used to determine what to say.
 If you want to know more, just ask Alice how she works, and she’ll tell you!
 
 Some possible rules that Alice might have are:
@@ -186,8 +187,8 @@ Check out the short film ["Do You Love Me"](https://www.youtube.com/watch?v=QkNA
 
 There are even more chatterbots you can talk to.
 Try looking at the [list on wikipedia](https://en.wikipedia.org/wiki/List_of_chatterbots), or doing a Google search for chatterbots.
-Each chatterbot on this list has its own wikipedia page.
-You should be able to find the chatterbots by either an internet search, or looking at the references of the wikipedia pages.
+Each chatterbot on this list has its own Wikipedia page.
+You should be able to find the chatterbots by either an internet search, or looking at the references of the Wikipedia pages.
 Some of these will have rules that were determined by programmers, and others will have rules that were learnt from humans.
 
 If you have a device that runs Apple iOS (for example an iPhone), have a look at the [Siri](https://en.wikipedia.org/wiki/Siri_%28software%29) chatterbot in the device’s help system.
