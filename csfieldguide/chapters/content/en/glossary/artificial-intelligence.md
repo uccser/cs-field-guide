@@ -2,4 +2,4 @@
 
 The artificial ability to mimic parts of human intelligence.
 
-In it's broadest meaning; true artificial intelligence is when something made by humans is able to do something the humans didn't tell it how to do.
+In it's broadest meaning; artificial intelligence is when something made by humans is able to do something the humans didn't tell it how to do.

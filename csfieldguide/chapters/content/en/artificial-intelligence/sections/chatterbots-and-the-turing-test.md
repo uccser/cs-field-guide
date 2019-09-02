@@ -42,7 +42,8 @@ Go to the link just below and have a conversation with Eliza (keeping in mind th
 
 {image file-path="img/chapters/eliza-chatbot-screenshot.png" alt="A screenshot of an Eliza chatbot"}
 
-Do you think Eliza is as smart as a human? Would you believe she was a human if somebody told you she was?
+Do you think Eliza is as smart as a human?
+Would you believe she was a human if somebody told you she was?
 
 You will probably agree that while Eliza sounds somewhat intelligent at times, she gives very vague and general replies, forgets earlier parts of the conversation, and says some things that sound very strange!
 As an example, here is a conversation with Eliza:
