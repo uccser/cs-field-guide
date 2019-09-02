@@ -5,7 +5,7 @@
 Many humans take for granted the fact that they can easily have a conversation with another person, and choose appropriate things to say based on the conversation.
 The ability to do this is a form of intelligence, and for computers it isn’t so easy!
 Many attempts have been made to design {glossary-link term="program"}computer programs{glossary-link end} that can have a conversation with a human and sound intelligent.
-These computer programs are called *chatterbots*, or just *chatbots*.
+These computer programs are called {glossary-link term="chatterbot"}chatterbots{glossary-link end}, or just *chatbots*.
 
 You may come across chatterbots online for serious uses (such as giving help on a booking website).
 Sometimes it's hard to tell if you're getting an automated response.
@@ -56,7 +56,7 @@ As an example, here is a conversation with Eliza:
 **Eliza**: Why did you repeat yourself?
 
 Eliza often gives very general replies by looking for suitable rules based only on the line you've just typed, and that often leads to some very weird conversations, such as the one above!
-In this case Eliza used pattern matching to determine that it might be appropriate to ask "Do you believe it is normal to be a human?", in response to "I am" followed by "a human"; if we had said "I am a banana" then the same rule would have resulted in "Do you believe it is normal to be a banana?."
+In this case Eliza used {glossary-link term="pattern-matching"}pattern matching{glossary-link end} to determine that it might be appropriate to ask "Do you believe it is normal to be a human?", in response to "I am" followed by "a human"; if we had said "I am a banana" then the same rule would have resulted in "Do you believe it is normal to be a banana?."
 When we answered "Yes", Eliza didn't actually understand the *meaning* of "Yes", so simply asked if we were sure, as it has a general response that says a good way of responding to somebody saying "Yes" is to ask them if they were sure.
 Eliza also has rules that are triggered if somebody repeats themselves, that say she should ask them why.
 Because Eliza doesn’t actually understand meanings but instead just follows rules that say what might be appropriate responses, she had no way of knowing that it actually *was* meaningful to respond with "Yes" twice!
