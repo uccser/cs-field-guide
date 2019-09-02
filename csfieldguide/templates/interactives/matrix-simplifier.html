@@ -8,7 +8,7 @@
     <h3 class='text-center'>{% trans "Matrix Simplifier" %}</h3>
     <p class="text-center">
       {% blocktrans %}
-      This interactive simplifies multiple matrix transformations to just one formula that does all of the transforms in one go.<br>
+      This interactive combines multiple matrix transformations to just one matrix that can apply each transformation with just one operation.<br>
       Try dragging the matrices and vectors below to change their order. Does this affect the output?
       {% endblocktrans %}
     </p>
@@ -75,9 +75,9 @@
       <h5 class="col-12 text-center">{% trans "Result" %}</h5>
     </div>
 
-    <div class="row">
-      <div id="output-container" class="col-12 text-center invisible">
-        <div class="mb-3">
+    <div class="row justify-content-center">
+      <div id="output-container" class="col-sm-12 col-md-8 col-lg-6 text-left invisible">
+        <div class="result-step mb-3">
           \[
             \begin{bmatrix}
             x^\prime \\
@@ -95,7 +95,7 @@
           \] +
           <div id="vector-output" class="d-inline"></div>
         </div>
-        <div class="mb-3">
+        <div class="result-step mb-3">
           \[
             \begin{bmatrix}
             x^\prime \\
@@ -107,7 +107,7 @@
           +
           <div id="vector-copy" class="d-inline"></div>
         </div>
-        <div class="mb-3">
+        <div class="result-step mb-3">
           \[
             \begin{bmatrix}
             x^\prime \\

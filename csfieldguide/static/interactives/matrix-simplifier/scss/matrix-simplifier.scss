@@ -73,3 +73,27 @@
   border-color: #FF0000;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6);
 }
+
+.result-step {
+  overflow-x: auto;
+  white-space: nowrap;
+  overflow-y: hidden;
+}
+
+@include media-breakpoint-up(sm) {
+  #output-container {
+    padding-left: 3rem !important;
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  #output-container {
+    padding-left: 5rem !important;
+  }
+}
+
+@include media-breakpoint-up(xl) {
+  #output-container {
+    padding-left: 6rem !important;
+  }
+}
