@@ -70,7 +70,7 @@ You could determine their passwords by putting various possibilities through SHA
 
 {panel type="project"}
 
-# Password guessing interactive - Part 1
+# Password guessing activity - Part 1
 
 You can investigate hashing further with this interactive.
 It requires you to guess the passwords of users.
@@ -85,6 +85,14 @@ This will be expanded upon next.
 Have a go at just the simpler passwords, we don't expect you to be able to guess all of them.
 
 {interactive slug="password-guesser" parameters="salted=false" type="whole-page" alt="Interactive for guessing user passwords"}
+
+{panel end}
+
+{panel type="teacher-note"}
+
+# Password guessing activity in the classroom
+
+
 
 {panel end}
 
@@ -140,7 +148,7 @@ The plaintext salt is stored next to the hash.
 
 {panel type="project"}
 
-# Password guessing interactive - Part 2
+# Password guessing activity - Part 2
 
 Here is the same interactive as before, but this time everyone's passwords have been salted.
 Now you can't just guess a password and check the whole database; you need to copy the salt for each password you are guessing.
