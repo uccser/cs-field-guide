@@ -6,7 +6,12 @@
 {% block html %}
   <div class="container">
     <h3 class='text-center'>{% trans "Matrix Simplifier" %}</h3>
-    <p class="text-center">{% trans "Try dragging the matrices and vectors below to change their order. Does this affect the output?" %}</p>
+    <p class="text-center">
+      {% blocktrans %}
+      This interactive simplifies multiple matrix transformations to just one formula that does all of the transforms in one go.<br>
+      Try dragging the matrices and vectors below to change their order. Does this affect the output?
+      {% endblocktrans %}
+    </p>
     <div class="row">
       <div class="col-md-6 col-sm-12 text-center mb-3">
         <h5>{% trans "Matrices" %}</h5>

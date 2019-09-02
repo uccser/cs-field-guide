@@ -61,6 +61,7 @@ var currentVectorsOrder = [v1];
 
 
 // only show equations once they are rendered
+// URL for mathjax script loaded from CDN
 var mjaxURL  = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML,Safe.js';
 // load mathjax script
 $.getScript(mjaxURL, function() {
@@ -87,7 +88,7 @@ function addMatrix() {
   matrixArrayMath = getMatrix(true);
   // inputs remain as strings for display
   matrixArrayString = getMatrix(false);
-  matrix = mathjs.matrix(matrixArrayMath); // convert to mathjs matrix so we can do caluclations
+  matrix = mathjs.matrix(matrixArrayMath); // convert to mathjs matrix so we can do calculations
   matrices.push(matrix);
   currentMatricesOrder.push(matrix);
   matrixString = formatMatrix(matrixArrayString, ROW_TEMPLATE);
