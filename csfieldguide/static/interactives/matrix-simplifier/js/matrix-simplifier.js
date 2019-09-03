@@ -432,7 +432,6 @@ function showEquations() {
  * Removes equation and updates output to match
  */
 function dismissEquation() {
-  $('.dismiss-eqtn').addClass('invisible');
   eqtnToRemove = $(this).next(); // div of matrix/vector to remove
   if (eqtnToRemove.hasClass('matrix')) {
     orderIndex = eqtnToRemove.attr('data-matrix-order');
@@ -442,7 +441,7 @@ function dismissEquation() {
     eqtnToRemove.parent().remove();
     // update data-order attributes
     $('div[data-matrix-order]').each(function() {
-      order = $(this).data('matrix-order');
+      order = $(this).attr('data-matrix-order');
       if (order > orderIndex) {
         newOrder = order - 1;
         $(this).attr('data-matrix-order', newOrder);
@@ -457,13 +456,10 @@ function dismissEquation() {
     // update data-order attributes
     // BUG - DOES NOT ACTUALLY UPDATE ATTR CORRECTLY
     $('div[data-vector-order]').each(function() {
-      order = $(this).data('vector-order');
-      console.log(order);
-      console.log(orderIndex);
+      order = $(this).attr('data-vector-order');
       if (order > orderIndex) {
         newOrder = order - 1;
         $(this).attr('data-vector-order', newOrder);
-        console.log($(this).data('vector-order'));
       }
     });
   }
