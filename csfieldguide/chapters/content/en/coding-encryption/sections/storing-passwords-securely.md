@@ -88,14 +88,6 @@ Have a go at just the simpler passwords, we don't expect you to be able to guess
 
 {panel end}
 
-{panel type="teacher-note"}
-
-# Password guessing activity in the classroom
-
-
-
-{panel end}
-
 It might initially sound like we have the perfect system.
 But unfortunately, there is still a big problem.
 You can find *rainbow tables* online, which are precomputed lists of common passwords with what value they hash to.
@@ -158,6 +150,20 @@ Can you see how these extra steps can affect the time it takes to guess password
 Remember that two passwords are the same, is that still obvious just by looking at the database?
 
 {interactive slug="password-guesser" type="whole-page" alt="Interactive for guessing salted user passwords"}
+
+{panel end}
+
+{panel type="teacher-note"}
+
+# Password guessing activity in the classroom
+
+Try splitting the class into teams and make it a competition to find the most passwords.
+The main take away points are:
+
+- Short and simple passwords are easy to guess.
+- Making common substitutions don't make a password much harder to guess.
+- Without any salting, a hacker can guess multiple passwords at once.
+- With salting, it takes much longer to guess passwords because each one needs to be checked individually.
 
 {panel end}
 
