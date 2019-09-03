@@ -5,7 +5,6 @@ const vsprintf = require('sprintf-js').vsprintf;
 
 const ROW_TEMPLATE = "%s & %s & %s";
 const MATRIX_TEMPLATE = "\\begin{bmatrix} %s \\\\ %s \\\\ %s \\end{bmatrix}";
-const EXPANDED_ROW_TEMPLATE = "%sx + %sy + %sz";
 
 /**
  * Below is adapted from https://mathjs.org/examples/browser/angle_configuration.html.html
@@ -219,53 +218,6 @@ function formatMatrix(matrix, rowTemplate) {
 }
 
 
-/** Remove zeros if they are insignificant.
- *  i.e only remove zeros if they are not the only number in the row
- */
-function simplifyResult(matrix, vector) {
-  var result = [];
-  for (i = 0; i < 3; i++) {
-    row = "";
-    // below variables to determine whether or not to prefix with '+'
-    var hasX = false;
-    var hasY = false;
-    var hasZ = false;
-    if (!(matrix[i][0] == 0)) {
-      row += matrix[i][0] + 'x';
-      hasX = true;
-    }
-    if (!(matrix[i][1] == 0)) {
-      if (hasX && matrix[i][1] > 0) {
-        row += ' + '
-      }
-      row += matrix[i][1] + 'y';
-      hasY = true;
-    }
-    if (!(matrix[i][2] == 0)) {
-      if (hasX || hasY) {
-        row += ' + '
-      }
-      row += matrix[i][2] + 'z';
-      hasZ = true;
-    }
-    // if the value isn't zero and either an x, y or z value exists
-    if (!(vector[i] == 0) && (hasX || hasY || hasZ)) {
-      if (vector[i] > 0) {
-        row += ' + ';
-      }
-      row += vector[i];
-    } else if (!(hasX || hasY || hasZ)) {
-      row += vector[i];
-    }
-    if (row == "") {
-      row = "0";
-    }
-    result[i] = row;
-  }
-  return sprintf(MATRIX_TEMPLATE, result[0], result[1], result[2]);
-}
-
-
 /* Set the matrices in modal to the default values */
 function resetModalMatrices() {
   // reset to default values of modal matrices
@@ -375,14 +327,9 @@ function showOutput() {
 
   matrixString = formatMatrix(matrixRows, ROW_TEMPLATE);
   vectorString = sprintf(MATRIX_TEMPLATE, vectorRows[0], vectorRows[1], vectorRows[2]);
-  expandedMatrixString = formatMatrix(matrixRows, EXPANDED_ROW_TEMPLATE);
-  simplifiedMatrixString = simplifyResult(matrixRows, vectorRows);
-
   $('#matrix-output').html(matrixString);
   $('#vector-output').html(vectorString);
-  $('#expanded-matrix').html(expandedMatrixString);
-  $('#vector-copy').html(vectorString);
-  $('#simplified-matrix').html(simplifiedMatrixString);
+
   MathJax.Hub.Queue(["Typeset", MathJax.Hub, "output-container"]); // typeset calculated result
   showEquations();
 }
@@ -440,8 +387,9 @@ $(function() {
       currentVectorsOrder[vectorOrder] = currentVectorsOrder[siblingOrder];
       currentVectorsOrder[siblingOrder] = tmp;
       // swap data-order attributes
+
       eqtnDiv.attr('data-vector-order', siblingOrder);
-      siblingDiv.attr('data-vector-order', matrixOrder);
+      siblingDiv.attr('data-vector-order', vectorOrder);
     }
     showOutput();
     scrollable = true;
