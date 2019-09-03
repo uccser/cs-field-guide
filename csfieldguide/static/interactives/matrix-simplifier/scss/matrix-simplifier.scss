@@ -43,10 +43,7 @@
 
 
 #matrix-output,
-#vector-output,
-#expanded-matrix,
-#vector-copy,
-#simplified-matrix {
+#vector-output{
   > span {
     display: inline !important;
   }
@@ -78,22 +75,4 @@
   overflow-x: auto;
   white-space: nowrap;
   overflow-y: hidden;
-}
-
-@include media-breakpoint-up(sm) {
-  #output-container {
-    padding-left: 3rem !important;
-  }
-}
-
-@include media-breakpoint-up(lg) {
-  #output-container {
-    padding-left: 5rem !important;
-  }
-}
-
-@include media-breakpoint-up(xl) {
-  #output-container {
-    padding-left: 6rem !important;
-  }
 }
