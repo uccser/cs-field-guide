@@ -85,7 +85,7 @@ The code would actually be `00 01 10 11 10 00 01` and the dictionary would look 
 | 11               | ,                |
 
 This dictionary is way too small for regular text.
-Suppose you were allowed to use a dictionary of 4096 strings of characters instead of just 4.
+Suppose you were allowed to use a dictionary of 4096 {glossary-link term="string"}strings{glossary-link end} of characters instead of just 4.
 Which strings of characters would you put in the dictionary to make sure it could represent any possible text?
 And how many bits are needed to give the index number in the dictionary?
 
