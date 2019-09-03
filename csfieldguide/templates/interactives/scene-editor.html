@@ -4,6 +4,7 @@
 {% load static %}
 
 {% block html %}
+  <div id="container" class="container"></div>
 {% endblock html %}
 
 {% block css %}
@@ -11,6 +12,5 @@
 {% endblock css %}
 
 {% block js %}
-  <script src="https://threejs.org/build/three.js"></script>
   <script type="text/javascript" src="{% static 'interactives/scene-editor/js/scene-editor.js' %}"></script>
 {% endblock js %}
