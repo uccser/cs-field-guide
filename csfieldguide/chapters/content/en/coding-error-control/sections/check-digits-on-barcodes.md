@@ -1,17 +1,17 @@
 # Check digits on barcodes and other numbers
 
-You probably wouldn’t be very happy if you bought a book online by entering the ISBN (International Standard Book Number), and the wrong book was sent to you, or if a few days after you ordered it, you got an email saying that the credit card number you entered was not yours, but was instead one that was one digit different and another credit card holder had complained about a false charge.
+You probably wouldn’t be very happy if you bought a book online by entering the {glossary-link term="isbn"}ISBN{glossary-link end}, and the wrong book was sent to you, or if a few days after you ordered it, you got an email saying that the credit card number you entered was not yours, but was instead one that was one digit different and another credit card holder had complained about a false charge.
 Or if you went to the shop to buy a can of drink and the scanner read it as being a more expensive product.
-Sometimes, the scanner won’t even read the barcode at all, and the checkout operator has to manually enter the number into the computer — but if they don't enter it exactly as it is on the barcode you could end up being charged for the wrong product.
+Sometimes, the scanner won’t even read the barcode at all, and the checkout operator has to manually enter the number into the computer &ndash; but if they don't enter it exactly as it is on the barcode you could end up being charged for the wrong product.
 These are all examples of situations that error control coding can help prevent.
 
 Barcode numbers, credit card numbers, bank account numbers, ISBNs, national health and social security numbers, shipping labels (serial shipping container codes, or SSCC) and tax numbers all have error control coding in them to help reduce the chance of errors.
-The last digit in each of these numbers is a check digit, which is obtained doing a special calculation on all the other digits in the number.
-If for example you enter your credit card number into a web form to buy something, it will calculate what the 16th digit should be, using the first 15 digits and the special calculation (there are 16 digits in a credit card number).
+The last digit in each of these numbers is a {glossary-link term="check-digit"}check digit{glossary-link end}, which is obtained by doing a special calculation on all the other digits in the number.
+If, for example, you enter your credit card number into a web form to buy something, it will calculate what the 16th digit should be, using the first 15 digits and the special calculation (there are 16 digits in a credit card number).
 If the 16th digit that it expected is not the one you entered, it can tell that there was an error made when the number was entered and will notify you that the credit card number is not valid.
 
 In this section we will be initially looking at one of the most commonly used barcode number formats used on most products you buy from supermarkets and other shops.
- We will then be having a look at credit card numbers.
+We will then be having a look at credit card numbers.
 You don’t have to understand *why* the calculations work so well (this is advanced math, and isn’t important for understanding the overall ideas), and while it is good for you to know what the calculation is, it is not essential.
 So if math is challenging and worrying for you, don’t panic too much because what we are looking at in this section isn’t near as difficult as it might initially appear!
 
@@ -54,7 +54,7 @@ If only one digit is changed, the check digit will always be incorrect, and the 
 {panel end}
 
 Have a look for another product that has a barcode on it, such as a food item from your lunch, or a stationery item.
-Note that some barcodes are a little different — make sure the barcodes that you are using have 13 digits (although you might like to go and find out how the check digit works on some of the other ones).
+Note that some barcodes are a little different &ndash; make sure the barcodes that you are using have 13 digits (although you might like to go and find out how the check digit works on some of the other ones).
 Can the interactive always determine whether or not you typed the barcode correctly?
 
 One of the following product numbers has one incorrect digit.
@@ -74,14 +74,14 @@ Students should be able to detect that it is incorrect, but it isn't possible to
 {panel end}
 
 If you were scanning the above barcodes in a supermarket, the incorrect one will need to be rescanned, and the system can tell that it's a wrong number without even having to look it up.
-Typically that would be caused by the bar code itself being damaged (e.g. some ice on a frozen product making it read incorrectly).
+Typically that would be caused by the barcode itself being damaged (e.g. some ice on a frozen product making it read incorrectly).
 If an error is detected, the scanner will usually make a warning sound to alert the operator.
 
 You could try swapping barcode numbers with a classmate, but before giving them the number toss a coin, and if it's heads, change one digit of the barcode before you give it to them.
 Can they determine that they've been given an erroneous barcode?
 
 If one of the digits is incorrect, this calculation for the check digit will produce a different value to the checksum, and signals an error.
-So single digit errors will *always* be detected, but what if two digits change — will that always detect the error?
+So single digit errors will *always* be detected, but what if two digits change &ndash; will that always detect the error?
 
 {panel type="teacher-note"}
 
@@ -92,7 +92,7 @@ However, it's unlikely that two errors will counteract like this (students can i
 
 {panel end}
 
-What if the error is in the checksum itself but not in the other digits - will that be detected?
+What if the error is in the checksum itself but not in the other digits &ndash; will that be detected?
 
 {panel type="teacher-note"}
 
@@ -200,7 +200,7 @@ If the remainder is 0, then the check digit is also 0.
 
 {comment Insert GTIN-13 diagram here}
 
-Try this with some other bar codes.
+Try this with some other barcodes.
 Now observe what happens to the calculation when a digit is changed, or two are swapped.
 
 The algorithm to check whether or not a barcode number was correctly entered is very similar.
@@ -250,9 +250,6 @@ Because the check digit was chosen so that it would make the last digit of the s
 In order to be effective, the algorithm needs to ensure the multiplied digits will not add up to a multiple of 10 any more if the digits are changed slightly.
 The choice of multipliers affects how likely it is to detect small changes in the input.
 It's possible to analyse these mathematically to work out what sorts of errors can be detected.
-
-The check digit on barcodes is described in the chapter on [error control coding]('chapters:chapter' 'coding-error-control').
-Basically every second digit is multiplied by 3, and the sum of these multiples are added to the remaining digits.
 
 Let's look at some smaller examples with 5 digits (4 normal digits and a check digit), as the same ideas will apply to the 13 digit numbers.
 
@@ -371,8 +368,8 @@ So this kind of error will never be detected.
 # Project with check sums
 
 The following interactive will generate random numbers of a chosen type (e.g. ISBN numbers for books).
-These numbers are random, and are not based on numbers for actual books (or bank accounts!)
-This means that you can do this project without having to ask people for their personal information such as credit card numbers (in fact, they shouldn't give you this information anyway!)
+These numbers are random, and are not based on numbers for actual books (or bank accounts!).
+This means that you can do this project without having to ask people for their personal information such as credit card numbers (in fact, they shouldn't give you this information anyway!).
 
 Although the numbers from this interactive are random, their check digits are calculated using the appropriate method, so you can use them as examples for your project.
 Actually, not all of them will be correct, so one of your challenges is to figure out which are ok!

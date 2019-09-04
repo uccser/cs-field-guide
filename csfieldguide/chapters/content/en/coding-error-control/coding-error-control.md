@@ -1,6 +1,6 @@
 # Coding - Error control
 
-This chapter is about guarding against errors in data in its many different forms — data stored on a harddrive, on a CD, on a floppy disk, on a solid state drive (such as that inside a cellphone, camera, or MP3 player), data currently in RAM (particularly on servers where the data correctness is critical), data going between the RAM and hard drive or between an external hard drive and the internal hard drive, data currently being processed in the processor or data going over a wired or wireless network such as from your computer to a server on the other side of the world.
+This chapter is about guarding against errors in data in its many different forms: data stored on a hard drive, CD, floppy disk or solid state drive (such as that inside a cellphone, camera, or MP3 player); data currently in RAM (particularly on servers where the data correctness is critical); data going between the RAM and hard drive or between an external hard drive and the internal hard drive; data currently being processed in the processor; or data going over a wired or wireless network such as from your computer to a server on the other side of the world.
 It even includes data such as the barcodes printed on products or the number on your credit card.
 
 If we don't detect that data has been changed by some physical problem (such as small scratch on a CD, or a failing circuit in a flash drive), the information will just be used with incorrect values.
