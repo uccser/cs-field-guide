@@ -32,6 +32,7 @@ We have listed major changes for each release below.
 - Content fixes and add glossary entries for data representation chapter. `#1126 <https://github.com/uccser/cs-field-guide/pull/1126>`__
 - Content fixes and add glossary entries for HCI chapter. `#1121 <https://github.com/uccser/cs-field-guide/pull/1121>`__
 - Add glossary entries for AI chapter. `#1136 <https://github.com/uccser/cs-field-guide/pull/1136>`__
+- Improve list of contributors. `#1127 <https://github.com/uccser/cs-field-guide/pull/1127>`__
 - Dependency updates:
 
   - Update ``lxml`` from 4.3.4 to 4.4.1.
