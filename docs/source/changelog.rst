@@ -25,12 +25,10 @@ We have listed major changes for each release below.
 
 **Changelog:**
 
-- Rebuild matrix simplifier interactive. `#1135 <https://github.com/uccser/cs-field-guide/pull/1135>`__
+- Rebuild matrix simplifier interactive. `#375 <https://github.com/uccser/cs-field-guide/issue/375>`__
 - Fix URL parameters in searching boxes interactive. `#1129 <https://github.com/uccser/cs-field-guide/issues/1129>`__
 - Improvements to regular expression filter interactive. `#1020 <https://github.com/uccser/cs-field-guide/issues/1020>`__
-- Content fixes and add glossary entries for all coding chapters. `#1134 <https://github.com/uccser/cs-field-guide/pull/1134>`__
-- Content fixes and add glossary entries for data representation chapter. `#1126 <https://github.com/uccser/cs-field-guide/pull/1126>`__
-- Content fixes and add glossary entries for HCI chapter. `#1121 <https://github.com/uccser/cs-field-guide/pull/1121>`__
+- Content fixes and add glossary entries for coding, data representation and HCI chapters. `#1017 <https://github.com/uccser/cs-field-guide/issue/1017>`__
 - Add glossary entries for AI chapter. `#1136 <https://github.com/uccser/cs-field-guide/pull/1136>`__
 - Improve list of contributors. `#1127 <https://github.com/uccser/cs-field-guide/pull/1127>`__
 - Dependency updates:
