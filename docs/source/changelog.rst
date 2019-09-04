@@ -17,6 +17,31 @@ All notable changes to this project will be documented in this file.
 
 We have listed major changes for each release below.
 
+3.1.0
+==============================================================================
+
+- **Release date:** 5th September 2019
+- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/3.1.0>`__
+
+**Changelog:**
+
+- Rebuild matrix simplifier interactive. `#1135 <https://github.com/uccser/cs-field-guide/pull/1135>`__
+- Fix URL parameters in searching boxes interactive. `#1129 <https://github.com/uccser/cs-field-guide/issues/1129>`__
+- Improvements to regular expression filter interactive. `#1020 <https://github.com/uccser/cs-field-guide/issues/1020>`__
+- Content fixes and add glossary entries for all coding chapters. `#1134 <https://github.com/uccser/cs-field-guide/pull/1134>`__
+- Content fixes and add glossary entries for data representation chapter. `#1126 <https://github.com/uccser/cs-field-guide/pull/1126>`__
+- Content fixes and add glossary entries for HCI chapter. `#1121 <https://github.com/uccser/cs-field-guide/pull/1121>`__
+- Add glossary entries for AI chapter. `#1136 <https://github.com/uccser/cs-field-guide/pull/1136>`__
+- Dependency updates:
+
+  - Update ``lxml`` from 4.3.4 to 4.4.1.
+  - Update ``coverage`` from 4.5.3 to 4.5.4.
+  - Update ``pyyaml`` from 5.1.1 to 5.1.2.
+  - Update ``cssselect`` from 1.0.3 to 1.1.0.
+  - Update ``pydocstyle`` from 4.0.0 to 4.0.1.
+  - Update ``wheel`` from 0.33.4 to 0.33.6.
+  - Update ``sphinx`` from 2.1.2 to 2.2.0.
+
 3.0.3
 ==============================================================================
 
