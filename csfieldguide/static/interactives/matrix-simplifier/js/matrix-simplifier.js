@@ -315,10 +315,8 @@ function addVectors(v) {
  * Displays the output of calculations
  */
 function showOutput() {
-  // If output container is showing, hide it while mathjax renders.
-  if (!$('#output-container').hasClass('invisible')) {
-    $('#output-container').addClass('invisible');
-  }
+  // hide output container while mathjax renders.
+  $('#output-container').addClass('invisible');
   var result = calculateOutput();
   var matrix = result[0];
   var vector = result[1];
@@ -483,7 +481,7 @@ function validateInput() {
     $(this).addClass('input-error');
     $('.add-from-input').prop('disabled', true);
   }
-  if (success && $(this).hasClass('input-error')) {
+  if (success) {
     $(this).removeClass('input-error');
   }
   // if there are no input erros, enable add button
