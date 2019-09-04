@@ -1,21 +1,21 @@
 # What's the big picture?
 
-The area of *tractability* explores problems and algorithms that can take an impossible amount of computation to solve except perhaps for very small examples of the problem.
+The area of *tractability* explores problems and {glossary-link term="algorithm"}algorithms{glossary-link end} that can take an impossible amount of computation to solve except perhaps for very small examples of the problem.
 
 We'll define what we mean by {glossary-link term="tractable" reference-text="complexity and tractability chapter"}tractable{glossary-link end} later on, but put very crudely, a tractable problem is one which we can write programs for that finish in a reasonable amount of time, and an intractable problem is one that will generally end up taking way too long.
 
 Knowing when a problem you are trying to solve is one of these hard problems is very important.
 Otherwise it is easy to waste huge amounts of time trying to invent a clever program to solve it, and never getting anywhere.
 A computer scientist needs to be able to recognise a problem as an intractable problem, so that they can use other approaches.
-A very common approach is to give up on getting a perfect answer, and instead just aim for an approximately correct answer.
-There are a variety of techniques for getting good approximate answers to hard problems; a way of getting an answer that isn't guaranteed to give the exact correct answer is sometimes referred to as a *heuristic*.
+A very common approach is to give up on getting a perfect answer, and instead just aim for a good enough answer.
+There are a variety of techniques for getting good approximate answers to hard problems; a way of getting an answer that isn't guaranteed to give the exact correct answer is sometimes referred to as a {glossary-link term="heuristic"}heuristic{glossary-link end}.
 
 One important example of an intractable problem that this chapter looks at is the travelling salesman problem (TSP for short).
 It's a simple problem; if you've got a collection of places that you need to visit, and you know the distance to travel between each pair of places, what's the shortest route that visits all of the places exactly once?
 This is a very practical problem that comes up with courier vehicles choosing routes to deliver parcels, rock bands planning tours, and even a designated driver dropping friends off after an event.
 In fact, the measurement between cities doesn’t have to be distance.
-It could actually be the dollar cost to travel between each pair of cities.
-For example, if you needed to visit Queenstown, Christchurch, Auckland, and Wellington one after the other while minimising airfares and you knew the cost of an airfare between each pair of those 4 cities, you could work out what the cheapest way of flying to each of them is.
+It could actually be any {glossary-link term="cost"}cost{glossary-link end} to travel between each pair of cities.
+For example, if you needed to visit Queenstown, Christchurch, Auckland, and Wellington one after the other while minimising airfares and you knew the price of an airfare between each pair of those 4 cities, you could work out what the cheapest way of flying to each of them is.
 This is still an example of TSP.
 It can also be applied to problems that don't involve travel; for example, it has been used to [work out how to efficiently synthesise DNA](http://www.i-programmer.info/news/181/9340.html).
 
