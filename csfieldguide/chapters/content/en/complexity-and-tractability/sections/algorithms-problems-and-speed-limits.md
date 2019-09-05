@@ -135,7 +135,8 @@ How many possible orderings will there be with 5 words?
 What about with only 2 or 3 words &ndash; how many orderings are there for those?
 If you gave up on writing out all the orderings with 5 words, can you now figure out how many there might be?
 Can you find a pattern?
-How many do you think there might be for 10 words (you don’t have to write them all out!)?
+How many do you think there might be for 10 words?
+(You don’t have to write them all out!)
 
 {panel type="teacher-note"}
 
