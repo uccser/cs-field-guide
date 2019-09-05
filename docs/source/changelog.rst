@@ -17,6 +17,16 @@ All notable changes to this project will be documented in this file.
 
 We have listed major changes for each release below.
 
+3.0.5
+==============================================================================
+
+- **Release date:** 6th September 2019
+- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/3.0.5>`__
+
+**Changelog:**
+
+- Fix broken URLs. `#1141 <https://github.com/uccser/cs-field-guide/issues/1141>`__
+
 3.0.4
 ==============================================================================
 
