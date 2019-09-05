@@ -12,21 +12,27 @@ renderer.setSize( window.innerWidth, window.innerHeight );
 var container = document.getElementById('scene');
 container.appendChild( renderer.domElement );
 
-var geometry = new THREE.BoxGeometry( 1, 1, 1 );
-var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
-var cube = new THREE.Mesh( geometry, material );
-scene.add( cube );
-var axesHelper = new THREE.AxesHelper( 5 );
+var geometry = new THREE.ConeGeometry( 0.5, 1.5, 8 );
+var material = new THREE.MeshBasicMaterial( {color: 0xffff00} );
+var cone = new THREE.Mesh( geometry, material );
+scene.add( cone );
+var axesHelper = new THREE.AxesHelper( 10 );
 scene.add( axesHelper );
+var size = 10;
+var divisions = 10;
+
+var gridHelper = new THREE.GridHelper( size, divisions );
+scene.add( gridHelper );
 
 camera.position.z = 5;
-camera.position.y = 120 * Math.PI / 180;
+camera.position.y = 1;
+camera.position.x = 1;
 
 var animate = function () {
   requestAnimationFrame( animate );
 
-  cube.rotation.x += 0.01;
-  cube.rotation.y += 0.01;
+  cone.rotation.x += 0.01;
+  cone.rotation.y += 0.01;
 
   renderer.render( scene, camera );
 };
