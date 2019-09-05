@@ -1,6 +1,6 @@
 # The Travelling Salesman Problem
 
-An example of an intractable problem is the Travelling Salesman Problem (TSP).
+An example of an intractable problem is the travelling salesman problem (TSP).
 The TSP involves a bunch of locations (cities, houses, airports,....) where you can travel between any possible pair of locations.
 The goal is to find the shortest route that will go through all the locations once &ndash; this is what the City Trip interactive below (and at the start of this chapter) does.
 
@@ -38,9 +38,9 @@ This includes games and information about the current largest solved problem (wh
 Since these problems are important for real companies, it is not reasonable to simply give up and say there is no solution.
 Instead, when confronted with an intractable problem, computer scientists look for algorithms that produce approximate solutions &ndash; solutions that are not perfectly correct or optimal, but are hopefully close enough to be useful.
 By relaxing the requirement that the solution has to be perfectly correct, it is often possible to come up with tractable algorithms that will find good enough solutions in a reasonable time.
-This kind of algorithm is called a *heuristic* - it uses rules of thumb to suggest good choices and build up a solution made of pretty good choices.
+This kind of algorithm is called a {glossary-link term="heuristic"}heuristic{glossary-link end} &ndash; it uses rules of thumb to suggest good choices and build up a solution made of pretty good choices.
 
-A simple heuristic that often works OK is a *greedy* heuristic algorithm &ndash; an algorithm that just takes what looks like the best choice at each step.
+A simple heuristic that often works okay is a {glossary-link term="greed-algorithm"}greedy heuristic algorithm{glossary-link end} &ndash; an algorithm that just takes what looks like the best choice at each step.
 For example, for the TSP, a greedy heuristic algorithm might repeatedly take the route to the next closest city.
 This won’t always be the best choice, but it is very fast, and experience shows that it is typically no more than 25% worse than the optimal.
 There are more sophisticated ways of designing approximate algorithms that can do better than this (some can get within 3% of optimal for the TSP), but they take longer to run.
@@ -48,7 +48,7 @@ There are more sophisticated ways of designing approximate algorithms that can d
 There are software companies that work on trying to make better and better approximate algorithms for guiding vehicles by GPS for delivery routes.
 Companies that write better algorithms can charge a lot of money if their routes are faster, because of all the fuel and time savings that can be made.
 
-An interesting thing with intractability is that you can have two very similar problems, with one being intractable and the other being tractable.
+An interesting thing within tractability is that you can have two very similar problems, with one being intractable and the other being tractable.
 For example, finding the shortest route between two points (like a GPS device usually does) is a tractable problem, yet finding the shortest route around multiple points (the TSP) isn't.
 By the way, finding the *longest* path between two points (without going along any route twice) is also intractable, even though finding the *shortest* path is tractable!
 
@@ -80,7 +80,7 @@ Using your intuition, find the shortest path between the craypots.
 Now generate a map (same method as above) with somewhere between 15 and 25 craypots.
 *Make more than one copy of this map, as you will need it again later*
 
-Now on this new map,  try to use your intuition to find the shortest path between the craypots.
+Now on this new map, try to use your intuition to find the shortest path between the craypots.
 Don’t spend more than 5 minutes on this task; you don’t need to include the solution in your report.
 Why was this task very challenging?
 Can you be sure you have an optimal solution?
@@ -96,8 +96,8 @@ Even if you measured the distance between each location and put lines between th
 A straightforward algorithm to guarantee that you find the shortest route is to check *all* possible routes.
 This involves working out what all the possible routes are, and then checking each one.
 A possible route can be written as a list of the locations (i.e. the numbers on the craypots), in the order to go between them.
-This should be starting to sound familiar to you assuming you did the permutation sort discussed above.
-Just like in that activity you listed all the possible ordering for the values in the list to be sorted, this algorithm would require listing all the possible orderings of the craypots, which is equivalent (although you don’t need to list all the orderings for this project!).
+This should be starting to sound familiar to you assuming you did the permutation sort discussed before.
+Just like in that activity you listed all the possible orderings for the values in the list to be sorted, this algorithm would require listing all the possible orderings of the craypots, which is equivalent (although you don’t need to list all the orderings for this project!).
 
 How many possible routes are there for the larger example you have generated?
 How is this related to permutation sort, and factorials?
@@ -109,7 +109,7 @@ Would this be a good way for the crayfisher to decide which path to take?
 
 Make sure you show *all* your mathematical working in your answers to the above questions!
 
-So this algorithm is intractable,  but maybe there is a more clever algorithm that is tractable?
+So this algorithm is intractable, but maybe there is a more clever algorithm that is tractable?
 The answer is no.
 
 You should be able to tell that this problem is equivalent to the TSP, and therefore it is intractable.
@@ -132,7 +132,7 @@ From there, you should go to the nearest craypot from that craypot, and repeated
 This approach is known as a *greedy heuristic algorithm* as it always makes the decision that looks the best at the current time, rather than making a not so good decision now to try and get a bigger pay off later.
 You will understand why this doesn’t necessarily lead to the optimal solution after completing the following exercises.
 
-On a copy of each of your 2 maps you generated, draw lines between the craypots to show the route you would find following the greedy algorithm (you should have made more than one copy of each of the maps!)
+On a copy of each of the two maps you generated, draw lines between the craypots to show the route you would find following the greedy algorithm (you should have made more than one copy of each of the maps!)
 
 For your map with the smaller number of craypots (7 or 8), compare your optimal solution and your approximate solution.
 Are they the same?
@@ -153,7 +153,7 @@ Even though the greedy algorithm only generates an approximate solution, as oppo
 Why would it be important to the crayfisher to find a short route between the craypots, as opposed to just visiting them in a random order?
 Discuss other problems that are equivalent to TSP that real world companies encounter every day.
 Why is it important to these companies to find good solutions to TSP?
-Estimate how much money might a courier company be wasting over a year if their delivery routes were 10% worse than the optimal.
+Estimate how much money a courier company might be wasting over a year if their delivery routes were 10% worse than the optimal.
 How many different locations/towns/etc might their TSP solutions have to be able to handle?
 
 Find a craypot layout that results in the greedy algorithm finding what seems to be a really inefficient route.

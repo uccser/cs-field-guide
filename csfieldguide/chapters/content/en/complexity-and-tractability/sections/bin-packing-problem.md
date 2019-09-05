@@ -6,12 +6,12 @@ A real life example of this would be packing boxes into the back of a truck.
 
 There is no known tractable solution to this problem, which means that we only currently have exponential-time algorithms that work out the minimum number of bins needed.
 However, there are a number of heuristics that can very quickly give a non-optimal solution.
-One of these is the first fit algorithm.
+One of these is the ({glossary-link term="greedy-algorithm"}greedy{glossary-link end}) first fit algorithm.
 This algorithm uses the following steps:
 
 1. Select an item.
 2. Place it in the first bin that has space available for it.
-   If there are no bins with space, add a new bin.
+   If there are no bins with space, add it to a new bin.
 
 These steps are repeated until there are no items left.
 

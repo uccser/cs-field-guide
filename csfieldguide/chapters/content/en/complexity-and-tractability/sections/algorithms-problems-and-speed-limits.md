@@ -23,7 +23,7 @@ The term *complexity* is generally used to refer to these rough measures.
 
 Having a rough idea of the complexity of a problem helps you to estimate how long it's likely to take.
 For example, if you write a program and run it with a simple input, but it doesn't finish after 10 minutes, should you quit, or is it about to finish?
-It's better if you can estimate the number of steps it needs to make, and then {glossary-link term="extrapolate"}extrapolate{glossary-link end} from the time it takes other programs to find related solutions.
+It's better if you can estimate the number of steps it needs to make, and then {glossary-link term="extrapolation"}extrapolate{glossary-link end} from the time it takes other programs to find related solutions.
 
 {comment If the paragraphs above turned into a section, then the following ones should stay in a box - they are going somewhat further than is necessary.}
 
@@ -182,12 +182,12 @@ Ensuring you understand how a factorial is calculated is essential for understan
 
 {panel end}
 
-For factorials of larger numbers, most desktop calculators won't work so well; for example, 100! has 158 digits.
+For factorials of larger numbers, most desktop calculators won't work so well; for example, \( 100! \) has 158 digits.
 You can use the calculator below to work with huge numbers (especially when using factorials and exponents).
 
 {interactive slug="big-number-calculator" type="whole-page" text="Big Number Calculator"}
 
-Try calculating 100! using this calculator &ndash; that's the number of different routes that a travelling salesman might take to visit 100 places (not counting the starting place).
+Try calculating \( 100! \) using this calculator &ndash; that's the number of different routes that a travelling salesman might take to visit 100 places (not counting the starting place).
 With this calculator you can copy and paste the result back into the input if you want to do further calculations on the number.
 If you are doing these calculations for a report, you should also copy each step of the calculation into your report to show how you got the result.
 
@@ -208,7 +208,7 @@ Assume that you have a computer that creates and checks an ordering every nanose
 
 # Solution
 
-The number of orderings for 100 numbers is 100!, which is 93,326,215,443,944,152,681,699,238,856,266,700,490,715,968,264,381,621,468,592,963,895,217,599,993,229,915,608,941,463,976,156,518,286,253,697,920,827,223,758,251,185,210,916,864,000,000,000,000,000,000,000,000 permutations.
+The number of orderings for 100 numbers is \( 100! \), which is 93,326,215,443,944,152,681,699,238,856,266,700,490,715,968,264,381,621,468,592,963,895,217,599,993,229,915,608,941,463,976,156,518,286,253,697,920,827,223,758,251,185,210,916,864,000,000,000,000,000,000,000,000 permutations.
 
 A nanosecond is 1/1,000,000,000 of a second, so the suggested system can check a billion orderings per second.
 
@@ -249,7 +249,7 @@ Computer scientists call an algorithm "intractable" if it would take a completel
 Permutation sort is a good example of an intractable algorithm.
 The term "intractable" is used a bit more formally in computer science; it's explained in the next section.
 
-But the *problem* of sorting items into order is not intractable &ndash; even though the Permutation sort algorithm is intractable, there are lots of other efficient and not-so-efficient algorithms that you could use to solve a sorting problem in a reasonable amount of time: quicksort, mergesort, selection sort, even bubble sort!
+But the *problem* of sorting items into order is not intractable &ndash; even though the permutation sort algorithm is intractable, there are lots of other efficient and not-so-efficient algorithms that you could use to solve a sorting problem in a reasonable amount of time: quicksort, mergesort, selection sort, even bubble sort!
 However, there are some problems in which the ONLY known algorithm is one of these intractable ones.
 Problems in this category are known as *intractable problems*.
 
