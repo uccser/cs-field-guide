@@ -12,15 +12,32 @@ renderer.setSize( window.innerWidth, window.innerHeight );
 var container = document.getElementById('scene');
 container.appendChild( renderer.domElement );
 
-var geometry = new THREE.ConeGeometry( 0.5, 1.5, 8 );
-var material = new THREE.MeshBasicMaterial( {color: 0xffff00} );
+var geometry = new THREE.ConeBufferGeometry( 0.5, 1.5, 8 );
+var material = new THREE.MeshPhongMaterial( {color: 0xeb4034} );
 var cone = new THREE.Mesh( geometry, material );
 scene.add( cone );
+
+var pointLight = new THREE.PointLight( {decay: 2});
+pointLight.position.set( 5, 5, 0 );
+scene.add( pointLight );
+
+var pointLight2 = new THREE.PointLight( {decay: 2});
+pointLight2.position.set( -5, -5, 0 );
+scene.add( pointLight2 );
+
+var pointLight3 = new THREE.PointLight( {decay: 2});
+pointLight3.position.set( 0, 0, 5 );
+scene.add( pointLight3 );
+
+// var pointLight4 = new THREE.PointLight( {decay: 2});
+// pointLight4.position.set( 0, 5, 0 );
+// scene.add( pointLight4 );
+
 var axesHelper = new THREE.AxesHelper( 10 );
 scene.add( axesHelper );
+
 var size = 10;
 var divisions = 10;
-
 var gridHelper = new THREE.GridHelper( size, divisions );
 scene.add( gridHelper );
 
