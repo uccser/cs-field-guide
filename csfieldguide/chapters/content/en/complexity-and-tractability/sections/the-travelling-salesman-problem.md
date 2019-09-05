@@ -40,7 +40,7 @@ Instead, when confronted with an intractable problem, computer scientists look f
 By relaxing the requirement that the solution has to be perfectly correct, it is often possible to come up with tractable algorithms that will find good enough solutions in a reasonable time.
 This kind of algorithm is called a {glossary-link term="heuristic"}heuristic{glossary-link end} &ndash; it uses rules of thumb to suggest good choices and build up a solution made of pretty good choices.
 
-A simple heuristic that often works okay is a {glossary-link term="greed-algorithm"}greedy heuristic algorithm{glossary-link end} &ndash; an algorithm that just takes what looks like the best choice at each step.
+A simple heuristic that often works okay is a {glossary-link term="greedy-algorithm"}greedy heuristic algorithm{glossary-link end} &ndash; an algorithm that just takes what looks like the best choice at each step.
 For example, for the TSP, a greedy heuristic algorithm might repeatedly take the route to the next closest city.
 This won’t always be the best choice, but it is very fast, and experience shows that it is typically no more than 25% worse than the optimal.
 There are more sophisticated ways of designing approximate algorithms that can do better than this (some can get within 3% of optimal for the TSP), but they take longer to run.
