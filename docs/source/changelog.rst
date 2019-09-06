@@ -10,8 +10,8 @@ All notable changes to this project will be documented in this file.
 
   Given a version number MAJOR.MINOR.HOTFIX:
 
-  - MAJOR version change when major text modifications are made (for example: new chapter, changing how a curriculum guide teaches a subject).
-  - MINOR version change when content or functionality is added or updated (for example: new videos, new activities, large number of text (typo/grammar) fixes).
+  - MAJOR version change when system-wide modifications incompatible with previous versions are made (for example: switching to a new database system).
+  - MINOR version change when content or functionality is added or updated (for example: new chapter, new interactive, large number of text (typo/grammar) fixes).
   - HOTFIX version change when bug hotfixes are made (for example: fixing a typo, fixing a bug in an interactive).
   - A pre-release version is denoted by appending a hyphen and the alpha label followed by the pre-release version.
 
