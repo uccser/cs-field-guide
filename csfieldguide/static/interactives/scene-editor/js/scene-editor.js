@@ -5,38 +5,41 @@ var detector = require('../../../js/third-party/threejs/Detector.js');
 if (! detector.Detector.webgl) detector.Detector.addGetWebGLMessage();
 
 var scene = new THREE.Scene();
-var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000 );
+var camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 15000 );
+camera.position.x = 100;
+camera.position.y = 100;
+camera.position.z = 500;
+camera.lookAt(new THREE.Vector3(0,0,0));
 
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize( window.innerWidth, window.innerHeight );
 var container = document.getElementById('scene');
 container.appendChild( renderer.domElement );
 
-var geometry = new THREE.ConeBufferGeometry( 0.5, 1.5, 8 );
+var geometry = new THREE.CubeGeometry( 100, 100, 100 );
 var material = new THREE.MeshLambertMaterial( {color: 0xeb4034} );
-var cone = new THREE.Mesh( geometry, material );
-scene.add( cone );
+var cube = new THREE.Mesh( geometry, material );
+scene.add( cube );
 
-var light = new THREE.HemisphereLight( 0xffffbb, 0x080820, 1 );
+var light = new THREE.PointLight( 0xff2200 );
+light.position.set( 100, 100, 100 );
+scene.add( light );
+var light = new THREE.AmbientLight( 0x111111 );
 scene.add( light );
 
-var axesHelper = new THREE.AxesHelper( 10 );
+var axesHelper = new THREE.AxesHelper( 500 );
 scene.add( axesHelper );
 
-var size = 10;
-var divisions = 10;
+var size = 50;
+var divisions = 20;
 var gridHelper = new THREE.GridHelper( size, divisions );
 scene.add( gridHelper );
-
-camera.position.z = 5;
-camera.position.y = 1;
-camera.position.x = 1;
 
 var animate = function () {
   requestAnimationFrame( animate );
 
-  cone.rotation.x += 0.01;
-  cone.rotation.y += 0.01;
+  cube.rotation.x += 0.01;
+  cube.rotation.y += 0.01;
 
   renderer.render( scene, camera );
 };
