@@ -27,13 +27,13 @@ scene.add( light );
 var light = new THREE.AmbientLight( 0x111111 );
 scene.add( light );
 
-var axesHelper = new THREE.AxesHelper( 500 );
-scene.add( axesHelper );
-
-var size = 50;
-var divisions = 20;
+var size = 1000;
+var divisions = 10;
 var gridHelper = new THREE.GridHelper( size, divisions );
 scene.add( gridHelper );
+
+var axesHelper = new THREE.AxesHelper( 500 );
+scene.add( axesHelper );
 
 var animate = function () {
   requestAnimationFrame( animate );
