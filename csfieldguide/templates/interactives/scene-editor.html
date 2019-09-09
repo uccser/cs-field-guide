@@ -16,5 +16,8 @@
 {% endblock css %}
 
 {% block js %}
+  <script type="text/javascript">
+    var base_static_path = "{{ STATIC_URL }}";
+  </script>
   <script type="text/javascript" src="{% static 'interactives/scene-editor/js/scene-editor.js' %}"></script>
 {% endblock js %}

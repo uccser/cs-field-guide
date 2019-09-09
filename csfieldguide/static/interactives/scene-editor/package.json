@@ -3,6 +3,7 @@
     "version": "1.0.0",
     "private": true,
     "dependencies": {
-        "three": "0.108.0"
+        "three": "0.108.0",
+        "three-orbit-controls": "82.1.0"
     }
 }
