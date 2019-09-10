@@ -37,3 +37,10 @@ canvas {
   background: #3f51b5;
   color: white;
 }
+
+li:hover {
+  border-color: #3f51b5;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(63, 81, 181, 0.6);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(63, 81, 181, 0.6);
+}

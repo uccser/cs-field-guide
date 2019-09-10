@@ -14,10 +14,20 @@
         <h5>{% trans "Objects" %}</h5>
         <ul id="selectable-objects" class="pl-0">
           <li class="object border rounded p-2 mb-1 center-block">{% trans "Sphere" %}</li>
-          <li class="object border rounded p-2 mb-1 center-block">{% trans "Teapot" %}</li>
-          <li class="object border rounded p-2 center-block">{% trans "Cube" %}</li>
+          <li class="object border rounded p-2 mb-1 center-block">{% trans "Cube" %}</li>
+          <li class="object border rounded p-2 center-block">{% trans "Cone" %}</li>
         </ul>
-        <button class="mt-2 btn btn-primary">{% trans "Add object" %}</button>
+        <div class="input-group">
+          <select id="object-selection" class="custom-select">
+            <option selected disabled>{% trans "Select an object to add..." %}</option>
+            <option value="sphere">{% trans "Sphere" %}</option>
+            <option value="cube">{% trans "Cube" %}</option>
+            <option value="cone">{% trans "Cone" %}</option>
+          </select>
+          <div class="input-group-append">
+            <button id="add-object" class="btn btn-primary" type="button">{% trans "Add object" %}</button>
+          </div>
+        </div>
       </div>
 
       <div class="col-8 text-center">

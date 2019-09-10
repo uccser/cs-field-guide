@@ -15,7 +15,7 @@ init();
 animate();
 
 $(document).ready(function () {
-  $( "#selectable-objects" ).selectable();
+  $("#selectable-objects").selectable();
 });
 
 function init() {
@@ -189,6 +189,24 @@ function addAxes(size) {
 }
 
 
-function addObject() {
+function addObject(type) {
+  switch (type) {
+    case "sphere":
+      var geometry = new THREE.SphereBufferGeometry( 200, 48, 24 );
+      var material = new THREE.MeshBasicMaterial( {color: 0x03fcf4} );
+      var sphere = new THREE.Mesh( geometry, material );
+      scene.add( sphere );
 
+    case "cube":
+      var geometry = new THREE.BoxBufferGeometry( 150, 150, 150 );
+      var material = new THREE.MeshBasicMaterial( {color: 0x00ff00} );
+      var cube = new THREE.Mesh( geometry, material );
+      scene.add( cube );
+
+    case "cone":
+      var geometry = new THREE.ConeBufferGeometry( 200, 250, 32 );
+      var material = new THREE.MeshBasicMaterial( {color: 0xffff00} );
+      var cone = new THREE.Mesh( geometry, material );
+      scene.add( cone );
+  }
 }
