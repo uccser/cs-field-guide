@@ -8,6 +8,10 @@ var cameraCube, sceneCube;
 var textureCube;
 var cubeMesh;
 
+var numSpheres = 1;
+var numCubes = 0;
+var numCones = 0;
+
 // check that the browser is webgl compatible
 if (! detector.Detector.webgl) detector.Detector.addGetWebGLMessage();
 
@@ -194,7 +198,6 @@ function addAxes(size) {
 
 
 function addObject(type) {
-  console.log(type);
   switch (type) {
     case "sphere":
       var geometry = new THREE.SphereBufferGeometry( 200, 48, 24 );
@@ -203,6 +206,8 @@ function addObject(type) {
       scene.add( sphere );
       var pos = getRandomPos(5000);
       sphere.position.set(pos[0], pos[1], pos[2]);
+      numSpheres += 1;
+      $("#selectable-objects").append("<li class='object border rounded p-2 mb-1 center-block'>" + gettext('Sphere ') + numSpheres + "</li>");
       break;
 
     case "cube":
@@ -212,6 +217,8 @@ function addObject(type) {
       scene.add( cube );
       var pos = getRandomPos(5000);
       cube.position.set(pos[0], pos[1], pos[2]);
+      numCubes += 1;
+      $("#selectable-objects").append("<li class='object border rounded p-2 mb-1 center-block'>" + gettext('Cube ') + numCubes + "</li>");
       break;
 
     case "cone":
@@ -221,6 +228,8 @@ function addObject(type) {
       scene.add( cone );
       var pos = getRandomPos(5000);
       cone.position.set(pos[0], pos[1], pos[2]);
+      numCones += 1;
+      $("#selectable-objects").append("<li class='object border rounded p-2 mb-1 center-block'>" + gettext('Cone ') + numCones + "</li>");
       break;
   }
 }
