@@ -17,7 +17,7 @@ animate();
 function init() {
   // Cameras
   camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 100000 );
-  camera.position.set( 0, 0, 1000 );
+  camera.position.set( 1000, 500, 1000 );
   cameraCube = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 100000 );
   // Scene
   scene = new THREE.Scene();
@@ -111,7 +111,7 @@ function render() {
 // code taken from https://soledadpenades.com/articles/three-js-tutorials/drawing-the-coordinate-axes/
 function buildAxis( src, dst, colorHex, dashed ) {
   var geom = new THREE.Geometry();
-  var mat; 
+  var mat;
 
   if(dashed) {
       mat = new THREE.LineDashedMaterial({ linewidth: 5, color: colorHex, dashSize: 25, gapSize: 50 });

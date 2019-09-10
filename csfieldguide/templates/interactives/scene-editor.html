@@ -8,6 +8,52 @@
     <div class="row mt-5">
       <div id="scene" class="col-12"></div>
     </div>
+
+    <div class="row mt-3">
+      <div class="col-4 text-center">
+        <h5>{% trans "Objects" %}</h5>
+        <div class="object border rounded p-2 center-block">
+          {% trans "Sphere" %}
+        </div>
+        <button class="mt-2 btn btn-primary">{% trans "Add object" %}</button>
+      </div>
+
+      <div class="col-8 text-center">
+        <h5>{% trans "Transformation for sphere" %}</h5>
+        <div class="row">
+          <div class="matrix d-inline col-6 offset-1">
+            <div class="matrix-row">
+              <input class="form-control text-center" id="matrix-row-0-col-0" value=1>
+              <input class="form-control text-center" id="matrix-row-0-col-1" value=0>
+              <input class="form-control text-center" id="matrix-row-0-col-2" value=0>
+            </div>
+            <div class="matrix-row">
+              <input class="form-control text-center" id="matrix-row-1-col-0" value=0>
+              <input class="form-control text-center" id="matrix-row-1-col-1" value=1>
+              <input class="form-control text-center" id="matrix-row-1-col-2" value=0>
+            </div>
+            <div class="matrix-row">
+              <input class="form-control text-center" id="matrix-row-2-col-0" value=0>
+              <input class="form-control text-center" id="matrix-row-2-col-1" value=0>
+              <input class="form-control text-center" id="matrix-row-2-col-2" value=1>
+            </div>
+          </div>
+          <span class="col-1 plus-sign d-inline">+</span>
+          <div class="vector d-inline col-2">
+            <div class="vector-row">
+              <input class="form-control text-center" id="vector-row-0" value=1>
+            </div>
+            <div class="vector-row">
+              <input class="form-control text-center" id="vector-row-1" value=0>
+            </div>
+            <div class="vector-row">
+              <input class="form-control text-center" id="vector-row-2" value=0>
+            </div>
+          </div>
+        </div>
+        <button class="mt-2 btn btn-primary">{% trans "Apply" %}</button>
+      </div>
+    </div>
   </div>
 {% endblock html %}
 
