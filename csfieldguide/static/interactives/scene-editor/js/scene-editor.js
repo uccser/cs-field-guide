@@ -16,6 +16,10 @@ animate();
 
 $(document).ready(function () {
   $("#selectable-objects").selectable();
+  $("#add-object").click(function() {
+    objectType = $("#object-selection :selected").val();
+    addObject(objectType);
+  });
 });
 
 function init() {
@@ -190,23 +194,47 @@ function addAxes(size) {
 
 
 function addObject(type) {
+  console.log(type);
   switch (type) {
     case "sphere":
       var geometry = new THREE.SphereBufferGeometry( 200, 48, 24 );
-      var material = new THREE.MeshBasicMaterial( {color: 0x03fcf4} );
+      var material = new THREE.MeshLambertMaterial( {color: 0x03fcf4} );
       var sphere = new THREE.Mesh( geometry, material );
       scene.add( sphere );
+      var pos = getRandomPos(5000);
+      sphere.position.set(pos[0], pos[1], pos[2]);
+      break;
 
     case "cube":
-      var geometry = new THREE.BoxBufferGeometry( 150, 150, 150 );
-      var material = new THREE.MeshBasicMaterial( {color: 0x00ff00} );
+      var geometry = new THREE.BoxBufferGeometry( 500, 500, 500 );
+      var material = new THREE.MeshLambertMaterial( {color: 0x00ff00} );
       var cube = new THREE.Mesh( geometry, material );
       scene.add( cube );
+      var pos = getRandomPos(5000);
+      cube.position.set(pos[0], pos[1], pos[2]);
+      break;
 
     case "cone":
-      var geometry = new THREE.ConeBufferGeometry( 200, 250, 32 );
-      var material = new THREE.MeshBasicMaterial( {color: 0xffff00} );
+      var geometry = new THREE.ConeBufferGeometry( 200, 400, 32 );
+      var material = new THREE.MeshLambertMaterial( {color: 0xffff00} );
       var cone = new THREE.Mesh( geometry, material );
       scene.add( cone );
+      var pos = getRandomPos(5000);
+      cone.position.set(pos[0], pos[1], pos[2]);
+      break;
   }
+}
+
+
+function getRandomPos(max) {
+  var x = Math.floor(Math.random() * Math.floor(max)) * posOrNegative();
+  var y = Math.floor(Math.random() * Math.floor(max)) * posOrNegative();
+  var z = Math.floor(Math.random() * Math.floor(max)) * posOrNegative();
+
+  return [x, y, z];
+}
+
+// returns either 1 or -1
+function posOrNegative() {
+  return Math.random() < 0.5 ? -1 : 1;
 }
