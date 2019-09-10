@@ -12,9 +12,11 @@
     <div class="row mt-3">
       <div class="col-4 text-center">
         <h5>{% trans "Objects" %}</h5>
-        <div class="object border rounded p-2 center-block">
-          {% trans "Sphere" %}
-        </div>
+        <ul id="selectable-objects" class="pl-0">
+          <li class="object border rounded p-2 mb-1 center-block">{% trans "Sphere" %}</li>
+          <li class="object border rounded p-2 mb-1 center-block">{% trans "Teapot" %}</li>
+          <li class="object border rounded p-2 center-block">{% trans "Cube" %}</li>
+        </ul>
         <button class="mt-2 btn btn-primary">{% trans "Add object" %}</button>
       </div>
 
@@ -65,5 +67,7 @@
   <script type="text/javascript">
     var base_static_path = "{{ STATIC_URL }}";
   </script>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script type="text/javascript" src="{% static 'interactives/scene-editor/js/scene-editor.js' %}"></script>
 {% endblock js %}

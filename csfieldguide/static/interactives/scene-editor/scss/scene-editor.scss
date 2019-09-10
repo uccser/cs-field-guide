@@ -4,7 +4,7 @@ canvas {
 }
 
 .object {
-  background-color: #fff;
+  background-color: white;
   width: 80%;
 }
 
@@ -31,4 +31,9 @@ canvas {
 
 .plus-sign {
   padding-top: 2.5rem;
+}
+
+#selectable-objects .ui-selected {
+  background: #3f51b5;
+  color: white;
 }

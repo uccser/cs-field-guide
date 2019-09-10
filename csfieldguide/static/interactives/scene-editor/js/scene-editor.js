@@ -14,6 +14,10 @@ if (! detector.Detector.webgl) detector.Detector.addGetWebGLMessage();
 init();
 animate();
 
+$(document).ready(function () {
+  $( "#selectable-objects" ).selectable();
+});
+
 function init() {
   // Cameras
   camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 100000 );
@@ -53,7 +57,7 @@ function init() {
   // Skybox
   cubeMesh = new THREE.Mesh( new THREE.BoxBufferGeometry( 100, 100, 100 ), cubeMaterial );
   sceneCube.add( cubeMesh );
-  //
+  // Sphere object
   var geometry = new THREE.SphereBufferGeometry( 200.0, 48, 24 );
   sphereMaterial = new THREE.MeshLambertMaterial( { envMap: textureCube } );
   sphereMesh = new THREE.Mesh( geometry, sphereMaterial );
@@ -182,4 +186,9 @@ function addAxes(size) {
   scene.add( negY );
   scene.add( posZ );
   scene.add( negZ );
+}
+
+
+function addObject() {
+
 }
