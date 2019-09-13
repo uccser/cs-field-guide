@@ -9,11 +9,11 @@
       <div id="scene" class="col-12"></div>
     </div>
 
-    <div class="row mt-3">
-      <div class="col-4 text-center">
+    <div class="row my-3">
+      <div id="object-container" class="col-4 text-center d-none">
         <h5>{% trans "Objects" %}</h5>
         <ul id="selectable-objects" class="pl-0">
-          <li class="object border rounded p-2 mb-1 center-block">{% trans "Sphere 1" %}</li>
+          <li class="object border rounded p-2 mb-1 center-block ui-selected">{% trans "Sphere 1" %}</li>
         </ul>
         <div class="input-group mb-2">
           <select id="object-selection" class="custom-select">
@@ -28,10 +28,10 @@
         </div>
       </div>
 
-      <div class="col-8 text-center">
+      <div id="equation-container" class="col-12 text-center d-none">
         <h5>{% trans "Transformation for sphere" %}</h5>
-        <div class="row">
-          <div class="matrix d-inline col-6 offset-1">
+        <div class="row d-flex justify-content-center">
+          <div id="matrix-container" class="matrix col-6 text-center d-none">
             <div class="matrix-row">
               <input class="form-control text-center" id="matrix-row-0-col-0" value=1>
               <input class="form-control text-center" id="matrix-row-0-col-1" value=0>
@@ -48,8 +48,8 @@
               <input class="form-control text-center" id="matrix-row-2-col-2" value=1>
             </div>
           </div>
-          <span class="col-1 plus-sign d-inline">+</span>
-          <div class="vector d-inline col-2">
+          <span class="col-1 plus-sign d-none">+</span>
+          <div id="vector-container" class="vector col-2 d-none">
             <div class="vector-row">
               <input class="form-control text-center" id="vector-row-0" value=1>
             </div>

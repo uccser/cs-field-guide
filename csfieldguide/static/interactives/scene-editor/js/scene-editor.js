@@ -1,6 +1,7 @@
 const THREE = require('three');
 const OrbitControls = require('three-orbit-controls')(THREE);
 const detector = require('../../../js/third-party/threejs/Detector.js');
+var urlParameters = require('../../../js/third-party/url-parameters.js');
 
 const image_base_path = base_static_path + 'interactives/scene-editor/img/bridge-';
 var controls, camera, scene, renderer;
@@ -19,6 +20,27 @@ init();
 animate();
 
 $(document).ready(function () {
+  // mode = transform | translation | multiple | scene-creation
+  var mode = urlParameters.getUrlParameter('mode');
+  if (mode == "transform") {
+    $("#matrix-container").removeClass('d-none');
+    $("#equation-container").removeClass('d-none');
+  } else if (mode == "translation") {
+    $("#vector-container").removeClass('d-none');
+    $("#equation-container").removeClass('d-none');
+  } else if (mode == "multiple") {
+    $("#matrix-container").removeClass('d-none');
+    $(".plus-sign").removeClass('d-none');
+    $("#vector-container").removeClass('d-none');
+    $("#equation-container").removeClass('d-none');
+  } else if (mode == "scene-creation") {
+    $("#object-container").removeClass('d-none');
+    $("#matrix-container").removeClass('d-none').addClass('offset-1 d-inline');
+    $(".plus-sign").removeClass('d-none').addClass('d-inline');
+    $("#vector-container").removeClass('d-none').addClass('d-inline');
+    $("#equation-container").removeClass('col-12 d-none').addClass('col-8');
+  }
+
   $("#selectable-objects").selectable();
   $("#add-object").click(function() {
     objectType = $("#object-selection :selected").val();
@@ -82,6 +104,7 @@ function init() {
   controls = new OrbitControls( camera, renderer.domElement );
   controls.minDistance = 500;
   controls.maxDistance = 2500;
+
   // Grid
   var size = 10000;
   var divisions = 10;
@@ -242,6 +265,7 @@ function getRandomPos(max) {
 
   return [x, y, z];
 }
+
 
 // returns either 1 or -1
 function posOrNegative() {
