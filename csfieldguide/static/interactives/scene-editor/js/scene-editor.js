@@ -27,11 +27,13 @@ $(document).ready(function () {
     $("#equation-container").removeClass('d-none');
   } else if (mode == "translation") {
     $("#vector-container").removeClass('d-none');
+    $("#eqtn-title").html(gettext('Translation for sphere'));
     $("#equation-container").removeClass('d-none');
   } else if (mode == "multiple") {
     $("#matrix-container").removeClass('d-none');
     $(".plus-sign").removeClass('d-none');
     $("#vector-container").removeClass('d-none');
+    $("#eqtn-title").html(gettext('Multiple matrices and vectors'));
     $("#equation-container").removeClass('d-none');
   } else if (mode == "scene-creation") {
     $("#object-container").removeClass('d-none');
