@@ -48,6 +48,10 @@ $(document).ready(function () {
     objectType = $("#object-selection :selected").val();
     addObject(objectType);
   });
+
+  $("#apply-transformation").click(function() {
+    applyTransformation(mode);
+  });
 });
 
 function init() {
@@ -272,4 +276,53 @@ function getRandomPos(max) {
 // returns either 1 or -1
 function posOrNegative() {
   return Math.random() < 0.5 ? -1 : 1;
+}
+
+
+function applyTransformation(mode) {
+  if (mode == "transform") {
+    // matrix only
+    var matrix = getMatrix();
+    // use matrix4 makeBasis as needs to be 4x4
+  } else if (mode == "translation") {
+    // vector only
+    var vector = getVector();
+    // use matrix4 makeTranslation
+  } else if (mode == "multiple") {
+    // multiple vectors and matrices
+  } else if (mode == "scene-creation") {
+    // one marix and one vector. Multiple objects (applied to just one of those objects)
+  }
+}
+
+
+function getMatrix() {
+  row0 = [
+    mathjs.eval($('#matrix-row-0-col-0').val()),
+    mathjs.eval($('#matrix-row-0-col-1').val()),
+    mathjs.eval($('#matrix-row-0-col-2').val()),
+  ];
+
+  row1 = [
+    mathjs.eval($('#matrix-row-1-col-0').val()),
+    mathjs.eval($('#matrix-row-1-col-1').val()),
+    mathjs.eval($('#matrix-row-1-col-2').val()),
+  ];
+
+  row2 = [
+    mathjs.eval($('#matrix-row-2-col-0').val()),
+    mathjs.eval($('#matrix-row-2-col-1').val()),
+    mathjs.eval($('#matrix-row-2-col-2').val()),
+  ];
+
+  return [row0, row1, row2];
+}
+
+
+function getVector() {
+  return [
+    [mathjs.eval($('#vector-row-0').val())],
+    [mathjs.eval($('#vector-row-1').val())],
+    [mathjs.eval($('#vector-row-2').val())]
+  ];
 }
