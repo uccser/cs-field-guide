@@ -1,0 +1,173 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div class="container">
+    <h3 class='text-center'>{% trans "Matrix Simplifier" %}</h3>
+    <p class="text-center">
+      {% blocktrans %}
+      This interactive combines multiple matrix transformations to just one matrix that can apply each transformation with one operation.<br>
+      Try dragging the matrices and vectors below to change their order. Does this affect the output?
+      {% endblocktrans %}
+    </p>
+    <div class="row">
+      <div class="col-md-6 col-sm-12 text-center mb-3">
+        <h5>{% trans "Matrices" %}</h5>
+        <div id="matrix-input-container" class="containers">
+          <div class="draggable content border rounded m-1 center-block">
+            <button id="close-matrix-0" type="button" class="close dismiss-eqtn" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <div id="matrix-0" class="matrix invisible" data-matrix-order=0>
+              \[
+                \begin{bmatrix}
+                cos(45)   &  0  &  sin(45) \\
+                0         &  1  &  0 \\
+                -sin(45)  &  0  &  cos(45) \\
+                \end{bmatrix}
+              \]
+            </div>
+          </div>
+      
+          <div class="draggable content border rounded m-1 center-block">
+            <button id="close-matrix-1" type="button" class="close dismiss-eqtn" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <div id="matrix-1" class="matrix invisible" data-matrix-order=1>
+              \[
+                \begin{bmatrix}
+                10  &  0  &  0 \\
+                0   &  10 &  0 \\
+                0   &  0  &  10 \\
+                \end{bmatrix}
+              \]
+            </div>
+          </div>
+        </div>
+        <button id="add-matrix-btn" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#matrix-modal">{% trans "Add matrix" %}</button>
+      </div>
+
+      <div class="col-md-6 col-sm-12 text-center mb-3">
+        <h5>{% trans "Vectors" %}</h5>
+        <div id="vector-input-container" class="containers">
+          <div class="draggable content border rounded m-1 center-block">
+            <button id="close-vector-0" type="button" class="close dismiss-eqtn" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <div id="vector-0" class="vector invisible" data-vector-order=0>
+              \[
+                \begin{bmatrix}
+                10 \\
+                0 \\
+                0 \\
+                \end{bmatrix}
+              \]
+            </div>
+          </div>
+        </div>
+        <button id="add-vector-btn" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#vector-modal">{% trans "Add vector" %}</button>
+      </div>
+    </div>
+
+    <div class="row">
+      <h5 class="col-12 text-center">{% trans "Result" %}</h5>
+    </div>
+
+    <div class="row justify-content-center">
+      <div id="output-container" class="col-12 text-center invisible">
+        <div class="result-step mb-3">
+          \[
+            \begin{bmatrix}
+            x^\prime \\
+            y^\prime \\
+            z^\prime \\
+            \end{bmatrix}
+          \] =
+          <div id="matrix-output" class="d-inline"></div>
+          \[
+            \begin{bmatrix}
+            x \\
+            y \\
+            z \\
+            \end{bmatrix}
+          \] +
+          <div id="vector-output" class="d-inline"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal for adding a matrix -->
+    <div id="matrix-modal" class="modal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">{% trans "Add a matrix" %}</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="matrix-row">
+              <input class="form-control text-center" id="matrix-row-0-col-0" value=1>
+              <input class="form-control text-center" id="matrix-row-0-col-1" value=0>
+              <input class="form-control text-center" id="matrix-row-0-col-2" value=0>
+            </div>
+    
+            <div class="matrix-row">
+              <input class="form-control text-center" id="matrix-row-1-col-0" value=0>
+              <input class="form-control text-center" id="matrix-row-1-col-1" value=1>
+              <input class="form-control text-center" id="matrix-row-1-col-2" value=0>
+            </div>
+            <div class="matrix-row">
+              <input class="form-control text-center" id="matrix-row-2-col-0" value=0>
+              <input class="form-control text-center" id="matrix-row-2-col-1" value=0>
+              <input class="form-control text-center" id="matrix-row-2-col-2" value=1>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary close-modal" data-dismiss="modal">{% trans "Close" %}</button>
+            <button id="add-matrix-from-input" type="button" class="btn btn-primary add-from-input" data-dismiss="modal">{% trans "Add matrix" %}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal for adding a vector -->
+    <div id="vector-modal" class="modal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">{% trans "Add a vector" %}</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="matrix-row">
+              <input class="form-control text-center" id="vector-row-0" value=1>
+            </div>
+            <div class="matrix-row">
+              <input class="form-control text-center" id="vector-row-1" value=0>
+            </div>
+            <div class="matrix-row">
+              <input class="form-control text-center" id="vector-row-2" value=0>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary close-modal" data-dismiss="modal">{% trans "Close" %}</button>
+            <button id="add-vector-from-input" type="button" class="btn btn-primary add-from-input" data-dismiss="modal">{% trans "Add vector" %}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/matrix-simplifier/css/matrix-simplifier.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'interactives/matrix-simplifier/js/matrix-simplifier.js' %}"></script>
+{% endblock js %}
