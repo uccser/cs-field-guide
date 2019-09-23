@@ -158,12 +158,15 @@ Remember that two passwords are the same, is that still obvious just by looking 
 # Password guessing activity in the classroom
 
 Try splitting the class into teams and make it a competition to find the most passwords.
-The main take away points are:
+The main outcomes of this exercise should be for the class to understand that:
 
 - Short and simple passwords are easy to guess.
 - Making common substitutions don't make a password much harder to guess.
 - Without any salting, a hacker can guess multiple passwords at once.
 - With salting, it takes much longer to guess passwords because each one needs to be checked individually.
+
+Of course, in practice a hacker would automate this process.
+So if your students managed to guess some of the passwords manually, they should realise how many more simple passwords an automated system could find.
 
 {panel end}
 
