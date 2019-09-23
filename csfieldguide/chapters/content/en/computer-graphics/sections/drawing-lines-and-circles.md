@@ -98,7 +98,8 @@ What angle are these lines at?
 
 # Solution
 
-A slope of 0 is a horizontal line. Using \( m=1 \) will be at 45 degrees, because you go up 1 pixel for each one that you go across.
+A slope of 0 is a horizontal line.
+Using \( m=1 \) will be at 45 degrees, because you go up 1 pixel for each one that you go across.
 A slope of a half (\( m=0.5 \)) is just under 27 degrees.
 There's a [demonstration here](http://www.mathopenref.com/coordslope.html) of slopes, which has an option for showing the angle (which might be more familiar to students.)
 
@@ -178,7 +179,7 @@ The following image shows which pixels would be coloured in (rounding the coordi
 Once you have completed the line, check it with a ruler.
 How does it compare to your first attempt?
 
-Now  consider the number of calculations that are needed to work out each point.
+Now consider the number of calculations that are needed to work out each point.
 It won't seem like many, but remember that a computer might be calculating hundreds of points on thousands of lines in a complicated image.
 Although this formula works fine, it's too slow to generate the complex graphics needed for good animations and games.
 In the next section we will explore a method that greatly speeds this up.
