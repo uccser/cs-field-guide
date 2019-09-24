@@ -161,7 +161,7 @@ Try splitting the class into teams and make it a competition to find the most pa
 The main outcomes of this exercise should be for the class to understand that:
 
 - Short and simple passwords are easy to guess.
-- Making common substitutions don't make a password much harder to guess.
+- Common substitutions don't make a password much harder to guess.
 - Without any salting, a hacker can guess multiple passwords at once.
 - With salting, it takes much longer to guess passwords because each one needs to be checked individually.
 
