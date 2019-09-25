@@ -1,11 +1,17 @@
 whats-the-big-picture:
   section-number: 1
 
-chatterbots-and-the-turing-test:
+rule-based-systems:
   section-number: 2
 
-the-whole-story:
+machine-learning:
   section-number: 3
 
-further-reading:
+chatterbots-and-the-turing-test:
   section-number: 4
+
+the-whole-story:
+  section-number: 5
+
+further-reading:
+  section-number: 6
