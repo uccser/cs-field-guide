@@ -1,5 +1,4 @@
 # Artificial intelligence (AI)
 
-The artificial ability to mimic parts of human intelligence.
-
-In its broadest meaning; artificial intelligence is when something made by humans is able to do something the humans didn't tell it how to do.
+A branch of computer science focussed on the building, and analysis of, machines which
+demonstrate intelligence, or mimic parts of human intelligence.
