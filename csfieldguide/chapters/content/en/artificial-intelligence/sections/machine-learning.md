@@ -1,5 +1,7 @@
 # Machine Learning
 
+The concepts behind Machine learning systems have been around for a long time, but as... data and computational power increased, the capability/power of these systems has drastically grown.
+
 What it is...
 
 - Intelligent systems that use machine learning techniques are called learning Systems
