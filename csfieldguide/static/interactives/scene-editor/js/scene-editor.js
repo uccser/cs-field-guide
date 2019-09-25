@@ -7,15 +7,21 @@ const detector = require('../../../js/third-party/threejs/Detector.js');
 var urlParameters = require('../../../js/third-party/url-parameters.js');
 
 const image_base_path = base_static_path + 'interactives/scene-editor/img/bridge-';
+const SCALE = 100; // Multiplier for translation distances
+
 var controls, camera, scene, renderer;
 var cameraCube, sceneCube;
 var textureCube;
 var cubeMesh;
-var suspect; // The object that the next transform will apply to
+var suspect = null; // The object that the next transform will apply to
+var screenObjectIds = {};
+var screenObjectTransforms = {};
 
-var numSpheres = 1;
+var numSpheres = 0;
 var numCubes = 0;
 var numCones = 0;
+
+var mode;
 
 // check that the browser is webgl compatible
 if (! detector.Detector.webgl) detector.Detector.addGetWebGLMessage();
@@ -25,9 +31,10 @@ animate();
 
 $(document).ready(function () {
   // mode = transform | translation | multiple | scene-creation
-  var mode = urlParameters.getUrlParameter('mode');
+  mode = urlParameters.getUrlParameter('mode');
   if (mode == "transform") {
     $("#matrix-container").removeClass('d-none');
+    $("#eqtn-title").html(gettext('Transformation for sphere'));
     $("#equation-container").removeClass('d-none');
   } else if (mode == "translation") {
     $("#vector-container").removeClass('d-none');
@@ -54,7 +61,7 @@ $(document).ready(function () {
   });
 
   $("#apply-transformation").click(function() {
-    applyTransformation(mode);
+    applyTransformation();
   });
 });
 
@@ -98,12 +105,13 @@ function init() {
   cubeMesh = new THREE.Mesh( new THREE.BoxBufferGeometry( 100, 100, 100 ), cubeMaterial );
   sceneCube.add( cubeMesh );
   // Sphere object
-  var geometry = new THREE.SphereBufferGeometry( 200.0, 48, 24 );
-  sphereMaterial = new THREE.MeshLambertMaterial( { envMap: textureCube } );
-  sphereMesh = new THREE.Mesh( geometry, sphereMaterial );
-  scene.add( sphereMesh );
-  sphereMesh.name = "initial";
-  suspect = scene.getObjectByName("initial");
+  // var geometry = new THREE.SphereBufferGeometry( 200.0, 48, 24 );
+  // sphereMaterial = new THREE.MeshLambertMaterial( { envMap: textureCube } );
+  // sphere = new THREE.Mesh( geometry, sphereMaterial );
+  // scene.add( sphere );
+  // sphere.name = "Sphere 1";
+  // setSuspect(sphere);
+  addObject('sphere');
   //
   renderer = new THREE.WebGLRenderer();
   renderer.autoClear = false;
@@ -115,8 +123,8 @@ function init() {
   //
   controls = new OrbitControls( camera, renderer.domElement );
   controls.minDistance = 500;
-  controls.maxDistance = 2500;
-  controls.enablePan = false; // Disables some wacky behaviour from panning while still focused on the origin
+  controls.maxDistance = 10000;
+  controls.enablePan = false; // Disables some wacky behaviour from panning while forced to look at the origin (via camera.lookAt)
 
   // Grid
   var size = 10000;
@@ -237,24 +245,31 @@ function addObject(type) {
   switch (type) {
     case "sphere":
       var geometry = new THREE.SphereBufferGeometry( 200, 48, 24 );
-      var material = new THREE.MeshLambertMaterial( {color: 0x03fcf4} );
+      // var material = new THREE.MeshLambertMaterial( {color: 0x03fcf4} );
+      var material = new THREE.MeshLambertMaterial( { envMap: textureCube } );
       var sphere = new THREE.Mesh( geometry, material );
       scene.add( sphere );
-      var pos = getRandomPos(5000);
-      sphere.position.set(pos[0], pos[1], pos[2]);
       numSpheres += 1;
-      $("#selectable-objects").append("<li class='object border rounded p-2 mb-1 center-block'>" + gettext('Sphere ') + numSpheres + "</li>");
+      sphere.name = gettext('Sphere ') + numSpheres;
+      screenObjectIds[sphere.name] = 'obj' + (getNumObjects());
+      screenObjectTransforms[sphere.name] = [null, null];
+      $("#selectable-objects").append("<li id='" + screenObjectIds[sphere.name]+ "' class='object border rounded p-2 mb-1 center-block'>" + sphere.name + "</li>");
+      applyRandomTranslation(sphere);
+      setSuspect(sphere);
       break;
 
     case "cube":
-      var geometry = new THREE.BoxBufferGeometry( 500, 500, 500 );
+      var geometry = new THREE.BoxBufferGeometry(400, 400, 400 );
       var material = new THREE.MeshLambertMaterial( {color: 0x00ff00} );
       var cube = new THREE.Mesh( geometry, material );
       scene.add( cube );
-      var pos = getRandomPos(5000);
-      cube.position.set(pos[0], pos[1], pos[2]);
       numCubes += 1;
-      $("#selectable-objects").append("<li class='object border rounded p-2 mb-1 center-block'>" + gettext('Cube ') + numCubes + "</li>");
+      cube.name = gettext('Cube ') + numCubes;
+      screenObjectIds[cube.name] = 'obj' + (getNumObjects());
+      screenObjectTransforms[cube.name] = [null, null];
+      $("#selectable-objects").append("<li id='" + screenObjectIds[cube.name] + "' class='object border rounded p-2 mb-1 center-block'>" + cube.name + "</li>");
+      applyRandomTranslation(cube);
+      setSuspect(cube);
       break;
 
     case "cone":
@@ -262,21 +277,36 @@ function addObject(type) {
       var material = new THREE.MeshLambertMaterial( {color: 0xffff00} );
       var cone = new THREE.Mesh( geometry, material );
       scene.add( cone );
-      var pos = getRandomPos(5000);
-      cone.position.set(pos[0], pos[1], pos[2]);
       numCones += 1;
-      $("#selectable-objects").append("<li class='object border rounded p-2 mb-1 center-block'>" + gettext('Cone ') + numCones + "</li>");
+      cone.name = gettext('Cone ') + numCones;
+      screenObjectIds[cone.name] = 'obj' + (getNumObjects());
+      screenObjectTransforms[cone.name] = [null, null];
+      $("#selectable-objects").append("<li id='" + screenObjectIds[cone.name] + "' class='object border rounded p-2 mb-1 center-block'>" + cone.name + "</li>");
+      applyRandomTranslation(cone);
+      setSuspect(cone);
       break;
   }
 }
 
+/**
+ * The initial shape is left alone.
+ * Any subsequent shape is randomly shifted by a translation matrix 
+ */
+function applyRandomTranslation(object) {
+  if (screenObjectIds[object.name] != "obj1") {
+    // Not the starting shape, so do move
+    resetObject(object);
+    var max = 40;
+    var matrix4 = new THREE.Matrix4();
 
-function getRandomPos(max) {
-  var x = Math.floor(Math.random() * Math.floor(max)) * posOrNegative();
-  var y = Math.floor(Math.random() * Math.floor(max)) * posOrNegative();
-  var z = Math.floor(Math.random() * Math.floor(max)) * posOrNegative();
+    var x = Math.floor(Math.random() * Math.floor(max)) * posOrNegative() * SCALE;
+    var y = Math.floor(Math.random() * Math.floor(max)) * posOrNegative() * SCALE;
+    var z = Math.floor(Math.random() * Math.floor(max)) * posOrNegative() * SCALE;
 
-  return [x, y, z];
+    matrix4.makeTranslation(x, y, z);
+    object.applyMatrix(matrix4);
+    screenObjectTransforms[object.name] = [null, [x, y, z]];
+  }
 }
 
 
@@ -286,7 +316,7 @@ function posOrNegative() {
 }
 
 
-function applyTransformation(mode) {
+function applyTransformation() {
   // Applied matrices need to be 4x4
   var matrix4 = new THREE.Matrix4();
   var transformMatrix;
@@ -307,24 +337,86 @@ function applyTransformation(mode) {
 
   } else if (mode == "multiple") {
     // multiple matrices and vectors
-    transformMatrix = getMatrix();
-    translationVector = getVector();
-    matrix4.makeBasis(transformMatrix[0], transformMatrix[1], transformMatrix[2]);
-    var matrix4b = new THREE.Matrix4();
-    matrix4b.makeTranslation(translationVector[0], translationVector[1], translationVector[2]);
-    suspect.applyMatrix(matrix4);
-    suspect.applyMatrix(matrix4b);
 
   } else if (mode == "scene-creation") {
     // one matrix and vector
     transformMatrix = getMatrix();
     translationVector = getVector();
+    screenObjectTransforms[suspect.name] = [transformMatrix, translationVector];
     matrix4.makeBasis(transformMatrix[0], transformMatrix[1], transformMatrix[2]);
-    var matrix4b = new THREE.Matrix4();
-    matrix4b.makeTranslation(translationVector[0], translationVector[1], translationVector[2]);
     suspect.applyMatrix(matrix4);
-    suspect.applyMatrix(matrix4b);
+    matrix4.makeTranslation(translationVector[0], translationVector[1], translationVector[2]);
+    suspect.applyMatrix(matrix4);
 
+  }
+}
+
+function setSuspect(object) {
+  if (suspect != null) {
+    $("#" + screenObjectIds[suspect.name]).removeClass("ui-selected");
+  }
+  suspect = object;
+  $("#eqtn-title").html(gettext('Manipulating object:') + ' ' + object.name);
+  $("#" + screenObjectIds[object.name]).addClass("ui-selected");
+
+  if (mode != "multiple") {
+    fillMatrices();
+  }
+}
+
+/**
+ * Returns the number of objects in the scene.
+ * This is used to ID objects, which is fine for now because objects can't be removed,
+ * but be careful if this is to be modified in future.
+ */
+function getNumObjects() {
+  return numCones + numCubes + numSpheres;
+}
+
+/**
+ * Sets the transform matrices in the interactive to the values used to transform the currently selected object.
+ * Unavailable in multple transformations mode, but only needed for scene-creation mode
+ */
+function fillMatrices() {
+  var transform = screenObjectTransforms[suspect.name][0];
+  if (transform != null) {
+    // Transform to be added
+    $('#matrix-row-0-col-0').val(transform[0].x);
+    $('#matrix-row-0-col-1').val(transform[0].y);
+    $('#matrix-row-0-col-2').val(transform[0].z);
+
+    $('#matrix-row-1-col-0').val(transform[1].x);
+    $('#matrix-row-1-col-1').val(transform[1].y);
+    $('#matrix-row-1-col-2').val(transform[1].z);
+
+    $('#matrix-row-2-col-0').val(transform[2].x);
+    $('#matrix-row-2-col-1').val(transform[2].y);
+    $('#matrix-row-2-col-2').val(transform[2].z);
+  } else {
+    $('#matrix-row-0-col-0').val(1);
+    $('#matrix-row-0-col-1').val(0);
+    $('#matrix-row-0-col-2').val(0);
+
+    $('#matrix-row-1-col-0').val(0);
+    $('#matrix-row-1-col-1').val(1);
+    $('#matrix-row-1-col-2').val(0);
+
+    $('#matrix-row-2-col-0').val(0);
+    $('#matrix-row-2-col-1').val(0);
+    $('#matrix-row-2-col-2').val(1);
+
+  }
+
+  var translation = screenObjectTransforms[suspect.name][1];
+  if (translation != null) {
+    // Translation to be added
+    $('#vector-row-0').val(translation[0] / SCALE);
+    $('#vector-row-1').val(translation[1] / SCALE);
+    $('#vector-row-2').val(translation[2] / SCALE);
+  } else {
+    $('#vector-row-0').val(0);
+    $('#vector-row-1').val(0);
+    $('#vector-row-2').val(0);
   }
 }
 
@@ -360,8 +452,8 @@ function getMatrix() {
 
 function getVector() {
   return [
-    [mathjs.eval($('#vector-row-0').val()) * 100],
-    [mathjs.eval($('#vector-row-1').val()) * 100],
-    [mathjs.eval($('#vector-row-2').val()) * 100]
+    [mathjs.eval($('#vector-row-0').val()) * SCALE],
+    [mathjs.eval($('#vector-row-1').val()) * SCALE],
+    [mathjs.eval($('#vector-row-2').val()) * SCALE]
   ];
 }
