@@ -1,6 +1,7 @@
 /** This file is heavily adapted from https://github.com/mrdoob/three.js/blob/dev/examples/webgl_materials_envmaps.html */
 
 const THREE = require('three');
+const mathjs = require('mathjs');
 const OrbitControls = require('three-orbit-controls')(THREE);
 const detector = require('../../../js/third-party/threejs/Detector.js');
 var urlParameters = require('../../../js/third-party/url-parameters.js');
@@ -10,6 +11,7 @@ var controls, camera, scene, renderer;
 var cameraCube, sceneCube;
 var textureCube;
 var cubeMesh;
+var suspect; // The object that the next transform will apply to
 
 var numSpheres = 1;
 var numCubes = 0;
@@ -100,6 +102,8 @@ function init() {
   sphereMaterial = new THREE.MeshLambertMaterial( { envMap: textureCube } );
   sphereMesh = new THREE.Mesh( geometry, sphereMaterial );
   scene.add( sphereMesh );
+  sphereMesh.name = "initial";
+  suspect = scene.getObjectByName("initial");
   //
   renderer = new THREE.WebGLRenderer();
   renderer.autoClear = false;
@@ -112,6 +116,7 @@ function init() {
   controls = new OrbitControls( camera, renderer.domElement );
   controls.minDistance = 500;
   controls.maxDistance = 2500;
+  controls.enablePan = false; // Disables some wacky behaviour from panning while still focused on the origin
 
   // Grid
   var size = 10000;
@@ -282,40 +287,72 @@ function posOrNegative() {
 
 
 function applyTransformation(mode) {
+  // Applied matrices need to be 4x4
+  var matrix4 = new THREE.Matrix4();
+  var transformMatrix;
+  var translationVector;
+  resetObject(suspect);
+
   if (mode == "transform") {
     // matrix only
-    var matrix = getMatrix();
-    // use matrix4 makeBasis as needs to be 4x4
+    transformMatrix = getMatrix();
+    matrix4.makeBasis(transformMatrix[0], transformMatrix[1], transformMatrix[2]);
+    suspect.applyMatrix(matrix4);
+
   } else if (mode == "translation") {
     // vector only
-    var vector = getVector();
-    // use matrix4 makeTranslation
+    translationVector = getVector();
+    matrix4.makeTranslation(translationVector[0], translationVector[1], translationVector[2]);
+    suspect.applyMatrix(matrix4);
+
   } else if (mode == "multiple") {
-    // multiple vectors and matrices
+    // multiple matrices and vectors
+    transformMatrix = getMatrix();
+    translationVector = getVector();
+    matrix4.makeBasis(transformMatrix[0], transformMatrix[1], transformMatrix[2]);
+    var matrix4b = new THREE.Matrix4();
+    matrix4b.makeTranslation(translationVector[0], translationVector[1], translationVector[2]);
+    suspect.applyMatrix(matrix4);
+    suspect.applyMatrix(matrix4b);
+
   } else if (mode == "scene-creation") {
-    // one marix and one vector. Multiple objects (applied to just one of those objects)
+    // one matrix and vector
+    transformMatrix = getMatrix();
+    translationVector = getVector();
+    matrix4.makeBasis(transformMatrix[0], transformMatrix[1], transformMatrix[2]);
+    var matrix4b = new THREE.Matrix4();
+    matrix4b.makeTranslation(translationVector[0], translationVector[1], translationVector[2]);
+    suspect.applyMatrix(matrix4);
+    suspect.applyMatrix(matrix4b);
+
   }
 }
 
+function resetObject(object) {
+  object.position.set( 0, 0, 0 );
+  object.rotation.set( 0, 0, 0 );
+  object.scale.set( 1, 1, 1 );
+  object.updateMatrix();
+}
 
 function getMatrix() {
-  row0 = [
+  var row0 = new THREE.Vector3(
     mathjs.eval($('#matrix-row-0-col-0').val()),
     mathjs.eval($('#matrix-row-0-col-1').val()),
     mathjs.eval($('#matrix-row-0-col-2').val()),
-  ];
+  );
 
-  row1 = [
+  var row1 = new THREE.Vector3(
     mathjs.eval($('#matrix-row-1-col-0').val()),
     mathjs.eval($('#matrix-row-1-col-1').val()),
     mathjs.eval($('#matrix-row-1-col-2').val()),
-  ];
+  );
 
-  row2 = [
+  var row2 = new THREE.Vector3(
     mathjs.eval($('#matrix-row-2-col-0').val()),
     mathjs.eval($('#matrix-row-2-col-1').val()),
     mathjs.eval($('#matrix-row-2-col-2').val()),
-  ];
+  );
 
   return [row0, row1, row2];
 }
@@ -323,8 +360,8 @@ function getMatrix() {
 
 function getVector() {
   return [
-    [mathjs.eval($('#vector-row-0').val())],
-    [mathjs.eval($('#vector-row-1').val())],
-    [mathjs.eval($('#vector-row-2').val())]
+    [mathjs.eval($('#vector-row-0').val()) * 100],
+    [mathjs.eval($('#vector-row-1').val()) * 100],
+    [mathjs.eval($('#vector-row-2').val()) * 100]
   ];
 }
