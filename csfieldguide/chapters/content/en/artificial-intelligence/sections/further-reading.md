@@ -15,3 +15,5 @@
 - [Alice Bot](http://www.alicebot.org/)
 - [IEEE Spectrum](http://spectrum.ieee.org/robotics/artificial-intelligence)
 - [TED Conversations matching Artificial Intelligence](https://www.ted.com/topics/ai)
+- [Crash Course Computer Science &ndash; Machine Learning & Artificial Intelligence](https://youtu.be/z-EtmaFJieY)
+- [Crash Course Artificial Intelligence series](https://youtu.be/GvYYFloV0aA)

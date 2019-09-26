@@ -1,4 +1,4 @@
-# Chatterbots and the Turing test - will be subsumed by rule based systems section
+# Chatterbots and the Turing test - will be subsumed by new sections
 
 {image file-path="img/chapters/computer-studying-turing-test.png" alt="The computer is reading a book titled 'Talk like a human'"}
 

@@ -9,7 +9,8 @@ Computers can do a lot of impressive things, like search billions of webpages in
 In the field of AI, an agent is generally considered to be intelligent if it:
 
 - mimics elements of human intelligence, such as problem solving and learning, or
-- can interpret external data, and take actions which then move it towards a particular goal.
+- can interpret external data, and take actions which then move it towards a particular goal, or
+- has the ability to learn from data, and then make predictions and decisions.
 
 <!-- Need a picture or something to break stuff up here -->  <!-- Add dropdown about agents? -->
 
