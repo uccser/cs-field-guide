@@ -1,4 +1,4 @@
-/** This file is heavily adapted from https://github.com/mrdoob/three.js/blob/dev/examples/webgl_materials_envmaps.html */
+/** Parts of this file are heavily adapted from https://github.com/mrdoob/three.js/blob/dev/examples/webgl_materials_envmaps.html */
 
 const THREE = require('three');
 const mathjs = require('mathjs');
@@ -52,9 +52,11 @@ $(document).ready(function () {
     $(".plus-sign").removeClass('d-none').addClass('d-inline');
     $("#vector-container").removeClass('d-none').addClass('d-inline');
     $("#equation-container").removeClass('col-12 d-none').addClass('col-8');
+    $("#eqtn-title").addClass('d-none');
+    $("#scene-creation-title-area").removeClass('d-none');
   }
 
-  $("#selectable-objects").selectable();
+  $("#selectable-objects").on('change', switchFocus);
   $("#add-object").click(function() {
     objectType = $("#object-selection :selected").val();
     addObject(objectType);
@@ -106,12 +108,12 @@ function init() {
   sceneCube.add( cubeMesh );
   // Sphere object
   // var geometry = new THREE.SphereBufferGeometry( 200.0, 48, 24 );
-  // sphereMaterial = new THREE.MeshLambertMaterial( { envMap: textureCube } );
+  sphereMaterial = new THREE.MeshLambertMaterial( { envMap: textureCube } );
   // sphere = new THREE.Mesh( geometry, sphereMaterial );
   // scene.add( sphere );
   // sphere.name = "Sphere 1";
   // setSuspect(sphere);
-  addObject('sphere');
+  addObject('sphere', sphereMaterial);
   //
   renderer = new THREE.WebGLRenderer();
   renderer.autoClear = false;
@@ -241,19 +243,22 @@ function addAxes(size) {
 }
 
 
-function addObject(type) {
+function addObject(type, givenMaterial) {
   switch (type) {
     case "sphere":
       var geometry = new THREE.SphereBufferGeometry( 200, 48, 24 );
-      // var material = new THREE.MeshLambertMaterial( {color: 0x03fcf4} );
-      var material = new THREE.MeshLambertMaterial( { envMap: textureCube } );
-      var sphere = new THREE.Mesh( geometry, material );
+      var material = new THREE.MeshLambertMaterial( {color: 0x03fcf4} );
+      if (givenMaterial) {
+        var sphere = new THREE.Mesh( geometry, givenMaterial );
+      } else {
+        var sphere = new THREE.Mesh( geometry, material );
+      }
       scene.add( sphere );
       numSpheres += 1;
       sphere.name = gettext('Sphere ') + numSpheres;
       screenObjectIds[sphere.name] = 'obj' + (getNumObjects());
       screenObjectTransforms[sphere.name] = [null, null];
-      $("#selectable-objects").append("<li id='" + screenObjectIds[sphere.name]+ "' class='object border rounded p-2 mb-1 center-block'>" + sphere.name + "</li>");
+      $("#selectable-objects").append("<option id='" + screenObjectIds[sphere.name]+ "'>" + sphere.name + "</option>");
       applyRandomTranslation(sphere);
       setSuspect(sphere);
       break;
@@ -267,7 +272,7 @@ function addObject(type) {
       cube.name = gettext('Cube ') + numCubes;
       screenObjectIds[cube.name] = 'obj' + (getNumObjects());
       screenObjectTransforms[cube.name] = [null, null];
-      $("#selectable-objects").append("<li id='" + screenObjectIds[cube.name] + "' class='object border rounded p-2 mb-1 center-block'>" + cube.name + "</li>");
+      $("#selectable-objects").append("<option id='" + screenObjectIds[cube.name] + "'>" + cube.name + "</option>");
       applyRandomTranslation(cube);
       setSuspect(cube);
       break;
@@ -281,7 +286,7 @@ function addObject(type) {
       cone.name = gettext('Cone ') + numCones;
       screenObjectIds[cone.name] = 'obj' + (getNumObjects());
       screenObjectTransforms[cone.name] = [null, null];
-      $("#selectable-objects").append("<li id='" + screenObjectIds[cone.name] + "' class='object border rounded p-2 mb-1 center-block'>" + cone.name + "</li>");
+      $("#selectable-objects").append("<option id='" + screenObjectIds[cone.name] + "'>" + cone.name + "</option>");
       applyRandomTranslation(cone);
       setSuspect(cone);
       break;
@@ -296,7 +301,7 @@ function applyRandomTranslation(object) {
   if (screenObjectIds[object.name] != "obj1") {
     // Not the starting shape, so do move
     resetObject(object);
-    var max = 40;
+    var max = 30;
     var matrix4 = new THREE.Matrix4();
 
     var x = Math.floor(Math.random() * Math.floor(max)) * posOrNegative() * SCALE;
@@ -353,15 +358,24 @@ function applyTransformation() {
 
 function setSuspect(object) {
   if (suspect != null) {
-    $("#" + screenObjectIds[suspect.name]).removeClass("ui-selected");
+    $("#" + screenObjectIds[suspect.name]).attr("selected", false);
   }
   suspect = object;
-  $("#eqtn-title").html(gettext('Manipulating object:') + ' ' + object.name);
-  $("#" + screenObjectIds[object.name]).addClass("ui-selected");
+  $("#" + screenObjectIds[object.name]).attr("selected", true);
 
   if (mode != "multiple") {
     fillMatrices();
   }
+}
+
+/**
+ * Called when the user selects an object to focus on.
+ * Sets the selected object as the suspect
+ */
+function switchFocus() {
+  var name = $("#selectable-objects").val(); // This is object.name
+  var object = scene.getObjectByName( name );
+  setSuspect(object);
 }
 
 /**

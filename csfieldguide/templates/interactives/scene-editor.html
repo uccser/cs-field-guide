@@ -11,9 +11,7 @@
 
     <div class="row my-3">
       <div id="object-container" class="col-4 text-center d-none">
-        <h5>{% trans "Objects" %}</h5>
-        <ul id="selectable-objects" class="pl-0">
-        </ul>
+        <h5>{% trans "New objects" %}</h5>
         <div class="input-group mb-2">
           <select id="object-selection" class="custom-select">
             <option selected disabled>{% trans "Select an object to add..." %}</option>
@@ -29,6 +27,10 @@
 
       <div id="equation-container" class="col-12 text-center d-none">
         <h5 id="eqtn-title"></h5>
+        <div id="scene-creation-title-area" class="row d-none py-2">
+          <h5 id="scene-creation-title" class="col-4 offset-2">{% trans 'Manipulating object:' %}</h5>
+          <select id="selectable-objects" class="custom-select col-4"></select>
+        </div>
         <div class="row d-flex justify-content-center">
           <div id="matrix-container" class="matrix col-6 text-center d-none">
             <div class="matrix-row">
