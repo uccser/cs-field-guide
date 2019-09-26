@@ -275,7 +275,11 @@ function addObject(type, givenMaterial) {
     case "cube":
       var geometry = new THREE.BoxBufferGeometry(400, 400, 400 );
       var material = new THREE.MeshLambertMaterial( {color: 0x00ff00} );
-      var cube = new THREE.Mesh( geometry, material );
+      if (givenMaterial) {
+        var cube = new THREE.Mesh( geometry, givenMaterial );
+      } else {
+        var cube = new THREE.Mesh( geometry, material );
+      }
       scene.add( cube );
       numCubes += 1;
       cube.name = gettext('Cube ') + numCubes;
@@ -289,7 +293,11 @@ function addObject(type, givenMaterial) {
     case "cone":
       var geometry = new THREE.ConeBufferGeometry( 200, 400, 32 );
       var material = new THREE.MeshLambertMaterial( {color: 0xffff00} );
-      var cone = new THREE.Mesh( geometry, material );
+      if (givenMaterial) {
+        var cone = new THREE.Mesh( geometry, givenMaterial );
+      } else {
+        var cone = new THREE.Mesh( geometry, material );
+      }
       scene.add( cone );
       numCones += 1;
       cone.name = gettext('Cone ') + numCones;
