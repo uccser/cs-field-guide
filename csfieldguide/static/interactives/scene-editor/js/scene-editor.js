@@ -58,8 +58,17 @@ $(document).ready(function () {
 
   $("#selectable-objects").on('change', switchFocus);
   $("#add-object").click(function() {
-    objectType = $("#object-selection :selected").val();
-    addObject(objectType);
+    var objectType = $("#object-selection :selected").val();
+    var colour = '0x' + $("#colour-input").val();
+    // Some of this is from hex-background-colour
+    var valid_codes = /^(0x([0-9a-fA-F])+)$/; // If it is at least 1 hex number that's fine
+    if (!valid_codes.test(colour)) {
+      colour = getRandomInt(0, 0xFFFFFF);
+    } else {
+      colour = parseInt(colour);
+    }
+    var material = new THREE.MeshLambertMaterial( {color: colour} );
+    addObject(objectType, material);
   });
 
   $("#apply-transformation").click(function() {
@@ -470,4 +479,14 @@ function getVector() {
     [mathjs.eval($('#vector-row-1').val()) * SCALE],
     [mathjs.eval($('#vector-row-2').val()) * SCALE]
   ];
+}
+
+/**
+ * Returns a random number between min and max _inclusive_
+ * From https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random#Getting_a_random_integer_between_two_values_inclusive
+ */
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }

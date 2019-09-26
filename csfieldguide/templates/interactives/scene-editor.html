@@ -12,22 +12,27 @@
     <div class="row my-3">
       <div id="object-container" class="col-4 text-center d-none">
         <h5>{% trans "New objects" %}</h5>
-        <div class="input-group mb-2">
+        <div class="input-group col-12">
           <select id="object-selection" class="custom-select">
-            <option selected disabled>{% trans "Select an object to add..." %}</option>
+            <option selected>{% trans "Select an object to add..." %}</option>
             <option value="sphere">{% trans "Sphere" %}</option>
             <option value="cube">{% trans "Cube" %}</option>
             <option value="cone">{% trans "Cone" %}</option>
           </select>
-          <div class="input-group-append">
-            <button id="add-object" class="btn btn-primary" type="button">{% trans "Add object" %}</button>
+          <div class="input-group my-2">
+            <div class="input-group-prepend">
+              <label for="colour-input" class="input-group-text">#</label>
+            </div>
+            <input type="text" maxlength="6" class="form-control" id="colour-input" placeholder="{% trans 'Colour (Hexadecimal)' %}">
           </div>
+          </select>
+          <button id="add-object" class="btn btn-primary" type="button">{% trans "Add object" %}</button>
         </div>
       </div>
 
       <div id="equation-container" class="col-12 text-center d-none">
         <h5 id="eqtn-title"></h5>
-        <div id="scene-creation-title-area" class="row d-none py-2">
+        <div id="scene-creation-title-area" class="row d-none pb-2">
           <h5 id="scene-creation-title" class="col-4 offset-2">{% trans 'Manipulating object:' %}</h5>
           <select id="selectable-objects" class="custom-select col-4"></select>
         </div>
