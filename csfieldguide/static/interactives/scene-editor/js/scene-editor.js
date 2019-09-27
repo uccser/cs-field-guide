@@ -36,17 +36,17 @@ $(document).ready(function () {
   mode = urlParameters.getUrlParameter('mode');
   if (mode == "transform") {
     $("#matrix-container").removeClass('d-none');
-    $("#eqtn-title").html(gettext('Transformation for sphere'));
+    $("#eqtn-title").html(gettext('Transformation for sphere:'));
     $("#equation-container").removeClass('d-none');
   } else if (mode == "translation") {
     $("#vector-container").removeClass('d-none');
-    $("#eqtn-title").html(gettext('Translation for sphere'));
+    $("#eqtn-title").html(gettext('Translation for sphere:'));
     $("#equation-container").removeClass('d-none');
   } else if (mode == "multiple") {
     $("#matrix-container").removeClass('d-none');
     $(".plus-sign").removeClass('d-none');
     $("#vector-container").removeClass('d-none');
-    $("#eqtn-title").html(gettext('Multiple matrices and vectors'));
+    $("#eqtn-title").html(gettext('Multiple matrices and vectors:'));
     $("#equation-container").removeClass('d-none');
   } else {
     mode = "scene-creation";
@@ -60,23 +60,10 @@ $(document).ready(function () {
   }
 
   $("#selectable-objects").on('change', switchFocus);
-  $("#add-object").click(function() {
-    var objectType = $("#object-selection :selected").val();
-    var name = $("#name-input").val();
-    var colour = '0x' + $("#colour-input").val();
-    if (colour == '0x') {
-      colour = getRandomInt(0, 0xFFFFFF);
-    } else {
-      colour = parseInt(colour);
-      $("#colour-input").val(sixCharHex(colour)); // Show the real code for what was entered
-    }
-    var material = new THREE.MeshLambertMaterial( {color: colour} );
-    addObject(objectType, material, name);
-  });
-
-  $("#apply-transformation").click(applyTransformation);
-
   $("#colour-input").on('input', recolourHashBox);
+
+  $("#add-object").click(newObject);
+  $("#apply-transformation").click(applyTransformation);
 
   $("#colour-input").val('');
   $("#name-input").val('');
@@ -253,6 +240,20 @@ function addAxes(size) {
   scene.add( negZ );
 }
 
+function newObject() {
+  var objectType = $("#object-selection :selected").val();
+  var name = $("#name-input").val();
+  var colour = '0x' + $("#colour-input").val();
+  if (colour == '0x') {
+    colour = getRandomInt(0, 0xFFFFFF);
+  } else {
+    colour = parseInt(colour);
+    $("#colour-input").val(sixCharHex(colour)); // Show the real code for what was entered
+  }
+  var material = new THREE.MeshLambertMaterial( {color: colour} );
+  addObject(objectType, material, name);
+  $("#name-input").val('');
+};
 
 function addObject(type, givenMaterial, name) {
   if (name in screenObjectIds) {
