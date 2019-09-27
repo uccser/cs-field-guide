@@ -62,14 +62,16 @@ $(document).ready(function () {
   $("#selectable-objects").on('change', switchFocus);
   $("#add-object").click(function() {
     var objectType = $("#object-selection :selected").val();
+    var name = $("#name-input").val();
     var colour = '0x' + $("#colour-input").val();
     if (colour == '0x') {
       colour = getRandomInt(0, 0xFFFFFF);
     } else {
       colour = parseInt(colour);
+      $("#colour-input").val(sixCharHex(colour)); // Show the real code for what was entered
     }
     var material = new THREE.MeshLambertMaterial( {color: colour} );
-    addObject(objectType, material);
+    addObject(objectType, material, name);
   });
 
   $("#apply-transformation").click(applyTransformation);
@@ -77,6 +79,7 @@ $(document).ready(function () {
   $("#colour-input").on('input', recolourHashBox);
 
   $("#colour-input").val('');
+  $("#name-input").val('');
 });
 
 function init() {
@@ -121,7 +124,7 @@ function init() {
   // Sphere object
   isStartingShape = true;
   sphereMaterial = new THREE.MeshLambertMaterial( { envMap: textureCube } );
-  addObject('sphere', sphereMaterial, 0xFFFFFF);
+  addObject('sphere', sphereMaterial, '');
   //
   renderer = new THREE.WebGLRenderer();
   renderer.autoClear = false;
@@ -251,14 +254,24 @@ function addAxes(size) {
 }
 
 
-function addObject(type, givenMaterial) {
+function addObject(type, givenMaterial, name) {
+  if (name in screenObjectIds) {
+    // Object with that name/ID already exists
+    // TODO: nicer solution
+    addObject(type, givenMaterial, name + '+');
+    return;
+  }
   switch (type) {
     case "sphere":
       var geometry = new THREE.SphereBufferGeometry( 200, 48, 24 );
       var sphere = new THREE.Mesh( geometry, givenMaterial );
       scene.add( sphere );
       numSpheres += 1;
-      sphere.name = gettext('Sphere ') + numSpheres;
+      if (name == '') {
+        sphere.name = gettext('Sphere ') + numSpheres;
+      } else {
+        sphere.name = name;
+      }
       screenObjectIds[sphere.name] = 'obj' + (uniqueId());
       screenObjectTransforms[sphere.name] = [null, null];
       $("#selectable-objects").append("<option id='" + screenObjectIds[sphere.name]+ "'>" + sphere.name + "</option>");
@@ -271,7 +284,11 @@ function addObject(type, givenMaterial) {
       var cube = new THREE.Mesh( geometry, givenMaterial );
       scene.add( cube );
       numCubes += 1;
-      cube.name = gettext('Cube ') + numCubes;
+      if (name == '') {
+        cube.name = gettext('Cube ') + numCubes;
+      } else {
+        cube.name = name;
+      }
       screenObjectIds[cube.name] = 'obj' + (uniqueId());
       screenObjectTransforms[cube.name] = [null, null];
       $("#selectable-objects").append("<option id='" + screenObjectIds[cube.name] + "'>" + cube.name + "</option>");
@@ -284,7 +301,11 @@ function addObject(type, givenMaterial) {
       var cone = new THREE.Mesh( geometry, givenMaterial );
       scene.add( cone );
       numCones += 1;
-      cone.name = gettext('Cone ') + numCones;
+      if (name == '') {
+        cone.name = gettext('Cone ') + numCones;
+      } else {
+        cone.name = name;
+      }
       screenObjectIds[cone.name] = 'obj' + (uniqueId());
       screenObjectTransforms[cone.name] = [null, null];
       $("#selectable-objects").append("<option id='" + screenObjectIds[cone.name] + "'>" + cone.name + "</option>");
