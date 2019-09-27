@@ -72,9 +72,11 @@ $(document).ready(function () {
     addObject(objectType, material);
   });
 
-  $("#apply-transformation").click(function() {
-    applyTransformation();
-  });
+  $("#apply-transformation").click(applyTransformation);
+
+  $("#colour-input").on('input', recolourHashBox);
+
+  $("#colour-input").val('');
 });
 
 function init() {
@@ -484,4 +486,28 @@ function getRandomInt(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function recolourHashBox() {
+  var newColour = $("#colour-input").val();
+  if (newColour == '') {
+    $('#colour-input-label').css('background-color', '');
+  } else {
+    // sixCharHex to match the behaviour of the actual object
+    $('#colour-input-label').css('background-color', '#' + sixCharHex(parseInt(newColour, 16)));
+  }
+}
+
+/**
+ * Returns the string of an integer as a zero-extended 6-character hexadecimal value
+ * If the number is small, zeros will be appended to the front.
+ * If the number is too big, a larger than 6-character string will be returned
+ */
+function sixCharHex(num) {
+  var returnString = num.toString(16);
+  if (returnString.length < 6) {
+    return "0".repeat(6 - returnString.length) + returnString;
+  } else {
+    return returnString;
+  }
 }
