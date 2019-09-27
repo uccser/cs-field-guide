@@ -33,14 +33,25 @@ canvas {
   padding-top: 2.5rem;
 }
 
-#selectable-objects .ui-selected {
-  background: #3f51b5;
-  color: white;
-}
-
 li:hover {
   border-color: #3f51b5;
   outline: 0;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(63, 81, 181, 0.6);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(63, 81, 181, 0.6);
+}
+
+.heading-line {
+  height: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.heading-line-text {
+  line-height: 2.5rem;
+  vertical-align: middle;
+}
+
+#object-identifier {
+  line-height: 2rem;
+  font-size: 2.2rem;
+  vertical-align: middle;
 }

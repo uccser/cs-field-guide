@@ -20,8 +20,10 @@ var screenObjectTransforms = {};
 var numSpheres = 0;
 var numCubes = 0;
 var numCones = 0;
+var ID = 0;
 
 var mode;
+var isStartingShape;
 
 // check that the browser is webgl compatible
 if (! detector.Detector.webgl) detector.Detector.addGetWebGLMessage();
@@ -30,7 +32,7 @@ init();
 animate();
 
 $(document).ready(function () {
-  // mode = transform | translation | multiple | scene-creation
+  // mode = transform | translation | multiple | (default) scene-creation
   mode = urlParameters.getUrlParameter('mode');
   if (mode == "transform") {
     $("#matrix-container").removeClass('d-none');
@@ -46,7 +48,8 @@ $(document).ready(function () {
     $("#vector-container").removeClass('d-none');
     $("#eqtn-title").html(gettext('Multiple matrices and vectors'));
     $("#equation-container").removeClass('d-none');
-  } else if (mode == "scene-creation") {
+  } else {
+    mode = "scene-creation";
     $("#object-container").removeClass('d-none');
     $("#matrix-container").removeClass('d-none').addClass('offset-1 d-inline');
     $(".plus-sign").removeClass('d-none').addClass('d-inline');
@@ -60,9 +63,7 @@ $(document).ready(function () {
   $("#add-object").click(function() {
     var objectType = $("#object-selection :selected").val();
     var colour = '0x' + $("#colour-input").val();
-    // Some of this is from hex-background-colour
-    var valid_codes = /^(0x([0-9a-fA-F])+)$/; // If it is at least 1 hex number that's fine
-    if (!valid_codes.test(colour)) {
+    if (colour == '0x') {
       colour = getRandomInt(0, 0xFFFFFF);
     } else {
       colour = parseInt(colour);
@@ -116,13 +117,9 @@ function init() {
   cubeMesh = new THREE.Mesh( new THREE.BoxBufferGeometry( 100, 100, 100 ), cubeMaterial );
   sceneCube.add( cubeMesh );
   // Sphere object
-  // var geometry = new THREE.SphereBufferGeometry( 200.0, 48, 24 );
+  isStartingShape = true;
   sphereMaterial = new THREE.MeshLambertMaterial( { envMap: textureCube } );
-  // sphere = new THREE.Mesh( geometry, sphereMaterial );
-  // scene.add( sphere );
-  // sphere.name = "Sphere 1";
-  // setSuspect(sphere);
-  addObject('sphere', sphereMaterial);
+  addObject('sphere', sphereMaterial, 0xFFFFFF);
   //
   renderer = new THREE.WebGLRenderer();
   renderer.autoClear = false;
@@ -135,7 +132,7 @@ function init() {
   controls = new OrbitControls( camera, renderer.domElement );
   controls.minDistance = 500;
   controls.maxDistance = 10000;
-  controls.enablePan = false; // Disables some wacky behaviour from panning while forced to look at the origin (via camera.lookAt)
+  controls.enablePan = false; // Disables some wacky behaviour from panning while forced to look at the origin
 
   // Grid
   var size = 10000;
@@ -256,16 +253,11 @@ function addObject(type, givenMaterial) {
   switch (type) {
     case "sphere":
       var geometry = new THREE.SphereBufferGeometry( 200, 48, 24 );
-      var material = new THREE.MeshLambertMaterial( {color: 0x03fcf4} );
-      if (givenMaterial) {
-        var sphere = new THREE.Mesh( geometry, givenMaterial );
-      } else {
-        var sphere = new THREE.Mesh( geometry, material );
-      }
+      var sphere = new THREE.Mesh( geometry, givenMaterial );
       scene.add( sphere );
       numSpheres += 1;
       sphere.name = gettext('Sphere ') + numSpheres;
-      screenObjectIds[sphere.name] = 'obj' + (getNumObjects());
+      screenObjectIds[sphere.name] = 'obj' + (uniqueId());
       screenObjectTransforms[sphere.name] = [null, null];
       $("#selectable-objects").append("<option id='" + screenObjectIds[sphere.name]+ "'>" + sphere.name + "</option>");
       applyRandomTranslation(sphere);
@@ -274,16 +266,11 @@ function addObject(type, givenMaterial) {
 
     case "cube":
       var geometry = new THREE.BoxBufferGeometry(400, 400, 400 );
-      var material = new THREE.MeshLambertMaterial( {color: 0x00ff00} );
-      if (givenMaterial) {
-        var cube = new THREE.Mesh( geometry, givenMaterial );
-      } else {
-        var cube = new THREE.Mesh( geometry, material );
-      }
+      var cube = new THREE.Mesh( geometry, givenMaterial );
       scene.add( cube );
       numCubes += 1;
       cube.name = gettext('Cube ') + numCubes;
-      screenObjectIds[cube.name] = 'obj' + (getNumObjects());
+      screenObjectIds[cube.name] = 'obj' + (uniqueId());
       screenObjectTransforms[cube.name] = [null, null];
       $("#selectable-objects").append("<option id='" + screenObjectIds[cube.name] + "'>" + cube.name + "</option>");
       applyRandomTranslation(cube);
@@ -292,16 +279,11 @@ function addObject(type, givenMaterial) {
 
     case "cone":
       var geometry = new THREE.ConeBufferGeometry( 200, 400, 32 );
-      var material = new THREE.MeshLambertMaterial( {color: 0xffff00} );
-      if (givenMaterial) {
-        var cone = new THREE.Mesh( geometry, givenMaterial );
-      } else {
-        var cone = new THREE.Mesh( geometry, material );
-      }
+      var cone = new THREE.Mesh( geometry, givenMaterial );
       scene.add( cone );
       numCones += 1;
       cone.name = gettext('Cone ') + numCones;
-      screenObjectIds[cone.name] = 'obj' + (getNumObjects());
+      screenObjectIds[cone.name] = 'obj' + (uniqueId());
       screenObjectTransforms[cone.name] = [null, null];
       $("#selectable-objects").append("<option id='" + screenObjectIds[cone.name] + "'>" + cone.name + "</option>");
       applyRandomTranslation(cone);
@@ -315,7 +297,7 @@ function addObject(type, givenMaterial) {
  * Any subsequent shape is randomly shifted by a translation matrix 
  */
 function applyRandomTranslation(object) {
-  if (screenObjectIds[object.name] != "obj1") {
+  if (!isStartingShape) {
     // Not the starting shape, so do move
     resetObject(object);
     var max = 30;
@@ -328,6 +310,8 @@ function applyRandomTranslation(object) {
     matrix4.makeTranslation(x, y, z);
     object.applyMatrix(matrix4);
     screenObjectTransforms[object.name] = [null, [x, y, z]];
+  } else {
+    isStartingShape = false;
   }
 }
 
@@ -383,6 +367,10 @@ function setSuspect(object) {
   if (mode != "multiple") {
     fillMatrices();
   }
+
+  if (mode == "scene-creation") {
+    $('#object-identifier').css({color: "#" + object.material.color.getHexString()}).html("&#x25D9;");
+  }
 }
 
 /**
@@ -396,12 +384,11 @@ function switchFocus() {
 }
 
 /**
- * Returns the number of objects in the scene.
- * This is used to ID objects, which is fine for now because objects can't be removed,
- * but be careful if this is to be modified in future.
+ * Returns an integer it hasn't returned before.
  */
-function getNumObjects() {
-  return numCones + numCubes + numSpheres;
+function uniqueId() {
+  ID++;
+  return ID;
 }
 
 /**
