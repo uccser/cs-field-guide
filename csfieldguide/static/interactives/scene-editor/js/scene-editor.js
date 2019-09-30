@@ -347,7 +347,7 @@ function applyRandomTranslation(object) {
 
     matrix4.makeTranslation(x, y, z);
     object.applyMatrix(matrix4);
-    screenObjectTransforms[object.name] = [null, [x, y, z]];
+    screenObjectTransforms[object.name] = [null, [x / SCALE, y / SCALE, z / SCALE]];
   } else {
     isStartingShape = false;
   }
@@ -389,13 +389,13 @@ function applyTransformation() {
     if (!matrix4.equals(new THREE.Matrix4().identity())) {
       // Matrix is not the identity matrix (so there is a transform)
       suspect.applyMatrix(matrix4);
-      addAppliedTransform(transformMatrix);
+      addAppliedTransform(getMatrix(true));
     }
     matrix4.makeTranslation(translationVector[0], translationVector[1], translationVector[2]);
     if (!matrix4.equals(new THREE.Matrix4().identity())) {
       // Matrix is not the identity matrix (so there is a translation)
       suspect.applyMatrix(matrix4);
-      addAppliedVector(translationVector);
+      addAppliedVector(getVector(true));
     }
     fillMatrices(true);
 
@@ -403,11 +403,11 @@ function applyTransformation() {
     // one matrix and vector
     transformMatrix = getMatrix();
     translationVector = getVector();
-    screenObjectTransforms[suspect.name] = [transformMatrix, translationVector];
     matrix4.makeBasis(transformMatrix[0], transformMatrix[1], transformMatrix[2]);
     suspect.applyMatrix(matrix4);
     matrix4.makeTranslation(translationVector[0], translationVector[1], translationVector[2]);
     suspect.applyMatrix(matrix4);
+    screenObjectTransforms[suspect.name] = [getMatrix(true), getVector(true)];
 
   }
 }
@@ -450,23 +450,23 @@ function uniqueId() {
  * Sets the transform matrices in the interactive to the values used to transform the currently selected object.
  * Unavailable in multple transformations mode, but only needed for scene-creation mode
  * 
- * If isReset, the matrices will be returned to their original status'
+ * If isReset, the matrices will be returned to their original status' instead
  */
 function fillMatrices(isReset) {
   var transform = screenObjectTransforms[suspect.name][0];
   if (transform != null && !isReset) {
     // Transform to be added
-    $('#matrix-row-0-col-0').val(transform[0].x);
-    $('#matrix-row-0-col-1').val(transform[0].y);
-    $('#matrix-row-0-col-2').val(transform[0].z);
+    $('#matrix-row-0-col-0').val(transform[0][0]);
+    $('#matrix-row-0-col-1').val(transform[0][1]);
+    $('#matrix-row-0-col-2').val(transform[0][2]);
 
-    $('#matrix-row-1-col-0').val(transform[1].x);
-    $('#matrix-row-1-col-1').val(transform[1].y);
-    $('#matrix-row-1-col-2').val(transform[1].z);
+    $('#matrix-row-1-col-0').val(transform[1][0]);
+    $('#matrix-row-1-col-1').val(transform[1][1]);
+    $('#matrix-row-1-col-2').val(transform[1][2]);
 
-    $('#matrix-row-2-col-0').val(transform[2].x);
-    $('#matrix-row-2-col-1').val(transform[2].y);
-    $('#matrix-row-2-col-2').val(transform[2].z);
+    $('#matrix-row-2-col-0').val(transform[2][0]);
+    $('#matrix-row-2-col-1').val(transform[2][1]);
+    $('#matrix-row-2-col-2').val(transform[2][2]);
   } else {
     $('#matrix-row-0-col-0').val(1);
     $('#matrix-row-0-col-1').val(0);
@@ -485,9 +485,9 @@ function fillMatrices(isReset) {
   var translation = screenObjectTransforms[suspect.name][1];
   if (translation != null && !isReset) {
     // Translation to be added
-    $('#vector-row-0').val(translation[0] / SCALE);
-    $('#vector-row-1').val(translation[1] / SCALE);
-    $('#vector-row-2').val(translation[2] / SCALE);
+    $('#vector-row-0').val(translation[0]);
+    $('#vector-row-1').val(translation[1]);
+    $('#vector-row-2').val(translation[2]);
   } else {
     $('#vector-row-0').val(0);
     $('#vector-row-1').val(0);
@@ -495,21 +495,30 @@ function fillMatrices(isReset) {
   }
 }
 
-function addAppliedTransform(matrix) {
-  var row1 = sprintf(ROW_TEMPLATE, matrix[0].x, matrix[1].x, matrix[2].x);
-  var row2 = sprintf(ROW_TEMPLATE, matrix[0].y, matrix[1].y, matrix[2].y);
-  var row3 = sprintf(ROW_TEMPLATE, matrix[0].z, matrix[1].z, matrix[2].z);
+/**
+ * Assumes the matrix is a list of lists of strings
+ */
+function addAppliedTransform(matrixStr) {
+  var row1 = sprintf(ROW_TEMPLATE, matrixStr[0][0], matrixStr[1][0], matrixStr[2][0]);
+  var row2 = sprintf(ROW_TEMPLATE, matrixStr[0][1], matrixStr[1][1], matrixStr[2][1]);
+  var row3 = sprintf(ROW_TEMPLATE, matrixStr[0][2], matrixStr[1][2], matrixStr[2][2]);
   var newDiv = sprintf(MATRIX_TEMPLATE, row1, row2, row3);
   $("#applied-container").append(newDiv);
   MathJax.Hub.Queue(["Typeset", MathJax.Hub, "applied-container"]); // typeset calculated result
 }
 
-function addAppliedVector(vector) {
-  var newDiv = sprintf(MATRIX_TEMPLATE, vector[0] / SCALE, vector[1] / SCALE, vector[2] / SCALE);
+/**
+ * Assumes the vector is a list of strings
+ */
+function addAppliedVector(vectorStr) {
+  var newDiv = sprintf(MATRIX_TEMPLATE, vectorStr[0], vectorStr[1], vectorStr[2]);
   $("#applied-container").append(newDiv);
   MathJax.Hub.Queue(["Typeset", MathJax.Hub, "applied-container"]); // typeset calculated result
 }
 
+/**
+ * Returns the given object to [0, 0, 0], and removes any other tranformations
+ */
 function resetObject(object) {
   object.position.set( 0, 0, 0 );
   object.rotation.set( 0, 0, 0 );
@@ -517,32 +526,64 @@ function resetObject(object) {
   object.updateMatrix();
 }
 
-function getMatrix() {
-  var col0 = new THREE.Vector3(
-    mathjs.eval($('#matrix-row-0-col-0').val()),
-    mathjs.eval($('#matrix-row-1-col-0').val()),
-    mathjs.eval($('#matrix-row-2-col-0').val()),
-  );
+/**
+ * If evalAsString is true, the values will be left as strings and an array of arrays will be returned
+ */
+function getMatrix(evalAsString) {
+  var col0, col1, col2;
+  if (evalAsString) {
+    col0 = [
+      $('#matrix-row-0-col-0').val(),
+      $('#matrix-row-1-col-0').val(),
+      $('#matrix-row-2-col-0').val()
+    ];
 
-  var col1 = new THREE.Vector3(
-    mathjs.eval($('#matrix-row-0-col-1').val()),
-    mathjs.eval($('#matrix-row-1-col-1').val()),
-    mathjs.eval($('#matrix-row-2-col-1').val()),
-  );
+    col1 = [
+      $('#matrix-row-0-col-1').val(),
+      $('#matrix-row-1-col-1').val(),
+      $('#matrix-row-2-col-1').val()
+    ];
 
-  var col2 = new THREE.Vector3(
-    mathjs.eval($('#matrix-row-0-col-2').val()),
-    mathjs.eval($('#matrix-row-1-col-2').val()),
-    mathjs.eval($('#matrix-row-2-col-2').val()),
-  );
+    col2 = [
+      $('#matrix-row-0-col-2').val(),
+      $('#matrix-row-1-col-2').val(),
+      $('#matrix-row-2-col-2').val()
+    ];
+
+  } else {
+    col0 = new THREE.Vector3(
+      mathjs.eval($('#matrix-row-0-col-0').val()),
+      mathjs.eval($('#matrix-row-1-col-0').val()),
+      mathjs.eval($('#matrix-row-2-col-0').val())
+    );
+
+    col1 = new THREE.Vector3(
+      mathjs.eval($('#matrix-row-0-col-1').val()),
+      mathjs.eval($('#matrix-row-1-col-1').val()),
+      mathjs.eval($('#matrix-row-2-col-1').val())
+    );
+
+    col2 = new THREE.Vector3(
+      mathjs.eval($('#matrix-row-0-col-2').val()),
+      mathjs.eval($('#matrix-row-1-col-2').val()),
+      mathjs.eval($('#matrix-row-2-col-2').val())
+    );
+  }
 
   return [col0, col1, col2];
 }
 
 /**
- * 
+ * If evalAsString is true, the values will be left as strings
  */
-function getVector() {
+function getVector(evalAsString) {
+  if (evalAsString) {
+    return [
+      $('#vector-row-0').val(),
+      $('#vector-row-1').val(),
+      $('#vector-row-2').val()
+    ];
+  }
   return [
     mathjs.eval($('#vector-row-0').val()) * SCALE,
     mathjs.eval($('#vector-row-1').val()) * SCALE,
