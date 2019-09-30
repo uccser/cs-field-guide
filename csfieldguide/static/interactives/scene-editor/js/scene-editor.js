@@ -382,7 +382,7 @@ function applyTransformation() {
     suspect.applyMatrix(matrix4);
 
   } else if (mode == "multiple") {
-    // multiple matrices and vectors
+    // One matrix and vector, but additive
     transformMatrix = getMatrix();
     translationVector = getVector();
     matrix4.makeBasis(transformMatrix[0], transformMatrix[1], transformMatrix[2]);
