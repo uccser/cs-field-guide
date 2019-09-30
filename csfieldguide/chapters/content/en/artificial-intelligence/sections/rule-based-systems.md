@@ -1,11 +1,12 @@
-# Rule Based Systems
+# Expert Systems
 
+Expert systems, also referred to as rule-based expert systems, are probably the simplest form of AI used, but they can still be extremely powerful.
+They have been used for many purposes, such as diagnosing medical conditions, creating game playing AI's and, as will explore in this chapter, simulating human conversation.
 
+These systems are designed to simulate the decision making ability of a human-expert in a specific domain.
 
-What they are.
+ - write some kind of example. "Think of..."
 
-- Expert-systems - might not include calling this expert systems
-- Simulate the decision making ability of a human-expert in a specific domain.
 - considered by some to not actually be a form of AI
 - Has a fixed set of knowledge/rules that it then applies. Rigid intelligence
 - Follows a pre-determined set of rules, which it uses to make decisions about input data.
@@ -20,9 +21,7 @@ Commonly used for...
 Examples...
 
 - Use chatbots as examples in this
-- Deep blue?
-- More modern examples - medical diagnosis?
-- A rule based interactive or set of instructions for something simple like tic tac toe?
+- A rule based interactive or set of instructions for something simple like tic tac toe? Easy to base on the unplugged actvities
 - Decision trees to classify an animal?
 
 

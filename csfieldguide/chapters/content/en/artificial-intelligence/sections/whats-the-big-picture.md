@@ -16,7 +16,7 @@ In the field of AI, an agent is generally considered to be intelligent if it:
 
 There are many different subfields of AI and approaches to building intelligent systems. These approaches can generally be split into two groups: rule-based techniques, and machine learning techniques.
 Intelligent systems can be built using either of these, or a combination.
-In this chapter we'll explore both rule-based systems and machine learning techniques, how these work, and what they are used for.
+In this chapter we'll explore both rule-based expert systems and machine learning techniques, how these work, and what they are used for.
 
 Inevitably discussing AI will mean dealing with ethical and philosophical issues too &ndash; do we really want machines to take over some of our jobs?
 Can we trust them?
