@@ -30,7 +30,7 @@
               </div>
               <input type="text" maxlength="6" class="form-control" aria-describedby="random-colour-help" id="colour-input" placeholder="{% trans 'Colour (Hexadecimal)' %}">
             </div>
-            <small id="random-colour-help" class="form-text text-muted">{% trans 'Leave blank for a random colour' %}</small>
+            <small id="random-colour-help" class="form-text text-muted">{% trans "Leave blank for a random colour" %}</small>
           </div>
           <button id="add-object" class="col-12 btn btn-primary" type="button">{% trans "Add object" %}</button>
         </form>
@@ -39,7 +39,7 @@
       <div id="equation-container" class="col-12 text-center d-none">
         <h5 id="eqtn-title" class="heading-line heading-line-text"></h5>
         <div id="scene-creation-title-area" class="row d-none heading-line">
-          <h5 id="scene-creation-title" class="col-4 offset-2 heading-line-text">{% trans 'Manipulating object:' %}</h5>
+          <h5 id="scene-creation-title" class="col-4 offset-2 heading-line-text">{% trans "Manipulating object:" %}</h5>
           <select id="selectable-objects" class="custom-select col-4 heading-line"></select>
           <span id="object-identifier"></span>
         </div>
@@ -75,6 +75,11 @@
           </div>
         </div>
         <button id="apply-transformation" class="mt-2 btn btn-primary">{% trans "Apply" %}</button>
+      </div>
+
+      <div id="applied-container" class="col-4 text-center d-none">
+        <h5 class="heading-line heading-line-text">{% trans "Applied matrices:" %}</h5>
+        
       </div>
     </div>
   </div>
