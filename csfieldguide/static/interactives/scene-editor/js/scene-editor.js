@@ -36,10 +36,7 @@ if (! detector.Detector.webgl) detector.Detector.addGetWebGLMessage();
 // URL for mathjax script loaded from CDN
 var mjaxURL  = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML,Safe.js';
 // load mathjax script
-$.getScript(mjaxURL, function() {
-    // mathjax successfully loaded, let it render
-    //showOutput();
-});
+$.getScript(mjaxURL);
 
 init();
 animate();
@@ -184,9 +181,9 @@ function buildAxis( src, dst, colorHex, dashed ) {
   var mat;
 
   if(dashed) {
-      mat = new THREE.LineDashedMaterial({ linewidth: 5, color: colorHex, dashSize: 25, gapSize: 50 });
+    mat = new THREE.LineDashedMaterial({ linewidth: 5, color: colorHex, dashSize: 25, gapSize: 50 });
   } else {
-      mat = new THREE.LineBasicMaterial({ linewidth: 5, color: colorHex });
+    mat = new THREE.LineBasicMaterial({ linewidth: 5, color: colorHex });
   }
 
   geom.vertices.push( src.clone() );
@@ -261,6 +258,7 @@ function newObject() {
   if (colour == '0x') {
     colour = getRandomInt(0, 0xFFFFFF);
   } else {
+    // This does not behave the same way as for HTML codes unless it is 6 digits
     colour = parseInt(colour);
     $("#colour-input").val(sixCharHex(colour)); // Show the real code for what was entered
   }
@@ -341,13 +339,13 @@ function applyRandomTranslation(object) {
     var max = 30;
     var matrix4 = new THREE.Matrix4();
 
-    var x = Math.floor(Math.random() * Math.floor(max)) * posOrNegative() * SCALE;
-    var y = Math.floor(Math.random() * Math.floor(max)) * posOrNegative() * SCALE;
-    var z = Math.floor(Math.random() * Math.floor(max)) * posOrNegative() * SCALE;
+    var x = Math.floor(Math.random() * Math.floor(max)) * posOrNegative();
+    var y = Math.floor(Math.random() * Math.floor(max)) * posOrNegative();
+    var z = Math.floor(Math.random() * Math.floor(max)) * posOrNegative();
 
-    matrix4.makeTranslation(x, y, z);
+    matrix4.makeTranslation(x * SCALE, y * SCALE, z * SCALE);
     object.applyMatrix(matrix4);
-    screenObjectTransforms[object.name] = [null, [x / SCALE, y / SCALE, z / SCALE]];
+    screenObjectTransforms[object.name] = [null, [x, y, z]];
   } else {
     isStartingShape = false;
   }
