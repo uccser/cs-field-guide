@@ -12,6 +12,7 @@ These systems are designed to simulate the decision making ability of a human-ex
 - Follows a pre-determined set of rules, which it uses to make decisions about input data.
 - Simplest form of AI
 
+<!-- Comic for this https://xkcd.com/1696/ -->
 
 Started from the idea that you could represent human knowledge as simple rules. If this then that.
 

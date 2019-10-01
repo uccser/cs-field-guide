@@ -1,18 +1,19 @@
 # What's the big picture?
 
-AI (also known as {glossary-link term="intelligent-systems"}intelligent systems{glossary-link end}) is primarily a branch of computer science but it has borrowed a lot of concepts and ideas from other fields, especially [mathematics](https://en.wikipedia.org/wiki/Mathematics) (particularly logic, combinatorics, statistics, probability and optimisation theory), [biology](https://en.wikipedia.org/wiki/Biology), [psychology](https://en.wikipedia.org/wiki/Psychology), [linguistics](https://en.wikipedia.org/wiki/Linguistics), [neuroscience](https://en.wikipedia.org/wiki/Neuroscience) and [philosophy](https://en.wikipedia.org/wiki/Philosophy).
-
-It is about creating and analysing machines and computer systems that act intelligently, or demonstrate intelligence. These machines and systems are often referred to as computational {glossary-link term="agent"}agents{glossary-link end}.
+Artificial Intelligence (also known as {glossary-link term="intelligent-systems"}intelligent systems{glossary-link end}) is about creating and analysing machines and computer systems that act intelligently, or demonstrate intelligence.
 But what do we actually mean by intelligence?
-Computers can do a lot of impressive things, like search billions of webpages in miliseconds, or take some code you wrote and run a game, but does that make them truly intelligent?
+Computers can do a lot of impressive things, like search billions of webpages in milliseconds, or take some code you wrote and run a game, but does that make them truly intelligent?
+What differentiates an intelligent computer system from any other computer program?
 
-In the field of AI, an agent is generally considered to be intelligent if it:
+<!-- In the field of AI, an agent is generally considered to be intelligent if it:
 
 - mimics elements of human intelligence, such as problem solving and learning, or
 - can interpret external data, and take actions which then move it towards a particular goal, or
-- has the ability to learn from data, and then make predictions and decisions.
+- has the ability to learn from data, and then make predictions and decisions. -->
 
 <!-- Need a picture or something to break stuff up here -->  <!-- Add dropdown about agents? -->
+
+AI is primarily a branch of computer science but it has borrowed a lot of concepts and ideas from other fields, especially [mathematics](https://en.wikipedia.org/wiki/Mathematics) (particularly logic, combinatorics, statistics, probability and optimisation theory), [biology](https://en.wikipedia.org/wiki/Biology), [psychology](https://en.wikipedia.org/wiki/Psychology), [linguistics](https://en.wikipedia.org/wiki/Linguistics), [neuroscience](https://en.wikipedia.org/wiki/Neuroscience) and [philosophy](https://en.wikipedia.org/wiki/Philosophy).
 
 There are many different subfields of AI and approaches to building intelligent systems. These approaches can generally be split into two groups: rule-based techniques, and machine learning techniques.
 Intelligent systems can be built using either of these, or a combination.
