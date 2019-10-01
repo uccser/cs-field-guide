@@ -80,6 +80,9 @@ $(document).ready(function () {
   $("#name-input").val('');
 });
 
+/**
+ * Creates the new scene; skybox, lighting, camera and the initial object
+ */
 function init() {
   // Cameras
   camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 100000 );
@@ -150,7 +153,9 @@ function init() {
   window.addEventListener( 'resize', onWindowResize, false );
 }
 
-
+/**
+ * Rescales the scene to the size of the window
+ */
 function onWindowResize() {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
@@ -159,14 +164,17 @@ function onWindowResize() {
   renderer.setSize( window.innerWidth, window.innerHeight );
 }
 
-
-//
+/**
+ * Animation loop for the scene
+ */
 function animate() {
   requestAnimationFrame( animate );
   render();
 }
 
-
+/**
+ * Renders the scene during the animation loop
+ */
 function render() {
   camera.lookAt( scene.position );
   cameraCube.rotation.copy( camera.rotation );
@@ -174,8 +182,10 @@ function render() {
   renderer.render( scene, camera );
 }
 
-
-// code taken from https://soledadpenades.com/articles/three-js-tutorials/drawing-the-coordinate-axes/
+/**
+ * Adds lines to show the axes in the scene
+ * Code taken from https://soledadpenades.com/articles/three-js-tutorials/drawing-the-coordinate-axes/
+ */
 function buildAxis( src, dst, colorHex, dashed ) {
   var geom = new THREE.Geometry();
   var mat;
@@ -193,10 +203,11 @@ function buildAxis( src, dst, colorHex, dashed ) {
   axis.computeLineDistances(); // This one is SUPER important, otherwise dashed lines will appear as simple plain lines
 
   return axis;
-
 }
 
-
+/**
+ * Creates axes (n.b. plural of axis) in the scene
+ */
 function addAxes(size) {
   // positive X axis
   var posX = buildAxis(
@@ -251,6 +262,9 @@ function addAxes(size) {
   scene.add( negZ );
 }
 
+/**
+ * Parses user-input for the type, name and colour of a new object, then adds it to the scene
+ */
 function newObject() {
   var objectType = $("#object-selection :selected").val();
   var name = $("#name-input").val();
@@ -267,6 +281,16 @@ function newObject() {
   $("#name-input").val('');
 };
 
+/**
+ * Creates a new object in the scene with the following parameters:
+ * 
+ * @param {*} type          Sphere, cube or cone shape
+ * @param {*} givenMaterial A three.js material for the new object
+ * @param {*} name          A name for the dropdown menu; if this is an empty string a unique name will be generated
+ * 
+ * If the name already exists, this function will be called recursively with a
+ * plus symbol (+) appended to the name as a new name
+ */
 function addObject(type, givenMaterial, name) {
   if (name in screenObjectIds) {
     // Object with that name/ID already exists
@@ -351,13 +375,17 @@ function applyRandomTranslation(object) {
   }
 }
 
-
-// returns either 1 or -1
+/**
+ * Returns either 1 or -1 at random
+ */
 function posOrNegative() {
   return Math.random() < 0.5 ? -1 : 1;
 }
 
-
+/**
+ * Applies the user-submitted transform and/or translation to the suspect object
+ * in the scene
+ */
 function applyTransformation() {
   // Applied matrices need to be 4x4
   var matrix4 = new THREE.Matrix4();
@@ -410,6 +438,10 @@ function applyTransformation() {
   }
 }
 
+/**
+ * Ensures the given object is selected (in the dropdown) if applicable
+ * and sets up for the user to apply matrices to it
+ */
 function setSuspect(object) {
   if (suspect != null) {
     $("#" + screenObjectIds[suspect.name]).attr("selected", false);
@@ -437,7 +469,8 @@ function switchFocus() {
 }
 
 /**
- * Returns an integer it hasn't returned before.
+ * Returns an integer it hasn't returned before
+ * i.e. (the integer it returned last time + 1)
  */
 function uniqueId() {
   ID++;
@@ -448,7 +481,7 @@ function uniqueId() {
  * Sets the transform matrices in the interactive to the values used to transform the currently selected object.
  * Unavailable in multple transformations mode, but only needed for scene-creation mode
  * 
- * If isReset, the matrices will be returned to their original status' instead
+ * If isReset, the matrices will be returned to their original status' (identity matrices) instead
  */
 function fillMatrices(isReset) {
   var transform = screenObjectTransforms[suspect.name][0];
@@ -494,7 +527,7 @@ function fillMatrices(isReset) {
 }
 
 /**
- * Assumes the matrix is a list of lists of strings
+ * Adds the given new matrix to the list of applied matrices, formatted appropriately with MathJax
  */
 function addAppliedTransform(matrixStr) {
   var row1 = sprintf(ROW_TEMPLATE, matrixStr[0][0], matrixStr[1][0], matrixStr[2][0]);
@@ -506,7 +539,7 @@ function addAppliedTransform(matrixStr) {
 }
 
 /**
- * Assumes the vector is a list of strings
+ * Adds the given new vector to the list of applied matrices, formatted appropriately with MathJax
  */
 function addAppliedVector(vectorStr) {
   var newDiv = sprintf(MATRIX_TEMPLATE, vectorStr[0], vectorStr[1], vectorStr[2]);
@@ -515,7 +548,7 @@ function addAppliedVector(vectorStr) {
 }
 
 /**
- * Returns the given object to [0, 0, 0], and removes any other tranformations
+ * Sets the given object to the position [0, 0, 0], and removes any other tranformations
  */
 function resetObject(object) {
   object.position.set( 0, 0, 0 );
@@ -525,7 +558,8 @@ function resetObject(object) {
 }
 
 /**
- * If evalAsString is true, the values will be left as strings and an array of arrays will be returned
+ * Returns a list of Vector3 objects, each being a column of the user-submitted matrix
+ * If evalAsString is true, the values will be left as strings and a list of lists will be returned
  */
 function getMatrix(evalAsString) {
   var col0, col1, col2;
@@ -572,6 +606,7 @@ function getMatrix(evalAsString) {
 }
 
 /**
+ * Returns a list of three values, the x, y & z components of the user-submitted vector
  * If evalAsString is true, the values will be left as strings
  */
 function getVector(evalAsString) {
@@ -599,6 +634,12 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+/**
+ * Sets the colour of the prepended '#' box to the hexadecimal colour code entered in the input
+ * Matches the behaviour of the colour chosen when the new object is created
+ * i.e. assumes the code is zero-extended to 6 characters, rather than
+ * following standard html colour code rules (such as that 3-digit codes are okay)
+ */
 function recolourHashBox() {
   var newColour = $("#colour-input").val();
   if (newColour == '') {
