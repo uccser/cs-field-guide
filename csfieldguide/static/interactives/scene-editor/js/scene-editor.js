@@ -9,6 +9,8 @@ const urlParameters = require('../../../js/third-party/url-parameters.js');
 
 const image_base_path = base_static_path + 'interactives/scene-editor/img/bridge-';
 const SCALE = 100; // Multiplier for translation distances
+const COLOUR_CAMERAPOINTER = 0xff0000;
+const CAMERA_POINTERID = "thisobjectmarksthepointthecameraorbitsaround" // Longer than 20 characters as 20 is the limit for user input
 
 const ROW_TEMPLATE = "%s & %s & %s";
 const MATRIX_TEMPLATE = "\\begin{bmatrix} %s \\\\ %s \\\\ %s \\end{bmatrix}";
@@ -17,6 +19,7 @@ var controls, camera, scene, renderer;
 var cameraCube, sceneCube;
 var textureCube;
 var cubeMesh;
+var cameraPointer;
 var suspect = null; // The object that the next transform will apply to
 var screenObjectIds = {};
 var screenObjectTransforms = {};
@@ -88,6 +91,7 @@ function init() {
   camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 100000 );
   camera.position.set( 1000, 500, 1000 );
   cameraCube = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 100000 );
+  camera.lookAt( new THREE.Vector3(0, 0, 0) );
   // Scene
   scene = new THREE.Scene();
   sceneCube = new THREE.Scene();
@@ -124,8 +128,12 @@ function init() {
   sceneCube.add( cubeMesh );
   // Sphere object
   isStartingShape = true;
-  sphereMaterial = new THREE.MeshLambertMaterial( { envMap: textureCube } );
+  var sphereMaterial = new THREE.MeshLambertMaterial( { envMap: textureCube } );
   addObject('sphere', sphereMaterial, '');
+  // Camera orbit pointer
+  var cameraPointerMaterial = new THREE.MeshLambertMaterial( {color: COLOUR_CAMERAPOINTER} );
+  addObject('sphere', cameraPointerMaterial, null);
+  cameraPointer = scene.getObjectByName( CAMERA_POINTERID )
   //
   renderer = new THREE.WebGLRenderer();
   renderer.autoClear = false;
@@ -138,7 +146,6 @@ function init() {
   controls = new OrbitControls( camera, renderer.domElement );
   controls.minDistance = 500;
   controls.maxDistance = 10000;
-  controls.enablePan = false; // Disables some wacky behaviour from panning while forced to look at the origin
 
   // Grid
   var size = 10000;
@@ -169,6 +176,8 @@ function onWindowResize() {
  */
 function animate() {
   requestAnimationFrame( animate );
+  var cameraTarget = controls.target;
+  cameraPointer.position.set(cameraTarget.x, cameraTarget.y, cameraTarget.z);
   render();
 }
 
@@ -176,7 +185,6 @@ function animate() {
  * Renders the scene during the animation loop
  */
 function render() {
-  camera.lookAt( scene.position );
   cameraCube.rotation.copy( camera.rotation );
   renderer.render( sceneCube, cameraCube );
   renderer.render( scene, camera );
@@ -286,7 +294,7 @@ function newObject() {
  * 
  * @param {*} type          Sphere, cube or cone shape
  * @param {*} givenMaterial A three.js material for the new object
- * @param {*} name          A name for the dropdown menu; if this is an empty string a unique name will be generated
+ * @param {*} name          A name for the dropdown menu; if this is an empty string a unique name will be generated, if null then it is the camera pointer and will not be added to the list of selectable objects
  * 
  * If the name already exists, this function will be called recursively with a
  * plus symbol (+) appended to the name as a new name
@@ -298,57 +306,55 @@ function addObject(type, givenMaterial, name) {
     addObject(type, givenMaterial, name + '+');
     return;
   }
+  var object;
   switch (type) {
     case "sphere":
       var geometry = new THREE.SphereBufferGeometry( 200, 48, 24 );
-      var sphere = new THREE.Mesh( geometry, givenMaterial );
-      scene.add( sphere );
+      object = new THREE.Mesh( geometry, givenMaterial );
+      scene.add( object );
       numSpheres += 1;
       if (name == '') {
-        sphere.name = gettext('Sphere ') + numSpheres;
+        object.name = gettext('Sphere ') + numSpheres;
       } else {
-        sphere.name = name;
+        object.name = name;
       }
-      screenObjectIds[sphere.name] = 'obj' + (uniqueId());
-      screenObjectTransforms[sphere.name] = [null, null];
-      $("#selectable-objects").append("<option id='" + screenObjectIds[sphere.name]+ "'>" + sphere.name + "</option>");
-      applyRandomTranslation(sphere);
-      setSuspect(sphere);
       break;
 
     case "cube":
       var geometry = new THREE.BoxBufferGeometry(400, 400, 400 );
-      var cube = new THREE.Mesh( geometry, givenMaterial );
-      scene.add( cube );
+      object = new THREE.Mesh( geometry, givenMaterial );
+      scene.add( object );
       numCubes += 1;
       if (name == '') {
-        cube.name = gettext('Cube ') + numCubes;
+        object.name = gettext('Cube ') + numCubes;
       } else {
-        cube.name = name;
+        object.name = name;
       }
-      screenObjectIds[cube.name] = 'obj' + (uniqueId());
-      screenObjectTransforms[cube.name] = [null, null];
-      $("#selectable-objects").append("<option id='" + screenObjectIds[cube.name] + "'>" + cube.name + "</option>");
-      applyRandomTranslation(cube);
-      setSuspect(cube);
       break;
 
     case "cone":
       var geometry = new THREE.ConeBufferGeometry( 200, 400, 32 );
-      var cone = new THREE.Mesh( geometry, givenMaterial );
-      scene.add( cone );
+      object = new THREE.Mesh( geometry, givenMaterial );
+      scene.add( object );
       numCones += 1;
       if (name == '') {
-        cone.name = gettext('Cone ') + numCones;
+        object.name = gettext('Cone ') + numCones;
       } else {
-        cone.name = name;
+        object.name = name;
       }
-      screenObjectIds[cone.name] = 'obj' + (uniqueId());
-      screenObjectTransforms[cone.name] = [null, null];
-      $("#selectable-objects").append("<option id='" + screenObjectIds[cone.name] + "'>" + cone.name + "</option>");
-      applyRandomTranslation(cone);
-      setSuspect(cone);
       break;
+    default:
+      return; // Not a valid shape
+  }
+  if (name == null) {
+    object.name = CAMERA_POINTERID;
+  }
+  screenObjectIds[object.name] = 'obj' + (uniqueId());
+  screenObjectTransforms[object.name] = [null, null];
+  if (name != null) {
+    $("#selectable-objects").append("<option id='" + screenObjectIds[object.name] + "'>" + object.name + "</option>");
+    applyRandomTranslation(object);
+    setSuspect(object);
   }
 }
 
