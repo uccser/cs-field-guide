@@ -5,28 +5,27 @@ In fact, every pixel you see in an image has usually had many calculations made 
 
 Let's start with some simple but common calculations that are needed in graphics programming.
 The following interactive shows a cube with symbols on each face.
-You can move it around using what's called a *transform*, which simply adjusts where it is placed in space.
+You can move it around using what's called a {glossary-link term="translation"}translation{glossary-link end}, which simply adjusts where it is placed in space.
 The camera will always focus on the cube, so to see the back of the cube move it behind the camera.
 Try typing 3D coordinates into this interactive to find each symbol.
 
 {interactive slug="box-translation" type="whole-page" alt="Box Translation interactive"}
 
-You've just applied 3D *translation transforms* to the cube.
-Translation just means moving it in the three dimensions up and down, forward and back, and left and right.
+You've just applied 3D translation {glossary-link term="graphics-transform"}transforms{glossary-link end} to the cube.
 
 Now try the following challenge, which requires you to rotate the box to find the codes.
 
 {interactive slug="box-rotation" type="whole-page" alt="Box Rotation interactive"}
 
-There are several transformations that are used in computer graphics, but the most common ones are translation (moving the object), rotation (spinning it) and scaling (changing its size).
-They come up often in graphics because they are applied not only to objects, but to things like the positions of the camera and lighting sources.
+There are several transformations that are used in computer graphics, but the most common ones are {glossary-link term="translation"}translation{glossary-link end} (moving the object), {glossary-link term="rotation"}rotation{glossary-link end} (spinning it) and {glossary-link term="scale"}scaling{glossary-link end} (changing its size).
+They come up often in graphics because they are applied not only to objects, but to things like the camera and lighting sources.
 
 In this section you can apply transformations to various images.
 We'll start by making the changes manually, one point at a time, but we'll move up to a quick shortcut method that uses a *matrix* to do the work for you.
 We'll start by looking at how these work in two dimensions &ndash; it's a bit easier to think about than three dimensions.
 
-The following interactive shows a shape, and on the left you can see a list of the points that correspond to its 7 corners (usually referred to as *cartesian coordinates*).
-The shape is on a grid, where the center point is the "zero" point.
+The following interactive shows a shape, and on the left you can see a list of the points that correspond to its 7 corners (usually referred to as {glossary-link term="cartesian-coordinate-system"}cartesian coordinates{glossary-link end}).
+The shape is on a grid, where the center point is the "zero" point (or *origin*).
 Points are specified using two numbers, *x* and *y*, usually written as (*x*, *y*).
 The *x* value is how far the point is to the right of the center and the *y* value is how far above the center it is.
 For example, the first point in the list is the tip at (0, 4), which means it's 0 units to the right of the center (i.e.
@@ -118,8 +117,7 @@ Read on!
 This section introduces the use of matrices to do the transforms.
 It doesn't assume that they have encountered matrices before, but if students are completely new to matrix algebra and are also weak in algebra in general, the explanation in this chapter might be a little minimal for them, and extra help will be needed.
 There are good resources around that explain matrices, although they likely provide more detail than needed.
-The
-[Khan academy](https://www.khanacademy.org/math/precalculus/precalc-matrices) have videos and quizzes explaining matrices (we are particularly interested in multiplying a matrix by a vector, which is what is happening when a matrix transform is applied to a point &ndash; the point is the vector).
+[Khan academy](https://www.khanacademy.org/math/precalculus/precalc-matrices) has videos and quizzes explaining matrices (we are particularly interested in multiplying a matrix by a vector, which is what is happening when a matrix transform is applied to a point &ndash; the point is the vector).
 
 Other explanations aimed at school students include:
 - [Math is Fun - Matrix multiplying](http://www.mathsisfun.com/algebra/matrix-multiplying.html)
@@ -348,8 +346,8 @@ To rotate the image anticlockwise by \( \theta \) degrees, you'll need the follo
 
 # Explanation
 
-If your students aren't familiar with sin and cos, it may be worth going over them separately, including the idea that the angle is usually measured in degrees, and the sin and cos functions will produce a number between 0  and 1.
-The [Khan Academy](https://www.khanacademy.org/math/trigonometry/trigonometry-right-triangles) has more information about sine and cosine functions, explained in terms of triangles.
+If your students aren't familiar with sin and cos, it may be worth going over them separately, including the idea that the angle is usually measured in degrees, and the sin and cos functions will produce a number between 0 and 1.
+[Khan Academy](https://www.khanacademy.org/math/trigonometry/trigonometry-right-triangles) has more information about sine and cosine functions, explained in terms of triangles.
 
 {panel end}
 
@@ -450,7 +448,7 @@ However, the translation will be doubled as well since it comes before the matri
 
 In the above interactive, you'll have noticed that scaling is affected by how far the object is from the center.
 If you want to scale around a fixed point in the object (so it expands where it is), then an easy way is to translate it back to the center (also called the *origin*), scale it, and then translate it back to where it was.
- The following interactive allows you to move the shape, then scale it, and move it back.
+The following interactive allows you to move the shape, then scale it, and move it back.
 
 {interactive slug="2d-shape-manipulations" type="whole-page" text="true" parameters="config=matrix-scale-translate-3"}
 
@@ -501,7 +499,7 @@ Combining Translation, Scaling and Rotation
 # Solution
 
 Scale matrix is \( \begin{bmatrix}  2 & 0 \\   0 & 1 \\   \end{bmatrix} \).
-Using x = -90 in the trig function calculator, the rotation matrix is \( \begin{bmatrix}  0 & 1 \\  -1 & 0 \\   \end{bmatrix} \) -- that's a 90 degree clockwise rotation.
+Using x = -90 in the trig function calculator, the rotation matrix is \( \begin{bmatrix}  0 & 1 \\  -1 & 0 \\   \end{bmatrix} \) &ndash; that's a 90 degree clockwise rotation.
 The translation vector is 8,4.
 
 {panel end}
@@ -517,8 +515,8 @@ Multiple Transformation Challenge
 # Solution
 
 Scale matrix is \( \begin{bmatrix}  2 & 0 \\   0 & 2 \\   \end{bmatrix} \).
-Using x = 45 in the trig function calculator, the rotation matrix is \( \begin{bmatrix}  0.71 & -0.71 \\  0.71 & 0.71 \\   \end{bmatrix} \) -- that's a 45 degree anticlockwise rotation.
-The translation vector is -4,-7.
+Using x = 45 in the trig function calculator, the rotation matrix is \( \begin{bmatrix}  0.71 & -0.71 \\  0.71 & 0.71 \\   \end{bmatrix} \) &ndash; that's a 45 degree anticlockwise rotation.
+The translation vector is -4, -7.
 
 {panel end}
 
@@ -662,17 +660,18 @@ The following interactive allows you to combine 3D matrices.
 In the above examples, when you have several matrices being applied to every point in the image, a lot of time can be saved by converting the series of matrices and transforms to just one formula that does all of the transforms in one go.
 The following interactive can do those calculations for you.
 
-For example, in the following interactive, type in the matrix for doubling the size of an object (put the number 2 instead of 1 on the main diagonal values), then add another matrix that triples the size of the image (3 on the main diagonal).
-The interactive shows a matrix on the right that combines the two &ndash; does it look right?
+For example, in the following interactive, remove the existing matrices, click 'Add matrix' and enter the matrix for doubling the size of an object (put the number 2 instead of 1 on the main diagonal values).
+Then add another matrix that triples the size of the image (3 on the main diagonal).
+The interactive shows a matrix below that combines the two &ndash; does it look right?
 
-{button-link link="https://archive.csfieldguide.org.nz/1.9.9/_static/widgets/CG/CG-matrix-simplifier/CG-matrix-simplifier.html?info=Multiple%20transforms" text="Click for interactive: matrix simplifier"}
+{interactive slug="matrix-simplifier" type="whole-page" alt="Matrix simplifier interactive"}
 
 {panel type="teacher-note"}
 
 # Explanation
 
 The combined result of scaling by 2 and then 3 should have 6 down the main diagonal (i.e. 6 times larger).
-The interactive gives a full derivation of the calculations being done on each x,y,z coordinate of each point in an image, but it really just has three inputs (x,y,z), which give the original position of a point, and three outputs (x',y',z') which give the transformed position of the point.
+The interactive gives a full derivation of the calculations being done on each x, y, z coordinate of each point in an image, but it really just has three inputs (x, y, z), which give the original position of a point, and three outputs (x', y',z') which give the transformed position of the point.
 
 {panel end}
 
@@ -739,7 +738,7 @@ The scene-creation interactive can be run from here:
 
 To generate combined transformations, you can use the following transform simplifier interactive:
 
-{button-link link="https://archive.csfieldguide.org.nz/1.9.9/_static/widgets/CG/CG-matrix-simplifier/CG-matrix-simplifier.html?info=Multiple%20transforms" text="Click for interactive: matrix simplifier"}
+{interactive slug="matrix-simplifier" type="whole-page" alt="Matrix simplifier interactive"}
 
 Because you can't save your work in the interactives, keep notes and screen shots as you go along.
 These will be useful for your report, and also can be used if you need to start over again.

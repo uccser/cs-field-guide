@@ -203,6 +203,10 @@ lzw-compression:
   languages:
     en: interactives/lzw-compression.html
   is_interactive: true
+matrix-simplifier:
+  languages:
+    en: interactives/matrix-simplifier.html
+  is_interactive: true
 menu-keystrokes:
   languages:
     en: interactives/menu-keystrokes.html
