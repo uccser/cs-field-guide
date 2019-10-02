@@ -1,15 +1,11 @@
 # What's the big picture?
 
 Artificial Intelligence (also known as {glossary-link term="intelligent-systems"}intelligent systems{glossary-link end}) is about creating and analysing machines and computer systems that act intelligently, or demonstrate intelligence.
+As well as building artificially intelligent systems, AI research can be about studying intelligence in natural systems.
+
 But what do we actually mean by intelligence?
 Computers can do a lot of impressive things, like search billions of webpages in milliseconds, or take some code you wrote and run a game, but does that make them truly intelligent?
 What differentiates an intelligent computer system from any other computer program?
-
-<!-- In the field of AI, an agent is generally considered to be intelligent if it:
-
-- mimics elements of human intelligence, such as problem solving and learning, or
-- can interpret external data, and take actions which then move it towards a particular goal, or
-- has the ability to learn from data, and then make predictions and decisions. -->
 
 <!-- Need a picture or something to break stuff up here -->  <!-- Add dropdown about agents? -->
 
