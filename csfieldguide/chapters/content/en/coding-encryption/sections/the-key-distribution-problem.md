@@ -148,7 +148,7 @@ You may have noticed "padding" as an option in the interactive.
 Padding is extra data used to stop {glossary-link term="known-plaintext-attack"}known plaintext attacks{glossary-link end}.
 
 With padding, the same plaintext encrypted with the same public key can result in a different ciphertext.
-So a hacker with access to the plaintext and ciphertext can't guess values used in the cipher and just compare their new encryption to the original.
+So a hacker with access to the plaintext and ciphertext can't guess values used in the cipher by just comparing their new encryptions to the original.
 
 It is not important at this level, but still worth mentioning because it is another layer of security applied in real-world cryptography.
 You can read more about various types of padding [on Wikipedia](https://en.wikipedia.org/wiki/Padding_(cryptography)).
