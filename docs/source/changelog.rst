@@ -10,12 +10,46 @@ All notable changes to this project will be documented in this file.
 
   Given a version number MAJOR.MINOR.HOTFIX:
 
-  - MAJOR version change when major text modifications are made (for example: new chapter, changing how a curriculum guide teaches a subject).
-  - MINOR version change when content or functionality is added or updated (for example: new videos, new activities, large number of text (typo/grammar) fixes).
+  - MAJOR version change when system-wide modifications incompatible with previous versions are made (for example: switching to a new backend system).
+  - MINOR version change when content or functionality is added or updated (for example: new chapter, new interactive, large number of text (typo/grammar) fixes).
   - HOTFIX version change when bug hotfixes are made (for example: fixing a typo, fixing a bug in an interactive).
   - A pre-release version is denoted by appending a hyphen and the alpha label followed by the pre-release version.
 
 We have listed major changes for each release below.
+
+3.0.5
+==============================================================================
+
+- **Release date:** 6th September 2019
+- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/3.0.5>`__
+
+**Changelog:**
+
+- Fix broken URLs. `#1141 <https://github.com/uccser/cs-field-guide/issues/1141>`__
+
+3.0.4
+==============================================================================
+
+- **Release date:** 5th September 2019
+- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/3.0.4>`__
+
+**Changelog:**
+
+- Rebuild matrix simplifier interactive. `#375 <https://github.com/uccser/cs-field-guide/issues/375>`__
+- Fix URL parameters in searching boxes interactive. `#1129 <https://github.com/uccser/cs-field-guide/issues/1129>`__
+- Improvements to regular expression filter interactive. `#1020 <https://github.com/uccser/cs-field-guide/issues/1020>`__
+- Content fixes and add glossary entries for coding, data representation and HCI chapters. `#1017 <https://github.com/uccser/cs-field-guide/issues/1017>`__
+- Add glossary entries for AI chapter. `#1136 <https://github.com/uccser/cs-field-guide/pull/1136>`__
+- Improve list of contributors. `#1127 <https://github.com/uccser/cs-field-guide/pull/1127>`__
+- Dependency updates:
+
+  - Update ``lxml`` from 4.3.4 to 4.4.1.
+  - Update ``coverage`` from 4.5.3 to 4.5.4.
+  - Update ``pyyaml`` from 5.1.1 to 5.1.2.
+  - Update ``cssselect`` from 1.0.3 to 1.1.0.
+  - Update ``pydocstyle`` from 4.0.0 to 4.0.1.
+  - Update ``wheel`` from 0.33.4 to 0.33.6.
+  - Update ``sphinx`` from 2.1.2 to 2.2.0.
 
 3.0.3
 ==============================================================================

@@ -1,0 +1,78 @@
+@import "node_modules/dragula/dist/dragula";
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+@import "node_modules/bootstrap/scss/mixins";
+
+.matrix-row input {
+  display: inline-block;
+  width: 20%;
+  margin-bottom: 3px;
+  font-family: monospace;
+}
+
+.draggable {
+  touch-action: none;
+  cursor: grab;
+  &.gu-mirror {
+    cursor: grabbing;
+    opacity: 1 !important;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+  }
+}
+
+.content {
+  background-color: #fff;
+  width: 70%;
+}
+
+// make matrices wider for small devices
+@include media-breakpoint-down(sm) {
+  .content {
+    background-color: #fff;
+    width: 100%;
+  }
+}
+
+#output-container {
+  > div {
+    > span {
+      display: inline !important;
+    }
+  }
+}
+
+
+#matrix-output,
+#vector-output{
+  > span {
+    display: inline !important;
+  }
+}
+
+.dismiss-eqtn {
+  top: 0;
+  right: 3px;
+  position: relative;
+}
+
+// Copy bootstrap helper class but add !important
+.center-block {
+  display: block;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.input-error {
+  border: 1px solid red;
+}
+
+.input-error:focus {
+  border-color: #FF0000;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6);
+}
+
+.result-step {
+  overflow-x: auto;
+  white-space: nowrap;
+  overflow-y: hidden;
+}

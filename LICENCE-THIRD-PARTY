@@ -532,6 +532,15 @@ third-party-licences/lxml.txt
 ==============================================================================
 
 ==============================================================================
+MathJax
+------------------------------------------------------------------------------
+https://github.com/mathjax/MathJax
+Copyright 2009-2013 The MathJax Consortium
+licensed under the Apache License, Version 2.0
+third-party-licences/mathjax.txt
+==============================================================================
+
+==============================================================================
 Mathjs
 ------------------------------------------------------------------------------
 https://github.com/josdejong/mathjs
@@ -753,6 +762,15 @@ https://github.com/rtfd/sphinx_rtd_theme
 Copyright 2013-2018 Dave Snider, Read the Docs, Inc. & contributors
 licensed under MIT licence.
 third-party-licences/sphinx-rtd-theme.txt
+==============================================================================
+
+==============================================================================
+sprintf-js
+------------------------------------------------------------------------------
+https://github.com/alexei/sprintf.js
+Copyright 2007-present, Alexandru Mărășteanu
+licensed under the BSD 3-Clause "New" or "Revised" License
+third-party-licences/sprintf-js.txt
 ==============================================================================
 
 ==============================================================================
