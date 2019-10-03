@@ -9,7 +9,6 @@ const urlParameters = require('../../../js/third-party/url-parameters.js');
 
 const image_base_path = base_static_path + 'interactives/scene-editor/img/bridge-';
 const SCALE = 100; // Multiplier for translation distances
-const COLOUR_CAMERAPOINTER = 0xff0000;
 const CAMERA_POINTERID = "thisobjectmarksthepointthecameraorbitsaround" // Longer than 20 characters as 20 is the limit for user input
 
 const ROW_TEMPLATE = "%s & %s & %s";
@@ -216,7 +215,7 @@ function buildAxis( src, dst, colorHex, dashed ) {
 }
 
 /**
- * Creates axes (n.b. plural of axis) in the scene
+ * Creates axes in the scene
  */
 function addAxes(size) {
   // positive X axis
@@ -273,7 +272,7 @@ function addAxes(size) {
 }
 
 /**
- * Parses user-input for the type, name and colour of a new object, then adds it to the scene
+ * Parses user input for the type, name and colour of a new object, then adds it to the scene
  */
 function newObject() {
   var objectType = $("#object-selection :selected").val();
@@ -294,21 +293,21 @@ function newObject() {
 /**
  * Creates a new object in the scene with the following parameters:
  * 
- * @param {*} type          Sphere, cube or cone shape
- * @param {*} givenMaterial A three.js material for the new object
- * @param {*} name          A name for the dropdown menu; if this is an empty
- *                          string a unique name will be generated,
- *                          if null then the object is not intended for the user
- *                          and will not be added to the list of selectable objects
+ * @param {*} type     Shape type; cube, cone, sphere etc
+ * @param {*} material A three.js material for the new object
+ * @param {*} name     A name for the dropdown menu; if this is an empty
+ *                     string a unique name will be generated,
+ *                     if null then the object is not intended for the user
+ *                     and will not be added to the list of selectable objects
  * 
  * If the name already exists, this function will be called recursively with a
  * plus symbol (+) appended to the name as a new name
  */
-function addObject(type, givenMaterial, name) {
+function addObject(type, material, name) {
   if (name in screenObjectIds) {
     // Object with that name/ID already exists
     // TODO: nicer solution
-    addObject(type, givenMaterial, name + '+');
+    addObject(type, material, name + '+');
     return;
   }
   var object;
@@ -316,7 +315,7 @@ function addObject(type, givenMaterial, name) {
   switch (type) {
     case "sphere":
       geometry = new THREE.SphereBufferGeometry( 200, 48, 24 );
-      object = new THREE.Mesh( geometry, givenMaterial );
+      object = new THREE.Mesh( geometry, material );
       scene.add( object );
       numSpheres += 1;
       if (name == '') {
@@ -328,7 +327,7 @@ function addObject(type, givenMaterial, name) {
 
     case "cube":
       geometry = new THREE.BoxBufferGeometry(400, 400, 400 );
-      object = new THREE.Mesh( geometry, givenMaterial );
+      object = new THREE.Mesh( geometry, material );
       scene.add( object );
       numCubes += 1;
       if (name == '') {
@@ -340,7 +339,7 @@ function addObject(type, givenMaterial, name) {
 
     case "cone":
       geometry = new THREE.ConeBufferGeometry( 200, 400, 32 );
-      object = new THREE.Mesh( geometry, givenMaterial );
+      object = new THREE.Mesh( geometry, material );
       scene.add( object );
       numCones += 1;
       if (name == '') {
