@@ -60,7 +60,7 @@ $(document).ready(function () {
     $(".plus-sign").removeClass('d-none');
     $("#vector-container").removeClass('d-none');
     $("#eqtn-title").html(gettext('Multiple matrices and vectors:'));
-    $("#equation-container").removeClass('col-12 d-none').addClass('col-8');
+    $("#equation-container").removeClass('d-none').addClass('col-sm-8');
     $("#applied-container").removeClass('d-none');
   } else {
     mode = "scene-creation";
@@ -68,7 +68,7 @@ $(document).ready(function () {
     $("#matrix-container").removeClass('d-none').addClass('offset-1 d-inline');
     $(".plus-sign").removeClass('d-none').addClass('d-inline');
     $("#vector-container").removeClass('d-none').addClass('d-inline');
-    $("#equation-container").removeClass('col-12 d-none').addClass('col-8');
+    $("#equation-container").removeClass('d-none').addClass('col-sm-8');
     $("#eqtn-title").addClass('d-none');
     $("#scene-creation-title-area").removeClass('d-none');
   }
