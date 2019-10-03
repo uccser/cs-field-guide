@@ -5,6 +5,18 @@ This license applies to the following contents of this project:
 - Markdown files located within the `csfieldguide/chapters/content/` directory.
 - Images located within the `csfieldguide/static/img/` directory.
 
+With the following exceptions:
+
+- Images located within the `csfieldguide/static/img/chapters/` directory that
+  are prefixed with `xkcd` are the property of Randall Munroe and licensed under
+  a Creative Commons Attribution-NonCommercial 2.5 License.
+- Images located within the `csfieldguide/static/img/third-party/` directory
+  are used with permission from their respective owners and may be subject to their
+  own licenses.
+- Images located within the `csfieldguide/static/img/logos/` directory
+  are the properties of the companies depicted and may be subject to their
+  own licenses.
+
 =======================================================================
 
 Creative Commons Corporation ("Creative Commons") is not a law firm and
