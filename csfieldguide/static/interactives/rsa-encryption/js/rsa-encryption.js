@@ -342,7 +342,7 @@ function encrypt() {
     Key = new nodeRSA();
     var components = {};
     if (isPublicKey) {
-      components.e = parseInt($('#rsa-encryption-key-e').val().trim(), 16),
+      components.e = parseInt($('#rsa-encryption-key-e').val().trim().split(' ').join('').toLowerCase(), 16),
       components.n = $('#rsa-encryption-key-n').val().trim().split(' ').join('').toLowerCase();
       try {
         Key.importKey({
@@ -483,6 +483,9 @@ function libraryEncrypt() {
   }
 }
 
+/**
+ * Copies the ciphertext to user's clipboard
+ */
 function copy() {
   $('#rsa-encryption-ciphertext').select();
   try {
