@@ -83,7 +83,7 @@ $(document).ready(function() {
  */
 function formatPublicComponents(components) {
   var returnText = "e:\n"
-                 + parseHex([components.e]) + "\n\n"
+                 + parseHexString(components.e) + "\n\n"
                  + "n:\n"
                  + parseHex(components.n);
 
@@ -108,7 +108,7 @@ function formatPrivateComponents(components) {
 
 /**
  * Parses each item in the given list,
- * creating a space-separated string of hexadecimal representations
+ * creating a space-separated string of hexadecimal representations; in groups of two
  */
 function parseHex(list) {
   var length = list.length;
@@ -123,4 +123,22 @@ function parseHex(list) {
     returnString += char + " ";
   }
   return returnString.toUpperCase();
+}
+
+/**
+ * Creates a space-separated string of hexadecimal representations; in groups of two
+ */
+function parseHexString(number) {
+  var n = number.toString(16);
+  if (n.length % 2 != 0) {
+    n = "0" + n; // Add leading 0 to make even
+  }
+  // Split into pairs
+  var chars = n.split('');
+  var pairs = [];
+  for (var i=0; i < chars.length; i+=2) {
+    pairs.push(chars[i] + chars[i + 1]);
+  }
+  console.log(pairs);
+  return pairs.join(" ");
 }
