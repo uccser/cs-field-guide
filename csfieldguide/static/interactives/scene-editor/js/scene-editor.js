@@ -178,6 +178,9 @@ function animate() {
   requestAnimationFrame( animate );
   var cameraTarget = controls.target;
   cameraPointer.position.set(cameraTarget.x, cameraTarget.y, cameraTarget.z);
+  var distance = camera.position.distanceTo(cameraTarget);
+  var scaleFactor = distance / (500 * SCALE); // Keep a constant size relative to the user
+  cameraPointer.scale.set( scaleFactor, scaleFactor, scaleFactor );
   render();
 }
 
