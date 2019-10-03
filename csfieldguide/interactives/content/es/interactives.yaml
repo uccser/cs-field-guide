@@ -67,10 +67,6 @@ python-interpreter:
   name: Intérprete de Python
 rgb-mixer:
   name: Mezclador RGB
-rsa-jsencrypt:
-  name: jsencrypt RSA
-rsa-no-padding:
-  name: RSA sin relleno
 run-length-encoding:
   name: Run length encoding
 searching-algorithms:

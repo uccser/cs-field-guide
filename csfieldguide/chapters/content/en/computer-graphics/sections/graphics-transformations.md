@@ -590,6 +590,19 @@ The project below gives the chance to explore combining matrices, and has an int
 
 ## 3D transforms
 
+{panel type="caution"}
+
+# Interactives in this section
+
+The original interactives in this section stopped working with the release of version 3.0 of the Computer Science Field Guide.
+
+Replacements are in development and should be fully released soon:
+
+- `Matrix Simplifier`: **Main functionality released**
+- `Scene Editor` (transform, translate, multiple, scene creation): **In development**
+
+{panel end}
+
 So far we've just done the transforms in two dimensions.
 To do this in 3D, we need a *z* coordinate as well, which is the depth of the object into the screen.
 A matrix for operating on 3D points is 3 by 3.

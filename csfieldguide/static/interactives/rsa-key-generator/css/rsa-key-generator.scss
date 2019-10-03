@@ -2,12 +2,17 @@
   width: 100%;
   overflow: hidden;
 }
+
 #interactive-rsa-key-generator textarea {
-  height: initial;
+  min-height: initial;
+  font-family: monospace;
+  overflow: auto;
 }
+
 #interactive-rsa-key-generator select {
   border-color: black;
 }
+
 #interactive-rsa-key-generator-generate {
   height: 3rem;
 }
