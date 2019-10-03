@@ -131,8 +131,7 @@ function init() {
   var sphereMaterial = new THREE.MeshLambertMaterial( { envMap: textureCube } );
   addObject('sphere', sphereMaterial, '');
   // Camera orbit pointer
-  var cameraPointerMaterial = new THREE.MeshLambertMaterial( {color: COLOUR_CAMERAPOINTER} );
-  addObject('sphere', cameraPointerMaterial, null);
+  addObject('tinyaxis', null, null);
   cameraPointer = scene.getObjectByName( CAMERA_POINTERID )
   //
   renderer = new THREE.WebGLRenderer();
@@ -310,9 +309,10 @@ function addObject(type, givenMaterial, name) {
     return;
   }
   var object;
+  var geometry;
   switch (type) {
     case "sphere":
-      var geometry = new THREE.SphereBufferGeometry( 200, 48, 24 );
+      geometry = new THREE.SphereBufferGeometry( 200, 48, 24 );
       object = new THREE.Mesh( geometry, givenMaterial );
       scene.add( object );
       numSpheres += 1;
@@ -324,7 +324,7 @@ function addObject(type, givenMaterial, name) {
       break;
 
     case "cube":
-      var geometry = new THREE.BoxBufferGeometry(400, 400, 400 );
+      geometry = new THREE.BoxBufferGeometry(400, 400, 400 );
       object = new THREE.Mesh( geometry, givenMaterial );
       scene.add( object );
       numCubes += 1;
@@ -336,7 +336,7 @@ function addObject(type, givenMaterial, name) {
       break;
 
     case "cone":
-      var geometry = new THREE.ConeBufferGeometry( 200, 400, 32 );
+      geometry = new THREE.ConeBufferGeometry( 200, 400, 32 );
       object = new THREE.Mesh( geometry, givenMaterial );
       scene.add( object );
       numCones += 1;
@@ -345,6 +345,11 @@ function addObject(type, givenMaterial, name) {
       } else {
         object.name = name;
       }
+      break;
+    case "tinyaxis":
+      name = null; // Name should always be null for this object as it will never be presented for user-manipulation
+      object = createTinyaxisMesh();
+      scene.add( object );
       break;
     default:
       return; // Not a valid shape
@@ -671,4 +676,11 @@ function sixCharHex(num) {
   } else {
     return returnString;
   }
+}
+
+/**
+ * Returns a Geometry
+ */
+function createTinyaxisMesh() {
+ //TODO https://threejsfundamentals.org/threejs/lessons/threejs-custom-geometry.html
 }
