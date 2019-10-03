@@ -88,6 +88,8 @@ lzw-compression:
   name: LZW Compression
 lzss-compression:
   name: LZSS Compression
+matrix-simplifier:
+  name: Matrix Simplifier
 menu-keystrokes:
   name: Menu Keystrokes
 mips-assembler:
@@ -138,12 +140,12 @@ remote-simple:
   name: Simple Remote
 rgb-mixer:
   name: RGB Mixer
-rsa-jsencrypt:
-  name: RSA jsencrypt
+rsa-decryption:
+  name: RSA Decryption
+rsa-encryption:
+  name: RSA Encryption
 rsa-key-generator:
   name: RSA Key Generator
-rsa-no-padding:
-  name: RSA No Padding
 run-length-encoding:
   name: Run Length Encoding
 searching-algorithms:

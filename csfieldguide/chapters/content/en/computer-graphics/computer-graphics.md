@@ -1,6 +1,6 @@
 # Computer Graphics
 
-You will be familiar with computer graphics from games, films and images, and there is amazing software available to create images, but how does the software work?
+You will be familiar with {glossary-link term="computer-graphics"}computer graphics{glossary-link end} from games, films and images, and there is amazing software available to create images, but how does the software work?
 The role of a computer scientist is not just to *use* graphics systems, but to *create* them, and especially invent new techniques.
 
 The entertainment industry is always trying to develop new graphics software so that they can push the boundaries and create new experiences.

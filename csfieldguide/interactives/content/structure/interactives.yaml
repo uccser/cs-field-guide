@@ -203,6 +203,10 @@ lzw-compression:
   languages:
     en: interactives/lzw-compression.html
   is_interactive: true
+matrix-simplifier:
+  languages:
+    en: interactives/matrix-simplifier.html
+  is_interactive: true
 menu-keystrokes:
   languages:
     en: interactives/menu-keystrokes.html
@@ -311,17 +315,17 @@ rgb-mixer:
   languages:
     en: interactives/rgb-mixer.html
   is_interactive: true
-rsa-jsencrypt:
+rsa-decryption:
   languages:
-    en: interactives/rsa-jsencrypt.html
+    en: interactives/rsa-decryption.html
+  is_interactive: true
+rsa-encryption:
+  languages:
+    en: interactives/rsa-encryption.html
   is_interactive: true
 rsa-key-generator:
   languages:
     en: interactives/rsa-key-generator.html
-  is_interactive: true
-rsa-no-padding:
-  languages:
-    en: interactives/rsa-no-padding.html
   is_interactive: true
 run-length-encoding:
   languages:
