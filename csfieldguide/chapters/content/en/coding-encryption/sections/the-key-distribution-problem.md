@@ -95,6 +95,32 @@ Make sure you save your keys somewhere so you don’t forget them &ndash; a text
 
 {interactive slug="rsa-key-generator" type="in-page"}
 
+{panel type="curiosity"}
+
+# What do those characters mean?
+
+When you generate a key in the components format, the interactive gives you five variables required for the RSA algorithm.
+We won't go into the algorithm itself, nor how these values are calculated.
+But, if you are curious, these are what the variables represent:
+
+- e: Public key exponent.
+- n: The product of two large prime numbers, p & q.
+- p: Large prime number #1.
+- q: Large prime number #2.
+- d: Private key exponent.
+
+When you generate a key in one of the PKCS (Public Key Cryptography Standards) formats, the interactive gives you the same keys in a format that is nicer for computers to use.
+These keys are what get passed around in actual RSA cryptography, but are a lot harder to understand just by looking at them.
+
+Remember that all of this data is just stored in {glossary-link term="binary-number-system"}binary{glossary-link end} (base2).
+We use {glossary-link term="hexadecimal"}hexadecimal{glossary-link end} (base16) to display the components because it is a common way of presenting numbers.
+[Base64](https://en.wikipedia.org/wiki/Base64#Base64_table) is the accepted way to display PKCS keys, chosen because it is more space-saving than base16.
+If we tried to go higher (for example to base128 {glossary-link term="ascii"}ASCII{glossary-link end}), we would encounter characters with no visual representation, such as space or tab, which are much harder to interpret as text.
+
+You can find out more about [the algorithm and variables used on Wikipedia](https://simple.wikipedia.org/wiki/RSA_algorithm).
+
+{panel end}
+
 {panel type="teacher-note"}
 
 # Ideas for RSA fun in the classroom
@@ -109,10 +135,25 @@ Then when the students would like to send an encrypted message to one of their c
 This next interactive is the encrypter, and it is used to encrypt messages with your **public key**.
 Your friends should use this to encrypt messages for you.
 
-{interactive slug="rsa-no-padding" type="iframe"}
+{interactive slug="rsa-encryption" type="in-page"}
 
 To ensure you understand, try encrypting a short message with your **public key**.
 In the next section, there is an interactive that you can then use to decrypt the message with your private key.
+
+{panel type="curiosity"}
+
+# Padding?
+
+You may have noticed "padding" as an option in the interactive.
+Padding is extra data used to stop {glossary-link term="known-plaintext-attack"}known plaintext attacks{glossary-link end}.
+
+With padding, the same plaintext encrypted with the same public key can result in a different ciphertext.
+So a hacker with access to the plaintext and ciphertext can't guess values used in the cipher by just comparing their new encryptions to the original.
+
+It is not important at this level, but still worth mentioning because it is another layer of security applied in real-world cryptography.
+You can read more about various types of padding [on Wikipedia](https://en.wikipedia.org/wiki/Padding_(cryptography)).
+
+{panel end}
 
 ### Decrypting messages with the private key
 
@@ -120,7 +161,7 @@ Finally, this interactive is the decrypter.
 It is used to decrypt messages that were encrypted with your public key.
 In order to decrypt the messages, you will need your **private key**.
 
-{interactive slug="rsa-no-padding" type="iframe" parameters="mode=decrypt"}
+{interactive slug="rsa-decryption" type="in-page"}
 
 Despite even your enemies knowing your public key (as you publicly announced it), they cannot use it to decrypt your messages which were encrypted using the public key.
 You are the only one who can decrypt messages, as that requires the private key which hopefully you are the only one who has access to.
@@ -214,12 +255,6 @@ Some email systems use this so that you can be sure an email came from the perso
 {comment The following comments are for a section on RSA is to write at a later time}
 
 {comment ## RSA in practice}
-
-{comment Links to RSA interactives using real world jsencrypt library.}
-
-{comment interactive name="rsa-jsencrypt" type="whole-page" text="RSA Encrypter (using padding)"}
-
-{comment interactive name="rsa-jsencrypt" type="whole-page" text="RSA Decrypter (using padding)" parameters="mode=decrypt"}
 
 {comment ### How does RSA Work?}
 
