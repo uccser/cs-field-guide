@@ -33,6 +33,9 @@ $(document).ready(function() {
   })
 });
 
+/**
+ * Sets up the table for password guessing
+ */
 function setUpTable() {
   hashLanguagePasswords();
 
@@ -53,6 +56,10 @@ function setUpTable() {
   }
 }
 
+/**
+ * Applies the hash function to the language-specific passwords,
+ * the non-language specific ones are hashed in advance
+ */
 function hashLanguagePasswords() {
   var password;
   var hashWithSalt;
@@ -65,9 +72,11 @@ function hashLanguagePasswords() {
   }
 }
 
+/**
+ * Adds the given password hash (at indexth row) to the table
+ */
 function addToTable(password, index) {
   var $table = $('#password-table');
-  console.log(index);
   var html =  '<tr id="row-' + index + '">\n' +
               '  <td>\n' +
               '    ' + password[NAME] + '\n' +
@@ -88,14 +97,14 @@ function addToTable(password, index) {
 }
 
 /**
- * Concatenates the guessed password with the given salt, hashes the result,
- * and checks it against hashed passwords on the table.
+ * Concatenates the guessed password with the given salt (if applicable),
+ * hashes the result, and checks it against hashed passwords in the table.
  * 
- * The salt is interpreted as a string (despite being hex) but there is no
- * significant disadvantage to this
+ * The salt is interpreted as a string
  */
 function checkGuess() {
   unhighlight('#pg-calculated-hash');
+  dehighlight();
 
   var guess = $('#pg-password-guess').val().replace(/\s/g, '');
   var salt;
@@ -113,12 +122,9 @@ function checkGuess() {
   for (var i=0; i < allPasswords.length; i++) {
     password = allPasswords[i];
     row = '#row-' + i;
-    console.log(row);
     if ((isSalted && password[HASHWITHSALT] == hash) || (!isSalted && password[HASH] == hash)) {
       highlight('#pg-calculated-hash');
       highlight(row);
-    } else {
-      unhighlight(row);
     }
   }
 }
@@ -135,4 +141,12 @@ function highlight(element) {
  */
 function unhighlight(element) {
   $(element).removeClass('highlight');
+}
+
+/**
+ * Replaces elements with the css 'highlight' class with the 'solved' one,
+ * to indicate it is a password guessed previously
+ */
+function dehighlight() {
+  $('.highlight').removeClass('highlight').addClass('solved');
 }
