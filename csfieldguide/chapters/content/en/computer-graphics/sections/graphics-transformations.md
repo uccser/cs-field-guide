@@ -595,7 +595,11 @@ The project below gives the chance to explore combining matrices, and has an int
 # Interactives in this section
 
 The original interactives in this section stopped working with the release of version 3.0 of the Computer Science Field Guide.
-Replacements are in development (one has released already), and should be released soon.
+
+Replacements are in development and should be fully released soon:
+
+- `Matrix Simplifier`: **Main functionality released**
+- `Scene Editor` (transform, translate, multiple, scene creation): **In development**
 
 {panel end}
 
