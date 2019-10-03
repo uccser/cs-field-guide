@@ -139,6 +139,5 @@ function parseHexString(number) {
   for (var i=0; i < chars.length; i+=2) {
     pairs.push(chars[i] + chars[i + 1]);
   }
-  console.log(pairs);
   return pairs.join(" ");
 }
