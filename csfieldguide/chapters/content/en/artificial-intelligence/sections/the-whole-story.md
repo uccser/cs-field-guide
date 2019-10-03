@@ -5,4 +5,4 @@ AI contains many more exciting applications, such as computers that are able to 
 
 Eventually further sections on other topics in AI will be added to this chapter.
 
-<!-- Add some more stuff about how there is debate around what still counts as intelligent - i.e. things that have been around for ages may no longer be considered AI -->
+<!-- Add some more stuff about how there is debate around what still counts as intelligent - i.e. things that have been around for ages may no longer be considered AI. This is currently referenced in the intelligent agents section but mention it again here. -->

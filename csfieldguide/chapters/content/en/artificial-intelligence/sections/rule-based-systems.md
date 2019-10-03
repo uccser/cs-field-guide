@@ -41,7 +41,7 @@ What they are good at and not so good at...
 
 <!-- Would be awesome to work in a little bit of prolog -->
 
-## Game stuff? Medical diagnosis?
+<!-- Game stuff? Medical diagnosis? -->
 
 
 ...

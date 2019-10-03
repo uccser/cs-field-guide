@@ -37,8 +37,8 @@ Their environments are restricted to the digital data they take in, the computat
 
 Agents tend to operate in one of two types of environments:
 
-- Highly specialised and constrained environments, for example, a game of chess and a chess playing agent. The agent is designed to function exclusively in this environment and is unable to function in others.
-- More general and less controllable environments, for example, the open road and a self-driving car. The agent is designed to function in a dynamic, complex, and unpredictable environment.
+- Highly specialised and constrained environments, for example a game of chess and a chess playing program. The agent is designed to function exclusively in this environment and is unable to function in others.
+- More general and less controllable environments, for example the open road and a self-driving car. The agent is designed to function in a dynamic, complex, and unpredictable environment.
 
 {panel end}
 
