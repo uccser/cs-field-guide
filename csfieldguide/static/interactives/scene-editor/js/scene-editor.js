@@ -296,7 +296,10 @@ function newObject() {
  * 
  * @param {*} type          Sphere, cube or cone shape
  * @param {*} givenMaterial A three.js material for the new object
- * @param {*} name          A name for the dropdown menu; if this is an empty string a unique name will be generated, if null then it is the camera pointer and will not be added to the list of selectable objects
+ * @param {*} name          A name for the dropdown menu; if this is an empty
+ *                          string a unique name will be generated,
+ *                          if null then the object is not intended for the user
+ *                          and will not be added to the list of selectable objects
  * 
  * If the name already exists, this function will be called recursively with a
  * plus symbol (+) appended to the name as a new name
@@ -448,7 +451,6 @@ function applyTransformation() {
     matrix4.makeTranslation(translationVector[0], translationVector[1], translationVector[2]);
     suspect.applyMatrix(matrix4);
     screenObjectTransforms[suspect.name] = [getMatrix(true), getVector(true)];
-
   }
 }
 
@@ -493,7 +495,7 @@ function uniqueId() {
 
 /**
  * Sets the transform matrices in the interactive to the values used to transform the currently selected object.
- * Unavailable in multple transformations mode, but only needed for scene-creation mode
+ * Only needed for scene-creation mode
  * 
  * If isReset, the matrices will be returned to their original status' (identity matrices) instead
  */
@@ -548,8 +550,8 @@ function addAppliedTransform(matrixStr) {
   var row2 = sprintf(ROW_TEMPLATE, matrixStr[0][1], matrixStr[1][1], matrixStr[2][1]);
   var row3 = sprintf(ROW_TEMPLATE, matrixStr[0][2], matrixStr[1][2], matrixStr[2][2]);
   var newDiv = sprintf(MATRIX_TEMPLATE, row1, row2, row3);
-  $("#applied-container").append(newDiv);
-  MathJax.Hub.Queue(["Typeset", MathJax.Hub, "applied-container"]); // typeset calculated result
+  $("#applied-matrices").append(newDiv);
+  MathJax.Hub.Queue(["Typeset", MathJax.Hub, "applied-matrices"]); // typeset calculated result
 }
 
 /**
@@ -557,8 +559,8 @@ function addAppliedTransform(matrixStr) {
  */
 function addAppliedVector(vectorStr) {
   var newDiv = sprintf(MATRIX_TEMPLATE, vectorStr[0], vectorStr[1], vectorStr[2]);
-  $("#applied-container").append(newDiv);
-  MathJax.Hub.Queue(["Typeset", MathJax.Hub, "applied-container"]); // typeset calculated result
+  $("#applied-matrices").append(newDiv);
+  MathJax.Hub.Queue(["Typeset", MathJax.Hub, "applied-matrices"]); // typeset calculated result
 }
 
 /**
@@ -639,16 +641,6 @@ function getVector(evalAsString) {
 }
 
 /**
- * Returns a random number between min and max _inclusive_
- * From https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random#Getting_a_random_integer_between_two_values_inclusive
- */
-function getRandomInt(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-/**
  * Sets the colour of the prepended '#' box to the hexadecimal colour code entered in the input
  * Matches the behaviour of the colour chosen when the new object is created
  * i.e. assumes the code is zero-extended to 6 characters, rather than
@@ -679,8 +671,25 @@ function sixCharHex(num) {
 }
 
 /**
- * Returns a Geometry
+ * Returns a random number between min and max _inclusive_
+ * From https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random#Getting_a_random_integer_between_two_values_inclusive
+ */
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+/**
+ * Returns the Mesh for a little xyz axis, to show the position the camera is orbiting
+ * 
+ * TODO (right now it just returns a red sphere as MVP)
+ * https://threejsfundamentals.org/threejs/lessons/threejs-custom-geometry.html
  */
 function createTinyaxisMesh() {
- //TODO https://threejsfundamentals.org/threejs/lessons/threejs-custom-geometry.html
+
+  var material = new THREE.MeshLambertMaterial( {color: 0xff0000} )
+  var geometry = new THREE.SphereBufferGeometry( 200, 48, 24 );
+  var object = new THREE.Mesh( geometry, material );
+  return object;
 }

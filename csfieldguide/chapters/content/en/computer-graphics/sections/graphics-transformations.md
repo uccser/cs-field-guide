@@ -599,7 +599,7 @@ The original interactives in this section stopped working with the release of ve
 Replacements are in development and should be fully released soon:
 
 - `Matrix Simplifier`: **Main functionality released**
-- `Scene Editor` (transform, translate, multiple, scene creation): **In development**
+- `Scene Editor` (transform, translate, multiple, scene creation): **Main functionality released**
 
 {panel end}
 
