@@ -355,6 +355,10 @@ three-tier-website:
   languages:
     en: interactives/three-tier-website.html
   is_interactive: false
+training-ground:
+  languages:
+    en: interactives/training-ground.html
+  is_interactive: true
 trainsylvania:
   languages:
     en: interactives/trainsylvania.html
