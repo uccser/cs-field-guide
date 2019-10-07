@@ -29,7 +29,6 @@ We have listed major changes for each release below.
 - Rewrite RSA interactives. `#1119 <https://github.com/uccser/cs-field-guide/issues/1119>`__
 - Add note to users about broken interactives. `#1152 <https://github.com/uccser/cs-field-guide/pull/1152>`__
 - Content fixes and add glossary entries for the Computer Graphics and Complexity and Tractability chapters. `#1017 <https://github.com/uccser/cs-field-guide/issues/1017>`__
-- Fix consistency in RSA interactives. `#1151 <https://github.com/uccser/cs-field-guide/pull/1151>`__
 - Amend content licence to exclude certain properties we don't own. `#1149 <https://github.com/uccser/cs-field-guide/pull/1149>`__
 - Update versioning system description to reflect its use in practice. `#1143 <https://github.com/uccser/cs-field-guide/pull/1143>`__
 - Dependency updates:
