@@ -342,7 +342,7 @@ function decrypt() {
     Key = new nodeRSA();
     var components = {};
     if (isPublicKey) {
-      components.e = parseInt($('#rsa-decryption-key-e').val().trim(), 16),
+      components.e = parseInt($('#rsa-decryption-key-e').val().trim().split(' ').join('').toLowerCase(), 16),
       components.n = $('#rsa-decryption-key-n').val().trim().split(' ').join('').toLowerCase();
       try {
         Key.importKey({
