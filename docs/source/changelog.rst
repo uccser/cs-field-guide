@@ -17,6 +17,25 @@ All notable changes to this project will be documented in this file.
 
 We have listed major changes for each release below.
 
+3.1.0
+==============================================================================
+
+- **Release date:** 7th October 2019
+- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/3.1.0>`__
+
+**Changelog:**
+
+- Rebuild AI sticks game. `#574 <https://github.com/uccser/cs-field-guide/issues/574>`__
+- Rewrite RSA interactives. `#1119 <https://github.com/uccser/cs-field-guide/issues/1119>`__
+- Add note to users about broken interactives. `#1152 <https://github.com/uccser/cs-field-guide/pull/1152>`__
+- Content fixes and add glossary entries for the Computer Graphics and Complexity and Tractability chapters. `#1017 <https://github.com/uccser/cs-field-guide/issues/1017>`__
+- Fix consistency in RSA interactives. `#1151 <https://github.com/uccser/cs-field-guide/pull/1151>`__
+- Amend content licence to exclude certain properties we don't own. `#1149 <https://github.com/uccser/cs-field-guide/pull/1149>`__
+- Update versioning system description to reflect its use in practice. `#1143 <https://github.com/uccser/cs-field-guide/pull/1143>`__
+- Dependency updates:
+
+  - Update ``pillow`` from 6.1.0 to 6.2.0.
+
 3.0.5
 ==============================================================================
 
