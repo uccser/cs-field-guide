@@ -183,6 +183,10 @@ image-bit-comparer:
   languages:
     en: interactives/image-bit-comparer.html
   is_interactive: true
+intelligent-agent-diagram:
+  languages:
+    en: interactives/intelligent-agent-diagram.html
+  is_interactive: false
 iterative-software-development:
   languages:
     en: interactives/iterative-software-development.html

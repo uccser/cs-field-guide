@@ -45,8 +45,8 @@ Agents tend to operate in one of two types of environments:
 <!-- Add in diagram of agent -->
 
 Some intelligent agents follow preprogrammed rules only, while others are able to learn from their experiences and modify their behaviour.
-There is some debate among AI experts about whether or not systems that do not learn are examples of AI, and whether the ability to learn should be considered a requirement of *intelligence*.
-People have different opions of what the definition of AI is, and whether this definition will change in the future as technology in this area advances.
+There is some debate among AI experts about whether or not systems that do not learn should be considered intelligent, and whether the ability to learn is a requirement of AI.
+People have different opions of what the definition of AI is, and whether this definition should change over time as technology in this area advances.
 
 In this chapter we will look at examples of both learning, and non-learning agents as examples of artificially intelligent agents.
 While you read about these have a think about whether you would consider these different agents to be intelligent, and how you might define intelligence and AI.
