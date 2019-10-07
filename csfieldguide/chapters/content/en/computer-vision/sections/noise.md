@@ -1,7 +1,7 @@
 # Noise
 
-One challenge when using digital cameras is something called *noise*.
-That’s when individual pixels in the image appear brighter or darker than they should be, due to interference in the electronic circuits inside the camera.
+One challenge when using digital cameras is something called {glossary-link term="image-noise"}noise{glossary-link end}.
+That’s when individual {glossary-link term="pixel"}pixels{glossary-link end} in the image appear brighter or darker than they should be, due to interference in the electronic circuits inside the camera.
 It’s more of a problem when light levels are dark, and the camera tries to boost the exposure of the image so that you can see more.
 You can see this if you take a digital photo in low light, and the camera uses a high ASA/ISO setting to capture as much light as possible.
 Because the sensor has been made very sensitive to light, it is also more sensitive to random interference, and gives photos a "grainy" effect.
@@ -11,7 +11,7 @@ For example, the following image has ["salt and pepper"](https://en.wikipedia.or
 
 {image file-path="img/chapters/banana-with-salt-and-pepper-noise.jpg" alt="An image of a banana with salt-and-pepper noise"}
 
-Having noise in an image can make it harder to recognise what's in the image, so an important step in computer vision is reducing the effect of noise in an image.
+Having noise in an image can make it harder to recognise what's in the image, so an important step in computer vision is reducing the effect of noise on an image.
 There are well-understood techniques for this, but they have to be careful that they don’t discard useful information in the process.
 In each case, the technique has to make an educated guess about the image to predict which of the pixels that it sees are supposed to be there, and which aren’t.
 
@@ -29,7 +29,8 @@ Since a camera image captures the levels of red, green and blue light separately
 
 This helps to reduce the level of noise in the image.
 Can you tell why, and about how much less noise there might be?
-(As an experiment, you could take a photo in low light — can you see small patches on it caused by noise? Now use photo editing software to change it to black and white — does that reduce the effect of the noise?)
+(As an experiment, you could take a photo in low light &ndash; can you see small patches on it caused by noise?
+Now use photo editing software to change it to black and white &ndash; does that reduce the effect of the noise?)
 
 {panel type="teacher-note"}
 
@@ -79,7 +80,7 @@ The stronger the blur, the wider the convolution kernel has to be and the more c
 For this activity, investigate the different kinds of noise reduction filter and their settings (grid size, type of blur) and determine:
 
 - How well they cope with different levels of noise (you can set this in the interactive or upload your own noisy photos).
-- How much time it takes to do the necessary processing (the interactive shows the number of pixels per second that it can process).
+- How much time it takes to do the necessary processing.
 - How they affect the quality of the underlying image (a variety of images + camera).
 
 You can take screenshots of the image to show the effects in your writeup.

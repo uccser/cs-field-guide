@@ -1,6 +1,6 @@
 # What's the big picture?
 
-With increases in computer power, the decrease in the size of computers and progressively more advanced algorithms, computer vision has a growing range of applications.
+With increases in computer power, the decrease in the size of computers and progressively more advanced {glossary-link term="algorithm"}algorithms{glossary-link end}, computer vision has a growing range of applications.
 While it is commonly used in fields like healthcare, security and manufacturing, we are finding more and more uses for them in our everyday life, too.
 
 For example, here is a sign written in Chinese:
@@ -29,7 +29,7 @@ Why do you think that might be?
 
 The last character is more difficult to recognise because the picture of the stick figure on a steep slope is too close to the character.
 The app can’t tell where the character ends and the picture begins.
-This is a problem of *image segmentation*, which we will look at later.
+This is a problem of {glossary-link term="image-segmentation"}image segmentation{glossary-link end}, which we will look at later.
 
 {panel end}
 

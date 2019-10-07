@@ -8,7 +8,7 @@ The following photos were recognised in an application as being the same person,
 
 There are lots of other applications.
 Security systems such as customs at country borders use face recognition to identify people and match them with their passport.
-It can also be useful for privacy — Google Maps streetview identifies faces and blurs them.
+It can also be useful for privacy &ndash; Google Maps streetview identifies faces and blurs them.
 Digital cameras can find faces in a scene and use them to adjust the focus and lighting.
 
 There is some information about [how facial recognition works](http://electronics.howstuffworks.com/gadgets/high-tech-gadgets/facial-recognition.htm) that you can read up as background, and some more information at [i-programmer.info](http://www.i-programmer.info/babbages-bag/1091-face-recognition.html).
