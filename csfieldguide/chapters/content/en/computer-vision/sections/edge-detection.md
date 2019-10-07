@@ -1,7 +1,7 @@
 # Edge detection
 
 A useful technique in computer vision is *edge detection*, where the boundaries between objects are automatically identified.
-Having these boundaries makes it easy to *segment* the image (break it up into separate objects or areas), which can then be recognised separately.
+Having these boundaries makes it easy to {glossary-link term="image-segmentation"}segment{glossary-link end} the image (break it up into separate objects or areas), which can then be recognised separately.
 
 For example, here's a photo where you might want to recognise individual objects:
 
