@@ -1,6 +1,5 @@
 # Lights, camera, action!
 
-
 Digital cameras and human eyes fulfill largely the same function: images come in through a lens and are focused onto a light sensitive surface, which converts them into electrical impulses that can be processed by the brain or a computer respectively.
 There are some differences, however.
 
@@ -10,7 +9,7 @@ There are some differences, however.
 
 # Digital camera sensors
 
-There are a number of different types of digital camera sensor, but for the purposes of this chapter we will be focusing on the [CMOS](https://en.wikipedia.org/wiki/CMOS_sensor") sensors which are in most consumer electronics.
+There are a number of different types of digital camera sensor, but for the purposes of this chapter we will be focusing on the [CMOS sensors](https://en.wikipedia.org/wiki/CMOS_sensor") which are in most consumer electronics.
 An alternative kind of sensor is the [Charge-Coupled Device (CCD)](https://en.wikipedia.org/wiki/Charge-coupled_device), which is more commonly used for specialist applications such as astronomy.
 
 {panel end}
@@ -24,7 +23,7 @@ The retina has a blind spot (a place where all the nerves bundle together to sen
 Light intensity and colour are picked up by RGB sensor elements on a silicon chip, but they aren’t as good at capturing a wide range of light levels as our eyes are.
 Typically, a modern digital camera can automatically tune its exposure to either bright or dark scenes, but it might lose some detail (e.g. when it is tuned for dark exposure, any bright objects might just look like white blobs).
 
-It is important to understand that neither a human eye nor a digital camera  — even a very expensive one — can perfectly capture all of the information in the scene in front of it.
+It is important to understand that neither a human eye nor a digital camera &ndash; even a very expensive one &ndash; can perfectly capture all of the information in the scene in front of it.
 Electronic engineers and computer scientists are constantly doing research to improve the quality of the images they capture, and the speed at which they can record and process them.
 
 {panel type="curiosity"}
