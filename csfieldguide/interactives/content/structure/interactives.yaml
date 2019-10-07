@@ -311,17 +311,17 @@ rgb-mixer:
   languages:
     en: interactives/rgb-mixer.html
   is_interactive: true
-rsa-jsencrypt:
+rsa-decryption:
   languages:
-    en: interactives/rsa-jsencrypt.html
+    en: interactives/rsa-decryption.html
+  is_interactive: true
+rsa-encryption:
+  languages:
+    en: interactives/rsa-encryption.html
   is_interactive: true
 rsa-key-generator:
   languages:
     en: interactives/rsa-key-generator.html
-  is_interactive: true
-rsa-no-padding:
-  languages:
-    en: interactives/rsa-no-padding.html
   is_interactive: true
 run-length-encoding:
   languages:
@@ -355,6 +355,10 @@ three-tier-website:
   languages:
     en: interactives/three-tier-website.html
   is_interactive: false
+training-ground:
+  languages:
+    en: interactives/training-ground.html
+  is_interactive: true
 trainsylvania:
   languages:
     en: interactives/trainsylvania.html

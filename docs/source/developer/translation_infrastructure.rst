@@ -8,7 +8,7 @@ Translation Infrastructure
 
 Crowdin
 ==============================================================================
-We use a localisation management platform called `Crowdin <https://crowdin.com/project/cs-unplugged>`_ for translation of CS Field Guide.
+We use a localisation management platform called `Crowdin <https://crowdin.com/project/cs-field-guide>`_ for translation of CS Field Guide.
 The project is public, meaning that anyone can create an account and contribute translations.
 
 Translatable Files
