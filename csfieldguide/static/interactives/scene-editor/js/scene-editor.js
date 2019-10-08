@@ -61,7 +61,7 @@ $(document).ready(function () {
     $(".plus-sign").removeClass('d-none');
     $("#vector-container").removeClass('d-none');
     $("#eqtn-title").html(gettext('Multiple matrices and vectors:'));
-    $("#equation-container").removeClass('d-none').addClass('col-sm-8');
+    $("#equation-container").removeClass('d-none').addClass('col-md-8');
     $("#applied-container").removeClass('d-none');
   } else {
     mode = "scene-creation";
@@ -69,7 +69,7 @@ $(document).ready(function () {
     $("#matrix-container").removeClass('d-none').addClass('offset-1 d-inline');
     $(".plus-sign").removeClass('d-none').addClass('d-inline');
     $("#vector-container").removeClass('d-none').addClass('d-inline');
-    $("#equation-container").removeClass('d-none').addClass('col-sm-8');
+    $("#equation-container").removeClass('d-none').addClass('col-md-8');
     $("#eqtn-title").addClass('d-none');
     $("#scene-creation-title-area").removeClass('d-none');
   }
@@ -164,6 +164,7 @@ function init() {
  * Rescales the scene to the size of the window
  * 
  * TEMPORARY: just rescales the canvas, keeping the 16:9 aspect ratio
+ * TODO: Decide whether or not to stick to 16:9 and remove all the commented out stuff
  */
 function onWindowResize() {
   rescaleCanvas();
