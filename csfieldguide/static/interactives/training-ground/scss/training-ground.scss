@@ -1,0 +1,130 @@
+@import "node_modules/nouislider/distribute/nouislider";
+
+#interactive-training-ground {
+  max-width: 1000px;
+}
+
+#game-area{
+  position: relative;
+}
+
+#data-table {
+  td, th {
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 1px solid;
+  }
+}
+
+#splash-text-container {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  top: 20%;
+  z-index: 100;
+  font-size: 2.5rem;
+}
+
+#button_start {
+  z-index: 102;
+}
+
+// This is needed to keep remaining sticks from moving about as they are removed
+.stick-image-container {
+  // Height (112) & Width (21) includes padding
+  min-height: 132px;
+  max-height: 132px;
+  min-width: 51px;
+  max-width: 51px;
+
+  padding: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+#ai-warning {
+  padding: 10px;
+  text-align: center;
+  background-color: rgba(244, 67, 54, 0.51);
+  border: 2px solid #FF4336;
+  border-radius: 5px;
+  z-index: 1;
+}
+
+label {
+  padding-top: 2rem;
+}
+
+.bot-description {
+  text-align: start;
+}
+
+.black-background {
+  color: #ffffff;
+  background-color: #111111;
+}
+
+.no-input {
+  pointer-events: none !important;
+}
+
+.blue {
+  background-color: #3f51b5;
+}
+
+.green {
+  background-color: #28a745;
+}
+
+.red {
+  background-color: #dc3545;
+}
+
+@media screen and (max-width: 830px) {
+  .img-grid-img {
+    transform: scale(0.5);
+  }
+  .stick-image-container {
+    min-width: 31px;
+    max-width: 31px;
+    min-height: 66px;
+    max-height: 66px;
+
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  #data-table {
+    font-size: 0.8rem;
+    td, th {
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+  }
+  #splash-text {
+    font-size: 1.5rem;
+  }
+  #status-text {
+    padding-top: 50px;
+  }
+}
+
+@media screen and (min-width: 610px) {
+  #ai-warning {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 490px) {
+  #interactive-training-ground {
+    display: none;
+  }
+}
+
+.noUi-tooltip {
+  display: none;
+}
+
+.noUi-active .noUi-tooltip {
+  display: block;
+}

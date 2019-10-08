@@ -203,6 +203,10 @@ lzw-compression:
   languages:
     en: interactives/lzw-compression.html
   is_interactive: true
+matrix-simplifier:
+  languages:
+    en: interactives/matrix-simplifier.html
+  is_interactive: true
 menu-keystrokes:
   languages:
     en: interactives/menu-keystrokes.html
@@ -252,6 +256,10 @@ packet-attack-level-creator:
 parity:
   languages:
     en: interactives/parity.html
+  is_interactive: true
+password-guesser:
+  languages:
+    en: interactives/password-guesser.html
   is_interactive: true
 payment-interface:
   languages:
@@ -307,21 +315,25 @@ rgb-mixer:
   languages:
     en: interactives/rgb-mixer.html
   is_interactive: true
-rsa-jsencrypt:
+rsa-decryption:
   languages:
-    en: interactives/rsa-jsencrypt.html
+    en: interactives/rsa-decryption.html
+  is_interactive: true
+rsa-encryption:
+  languages:
+    en: interactives/rsa-encryption.html
   is_interactive: true
 rsa-key-generator:
   languages:
     en: interactives/rsa-key-generator.html
   is_interactive: true
-rsa-no-padding:
-  languages:
-    en: interactives/rsa-no-padding.html
-  is_interactive: true
 run-length-encoding:
   languages:
     en: interactives/run-length-encoding.html
+  is_interactive: true
+scene-editor:
+  languages:
+    en: interactives/scene-editor.html
   is_interactive: true
 searching-algorithms:
   languages:
@@ -351,6 +363,10 @@ three-tier-website:
   languages:
     en: interactives/three-tier-website.html
   is_interactive: false
+training-ground:
+  languages:
+    en: interactives/training-ground.html
+  is_interactive: true
 trainsylvania:
   languages:
     en: interactives/trainsylvania.html

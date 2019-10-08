@@ -1,0 +1,10 @@
+{
+    "name": "csfg-interactive-matrix-simplifier",
+    "version": "1.0.0",
+    "private": true,
+    "dependencies": {
+        "mathjs": "6.0.3",
+        "sprintf-js": "1.1.2",
+        "dragula": "3.7.2"
+    }
+}

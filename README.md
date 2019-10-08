@@ -31,12 +31,13 @@ to get started.
 The content of this project itself is licensed under the
 [Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0) license](https://creativecommons.org/licenses/by-sa/4.0/)
 (`LICENCE-CONTENT` file).
-This license applies to the following contents of this project:
+This license applies to the following contents of this project, with
+exceptions listed in the `LICENCE-CONTENT` file:
 
 - Markdown files located within the `csfieldguide/chapters/content/` directory.
 - Images located within the `csfieldguide/static/img/` directory.
 
-Third-party libraries used in this project have their license's
+Third-party libraries used in this project have their licenses
 listed within the `LICENCE-THIRD-PARTY` file, with a full copy of the license
 available within the `third-party-licences` directory.
 If a source file of a third-party library or system is stored within this

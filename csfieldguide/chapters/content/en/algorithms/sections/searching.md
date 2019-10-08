@@ -26,7 +26,7 @@ Computers deal with such huge amounts of data that we need fast algorithms to he
 
 Lets investigate searching with a game...
 
-{interactive slug="searching-algorithms" type="whole-page" text="true" parameters="start=1&end=2"}
+{interactive slug="searching-algorithms" type="whole-page" text="true" parameters="start-level=0&end-level=1"}
 
 Searching Boxes - Part 1
 
@@ -42,7 +42,7 @@ You have fewer lives, which makes things a bit more challenging, but this time t
 The box with the smallest number is on the far left, and the one with the largest number is on the far right.
 Let's see if you can find all the target numbers without running out of lives...
 
-{interactive slug="searching-algorithms" type="whole-page" text="true" parameters="start=3"}
+{interactive slug="searching-algorithms" type="whole-page" text="true" parameters="start-level=2"}
 
 Searching Boxes - Part 2
 

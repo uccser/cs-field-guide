@@ -14,7 +14,7 @@ There are lots of intriguing stories around encryption, including its use in war
 
 - Secret History: The Story of Cryptology (Craig Bauer)
 
-- The Codebreakers: The Comprehensive History of Secret Communication from Ancient Times to the Internet (David Kahn) – this book is an older version of his new book, and may be hard to get.
+- The Codebreakers: The Comprehensive History of Secret Communication from Ancient Times to the Internet (David Kahn) &ndash; this book is an older version of his new book, and may be hard to get.
 
 The following activities explore cryptographic protocols using an Unplugged approach; these methods aren't strong enough to use in practice, but provide some insight into what is possible:
 

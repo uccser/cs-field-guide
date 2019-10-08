@@ -1,6 +1,13 @@
 # Algorithms, problems, and speed limits
 
-{comment put this in when the algorithms chapter is available] It is recommended that you work through the chapter on algorithms first if you aren’t familiar with the idea of the complexity of an algorithm, or sorting algorithms. The ideas in this chapter build on the chapter on algorithms.}
+{panel type="curiosity" expanded="true"}
+
+# Algorithms
+
+It is recommended that you work through the chapter on [algorithms]('chapters:chapter' 'algorithms') first if you aren’t familiar with the idea of the complexity of an algorithm, or sorting algorithms.
+The ideas in this chapter build on the chapter on algorithms.
+
+{panel end}
 
 {comment note that complexity will have been explained in the algorithms chapter when that's available, and some of this could be changed to refer back to it once that chapter is done}
 
@@ -16,7 +23,7 @@ The term *complexity* is generally used to refer to these rough measures.
 
 Having a rough idea of the complexity of a problem helps you to estimate how long it's likely to take.
 For example, if you write a program and run it with a simple input, but it doesn't finish after 10 minutes, should you quit, or is it about to finish?
-It's better if you can estimate the number of steps it needs to make, and then extrapolate from the time it takes other programs to find related solutions.
+It's better if you can estimate the number of steps it needs to make, and then {glossary-link term="extrapolation"}extrapolate{glossary-link end} from the time it takes other programs to find related solutions.
 
 {comment If the paragraphs above turned into a section, then the following ones should stay in a box - they are going somewhat further than is necessary.}
 
@@ -24,26 +31,26 @@ It's better if you can estimate the number of steps it needs to make, and then e
 
 # Asymptotic complexity
 
-If you're reading about complexity, you may come across some terminology like "Big Oh" notation and "asymptotic complexity", where an algorithm that takes about \( n^2 \) steps is referred to as \( O(n^2) \).
+If you're reading about complexity, you may come across some terminology like {glossary-link term="big-o"}Big O notation{glossary-link end} and {glossary-link term="asymptotic-complexity"}asymptotic complexity{glossary-link end}, where an algorithm that takes about \( n^2 \) steps is referred to as \( O(n^2) \).
 We won't get into these in this chapter, but here's a little information in case you come across the terms in other reading.
-"Big Oh" notation is a precise way to talk about complexity, and is used with "asymptotic complexity", which simply means how an algorithm performs for large values of *n*.
-The "asymptotic" part means as *n* gets really large — when this happens, you are less worried about small details of the running time.
+
+Big O notation is a precise way to talk about complexity, and is used with "asymptotic complexity", which simply means how an algorithm performs for large values of *n*.
+The "asymptotic" part means "as *n* gets really large" &ndash; when this happens, you are less worried about small details of the running time.
 If an algorithm is going to take seven days to complete, it's not that interesting to find out that it's actually 7 days, 1 hour, 3 minutes and 4.33 seconds, and it's not worth wasting time to work it out precisely.
 
 We won't use precise notation for asymptotic complexity (which says which parts of speed calculations you can safely ignore), but we will make rough estimates of the number of operations that an algorithm will go through.
 There's no need to get too hung up on precision since computer scientists are comfortable with a simple characterisation that gives a ballpark indication of speed.
 
-For example, consider using selection sort to put a list of *n* values into increasing order.
-(This is explained in the chapter on algorithms).
+For example, consider using {glossary-link term="selection-sort"}selection sort{glossary-link end} to put a list of *n* values into increasing order (this is explained [in the chapter on algorithms]('chapters:chapter_section' 'algorithms' 'sorting')).
 Suppose someone tells you that it takes 30 seconds to sort a thousand items.
-Does that sounds like a good algorithm?
-For a start, you'd probably want to know what sort of computer it was running on - if it's a supercomputer then  that's not so good; if it's a tiny low-power device like a smartphone then maybe it's ok.
+Does that sound like a good algorithm?
+For a start, you'd probably want to know what sort of computer it was running on &ndash; if it's a supercomputer then that's not so good; but if it's a tiny low-power device like a smartphone then maybe it's ok.
 
 Also, a single data point doesn't tell you how well the system will work with larger problems.
-If the selection sort algorithm above was given 10 thousand items to sort, it would probably take about 50 minutes (3000 seconds) — that's 100 times as long to process 10 times as much input.
+If the selection sort algorithm above was given 10 thousand items to sort, it would probably take about 50 minutes (3000 seconds) &ndash; that's 100 times as long to process 10 times as much input.
 
 These data points for a particular computer are useful for getting an idea of the performance (that is, complexity) of the algorithm, but they don't give a clear picture.
-It turns out that we can work out exactly how many steps the selection sort algorithm will take for *n* items: it will require about \( \frac{n(n-1)}{2} \) operations, or in expanded form,\( \frac{n^2}{2} - \frac{n}{2} \) operations.
+It turns out that we can work out how many steps the selection sort algorithm will take for *n* items: it will require about \( \frac{n(n-1)}{2} \) operations, or in expanded form,\( \frac{n^2}{2} - \frac{n}{2} \) operations.
 This formula applies regardless of the kind of computer it's running on, and while it doesn't tell us the time that will be taken, it can help us to work out if it's going to be reasonable.
 
 From the above formula we can see why it gets bad for large values of *n* : the number of steps taken increases with the square of the size of the input.
@@ -51,7 +58,7 @@ Putting in a value of 1 thousand for *n* tells us that it will use 1,000,000/2 -
 
 Notice that the second part (1000/2) makes little difference to the calculation.
 If we just use the \( \frac{n^2}{2} \) part of the formula, the estimate will be out by 0.1%, and quite frankly, the user won't notice if it takes 20 seconds or 19.98 seconds.
-That's the point of asymptotic complexity — we only need to focus on the most significant part of the formula, which contains \( n^2 \).
+That's the point of asymptotic complexity &ndash; we only need to focus on the most significant part of the formula, which contains \( n^2 \).
 
 Also, since measuring the number of steps is independent of the computer it will run on, it doesn't really matter if it's described as \( \frac{n^2}{2} \) or \( n^2 \).
 The amount of time it takes will be proportional to both of these formulas, so we might as well simplify it to \( n^2 \).
@@ -66,12 +73,12 @@ The first two have a complexity of \( nlog(n) \) time (that is, the number of st
 Generally the consequence of using the wrong sorting algorithm will be that a user has to wait many minutes (or perhaps hours) rather than a few seconds or minutes.
 
 Here we're going to consider another possible sorting algorithm, called *permutation sort*.
-Permutation sort says "Let’s list all the possible orderings ("permutations") of the values to be sorted, and check each one to see if it is sorted, until the sorted order is found".
+Permutation sort says "Let’s list all the possible orderings ({glossary-link term="permutation"}permutations{glossary-link end}) of the values to be sorted, and check each one to see if it is sorted, until the sorted order is found".
 This algorithm is straightforward to describe, but is it any good?
 
 {panel type="teacher-note"}
 
-# Permutation sort isn't any use in practice!
+# Permutation sort is no good in practice!
 
 Note that permutation sort is *not* a reasonable way to sort at all; it's just an idea to help us think about tractability.
 It should be obvious to students fairly quickly that it's grossly inefficient.
@@ -125,11 +132,11 @@ The process you have just completed is using permutation sort to sort the words.
 
 Now add another word.
 How many possible orderings will there be with 5 words?
-What about with only 2 and 3 words — how many orderings are there for those?
+What about with only 2 or 3 words &ndash; how many orderings are there for those?
 If you gave up on writing out all the orderings with 5 words, can you now figure out how many there might be?
 Can you find a pattern?
 How many do you think there might be for 10 words?
-(You don’t have to write them all out!).
+(You don’t have to write them all out!)
 
 {panel type="teacher-note"}
 
@@ -176,12 +183,12 @@ Ensuring you understand how a factorial is calculated is essential for understan
 
 {panel end}
 
-For factorials of larger numbers, most desktop calculators won't work so well; for example, 100! has 158 digits.
+For factorials of larger numbers, most desktop calculators won't work so well; for example, \( 100! \) has 158 digits.
 You can use the calculator below to work with huge numbers (especially when using factorials and exponents).
 
 {interactive slug="big-number-calculator" type="whole-page" text="Big Number Calculator"}
 
-Try calculating 100! using this calculator — that's the number of different routes that a travelling salesman might take to visit 100 places (not counting the starting place).
+Try calculating \( 100! \) using this calculator &ndash; that's the number of different routes that a travelling salesman might take to visit 100 places (not counting the starting place).
 With this calculator you can copy and paste the result back into the input if you want to do further calculations on the number.
 If you are doing these calculations for a report, you should also copy each step of the calculation into your report to show how you got the result.
 
@@ -202,11 +209,11 @@ Assume that you have a computer that creates and checks an ordering every nanose
 
 # Solution
 
-The number of orderings for 100 numbers is 100!, which is 93, 326, 215, 443, 944, 152, 681, 699, 238, 856, 266, 700, 490, 715, 968, 264, 381, 621, 468, 592, 963, 895, 217, 599, 993, 229, 915, 608, 941, 463, 976, 156, 518, 286, 253, 697, 920, 827, 223, 758, 251, 185, 210, 916, 864, 000, 000, 000, 000, 000, 000, 000, 000.
+The number of orderings for 100 numbers is \( 100! \), which is 93,326,215,443,944,152,681,699,238,856,266,700,490,715,968,264,381,621,468,592,963,895,217,599,993,229,915,608,941,463,976,156,518,286,253,697,920,827,223,758,251,185,210,916,864,000,000,000,000,000,000,000,000 permutations.
 
 A nanosecond is 1/1,000,000,000 of a second, so the suggested system can check a billion orderings per second.
 
-There are 60x60x24x365 seconds in a non-leap year, which is 31,536,000, so the proposed system could check 31,536,000 *billion* orderings in a year, so dividing 100! by this number, we get 2, 959, 354, 878, 359, 467, 043, 432, 877, 944, 452, 901, 461, 527, 015, 736, 440, 310, 168, 334, 378, 611, 593, 658, 041, 388, 569, 114, 946, 139, 776, 006, 992, 588, 985, 721, 014, 739, 574, 573, 764, 941, 185, 024, 000, 000, 000, 000 years.
+There are 60x60x24x365 seconds in a non-leap year, which is 31,536,000, so the proposed system could check 31,536,000 *billion* orderings in a year, so dividing 100! by this number, we get 2,959,354,878,359,467,043,432,877,944,452,901,461,527,015,736,440,310,168,334,378,611,593,658,041,388,569,114,946,139,776,006,992,588,985,721,014,739,574,573,764,941,185,024,000,000,000,000 years.
 That's an inconceivable amount of time, just to sort 100 values.
 This algorithm really is intractable!
 
@@ -233,8 +240,8 @@ In the above example, the universe would end before the 100 numbers have been so
 By now, you should be very aware of the point that is being made.
 Permutation sort is so inefficient that sorting 100 numbers with it takes so long that it is essentially impossible.
 Trying to use permutation sort with a non trivial number of values simply won’t work.
-While selection sort is a lot slower than quick sort or merge sort, it wouldn’t be impossible for Facebook to use selection sort to sort their list of 1 billion users.
-It would take a lot longer than quick sort would, but it would be doable.
+While selection sort is a lot slower than quicksort or mergesort, it wouldn’t be impossible for Facebook to use selection sort to sort their list of 1 billion users.
+It would take a lot longer than quicksort would, but it would be doable.
 Permutation sort on the other hand would be impossible to use!
 
 At this point, we need to now distinguish between algorithms that are essentially usable, and algorithms that will take billions of year to finish running, even with a small input such as 100 values.
@@ -243,7 +250,7 @@ Computer scientists call an algorithm "intractable" if it would take a completel
 Permutation sort is a good example of an intractable algorithm.
 The term "intractable" is used a bit more formally in computer science; it's explained in the next section.
 
-But the *problem* of sorting items into order is not intractable - even though the Permutation sort algorithm is intractable,  there are lots of other efficient and not-so-efficient algorithms that you could use to solve a sorting problem in a reasonable amount of time:  quick sort, merge sort, selection sort, even bubble sort!
+But the *problem* of sorting items into order is not intractable &ndash; even though the permutation sort algorithm is intractable, there are lots of other efficient and not-so-efficient algorithms that you could use to solve a sorting problem in a reasonable amount of time: quicksort, mergesort, selection sort, even bubble sort!
 However, there are some problems in which the ONLY known algorithm is one of these intractable ones.
 Problems in this category are known as *intractable problems*.
 
@@ -261,8 +268,8 @@ For 6 disks it only needs 63 moves, but for 50 disks this would be 1,125,899,906
 We usually characterise a problem like this as having a complexity of \( 2^n \), as subtracting one to get a precise value makes almost no difference, and the shorter expression is simpler to communicate to others.
 
 The Towers of Hanoi is one problem where we know for sure that it will take exponential time.
-There are many intractable problems where this isn't the case — we don't have tractable solutions for them, but we don't know for sure if they don't exist.
-Plus this isn't a real problem — it's just a game (although there is a backup system based on it).
+There are many intractable problems where this isn't the case &ndash; we don't have tractable solutions for them, but we don't know for sure if they don't exist.
+Plus this isn't a real problem &ndash; it's just a game (although there is a backup system based on it).
 But it is a nice example of an exponential time algorithm, where adding one disk will double the number of steps required to produce a solution.
 
 {panel end}

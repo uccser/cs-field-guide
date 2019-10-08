@@ -13,9 +13,11 @@ Computer graphics are used in a wide variety of situations: games and animated m
 
 A digital image on a screen or printer is physically made up of a grid of tiny squares called {glossary-link term="pixel" reference-text="definition"}pixels{glossary-link end}.
 They are usually too small to see easily (otherwise the image would look blocky).
-The resolution of a modern camera is usually measured in megapixels. One megapixel is a million pixels; for example, a 4k TV screen (3840 pixels across and 2160 down) has 8,294,400 pixels, or 8.3 megapixels!
+The resolution of a modern camera is usually measured in megapixels.
+One megapixel is a million pixels; for example, a 4k TV screen (3840 pixels across and 2160 down) has 8,294,400 pixels, or 8.3 megapixels!
 
-The pixel is fundamental to computer graphics. A lot of the work of a computer graphics programmer is in taking some abstract idea (such as objects in a scene), and working out what colour each pixel should be to trick the viewer into seeing that idea.
+The pixel is fundamental to computer graphics.
+A lot of the work of a computer graphics programmer is in taking some abstract idea (such as objects in a scene), and working out what colour each pixel should be to trick the viewer into seeing that idea.
 A digital camera also does this &ndash; but it just senses the colour falling on each of its millions of sensors, and stores those so that the pixels can be displayed when needed.
 
 {panel end}
