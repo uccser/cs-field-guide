@@ -144,7 +144,7 @@ function init() {
   controls = new OrbitControls( camera, renderer.domElement );
   controls.minDistance = 500;
   controls.maxDistance = 10000;
-
+  controls.keys = {}; // Disable keyboard input
   // Grid
   var size = 10000;
   var divisions = 10;
