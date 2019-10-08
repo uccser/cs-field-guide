@@ -148,6 +148,8 @@ rsa-key-generator:
   name: RSA Key Generator
 run-length-encoding:
   name: Run Length Encoding
+scene-editor:
+  name: Scene Editor
 searching-algorithms:
   name: Searching Algorithms
 sha2:

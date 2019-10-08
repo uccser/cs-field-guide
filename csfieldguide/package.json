@@ -34,6 +34,7 @@
     "csfg-interactive-rsa-decryption": "file:./static/interactives/rsa-decryption/",
     "csfg-interactive-rsa-encryption": "file:./static/interactives/rsa-encryption/",
     "csfg-interactive-rsa-key-generator": "file:./static/interactives/rsa-key-generator/",
+    "csfg-interactive-scene-editor": "file:./static/interactives/scene-editor/",
     "csfg-interactive-sha2": "file:./static/interactives/sha2/",
     "csfg-interactive-sorting-algorithms": "file:./static/interactives/sorting-algorithms/",
     "csfg-interactive-training-ground": "file:./static/interactives/training-ground/",
