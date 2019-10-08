@@ -71,7 +71,7 @@ For example, many web scripting programs use them to check input for patterns li
 They've become so popular that they're now built into most programming languages.
 
 You might already have a suspicion that regular expressions are related to {glossary-link term="finite-state-automaton" reference-text="related to regular expressions"}finite state automata{glossary-link end}.
-And you'd be right, because it turns out that every regular expression has a Finite State Automaton that can check for matches, and every Finite State Automaton can be converted to a regular expression that shows exactly what it does (and doesn’t) match.
+And you'd be right, because it turns out that every regular expression has a finite state automaton that can check for matches, and every finite state automaton can be converted to a regular expression that shows exactly what it does (and doesn’t) match.
 Regular expressions are usually easier for humans to read.
 For machines, a computer program can convert any regular expression to an FSA, and then the computer can follow very simple rules to check the input.
 
@@ -211,7 +211,8 @@ The following regular expression will find common New Zealand number plates in t
 
 {panel end}
 
-How about an expression to find the dates in the text? Here's one option, but it's not perfect:
+How about an expression to find the dates in the text?
+Here's one option, but it's not perfect:
 
 ```text
 \d [A-Z][a-z][a-z] \d\d\d\d
