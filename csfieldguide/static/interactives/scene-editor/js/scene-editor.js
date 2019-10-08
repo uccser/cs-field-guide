@@ -40,8 +40,10 @@ var mjaxURL  = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?
 // load mathjax script
 $.getScript(mjaxURL);
 
+rescaleCanvas();
 init();
 animate();
+onWindowResize();
 
 $(document).ready(function () {
   // mode = transform | translation | multiple | (default) scene-creation
@@ -87,9 +89,9 @@ $(document).ready(function () {
  */
 function init() {
   // Cameras
-  camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 100000 );
+  camera = new THREE.PerspectiveCamera( 70, 16 / 9, 1, 100000 );
   camera.position.set( 1000, 500, 1000 );
-  cameraCube = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 100000 );
+  cameraCube = new THREE.PerspectiveCamera( 70, 16 / 9, 1, 100000 );
   camera.lookAt( new THREE.Vector3(0, 0, 0) );
   // Scene
   scene = new THREE.Scene();
@@ -160,13 +162,25 @@ function init() {
 
 /**
  * Rescales the scene to the size of the window
+ * 
+ * TEMPORARY: just rescales the canvas, keeping the 16:9 aspect ratio
  */
 function onWindowResize() {
-  camera.aspect = window.innerWidth / window.innerHeight;
-  camera.updateProjectionMatrix();
-  cameraCube.aspect = window.innerWidth / window.innerHeight;
-  cameraCube.updateProjectionMatrix();
-  renderer.setSize( window.innerWidth, window.innerHeight );
+  rescaleCanvas();
+  // camera.aspect = window.innerWidth / window.innerHeight;
+  // camera.updateProjectionMatrix();
+  // cameraCube.aspect = window.innerWidth / window.innerHeight;
+  // cameraCube.updateProjectionMatrix();
+  // renderer.setSize( window.innerWidth, window.innerHeight );
+}
+
+/**
+ * Sets the canvas size appropriately, keeping an aspect ratio of 16:9
+ */
+function rescaleCanvas() {
+  var canvas = $('#scene'); // canvas is the only thing in this div
+  canvas.width(window.innerWidth - (window.innerWidth / 10)); // Leave some padding
+  canvas.height(canvas.width() * 9 / 16);
 }
 
 /**
