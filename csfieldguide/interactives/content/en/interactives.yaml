@@ -112,6 +112,8 @@ packet-attack-level-creator:
   name: Packet Attack Level Creator
 parity:
   name: Parity
+password-guesser:
+  name: Password Guesser
 payment-interface:
   name: Payment Interface
 persona-carousel:
@@ -162,6 +164,8 @@ tcp-segment:
   name: TCP Segment
 three-tier-website:
   name: Three-tier Website
+training-ground:
+  name: trAIning ground
 trainsylvania:
   name: Trainsylvania
 trainsylvania-planner:

@@ -1,0 +1,8 @@
+{
+    "name": "csfg-interactive-password-guesser",
+    "version": "1.0.0",
+    "private": true,
+    "dependencies": {
+        "crypto-js": "3.1.9-1"
+    }
+}

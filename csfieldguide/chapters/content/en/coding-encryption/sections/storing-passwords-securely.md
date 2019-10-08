@@ -68,6 +68,26 @@ You could determine their passwords by putting various possibilities through SHA
 
 {image file-path="img/chapters/hash-passwords-table.png" alt="A table of four passwords and their corresponding hashes."}
 
+{panel type="project"}
+
+# Password guessing activity - Part 1
+
+You can investigate hashing further with this interactive.
+It requires you to guess the passwords of users.
+
+A database is displayed, along with a simple checker and some clues.
+For each user: enter a possible password, and click `Calculate Hash` to check the database.
+The database will highlight an entry if the hash matches (so you don't have to check manually!).
+
+Note that two passwords are the same, you can see them in the database.
+This will be expanded upon next.
+
+Have a go at just the simpler passwords, we don't expect you to be able to guess all of them.
+
+{interactive slug="password-guesser" parameters="salted=false" type="whole-page" alt="Interactive for guessing user passwords"}
+
+{panel end}
+
 It might initially sound like we have the perfect system.
 But unfortunately, there is still a big problem.
 You can find *rainbow tables* online, which are precomputed lists of common passwords with what value they hash to.
@@ -83,7 +103,7 @@ The next idea, salting, addresses this issue.
 
 When we said that if the hashed password matches the one in the database, then the user has to have entered the correct password, we were not telling the full truth.
 Mathematically, we know that there have to be passwords which would hash to the same value.
-This is because the length of the output hash has a maximum length, whereas the password length (or other data being hashed) could be much larger.
+This is because the output hash has a maximum length, whereas the password length (or other data being hashed) could be much larger.
 Therefore, there are more possible inputs than outputs, so some inputs must have the same output.
 When two different inputs have the same output hash, we call it a *collision*.
 
@@ -117,6 +137,38 @@ Therefore, a common practice is to store it in plaintext in the database.
 
 So now when a user registers, a long random salt value is generated, added to the end of their password, and the combined password and salt is hashed.
 The plaintext salt is stored next to the hash.
+
+{panel type="project"}
+
+# Password guessing activity - Part 2
+
+Here is the same interactive as before, but this time everyone's passwords have been salted.
+Now you can't just guess a password and check the whole database; you need to copy the salt for each password you are guessing.
+
+Can you see how these extra steps can affect the time it takes to guess passwords?
+
+Remember that two passwords are the same, is that still obvious just by looking at the database?
+
+{interactive slug="password-guesser" type="whole-page" alt="Interactive for guessing salted user passwords"}
+
+{panel end}
+
+{panel type="teacher-note"}
+
+# Password guessing activity in the classroom
+
+Try splitting the class into teams and make it a competition to find the most passwords.
+The main outcomes of this exercise should be for the class to understand that:
+
+- Short and simple passwords are easy to guess.
+- Common substitutions don't make a password much harder to guess.
+- Without any salting, a hacker can guess multiple passwords at once.
+- With salting, it takes much longer to guess passwords because each one needs to be checked individually.
+
+Of course, in practice a hacker would automate this process.
+So if your students managed to guess some of the passwords manually, they should realise how many more simple passwords an automated system could find.
+
+{panel end}
 
 {comment add Extra for Experts: Hashing passwords with a salt and stretching}
 

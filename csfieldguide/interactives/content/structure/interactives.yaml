@@ -257,6 +257,10 @@ parity:
   languages:
     en: interactives/parity.html
   is_interactive: true
+password-guesser:
+  languages:
+    en: interactives/password-guesser.html
+  is_interactive: true
 payment-interface:
   languages:
     en: interactives/payment-interface.html
@@ -359,6 +363,10 @@ three-tier-website:
   languages:
     en: interactives/three-tier-website.html
   is_interactive: false
+training-ground:
+  languages:
+    en: interactives/training-ground.html
+  is_interactive: true
 trainsylvania:
   languages:
     en: interactives/trainsylvania.html

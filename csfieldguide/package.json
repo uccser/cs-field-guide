@@ -27,6 +27,7 @@
     "csfg-interactive-jpeg-compression": "file:./static/interactives/jpeg-compression/",
     "csfg-interactive-matrix-simplifier": "file:./static/interactives/matrix-simplifier/",
     "csfg-interactive-packet-attack": "file:./static/interactives/packet-attack/",
+    "csfg-interactive-password-guesser": "file:./static/interactives/password-guesser/",
     "csfg-interactive-python-interpreter": "file:./static/interactives/python-interpreter/",
     "csfg-interactive-regular-expression-search": "file:./static/interactives/regular-expression-search/",
     "csfg-interactive-rgb-mixer": "file:./static/interactives/rgb-mixer/",
@@ -36,6 +37,7 @@
     "csfg-interactive-scene-editor": "file:./static/interactives/scene-editor/",
     "csfg-interactive-sha2": "file:./static/interactives/sha2/",
     "csfg-interactive-sorting-algorithms": "file:./static/interactives/sorting-algorithms/",
+    "csfg-interactive-training-ground": "file:./static/interactives/training-ground/",
     "csfg-interactive-unicode-binary": "file:./static/interactives/unicode-binary/",
     "csfg-interactive-unicode-chars": "file:./static/interactives/unicode-chars/",
     "csfg-interactive-viola-jones-face-detector": "file:./static/interactives/viola-jones-face-detector/"

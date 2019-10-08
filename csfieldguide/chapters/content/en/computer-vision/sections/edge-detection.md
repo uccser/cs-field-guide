@@ -1,7 +1,7 @@
 # Edge detection
 
-A useful technique in computer vision is *edge detection*, where the boundaries between objects are automatically identified.
-Having these boundaries makes it easy to *segment* the image (break it up into separate objects or areas), which can then be recognised separately.
+A useful technique in computer vision is {glossary-link term="edge-detection"}edge detection{glossary-link end}, where the boundaries between objects are automatically identified.
+Having these boundaries makes it easy to {glossary-link term="image-segmentation"}segment{glossary-link end} the image (break it up into separate objects or areas), which can then be recognised separately.
 
 For example, here's a photo where you might want to recognise individual objects:
 
@@ -38,7 +38,7 @@ If you were to apply a gaussian filter to the image first, then do some work to 
 
 ## Activity: Edge detection evaluation
 
-With the canny edge detection interactive above, try uploading different images and determining how good different convolutional kernels are at detecting boundaries in the image.
+With the edge detection interactive above, try uploading different images and determining how good different convolutional kernels are at detecting boundaries in the image.
 Capture images to put in your report as examples to illustrate your experiments with the detector.
 
 - Can the detector find all edges in the image?
