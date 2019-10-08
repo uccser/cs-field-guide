@@ -5,8 +5,7 @@
 # Regular expressions
 
 Regular expressions (regex for short) are closely related to FSAs, as we shall see.
-Much of the terminology that is needed was already covered in the previous section: we'll be using {glossary-link term="alphabet"}alphabets{glossary-link end} to put together a
-{glossary-link term="string"}string{glossary-link end} of letters, and the set of all strings that can be accepted by a particular FSA is called its {glossary-link term="language"}language{glossary-link end}.
+Much of the terminology that is needed was already covered in the previous section: we'll be using {glossary-link term="alphabet"}alphabets{glossary-link end} to put together a {glossary-link term="string"}string{glossary-link end} of letters, and the set of all strings that can be accepted by a particular FSA is called its {glossary-link term="language"}language{glossary-link end}.
 We'll need the concept of the empty string (\( \epsilon \) or \( \lambda \)), and eventually {glossary-link term="finite-state-automaton"}finite state automata{glossary-link end}.
 So the previous section on FSAs needs to be covered before embarking on regular expressions.
 

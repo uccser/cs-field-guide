@@ -1,10 +1,10 @@
 # Formal Languages
 
-If you've ever written a text-based program or typed a formula in a spreadsheet, chances are that at some stage the system has told you there's an error and won't even attempt to follow your instructions.
+If you've ever written a text-based {glossary-link term="program"}program{glossary-link end} or typed a formula in a spreadsheet, chances are that at some stage the system has told you there's an error and won't even attempt to follow your instructions.
 
 {interactive slug="python-syntax-error" type="in-page"}
 
-These "syntax errors" are annoying messages that programmers become excruciatingly familiar with... it means that they didn't follow the rules somehow, even if it's just a tiny mistake.
+These "{glossary-link term="syntax"}syntax{glossary-link end} errors" are annoying messages that programmers become excruciatingly familiar with... it means that they didn't follow the rules somehow, even if it's just a tiny mistake.
 For example, suppose you intended to write:
 
 ```text
