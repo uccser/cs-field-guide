@@ -31,8 +31,8 @@ if settings.DEBUG:  # pragma: no cover
     # These patterns allows these error pages to be debugged during development.
     from django.views import defaults
     urlpatterns += [
-        path('400/$', defaults.bad_request, kwargs={'exception': Exception("Bad request")}),
-        path('403/$', defaults.permission_denied, kwargs={'exception': Exception("Permissin denied")}),
-        path('404/$', defaults.page_not_found, kwargs={'exception': Exception("Page not found")}),
-        path('500/$', defaults.server_error),
+        path('400/', defaults.bad_request, kwargs={'exception': Exception("Bad request")}),
+        path('403/', defaults.permission_denied, kwargs={'exception': Exception("Permissin denied")}),
+        path('404/', defaults.page_not_found, kwargs={'exception': Exception("Page not found")}),
+        path('500/', defaults.server_error),
     ]
