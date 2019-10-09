@@ -101,8 +101,11 @@ function init() {
   scene = new THREE.Scene();
   sceneCube = new THREE.Scene();
   // Lights
-  var ambient = new THREE.AmbientLight( 0xffffff );
+  var ambient = new THREE.AmbientLight( 0xffffff, 0.3 );
   scene.add( ambient );
+  var sunlight = new THREE.DirectionalLight( 0xffffff, 1 )
+  sunlight.position.set(50, 100, 300); // Approximate vector towards sun in background image
+  scene.add( sunlight );
   // Textures
   var urls = [ 
     image_base_path + "posx.jpg", image_base_path + "negx.jpg",
@@ -805,7 +808,7 @@ function createTinyaxisMesh() {
     }
   }
 
-  var material = new THREE.MeshLambertMaterial( {vertexColors: THREE.FaceColors} );
+  var material = new THREE.MeshBasicMaterial( {vertexColors: THREE.FaceColors} );
   var object = new THREE.Mesh( geometry, material );
   return object;
 }
