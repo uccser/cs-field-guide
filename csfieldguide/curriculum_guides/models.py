@@ -46,7 +46,8 @@ class CurriculumGuideSection(TranslatableModel):
     curriculum_guide = models.ForeignKey(
         CurriculumGuide,
         null=False,
-        related_name="curriculum_guide_sections"
+        related_name="curriculum_guide_sections",
+        on_delete=models.CASCADE
     )
 
     def __str__(self):
