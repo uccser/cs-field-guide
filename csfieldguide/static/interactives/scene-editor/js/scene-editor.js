@@ -6,6 +6,7 @@ const OrbitControls = require('three-orbit-controls')(THREE);
 const detector = require('../../../js/third-party/threejs/Detector.js');
 const sprintf = require('sprintf-js').sprintf;
 const urlParameters = require('../../../js/third-party/url-parameters.js');
+const TeapotBufferGeometry = require('../../../js/third-party/threejs/TeapotBufferGeometry.js')(THREE);
 
 const image_base_path = base_static_path + 'interactives/scene-editor/img/bridge-';
 const SCALE = 100; // Multiplier for translation distances
@@ -13,6 +14,10 @@ const CAMERA_POINTERID = "thisobjectmarksthepointthecameraorbitsaround" // Longe
 
 const ROW_TEMPLATE = "%s & %s & %s";
 const MATRIX_TEMPLATE = "\\begin{bmatrix} %s \\\\ %s \\\\ %s \\end{bmatrix}";
+
+const COLOUR_AXIS_X = 0xFF0000;
+const COLOUR_AXIS_Y = 0x00FF00;
+const COLOUR_AXIS_Z = 0x0000FF;
 
 var controls, camera, scene, renderer;
 var cameraCube, sceneCube;
@@ -26,11 +31,8 @@ var screenObjectTransforms = {};
 var numSpheres = 0;
 var numCubes = 0;
 var numCones = 0;
+var numTeapots = 0;
 var ID = 0;
-
-const COLOUR_AXIS_X = 0xFF0000;
-const COLOUR_AXIS_Y = 0x00FF00;
-const COLOUR_AXIS_Z = 0x0000FF;
 
 var mode;
 var isStartingShape;
@@ -134,10 +136,10 @@ function init() {
   // Skybox
   cubeMesh = new THREE.Mesh( new THREE.BoxBufferGeometry( 100, 100, 100 ), cubeMaterial );
   sceneCube.add( cubeMesh );
-  // Sphere object
+  // Initial object
   isStartingShape = true;
-  var sphereMaterial = new THREE.MeshLambertMaterial( { envMap: textureCube } );
-  addObject('sphere', sphereMaterial, '');
+  var material = new THREE.MeshLambertMaterial( { envMap: textureCube } );
+  addObject('teapot', material, '');
   // Camera orbit pointer
   addObject('tinyaxis', null, null);
   cameraPointer = scene.getObjectByName( CAMERA_POINTERID )
@@ -359,6 +361,17 @@ function addObject(type, material, name) {
       name = null; // Name should always be null for this object as it will never be presented for user-manipulation
       object = createTinyaxisMesh();
       scene.add( object );
+      break;
+    case "teapot":
+      geometry = new TeapotBufferGeometry( 200 );
+      object = new THREE.Mesh( geometry, material );
+      scene.add( object );
+      numTeapots += 1;
+      if (name == '') {
+        object.name = gettext('Teapot ') + numTeapots;
+      } else {
+        object.name = name;
+      }
       break;
     default:
       return; // Not a valid shape
