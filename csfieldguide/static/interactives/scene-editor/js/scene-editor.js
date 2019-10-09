@@ -47,7 +47,7 @@ $.getScript(mjaxURL);
 rescaleCanvas();
 init();
 animate();
-onWindowResize();
+rescaleCanvas();
 
 $(document).ready(function () {
   // mode = transform | translation | multiple | (default) scene-creation
@@ -164,22 +164,7 @@ function init() {
   // Axes
   addAxes(size);
 
-  window.addEventListener( 'resize', onWindowResize, false );
-}
-
-/**
- * Rescales the scene to the size of the window
- * 
- * TEMPORARY: just rescales the canvas, keeping the 16:9 aspect ratio
- * TODO: Decide whether or not to stick to 16:9 and remove all the commented out stuff
- */
-function onWindowResize() {
-  rescaleCanvas();
-  // camera.aspect = window.innerWidth / window.innerHeight;
-  // camera.updateProjectionMatrix();
-  // cameraCube.aspect = window.innerWidth / window.innerHeight;
-  // cameraCube.updateProjectionMatrix();
-  // renderer.setSize( window.innerWidth, window.innerHeight );
+  window.addEventListener( 'resize', rescaleCanvas, false );
 }
 
 /**
