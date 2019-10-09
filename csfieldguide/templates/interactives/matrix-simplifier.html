@@ -1,7 +1,6 @@
 {% extends interactive_mode_template %}
 
-{% load i18n %}
-{% load static %}
+{% load i18n static svg %}
 
 {% block html %}
   <div class="container">
@@ -20,6 +19,9 @@
             <button id="close-matrix-0" type="button" class="close dismiss-eqtn" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
+            <button id="edit-matrix-0" type="button" class="close edit-eqtn" aria-label="Edit">
+              {% svg 'icons8-pencil' %}
+            </button>
             <div id="matrix-0" class="matrix invisible" data-matrix-order=0>
               \[
                 \begin{bmatrix}
@@ -34,6 +36,9 @@
           <div class="draggable content border rounded m-1 center-block">
             <button id="close-matrix-1" type="button" class="close dismiss-eqtn" aria-label="Close">
               <span aria-hidden="true">&times;</span>
+            </button>
+            <button id="edit-matrix-0" type="button" class="close edit-eqtn" aria-label="Edit">
+              {% svg 'icons8-pencil' %}
             </button>
             <div id="matrix-1" class="matrix invisible" data-matrix-order=1>
               \[
@@ -55,6 +60,9 @@
           <div class="draggable content border rounded m-1 center-block">
             <button id="close-vector-0" type="button" class="close dismiss-eqtn" aria-label="Close">
               <span aria-hidden="true">&times;</span>
+            </button>
+            <button id="edit-matrix-0" type="button" class="close edit-eqtn" aria-label="Edit">
+              {% svg 'icons8-pencil' %}
             </button>
             <div id="vector-0" class="vector invisible" data-vector-order=0>
               \[
