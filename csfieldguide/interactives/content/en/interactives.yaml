@@ -112,6 +112,8 @@ packet-attack-level-creator:
   name: Packet Attack Level Creator
 parity:
   name: Parity
+password-guesser:
+  name: Password Guesser
 payment-interface:
   name: Payment Interface
 persona-carousel:
@@ -146,6 +148,8 @@ rsa-key-generator:
   name: RSA Key Generator
 run-length-encoding:
   name: Run Length Encoding
+scene-editor:
+  name: Scene Editor
 searching-algorithms:
   name: Searching Algorithms
 sha2:

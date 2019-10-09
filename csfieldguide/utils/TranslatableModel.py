@@ -29,7 +29,7 @@ class UntranslatedModelManager(models.Manager):
 class TranslatableModel(models.Model):
     """Abstract base class for models needing to store list of available languages."""
 
-    languages = ArrayField(models.CharField(max_length=10), default=[])
+    languages = ArrayField(models.CharField(max_length=10), default=list)
 
     objects = models.Manager()
     translated_objects = TranslatedModelManager()

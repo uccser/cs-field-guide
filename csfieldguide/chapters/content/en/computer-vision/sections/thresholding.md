@@ -1,6 +1,6 @@
 # Thresholding
 
-Another technique that is sometimes useful in computer vision is *thresholding*.
+Another technique that is sometimes useful in computer vision is {glossary-link term="thresholding"}thresholding{glossary-link end}.
 This is something which is relatively simple to implement, but can be quite useful.
 
 If you have a greyscale image, and you want to detect regions that are darker or lighter, it could be useful to simply transform any pixel above a certain level of lightness to pure white, and any other pixel to pure black.
