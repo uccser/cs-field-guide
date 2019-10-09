@@ -75,7 +75,8 @@ class ChapterSection(TranslatableModel):
     chapter = models.ForeignKey(
         Chapter,
         null=False,
-        related_name="chapter_sections"
+        related_name="chapter_sections",
+        on_delete=models.CASCADE
     )
 
     def __str__(self):
@@ -136,7 +137,8 @@ class ChapterSectionHeading(models.Model):
     chapter_section = models.ForeignKey(
         ChapterSection,
         null=False,
-        related_name="headings"
+        related_name="headings",
+        on_delete=models.CASCADE
     )
 
     def __str__(self):
