@@ -1,3 +1,4 @@
 # Syntax
 
-Syntax rules about what text can appear in a programming language, used by a compiler or interpreter and therefore need to be followed by a programmer to avoid syntax errors.
+Rules about what text can appear in a programming language.
+A programmer needs to get the syntax right for a program to run.
