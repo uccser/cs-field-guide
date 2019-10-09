@@ -11,7 +11,7 @@ Most C compilers are written in C &ndash; which begs the question, who wrote the
 Computer Scientists have discovered good ways to write programs that process other programs, and a key ingredient is that you have to specify what is allowed in a program very precisely.
 That's where formal languages come in.
 
-Many of the concepts we'll look at in this chapter are used in a variety of other situations: checking input to a web page; analysing user interfaces; searching text, particularly with "wild cards" that can match any sequence of character; creating logic circuits; specifying communication protocols; and designing embedded systems.
+Many of the concepts we'll look at in this chapter are used in a variety of other situations: checking input to a web page; analysing user interfaces; searching text, particularly with "wild cards" that can match any sequence of characters; creating logic circuits; specifying communication protocols; and designing embedded systems.
 Some advanced concepts in formal languages are even used to explore limits of what can be computed.
 
 Once you're familiar with the idea of formal languages, you'll possess a powerful tool for cutting complex systems down to size using an easily specified format.
