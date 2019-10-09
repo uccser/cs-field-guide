@@ -56,25 +56,20 @@ We'll be covering this more carefully in the section on [regular expressions]('c
 
 {panel end}
 
-The code you've used above is a part of a formal language called a "regular expression".
-Computer programs that accept typed input use regular expressions for checking items like dates, credit card numbers and product codes.
-They’re used extensively by programming language compilers and interpreters to make sense of the text that a programmer types in.
+The code you've used above is a part of a formal language called a {glossary-link term="regular-expression"}regular expression{glossary-link end}.
+Computer programs that accept typed input use regular expressions for checking things like dates, credit card numbers and product codes.
+They’re used extensively by programming language {glossary-link term="compiler"}compilers{glossary-link end} and {glossary-link term="interpreter"}interpreters{glossary-link end} to make sense of the text that a programmer types in.
 We'll look at them in more detail in the section on [regular expressions]('chapters:chapter_section' 'formal-languages' 'regular-expressions').
 
-Next we examine a simple system for reading input called a
-{glossary-link term="finite-state-automaton" reference-text="Formal languages"}finite state automaton{glossary-link end},
-which &ndash; as we'll find out later &ndash; is closely related to
-{glossary-link term="regular-expression"}regular expressions{glossary-link end}.
-Later we'll explore the idea of
-{glossary-link term="grammar"}grammars{glossary-link end},
-another kind of formal language that can deal with more complicated forms of input.
+Next we examine a simple system for reading input called a {glossary-link term="finite-state-automaton" reference-text="Formal languages"}finite state automaton{glossary-link end}, which &ndash; as we'll find out later &ndash; is closely related to regular expressions.
+Later we'll explore the idea of {glossary-link term="grammar"}grammars{glossary-link end}, another kind of formal language that can deal with more complicated forms of input.
 
 {panel type="teacher-note"}
 
 # Klingon linguistics activity
 
 For a fun discussion, you could have the students look at the [Klingon Linguistics activity at CS4FN](http://www.cs4fn.org/linguistics/klingon.html).
-This page introduces the fundamentals of languages &ndash; words (the alphabet) and {glossary-link term="grammar"}grammar{glossary-link end} (the rules of syntax).
+This page introduces the fundamentals of languages &ndash; words (the alphabet) and grammar (the rules of syntax).
 It discusses why languages are translated and how meaning can be changed by translation.
 It also explains why computer languages need to be translated.
 
