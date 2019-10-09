@@ -2,6 +2,7 @@
 
 - [Artificial Intelligence Strong and Weak &ndash; I Programmer](http://www.i-programmer.info/babbages-bag/297-artificial-intelligence.html)
 - [The Paradox of Artificial Intelligence &ndash; I Programmer](http://www.i-programmer.info/programming/artificial-intelligence/2437-the-paradox-of-artificial-intelligence.html)
+- [Hello World, by Hannah Fry](https://www.penguin.co.uk/books/111/1114076/hello-world/9781784163068.html)
 
 ## Useful links
 

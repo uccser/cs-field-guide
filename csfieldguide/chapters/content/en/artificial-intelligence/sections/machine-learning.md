@@ -1,11 +1,9 @@
 # Machine Learning
 
 While the rule-based systems we looked at previously can be used to solve complex problems, they are limited as they can only use the specific knowledge that they are given.
-They follow a pre-determined set of rules...
 Machine learning systems on the other hand do not rely solely on their existing knowledge. As the name suggests, systems built with machine learning algorithms *can learn*.
 
 The concepts behind Machine learning systems have been around for a long time, but as... data and computational power increased, the capability/power of these systems has drastically grown.
-
 
 What it is...
 
@@ -17,6 +15,22 @@ Commonly used for...
 - Supervised Learning... uses, pros, cons
 - Unsupervised Learning... uses, pros, cons
 
-Particular focus - Neural networks
+## Evolutionary algorithms
 
 ## Artificial Neural Networks
+
+- Deep learning
+
+## Image Recognition
+
+- Faces
+- Objects
+- Medical images
+
+## Speech Recognition and Natural Language Processing
+
+
+## Autonomous agents
+
+- self driving cars
+- Personal assistants, e.g. Siri, Alexa, Google assistant
