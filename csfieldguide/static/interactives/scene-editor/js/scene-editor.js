@@ -28,6 +28,10 @@ var numCubes = 0;
 var numCones = 0;
 var ID = 0;
 
+const COLOUR_AXIS_X = 0xFF0000;
+const COLOUR_AXIS_Y = 0x00FF00;
+const COLOUR_AXIS_Z = 0x0000FF;
+
 var mode;
 var isStartingShape;
 
@@ -237,14 +241,14 @@ function addAxes(size) {
   var posX = buildAxis(
     new THREE.Vector3( 0, 0, 0 ),
     new THREE.Vector3( size, 0, 0 ),
-    0xFF0000,
+    COLOUR_AXIS_X,
     false
   );
   // negative X axis
   var negX = buildAxis(
     new THREE.Vector3( 0, 0, 0 ),
     new THREE.Vector3( -size, 0, 0 ),
-    0xFF0000,
+    COLOUR_AXIS_X,
     true // ... we want this axis to be dashed
   );
 
@@ -252,14 +256,14 @@ function addAxes(size) {
   var posY = buildAxis(
     new THREE.Vector3( 0, 0, 0 ),
     new THREE.Vector3( 0, size, 0 ),
-    0x00FF00,
+    COLOUR_AXIS_Y,
     false
   );
   // negative Y axis
   var negY = buildAxis(
     new THREE.Vector3( 0, 0, 0 ),
     new THREE.Vector3( 0, -size, 0 ),
-    0x00FF00,
+    COLOUR_AXIS_Y,
     true // ... we want this axis to be dashed
   );
 
@@ -267,14 +271,14 @@ function addAxes(size) {
   var posZ = buildAxis(
     new THREE.Vector3( 0, 0, 0 ),
     new THREE.Vector3( 0, 0, size ),
-    0x0000FF,
+    COLOUR_AXIS_Z,
     false
   );
   // negative Z axis
   var negZ = buildAxis(
     new THREE.Vector3( 0, 0, 0 ),
     new THREE.Vector3( 0, 0, -size ),
-    0x0000FF,
+    COLOUR_AXIS_Z,
     true // ... we want this axis to be dashed
   );
 
@@ -696,14 +700,112 @@ function getRandomInt(min, max) {
 
 /**
  * Returns the Mesh for a little xyz axis, to show the position the camera is orbiting
- * 
- * TODO (right now it just returns a red sphere as MVP)
- * https://threejsfundamentals.org/threejs/lessons/threejs-custom-geometry.html
  */
 function createTinyaxisMesh() {
+  var diameter = 50
+  var baseLength = 2000 + diameter;
+  var geometry = new THREE.Geometry();
+  geometry.vertices.push(
+    // central cube
+    new THREE.Vector3(-1 * diameter, diameter, diameter),           // 0
+    new THREE.Vector3(diameter, diameter, diameter),                // 1
+    new THREE.Vector3(-1 * diameter, diameter, -1 * diameter),      // 2
+    new THREE.Vector3(diameter, diameter, -1 * diameter),           // 3
+    new THREE.Vector3(-1 * diameter, -1 * diameter, diameter),      // 4
+    new THREE.Vector3(diameter, -1 * diameter, diameter),           // 5
+    new THREE.Vector3(-1 * diameter, -1 * diameter, -1 * diameter), // 6
+    new THREE.Vector3(diameter, -1 * diameter, -1 * diameter),      // 7
 
-  var material = new THREE.MeshLambertMaterial( {color: 0xff0000} )
-  var geometry = new THREE.SphereBufferGeometry( 200, 48, 24 );
+    // Z-axis branch ([0, 1, 4, 5] to [8, 9, 10, 11])
+    new THREE.Vector3(-1 * diameter, diameter, baseLength),         // 8
+    new THREE.Vector3(diameter, diameter, baseLength),              // 9
+    new THREE.Vector3(-1 * diameter, -1 * diameter, baseLength),    // 10
+    new THREE.Vector3(diameter, -1 * diameter, baseLength),         // 11
+
+    // x-axis branch ([1, 3, 5, 7] to [12, 13, 14, 15])
+    new THREE.Vector3(baseLength, diameter, diameter),              // 12
+    new THREE.Vector3(baseLength, diameter, -1 * diameter),         // 13
+    new THREE.Vector3(baseLength, -1 * diameter, diameter),         // 14
+    new THREE.Vector3(baseLength, -1 * diameter, -1 * diameter),    // 15
+
+    // y-axis branch ([0, 1, 2, 3] to [16, 17, 18, 19])
+    new THREE.Vector3(-1 * diameter, baseLength, diameter),         // 16
+    new THREE.Vector3(diameter, baseLength, diameter),              // 17
+    new THREE.Vector3(-1 * diameter, baseLength, -1 * diameter),    // 18
+    new THREE.Vector3(diameter, baseLength, -1 * diameter),         // 19
+  )
+  geometry.faces.push(
+    // Outward faces of the central cube (as triangles)
+    new THREE.Face3(2, 3, 7),   // -z facing
+    new THREE.Face3(2, 7, 6),
+    new THREE.Face3(0, 2, 6),   // -x facing
+    new THREE.Face3(0, 6, 4),
+    new THREE.Face3(5, 4, 6),   // -y facing
+    new THREE.Face3(5, 6, 7),
+
+    // Outward faces of the z-axis branch
+    new THREE.Face3(9, 8, 10),  // +z facing
+    new THREE.Face3(9, 10, 11),
+    new THREE.Face3(1, 9, 11),  // +x facing
+    new THREE.Face3(1, 11, 5),
+    new THREE.Face3(8, 0, 4),   // -x facing
+    new THREE.Face3(8, 4, 10),
+    new THREE.Face3(1, 0, 8),   // +y facing
+    new THREE.Face3(1, 8, 9),
+    new THREE.Face3(11, 10, 4), // -y facing
+    new THREE.Face3(11, 4, 5),
+
+    // Outward faces of the x-axis branch
+    new THREE.Face3(13, 12, 14), // +x facing
+    new THREE.Face3(13, 14, 15),
+    new THREE.Face3(12, 1, 5),   // +z facing
+    new THREE.Face3(12, 5, 14),
+    new THREE.Face3(3, 13, 15),  // -z facing
+    new THREE.Face3(3, 15, 7),
+    new THREE.Face3(13, 3, 1),   // +y facing
+    new THREE.Face3(13, 1, 12),
+    new THREE.Face3(7, 15, 14),  // -y facing
+    new THREE.Face3(7, 14, 5),
+
+    // Outward faces of y-axis branch
+    new THREE.Face3(19, 18, 16), // +y facing
+    new THREE.Face3(19, 16, 17),
+    new THREE.Face3(17, 16, 0),  // +z facing
+    new THREE.Face3(17, 0, 1),
+    new THREE.Face3(18, 19, 3),  // -z facing
+    new THREE.Face3(18, 3, 2),
+    new THREE.Face3(19, 17, 1),  // +x facing
+    new THREE.Face3(19, 1, 3),
+    new THREE.Face3(16, 18, 2),  // -x facing
+    new THREE.Face3(16, 2, 0),
+  )
+  var len = geometry.faces.length;
+  for (var i=0; i < len; i+=2) {
+    if (i < 6) {
+      // Central cube faces
+      if (i < 1) {
+        // -z face
+        geometry.faces[i].color = geometry.faces[i + 1].color = new THREE.Color(COLOUR_AXIS_Z);
+      } else if (i < 3) {
+        // -x face
+        geometry.faces[i].color = geometry.faces[i + 1].color = new THREE.Color(COLOUR_AXIS_X);
+      } else {
+        // -y face
+        geometry.faces[i].color = geometry.faces[i + 1].color = new THREE.Color(COLOUR_AXIS_Y);
+      }
+    } else if (i < 16) {
+      // z-axis branch
+      geometry.faces[i].color = geometry.faces[i + 1].color = new THREE.Color(COLOUR_AXIS_Z);
+    } else if (i < 26) {
+      // x-axis branch
+      geometry.faces[i].color = geometry.faces[i + 1].color = new THREE.Color(COLOUR_AXIS_X);
+    } else {
+      // y-axis branch
+      geometry.faces[i].color = geometry.faces[i + 1].color = new THREE.Color(COLOUR_AXIS_Y);
+    }
+  }
+
+  var material = new THREE.MeshLambertMaterial( {vertexColors: THREE.FaceColors} );
   var object = new THREE.Mesh( geometry, material );
   return object;
 }
