@@ -10,8 +10,17 @@ rule-based-systems:
 machine-learning:
   section-number: 4
 
-the-whole-story:
+supervised-learning:
   section-number: 5
 
-further-reading:
+unsupervised-learning:
   section-number: 6
+
+reinforcement-learning:
+  section-number: 7
+
+the-whole-story:
+  section-number: 8
+
+further-reading:
+  section-number: 9

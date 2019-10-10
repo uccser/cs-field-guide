@@ -42,7 +42,9 @@ Agents tend to operate in one of two types of environments:
 
 {panel end}
 
-**Diagram of agent will be added here**
+**temporary diagram:**
+
+{image file-path="img/chapters/intelligent-agent-diagram-temporary.png" alt="A basic diagram of an intelligent agent. Temporary image"}
 
 Some intelligent agents follow preprogrammed rules only, while others are able to learn from their experiences and modify their behaviour.
 There is some debate among AI experts about whether or not systems that do not learn should be considered intelligent, and whether the ability to learn is a requirement of AI.
