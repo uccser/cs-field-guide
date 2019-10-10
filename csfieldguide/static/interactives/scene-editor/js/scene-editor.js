@@ -532,6 +532,8 @@ function setSuspect(object) {
   if (mode == "scene-creation") {
     $('#object-identifier').css({color: "#" + object.material.color.getHexString()});
   }
+
+  validateInput();
 }
 
 /**
