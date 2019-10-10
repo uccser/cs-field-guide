@@ -19,7 +19,7 @@
             <button id="close-matrix-0" type="button" class="close dismiss-eqtn" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
-            <button id="edit-matrix-0" type="button" class="close edit-eqtn" aria-label="Edit">
+            <button id="edit-matrix-0" type="button" class="close edit-eqtn" aria-label="Edit" data-toggle="modal" data-target="#matrix-modal">
               {% svg 'icons8-pencil' %}
             </button>
             <div id="matrix-0" class="matrix invisible" data-matrix-order=0>
@@ -37,7 +37,7 @@
             <button id="close-matrix-1" type="button" class="close dismiss-eqtn" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
-            <button id="edit-matrix-0" type="button" class="close edit-eqtn" aria-label="Edit">
+            <button id="edit-matrix-1" type="button" class="close edit-eqtn" aria-label="Edit" data-toggle="modal" data-target="#matrix-modal">
               {% svg 'icons8-pencil' %}
             </button>
             <div id="matrix-1" class="matrix invisible" data-matrix-order=1>
@@ -61,7 +61,7 @@
             <button id="close-vector-0" type="button" class="close dismiss-eqtn" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
-            <button id="edit-matrix-0" type="button" class="close edit-eqtn" aria-label="Edit">
+            <button id="edit-vector-0" type="button" class="close edit-eqtn" aria-label="Edit" data-toggle="modal" data-target="#vector-modal">
               {% svg 'icons8-pencil' %}
             </button>
             <div id="vector-0" class="vector invisible" data-vector-order=0>
@@ -168,6 +168,10 @@
           </div>
         </div>
       </div>
+    </div>
+    <!-- helper div so we can access the SVG in the JS file -->
+    <div id="pencil-svg-helper" class="d-none">
+      {% svg 'icons8-pencil' %}
     </div>
   </div>
 {% endblock html %}

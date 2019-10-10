@@ -5,6 +5,7 @@ const vsprintf = require('sprintf-js').vsprintf;
 
 const ROW_TEMPLATE = "%s & %s & %s";
 const MATRIX_TEMPLATE = "\\begin{bmatrix} %s \\\\ %s \\\\ %s \\end{bmatrix}";
+const PENCIL_SVG = $("#pencil-svg-helper svg")
 
 /**
  * Below is adapted from https://mathjs.org/examples/browser/angle_configuration.html.html
@@ -134,7 +135,10 @@ function appendInput(type, inputHtml) {
   var $newInputDiv = $("<div>").addClass('invisible ' + type);
   var $closeButton = $('<button type="button" class="close dismiss-eqtn" aria-label="Close">');
   $closeButton.append($('<span aria-hidden="true">&times;</span>'));
+  var $editButton = $('<button type="button" class="close edit-eqtn" aria-label="Edit">');
+  $editButton.append(PENCIL_SVG);
   $newContainerDiv.append($closeButton);
+  $newContainerDiv.append($editButton);
   $newInputDiv.html(inputHtml);
   $newContainerDiv.append($newInputDiv);
   $('#' + type + '-input-container').append($newContainerDiv);
@@ -143,12 +147,14 @@ function appendInput(type, inputHtml) {
   if (type == 'vector') {
     var vectorNum = vectors.length - 1;
     $closeButton.attr('id', 'close-vector-' + vectorNum);
+    $editButton.attr('id', 'edit-vector-' + vectorNum);
     $newInputDiv.attr('id', 'vector-' + vectorNum);
     $newInputDiv.attr('data-vector-order', currentVectorsOrder.length - 1);
     MathJax.Hub.Queue(["Typeset", MathJax.Hub, 'vector-' + vectorNum]); // typeset the new vector
   } else {
     var matrixNum = matrices.length - 1;
     $closeButton.attr('id', 'close-matrix-' + matrixNum);
+    $editButton.attr('id', 'edit-matrix-' + matrixNum);
     $newInputDiv.attr('id', 'matrix-' + matrixNum);
     $newInputDiv.attr('data-matrix-order', currentMatricesOrder.length - 1);
     MathJax.Hub.Queue(["Typeset", MathJax.Hub, 'matrix-' + matrixNum]); // typeset the new matrix
@@ -348,7 +354,7 @@ $(function() {
     scrollable = false;
   });
   drake.on('drop', (eqtn, target_container, source_container, sibling) => {
-    var eqtnDiv = $(eqtn.children[1]);
+    var eqtnDiv = $(eqtn.children[2]);
     if (sibling == null) {
       // eqtn has been inserted last
       if (eqtnDiv.hasClass('matrix')) {
@@ -360,7 +366,7 @@ $(function() {
       }
     } else {
       // Get the matrix/vector it is being swapped with
-      var siblingDiv = $(sibling.children[1]);
+      var siblingDiv = $(sibling.children[2]);
       if (eqtnDiv.hasClass('matrix')) {
         var siblingOrder = siblingDiv.attr('data-matrix-order');
       } else {
@@ -430,7 +436,8 @@ function showEquations() {
  * Removes equation and updates output to match
  */
 function dismissEquation() {
-  eqtnToRemove = $(this).next(); // div of matrix/vector to remove
+  eqtnToRemove = $(this).next().next(); // div of matrix/vector to remove
+  console.log(eqtnToRemove)
   if (eqtnToRemove.hasClass('matrix')) {
     orderIndex = eqtnToRemove.attr('data-matrix-order');
     // remove from order array
@@ -452,7 +459,6 @@ function dismissEquation() {
     // remove DOM element
     eqtnToRemove.parent().remove();
     // update data-order attributes
-    // BUG - DOES NOT ACTUALLY UPDATE ATTR CORRECTLY
     $('div[data-vector-order]').each(function() {
       order = $(this).attr('data-vector-order');
       if (order > orderIndex) {
@@ -460,6 +466,21 @@ function dismissEquation() {
         $(this).attr('data-vector-order', newOrder);
       }
     });
+  }
+  // re-calculate and show output
+  showOutput();
+}
+
+
+function editEquation() {
+  eqtnToEdit = $(this).next().next(); // div of matrix/vector to edit
+  if (eqtnToEdit.hasClass('matrix')) {
+    orderIndex = eqtnToEdit.attr('data-matrix-order');
+    // update matrix arrays
+
+  } else { //vector
+    orderIndex = eqtnToEdit.attr('data-vector-order');
+    // update vector arrays
   }
   // re-calculate and show output
   showOutput();
