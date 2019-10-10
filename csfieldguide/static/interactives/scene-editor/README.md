@@ -23,7 +23,7 @@ Licences for these can be found in `LICENCE-THIRD-PARTY`, with full copies avail
 
 Note that MathJax is loaded from a CDN in `base.html`.
 
-## Image
+## Images
 
 The skybox scene used and stored in the `img` folder is the work of Emil Persson, aka Humus.
 Its licence is included in the `img` folder.

@@ -92,11 +92,11 @@ $(document).ready(function () {
   mode = urlParameters.getUrlParameter('mode');
   if (mode == "transform") {
     $("#matrix-container").removeClass('d-none');
-    $("#eqtn-title").html(gettext('Transformation for sphere:'));
+    $("#eqtn-title").html(gettext('Transformation:'));
     $("#equation-container").removeClass('d-none');
   } else if (mode == "translation") {
     $("#vector-container").removeClass('d-none');
-    $("#eqtn-title").html(gettext('Translation for sphere:'));
+    $("#eqtn-title").html(gettext('Translation:'));
     $("#equation-container").removeClass('d-none');
   } else if (mode == "multiple") {
     $("#matrix-container").removeClass('d-none');
@@ -114,6 +114,7 @@ $(document).ready(function () {
     $("#equation-container").removeClass('d-none').addClass('col-md-8');
     $("#eqtn-title").addClass('d-none');
     $("#scene-creation-title-area").removeClass('d-none');
+    $("#delete-button").removeClass('d-none');
   }
 
   $("#selectable-objects").on('change', switchFocus);
@@ -121,6 +122,7 @@ $(document).ready(function () {
 
   $("#add-object").click(newObject);
   $("#apply-transformation").click(applyTransformation);
+  $("#delete-button").click(deleteSuspect);
 
   $('.matrix-row input').on('keyup bind cut copy paste', validateInput);
   $('.vector-row input').on('keyup bind cut copy paste', validateInput);
@@ -528,7 +530,28 @@ function setSuspect(object) {
   }
 
   if (mode == "scene-creation") {
-    $('#object-identifier').css({color: "#" + object.material.color.getHexString()}).html("&#x25D9;");
+    $('#object-identifier').css({color: "#" + object.material.color.getHexString()});
+  }
+}
+
+/**
+ * Removes the suspect from the scene, sets the most recently added object as the new suspect
+ */
+function deleteSuspect() {
+  if (suspect === null) {
+    return;
+  }
+  // Need to remove from: ID list, transforms list, user-facing selector, scene
+  var name = suspect.name;
+  $("#" + screenObjectIds[name]).remove();
+  delete screenObjectIds[name];
+  delete screenObjectTransforms[name];
+  scene.remove(suspect);
+  if ($("#selectable-objects > option").length > 0) {
+    $("#selectable-objects").val($("#selectable-objects > option").last().val());
+    switchFocus();
+  } else {
+    suspect = null;
   }
 }
 
@@ -720,6 +743,7 @@ function recolourHashBox() {
  * If the number is too big, a larger than 6-character string will be returned
  */
 function sixCharHex(num) {
+  num = isNaN(num) ? 0 : num;
   var returnString = num.toString(16);
   if (returnString.length < 6) {
     return "0".repeat(6 - returnString.length) + returnString;
