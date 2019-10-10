@@ -775,7 +775,7 @@ Describe any innovations in the particular image (e.g. computer generated movies
 One way to confirm that a movie is innovative in this area is if it has won an award for the graphics software.
 
 To show the basics of computer graphics,
-try putting a few objects in a particular arrangement (e.g. with the teapot sitting beside some cups),
+try putting a few objects in a particular arrangement (e.g. with the teapot sitting on an interesting table),
 and explain the transforms needed to achieve this, showing the matrices needed.
 
 Give simple examples of translation, scaling *and* rotation using your scene.
