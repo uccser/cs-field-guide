@@ -40,6 +40,42 @@ var isStartingShape;
 // check that the browser is webgl compatible
 if (! detector.Detector.webgl) detector.Detector.addGetWebGLMessage();
 
+/**
+ * Below is adapted from https://mathjs.org/examples/browser/angle_configuration.html.html
+ * This is used to configure mathjs to accept degrees as input for trig functions.
+ */
+
+let replacements = {};
+
+// the trigonometric functions that we are configuring to handle inputs of degrees instead of radians
+const fns1 = [
+  'sin', 'cos', 'tan', 'sec', 'cot', 'csc',
+  'asin', 'acos', 'atan', 'atan2', 'acot', 'acsc', 'asec',
+  'sinh', 'cosh', 'tanh', 'sech', 'coth', 'csch',
+  'asinh', 'acosh', 'atanh', 'acoth', 'acsch', 'asech',
+];
+
+fns1.forEach(function(name) {
+  const fn = mathjs[name]; // the original function
+
+  const fnNumber = function (x) {
+    // convert from degrees to radians
+    return fn(x * (Math.PI / 180));
+  }
+
+  // create a typed-function which check the input types
+  replacements[name] = mathjs.typed(name, {
+    'number': fnNumber,
+    'Array | Matrix': function (x) {
+      return mathjs.map(x, fnNumber);
+    }
+  });
+});
+
+// import all replacements into math.js, override existing trigonometric functions
+mathjs.import(replacements, {override: true});
+/////////////////////////////// End of adapted file ///////////////////////////////
+
 // only show equations once they are rendered
 // URL for mathjax script loaded from CDN
 var mjaxURL  = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML,Safe.js';
@@ -85,6 +121,9 @@ $(document).ready(function () {
 
   $("#add-object").click(newObject);
   $("#apply-transformation").click(applyTransformation);
+
+  $('.matrix-row input').on('keyup bind cut copy paste', validateInput);
+  $('.vector-row input').on('keyup bind cut copy paste', validateInput);
 
   $("#colour-input").val('');
   $("#name-input").val('');
@@ -697,6 +736,31 @@ function getRandomInt(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+/**
+ * Checks user input as they are typing into the matrices.
+ * Highlights input box red if the input is invalid and disables the apply button.
+ */
+function validateInput() {
+  var input = $(this).val();
+  var success = false;
+  try {
+    inputEvaluated = mathjs.eval(input);
+    mathjs.number(inputEvaluated);
+    success = true;
+  }
+  catch {
+    $(this).addClass('input-error');
+    $('#apply-transformation').prop('disabled', true);
+  }
+  if (success) {
+    $(this).removeClass('input-error');
+  }
+  // if there are no input errors, enable apply button
+  if ($('.input-error').length == 0) {
+    $('#apply-transformation').prop('disabled', false);
+  }
 }
 
 /**
