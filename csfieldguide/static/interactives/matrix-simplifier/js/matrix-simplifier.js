@@ -475,7 +475,12 @@ function dismissEquation() {
 function editEquation() {
   eqtnToEdit = $(this).next().next(); // div of matrix/vector to edit
   if (eqtnToEdit.hasClass('matrix')) {
+    // replace add button with edit button in modal
     orderIndex = eqtnToEdit.attr('data-matrix-order');
+    // get mathjs matrix
+    // convert to array
+    // populate modal values
+    // render new matrix
     // update matrix arrays
 
   } else { //vector
