@@ -18,8 +18,10 @@ The interactive has four modes, defined by url parameters:
 ## Licences
 
 This interactive uses [mathjs](https://github.com/josdejong/mathjs), [three.js](https://github.com/mrdoob/three.js/), [sprintf-js](https://github.com/alexei/sprintf.js) and [MathJax](https://github.com/mathjax/MathJax).
-This interactive also uses example code from three.js, `TeapotBufferGeometry.js`, which is stored in `static/js/third-party/threejs/`.
 Licences for these can be found in `LICENCE-THIRD-PARTY`, with full copies available in the `third_party_licences` directory.
+
+This interactive also uses example code from three.js: `TeapotBufferGeometry.js` and `Detector.js` are stored in `static/js/third-party/threejs/`; and `three-orbit-controls` is loaded from NPM.
+All three files are used under the same three.js licence.
 
 Note that MathJax is loaded from a CDN in `base.html`.
 
