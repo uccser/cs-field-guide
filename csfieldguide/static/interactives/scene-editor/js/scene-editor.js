@@ -532,8 +532,6 @@ function setSuspect(object) {
   if (mode == "scene-creation") {
     $('#object-identifier').css({color: "#" + object.material.color.getHexString()});
   }
-
-  validateInput();
 }
 
 /**
@@ -623,6 +621,10 @@ function fillMatrices(isReset) {
     $('#vector-row-1').val(0);
     $('#vector-row-2').val(0);
   }
+
+  // Run the error-check
+  $('.matrix-row input').trigger('keyup');
+  $('.vector-row input').trigger('keyup');
 }
 
 /**
