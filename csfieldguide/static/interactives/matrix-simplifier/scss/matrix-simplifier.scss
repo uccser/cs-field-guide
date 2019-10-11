@@ -43,14 +43,19 @@
 
 
 #matrix-output,
-#vector-output{
+#vector-output {
   > span {
     display: inline !important;
   }
 }
 
-.close{
+.close {
   color: #7f7f7f;
+}
+
+.close:focus, .close:active {
+  outline: none !important;
+  box-shadow: none;
 }
 
 .dismiss-eqtn {

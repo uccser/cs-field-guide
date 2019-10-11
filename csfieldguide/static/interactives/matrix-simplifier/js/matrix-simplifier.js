@@ -52,12 +52,31 @@ m1 = mathjs.matrix([
 m2 = mathjs.matrix([[10,0,0],[0,10,0],[0,0,10]]);
 v1 = mathjs.matrix([[10], [0], [0]]);
 
-var matrices = [m1, m2];
-var vectors = [v1];
-
 // Arrays that will keep track of the order the matrices and vectors are in
 var currentMatricesOrder = [m1, m2];
 var currentVectorsOrder = [v1];
+
+m1String = [
+  ['cos(45)', '0', 'sin(45)'],
+  ['0', '1', '0'],
+  ['-sin(45)', '0', 'cos(45)']
+];
+m2String = [
+  ['10', '0', '0'],
+  ['0', '10', '0'],
+  ['0', '0', '10']
+]
+v1String = [
+  ['10'],
+  ['0'],
+  ['0']
+]
+// Arrays that will hold the string version of matrices and vectors.
+// Used for populating modal when editing a matrix or vector.
+// Needed because we don't want to display evaluated trig functions.
+// E.g we want to show cos(45) and not 0.71
+var matricesStringFormat = [m1String, m2String];
+var vectorsStringFormat = [v1String];
 
 
 // only show equations once they are rendered
@@ -73,7 +92,8 @@ $.getScript(mjaxURL, function() {
 $(document).ready(function() {
   $('#add-matrix-from-input').click(addMatrix);
   $('#add-vector-from-input').click(addVector);
-  $('.dismiss-eqtn').click(dismissEquation);
+  $('.dismiss-eqtn').on("click", dismissEquation);
+  $('.edit-eqtn').on("click", populateModalForEditing);
   $('.matrix-row input').on('keyup bind cut copy paste', validateInput);
   $('#matrix-modal').on('hidden.bs.modal', resetModalMatrices);
   $('#vector-modal').on('hidden.bs.modal', resetModalMatrices);
@@ -88,8 +108,9 @@ function addMatrix() {
   matrixArrayMath = getMatrix(true);
   // inputs remain as strings for display
   matrixArrayString = getMatrix(false);
+  matricesStringFormat.push(matrixArrayString);
   matrix = mathjs.matrix(matrixArrayMath); // convert to mathjs matrix so we can do calculations
-  matrices.push(matrix);
+  // matrices.push(matrix);
   currentMatricesOrder.push(matrix);
   matrixString = formatMatrix(matrixArrayString, ROW_TEMPLATE);
   appendInput('matrix', matrixString);
@@ -113,8 +134,9 @@ function addVector() {
     [$('#vector-row-1').val()],
     [$('#vector-row-2').val()]
   ];
+  vectorsStringFormat.push(vectorArrayString);
   vector = mathjs.matrix(vectorArrayMath); // convert to mathjs matrix so we can do caluclations
-  vectors.push(vector);
+  // vectors.push(vector);
   currentVectorsOrder.push(vector);
   vectorString = sprintf(
     MATRIX_TEMPLATE,
@@ -136,25 +158,30 @@ function appendInput(type, inputHtml) {
   var $closeButton = $('<button type="button" class="close dismiss-eqtn" aria-label="Close">');
   $closeButton.append($('<span aria-hidden="true">&times;</span>'));
   var $editButton = $('<button type="button" class="close edit-eqtn" aria-label="Edit">');
-  $editButton.append(PENCIL_SVG);
+  $editButton.append(PENCIL_SVG.clone());
   $newContainerDiv.append($closeButton);
   $newContainerDiv.append($editButton);
   $newInputDiv.html(inputHtml);
   $newContainerDiv.append($newInputDiv);
   $('#' + type + '-input-container').append($newContainerDiv);
-  // add event handler for close button
-  $closeButton.click(dismissEquation);
+  // add event handlers for close and edit buttons
+  $closeButton.on("click", dismissEquation);
+  $editButton.on("click", populateModalForEditing);
   if (type == 'vector') {
-    var vectorNum = vectors.length - 1;
+    var vectorNum = currentVectorsOrder.length - 1;
     $closeButton.attr('id', 'close-vector-' + vectorNum);
     $editButton.attr('id', 'edit-vector-' + vectorNum);
+    $editButton.attr('data-toggle', 'modal');
+    $editButton.attr('data-target', '#vector-modal');
     $newInputDiv.attr('id', 'vector-' + vectorNum);
     $newInputDiv.attr('data-vector-order', currentVectorsOrder.length - 1);
     MathJax.Hub.Queue(["Typeset", MathJax.Hub, 'vector-' + vectorNum]); // typeset the new vector
   } else {
-    var matrixNum = matrices.length - 1;
+    var matrixNum = currentMatricesOrder.length - 1;
     $closeButton.attr('id', 'close-matrix-' + matrixNum);
     $editButton.attr('id', 'edit-matrix-' + matrixNum);
+    $editButton.attr('data-toggle', 'modal');
+    $editButton.attr('data-target', '#matrix-modal');
     $newInputDiv.attr('id', 'matrix-' + matrixNum);
     $newInputDiv.attr('data-matrix-order', currentMatricesOrder.length - 1);
     MathJax.Hub.Queue(["Typeset", MathJax.Hub, 'matrix-' + matrixNum]); // typeset the new matrix
@@ -246,6 +273,15 @@ function resetModalMatrices() {
   // remove red borders on inputs that had errors and enable add button
   $('.matrix-row input').removeClass('input-error');
   $('.add-from-input').prop('disabled', false);
+
+  // make add button the default and hide edit button
+  $("#add-matrix-from-input").removeClass("d-none");
+  $("#update-matrix").addClass("d-none");
+  $("#add-vector-from-input").removeClass("d-none");
+  $("#update-vector").addClass("d-none");
+  // change title back to add a matrix/vector
+  $('#matrix-modal-title').html(gettext("Add a matrix"));
+  $('#vector-modal-title').html(gettext("Add a vector"));
 }
 
 
@@ -377,9 +413,14 @@ $(function() {
     if (eqtnDiv.hasClass('matrix')) {
       var matrixOrder = eqtnDiv.attr('data-matrix-order');
 
+      // swapping in the array that holds mathjs objects
       var tmp = currentMatricesOrder[matrixOrder];
       currentMatricesOrder[matrixOrder] = currentMatricesOrder[siblingOrder];
       currentMatricesOrder[siblingOrder] = tmp;
+      // swapping in the array that holds string objects
+      var tmp = matricesStringFormat[matrixOrder];
+      matricesStringFormat[matrixOrder] = matricesStringFormat[siblingOrder];
+      matricesStringFormat[siblingOrder] = tmp;
       // swap data-order attributes
       eqtnDiv.attr('data-matrix-order', siblingOrder);
       siblingDiv.attr('data-matrix-order', matrixOrder);
@@ -387,11 +428,15 @@ $(function() {
       // vector
       var vectorOrder = eqtnDiv.attr('data-vector-order');
 
+      // swapping in the array that holds mathjs objects
       var tmp = currentVectorsOrder[vectorOrder];
       currentVectorsOrder[vectorOrder] = currentVectorsOrder[siblingOrder];
       currentVectorsOrder[siblingOrder] = tmp;
+      // swapping in the array that holds string objects
+      var tmp = vectorsStringFormat[matrixOrder];
+      vectorsStringFormat[matrixOrder] = vectorsStringFormat[siblingOrder];
+      vectorsStringFormat[siblingOrder] = tmp;
       // swap data-order attributes
-
       eqtnDiv.attr('data-vector-order', siblingOrder);
       siblingDiv.attr('data-vector-order', vectorOrder);
     }
@@ -437,11 +482,12 @@ function showEquations() {
  */
 function dismissEquation() {
   eqtnToRemove = $(this).next().next(); // div of matrix/vector to remove
-  console.log(eqtnToRemove)
   if (eqtnToRemove.hasClass('matrix')) {
     orderIndex = eqtnToRemove.attr('data-matrix-order');
     // remove from order array
     currentMatricesOrder.splice(orderIndex, 1);
+    // remove from string array
+    matricesStringFormat.splice(orderIndex, 1);
     // remove DOM element
     eqtnToRemove.parent().remove();
     // update data-order attributes
@@ -456,6 +502,8 @@ function dismissEquation() {
     orderIndex = eqtnToRemove.attr('data-vector-order');
     // remove from order array
     currentVectorsOrder.splice(orderIndex, 1);
+    // remove from string array
+    vectorsStringFormat.splice(orderIndex, 1);
     // remove DOM element
     eqtnToRemove.parent().remove();
     // update data-order attributes
@@ -472,22 +520,105 @@ function dismissEquation() {
 }
 
 
-function editEquation() {
-  eqtnToEdit = $(this).next().next(); // div of matrix/vector to edit
+/**
+ * Populates modal with values of matrix/vector that is to be edited
+ */
+function populateModalForEditing() {
+  eqtnToEdit = $(this).next(); // div of matrix/vector to edit
   if (eqtnToEdit.hasClass('matrix')) {
+    $('#matrix-modal-title').html(gettext("Update matrix"));
     // replace add button with edit button in modal
+    $("#add-matrix-from-input").addClass("d-none");
+    $("#update-matrix").removeClass("d-none");
     orderIndex = eqtnToEdit.attr('data-matrix-order');
     // get mathjs matrix
+    matrix = matricesStringFormat[orderIndex];
     // convert to array
+    // matrixArray = matrixToArray(matrix);
     // populate modal values
-    // render new matrix
-    // update matrix arrays
+    $('#matrix-row-0-col-0').val(matrix[0][0]);
+    $('#matrix-row-0-col-1').val(matrix[0][1]);
+    $('#matrix-row-0-col-2').val(matrix[0][2]);
+  
+    $('#matrix-row-1-col-0').val(matrix[1][0]);
+    $('#matrix-row-1-col-1').val(matrix[1][1]);
+    $('#matrix-row-1-col-2').val(matrix[1][2]);
+  
+    $('#matrix-row-2-col-0').val(matrix[2][0]);
+    $('#matrix-row-2-col-1').val(matrix[2][1]);
+    $('#matrix-row-2-col-2').val(matrix[2][2]);
 
-  } else { //vector
+    // add event listener to edit button
+    $('#update-matrix').click(function() {
+      updateEquation(eqtnToEdit, orderIndex);
+    });
+  } else {
+    $('#vector-modal-title').html(gettext("Update vector"));
+    $("#add-vector-from-input").addClass("d-none");
+    $("#update-vector").removeClass("d-none");
     orderIndex = eqtnToEdit.attr('data-vector-order');
-    // update vector arrays
+    // get mathjs matrix
+    vector = vectorsStringFormat[orderIndex];
+    // convert to array
+    // vectorArray = matrixToArray(vector);
+    // populate modal values
+    $('#vector-row-0').val(vector[0]);
+    $('#vector-row-1').val(vector[1]);
+    $('#vector-row-2').val(vector[2]);
+    // add event listener to edit button
+    $('#update-vector').click(function() {
+      updateEquation(eqtnToEdit, orderIndex);
+    });
   }
-  // re-calculate and show output
+}
+
+
+/**
+ * Updates matrix/vector with new values
+ */
+function updateEquation(eqtnDiv, orderIndex) {
+  if (eqtnDiv.hasClass('matrix')) {
+    // inputs get evaluated as math
+    matrixArrayMath = getMatrix(true);
+    // inputs remain as strings for display
+    matrixArrayString = getMatrix(false);
+    matricesStringFormat[orderIndex] = matrixArrayString;
+    // convert to mathjs matrix so we can do calculations
+    matrix = mathjs.matrix(matrixArrayMath);
+    currentMatricesOrder[orderIndex] = matrix;
+    matrixString = formatMatrix(matrixArrayString, ROW_TEMPLATE);
+    // hide div until math has been typeset
+    eqtnDiv.addClass("d-none")
+    eqtnDiv.html(matrixString);
+  } else {
+    // inputs get evaluated as math
+    vectorArrayMath = [
+      [mathjs.eval($('#vector-row-0').val())],
+      [mathjs.eval($('#vector-row-1').val())],
+      [mathjs.eval($('#vector-row-2').val())]
+    ];
+    // inputs remain as strings for display
+    vectorArrayString = [
+      [$('#vector-row-0').val()],
+      [$('#vector-row-1').val()],
+      [$('#vector-row-2').val()]
+    ];
+    vectorsStringFormat[orderIndex] = vectorArrayString;
+    // convert to mathjs matrix so we can do caluclations
+    vector = mathjs.matrix(vectorArrayMath);
+    currentVectorsOrder[orderIndex] = vector;
+    vectorString = sprintf(
+      MATRIX_TEMPLATE,
+      vectorArrayString[0],
+      vectorArrayString[1],
+      vectorArrayString[2]
+    );
+    // hide div until math has been typeset
+    eqtnDiv.addClass("d-none")
+    eqtnDiv.html(vectorString);
+  }
+  MathJax.Hub.Queue(["Typeset", MathJax.Hub, eqtnDiv[0]]); // typeset the updated equation
+  eqtnDiv.removeClass("d-none");
   showOutput();
 }
 
