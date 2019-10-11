@@ -110,7 +110,6 @@ function addMatrix() {
   matrixArrayString = getMatrix(false);
   matricesStringFormat.push(matrixArrayString);
   matrix = mathjs.matrix(matrixArrayMath); // convert to mathjs matrix so we can do calculations
-  // matrices.push(matrix);
   currentMatricesOrder.push(matrix);
   matrixString = formatMatrix(matrixArrayString, ROW_TEMPLATE);
   appendInput('matrix', matrixString);
@@ -136,7 +135,6 @@ function addVector() {
   ];
   vectorsStringFormat.push(vectorArrayString);
   vector = mathjs.matrix(vectorArrayMath); // convert to mathjs matrix so we can do caluclations
-  // vectors.push(vector);
   currentVectorsOrder.push(vector);
   vectorString = sprintf(
     MATRIX_TEMPLATE,
@@ -531,10 +529,8 @@ function populateModalForEditing() {
     $("#add-matrix-from-input").addClass("d-none");
     $("#update-matrix").removeClass("d-none");
     orderIndex = eqtnToEdit.attr('data-matrix-order');
-    // get mathjs matrix
+    // get matrix in string form
     matrix = matricesStringFormat[orderIndex];
-    // convert to array
-    // matrixArray = matrixToArray(matrix);
     // populate modal values
     $('#matrix-row-0-col-0').val(matrix[0][0]);
     $('#matrix-row-0-col-1').val(matrix[0][1]);
@@ -557,10 +553,8 @@ function populateModalForEditing() {
     $("#add-vector-from-input").addClass("d-none");
     $("#update-vector").removeClass("d-none");
     orderIndex = eqtnToEdit.attr('data-vector-order');
-    // get mathjs matrix
+    // get matrix in string form
     vector = vectorsStringFormat[orderIndex];
-    // convert to array
-    // vectorArray = matrixToArray(vector);
     // populate modal values
     $('#vector-row-0').val(vector[0]);
     $('#vector-row-1').val(vector[1]);
