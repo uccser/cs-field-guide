@@ -13,6 +13,7 @@
 .draggable {
   touch-action: none;
   cursor: grab;
+  position: relative;
   &.gu-mirror {
     cursor: grabbing;
     opacity: 1 !important;
@@ -25,11 +26,30 @@
   width: 70%;
 }
 
-// make matrices wider for small devices
-@include media-breakpoint-down(sm) {
+// make matrices wider and enlarge close and edit buttons
+// for medium and smaller devices
+@include media-breakpoint-down(md) {
   .content {
     background-color: #fff;
     width: 100%;
+  }
+
+  .dismiss-eqtn {
+    font-size: 2.5rem !important;
+
+    span {
+      color: #7f7f7f;
+    }
+  }
+
+  .edit-eqtn {
+    top: 2.5rem !important;
+
+    svg {
+      height: 20pt;
+      width: 20pt;
+      fill: #7f7f7f;
+    }
   }
 }
 
@@ -61,13 +81,14 @@
 .dismiss-eqtn {
   top: 0;
   right: 0.2rem;
-  position: relative;
+  font-size: 1.8rem;
+  position: absolute;
 }
 
 .edit-eqtn {
-  top: 1.25rem;
-  right: -0.7rem;
-  position: relative;
+  top: 1.5rem;
+  right: 0.1rem;
+  position: absolute;
 }
 
 // Copy bootstrap helper class but add !important
