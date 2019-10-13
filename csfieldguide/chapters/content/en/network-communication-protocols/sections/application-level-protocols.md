@@ -1,6 +1,6 @@
 # Application layer protocols - HTTP, IRC
 
-The URL for the home site of this book is http://www.csfieldguide.org.nz.
+The URL for the home site of this book is https://www.csfieldguide.org.nz.
 Ask a few friends what the "http" stands for &ndash; they have probably seen it thousands of times... do they know what it is?
 This section covers high level protocols such as HTTP and IRC, what they can do and how you can use them (hint: you’re already using HTTP right now).
 
@@ -70,7 +70,7 @@ There are nine *types* of requests that HTTP supports, and the most common are o
 A GET request returns some text that describes the thing you’re asking for.
 Like above, you ask for a can of soda, you get a can of soda.
 
-A HEAD request returns what you’d get if you did a GET request.
+A HEAD request returns information about what you’d get if you did a GET request.
 It’s like this:
 
 > You: "Can I see your can of soda please?"
@@ -78,7 +78,7 @@ It’s like this:
 > Shop Keeper: "Sure, here’s the can of soda you’d get." \*Hands you a photo of a can of soda\*
 
 What’s neat about HTTP is that it allows you to also modify the contents of the server.
-Say you’re now also a representative for the soda company, and you’d like to re-stock some shelves.
+Say you’re now also a representative for the soda company, and you’d like to restock some shelves.
 
 A POST request allows you to send information in the other direction.
 This request allows you to replace a resource on the server with one you supply.
