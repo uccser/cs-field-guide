@@ -264,7 +264,7 @@ function resetModalMatrices() {
   $('#matrix-row-2-col-1').val(0);
   $('#matrix-row-2-col-2').val(1);
 
-  $('#vector-row-0').val(1);
+  $('#vector-row-0').val(0);
   $('#vector-row-1').val(0);
   $('#vector-row-2').val(0);
 
@@ -288,7 +288,7 @@ function resetModalMatrices() {
  * Returns array containing result matrix and vector.
  */
 function calculateOutput() {
-  var matrixResult = mathjs.zeros(3, 3);
+  var matrixResult = mathjs.identity(3);
   var vectorResult = mathjs.zeros(3, 1);
 
   if (currentMatricesOrder.length == 1) {
