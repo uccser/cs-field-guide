@@ -6,13 +6,14 @@ University of Canterbury, New Zealand
 Subtitle file for the video "Computer Science Field Guide: Computer Graphics"
 Author: Alasdair Smith
 Date: 10/02/2017
+Modified by: Courtney Bracefield on 15/10/2019
 
 00:00.000 --> 00:04.800
 Computer Graphics is used to create all sorts of images.
 
 00:06.200 --> 00:10.600
 But at the end of the day they're just
-<00.08.000>pixels that have been given a certain colour value.
+pixels that have been given a certain colour value.
 
 00:10.600 --> 00:13.000
 Computer Scientists who work in Computer Graphics
@@ -31,7 +32,7 @@ For example: we need to think about an object's rotation;
 its position in 3D space;
 
 00:32.000 --> 00:33.600
-and its size.<00:33.200> [quack]
+and its size. [quack]
 
 00:33.600 --> 00:38.000
 This also involves specifying colours mathematically,
@@ -41,7 +42,7 @@ and working out what objects should
 appear in front of others.
 
 00:45.600 --> 00:50.000
-And how to add shadows,<00:47:600> and reflections.
+And how to add shadows, and reflections.
 
 00:52.000 --> 00:58.000
 Even working out which pixels to use

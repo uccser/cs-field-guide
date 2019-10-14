@@ -6,6 +6,7 @@ University of Canterbury, New Zealand
 Subtitle file for the video "Computer Science Field Guide: Tractability"
 Author: Alasdair Smith
 Date: 15/02/2017
+Modified by: Courtney Bracefield on 15/10/2019
 
 
 00:00.000 --> 00:02.400
@@ -21,6 +22,7 @@ and I've worked out the best way of delivering them.
 I calculated how long it would take to visit:
 
 NOTE
+
 The next section transitions very rapidly so could be difficult to read.
 The names Alice, Bob, Carol and David have been shortened to
 persons A,B,C and D
@@ -43,7 +45,7 @@ or A, C, B, D.
 NOTE end of section
 
 00:20.000 --> 00:22.400
-[<i>sigh</i>] You get the idea.
+[sigh] You get the idea.
 
 00:22.400 --> 00:26.600
 With four friends there are 24 orders I would have to try.
@@ -64,8 +66,8 @@ I actually have 35 friends,
 but to invite them all I'd have to try
 
 00:38.800 --> 00:42.600
-ten thousand <00:00:39.400>million <00:00:39.800>million <00:00:40.200>million
-<00:00:40.800>million <00:00:41.400>million <00:00:41.800>million (rounded)
+ten thousand million million million
+million million million (rounded)
 
 00:42.600 --> 00:44.200
 different combinations.
@@ -74,7 +76,9 @@ different combinations.
 In fact, if a dinosaur had started this calculation
 using the fastest computer currently available,
 
-NOTE added 'currently' in the above line for clarity
+NOTE
+
+added 'currently' in the above line for clarity
 
 00:49.600 --> 00:52.800
 it would still only be a fraction of a percent
@@ -91,7 +95,9 @@ in Computer Science that are difficult,
 01:02.800 --> 01:04.800
 and nobody's found out a good way of programming,
 
-NOTE changed 'there is' to 'there are' in above line
+NOTE
+
+changed 'there is' to 'there are' in above line
 
 01:04.800 --> 01:07.600
 such as: cutting shapes out of material;
@@ -106,6 +112,7 @@ working out timetables;
 even solving large Sudoku puzzles.
 
 NOTE
+
 not sure what was said between 'Solving' and 'Sudoku',
 'large' is my best guess
 
@@ -114,11 +121,7 @@ It's also a good thing that these problems exist,
 here's an example:
 
 01:20.000 --> 01:22.400
-Most internet security is based on <i>Security Keys</i>,
-
-NOTE
-YouTube doesn't seem to recognise <i> when uploading the file
-but it does after it is published
+Most internet security is based on Security Keys,
 
 01:22.400 --> 01:25.400
 which are a product of two large prime numbers,
@@ -126,8 +129,6 @@ which are a product of two large prime numbers,
 01:25.400 --> 01:28.600
 which will take billions of years
 to figure out the factors of.
-
-NOTE italics in above 'security keys'
 
 01:28.600 --> 01:30.800
 If you don't believe me, try this:
