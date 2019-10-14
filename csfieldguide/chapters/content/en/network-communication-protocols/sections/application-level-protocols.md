@@ -24,7 +24,7 @@ It’s a perfectly safe activity.
 
 {panel end}
 
-The HyperText Transfer Protocol (HTTP) is the most common protocol in use on the internet.
+The {glossary-link term="http"}HyperText Transfer Protocol{glossary-link end} (HTTP) is the most common protocol in use on the internet.
 The protocol’s job is to transfer [HyperText](https://en.wikipedia.org/wiki/Hypertext) (such as HTML) from a server to your computer.
 It’s doing that right now.
 You just loaded the CS Field Guide from the servers where it is hosted.
@@ -215,9 +215,9 @@ Just tell them what channel to join.
 Internet Relay Chat (IRC) is a system that lets you transfer messages in the form of text.
 It’s essentially a chat protocol.
 The system uses a client-server model.
-Clients are chat programs installed on a user’s computer that connect to a central server.
+{glossary-link term="client"}Clients{glossary-link end} are chat programs installed on a user’s computer that connect to a central {glossary-link term="server"}server{glossary-link end}.
 The clients communicate the message to the central server which in turn relays that to other clients.
-The protocol was originally designed for group communication in a discussion forum, called *channels*.
+The protocol was originally designed for group communication in discussion forums, called *channels*.
 IRC also supports one-to-one communication via *private messages*.
 It is also capable of file and data transfer too.
 
@@ -231,7 +231,7 @@ A server hosts many channels, and you can choose which one to join.
 
 Channels usually form around a particular topic, such as Python, Music, TV show fans, Gaming or Hacking.
 Convention dictates that channel names start with one or two # symbols, such as #python or ##TheBigBangTheory.
-*Conventions* are different to protocols in that they aren’t actually enforced by the protocol, but people choose to use it that way.
+{glossary-link term="convention"}Conventions{glossary-link end} are different to protocols in that they aren’t actually enforced by the protocol, but people choose to use it that way.
 
 To get started with IRC, first you should get a client.
 A client is a program that let's you connect.
