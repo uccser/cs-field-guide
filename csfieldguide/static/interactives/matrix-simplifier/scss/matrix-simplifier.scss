@@ -83,12 +83,14 @@
   right: 0.2rem;
   font-size: 1.8rem;
   position: absolute;
+  z-index: 2;
 }
 
 .edit-eqtn {
   top: 1.5rem;
   right: 0.1rem;
   position: absolute;
+  z-index: 2;
 }
 
 // Copy bootstrap helper class but add !important
