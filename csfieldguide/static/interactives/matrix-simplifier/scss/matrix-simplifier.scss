@@ -6,13 +6,14 @@
 .matrix-row input {
   display: inline-block;
   width: 20%;
-  margin-bottom: 3px;
+  margin-bottom: 0.2rem;
   font-family: monospace;
 }
 
 .draggable {
   touch-action: none;
   cursor: grab;
+  position: relative;
   &.gu-mirror {
     cursor: grabbing;
     opacity: 1 !important;
@@ -25,11 +26,30 @@
   width: 70%;
 }
 
-// make matrices wider for small devices
-@include media-breakpoint-down(sm) {
+// make matrices wider and enlarge close and edit buttons
+// for medium and smaller devices
+@include media-breakpoint-down(md) {
   .content {
     background-color: #fff;
     width: 100%;
+  }
+
+  .dismiss-eqtn {
+    font-size: 2.5rem !important;
+
+    span {
+      color: #7f7f7f;
+    }
+  }
+
+  .edit-eqtn {
+    top: 2.5rem !important;
+
+    svg {
+      height: 20pt;
+      width: 20pt;
+      fill: #7f7f7f;
+    }
   }
 }
 
@@ -43,16 +63,34 @@
 
 
 #matrix-output,
-#vector-output{
+#vector-output {
   > span {
     display: inline !important;
   }
 }
 
+.close {
+  color: #000;
+}
+
+.close:focus, .close:active {
+  outline: none !important;
+  box-shadow: none;
+}
+
 .dismiss-eqtn {
   top: 0;
-  right: 3px;
-  position: relative;
+  right: 0.2rem;
+  font-size: 1.8rem;
+  position: absolute;
+  z-index: 2;
+}
+
+.edit-eqtn {
+  top: 1.5rem;
+  right: 0.1rem;
+  position: absolute;
+  z-index: 2;
 }
 
 // Copy bootstrap helper class but add !important
@@ -63,12 +101,12 @@
 }
 
 .input-error {
-  border: 1px solid red;
+  border: 0.0625rem solid red;
 }
 
 .input-error:focus {
   border-color: #FF0000;
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6);
+  box-shadow: inset 0 0.0625rem 0.0625rem rgba(0, 0, 0, 0.075), 0 0 0.5rem rgba(255, 0, 0, 0.6);
 }
 
 .result-step {
