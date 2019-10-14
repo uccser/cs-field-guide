@@ -6,6 +6,7 @@ const OrbitControls = require('three-orbit-controls')(THREE);
 const detector = require('../../../js/third-party/threejs/Detector.js');
 const sprintf = require('sprintf-js').sprintf;
 const urlParameters = require('../../../js/third-party/url-parameters.js');
+const TeapotBufferGeometry = require('../../../js/third-party/threejs/TeapotBufferGeometry.js')(THREE);
 
 const image_base_path = base_static_path + 'interactives/scene-editor/img/bridge-';
 const SCALE = 100; // Multiplier for translation distances
@@ -13,6 +14,10 @@ const CAMERA_POINTERID = "thisobjectmarksthepointthecameraorbitsaround" // Longe
 
 const ROW_TEMPLATE = "%s & %s & %s";
 const MATRIX_TEMPLATE = "\\begin{bmatrix} %s \\\\ %s \\\\ %s \\end{bmatrix}";
+
+const COLOUR_AXIS_X = 0xFF0000;
+const COLOUR_AXIS_Y = 0x00FF00;
+const COLOUR_AXIS_Z = 0x0000FF;
 
 var controls, camera, scene, renderer;
 var cameraCube, sceneCube;
@@ -26,6 +31,7 @@ var screenObjectTransforms = {};
 var numSpheres = 0;
 var numCubes = 0;
 var numCones = 0;
+var numTeapots = 0;
 var ID = 0;
 
 var mode;
@@ -33,6 +39,42 @@ var isStartingShape;
 
 // check that the browser is webgl compatible
 if (! detector.Detector.webgl) detector.Detector.addGetWebGLMessage();
+
+/**
+ * Below is adapted from https://mathjs.org/examples/browser/angle_configuration.html.html
+ * This is used to configure mathjs to accept degrees as input for trig functions.
+ */
+
+let replacements = {};
+
+// the trigonometric functions that we are configuring to handle inputs of degrees instead of radians
+const fns1 = [
+  'sin', 'cos', 'tan', 'sec', 'cot', 'csc',
+  'asin', 'acos', 'atan', 'atan2', 'acot', 'acsc', 'asec',
+  'sinh', 'cosh', 'tanh', 'sech', 'coth', 'csch',
+  'asinh', 'acosh', 'atanh', 'acoth', 'acsch', 'asech',
+];
+
+fns1.forEach(function(name) {
+  const fn = mathjs[name]; // the original function
+
+  const fnNumber = function (x) {
+    // convert from degrees to radians
+    return fn(x * (Math.PI / 180));
+  }
+
+  // create a typed-function which check the input types
+  replacements[name] = mathjs.typed(name, {
+    'number': fnNumber,
+    'Array | Matrix': function (x) {
+      return mathjs.map(x, fnNumber);
+    }
+  });
+});
+
+// import all replacements into math.js, override existing trigonometric functions
+mathjs.import(replacements, {override: true});
+/////////////////////////////// End of adapted file ///////////////////////////////
 
 // only show equations once they are rendered
 // URL for mathjax script loaded from CDN
@@ -43,18 +85,18 @@ $.getScript(mjaxURL);
 rescaleCanvas();
 init();
 animate();
-onWindowResize();
+rescaleCanvas();
 
 $(document).ready(function () {
   // mode = transform | translation | multiple | (default) scene-creation
   mode = urlParameters.getUrlParameter('mode');
   if (mode == "transform") {
     $("#matrix-container").removeClass('d-none');
-    $("#eqtn-title").html(gettext('Transformation for sphere:'));
+    $("#eqtn-title").html(gettext('Transformation:'));
     $("#equation-container").removeClass('d-none');
   } else if (mode == "translation") {
     $("#vector-container").removeClass('d-none');
-    $("#eqtn-title").html(gettext('Translation for sphere:'));
+    $("#eqtn-title").html(gettext('Translation:'));
     $("#equation-container").removeClass('d-none');
   } else if (mode == "multiple") {
     $("#matrix-container").removeClass('d-none');
@@ -72,6 +114,7 @@ $(document).ready(function () {
     $("#equation-container").removeClass('d-none').addClass('col-md-8');
     $("#eqtn-title").addClass('d-none');
     $("#scene-creation-title-area").removeClass('d-none');
+    $("#delete-button").removeClass('d-none');
   }
 
   $("#selectable-objects").on('change', switchFocus);
@@ -79,6 +122,10 @@ $(document).ready(function () {
 
   $("#add-object").click(newObject);
   $("#apply-transformation").click(applyTransformation);
+  $("#delete-button").click(deleteSuspect);
+
+  $('.matrix-row input').on('keyup bind cut copy paste', validateInput);
+  $('.vector-row input').on('keyup bind cut copy paste', validateInput);
 
   $("#colour-input").val('');
   $("#name-input").val('');
@@ -97,8 +144,11 @@ function init() {
   scene = new THREE.Scene();
   sceneCube = new THREE.Scene();
   // Lights
-  var ambient = new THREE.AmbientLight( 0xffffff );
+  var ambient = new THREE.AmbientLight( 0xffffff, 0.3 );
   scene.add( ambient );
+  var sunlight = new THREE.DirectionalLight( 0xffffff, 1 )
+  sunlight.position.set(50, 100, 300); // Approximate vector towards sun in background image
+  scene.add( sunlight );
   // Textures
   var urls = [ 
     image_base_path + "posx.jpg", image_base_path + "negx.jpg",
@@ -127,10 +177,10 @@ function init() {
   // Skybox
   cubeMesh = new THREE.Mesh( new THREE.BoxBufferGeometry( 100, 100, 100 ), cubeMaterial );
   sceneCube.add( cubeMesh );
-  // Sphere object
+  // Initial object
   isStartingShape = true;
-  var sphereMaterial = new THREE.MeshLambertMaterial( { envMap: textureCube } );
-  addObject('sphere', sphereMaterial, '');
+  var material = new THREE.MeshLambertMaterial( { envMap: textureCube } );
+  addObject('teapot', material, '');
   // Camera orbit pointer
   addObject('tinyaxis', null, null);
   cameraPointer = scene.getObjectByName( CAMERA_POINTERID )
@@ -157,22 +207,7 @@ function init() {
   // Axes
   addAxes(size);
 
-  window.addEventListener( 'resize', onWindowResize, false );
-}
-
-/**
- * Rescales the scene to the size of the window
- * 
- * TEMPORARY: just rescales the canvas, keeping the 16:9 aspect ratio
- * TODO: Decide whether or not to stick to 16:9 and remove all the commented out stuff
- */
-function onWindowResize() {
-  rescaleCanvas();
-  // camera.aspect = window.innerWidth / window.innerHeight;
-  // camera.updateProjectionMatrix();
-  // cameraCube.aspect = window.innerWidth / window.innerHeight;
-  // cameraCube.updateProjectionMatrix();
-  // renderer.setSize( window.innerWidth, window.innerHeight );
+  window.addEventListener( 'resize', rescaleCanvas, false );
 }
 
 /**
@@ -237,14 +272,14 @@ function addAxes(size) {
   var posX = buildAxis(
     new THREE.Vector3( 0, 0, 0 ),
     new THREE.Vector3( size, 0, 0 ),
-    0xFF0000,
+    COLOUR_AXIS_X,
     false
   );
   // negative X axis
   var negX = buildAxis(
     new THREE.Vector3( 0, 0, 0 ),
     new THREE.Vector3( -size, 0, 0 ),
-    0xFF0000,
+    COLOUR_AXIS_X,
     true // ... we want this axis to be dashed
   );
 
@@ -252,14 +287,14 @@ function addAxes(size) {
   var posY = buildAxis(
     new THREE.Vector3( 0, 0, 0 ),
     new THREE.Vector3( 0, size, 0 ),
-    0x00FF00,
+    COLOUR_AXIS_Y,
     false
   );
   // negative Y axis
   var negY = buildAxis(
     new THREE.Vector3( 0, 0, 0 ),
     new THREE.Vector3( 0, -size, 0 ),
-    0x00FF00,
+    COLOUR_AXIS_Y,
     true // ... we want this axis to be dashed
   );
 
@@ -267,14 +302,14 @@ function addAxes(size) {
   var posZ = buildAxis(
     new THREE.Vector3( 0, 0, 0 ),
     new THREE.Vector3( 0, 0, size ),
-    0x0000FF,
+    COLOUR_AXIS_Z,
     false
   );
   // negative Z axis
   var negZ = buildAxis(
     new THREE.Vector3( 0, 0, 0 ),
     new THREE.Vector3( 0, 0, -size ),
-    0x0000FF,
+    COLOUR_AXIS_Z,
     true // ... we want this axis to be dashed
   );
 
@@ -367,6 +402,17 @@ function addObject(type, material, name) {
       name = null; // Name should always be null for this object as it will never be presented for user-manipulation
       object = createTinyaxisMesh();
       scene.add( object );
+      break;
+    case "teapot":
+      geometry = new TeapotBufferGeometry( 200 );
+      object = new THREE.Mesh( geometry, material );
+      scene.add( object );
+      numTeapots += 1;
+      if (name == '') {
+        object.name = gettext('Teapot ') + numTeapots;
+      } else {
+        object.name = name;
+      }
       break;
     default:
       return; // Not a valid shape
@@ -484,7 +530,28 @@ function setSuspect(object) {
   }
 
   if (mode == "scene-creation") {
-    $('#object-identifier').css({color: "#" + object.material.color.getHexString()}).html("&#x25D9;");
+    $('#object-identifier').css({color: "#" + object.material.color.getHexString()});
+  }
+}
+
+/**
+ * Removes the suspect from the scene, sets the most recently added object as the new suspect
+ */
+function deleteSuspect() {
+  if (suspect === null) {
+    return;
+  }
+  // Need to remove from: ID list, transforms list, user-facing selector, scene
+  var name = suspect.name;
+  $("#" + screenObjectIds[name]).remove();
+  delete screenObjectIds[name];
+  delete screenObjectTransforms[name];
+  scene.remove(suspect);
+  if ($("#selectable-objects > option").length > 0) {
+    $("#selectable-objects").val($("#selectable-objects > option").last().val());
+    switchFocus();
+  } else {
+    suspect = null;
   }
 }
 
@@ -554,6 +621,10 @@ function fillMatrices(isReset) {
     $('#vector-row-1').val(0);
     $('#vector-row-2').val(0);
   }
+
+  // Run the error-check
+  $('.matrix-row input').trigger('keyup');
+  $('.vector-row input').trigger('keyup');
 }
 
 /**
@@ -676,6 +747,7 @@ function recolourHashBox() {
  * If the number is too big, a larger than 6-character string will be returned
  */
 function sixCharHex(num) {
+  num = isNaN(num) ? 0 : num;
   var returnString = num.toString(16);
   if (returnString.length < 6) {
     return "0".repeat(6 - returnString.length) + returnString;
@@ -695,15 +767,138 @@ function getRandomInt(min, max) {
 }
 
 /**
+ * Checks user input as they are typing into the matrices.
+ * Highlights input box red if the input is invalid and disables the apply button.
+ */
+function validateInput() {
+  var input = $(this).val();
+  var success = false;
+  try {
+    inputEvaluated = mathjs.eval(input);
+    mathjs.number(inputEvaluated);
+    success = true;
+  }
+  catch {
+    $(this).addClass('input-error');
+    $('#apply-transformation').prop('disabled', true);
+  }
+  if (success) {
+    $(this).removeClass('input-error');
+  }
+  // if there are no input errors, enable apply button
+  if ($('.input-error').length == 0) {
+    $('#apply-transformation').prop('disabled', false);
+  }
+}
+
+/**
  * Returns the Mesh for a little xyz axis, to show the position the camera is orbiting
- * 
- * TODO (right now it just returns a red sphere as MVP)
- * https://threejsfundamentals.org/threejs/lessons/threejs-custom-geometry.html
  */
 function createTinyaxisMesh() {
+  var diameter = 50
+  var baseLength = 2000 + diameter;
+  var geometry = new THREE.Geometry();
+  geometry.vertices.push(
+    // central cube
+    new THREE.Vector3(-1 * diameter, diameter, diameter),           // 0
+    new THREE.Vector3(diameter, diameter, diameter),                // 1
+    new THREE.Vector3(-1 * diameter, diameter, -1 * diameter),      // 2
+    new THREE.Vector3(diameter, diameter, -1 * diameter),           // 3
+    new THREE.Vector3(-1 * diameter, -1 * diameter, diameter),      // 4
+    new THREE.Vector3(diameter, -1 * diameter, diameter),           // 5
+    new THREE.Vector3(-1 * diameter, -1 * diameter, -1 * diameter), // 6
+    new THREE.Vector3(diameter, -1 * diameter, -1 * diameter),      // 7
 
-  var material = new THREE.MeshLambertMaterial( {color: 0xff0000} )
-  var geometry = new THREE.SphereBufferGeometry( 200, 48, 24 );
+    // Z-axis branch ([0, 1, 4, 5] to [8, 9, 10, 11])
+    new THREE.Vector3(-1 * diameter, diameter, baseLength),         // 8
+    new THREE.Vector3(diameter, diameter, baseLength),              // 9
+    new THREE.Vector3(-1 * diameter, -1 * diameter, baseLength),    // 10
+    new THREE.Vector3(diameter, -1 * diameter, baseLength),         // 11
+
+    // x-axis branch ([1, 3, 5, 7] to [12, 13, 14, 15])
+    new THREE.Vector3(baseLength, diameter, diameter),              // 12
+    new THREE.Vector3(baseLength, diameter, -1 * diameter),         // 13
+    new THREE.Vector3(baseLength, -1 * diameter, diameter),         // 14
+    new THREE.Vector3(baseLength, -1 * diameter, -1 * diameter),    // 15
+
+    // y-axis branch ([0, 1, 2, 3] to [16, 17, 18, 19])
+    new THREE.Vector3(-1 * diameter, baseLength, diameter),         // 16
+    new THREE.Vector3(diameter, baseLength, diameter),              // 17
+    new THREE.Vector3(-1 * diameter, baseLength, -1 * diameter),    // 18
+    new THREE.Vector3(diameter, baseLength, -1 * diameter),         // 19
+  )
+  geometry.faces.push(
+    // Outward faces of the central cube (as triangles)
+    new THREE.Face3(2, 3, 7),   // -z facing
+    new THREE.Face3(2, 7, 6),
+    new THREE.Face3(0, 2, 6),   // -x facing
+    new THREE.Face3(0, 6, 4),
+    new THREE.Face3(5, 4, 6),   // -y facing
+    new THREE.Face3(5, 6, 7),
+
+    // Outward faces of the z-axis branch
+    new THREE.Face3(9, 8, 10),  // +z facing
+    new THREE.Face3(9, 10, 11),
+    new THREE.Face3(1, 9, 11),  // +x facing
+    new THREE.Face3(1, 11, 5),
+    new THREE.Face3(8, 0, 4),   // -x facing
+    new THREE.Face3(8, 4, 10),
+    new THREE.Face3(1, 0, 8),   // +y facing
+    new THREE.Face3(1, 8, 9),
+    new THREE.Face3(11, 10, 4), // -y facing
+    new THREE.Face3(11, 4, 5),
+
+    // Outward faces of the x-axis branch
+    new THREE.Face3(13, 12, 14), // +x facing
+    new THREE.Face3(13, 14, 15),
+    new THREE.Face3(12, 1, 5),   // +z facing
+    new THREE.Face3(12, 5, 14),
+    new THREE.Face3(3, 13, 15),  // -z facing
+    new THREE.Face3(3, 15, 7),
+    new THREE.Face3(13, 3, 1),   // +y facing
+    new THREE.Face3(13, 1, 12),
+    new THREE.Face3(7, 15, 14),  // -y facing
+    new THREE.Face3(7, 14, 5),
+
+    // Outward faces of y-axis branch
+    new THREE.Face3(19, 18, 16), // +y facing
+    new THREE.Face3(19, 16, 17),
+    new THREE.Face3(17, 16, 0),  // +z facing
+    new THREE.Face3(17, 0, 1),
+    new THREE.Face3(18, 19, 3),  // -z facing
+    new THREE.Face3(18, 3, 2),
+    new THREE.Face3(19, 17, 1),  // +x facing
+    new THREE.Face3(19, 1, 3),
+    new THREE.Face3(16, 18, 2),  // -x facing
+    new THREE.Face3(16, 2, 0),
+  )
+  var len = geometry.faces.length;
+  for (var i=0; i < len; i+=2) {
+    if (i < 6) {
+      // Central cube faces
+      if (i < 1) {
+        // -z face
+        geometry.faces[i].color = geometry.faces[i + 1].color = new THREE.Color(COLOUR_AXIS_Z);
+      } else if (i < 3) {
+        // -x face
+        geometry.faces[i].color = geometry.faces[i + 1].color = new THREE.Color(COLOUR_AXIS_X);
+      } else {
+        // -y face
+        geometry.faces[i].color = geometry.faces[i + 1].color = new THREE.Color(COLOUR_AXIS_Y);
+      }
+    } else if (i < 16) {
+      // z-axis branch
+      geometry.faces[i].color = geometry.faces[i + 1].color = new THREE.Color(COLOUR_AXIS_Z);
+    } else if (i < 26) {
+      // x-axis branch
+      geometry.faces[i].color = geometry.faces[i + 1].color = new THREE.Color(COLOUR_AXIS_X);
+    } else {
+      // y-axis branch
+      geometry.faces[i].color = geometry.faces[i + 1].color = new THREE.Color(COLOUR_AXIS_Y);
+    }
+  }
+
+  var material = new THREE.MeshBasicMaterial( {vertexColors: THREE.FaceColors} );
   var object = new THREE.Mesh( geometry, material );
   return object;
 }
