@@ -9,7 +9,7 @@ These protocols take different approaches to ensure data is delivered in an effe
 ## TCP
 
 TCP (Transmission Control Protocol) is one of the most important protocols on the internet.
-It breaks large messages up into *packets*.
+It breaks large messages up into {glossary-link term="packet"}packets{glossary-link end}.
 What is a packet?
 A packet is a segment of data that, when combined with other packets, make up a total message (something like a HTTP request, an email, an IRC message or a file like a picture or song being downloaded).
 For the rest of the section, we’ll look at how these are used to load an image from a website.
@@ -51,7 +51,7 @@ These problems are:
 - Packet delay (packets arrive out of order)
 - Packet corruption (the packet gets changed on the way)
 
-If we didn’t try fix these, the image wouldn’t load, bits would be missing, corrupted, or computer B might not even recognise what it is!
+If we didn’t try to fix these, the image wouldn’t load, bits would be missing, corrupted, or computer B might not even recognise what it is!
 
 {image file-path="img/chapters/corrupted-image.jpg" alt="Corrupted Image"}
 
@@ -197,9 +197,10 @@ Checksums are used for data integrity though, so they have some protection.
 It’s still a protocol because it has a formal packet structure.
 The packets still include destination and origin as well as the size of the packet.
 
-So do we even use such an unreliable protocol? Yes, but not for anything too important.
+So do we even use such an unreliable protocol?
+Yes, but not for anything too important.
 Files, messages, emails, web pages and other text based items use TCP, but things like streaming music, video, VOIP and so on use UDP.
 Maybe you’ve had a call on Skype that has been poor quality.
 Maybe the video flickers or the sound drops for a split second.
-That’s packets being lost.
+That’s the effect of packets being lost.
 However, you still get the overall picture and the conversation you’re having is successful.

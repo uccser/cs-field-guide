@@ -43,6 +43,7 @@ broken-link-checker:
   exclude-directories:
     - .git/
     - docs/build/
+    - third-party-licences/
   skip-urls:
     # Intentional broken links
     - https://www.google.com/teapot

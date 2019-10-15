@@ -1,0 +1,103 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div class="container">
+    <div class="row mt-5">
+      <div id="scene" class="col-12"></div>
+    </div>
+
+    <div class="row my-3">
+      <div id="equation-container" class="col-12 text-center d-none">
+        <h5 id="eqtn-title" class="heading-line heading-line-text"></h5>
+        <div id="scene-creation-title-area" class="row d-none heading-line">
+          <h5 id="scene-creation-title" class="col-4 offset-2 heading-line-text">{% trans "Target:" %}</h5>
+          <select id="selectable-objects" class="custom-select col-4 heading-line"></select>
+          <span id="object-identifier">&#x25D9;</span>
+        </div>
+        <div class="row d-flex justify-content-center">
+          <div id="matrix-container" class="matrix col-12 col-sm-6 text-center d-none">
+            <div class="matrix-row">
+              <input class="form-control text-center" id="matrix-row-0-col-0" value=1>
+              <input class="form-control text-center" id="matrix-row-0-col-1" value=0>
+              <input class="form-control text-center" id="matrix-row-0-col-2" value=0>
+            </div>
+            <div class="matrix-row">
+              <input class="form-control text-center" id="matrix-row-1-col-0" value=0>
+              <input class="form-control text-center" id="matrix-row-1-col-1" value=1>
+              <input class="form-control text-center" id="matrix-row-1-col-2" value=0>
+            </div>
+            <div class="matrix-row">
+              <input class="form-control text-center" id="matrix-row-2-col-0" value=0>
+              <input class="form-control text-center" id="matrix-row-2-col-1" value=0>
+              <input class="form-control text-center" id="matrix-row-2-col-2" value=1>
+            </div>
+          </div>
+          <span class="col-6 col-sm-1 plus-sign px-0 d-none">+</span>
+          <div id="vector-container" class="vector col-6 col-sm-2 d-none">
+            <div class="vector-row">
+              <input class="form-control text-center" id="vector-row-0" value=0>
+            </div>
+            <div class="vector-row">
+              <input class="form-control text-center" id="vector-row-1" value=0>
+            </div>
+            <div class="vector-row">
+              <input class="form-control text-center" id="vector-row-2" value=0>
+            </div>
+          </div>
+        </div>
+        <button id="apply-transformation" class="mt-2 mx-2 btn btn-primary">{% trans "Apply" %}</button>
+        <button id="delete-button" class="mt-2 mx-2 d-none btn btn-outline-danger">{% trans "Delete" %}</button>
+      </div>
+
+      <!-- This div will be to the _left_ of or _below_ the matrix grid -->
+      <div id="object-container" class="col-12 col-md-4 order-md-first text-center d-none">
+        <h5 class="heading-line heading-line-text">{% trans "New object:" %}</h5>
+        <form>
+          <div class="form-group">
+            <select id="object-selection" class="custom-select">
+              <option value="sphere">{% trans "Sphere" %}</option>
+              <option value="cube">{% trans "Cube" %}</option>
+              <option value="cone">{% trans "Cone" %}</option>
+              <option value="teapot">{% trans "Teapot" %}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <input type="text" maxlength="20" class="form-control" id="name-input" placeholder="{% trans 'Name (optional)' %}">
+          </div>
+          <div class="form-group">
+            <div class="input-group my-2">
+              <div class="input-group-prepend">
+                <label for="colour-input" id="colour-input-label" class="input-group-text">#</label>
+              </div>
+              <input type="text" maxlength="6" class="form-control" aria-describedby="random-colour-help" id="colour-input" placeholder="{% trans 'Colour (Hexadecimal)' %}">
+            </div>
+            <small id="random-colour-help" class="form-text text-muted">{% trans "Leave blank for a random colour" %}</small>
+          </div>
+          <button id="add-object" class="col-12 btn btn-primary mb-1" type="button">{% trans "Add object" %}</button>
+        </form>
+      </div>
+
+      <!-- This div will be to the _right_ of or _below_ the matrix grid -->
+      <div id="applied-container" class="col-12 col-md-4 text-center d-none">
+        <h5 class="heading-line heading-line-text">{% trans "Applied matrices:" %}</h5>
+        <div id="applied-matrices"></div>
+      </div>
+    </div>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/scene-editor/css/scene-editor.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript">
+    var base_static_path = "{{ STATIC_URL }}";
+  </script>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script type="text/javascript" src="{% static 'interactives/scene-editor/js/scene-editor.js' %}"></script>
+{% endblock js %}

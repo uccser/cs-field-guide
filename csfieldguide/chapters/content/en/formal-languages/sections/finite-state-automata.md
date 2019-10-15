@@ -5,7 +5,7 @@
 # Treasure hunt (alternative introduction)
 
 There's a fun variant of the challenge at the start of this section that involves running around the playground.
-It's described as the [Treasure Hunt](https://classic.csunplugged.org/wp-content/uploads/2014/12/unplugged-11-finite_state_automata.pdf) activity on the CS unplugged site.
+It's described as the [Treasure Hunt](https://classic.csunplugged.org/wp-content/uploads/2014/12/unplugged-11-finite_state_automata.pdf) activity on the CS Unplugged site.
 It may be a bit young for some students, but if you can sell it to them, it's a great way to get some physical exercise away from the computers and to see most of the concepts in this section in a kinesthetic activity.
 Many variants are possible; for example, it can be run as a card game where the A/B card for each station is turned over on request.
 See the Unplugged site for other ideas.
@@ -88,23 +88,21 @@ Solutions:
 
 {panel end}
 
-The map that we use here, with circles and arrows, is actually a powerful idea from computer science called a Finite State Automaton, or {glossary-link term="finite-state-automaton" reference-text="FSA abbreviation"}FSA{glossary-link end} for short.
+The map that we use here, with circles and arrows, is actually a powerful idea from computer science called a finite state automaton, or {glossary-link term="finite-state-automaton" reference-text="FSA abbreviation"}FSA{glossary-link end} for short.
 Being comfortable with such structures is a useful skill for computer scientists.
 
 {panel type="jargon-buster"}
 
 # Finite state automaton
 
-The name
-{glossary-link term="finite-state-automaton" reference-text="Formal languages"}finite state automaton{glossary-link end} (FSA) might seem strange, but each word is quite simple.
+The name {glossary-link term="finite-state-automaton" reference-text="Formal languages"}finite state automaton{glossary-link end} (FSA) might seem strange, but each word is quite simple.
 "Finite" just means that there is a limited number of states (such as train stations) in the map.
 The "state" is just as another name for the train stations we were using.
 "Automaton" is an old word meaning a machine that acts on its own, following simple rules (such as the cuckoo in a cuckoo clock).
 
-Sometimes an FSA is called a
-{glossary-link term="finite-state-machine" reference-text="Formal languages"}Finite State Machine{glossary-link end} (FSM), or even just a "state machine".
-By the way, the plural of "Automaton" can be either "Automata" or "Automatons".
-People working with formal languages usually use Finite State *Automata*, but "FSAs" for short.
+Sometimes an FSA is called a {glossary-link term="finite-state-machine" reference-text="Formal languages"}finite state machine{glossary-link end} (FSM), or even just a "state machine".
+By the way, the plural of "automaton" can be either "automata" or "automatons".
+People working with formal languages usually use finite state *automata*, but "FSAs" for short.
 
 {panel end}
 
@@ -119,13 +117,13 @@ Another example is the remote control for an air conditioning unit.
 It might have half a dozen main buttons, and pressing them changes the mode of operation (e.g. heating, cooling, automatic).
 To get to the mode you want you have to press just the right sequence, and if you press one too many buttons, it's like getting to the train station you wanted but accidentally hopping on one more train.
 It might be a long journey back, and you may end up exploring all sorts of modes to get there!
-If there's a manual for the controller, it may well contain a diagram that looks like a Finite State Automaton.
+If there's a manual for the controller, it may well contain a diagram that looks like a finite state automaton.
 If there isn't a manual, you may find yourself wanting to draw a map, just as for the trains above, so that you can understand it better.
 
 The map that we used above uses a standard notation.
 Here's a smaller one:
 
-{image file-path="img/chapters/finite-state-automata-simple-1.png" alt="A simple Finite State Automation"}
+{image file-path="img/chapters/finite-state-automata-simple-1.png" alt="A simple finite state automation"}
 
 Notice that this map has routes that go straight back to where they started!
 For example, if you start at 1 and take route "b", you immediately end up back at 1.
@@ -167,7 +165,7 @@ You can use it to test different inputs.
 Here's another FSA, which looks similar to the last one but behaves quite differently.
 You can test it in the interactive below.
 
-{image file-path="img/chapters/finite-state-automata-simple-2.png" alt="A simple Finite State Automaton"}
+{image file-path="img/chapters/finite-state-automata-simple-2.png" alt="A simple finite state automaton"}
 
 Work out which of the following inputs it accepts.
 Remember to start in state 1 each time!
@@ -236,7 +234,7 @@ By the way, notice that we often put inverted commas around strings to make it c
 Of course, the inverted commas aren't part of the strings.
 Notice that "r" always goes back to state 1 &ndash; if it ever occurs in the input then it's like a reset.
 
-Sometimes you'll see an FSA referred to as a Finite State Machine, or FSM, and there are other closely related systems with similar names.
+Sometimes you'll see an FSA referred to as a finite state machine, or FSM, and there are other closely related systems with similar names.
 We'll mention some later in the chapter.
 
 {panel type="teacher-note"}
@@ -259,7 +257,8 @@ See if you can figure out which patterns of input will turn the light on:
 
 # Solution
 
-The light comes on with every third button press (which is intentionally confusing &ndash; students will probably expect every second press to work, but this is to get them thinking about what is happening here!) The sequences that will turn on the light are therefore "aaa", "aaaaaa" and so on &ndash; any number of presses that's a multiple of three.
+The light comes on with every third button press (which is intentionally confusing &ndash; students will probably expect every second press to work, but this is to get them thinking about what is happening here!).
+The sequences that will turn on the light are therefore "aaa", "aaaaaa" and so on &ndash; any number of presses that's a multiple of three.
 And, of course, zero presses.
 
 {panel end}
@@ -283,7 +282,8 @@ Actually, the switch isn't all that strange &ndash; data projectors often requir
 {image file-path="img/chapters/finite-state-automata-light-switch-example.png" alt="The finite state machine for a strange light switch"}
 
 An important part of the culture of computer science is always to consider extreme cases.
-One kind of extreme case is where there is no input at all: what if a program is given an empty file, or your database has zero entries in it? It's always important to make sure that these situations have been thought through.
+One kind of extreme case is where there is no input at all: what if a program is given an empty file, or your database has zero entries in it?
+It's always important to make sure that these situations have been thought through.
 So it's not surprising that we have a symbol for the empty string.
 Just for variety, you'll occasionally find some people using the Greek letter lambda (\( \lambda \)) instead of \( \epsilon \) to represent the empty string.
 
@@ -338,7 +338,7 @@ We'd need something like this:
 So, instead, we just say that any unspecified transition causes the input to be rejected (that is, it behaves as though it goes into a trap state).
 In other words, it's fine to use the simple version above, with just two transitions.
 
-Now that we've got the terminology sorted out, let’s explore some applications of this simple but powerful "machine" called the Finite State Automaton.
+Now that we've got the terminology sorted out, let’s explore some applications of this simple but powerful "machine" called the finite state automaton.
 
 ## Who uses finite state automata?
 
@@ -365,7 +365,8 @@ There are also data compression methods that use FSAs to capture patterns in the
 
 # The largest FSA in the world
 
-What's the biggest FSA in the world, one that lots of people use every day? It's the World-Wide Web.
+What's the biggest FSA in the world, one that lots of people use every day?
+It's the World-Wide Web.
 Each web page is like a state, and the links on that page are the transitions between them.
 Back in the year 2000 the web had a billion pages.
 In 2008 Google Inc. declared they had found a trillion different web page addresses.
@@ -373,7 +374,7 @@ That’s a lot.
 A book with a billion pages would be 50 km thick.
 With a trillion pages, its thickness would exceed the circumference of the earth.
 
-But the web is just a finite-state automaton.
+But the web is just a finite state automaton.
 And in order to produce an index for you to use, search engine companies like Google have to examine all the pages to see what words they contain.
 They explore the web by following all the links, just as you did in the train travelling exercise.
 Only, because it's called the "web," exploring is called "crawling" &ndash; like spiders do.
@@ -693,7 +694,7 @@ This would be a typical interview question for companies wanting to find out if 
 
 {panel type="activity"}
 
-# Find Finite State Automata in everyday use
+# Find finite state automata in everyday use
 
 There are lots of systems around that use FSAs.
 You could choose a system, explain how it can be represented with an FSA, and show examples of sequences of input that it deals with.
@@ -714,7 +715,7 @@ Examples are:
 
 # Kara the ladybug
 
-[SwissEduc](http://www.swisseduc.ch/compscience/) has a programming environment called [Kara](http://www.swisseduc.ch/compscience/karatojava/kara/) (requires Java to be installed), which is a programmable ladybug that (in its simplest version) walks around an imaginary world controlled by actions output by a Finite State Automaton.
+[SwissEduc](http://www.swisseduc.ch/compscience/) has a programming environment called [Kara](http://www.swisseduc.ch/compscience/karatojava/kara/) (requires Java to be installed), which is a programmable ladybug that (in its simplest version) walks around an imaginary world controlled by actions output by a finite state automaton.
 The ladybug has (simulated) detectors that sense its immediate surroundings; these serve as input to the FSA.
 
 {comment Currently there seems to be a bug in the simple Kara program, and it only loads to 88% (apparently it is to do with the version of Java). There is a version called "MultiKara" (in the same package) which has multiple ladybugs, so you can just use one ladybug and get a similar effect. http://swisseduc.ch/informatik/karatojava/download.html}
@@ -733,7 +734,7 @@ If you use the Java-based graphical educational system [Greenfoot](http://www.gr
 Teachers can register at the [Greenroom](http://greenroom.greenfoot.org/door) resources area to download the software.
 
 If you use [Scratch](http://scratch.mit.edu/), the following program is promising, but it doesn't have an activity or guide, and Level 3 students may have progressed beyond Scratch.
-It implements the Finite State Automata CS Unplugged activity in Scratch, and can be downloaded as part of a [zip file](http://code.google.com/p/scratch-unplugged/downloads/detail?name=scratch-unplugged-1-0.zip&can=2&q=) of a full set of Unplugged activities.
+It implements the finite state automata CS Unplugged activity in Scratch, and can be downloaded as part of a [zip file](http://code.google.com/p/scratch-unplugged/downloads/detail?name=scratch-unplugged-1-0.zip&can=2&q=) of a full set of Unplugged activities.
 The [ReadMe.txt](http://code.google.com/p/scratch-unplugged/downloads/detail?name=readme.txt&can=2&q=) file has some documentation.
 It was developed by [Mordechai (Moti) Ben-Ari](http://www.weizmann.ac.il/sci-tea/benari/home) from the [Weizmann Institute of Science, Israel](http://www.weizmann.ac.il/).
 
