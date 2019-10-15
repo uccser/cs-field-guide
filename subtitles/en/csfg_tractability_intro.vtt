@@ -1,6 +1,5 @@
 WEBVTT
 
-NOTE
 Computer Science Education Research,
 University of Canterbury, New Zealand
 Subtitle file for the video "Computer Science Field Guide: Tractability"
@@ -21,8 +20,6 @@ and I've worked out the best way of delivering them.
 00:09.300 --> 00:11.500
 I calculated how long it would take to visit:
 
-NOTE
-
 The next section transitions very rapidly so could be difficult to read.
 The names Alice, Bob, Carol and David have been shortened to
 persons A,B,C and D
@@ -42,7 +39,7 @@ or B, A, D, C;
 00:18.000 --> 00:20.000
 or A, C, B, D.
 
-NOTE end of section
+end of section
 
 00:20.000 --> 00:22.400
 [sigh] You get the idea.
@@ -76,8 +73,6 @@ different combinations.
 In fact, if a dinosaur had started this calculation
 using the fastest computer currently available,
 
-NOTE
-
 added 'currently' in the above line for clarity
 
 00:49.600 --> 00:52.800
@@ -95,8 +90,6 @@ in Computer Science that are difficult,
 01:02.800 --> 01:04.800
 and nobody's found out a good way of programming,
 
-NOTE
-
 changed 'there is' to 'there are' in above line
 
 01:04.800 --> 01:07.600
@@ -110,8 +103,6 @@ working out timetables;
 
 01:12.600 --> 01:15.000
 even solving large Sudoku puzzles.
-
-NOTE
 
 not sure what was said between 'Solving' and 'Sudoku',
 'large' is my best guess

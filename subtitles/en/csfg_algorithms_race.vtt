@@ -2,8 +2,6 @@ WEBVTT
 Kind: captions
 Language: en
 
-NOTE
-
 Computer Science Education Research,
 University of Canterbury, New Zealand
 Subtitle file for the video "Computer Science Field Guide: Algorithms"
@@ -76,7 +74,7 @@ Speedy Spencer is off to a flying start;
 he's searched dozens of books already.
 
 01:11.600 --> 01:15.400
-He seems to be employing a Sequencial Search
+He seems to be employing a Sequential Search
 algorithm, so he looks at the first book,
 
 01:15.400 --> 01:19.000
@@ -169,7 +167,7 @@ SLADE: Here it is!
 
 02:53.000 --> 03:00.200
 Congratulations Slade, you've won!
-Guys you can stop searching now.Guys.
+Guys you can stop searching now. Guys.
 
 03:00.200 --> 03:03.400
 Slade's found the book.

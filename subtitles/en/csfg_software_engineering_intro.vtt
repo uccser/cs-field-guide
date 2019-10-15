@@ -1,6 +1,5 @@
 WEBVTT
 
-NOTE
 Computer Science Education Research,
 University of Canterbury, New Zealand
 Subtitle file for the video "Computer Science Field Guide: Software Engineering"
@@ -36,8 +35,6 @@ But it could also be a lot worse than that.
 What if the software controlling
 a nuclear power plant fails?
 
-NOTE
-
 The next section has been broken up to make different
 combinations of subtitles appear at the same time
 
@@ -53,7 +50,6 @@ Fortunately, Software Engineering techniques
 can help us make software that works correctly.
 [Yay]
 
-NOTE
 end of section
 
 00:36.600 --> 00:41.600

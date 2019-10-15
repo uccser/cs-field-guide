@@ -1,6 +1,5 @@
 WEBVTT
 
-NOTE
 Computer Science Education Research,
 University of Canterbury, New Zealand
 Subtitle file for the video "Formal Languages"
@@ -16,8 +15,6 @@ So let's talk about Formal Languages.
 
 00:05.000 --> 00:07.000
 Oops, hold on a second.
-
-NOTE
 
 'Oops' is actually said earlier than its subtitle
 but it fits better where it is
@@ -52,7 +49,6 @@ follow the rules when entering email addresses,
 00:34.700 --> 00:36.000
 ERROR invalid email
 
-NOTE
 shortened 'ERROR email address invalid format' to 'ERROR invalid email'
 
 00:36.000 --> 00:37.600
