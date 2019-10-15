@@ -130,8 +130,10 @@ $(document).ready(function () {
   $("#colour-input").val('');
   $("#name-input").val('');
 
-  $('.matrix-row input').on('paste', handlePaste);
-  $('.vector-row input').on('paste', handlePaste);
+  $('.matrix-row input').on('paste', function() {
+    console.log($(this).value);
+  });
+  // $('.vector-row input').on('paste', handlePaste);
 });
 
 /**

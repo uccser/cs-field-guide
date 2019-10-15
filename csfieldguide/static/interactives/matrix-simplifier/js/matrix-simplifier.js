@@ -109,6 +109,7 @@ $(document).ready(function() {
     try {
       var successful = document.execCommand('copy');
       if (successful) {
+        console.log($('#dummy-textarea').val());
         $('#copy-eqtn').trigger('copied', TXT_COPIED_PRIVATE);
       } else {
         $('#copy-eqtn').trigger('copied', TXT_COPIED_FAIL);
@@ -394,6 +395,7 @@ function showOutput() {
   // update global result variable
   resultEqtn = matrixRows.toString() + ',v,' + vectorRows.toString();
   $("#dummy-textarea").val(resultEqtn);
+  console.log(resultEqtn);
 
   matrixString = formatMatrix(matrixRows, ROW_TEMPLATE);
   vectorString = sprintf(MATRIX_TEMPLATE, vectorRows[0], vectorRows[1], vectorRows[2]);
