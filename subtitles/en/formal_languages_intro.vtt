@@ -1,11 +1,11 @@
 WEBVTT
 
-NOTE
 Computer Science Education Research,
 University of Canterbury, New Zealand
 Subtitle file for the video "Formal Languages"
 Author: Alasdair Smith
 Date: 13/02/2017
+Modified by: Courtney Bracefield on 15/10/2019
 
 00:01.000 --> 00:02.400
 Formal Languages
@@ -16,7 +16,6 @@ So let's talk about Formal Languages.
 00:05.000 --> 00:07.000
 Oops, hold on a second.
 
-NOTE
 'Oops' is actually said earlier than its subtitle
 but it fits better where it is
 
@@ -48,22 +47,21 @@ You're not going to get what you want if you don't
 follow the rules when entering email addresses,
 
 00:34.700 --> 00:36.000
-<i>ERROR invalid email</i>
+ERROR invalid email
 
-NOTE
 shortened 'ERROR email address invalid format' to 'ERROR invalid email'
 
 00:36.000 --> 00:37.600
 typing in numbers,
 
 00:37.600 --> 00:39.400
-<i>ERROR invalid amount</i>
+ERROR invalid amount
 
 00:39.400 --> 00:42.000
 or entering formulas into spreadsheets.
 
 00:42.000 --> 00:43.600
-<b>#ERROR!</b>
+#ERROR!
 
 00:43.600 --> 00:48.200
 What we need is a way to write down rules
@@ -127,7 +125,7 @@ that can never be solved by a computer.
 
 01:47.000 --> 01:51.000
 Woah, mind blown.
-<01:49.200><i>Boom</i>
+Boom
 
 01:51.000 --> 01:57.600
 But, I'm getting ahead of myself, Formal Languages are

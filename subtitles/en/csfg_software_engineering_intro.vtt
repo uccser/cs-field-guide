@@ -1,11 +1,11 @@
 WEBVTT
 
-NOTE
 Computer Science Education Research,
 University of Canterbury, New Zealand
 Subtitle file for the video "Computer Science Field Guide: Software Engineering"
 Author: Alasdair Smith
 Date: 15/02/2017
+Modified by: Courtney Bracefield on 15/10/2019
 
 
 00:00.000 --> 00:02.000
@@ -26,7 +26,7 @@ A bug in a program can make it
 really frustrating to use,
 
 00:15.600 --> 00:19.400
-or it could even <00:18.000>crash your computer.
+or it could even crash your computer.
 
 00:19.400 --> 00:21.800
 But it could also be a lot worse than that.
@@ -35,13 +35,12 @@ But it could also be a lot worse than that.
 What if the software controlling
 a nuclear power plant fails?
 
-NOTE
 The next section has been broken up to make different
 combinations of subtitles appear at the same time
 
 00:24.800 --> 00:29.200
 Or the software controlling an aeroplane?
-<00:27.000>[Screams]
+[Screams]
 
 00:29.200 --> 00:31.600
 Fortunately, Software Engineering techniques
@@ -49,9 +48,9 @@ Fortunately, Software Engineering techniques
 
 00:31.600 --> 00:36.600
 can help us make software that works correctly.
-<00:34.000>[Yay]
+[Yay]
 
-NOTE end of section
+end of section
 
 00:36.600 --> 00:41.600
 Making good software is difficult
@@ -98,7 +97,7 @@ sometimes ten developers,
 
 01:16.200 --> 01:19.400
 sometimes a hundred,
-<01:17.400>and sometimes more.
+and sometimes more.
 
 01:19.400 --> 01:21.800
 This is where Software Engineering comes in.
