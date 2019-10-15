@@ -590,19 +590,6 @@ The project below gives the chance to explore combining matrices, and has an int
 
 ## 3D transforms
 
-{panel type="caution"}
-
-# Interactives in this section
-
-The original interactives in this section stopped working with the release of version 3.0 of the Computer Science Field Guide.
-
-Replacements are in development and should be fully released soon:
-
-- `Matrix Simplifier`: **Main functionality released**
-- `Scene Editor` (transform, translate, multiple, scene creation): **Main functionality released**
-
-{panel end}
-
 So far we've just done the transforms in two dimensions.
 To do this in 3D, we need a *z* coordinate as well, which is the depth of the object into the screen.
 A matrix for operating on 3D points is 3 by 3.
@@ -775,7 +762,7 @@ Describe any innovations in the particular image (e.g. computer generated movies
 One way to confirm that a movie is innovative in this area is if it has won an award for the graphics software.
 
 To show the basics of computer graphics,
-try putting a few objects in a particular arrangement (e.g. with the teapot sitting beside some cups),
+try putting a few objects in a particular arrangement (e.g. with the teapot sitting on an interesting table),
 and explain the transforms needed to achieve this, showing the matrices needed.
 
 Give simple examples of translation, scaling *and* rotation using your scene.

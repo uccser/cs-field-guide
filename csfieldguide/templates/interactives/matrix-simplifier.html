@@ -1,7 +1,6 @@
 {% extends interactive_mode_template %}
 
-{% load i18n %}
-{% load static %}
+{% load i18n static svg %}
 
 {% block html %}
   <div class="container">
@@ -17,8 +16,11 @@
         <h5>{% trans "Matrices" %}</h5>
         <div id="matrix-input-container" class="containers">
           <div class="draggable content border rounded m-1 center-block">
-            <button id="close-matrix-0" type="button" class="close dismiss-eqtn" aria-label="Close">
+            <button id="close-matrix-0" type="button" class="close dismiss-eqtn invisible" aria-label="Close">
               <span aria-hidden="true">&times;</span>
+            </button>
+            <button id="edit-matrix-0" type="button" class="close edit-eqtn invisible" aria-label="Edit" data-toggle="modal" data-target="#matrix-modal">
+              {% svg 'icons8-pencil' %}
             </button>
             <div id="matrix-0" class="matrix invisible" data-matrix-order=0>
               \[
@@ -32,8 +34,11 @@
           </div>
       
           <div class="draggable content border rounded m-1 center-block">
-            <button id="close-matrix-1" type="button" class="close dismiss-eqtn" aria-label="Close">
+            <button id="close-matrix-1" type="button" class="close dismiss-eqtn invisible" aria-label="Close">
               <span aria-hidden="true">&times;</span>
+            </button>
+            <button id="edit-matrix-1" type="button" class="close edit-eqtn invisible" aria-label="Edit" data-toggle="modal" data-target="#matrix-modal">
+              {% svg 'icons8-pencil' %}
             </button>
             <div id="matrix-1" class="matrix invisible" data-matrix-order=1>
               \[
@@ -53,8 +58,11 @@
         <h5>{% trans "Vectors" %}</h5>
         <div id="vector-input-container" class="containers">
           <div class="draggable content border rounded m-1 center-block">
-            <button id="close-vector-0" type="button" class="close dismiss-eqtn" aria-label="Close">
+            <button id="close-vector-0" type="button" class="close dismiss-eqtn invisible" aria-label="Close">
               <span aria-hidden="true">&times;</span>
+            </button>
+            <button id="edit-vector-0" type="button" class="close edit-eqtn invisible" aria-label="Edit" data-toggle="modal" data-target="#vector-modal">
+              {% svg 'icons8-pencil' %}
             </button>
             <div id="vector-0" class="vector invisible" data-vector-order=0>
               \[
@@ -103,7 +111,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">{% trans "Add a matrix" %}</h5>
+            <h5 id="matrix-modal-title" class="modal-title">{% trans "Add a matrix" %}</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -129,6 +137,7 @@
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary close-modal" data-dismiss="modal">{% trans "Close" %}</button>
             <button id="add-matrix-from-input" type="button" class="btn btn-primary add-from-input" data-dismiss="modal">{% trans "Add matrix" %}</button>
+            <button id="update-matrix" type="button" class="btn btn-primary add-from-input d-none" data-dismiss="modal">{% trans "Update matrix" %}</button>
           </div>
         </div>
       </div>
@@ -138,14 +147,14 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">{% trans "Add a vector" %}</h5>
+            <h5 id="vector-modal-title" class="modal-title">{% trans "Add a vector" %}</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
             <div class="matrix-row">
-              <input class="form-control text-center" id="vector-row-0" value=1>
+              <input class="form-control text-center" id="vector-row-0" value=0>
             </div>
             <div class="matrix-row">
               <input class="form-control text-center" id="vector-row-1" value=0>
@@ -157,9 +166,14 @@
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary close-modal" data-dismiss="modal">{% trans "Close" %}</button>
             <button id="add-vector-from-input" type="button" class="btn btn-primary add-from-input" data-dismiss="modal">{% trans "Add vector" %}</button>
+            <button id="update-vector" type="button" class="btn btn-primary add-from-input d-none" data-dismiss="modal">{% trans "Update vector" %}</button>
           </div>
         </div>
       </div>
+    </div>
+    <!-- helper div so we can access the SVG in the JS file -->
+    <div id="pencil-svg-helper" class="d-none">
+      {% svg 'icons8-pencil' %}
     </div>
   </div>
 {% endblock html %}
