@@ -30,7 +30,7 @@ We have listed major changes for each release below.
 - Add ability to edit existing equations in matrix simplifier interactive. `#1137 <https://github.com/uccser/cs-field-guide/issues/1137>`__
 - Fix print preview to have ability to print more than just one page in Chrome. `#1110 <https://github.com/uccser/cs-field-guide/issues/1110>`__
 - Add glossary entries for the Computer Vision, Formal Languages and Network Communication Protocols chapters. `#1017 <https://github.com/uccser/cs-field-guide/issues/1017>`__
-- Edit .vtt files so they are in correct format for Vimeo. `#1089 <https://github.com/uccser/cs-field-guide/issues/1089>`__
+- Enable subtitles in chapter introduction videos. `#1089 <https://github.com/uccser/cs-field-guide/issues/1089>`__
 - Exclude licences directory from Linkie. `#1153 <https://github.com/uccser/cs-field-guide/issues/1153>`__
 - Update Django from 1.11.16 to 2.2.3. `#1111 <https://github.com/uccser/cs-field-guide/pull/1111>`__
 
