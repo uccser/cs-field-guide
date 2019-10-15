@@ -16,7 +16,7 @@ For example, say we have a game playing agent which has the goal of learning to 
 ## Robotics
 
 One of the main applications of reinforcement learning is in robotics.
-Reinforcement learning is particularly useful for teaching robots to do things that humans cannot directly program them to do, for example a robot needs to be able to respond to unpredictable events, or do things that humans aren't actually very good at themselves!
+Reinforcement learning is particularly useful for teaching robots to do things that humans cannot directly program them to do, such as responding to unpredictable events, or do things that humans aren't actually very good at themselves!
 
 - Drones flying autonomously in different weather conditions.
 - [Balance a vertical pole on a surface](https://www.youtube.com/watch?v=XxFZ-VStApo).
