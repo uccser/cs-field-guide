@@ -7,6 +7,10 @@ const ROW_TEMPLATE = "%s & %s & %s";
 const MATRIX_TEMPLATE = "\\begin{bmatrix} %s \\\\ %s \\\\ %s \\end{bmatrix}";
 const PENCIL_SVG = $("#pencil-svg-helper svg")
 
+var TXT_COPY = gettext("Copy to clipboard");
+var TXT_COPIED_PRIVATE = gettext("Equation copied");
+var TXT_COPIED_FAIL = gettext("Oops, unable to copy. Please copy manually");
+
 /**
  * Below is adapted from https://mathjs.org/examples/browser/angle_configuration.html.html
  * This is used to configure mathjs to accept degrees as input for trig functions.
@@ -78,6 +82,8 @@ v1String = [
 var matricesStringFormat = [m1String, m2String];
 var vectorsStringFormat = [v1String];
 
+// Store the result equation. Used for copying to clipboard.
+var resultEqtn;
 
 // only show equations once they are rendered
 // URL for mathjax script loaded from CDN
@@ -97,6 +103,28 @@ $(document).ready(function() {
   $('.matrix-row input').on('keyup bind cut copy paste', validateInput);
   $('#matrix-modal').on('hidden.bs.modal', resetModalMatrices);
   $('#vector-modal').on('hidden.bs.modal', resetModalMatrices);
+
+  $('#copy-eqtn').click(function() {
+    $('#dummy-textarea').select();
+    try {
+      var successful = document.execCommand('copy');
+      if (successful) {
+        $('#copy-eqtn').trigger('copied', TXT_COPIED_PRIVATE);
+      } else {
+        $('#copy-eqtn').trigger('copied', TXT_COPIED_FAIL);
+      }
+    } catch (err) {
+      $('#copy-eqtn').trigger('copied', TXT_COPIED_FAIL);
+    }
+  });
+
+  $('[data-toggle="tooltip"]').on('copied', function(event, message) {
+    $(this).attr('title', message)
+      .tooltip('_fixTitle')
+      .tooltip('show')
+      .attr('title', TXT_COPY)
+      .tooltip('_fixTitle');
+  });
 });
 
 
@@ -363,6 +391,10 @@ function showOutput() {
   var matrixRows = matrixToArray(matrix);
   var vectorRows = matrixToArray(vector);
 
+  // update global result variable
+  resultEqtn = matrixRows.toString() + ',v,' + vectorRows.toString();
+  $("#dummy-textarea").val(resultEqtn);
+
   matrixString = formatMatrix(matrixRows, ROW_TEMPLATE);
   vectorString = sprintf(MATRIX_TEMPLATE, vectorRows[0], vectorRows[1], vectorRows[2]);
   $('#matrix-output').html(matrixString);
@@ -471,6 +503,7 @@ function showEquations() {
       // stop buttons jumping around on load
       $('#add-matrix-btn').removeClass('d-none');
       $('#add-vector-btn').removeClass('d-none');
+      $('#copy-eqtn').removeClass('d-none');
   });
 }
 
