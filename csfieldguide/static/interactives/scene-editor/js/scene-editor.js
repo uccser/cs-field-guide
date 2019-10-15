@@ -129,6 +129,9 @@ $(document).ready(function () {
 
   $("#colour-input").val('');
   $("#name-input").val('');
+
+  $('.matrix-row input').on('paste', handlePaste);
+  $('.vector-row input').on('paste', handlePaste);
 });
 
 /**
@@ -901,4 +904,40 @@ function createTinyaxisMesh() {
   var material = new THREE.MeshBasicMaterial( {vertexColors: THREE.FaceColors} );
   var object = new THREE.Mesh( geometry, material );
   return object;
+}
+
+
+// adapted from
+// https://stackoverflow.com/questions/2176861/javascript-get-clipboard-data-on-paste-event-cross-browser/6804718#6804718
+function handlePaste (e) {
+  var clipboardData, pastedData;
+
+  // Stop data actually being pasted into div
+  e.stopPropagation();
+  e.preventDefault();
+
+  // Get pasted data via clipboard API
+  clipboardData = e.clipboardData || window.clipboardData;
+  pastedData = clipboardData.getData('Text');
+  
+  // Paste data into input boxes
+  eqtnData = pastedData.split(',v,'); // splits into matrix and vector values
+  matrixData = eqtnData[0].split(',');
+  vectorData = eqtnData[1].split(',');
+  
+  $('#matrix-row-0-col-0').val(matrixData[0]);
+  $('#matrix-row-1-col-0').val(matrixData[1]);
+  $('#matrix-row-2-col-0').val(matrixData[2]);
+
+  $('#matrix-row-1-col-0').val(matrixData[3]);
+  $('#matrix-row-1-col-1').val(matrixData[4]);
+  $('#matrix-row-1-col-2').val(matrixData[5]);
+
+  $('#matrix-row-2-col-0').val(matrixData[6]);
+  $('#matrix-row-2-col-1').val(matrixData[7]);
+  $('#matrix-row-2-col-2').val(matrixData[8]);
+
+  $('#vector-row-0').val(vectorData[0]);
+  $('#vector-row-1').val(vectorData[1]);
+  $('#vector-row-2').val(vectorData[2]);
 }
