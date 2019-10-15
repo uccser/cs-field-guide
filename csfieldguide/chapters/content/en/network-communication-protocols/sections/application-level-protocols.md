@@ -1,6 +1,6 @@
 # Application layer protocols - HTTP, IRC
 
-The URL for the home site of this book is http://www.csfieldguide.org.nz.
+The URL for the home site of this book is https://www.csfieldguide.org.nz.
 Ask a few friends what the "http" stands for &ndash; they have probably seen it thousands of times... do they know what it is?
 This section covers high level protocols such as HTTP and IRC, what they can do and how you can use them (hint: you’re already using HTTP right now).
 
@@ -24,7 +24,7 @@ It’s a perfectly safe activity.
 
 {panel end}
 
-The HyperText Transfer Protocol (HTTP) is the most common protocol in use on the internet.
+The {glossary-link term="http"}HyperText Transfer Protocol{glossary-link end} (HTTP) is the most common protocol in use on the internet.
 The protocol’s job is to transfer [HyperText](https://en.wikipedia.org/wiki/Hypertext) (such as HTML) from a server to your computer.
 It’s doing that right now.
 You just loaded the CS Field Guide from the servers where it is hosted.
@@ -70,7 +70,7 @@ There are nine *types* of requests that HTTP supports, and the most common are o
 A GET request returns some text that describes the thing you’re asking for.
 Like above, you ask for a can of soda, you get a can of soda.
 
-A HEAD request returns what you’d get if you did a GET request.
+A HEAD request returns information about what you’d get if you did a GET request.
 It’s like this:
 
 > You: "Can I see your can of soda please?"
@@ -78,7 +78,7 @@ It’s like this:
 > Shop Keeper: "Sure, here’s the can of soda you’d get." \*Hands you a photo of a can of soda\*
 
 What’s neat about HTTP is that it allows you to also modify the contents of the server.
-Say you’re now also a representative for the soda company, and you’d like to re-stock some shelves.
+Say you’re now also a representative for the soda company, and you’d like to restock some shelves.
 
 A POST request allows you to send information in the other direction.
 This request allows you to replace a resource on the server with one you supply.
@@ -215,9 +215,9 @@ Just tell them what channel to join.
 Internet Relay Chat (IRC) is a system that lets you transfer messages in the form of text.
 It’s essentially a chat protocol.
 The system uses a client-server model.
-Clients are chat programs installed on a user’s computer that connect to a central server.
+{glossary-link term="client"}Clients{glossary-link end} are chat programs installed on a user’s computer that connect to a central {glossary-link term="server"}server{glossary-link end}.
 The clients communicate the message to the central server which in turn relays that to other clients.
-The protocol was originally designed for group communication in a discussion forum, called *channels*.
+The protocol was originally designed for group communication in discussion forums, called *channels*.
 IRC also supports one-to-one communication via *private messages*.
 It is also capable of file and data transfer too.
 
@@ -231,7 +231,7 @@ A server hosts many channels, and you can choose which one to join.
 
 Channels usually form around a particular topic, such as Python, Music, TV show fans, Gaming or Hacking.
 Convention dictates that channel names start with one or two # symbols, such as #python or ##TheBigBangTheory.
-*Conventions* are different to protocols in that they aren’t actually enforced by the protocol, but people choose to use it that way.
+{glossary-link term="convention"}Conventions{glossary-link end} are different to protocols in that they aren’t actually enforced by the protocol, but people choose to use it that way.
 
 To get started with IRC, first you should get a client.
 A client is a program that let's you connect.

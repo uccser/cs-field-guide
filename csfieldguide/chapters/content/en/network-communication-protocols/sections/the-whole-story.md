@@ -2,7 +2,7 @@
 
 Let’s say I want to write an online music player.
 Okay, so I write the code for someone to press play on a website and the song plays.
-Do I now need to code up the protocol that streams the music.
+Do I now need to code up the protocol that streams the music?
 Fine, I write some UDP code.
 Now, do I need to go install the cables in your house?
 Sure, I jump in my van and spend a few weeks running cable to your house and make sure the packets can get over too.
