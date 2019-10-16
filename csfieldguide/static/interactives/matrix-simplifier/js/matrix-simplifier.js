@@ -8,7 +8,7 @@ const MATRIX_TEMPLATE = "\\begin{bmatrix} %s \\\\ %s \\\\ %s \\end{bmatrix}";
 const PENCIL_SVG = $("#pencil-svg-helper svg")
 
 var TXT_COPY = gettext("Copy to clipboard");
-var TXT_COPIED_PRIVATE = gettext("Equation copied");
+var TXT_COPIED_SUCCESS = gettext("Equation copied");
 var TXT_COPIED_FAIL = gettext("Oops, unable to copy. Please copy manually");
 
 /**
@@ -110,7 +110,7 @@ $(document).ready(function() {
     try {
       var successful = document.execCommand('copy');
       if (successful) {
-        $('#copy-eqtn').trigger('copied', TXT_COPIED_PRIVATE);
+        $('#copy-eqtn').trigger('copied', TXT_COPIED_SUCCESS);
       } else {
         $('#copy-eqtn').trigger('copied', TXT_COPIED_FAIL);
       }
