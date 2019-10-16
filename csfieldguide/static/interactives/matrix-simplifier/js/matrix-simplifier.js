@@ -103,6 +103,7 @@ $(document).ready(function() {
   $('.matrix-row input').on('keyup bind cut copy paste', validateInput);
   $('#matrix-modal').on('hidden.bs.modal', resetModalMatrices);
   $('#vector-modal').on('hidden.bs.modal', resetModalMatrices);
+  $("#remove-all").on("click", removeAllEqtns);
 
   $('#copy-eqtn').click(function() {
     $('#code-to-copy').select();
@@ -394,7 +395,6 @@ function showOutput() {
   // update global result variable
   resultEqtn = matrixRows.toString() + ',v,' + vectorRows.toString();
   $("#code-to-copy").val(resultEqtn);
-  console.log(resultEqtn);
 
   matrixString = formatMatrix(matrixRows, ROW_TEMPLATE);
   vectorString = sprintf(MATRIX_TEMPLATE, vectorRows[0], vectorRows[1], vectorRows[2]);
@@ -505,6 +505,7 @@ function showEquations() {
       $('#add-matrix-btn').removeClass('d-none');
       $('#add-vector-btn').removeClass('d-none');
       $('#copy-eqtn').removeClass('d-none');
+      $('#remove-all').removeClass('d-none');
   });
 }
 
@@ -673,4 +674,16 @@ function validateInput() {
   if ($('.input-error').length == 0) {
     $('.add-from-input').prop('disabled', false);
   }
+}
+
+
+/** Removes all equations and re-calculates output */
+function removeAllEqtns() {
+  $(".draggable").remove();
+  currentMatricesOrder = [];
+  currentVectorsOrder = [];
+  matricesStringFormat = [];
+  vectorsStringFormat = [];
+  // re-calculate and show output
+  showOutput();
 }
