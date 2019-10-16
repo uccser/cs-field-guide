@@ -124,23 +124,31 @@ $(document).ready(function () {
   $("#apply-transformation").click(applyTransformation);
   $("#delete-button").click(deleteSuspect);
 
-  $('.matrix-row input').on('keyup bind cut copy paste', validateInput);
-  $('.vector-row input').on('keyup bind cut copy paste', validateInput);
+  $('.matrix-row input').on('keyup bind cut copy', function() {
+    validateInput($(this));
+  });
+  $('.vector-row input').on('keyup bind cut copy', function() {
+    validateInput($(this));
+  });
 
   $("#colour-input").val('');
   $("#name-input").val('');
 
   $('.matrix-row input').on('paste', function() {
-    setTimeout(dummyFunc(this), 5);
+    var inputDiv = $(this)
+    setTimeout(function() {
+      populateInputsFromPaste(inputDiv);
+    }, 0);
   });
-  // $('.vector-row input').on('paste', handlePaste);
+  $('.vector-row input').on('paste', function() {
+    var inputDiv = $(this)
+    setTimeout(function() {
+      populateInputsFromPaste(inputDiv);
+    }, 0);
+  });
 });
 
-function dummyFunc(obj) {
-  pastedData = $(obj).val();
-  console.log(pastedData);
-  populateInputsFromPaste(pastedData);
-}
+
 /**
  * Creates the new scene; skybox, lighting, camera and the initial object
  */
@@ -777,11 +785,11 @@ function getRandomInt(min, max) {
 }
 
 /**
- * Checks user input as they are typing into the matrices.
+ * Checks user input as they are typing into the matrices or if content is pasted in.
  * Highlights input box red if the input is invalid and disables the apply button.
  */
-function validateInput() {
-  var input = $(this).val();
+function validateInput(inputDiv) {
+  input = $(inputDiv).val();
   var success = false;
   try {
     inputEvaluated = mathjs.eval(input);
@@ -789,11 +797,11 @@ function validateInput() {
     success = true;
   }
   catch {
-    $(this).addClass('input-error');
+    inputDiv.addClass('input-error');
     $('#apply-transformation').prop('disabled', true);
   }
   if (success) {
-    $(this).removeClass('input-error');
+    inputDiv.removeClass('input-error');
   }
   // if there are no input errors, enable apply button
   if ($('.input-error').length == 0) {
@@ -914,25 +922,34 @@ function createTinyaxisMesh() {
 }
 
 
-function populateInputsFromPaste(pastedData) {
-  // Paste data into input boxes
-  eqtnData = pastedData.split(',v,'); // splits into matrix and vector values
-  matrixData = eqtnData[0].split(',');
-  vectorData = eqtnData[1].split(',');
-  
-  $('#matrix-row-0-col-0').val(matrixData[0]);
-  $('#matrix-row-1-col-0').val(matrixData[1]);
-  $('#matrix-row-2-col-0').val(matrixData[2]);
+/** Called on a paste event. Handles populating inputs copied from matrix simplifier 
+ *  or simply validates pasted input if it appears it hasn't been copied from
+ *  matrix simplifier.
+ */
+function populateInputsFromPaste(inputDiv) {
+  pastedData = inputDiv.val();
+  if (pastedData.includes(',v,')) {
+    // likely to be copied from matrix-simplifier
+    // Paste data into input boxes
+    eqtnData = pastedData.split(',v,'); // splits into matrix and vector values
+    matrixData = eqtnData[0].split(',');
+    vectorData = eqtnData[1].split(',');
 
-  $('#matrix-row-1-col-0').val(matrixData[3]);
-  $('#matrix-row-1-col-1').val(matrixData[4]);
-  $('#matrix-row-1-col-2').val(matrixData[5]);
+    $('#matrix-row-0-col-0').val(matrixData[0]);
+    $('#matrix-row-0-col-1').val(matrixData[1]);
+    $('#matrix-row-0-col-2').val(matrixData[2]);
 
-  $('#matrix-row-2-col-0').val(matrixData[6]);
-  $('#matrix-row-2-col-1').val(matrixData[7]);
-  $('#matrix-row-2-col-2').val(matrixData[8]);
+    $('#matrix-row-1-col-0').val(matrixData[3]);
+    $('#matrix-row-1-col-1').val(matrixData[4]);
+    $('#matrix-row-1-col-2').val(matrixData[5]);
 
-  $('#vector-row-0').val(vectorData[0]);
-  $('#vector-row-1').val(vectorData[1]);
-  $('#vector-row-2').val(vectorData[2]);
+    $('#matrix-row-2-col-0').val(matrixData[6]);
+    $('#matrix-row-2-col-1').val(matrixData[7]);
+    $('#matrix-row-2-col-2').val(matrixData[8]);
+
+    $('#vector-row-0').val(vectorData[0]);
+    $('#vector-row-1').val(vectorData[1]);
+    $('#vector-row-2').val(vectorData[2]);
+  }
+  validateInput(inputDiv);
 }
