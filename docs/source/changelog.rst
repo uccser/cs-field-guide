@@ -17,6 +17,23 @@ All notable changes to this project will be documented in this file.
 
 We have listed major changes for each release below.
 
+3.2.0
+==============================================================================
+
+- **Release date:** 16th October 2019
+- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/3.2.0>`__
+
+**Changelog:**
+
+- Rebuild scene editor interactive. `#1115 <https://github.com/uccser/cs-field-guide/issues/1115>`__
+- Create password guessing interactive. `#606 <https://github.com/uccser/cs-field-guide/issues/606>`__
+- Add the ability to edit existing equations in matrix simplifier interactive. `#1137 <https://github.com/uccser/cs-field-guide/issues/1137>`__
+- Fix print preview to have ability to print more than just one page in Chrome. `#1110 <https://github.com/uccser/cs-field-guide/issues/1110>`__
+- Add glossary entries for the Computer Vision, Formal Languages and Network Communication Protocols chapters. `#1017 <https://github.com/uccser/cs-field-guide/issues/1017>`__
+- Enable subtitles in chapter introduction videos. `#1089 <https://github.com/uccser/cs-field-guide/issues/1089>`__
+- Exclude licences directory from Linkie. `#1153 <https://github.com/uccser/cs-field-guide/issues/1153>`__
+- Update Django from 1.11.16 to 2.2.3. `#1111 <https://github.com/uccser/cs-field-guide/pull/1111>`__
+
 3.1.0
 ==============================================================================
 
