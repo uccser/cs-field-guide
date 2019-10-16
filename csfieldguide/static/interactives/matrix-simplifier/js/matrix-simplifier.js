@@ -105,11 +105,10 @@ $(document).ready(function() {
   $('#vector-modal').on('hidden.bs.modal', resetModalMatrices);
 
   $('#copy-eqtn').click(function() {
-    $('#dummy-textarea').select();
+    $('#code-to-copy').select();
     try {
       var successful = document.execCommand('copy');
       if (successful) {
-        console.log($('#dummy-textarea').val());
         $('#copy-eqtn').trigger('copied', TXT_COPIED_PRIVATE);
       } else {
         $('#copy-eqtn').trigger('copied', TXT_COPIED_FAIL);
@@ -394,7 +393,7 @@ function showOutput() {
 
   // update global result variable
   resultEqtn = matrixRows.toString() + ',v,' + vectorRows.toString();
-  $("#dummy-textarea").val(resultEqtn);
+  $("#code-to-copy").val(resultEqtn);
   console.log(resultEqtn);
 
   matrixString = formatMatrix(matrixRows, ROW_TEMPLATE);

@@ -106,6 +106,10 @@
       </div>
     </div>
 
+    <div class="row justify-content-center mb-2">
+      <textarea id="code-to-copy" class="form-control col-md-4 col-sm-12" readonly></textarea>
+    </div>
+
     <div class="row justify-content-center">
       <button id="copy-eqtn" type="button" class="btn btn-primary col-md-2 col-sm-6 d-none" data-toggle="tooltip" data-placement="bottom">{% trans "Copy equation" %}</button>
     </div>
@@ -178,10 +182,6 @@
     <!-- helper div so we can access the SVG in the JS file -->
     <div id="pencil-svg-helper" class="d-none">
       {% svg 'icons8-pencil' %}
-    </div>
-    <!-- dummy div for copy functionality -->
-    <div class="d-none">
-      <textarea id="dummy-textarea"></textarea>
     </div>
   </div>
 {% endblock html %}

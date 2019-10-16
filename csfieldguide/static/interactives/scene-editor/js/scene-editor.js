@@ -131,14 +131,15 @@ $(document).ready(function () {
   $("#name-input").val('');
 
   $('.matrix-row input').on('paste', function() {
-    // console.log(this);
-    setTimeout(dummyFunc(this), 1);
+    setTimeout(dummyFunc(this), 5);
   });
   // $('.vector-row input').on('paste', handlePaste);
 });
 
 function dummyFunc(obj) {
-  console.log(obj);
+  pastedData = $(obj).val();
+  console.log(pastedData);
+  populateInputsFromPaste(pastedData);
 }
 /**
  * Creates the new scene; skybox, lighting, camera and the initial object
@@ -913,37 +914,25 @@ function createTinyaxisMesh() {
 }
 
 
-// adapted from
-// https://stackoverflow.com/questions/2176861/javascript-get-clipboard-data-on-paste-event-cross-browser/6804718#6804718
-// function handlePaste (e) {
-//   var clipboardData, pastedData;
-
-//   // Stop data actually being pasted into div
-//   e.stopPropagation();
-//   e.preventDefault();
-
-//   // Get pasted data via clipboard API
-//   clipboardData = e.clipboardData || window.clipboardData;
-//   pastedData = clipboardData.getData('Text');
+function populateInputsFromPaste(pastedData) {
+  // Paste data into input boxes
+  eqtnData = pastedData.split(',v,'); // splits into matrix and vector values
+  matrixData = eqtnData[0].split(',');
+  vectorData = eqtnData[1].split(',');
   
-//   // Paste data into input boxes
-//   eqtnData = pastedData.split(',v,'); // splits into matrix and vector values
-//   matrixData = eqtnData[0].split(',');
-//   vectorData = eqtnData[1].split(',');
-  
-//   $('#matrix-row-0-col-0').val(matrixData[0]);
-//   $('#matrix-row-1-col-0').val(matrixData[1]);
-//   $('#matrix-row-2-col-0').val(matrixData[2]);
+  $('#matrix-row-0-col-0').val(matrixData[0]);
+  $('#matrix-row-1-col-0').val(matrixData[1]);
+  $('#matrix-row-2-col-0').val(matrixData[2]);
 
-//   $('#matrix-row-1-col-0').val(matrixData[3]);
-//   $('#matrix-row-1-col-1').val(matrixData[4]);
-//   $('#matrix-row-1-col-2').val(matrixData[5]);
+  $('#matrix-row-1-col-0').val(matrixData[3]);
+  $('#matrix-row-1-col-1').val(matrixData[4]);
+  $('#matrix-row-1-col-2').val(matrixData[5]);
 
-//   $('#matrix-row-2-col-0').val(matrixData[6]);
-//   $('#matrix-row-2-col-1').val(matrixData[7]);
-//   $('#matrix-row-2-col-2').val(matrixData[8]);
+  $('#matrix-row-2-col-0').val(matrixData[6]);
+  $('#matrix-row-2-col-1').val(matrixData[7]);
+  $('#matrix-row-2-col-2').val(matrixData[8]);
 
-//   $('#vector-row-0').val(vectorData[0]);
-//   $('#vector-row-1').val(vectorData[1]);
-//   $('#vector-row-2').val(vectorData[2]);
-// }
+  $('#vector-row-0').val(vectorData[0]);
+  $('#vector-row-1').val(vectorData[1]);
+  $('#vector-row-2').val(vectorData[2]);
+}
