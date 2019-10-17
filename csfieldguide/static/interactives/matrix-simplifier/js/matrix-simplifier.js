@@ -103,7 +103,8 @@ $(document).ready(function() {
   $('.matrix-row input').on('keyup bind cut copy paste', validateInput);
   $('#matrix-modal').on('hidden.bs.modal', resetModalMatrices);
   $('#vector-modal').on('hidden.bs.modal', resetModalMatrices);
-  $("#remove-all").on("click", removeAllEqtns);
+  $("#remove-all-matrices").on("click", removeAllMatrices);
+  $("#remove-all-vectors").on("click", removeAllVectors);
 
   $('#copy-eqtn').click(function() {
     $('#code-to-copy').select();
@@ -203,6 +204,7 @@ function appendInput(type, inputHtml) {
     $newInputDiv.attr('id', 'vector-' + vectorNum);
     $newInputDiv.attr('data-vector-order', currentVectorsOrder.length - 1);
     MathJax.Hub.Queue(["Typeset", MathJax.Hub, 'vector-' + vectorNum]); // typeset the new vector
+    $('#remove-all-vectors').attr('disabled', false);
   } else {
     var matrixNum = currentMatricesOrder.length - 1;
     $closeButton.attr('id', 'close-matrix-' + matrixNum);
@@ -212,6 +214,7 @@ function appendInput(type, inputHtml) {
     $newInputDiv.attr('id', 'matrix-' + matrixNum);
     $newInputDiv.attr('data-matrix-order', currentMatricesOrder.length - 1);
     MathJax.Hub.Queue(["Typeset", MathJax.Hub, 'matrix-' + matrixNum]); // typeset the new matrix
+    $('#remove-all-matrices').attr('disabled', false);
   }
 }
 
@@ -393,7 +396,7 @@ function showOutput() {
   var vectorRows = matrixToArray(vector);
 
   // update global result variable
-  resultEqtn = matrixRows.toString() + ',v,' + vectorRows.toString();
+  resultEqtn = 'm,' + matrixRows.toString() + ',v,' + vectorRows.toString();
   $("#code-to-copy").val(resultEqtn);
 
   matrixString = formatMatrix(matrixRows, ROW_TEMPLATE);
@@ -505,7 +508,8 @@ function showEquations() {
       $('#add-matrix-btn').removeClass('d-none');
       $('#add-vector-btn').removeClass('d-none');
       $('#copy-eqtn').removeClass('d-none');
-      $('#remove-all').removeClass('d-none');
+      $('#remove-all-matrices').removeClass('d-none');
+      $('#remove-all-vectors').removeClass('d-none');
   });
 }
 
@@ -652,8 +656,9 @@ function updateEquation(eqtnDiv, orderIndex) {
 }
 
 
-/** Checks user input as they are typing.
- *  Highlights input box red if the input is invalid and disables the add button.
+/**
+ * Checks user input as they are typing.
+ * Highlights input box red if the input is invalid and disables the add button.
  */
 function validateInput() {
   var input = $(this).val();
@@ -678,12 +683,22 @@ function validateInput() {
 
 
 /** Removes all equations and re-calculates output */
-function removeAllEqtns() {
-  $(".draggable").remove();
+function removeAllMatrices() {
+  $(".matrix").parent().remove();
   currentMatricesOrder = [];
-  currentVectorsOrder = [];
   matricesStringFormat = [];
+  $('#remove-all-matrices').attr('disabled', true);
+  // re-calculate and show output
+  showOutput();
+}
+
+
+/** Removes all equations and re-calculates output */
+function removeAllVectors() {
+  $(".vector").parent().remove();
+  currentVectorsOrder = [];
   vectorsStringFormat = [];
+  $('#remove-all-vectors').attr('disabled', true);
   // re-calculate and show output
   showOutput();
 }
