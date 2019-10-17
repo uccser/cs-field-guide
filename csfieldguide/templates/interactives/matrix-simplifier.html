@@ -11,7 +11,7 @@
       Try dragging the matrices and vectors below to change their order. Does this affect the output?
       {% endblocktrans %}
     </p>
-    <div class="row">
+    <div class="row mb-5">
       <div class="col-md-6 col-sm-12 text-center mb-3">
         <h5>{% trans "Matrices" %}</h5>
         <div id="matrix-input-container" class="containers">
@@ -51,7 +51,10 @@
             </div>
           </div>
         </div>
-        <button id="add-matrix-btn" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#matrix-modal">{% trans "Add matrix" %}</button>
+        <div class="d-flex justify-content-between btn-container">
+          <button id="add-matrix-btn" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#matrix-modal">{% trans "Add matrix" %}</button>
+          <button id="remove-all-matrices" type="button" class="btn btn-danger d-none">{% trans "Remove all matrices" %}</button>
+        </div>
       </div>
 
       <div class="col-md-6 col-sm-12 text-center mb-3">
@@ -75,7 +78,10 @@
             </div>
           </div>
         </div>
-        <button id="add-vector-btn" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#vector-modal">{% trans "Add vector" %}</button>
+        <div class="d-flex justify-content-between btn-container">
+          <button id="add-vector-btn" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#vector-modal">{% trans "Add vector" %}</button>
+          <button id="remove-all-vectors" type="button" class="btn btn-danger d-none">{% trans "Remove all vectors" %}</button>
+        </div>
       </div>
     </div>
 
@@ -83,7 +89,7 @@
       <h5 class="col-12 text-center">{% trans "Result" %}</h5>
     </div>
 
-    <div class="row justify-content-center">
+    <div class="row justify-content-center mb-3">
       <div id="output-container" class="col-12 text-center invisible">
         <div class="result-step mb-3">
           \[
@@ -104,6 +110,22 @@
           <div id="vector-output" class="d-inline"></div>
         </div>
       </div>
+    </div>
+
+    <div class="row justify-content-center mb-1">
+      <small class="text-muted text-center">{% trans "For convenience this code can be pasted into the Scene Editor interactive." %}</small>
+    </div>
+
+    <div class="row justify-content-center mb-2">
+      <textarea id="code-to-copy" class="form-control col-md-4 col-sm-12" rows="1" readonly></textarea>
+    </div>
+
+    <div class="row justify-content-center mb-5">
+      <button id="copy-eqtn" type="button" class="btn btn-primary col-md-2 col-sm-6 d-none" data-toggle="tooltip" data-placement="bottom" title="{% trans 'Copy to clipboard' %}">{% trans "Copy to clipboard" %}</button>
+    </div>
+
+    <div class="row justify-content-center">
+      <button id="remove-all" type="button" class="btn btn-danger btn-sm col-md-2 col-sm-6 d-none">{% trans "Remove all" %}</button>
     </div>
 
     <!-- Modal for adding a matrix -->

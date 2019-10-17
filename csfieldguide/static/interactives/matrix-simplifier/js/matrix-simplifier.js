@@ -7,6 +7,10 @@ const ROW_TEMPLATE = "%s & %s & %s";
 const MATRIX_TEMPLATE = "\\begin{bmatrix} %s \\\\ %s \\\\ %s \\end{bmatrix}";
 const PENCIL_SVG = $("#pencil-svg-helper svg")
 
+var TXT_COPY = gettext("Copy to clipboard");
+var TXT_COPIED_SUCCESS = gettext("Equation copied");
+var TXT_COPIED_FAIL = gettext("Oops, unable to copy. Please copy manually");
+
 /**
  * Below is adapted from https://mathjs.org/examples/browser/angle_configuration.html.html
  * This is used to configure mathjs to accept degrees as input for trig functions.
@@ -78,6 +82,8 @@ v1String = [
 var matricesStringFormat = [m1String, m2String];
 var vectorsStringFormat = [v1String];
 
+// Store the result equation. Used for copying to clipboard.
+var resultEqtn;
 
 // only show equations once they are rendered
 // URL for mathjax script loaded from CDN
@@ -97,6 +103,30 @@ $(document).ready(function() {
   $('.matrix-row input').on('keyup bind cut copy paste', validateInput);
   $('#matrix-modal').on('hidden.bs.modal', resetModalMatrices);
   $('#vector-modal').on('hidden.bs.modal', resetModalMatrices);
+  $("#remove-all-matrices").on("click", removeAllMatrices);
+  $("#remove-all-vectors").on("click", removeAllVectors);
+
+  $('#copy-eqtn').click(function() {
+    $('#code-to-copy').select();
+    try {
+      var successful = document.execCommand('copy');
+      if (successful) {
+        $('#copy-eqtn').trigger('copied', TXT_COPIED_SUCCESS);
+      } else {
+        $('#copy-eqtn').trigger('copied', TXT_COPIED_FAIL);
+      }
+    } catch (err) {
+      $('#copy-eqtn').trigger('copied', TXT_COPIED_FAIL);
+    }
+  });
+
+  $('[data-toggle="tooltip"]').on('copied', function(event, message) {
+    $(this).attr('title', message)
+      .tooltip('_fixTitle')
+      .tooltip('show')
+      .attr('title', TXT_COPY)
+      .tooltip('_fixTitle');
+  });
 });
 
 
@@ -174,6 +204,7 @@ function appendInput(type, inputHtml) {
     $newInputDiv.attr('id', 'vector-' + vectorNum);
     $newInputDiv.attr('data-vector-order', currentVectorsOrder.length - 1);
     MathJax.Hub.Queue(["Typeset", MathJax.Hub, 'vector-' + vectorNum]); // typeset the new vector
+    $('#remove-all-vectors').attr('disabled', false);
   } else {
     var matrixNum = currentMatricesOrder.length - 1;
     $closeButton.attr('id', 'close-matrix-' + matrixNum);
@@ -183,6 +214,7 @@ function appendInput(type, inputHtml) {
     $newInputDiv.attr('id', 'matrix-' + matrixNum);
     $newInputDiv.attr('data-matrix-order', currentMatricesOrder.length - 1);
     MathJax.Hub.Queue(["Typeset", MathJax.Hub, 'matrix-' + matrixNum]); // typeset the new matrix
+    $('#remove-all-matrices').attr('disabled', false);
   }
 }
 
@@ -363,6 +395,10 @@ function showOutput() {
   var matrixRows = matrixToArray(matrix);
   var vectorRows = matrixToArray(vector);
 
+  // update global result variable
+  resultEqtn = 'm,' + matrixRows.toString() + ',v,' + vectorRows.toString();
+  $("#code-to-copy").val(resultEqtn);
+
   matrixString = formatMatrix(matrixRows, ROW_TEMPLATE);
   vectorString = sprintf(MATRIX_TEMPLATE, vectorRows[0], vectorRows[1], vectorRows[2]);
   $('#matrix-output').html(matrixString);
@@ -471,6 +507,9 @@ function showEquations() {
       // stop buttons jumping around on load
       $('#add-matrix-btn').removeClass('d-none');
       $('#add-vector-btn').removeClass('d-none');
+      $('#copy-eqtn').removeClass('d-none');
+      $('#remove-all-matrices').removeClass('d-none');
+      $('#remove-all-vectors').removeClass('d-none');
   });
 }
 
@@ -496,6 +535,9 @@ function dismissEquation() {
         $(this).attr('data-matrix-order', newOrder);
       }
     });
+    if (currentMatricesOrder.length == 0) {
+      $('#remove-all-matrices').attr('disabled', true);
+    }
   } else { //vector
     orderIndex = eqtnToRemove.attr('data-vector-order');
     // remove from order array
@@ -512,6 +554,9 @@ function dismissEquation() {
         $(this).attr('data-vector-order', newOrder);
       }
     });
+    if (currentVectorsOrder.length == 0) {
+      $('#remove-all-vectors').attr('disabled', true);
+    }
   }
   // re-calculate and show output
   showOutput();
@@ -617,8 +662,9 @@ function updateEquation(eqtnDiv, orderIndex) {
 }
 
 
-/** Checks user input as they are typing.
- *  Highlights input box red if the input is invalid and disables the add button.
+/**
+ * Checks user input as they are typing.
+ * Highlights input box red if the input is invalid and disables the add button.
  */
 function validateInput() {
   var input = $(this).val();
@@ -639,4 +685,26 @@ function validateInput() {
   if ($('.input-error').length == 0) {
     $('.add-from-input').prop('disabled', false);
   }
+}
+
+
+/** Removes all equations and re-calculates output */
+function removeAllMatrices() {
+  $(".matrix").parent().remove();
+  currentMatricesOrder = [];
+  matricesStringFormat = [];
+  $('#remove-all-matrices').attr('disabled', true);
+  // re-calculate and show output
+  showOutput();
+}
+
+
+/** Removes all equations and re-calculates output */
+function removeAllVectors() {
+  $(".vector").parent().remove();
+  currentVectorsOrder = [];
+  vectorsStringFormat = [];
+  $('#remove-all-vectors').attr('disabled', true);
+  // re-calculate and show output
+  showOutput();
 }

@@ -98,6 +98,7 @@ $(document).ready(function () {
     $("#vector-container").removeClass('d-none');
     $("#eqtn-title").html(gettext('Translation:'));
     $("#equation-container").removeClass('d-none');
+    $("#paste-hint").addClass('d-none');
   } else if (mode == "multiple") {
     $("#matrix-container").removeClass('d-none');
     $(".plus-sign").removeClass('d-none');
@@ -115,6 +116,8 @@ $(document).ready(function () {
     $("#eqtn-title").addClass('d-none');
     $("#scene-creation-title-area").removeClass('d-none');
     $("#delete-button").removeClass('d-none');
+    $("#apply-delete-btn-container").addClass('offset-1');
+    $("#paste-hint").addClass('offset-1');
   }
 
   $("#selectable-objects").on('change', switchFocus);
@@ -124,12 +127,30 @@ $(document).ready(function () {
   $("#apply-transformation").click(applyTransformation);
   $("#delete-button").click(deleteSuspect);
 
-  $('.matrix-row input').on('keyup bind cut copy paste', validateInput);
-  $('.vector-row input').on('keyup bind cut copy paste', validateInput);
+  $('.matrix-row input').on('keyup bind cut copy', function() {
+    validateInput($(this));
+  });
+  $('.vector-row input').on('keyup bind cut copy', function() {
+    validateInput($(this));
+  });
 
   $("#colour-input").val('');
   $("#name-input").val('');
+
+  $('.matrix-row input').on('paste', function() {
+    var inputDiv = $(this)
+    setTimeout(function() {
+      populateInputsFromPaste(inputDiv);
+    }, 0);
+  });
+  $('.vector-row input').on('paste', function() {
+    var inputDiv = $(this)
+    setTimeout(function() {
+      populateInputsFromPaste(inputDiv);
+    }, 0);
+  });
 });
+
 
 /**
  * Creates the new scene; skybox, lighting, camera and the initial object
@@ -767,11 +788,11 @@ function getRandomInt(min, max) {
 }
 
 /**
- * Checks user input as they are typing into the matrices.
+ * Checks user input as they are typing into the matrices or if content is pasted in.
  * Highlights input box red if the input is invalid and disables the apply button.
  */
-function validateInput() {
-  var input = $(this).val();
+function validateInput(inputDiv) {
+  input = $(inputDiv).val();
   var success = false;
   try {
     inputEvaluated = mathjs.eval(input);
@@ -779,11 +800,11 @@ function validateInput() {
     success = true;
   }
   catch {
-    $(this).addClass('input-error');
+    inputDiv.addClass('input-error');
     $('#apply-transformation').prop('disabled', true);
   }
   if (success) {
-    $(this).removeClass('input-error');
+    inputDiv.removeClass('input-error');
   }
   // if there are no input errors, enable apply button
   if ($('.input-error').length == 0) {
@@ -901,4 +922,65 @@ function createTinyaxisMesh() {
   var material = new THREE.MeshBasicMaterial( {vertexColors: THREE.FaceColors} );
   var object = new THREE.Mesh( geometry, material );
   return object;
+}
+
+
+/**
+ * Called on a paste event. Handles populating inputs copied from matrix simplifier 
+ * or simply validates pasted input if it appears it hasn't been copied from
+ * matrix simplifier.
+ */
+function populateInputsFromPaste(inputDiv) {
+  pastedData = inputDiv.val();
+  // update both matrix and vector
+  if (pastedData.includes('m,') && pastedData.includes(',v,')) {
+    // likely to be copied from matrix-simplifier
+    // Paste data into input boxes
+    pastedData = pastedData.replace('m,', '');
+    eqtnData = pastedData.split(',v,'); // splits into matrix and vector values
+    matrixData = eqtnData[0].split(',');
+    vectorData = eqtnData[1].split(',');
+
+    $('#matrix-row-0-col-0').val(matrixData[0]);
+    $('#matrix-row-0-col-1').val(matrixData[1]);
+    $('#matrix-row-0-col-2').val(matrixData[2]);
+
+    $('#matrix-row-1-col-0').val(matrixData[3]);
+    $('#matrix-row-1-col-1').val(matrixData[4]);
+    $('#matrix-row-1-col-2').val(matrixData[5]);
+
+    $('#matrix-row-2-col-0').val(matrixData[6]);
+    $('#matrix-row-2-col-1').val(matrixData[7]);
+    $('#matrix-row-2-col-2').val(matrixData[8]);
+
+    $('#vector-row-0').val(vectorData[0]);
+    $('#vector-row-1').val(vectorData[1]);
+    $('#vector-row-2').val(vectorData[2]);
+  } else if (pastedData.includes('m,')) {
+    // only update matrix
+    pastedData = pastedData.replace('m,', '');
+    matrixData = pastedData.split(',');
+
+    $('#matrix-row-0-col-0').val(matrixData[0]);
+    $('#matrix-row-0-col-1').val(matrixData[1]);
+    $('#matrix-row-0-col-2').val(matrixData[2]);
+
+    $('#matrix-row-1-col-0').val(matrixData[3]);
+    $('#matrix-row-1-col-1').val(matrixData[4]);
+    $('#matrix-row-1-col-2').val(matrixData[5]);
+
+    $('#matrix-row-2-col-0').val(matrixData[6]);
+    $('#matrix-row-2-col-1').val(matrixData[7]);
+    $('#matrix-row-2-col-2').val(matrixData[8]);
+  } else if (pastedData.includes('v,')) {
+    // only update vector
+    pastedData = pastedData.replace('v,', '');
+    vectorData = pastedData.split(',');
+    $('#vector-row-0').val(vectorData[0]);
+    $('#vector-row-1').val(vectorData[1]);
+    $('#vector-row-2').val(vectorData[2]);
+  }
+  // Run the error-check
+  $('.matrix-row input').trigger('keyup');
+  $('.vector-row input').trigger('keyup');
 }
