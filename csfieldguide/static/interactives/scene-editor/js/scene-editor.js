@@ -98,6 +98,7 @@ $(document).ready(function () {
     $("#vector-container").removeClass('d-none');
     $("#eqtn-title").html(gettext('Translation:'));
     $("#equation-container").removeClass('d-none');
+    $("#paste-hint").addClass('d-none');
   } else if (mode == "multiple") {
     $("#matrix-container").removeClass('d-none');
     $(".plus-sign").removeClass('d-none');
