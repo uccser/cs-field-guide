@@ -115,6 +115,8 @@ $(document).ready(function () {
     $("#eqtn-title").addClass('d-none');
     $("#scene-creation-title-area").removeClass('d-none');
     $("#delete-button").removeClass('d-none');
+    $("#apply-delete-btn-container").addClass('offset-1');
+    $("#paste-hint").addClass('offset-1');
   }
 
   $("#selectable-objects").on('change', switchFocus);
