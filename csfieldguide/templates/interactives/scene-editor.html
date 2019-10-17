@@ -50,6 +50,15 @@
         </div>
         <button id="apply-transformation" class="mt-2 mx-2 btn btn-primary">{% trans "Apply" %}</button>
         <button id="delete-button" class="mt-2 mx-2 d-none btn btn-outline-danger">{% trans "Delete" %}</button>
+        <div class="row justify-content-center mt-3">
+          <small class="col-sm-8 offset-1 text-muted text-left pl-0">
+            {% blocktrans %}
+            Paste in your code from matrix simplifier into any box!<br>
+            If you are only copying over a matrix, only paste into a matrix box.<br>
+            If you are only copying over a vector, only paste into a vector box.
+            {% endblocktrans %}
+          </small>
+        </div>
       </div>
 
       <!-- This div will be to the _left_ of or _below_ the matrix grid -->
