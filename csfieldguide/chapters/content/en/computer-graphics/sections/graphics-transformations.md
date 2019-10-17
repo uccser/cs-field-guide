@@ -611,7 +611,7 @@ You can try out this 3D matrix in the following interactive.
 
 {interactive end}
 
-The above image mesh has 3644 points in it, and your matrix was applied to each one of them to work out the new image.
+The teapot mesh in the above interactive has 289 points in it, and your matrix was applied to each one of them to work out the new image.
 
 The next interactive allows you to do translation (using a vector).
 Use it to get used to translating in the three dimensions (don't worry about using matrices this time.)
