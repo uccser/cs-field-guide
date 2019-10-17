@@ -98,6 +98,7 @@ $(document).ready(function () {
     $("#vector-container").removeClass('d-none');
     $("#eqtn-title").html(gettext('Translation:'));
     $("#equation-container").removeClass('d-none');
+    $("#paste-hint").addClass('d-none');
   } else if (mode == "multiple") {
     $("#matrix-container").removeClass('d-none');
     $(".plus-sign").removeClass('d-none');
@@ -115,6 +116,8 @@ $(document).ready(function () {
     $("#eqtn-title").addClass('d-none');
     $("#scene-creation-title-area").removeClass('d-none');
     $("#delete-button").removeClass('d-none');
+    $("#apply-delete-btn-container").addClass('offset-1');
+    $("#paste-hint").addClass('offset-1');
   }
 
   $("#selectable-objects").on('change', switchFocus);
@@ -922,15 +925,18 @@ function createTinyaxisMesh() {
 }
 
 
-/** Called on a paste event. Handles populating inputs copied from matrix simplifier 
- *  or simply validates pasted input if it appears it hasn't been copied from
- *  matrix simplifier.
+/**
+ * Called on a paste event. Handles populating inputs copied from matrix simplifier 
+ * or simply validates pasted input if it appears it hasn't been copied from
+ * matrix simplifier.
  */
 function populateInputsFromPaste(inputDiv) {
   pastedData = inputDiv.val();
-  if (pastedData.includes(',v,')) {
+  // update both matrix and vector
+  if (pastedData.includes('m,') && pastedData.includes(',v,')) {
     // likely to be copied from matrix-simplifier
     // Paste data into input boxes
+    pastedData = pastedData.replace('m,', '');
     eqtnData = pastedData.split(',v,'); // splits into matrix and vector values
     matrixData = eqtnData[0].split(',');
     vectorData = eqtnData[1].split(',');
@@ -950,6 +956,31 @@ function populateInputsFromPaste(inputDiv) {
     $('#vector-row-0').val(vectorData[0]);
     $('#vector-row-1').val(vectorData[1]);
     $('#vector-row-2').val(vectorData[2]);
+  } else if (pastedData.includes('m,')) {
+    // only update matrix
+    pastedData = pastedData.replace('m,', '');
+    matrixData = pastedData.split(',');
+
+    $('#matrix-row-0-col-0').val(matrixData[0]);
+    $('#matrix-row-0-col-1').val(matrixData[1]);
+    $('#matrix-row-0-col-2').val(matrixData[2]);
+
+    $('#matrix-row-1-col-0').val(matrixData[3]);
+    $('#matrix-row-1-col-1').val(matrixData[4]);
+    $('#matrix-row-1-col-2').val(matrixData[5]);
+
+    $('#matrix-row-2-col-0').val(matrixData[6]);
+    $('#matrix-row-2-col-1').val(matrixData[7]);
+    $('#matrix-row-2-col-2').val(matrixData[8]);
+  } else if (pastedData.includes('v,')) {
+    // only update vector
+    pastedData = pastedData.replace('v,', '');
+    vectorData = pastedData.split(',');
+    $('#vector-row-0').val(vectorData[0]);
+    $('#vector-row-1').val(vectorData[1]);
+    $('#vector-row-2').val(vectorData[2]);
   }
-  validateInput(inputDiv);
+  // Run the error-check
+  $('.matrix-row input').trigger('keyup');
+  $('.vector-row input').trigger('keyup');
 }
