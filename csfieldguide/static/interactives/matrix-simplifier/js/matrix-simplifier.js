@@ -535,6 +535,9 @@ function dismissEquation() {
         $(this).attr('data-matrix-order', newOrder);
       }
     });
+    if (currentMatricesOrder.length == 0) {
+      $('#remove-all-matrices').attr('disabled', true);
+    }
   } else { //vector
     orderIndex = eqtnToRemove.attr('data-vector-order');
     // remove from order array
@@ -551,6 +554,9 @@ function dismissEquation() {
         $(this).attr('data-vector-order', newOrder);
       }
     });
+    if (currentVectorsOrder.length == 0) {
+      $('#remove-all-vectors').attr('disabled', true);
+    }
   }
   // re-calculate and show output
   showOutput();
