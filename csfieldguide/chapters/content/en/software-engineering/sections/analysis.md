@@ -27,7 +27,7 @@ A software company might create software for a local council or a GP’s practic
 Google and Microsoft make software used by millions of people around the world.
 Either way, whether you’re writing a program for your friends or for millions of people, you first have to find out from your customers what they actually need the software to do.
 
-We call anyone who has an interest in the software a *stakeholder*.
+We call anyone who has an interest in the software a {glossary-link term="stakeholder"}stakeholder{glossary-link end}.
 These are the people that you need to talk to during the analysis part of your project to find out what they need the software to do.
 
 Imagine that you are making a phone app that allows students to preorder food from the school cafeteria.
@@ -65,7 +65,7 @@ You just need to record the foo-whacks, but not the bar-whacks unless the Flob i
 
 After this description, you’re probably pretty confused because you don’t know anything about the sport of Whacky-Flob and don’t know the specific terms used (what on earth are foo-whacks???).
 To get started, you should attend a few games of Whacky-Flob and observe how the game and the scoring works.
-This way, you’ll be able to have a much better conversation with the customer since you have some knowledge about the problem domain.
+This way, you’ll be able to have a much better conversation with the customer since you have some knowledge about the {glossary-link term="problem-domain"}problem domain{glossary-link end}.
 Incidentally, this is one of the cool things about being a software engineer: you get exposure to all kinds of different, exciting problem domains.
 One project might be tracking grizzly bears, the next one might be identifying cyber terrorists or making a car drive itself.
 
@@ -81,7 +81,7 @@ Remember, it’s up to you to make sure you and your customer understand each ot
 Even if you manage to communicate with a customer, you might find that they don’t really know what they want the software to do or can’t express it.
 They might say they want "software to improve their business" or to "make their work more efficient" but that’s not very specific (There’s a great cartoon of [Dilbert](http://dilbert.com/strips/comic/2006-01-29/) which illustrates this point!).
 When you show them the software you have built, they can usually tell you if that’s what they wanted or what they like and don’t like about it.
-For that reason, it’s a good idea to build little prototypes while you’re developing your system and keep showing them to customers to get feedback from them.
+For that reason, it’s a good idea to build little {glossary-link term="prototype"}prototypes{glossary-link end} while you’re developing your system and keep showing them to customers to get feedback from them.
 
 You’ll often find that customers have a specific process that they follow already and want the software to fit in with that.
 Once, a project was being done by university students for a library.
@@ -114,7 +114,7 @@ But the students tell you that they want to be able to order food for their frie
 In their view, $10 could not even be enough for one student.
 
 What do you do about these conflicting points of view?
-Situations like this can be difficult to handle, depending on the situation, the stakeholders and the software you are making.
+Situations like this can make it difficult to handle, depending on the situation, the stakeholders and the software you are making.
 In this case, you need the support from the cafeteria and the teachers for your software to work, but maybe you could negotiate a higher order limit of $20 to try to keep all your stakeholders happy.
 
 Finally, even if you get everything right during the analysis stage of your project, requirements can change while you’re making the software.
@@ -123,7 +123,7 @@ Imagine how much changes in the technology world in a year!
 While you’re working on the project, new hardware (phones, computers, tablets) could come out or a competitor might release software very similar to what you’re making.
 Your software itself might change the situation: once the software is delivered, the customer will try working with it and may realise it isn’t what they really wanted.
 So you should never take the requirements for your software to be set in stone.
-Ideally, you should keep talking to customers regularly throughout the project and always be ready for changes in requirements!
+Ideally, you should keep talking to stakeholders regularly throughout the project and always be ready for changes in requirements!
 
 {panel type="project"}
 
