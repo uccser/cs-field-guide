@@ -22,7 +22,7 @@ Some software failures are more spectacular than others.
 In 1996, The ARIANE 5 rocket of the European Space Agency was launched for its first test flight: Countdown, ignition, flame and smoke, soaring rocket... then BANG!
 Lots of little pieces scattered through the South American rainforest.
 Investigators had to piece together what happened and finally tracked down this tiny, irrelevant bug.
-A piece of software onboard the rocket which was not even needed had reported a value that was too big to be stored.
+A piece of software on board the rocket which was not even needed had reported a value that was too big to be stored.
 An error was stored instead, but other software interpreted the error as saying the rocket was 90 degrees off course.
 Thankfully, no one was on board but the failure still caused about US$370m damage.
 
