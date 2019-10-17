@@ -11,7 +11,7 @@ For simplicity, throughout the rest of this chapter we will use the term *agent*
 Not all agents are called intelligent though. In the field of AI, an agent is generally considered to act intelligently if:
 
 - It can mimic elements of human intelligence, such as problem solving and learning.
-- It can interpret external data collected from its environment, takes appropriate actions that move it towards it's goals, whilst taking into account the future consequences of these actions.
+- It can interpret external data collected from its environment, takes appropriate actions that move it towards its goals, whilst taking into account the future consequences of these actions.
 - Or it has the ability to learn from data and past experience, and then make predictions and decisions based on this and its existing knowledge.
 
 For example, lets say you have two little vacuuming cleaning robots that move around your house autonomously.
@@ -59,7 +59,7 @@ The Turing test is a famous Artificial Intelligence experiment, that was develop
 He proposed this test as a way to determine if a computer truly was intelligent.
 To pass the Turing test, a computer program must convince a human that it is also a human by having a conversation.
 While having a simple conversation seems like a very easy thing to do to us humans, it is actually an extremely complicated thing for a computer to do.
-Correctly interpretting what someone says to you, and choose appropriate things to say based on the conversation is a form of intelligence.
+Correctly interpretting what someone says to you, and choosing appropriate things to say based on the conversation is a form of intelligence.
 Defining intelligence as having this ability is what Turing based his test on.
 
 {panel type="teacher-note"}
