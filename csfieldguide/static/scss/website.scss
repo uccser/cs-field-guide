@@ -205,11 +205,11 @@ html {
   @include media-breakpoint-up(md) {
     margin-top: $spacer * 0.5;
     &.img-wrap-left {
-      @include float-left;
+      float: left !important;
       margin-right: $spacer * 0.5;
     }
     &.img-wrap-right {
-      @include float-right;
+      float: right !important;
       margin-left: $spacer * 0.5;
     }
     &.img-wrap-left,
