@@ -40,7 +40,7 @@ $(document).ready(function() {
   $('#reset-button').on('click', function() {
     reset(false);
   });
-  $('#reset-hard-button').on('click', function() {
+  $('#continue-button').on('click', function() {
     reset(true);
   });
     
@@ -75,7 +75,7 @@ function stall() {
 
 /**
  * Checks the number entered in the input box against the saved value.
- * Displays a message and reveals either the reset or reset-hard buttons depending on
+ * Displays a message and reveals either the reset or continue buttons depending on
  * the mode and if the user is correct.
  */
 function submit() {
@@ -85,7 +85,7 @@ function submit() {
     if (isMemoryMode) {
       $('#reset-button').removeClass('d-none');
     } else {
-      $('#reset-hard-button').removeClass('d-none');
+      $('#continue-button').removeClass('d-none');
     }
   } else {
     $('#middle-text').html('<span class="red">' + TXT_INCORRECT + '</span><br>' + generatedNumber);
@@ -134,7 +134,7 @@ function showStartScreen() {
   $('#middle-text').addClass('d-none');
   $('#submit-button').addClass('d-none');
   $('#reset-button').addClass('d-none');
-  $('#reset-hard-button').addClass('d-none');
+  $('#continue-button').addClass('d-none');
 
   // Show
   $('#number-memory-title').removeClass('d-none');
@@ -153,7 +153,7 @@ function showStallScreen() {
   $('#start-button').addClass('d-none');
   $('#submit-button').addClass('d-none');
   $('#reset-button').addClass('d-none');
-  $('#reset-hard-button').addClass('d-none');
+  $('#continue-button').addClass('d-none');
 
   // Show
   $('#middle-text').removeClass('d-none');
@@ -171,7 +171,7 @@ function showSubmitScreen() {
   $('#middle-text').addClass('d-none');
   $('#start-button').addClass('d-none');
   $('#reset-button').addClass('d-none');
-  $('#reset-hard-button').addClass('d-none');
+  $('#continue-button').addClass('d-none');
 
   // Show
   $('#number-memory-title').removeClass('d-none');
@@ -211,7 +211,7 @@ function showMemoryScreen() {
   $('#middle-text').addClass('d-none');
   $('#start-button').addClass('d-none');
   $('#reset-button').addClass('d-none');
-  $('#reset-hard-button').addClass('d-none');
+  $('#continue-button').addClass('d-none');
 
   // Show
   $('#number-memory-title').removeClass('d-none');
