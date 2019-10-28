@@ -19,7 +19,7 @@ const HARD_MIN = 10000000;
 const HARD_MAX = 99999999;
 const TXT_WHAT_WAS = gettext("What was the number?");
 const TXT_REMEMBER = gettext("Remember this number!");
-const TXT_PREVIOUS = gettext("What was the PREVIOUS number?");
+const TXT_PREVIOUS = gettext("What was the PREVIOUS (shorter) number?");
 const TXT_CORRECT = gettext("Correct!");
 const TXT_INCORRECT = gettext("That wasn't the number!");
 var oldNumber;
