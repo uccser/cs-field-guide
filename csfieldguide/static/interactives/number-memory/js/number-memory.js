@@ -19,13 +19,17 @@ const HARD_MIN = 10000000;
 const HARD_MAX = 99999999;
 const TXT_WHAT_WAS = gettext("What was the number?");
 const TXT_REMEMBER = gettext("Remember this number!");
+const TXT_PREVIOUS = gettext("What was the PREVIOUS (shorter) number?");
 const TXT_CORRECT = gettext("Correct!");
 const TXT_INCORRECT = gettext("That wasn't the number!");
+var oldNumber;
 var generatedNumber;
 var isHardMode;
+var isMemoryMode;
 
 $(document).ready(function() {
   isHardMode = false;
+  isMemoryMode = false;
   showStartScreen();
   $('#start-button').on('click', function() {
     start();
@@ -36,7 +40,7 @@ $(document).ready(function() {
   $('#reset-button').on('click', function() {
     reset(false);
   });
-  $('#reset-hard-button').on('click', function() {
+  $('#continue-button').on('click', function() {
     reset(true);
   });
     
@@ -71,13 +75,18 @@ function stall() {
 
 /**
  * Checks the number entered in the input box against the saved value.
- * Displays a message and reveals either the reset or reset-hard buttons depending on if the user is correct.
+ * Displays a message and reveals either the reset or continue buttons depending on
+ * the mode and if the user is correct.
  */
 function submit() {
   showEndScreen();
   if ($('#number-input').val() == generatedNumber) {
     $('#middle-text').html('<span class="green">' + TXT_CORRECT + '</span>');
-    $('#reset-hard-button').removeClass('d-none');
+    if (isMemoryMode) {
+      $('#reset-button').removeClass('d-none');
+    } else {
+      $('#continue-button').removeClass('d-none');
+    }
   } else {
     $('#middle-text').html('<span class="red">' + TXT_INCORRECT + '</span><br>' + generatedNumber);
     $('#reset-button').removeClass('d-none');
@@ -86,10 +95,17 @@ function submit() {
 
 /**
  * Resets the game to as it was when first loaded. If runHardMode, starts the game in Hard mode.
+ * If runHardMode and the game is already in Hard mode, runs the game with the number from the game previous.
  */
 function reset(runHardMode) {
-  isHardMode = runHardMode;
-  showStartScreen();
+  if (isHardMode && runHardMode) {
+    isMemoryMode = true;
+    showMemoryScreen();
+  } else {
+    isHardMode = runHardMode;
+    isMemoryMode = false;
+    showStartScreen();
+  }
 }
 
 /**
@@ -118,7 +134,7 @@ function showStartScreen() {
   $('#middle-text').addClass('d-none');
   $('#submit-button').addClass('d-none');
   $('#reset-button').addClass('d-none');
-  $('#reset-hard-button').addClass('d-none');
+  $('#continue-button').addClass('d-none');
 
   // Show
   $('#number-memory-title').removeClass('d-none');
@@ -137,7 +153,7 @@ function showStallScreen() {
   $('#start-button').addClass('d-none');
   $('#submit-button').addClass('d-none');
   $('#reset-button').addClass('d-none');
-  $('#reset-hard-button').addClass('d-none');
+  $('#continue-button').addClass('d-none');
 
   // Show
   $('#middle-text').removeClass('d-none');
@@ -155,7 +171,7 @@ function showSubmitScreen() {
   $('#middle-text').addClass('d-none');
   $('#start-button').addClass('d-none');
   $('#reset-button').addClass('d-none');
-  $('#reset-hard-button').addClass('d-none');
+  $('#continue-button').addClass('d-none');
 
   // Show
   $('#number-memory-title').removeClass('d-none');
@@ -182,9 +198,35 @@ function showEndScreen() {
 }
 
 /**
+ * Hides irrrelevant HTML divs, then reveals relevant ones.
+ * Also sets the title to the memory text and focuses the input box.
+ */
+function showMemoryScreen() {
+  $('#number-input').val('');
+  $('#number-memory-title').html(TXT_PREVIOUS);
+  generatedNumber = oldNumber;
+
+  // Hide
+  $('#number-text-container').addClass('d-none');
+  $('#middle-text').addClass('d-none');
+  $('#start-button').addClass('d-none');
+  $('#reset-button').addClass('d-none');
+  $('#continue-button').addClass('d-none');
+
+  // Show
+  $('#number-memory-title').removeClass('d-none');
+  $('#number-input-form').removeClass('d-none');
+  $('#submit-button').removeClass('d-none');
+
+  // Focus on the input
+  $('#number-input').focus();
+}
+
+/**
  * Generates a random 6-digit number and displays it appropriately
  */
 function generateNumber() {
+  oldNumber = generatedNumber;
   if (isHardMode) {
     generatedNumber = getRandomInteger(HARD_MIN, HARD_MAX);
   } else {
