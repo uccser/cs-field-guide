@@ -23,6 +23,7 @@
     "csfg-interactive-city-trip": "file:./static/interactives/city-trip/",
     "csfg-interactive-cmy-mixer": "file:./static/interactives/cmy-mixer/",
     "csfg-interactive-colour-matcher": "file:./static/interactives/colour-matcher/",
+    "csfg-interactive-data-visualisation": "file:./static/interactives/data-visualisation/",
     "csfg-interactive-frequency-anaylsis": "file:./static/interactives/frequency-analysis/",
     "csfg-interactive-jpeg-compression": "file:./static/interactives/jpeg-compression/",
     "csfg-interactive-matrix-simplifier": "file:./static/interactives/matrix-simplifier/",

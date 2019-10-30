@@ -1,0 +1,56 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div id="interactive-data-visualisation" class="container-fluid my-3 text-center">
+    <div id="data-vis-title" class="col-12">{% trans 'Data Visualisation' %}</div>
+    <div id="data-vis-instructions" class="col-12">
+      <div class="col-12">
+        {% blocktrans %}
+        Find the mode (most common number) of the data below.
+        You will have a limited amount of time to view the data.
+        {% endblocktrans %}
+      </div>
+      <button id="button-start" type="button" class="btn btn-success">{% trans 'Start' %}</button>
+    </div>
+    <div id="data-vis-guesser" class="col-12">
+      <label for="data-vis-selector">{% trans 'What was the mode (most common number) of the data?' %}</label>
+      <form class="form-inline justify-content-center">
+        <select id="data-vis-selector" class="form-control text-center d-inline mx-2" size="1">
+          <option>0</option>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+          <option>6</option>
+          <option>7</option>
+          <option>8</option>
+          <option>9</option>
+        </select>
+        <button type="button" class="btn btn-secondary d-inline mx-2">{% trans 'Submit' %}</button>
+      </form>
+    </div>
+    <div id="data-vis-next" class="col-12">
+      <button id="button-next" type="button" class="btn btn-secondary d-inline mx-2">{% trans 'Continue' %}</button>
+      <button id="button-quit" type="button" class="btn btn-danger d-inline mx-2">{% trans 'End Game' %}</button>
+    </div>
+    <div id="data-vis-restart" class="col-12">
+      <button id="button-restart" type="button" class="btn btn-primary d-inline mx-2">{% trans 'Restart Game' %}</button>
+    </div>
+    <div id="data-vis-game"class="col-12">
+      <table id="data-vis-table"></table>
+      <canvas id="data-vis-graph"></canvas>
+    </div>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/data-visualisation/css/data-visualisation.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'interactives/data-visualisation/js/data-visualisation.js' %}"></script>
+{% endblock js %}
