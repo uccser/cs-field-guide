@@ -15,6 +15,7 @@
     "gumshoejs": "5.1.2",
     "csfg-module-fsa": "file:./static/js/modules/fsa/",
     "csfg-interactive-algorithm-timer": "file:./static/interactives/algorithm-timer/",
+    "csfg-interactive-bias-in-big-data": "file:./static/interactives/bias-in-big-data/",
     "csfg-interactive-big-number-calculator": "file:./static/interactives/big-number-calculator/",
     "csfg-interactive-bin-packing": "file:./static/interactives/bin-packing/",
     "csfg-interactive-box-rotation": "file:./static/interactives/box-rotation/",

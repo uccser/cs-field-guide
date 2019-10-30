@@ -1,0 +1,8 @@
+{
+    "name": "csfg-interactive-bias-in-big-data",
+    "version": "1.0.0",
+    "private": true,
+    "dependencies": {
+        "nouislider": "13.1.5"
+    }
+}
