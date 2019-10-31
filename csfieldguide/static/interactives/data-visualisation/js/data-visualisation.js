@@ -8,6 +8,7 @@ const MIN = 0;      // Numbers for data
 const MAX = 9;
 const WAIT = 5000;  // Time (milliseconds) to show the chart
 const BASE_DATA_POINTS = 16;
+const MAX_DATA_POINTS = 256;
 const CHART_TYPES = {
   GRID: gettext("Plain grid"),
   MAP:  gettext("Heatmap"),
@@ -32,7 +33,7 @@ var CurrentChart;
 
 var NumDataPoints;  // Number of values in the data
 
-var Solutions;      // List of lists: [[type, correct answer]]
+var Solutions;      // List of lists: [[type of representation, correct answer]]
 var Responses;      // User's choices
 
 var DataSet;
@@ -116,7 +117,7 @@ function runQuit() {
 
 /**
  * Assigns the chart type that should be used next, in a circular fashion.
- * If the loop has completed, doubles the amount of data to create, up to 128 points
+ * If the loop has completed, doubles the amount of data to create, up to MAX_DATA_POINTS
  */
 function getNextChart() {
   if (CurrentChart == CHART_TYPES.GRID) {
@@ -126,7 +127,7 @@ function getNextChart() {
   } else if (CurrentChart == CHART_TYPES.PIE) {
     CurrentChart = CHART_TYPES.BAR;
   } else /*(CurrentChart == CHART_TYPES.BAR)*/ {
-    NumDataPoints = Math.min(128, NumDataPoints * 2); // More data points for the next cycle
+    NumDataPoints = Math.min(MAX_DATA_POINTS, NumDataPoints * 2); // More data points for the next cycle
     CurrentChart = CHART_TYPES.GRID;
   }
 }
@@ -193,6 +194,8 @@ function buildPieChart() {
   if (PieChart) {
     PieChart.destroy();
   }
+  canvas.attr('width', Math.min(600, 0.8 * $( window ).width())); // 600 is the value in the html
+  canvas.attr('height', canvas.attr('width') / 2);
   PieChart = new CHART.Chart(canvas, {
     type: 'pie',
     data: {
@@ -204,6 +207,7 @@ function buildPieChart() {
     },
     options: {
       responsive: false,
+      maintainAspectRatio: false,
       legend: {
         display: true,
         position: 'right'
@@ -231,6 +235,8 @@ function buildBarChart() {
   if (BarChart) {
     BarChart.destroy();
   }
+  canvas.attr('width', Math.min(800, 0.8 * $( window ).width())); // 800 is the value in the html
+  canvas.attr('height', canvas.attr('width') / 2);
   BarChart = new CHART.Chart(canvas, {
     type: 'bar',
     data: {
@@ -265,6 +271,8 @@ function buildResultsChart() {
   if (ResultsChart) {
     ResultsChart.destroy();
   }
+  canvas.attr('width', Math.min(800, 0.8 * $( window ).width())); // 800 is the value in the html
+  canvas.attr('height', canvas.attr('width') / 2);
   ResultsChart = new CHART.Chart(canvas, {
     type: 'bar',
     data: {
@@ -380,9 +388,9 @@ function fillDataSet(num) {
 /**
  * Returns two values in a list:
  * [
- * The mode (most common value) of the global DataSet, ensuring only one value is most common.
+ * The mode (most common value) of the global DataSet - ensuring only one value is most common
  * ,
- * The frequency of each value in the global DataSet.
+ * The frequency of each value in the global DataSet
  * ]
  * 
  * If two or more values share the mode (most common value), one of the mode values is chosen at random.
@@ -433,7 +441,7 @@ function getRandomInteger(min, max) {
 }
 
 /**
- * Returns the last item in array like the python expression: `array[-1]`
+ * Returns the last item in the array, like the python expression: `array[-1]`
  */
 function last(array) {
   return array[array.length - 1];

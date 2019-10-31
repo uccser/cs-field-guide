@@ -1,3 +1,7 @@
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+@import "node_modules/bootstrap/scss/mixins";
+
 #data-vis-title {
   font-size: 2rem;
 }
@@ -15,4 +19,12 @@ table, th, td {
   padding-right: 50px;
   border: 1px solid #000;
   border-collapse: collapse;
+}
+
+@include media-breakpoint-down(sm) {
+  table, th, td {
+    padding: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
 }

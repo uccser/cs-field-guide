@@ -9,7 +9,7 @@
 
 **Recreated by:** Alasdair Smith
 
-This game serves to teach students that visualisation can help one quickly identify trends in data, and that some visualisations are more helpful than others.
+This game serves to teach students that visualisation can help a user quickly identify trends in data, and that some visualisations are more helpful than others.
 
 ## The Game
 
