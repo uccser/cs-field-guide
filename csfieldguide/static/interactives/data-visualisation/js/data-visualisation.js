@@ -15,7 +15,7 @@ const CHART_TYPES = {
 };
 const TITLES = {
   BAR:  gettext("Frequency of each number."),
-  PIE:  gettext("Relative frequency of each number."),
+  PIE:  gettext("Relative frequency of each number (%)."),
 };
 const COLOURS = [
   "#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850",
@@ -24,37 +24,54 @@ const COLOURS = [
 
 var NextChart;
 
-var NumDataPoints;   // Number of values in the data
+var NumDataPoints;  // Number of values in the data
 
-var Solutions;    // List of lists: [[type, correct answer]]
-var Responses;    // User's choices
+var Solutions;      // List of lists: [[type, correct answer]]
+var Responses;      // User's choices
 
 var DataSet;
-var Frequencies;  // Frequency of each value in DataSet
+var Frequencies;    // Frequency of each value in DataSet
 
 $(document).ready(function() {
   init();
 
+  $('#button-start').on('click', runStart);
+  $('#button-submit').on('click', runGuessCheck);
 });
 
 /**
  * Returns everything to the initial 'page loaded' state
  */
 function init() {
+  showStartScreen();
+
   NextChart = CHART_TYPES.GRID;
-  NumDataPoints = 20;
+  NumDataPoints = 16;
   Solutions = [];
   Responses = [];
   DataSet = [];
   Frequencies = {};
 
   newDataSet();
+}
+
+function runStart() {
+  $('#button-start').addClass('d-none');
   buildChart();
+  setTimeout(showGuessScreen, WAIT);
+}
+
+function runGuessCheck() {
+  var guess = $('#data-vis-selector').val();
+  Responses.push(guess);
+  if (Responses.length != Solutions.length) { // At this point the two should always be equal
+    console.log("ERROR: Number of responses does not match number of solutions.")
+  }
+  showPerformanceScreen();
 }
 
 /**
  * Creates the next chart to be displayed
- * TODO Can this be done before 'start' is pressed but still be invisible to the user even if they inspect the page?
  */
 function buildChart() {
   $('#data-vis-barchart').addClass('d-none');
@@ -104,11 +121,10 @@ function buildBarChart() {
 function buildPieChart() {
   var valueLabels = [];
   var dataPoints = [];
-  var num = Object.keys(Frequencies).length;
   for (var i in Frequencies) {
     if (Frequencies[i]) {
       valueLabels.push(i.toString());
-      dataPoints.push(Frequencies[i]);
+      dataPoints.push(Math.round(Frequencies[i] / DataSet.length * 100)); // Percentage of total
     }
   }
   var canvas = $('#data-vis-piechart');
@@ -209,4 +225,44 @@ function getFrequencies() {
  */
 function getRandomInteger(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+/**
+ * Hides irrrelevant HTML divs, then reveals relevant ones.
+ */
+function showStartScreen() {
+  $('#data-vis-guesser').addClass('d-none');
+  $('#data-vis-next').addClass('d-none');
+  $('#data-vis-restart').addClass('d-none');
+  $('#data-vis-game').addClass('d-none');
+  $('#data-vis-results').addClass('d-none');
+
+  $('#data-vis-instructions').removeClass('d-none');
+  $('#button-start').removeClass('d-none');
+}
+
+/**
+ * Hides irrrelevant HTML divs, then reveals relevant ones.
+ */
+function showGuessScreen() {
+  $('#data-vis-instructions').addClass('d-none');
+  $('#data-vis-game').addClass('d-none');
+
+  $('#data-vis-guesser').removeClass('d-none');
+}
+
+/**
+ * Hides irrrelevant HTML divs, then reveals relevant ones.
+ */
+function showPerformanceScreen() {
+  $('#data-vis-guesser').addClass('d-none');
+  $('#data-vis-restart').addClass('d-none');
+  $('#data-vis-game').addClass('d-none');
+  $('#data-vis-results-table').addClass('d-none');
+
+  $('#data-vis-next').removeClass('d-none');
+  $('#data-vis-performance-table').removeClass('d-none');
+  $('#data-vis-results').removeClass('d-none');
+
+  //populatePerformanceTable();
 }
