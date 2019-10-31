@@ -15,7 +15,7 @@
       </div>
       <button id="button-start" type="button" class="btn btn-success">{% trans 'Start' %}</button>
     </div>
-    <div id="data-vis-guesser" class="col-12">
+    <div id="data-vis-guesser" class="col-12 d-none">
       <label for="data-vis-selector">{% trans 'What was the mode (most common number) of the data?' %}</label>
       <form class="form-inline justify-content-center">
         <select id="data-vis-selector" class="form-control text-center d-inline mx-2" size="1">
@@ -33,16 +33,21 @@
         <button type="button" class="btn btn-secondary d-inline mx-2">{% trans 'Submit' %}</button>
       </form>
     </div>
-    <div id="data-vis-next" class="col-12">
+    <div id="data-vis-next" class="col-12 d-none">
       <button id="button-next" type="button" class="btn btn-secondary d-inline mx-2">{% trans 'Continue' %}</button>
       <button id="button-quit" type="button" class="btn btn-danger d-inline mx-2">{% trans 'End Game' %}</button>
     </div>
-    <div id="data-vis-restart" class="col-12">
+    <div id="data-vis-restart" class="col-12 d-none">
       <button id="button-restart" type="button" class="btn btn-primary d-inline mx-2">{% trans 'Restart Game' %}</button>
     </div>
-    <div id="data-vis-game"class="col-12">
+    <div id="data-vis-game"class="col-12 d-none">
       <table id="data-vis-table"></table>
-      <canvas id="data-vis-graph"></canvas>
+      <canvas id="data-vis-barchart" height="400" width="800" role="img" aria-label="Bar chart showing how many times each value appears in the data."></canvas>
+      <canvas id="data-vis-piechart" height="400" width="600" role="img" aria-label="Pie chart showing the relative proportions of each value in the data."></canvas>
+    </div>
+    <div id="data-vis-results"class="col-12 d-none">
+      <table id="data-vis-performance"></table>
+      <canvas id="data-vis-results" role="img" aria-label="Bar chart showing."></canvas>
     </div>
   </div>
 {% endblock html %}
