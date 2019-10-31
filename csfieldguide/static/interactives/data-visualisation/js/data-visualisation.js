@@ -17,9 +17,9 @@ const CHART_TYPES = {
 const TITLES = {
   PIE:  gettext("Relative frequency of each number (%)."),
   BAR:  gettext("Frequency of each number."),
-  RESULTS: gettext("")
+  RESULTS: gettext("Your accuracy (%) when finding the mode of data with different visualisations.")
 };
-const COLOURS = [    // Pie chart colours
+const COLOURS = [   // Pie chart colours
   "#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850",
   "#28a745","#2a3da0","#34fcfe","#fb8532","#a37533",
 ];
@@ -41,6 +41,8 @@ var Frequencies;    // Frequency of each value in DataSet
 var BarChart;
 var PieChart;
 var ResultsChart;
+
+var BaseTable;      // For storing just the headings of the results table
 
 $(document).ready(function() {
   init();
@@ -64,6 +66,11 @@ function init() {
   Responses = [];
   DataSet = [];
   Frequencies = {};
+  if (BaseTable) {
+    $('#data-vis-performance').html(BaseTable);
+  } else {
+    BaseTable = $('#data-vis-performance').html();
+  }
 
   newDataSet();
 }
@@ -91,8 +98,8 @@ function runNext() {
 }
 
 function runQuit() {
-  //buildResultsChart();
-  //showResultsScreen();
+  buildResultsChart();
+  showResultsScreen();
 }
 
 function getNextChart() {
@@ -222,10 +229,50 @@ function buildPieChart() {
   canvas.removeClass('d-none');
 }
 
+function buildResultsChart() {
+  var valueLabels = [CHART_TYPES.GRID, CHART_TYPES.MAP, CHART_TYPES.PIE, CHART_TYPES.BAR];
+  var dataPoints = getFinalResults();
+  var canvas = $('#data-vis-results-chart');
+  if (ResultsChart) {
+    ResultsChart.destroy();
+  }
+  ResultsChart = new CHART.Chart(canvas, {
+    type: 'bar',
+    data: {
+      labels: valueLabels,
+      datasets: [{
+        label: gettext("Success (%)"),
+        backgroundColor: '#2a3da0', // Primary CSFG colour
+        data: dataPoints
+      }]
+    },
+    options: {
+      responsive: false,
+      legend: {
+        display: false
+      },
+      scales: {
+        yAxes: [{
+          display: true,
+          ticks: {
+            beginAtZero: true,
+            stepValue: 10,
+            max: 100
+          }
+        }]
+      },
+      title: {
+        display: true,
+        text: TITLES.RESULTS
+      }
+    }
+  });
+ canvas.removeClass('d-none');
+}
+
 function populatePerformanceTable() {
   var table = $('#data-vis-performance');
   var data = [last(Solutions), last(Responses)]; // [[type, solution], response]
-  console.log(data);
   var newRow = "<tr style='background-color: " + (data[0][1] == data[1] ? "#cdffd8" : "#ffc2a6") + "'>\n"
              +   "<td>" + data[0][0] + "</td>\n"
              +   "<td>" + data[0][1] + "</td>\n"
@@ -235,14 +282,56 @@ function populatePerformanceTable() {
 }
 
 /**
+ * Returns a list of four items:
+ * The percentage of correct answers for the mode of each data visualisation type
+ * 
+ * [grid, heatmap, pie, bar]
+ */
+function getFinalResults() {
+  var localSolutions = Solutions; // List of [[type, solution]]
+  var localResponses = Responses; // List of [response]
+  var proportionGrid = [0, 0];    // [correct, out-of]
+  var proportionHeatmap = [0, 0];
+  var proportionPie = [0, 0];
+  var proportionBar = [0, 0];
+  for (var i=0; i < localSolutions.length; i++) {
+    if (localSolutions[i][0] == CHART_TYPES.GRID) {
+      if (localSolutions[i][1] == localResponses[i]) {
+        proportionGrid[0]++;
+      }
+      proportionGrid[1]++;
+    } else if (localSolutions[i][0] == CHART_TYPES.MAP) {
+      if (localSolutions[i][1] == localResponses[i]) {
+        proportionHeatmap[0]++;
+      }
+      proportionHeatmap[1]++;
+    } else if (localSolutions[i][0] == CHART_TYPES.PIE) {
+      if (localSolutions[i][1] == localResponses[i]) {
+        proportionPie[0]++;
+      }
+      proportionPie[1]++;
+    } else if (localSolutions[i][0] == CHART_TYPES.BAR) {
+      if (localSolutions[i][1] == localResponses[i]) {
+        proportionBar[0]++;
+      }
+      proportionBar[1]++;
+    }
+  }
+  return [
+    Math.round(proportionGrid[0]    / proportionGrid[1]    * 100),
+    Math.round(proportionHeatmap[0] / proportionHeatmap[1] * 100),
+    Math.round(proportionPie[0]     / proportionPie[1]     * 100),
+    Math.round(proportionBar[0]     / proportionBar[1]     * 100)
+  ];
+}
+
+/**
  * Prepares a new set of data for the next chart.
  * Also sets the next solution appropriately.
  */
 function newDataSet() {
   fillDataSet(NumDataPoints);
   var [solution, frequencies] = getFrequencies();
-  console.log(solution);
-  console.log(frequencies);
   Solutions.push([CurrentChart, solution])
   Frequencies = frequencies;
 }
@@ -352,9 +441,20 @@ function showPerformanceScreen() {
   $('#data-vis-guesser').addClass('d-none');
   $('#data-vis-restart').addClass('d-none');
   $('#data-vis-game').addClass('d-none');
-  $('#data-vis-results-table').addClass('d-none');
+  $('#data-vis-results-chart').addClass('d-none');
 
   $('#data-vis-next').removeClass('d-none');
   $('#data-vis-performance').removeClass('d-none');
   $('#data-vis-results').removeClass('d-none');
+}
+
+/**
+ * Hides irrrelevant HTML divs, then reveals relevant ones.
+ */
+function showResultsScreen() {
+  $('#data-vis-next').addClass('d-none');
+  $('#data-vis-performance').addClass('d-none');
+
+  $('#data-vis-restart').removeClass('d-none');
+  $('#data-vis-results-chart').removeClass('d-none');
 }

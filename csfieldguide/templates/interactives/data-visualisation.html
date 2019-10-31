@@ -4,7 +4,7 @@
 {% load static %}
 
 {% block html %}
-  <div id="interactive-data-visualisation" class="container-fluid my-3 text-center">
+  <div class="container-fluid my-3 text-center">
     <div id="data-vis-title" class="col-12">{% trans 'Data Visualisation' %}</div>
     <div id="data-vis-instructions" class="col-12">
       <div class="col-12">
@@ -13,7 +13,7 @@
         You will have a limited amount of time to view the data.
         {% endblocktrans %}
       </div>
-      <button id="button-start" type="button" class="btn btn-success">{% trans 'Start' %}</button>
+      <button id="button-start" type="button" class="btn btn-success my-1">{% trans 'Start' %}</button>
     </div>
     <div id="data-vis-guesser" class="col-12 d-none">
       <label for="data-vis-selector">{% trans 'What was the mode (most common number) of the data?' %}</label>
@@ -33,11 +33,11 @@
         <button id="button-submit" type="button" class="btn btn-secondary d-inline mx-2">{% trans 'Submit' %}</button>
       </form>
     </div>
-    <div id="data-vis-next" class="col-12 d-none">
+    <div id="data-vis-next" class="col-12 my-1 d-none">
       <button id="button-next" type="button" class="btn btn-secondary d-inline mx-2">{% trans 'Continue' %}</button>
       <button id="button-quit" type="button" class="btn btn-danger d-inline mx-2">{% trans 'End Game' %}</button>
     </div>
-    <div id="data-vis-restart" class="col-12 d-none">
+    <div id="data-vis-restart" class="col-12 my-1 d-none">
       <button id="button-restart" type="button" class="btn btn-primary d-inline mx-2">{% trans 'Restart Game' %}</button>
     </div>
     <div id="data-vis-game"class="col-12 d-none">
@@ -46,14 +46,14 @@
       <canvas id="data-vis-piechart" height="400" width="600" role="img" aria-label="Pie chart showing the relative proportions of each value in the data."></canvas>
     </div>
     <div id="data-vis-results"class="col-12 d-none">
-      <table id="data-vis-performance">
+      <table id="data-vis-performance" class="my-3">
         <tr>
           <th>{% trans 'Chart type' %}</th>
           <th>{% trans 'Mode (most common value) of data' %}</th>
           <th>{% trans 'Your answer' %}</th>
         </tr>
       </table>
-      <canvas id="data-vis-results-table" role="img" aria-label="Bar chart showing."></canvas>
+      <canvas id="data-vis-results-chart" height="400" width="800" role="img" aria-label="Bar chart to compare your performace with different data visualisations."></canvas>
     </div>
   </div>
 {% endblock html %}
