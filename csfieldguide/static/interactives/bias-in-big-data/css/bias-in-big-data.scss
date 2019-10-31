@@ -16,15 +16,16 @@
 }
 
 #background-colour-slider .noUi-pips {
-    padding-top: 5px;
-}
-
-#background-colour-slider-container {
-    width: 80%;
+    padding-top: 0.3125rem;
 }
 
 #background-colour-slider .noUi-connect {
     background: aqua;
+}
+
+#background-colour-slider-container {
+    padding-left: 4rem !important;
+    padding-right: 4rem !important;
 }
 
 .glow {
