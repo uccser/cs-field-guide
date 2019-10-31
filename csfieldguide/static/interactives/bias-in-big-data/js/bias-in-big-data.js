@@ -2,11 +2,12 @@ const noUiSlider = require('nouislider');
 const wNumb = require('wnumb');
 
 const COLOURS = ['red', 'green', 'blue', 'yellow', 'purple', 'white', 'black', 'lime', 'darkorange', 'fuchsia'];
-const MANIPULATE_BOUNDARY = 10; // reduce by 10%
 const MISSED_CIRCLES_TEXT = gettext('You seem to have missed some dots! Forced perspective like this can be used in data representation and cause bias in the overall results.');
 const SLIDER_TEXT = gettext('Click and drag the slider to change background colour. What do you notice is happening?')
 const SLIDER_MIN = 0;
 const SLIDER_MAX = 255;
+const PERENTAGE_BOUNDARY = 95; // 95%
+const REDUCE_PERCENTAGE = 6; // 6%
 var count = 0;
 var firstStage = true;
 
@@ -68,11 +69,11 @@ function getRandomPosition() {
     widthInPercentage = Math.floor((randWidth / circlesAreaWidth) * 100);
 
     // reduces percentage by 6% to prevent circles going outside of parent
-    if (heightInPercentage >= 95) {
-        heightInPercentage -= 6;
+    if (heightInPercentage >= PERENTAGE_BOUNDARY) {
+        heightInPercentage -= REDUCE_PERCENTAGE;
     }
-    if (widthInPercentage >= 95) {
-        widthInPercentage -= 6;
+    if (widthInPercentage >= PERENTAGE_BOUNDARY) {
+        widthInPercentage -= REDUCE_PERCENTAGE;
     }
 
     return {
