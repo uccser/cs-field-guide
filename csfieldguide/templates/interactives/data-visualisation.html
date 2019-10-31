@@ -46,7 +46,13 @@
       <canvas id="data-vis-piechart" height="400" width="600" role="img" aria-label="Pie chart showing the relative proportions of each value in the data."></canvas>
     </div>
     <div id="data-vis-results"class="col-12 d-none">
-      <table id="data-vis-performance-table"></table>
+      <table id="data-vis-performance">
+        <tr>
+          <th>{% trans 'Chart type' %}</th>
+          <th>{% trans 'Mode (most common value) of data' %}</th>
+          <th>{% trans 'Your answer' %}</th>
+        </tr>
+      </table>
       <canvas id="data-vis-results-table" role="img" aria-label="Bar chart showing."></canvas>
     </div>
   </div>

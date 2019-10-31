@@ -17,6 +17,7 @@ const CHART_TYPES = {
 const TITLES = {
   PIE:  gettext("Relative frequency of each number (%)."),
   BAR:  gettext("Frequency of each number."),
+  RESULTS: gettext("")
 };
 const COLOURS = [    // Pie chart colours
   "#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850",
@@ -27,7 +28,7 @@ const HEATMAP = [   // Heatmap colours
   "#d400bf","#d80092","#dc0063","#e00032","#e50000",
 ];
 
-var NextChart;
+var CurrentChart;
 
 var NumDataPoints;  // Number of values in the data
 
@@ -39,6 +40,7 @@ var Frequencies;    // Frequency of each value in DataSet
 
 var BarChart;
 var PieChart;
+var ResultsChart;
 
 $(document).ready(function() {
   init();
@@ -56,7 +58,7 @@ $(document).ready(function() {
 function init() {
   showStartScreen();
 
-  NextChart = CHART_TYPES.GRID;
+  CurrentChart = CHART_TYPES.GRID;
   NumDataPoints = BASE_DATA_POINTS;
   Solutions = [];
   Responses = [];
@@ -78,6 +80,7 @@ function runGuessCheck() {
   if (Responses.length != Solutions.length) { // At this point the two should always be equal
     console.log("ERROR: Number of responses does not match number of solutions.")
   }
+  populatePerformanceTable();
   showPerformanceScreen();
 }
 
@@ -88,20 +91,20 @@ function runNext() {
 }
 
 function runQuit() {
+  //buildResultsChart();
   //showResultsScreen();
-  //populatePerformanceTable();
 }
 
 function getNextChart() {
-  if (NextChart == CHART_TYPES.GRID) {
-    NextChart = CHART_TYPES.MAP;
-  } else if (NextChart == CHART_TYPES.MAP) {
-    NextChart = CHART_TYPES.PIE;
-  } else if (NextChart == CHART_TYPES.PIE) {
-    NextChart = CHART_TYPES.BAR;
-  } else /*(NextChart == CHART_TYPES.BAR)*/ {
-    NumDataPoints = min(128, NumDataPoints * 2); // More data points for the next cycle
-    NextChart = CHART_TYPES.GRID;
+  if (CurrentChart == CHART_TYPES.GRID) {
+    CurrentChart = CHART_TYPES.MAP;
+  } else if (CurrentChart == CHART_TYPES.MAP) {
+    CurrentChart = CHART_TYPES.PIE;
+  } else if (CurrentChart == CHART_TYPES.PIE) {
+    CurrentChart = CHART_TYPES.BAR;
+  } else /*(CurrentChart == CHART_TYPES.BAR)*/ {
+    NumDataPoints = Math.min(128, NumDataPoints * 2); // More data points for the next cycle
+    CurrentChart = CHART_TYPES.GRID;
   }
 }
 
@@ -112,7 +115,7 @@ function buildChart() {
   $('#data-vis-barchart').addClass('d-none');
   $('#data-vis-piechart').addClass('d-none');
   $('#data-vis-grid').addClass('d-none');
-  var type = NextChart;
+  var type = CurrentChart;
   if (type == CHART_TYPES.GRID || type == CHART_TYPES.MAP) {
     buildGridChart();
   } else if (type == CHART_TYPES.BAR) {
@@ -134,7 +137,7 @@ function buildGridChart() {
   while (i < numValues) {
     html += "<tr>\n";
     for (var x=0; x < numColumns; x++) {
-      if (NextChart == CHART_TYPES.MAP) {
+      if (CurrentChart == CHART_TYPES.MAP) {
         html += "<td style='color: white; background-color: " + HEATMAP[DataSet[i]] + ";'>" + DataSet[i] + "</td>\n";
       } else {
         html += "<td>" + DataSet[i] + "</td>\n";
@@ -219,14 +222,28 @@ function buildPieChart() {
   canvas.removeClass('d-none');
 }
 
+function populatePerformanceTable() {
+  var table = $('#data-vis-performance');
+  var data = [last(Solutions), last(Responses)]; // [[type, solution], response]
+  console.log(data);
+  var newRow = "<tr style='background-color: " + (data[0][1] == data[1] ? "#cdffd8" : "#ffc2a6") + "'>\n"
+             +   "<td>" + data[0][0] + "</td>\n"
+             +   "<td>" + data[0][1] + "</td>\n"
+             +   "<td>" + data[1]    + "</td>\n"
+             + "</tr>\n";
+  table.append(newRow);
+}
+
 /**
  * Prepares a new set of data for the next chart.
  * Also sets the next solution appropriately.
  */
 function newDataSet() {
   fillDataSet(NumDataPoints);
-  var solution, frequencies = getFrequencies();
-  Solutions.push([NextChart, solution])
+  var [solution, frequencies] = getFrequencies();
+  console.log(solution);
+  console.log(frequencies);
+  Solutions.push([CurrentChart, solution])
   Frequencies = frequencies;
 }
 
@@ -243,9 +260,12 @@ function fillDataSet(num) {
 }
 
 /**
- * Returns two values:
+ * Returns two values in a list:
+ * [
  * The mode (most common value) of the global DataSet, ensuring only one value is most common.
+ * ,
  * The frequency of each value in the global DataSet.
+ * ]
  * 
  * If two or more values share the mode (most common value), one of the mode values is chosen at random.
  * A random datapoint that is not that value is replaced with that value, resulting in a singular mode value.
@@ -282,8 +302,8 @@ function getFrequencies() {
     mode = modes[0];
   }
 
-  // Set the dataset and return the frequencies
-  return mode, frequencies;
+  // Return the mode and frequencies
+  return [mode, frequencies];
 }
 
 /**
@@ -292,6 +312,13 @@ function getFrequencies() {
  */
 function getRandomInteger(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+/**
+ * Returns the last item in array like the python expression: `array[-1]`
+ */
+function last(array) {
+  return array[array.length - 1];
 }
 
 /**
@@ -328,8 +355,6 @@ function showPerformanceScreen() {
   $('#data-vis-results-table').addClass('d-none');
 
   $('#data-vis-next').removeClass('d-none');
-  $('#data-vis-performance-table').removeClass('d-none');
+  $('#data-vis-performance').removeClass('d-none');
   $('#data-vis-results').removeClass('d-none');
-
-  //populatePerformanceTable();
 }
