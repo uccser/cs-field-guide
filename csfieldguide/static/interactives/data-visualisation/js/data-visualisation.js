@@ -4,9 +4,10 @@
 
 const CHART = require('chart.js');
 
-const MIN = 0;        // Numbers for data
+const MIN = 0;      // Numbers for data
 const MAX = 9;
-const WAIT = 5000;    // Time (milliseconds) to show the chart
+const WAIT = 5000;  // Time (milliseconds) to show the chart
+const BASE_DATA_POINTS = 16;
 const CHART_TYPES = {
   GRID: gettext("Plain grid"),
   MAP:  gettext("Heatmap"),
@@ -17,9 +18,13 @@ const TITLES = {
   BAR:  gettext("Frequency of each number."),
   PIE:  gettext("Relative frequency of each number (%)."),
 };
-const COLOURS = [
+const COLOURS = [    // Pie chart colours
   "#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850",
   "#28a745","#2a3da0","#34fcfe","#fb8532","#a37533",
+];
+const HEATMAP = [   // Heatmap colours
+  "#0006bf", "#2500c3", "#5200c7", "#8200cb", "#b400cf",
+  "#d400bf","#d80092","#dc0063","#e00032","#e50000",
 ];
 
 var NextChart;
@@ -46,7 +51,7 @@ function init() {
   showStartScreen();
 
   NextChart = CHART_TYPES.GRID;
-  NumDataPoints = 16;
+  NumDataPoints = BASE_DATA_POINTS;
   Solutions = [];
   Responses = [];
   DataSet = [];
@@ -76,14 +81,40 @@ function runGuessCheck() {
 function buildChart() {
   $('#data-vis-barchart').addClass('d-none');
   $('#data-vis-piechart').addClass('d-none');
-  $('#data-vis-table').addClass('d-none');
+  $('#data-vis-grid').addClass('d-none');
   var type = NextChart;
-  if (type == CHART_TYPES.BAR) {
+  if (type == CHART_TYPES.GRID || type == CHART_TYPES.MAP) {
+    buildGridChart();
+  } else if (type == CHART_TYPES.BAR) {
     buildBarChart();
   } else if (type == CHART_TYPES.PIE) {
     buildPieChart();
   }
   $('#data-vis-game').removeClass('d-none');
+}
+
+function buildGridChart() {
+  var numValues = DataSet.length;
+
+  // We can afford to have fewer columns with a low number of values
+  var numColumns = numValues > (BASE_DATA_POINTS * 4) ? (BASE_DATA_POINTS / 2) : (BASE_DATA_POINTS / 4);
+
+  var html = "";
+  var i=0;
+  while (i < numValues) {
+    html += "<tr>\n";
+    for (var x=0; x < numColumns; x++) {
+      if (NextChart == CHART_TYPES.MAP) {
+        html += "<td style='color: white; background-color: " + HEATMAP[DataSet[i]] + ";'>" + DataSet[i] + "</td>\n";
+      } else {
+        html += "<td>" + DataSet[i] + "</td>\n";
+      }
+      i++;
+    }
+    html += "</tr>\n";
+  }
+
+  $('#data-vis-grid').html(html).removeClass('d-none');
 }
 
 function buildBarChart() {
@@ -115,7 +146,7 @@ function buildBarChart() {
       }
     }
   });
-  $('#data-vis-barchart').removeClass('d-none');
+ canvas.removeClass('d-none');
 }
 
 function buildPieChart() {
@@ -149,7 +180,7 @@ function buildPieChart() {
       }
     }
   });
-  $('#data-vis-piechart').removeClass('d-none');
+  canvas.removeClass('d-none');
 }
 
 /**

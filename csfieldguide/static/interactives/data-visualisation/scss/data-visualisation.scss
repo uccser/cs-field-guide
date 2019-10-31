@@ -10,3 +10,14 @@
 canvas {
   margin: auto;
 }
+
+table, th, td {
+  margin: auto;
+  font-family: monospace;
+  text-align: center;
+  padding: 15px;
+  padding-left: 50px;
+  padding-right: 50px;
+  border: 1px solid #000;
+  border-collapse: collapse;
+}
