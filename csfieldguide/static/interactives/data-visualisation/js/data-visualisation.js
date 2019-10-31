@@ -11,12 +11,12 @@ const BASE_DATA_POINTS = 16;
 const CHART_TYPES = {
   GRID: gettext("Plain grid"),
   MAP:  gettext("Heatmap"),
+  PIE:  gettext("Pie chart"),
   BAR:  gettext("Bar chart"),
-  PIE:  gettext("Pie chart")
 };
 const TITLES = {
-  BAR:  gettext("Frequency of each number."),
   PIE:  gettext("Relative frequency of each number (%)."),
+  BAR:  gettext("Frequency of each number."),
 };
 const COLOURS = [    // Pie chart colours
   "#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850",
@@ -37,11 +37,17 @@ var Responses;      // User's choices
 var DataSet;
 var Frequencies;    // Frequency of each value in DataSet
 
+var BarChart;
+var PieChart;
+
 $(document).ready(function() {
   init();
 
   $('#button-start').on('click', runStart);
   $('#button-submit').on('click', runGuessCheck);
+  $('#button-next').on('click', runNext);
+  $('#button-quit').on('click', runQuit);
+  $('#button-restart').on('click', init);
 });
 
 /**
@@ -75,6 +81,30 @@ function runGuessCheck() {
   showPerformanceScreen();
 }
 
+function runNext() {
+  getNextChart();
+  showStartScreen();
+  newDataSet();
+}
+
+function runQuit() {
+  //showResultsScreen();
+  //populatePerformanceTable();
+}
+
+function getNextChart() {
+  if (NextChart == CHART_TYPES.GRID) {
+    NextChart = CHART_TYPES.MAP;
+  } else if (NextChart == CHART_TYPES.MAP) {
+    NextChart = CHART_TYPES.PIE;
+  } else if (NextChart == CHART_TYPES.PIE) {
+    NextChart = CHART_TYPES.BAR;
+  } else /*(NextChart == CHART_TYPES.BAR)*/ {
+    NumDataPoints = min(128, NumDataPoints * 2); // More data points for the next cycle
+    NextChart = CHART_TYPES.GRID;
+  }
+}
+
 /**
  * Creates the next chart to be displayed
  */
@@ -97,7 +127,7 @@ function buildGridChart() {
   var numValues = DataSet.length;
 
   // We can afford to have fewer columns with a low number of values
-  var numColumns = numValues > (BASE_DATA_POINTS * 4) ? (BASE_DATA_POINTS / 2) : (BASE_DATA_POINTS / 4);
+  var numColumns = numValues > (BASE_DATA_POINTS * 3) ? (BASE_DATA_POINTS / 2) : (BASE_DATA_POINTS / 4);
 
   var html = "";
   var i=0;
@@ -125,7 +155,10 @@ function buildBarChart() {
     dataPoints.push(Frequencies[i]);
   }
   var canvas = $('#data-vis-barchart');
-  new CHART.Chart(canvas, {
+  if (BarChart) {
+    BarChart.destroy();
+  }
+  BarChart = new CHART.Chart(canvas, {
     type: 'bar',
     data: {
       labels: valueLabels,
@@ -159,7 +192,10 @@ function buildPieChart() {
     }
   }
   var canvas = $('#data-vis-piechart');
-  new CHART.Chart(canvas, {
+  if (PieChart) {
+    PieChart.destroy();
+  }
+  PieChart = new CHART.Chart(canvas, {
     type: 'pie',
     data: {
       labels: valueLabels,
