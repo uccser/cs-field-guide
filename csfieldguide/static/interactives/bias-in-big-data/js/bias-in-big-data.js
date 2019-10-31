@@ -1,12 +1,20 @@
+const noUiSlider = require('nouislider');
+const wNumb = require('wnumb');
+
 const COLOURS = ['red', 'green', 'blue', 'yellow', 'purple', 'white', 'black', 'lime', 'darkorange', 'fuchsia'];
-const CIRCLE_RADIUS = 25; // 25 pixels
-const missedCirclesText = gettext('You seem to have missed some dots! Forced perspective like this can be used in data representation and cause bias in the overall results.');
+const CIRCLE_RADIUS = 40; // 25 pixels
+const MISSED_CIRCLES_TEXT = gettext('You seem to have missed some dots! Forced perspective like this can be used in data representation and cause bias in the overall results.');
+const SLIDER_TEXT = gettext('Click and drag the slider to change background colour. What do you notice is happening?')
+const SLIDER_MIN = 0;
+const SLIDER_MAX = 255;
 var count = 0;
 var firstStage = true;
 
 $(document).ready(function() {
     // randomly set position of 3 black circles already created.
-    $('.circle').offset(getRandomPosition());
+    $('.circle').each(function() {
+        $(this).offset(getRandomPosition());
+    });
     $('#circles-area').css('background-color', 'black');
     for (i=0; i < 8; i++) {
         createCircle();
@@ -18,8 +26,36 @@ $(document).ready(function() {
         // make clicked circle white
         $(this).addClass('glow');
     })
+    createSlider();
     $('#next-stage').click(loadNextStage);
 });
+
+function createSlider() {
+    var bgColourSlider = $('#background-colour-slider');
+    noUiSlider.create(bgColourSlider[0], {
+        start: Math.floor(Math.random() * SLIDER_MAX),
+        step: 1,
+        connect: "lower",
+        orientation: "horizontal",
+        range: {
+          'min': SLIDER_MIN,
+          'max': SLIDER_MAX
+        },
+        format: wNumb({
+          decimals: 0
+        }),
+        pips: {
+          mode: 'count',
+            values: 9,
+            density: 9,
+            stepped: true
+        }
+    });
+    bgColourSlider[0].noUiSlider.on('update', function() {
+        var value = bgColourSlider[0].noUiSlider.get();
+        var hexValue = value.toString(16);
+    });
+}
 
 function getRandomPosition() {
     // minus CIRCLE_RADIUS so the middle of the circle doesn't get put on the edge of the container
@@ -45,6 +81,10 @@ function loadNextStage() {
     if (firstStage) {
         // what happens if they haven't missed any circles?
         $('#circles-area').css('background-color', 'grey');
-        $('#instruction-text').text(missedCirclesText);
+        $('#instruction-text').text(MISSED_CIRCLES_TEXT);
+        firstStage = false;
+    } else {
+        $('#instruction-text').text(SLIDER_TEXT);
+        $('#background-colour-slider').removeClass('d-none');
     }
 }

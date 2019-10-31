@@ -1,3 +1,5 @@
+@import "node_modules/nouislider/distribute/nouislider";
+
 .circle {
     border-radius: 50%;
     width: 3.125rem;
@@ -11,6 +13,18 @@
 
 #bias-in-big-data-container {
     padding: 6rem !important;
+}
+
+#background-colour-slider .noUi-pips {
+    padding-top: 5px;
+}
+
+#background-colour-slider-container {
+    width: 80%;
+}
+
+#background-colour-slider .noUi-connect {
+    background: aqua;
 }
 
 .glow {
