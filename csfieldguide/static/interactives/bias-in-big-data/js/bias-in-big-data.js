@@ -34,7 +34,7 @@ $(document).ready(function() {
 function createSlider() {
     var bgColourSlider = $('#background-colour-slider');
     noUiSlider.create(bgColourSlider[0], {
-        start: Math.floor(Math.random() * SLIDER_MAX),
+        start: 0,
         step: 1,
         connect: "lower",
         orientation: "horizontal",
@@ -54,7 +54,12 @@ function createSlider() {
     });
     bgColourSlider[0].noUiSlider.on('update', function() {
         var value = bgColourSlider[0].noUiSlider.get();
-        var hexValue = value.toString(16);
+        value = value.toString(16);
+        // hexValue = '#' + value + value + value;
+        var hexValue = '#' + ('000000' + ((value + value + value)>>>0).toString(16)).slice(-6);
+        // ('000000' + ((number)>>>0).toString(16)).slice(-6)
+        console.log(hexValue);
+        $('#circles-area').css('background-color', hexValue);
     });
 }
 
