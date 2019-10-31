@@ -5,7 +5,7 @@ const COLOURS = ['red', 'green', 'blue', 'yellow', 'purple', 'white', 'black', '
 const MISSED_CIRCLES_TEXT = gettext('You seem to have missed some dots! Forced perspective like this can be used in data representation and cause bias in the overall results.');
 const SLIDER_TEXT = gettext('Click and drag the slider to change background colour. What do you notice is happening?')
 const SLIDER_MIN = 0;
-const SLIDER_MAX = 255;
+const SLIDER_MAX = 256 ** 3;
 const PERENTAGE_BOUNDARY = 95; // 95%
 const REDUCE_PERCENTAGE = 6; // 6%
 var count = 0;
@@ -44,19 +44,17 @@ function createSlider() {
         },
         format: wNumb({
           decimals: 0
-        }),
-        pips: {
-          mode: 'count',
-            values: 9,
-            density: 9,
-            stepped: true
-        }
+        })
     });
     bgColourSlider[0].noUiSlider.on('update', function() {
         var value = bgColourSlider[0].noUiSlider.get();
+        // var blue = value % 256;
+        // var green = ((value - blue) / 256) % 256;
+        // var red = ((value - blue) / (256 ** 2)) - (green / 256);
+        // var colourValue = 'rgb(' + red + ', ' + green + ', ' + blue + ')'; 
         value = value.toString(16);
         // hexValue = '#' + value + value + value;
-        var hexValue = '#' + ('000000' + ((value + value + value)>>>0).toString(16)).slice(-6);
+        var hexValue = '#' + ('000000' + ((value)>>>0).toString(16)).slice(-6);
         // ('000000' + ((number)>>>0).toString(16)).slice(-6)
         console.log(hexValue);
         $('#circles-area').css('background-color', hexValue);
