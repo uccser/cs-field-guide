@@ -75,12 +75,18 @@ function init() {
   newDataSet();
 }
 
+/**
+ * Shows the next data representation then, after some time, shows the guess checker
+ */
 function runStart() {
   $('#button-start').addClass('d-none');
   buildChart();
   setTimeout(showGuessScreen, WAIT);
 }
 
+/**
+ * Runs the guess-checking functionality, then shows the user their performance so far
+ */
 function runGuessCheck() {
   var guess = $('#data-vis-selector').val();
   Responses.push(guess);
@@ -91,17 +97,27 @@ function runGuessCheck() {
   showPerformanceScreen();
 }
 
+/**
+ * Prepares the next chart type and dataset
+ */
 function runNext() {
   getNextChart();
   showStartScreen();
   newDataSet();
 }
 
+/**
+ * Runs the quit functionality; shows the user their overall performace (results)
+ */
 function runQuit() {
   buildResultsChart();
   showResultsScreen();
 }
 
+/**
+ * Assigns the chart type that should be used next, in a circular fashion.
+ * If the loop has completed, doubles the amount of data to create, up to 128 points
+ */
 function getNextChart() {
   if (CurrentChart == CHART_TYPES.GRID) {
     CurrentChart = CHART_TYPES.MAP;
@@ -133,6 +149,10 @@ function buildChart() {
   $('#data-vis-game').removeClass('d-none');
 }
 
+/**
+ * Builds a grid of values in the data.
+ * If the representation should be a heatmap, also colours each grid square appropriately
+ */
 function buildGridChart() {
   var numValues = DataSet.length;
 
@@ -157,41 +177,9 @@ function buildGridChart() {
   $('#data-vis-grid').html(html).removeClass('d-none');
 }
 
-function buildBarChart() {
-  var valueLabels = [];
-  var dataPoints = [];
-  for (var i in Frequencies) {
-    valueLabels.push(i.toString());
-    dataPoints.push(Frequencies[i]);
-  }
-  var canvas = $('#data-vis-barchart');
-  if (BarChart) {
-    BarChart.destroy();
-  }
-  BarChart = new CHART.Chart(canvas, {
-    type: 'bar',
-    data: {
-      labels: valueLabels,
-      datasets: [{
-        label: gettext("Occurences"),
-        backgroundColor: '#2a3da0', // Primary CSFG colour
-        data: dataPoints
-      }]
-    },
-    options: {
-      responsive: false,
-      legend: {
-        display: false
-      },
-      title: {
-        display: true,
-        text: TITLES.BAR
-      }
-    }
-  });
- canvas.removeClass('d-none');
-}
-
+/**
+ * Builds a pie chart showing the relative frequency of each point in the data
+ */
 function buildPieChart() {
   var valueLabels = [];
   var dataPoints = [];
@@ -229,6 +217,47 @@ function buildPieChart() {
   canvas.removeClass('d-none');
 }
 
+/**
+ * Builds a bar chart showing the number of times each value appears in the data
+ */
+function buildBarChart() {
+  var valueLabels = [];
+  var dataPoints = [];
+  for (var i in Frequencies) {
+    valueLabels.push(i.toString());
+    dataPoints.push(Frequencies[i]);
+  }
+  var canvas = $('#data-vis-barchart');
+  if (BarChart) {
+    BarChart.destroy();
+  }
+  BarChart = new CHART.Chart(canvas, {
+    type: 'bar',
+    data: {
+      labels: valueLabels,
+      datasets: [{
+        label: gettext("Occurences"),
+        backgroundColor: '#2a3da0', // Primary CSFG colour
+        data: dataPoints
+      }]
+    },
+    options: {
+      responsive: false,
+      legend: {
+        display: false
+      },
+      title: {
+        display: true,
+        text: TITLES.BAR
+      }
+    }
+  });
+ canvas.removeClass('d-none');
+}
+
+/**
+ * Builds a bar chart showing the user's accuracy when finding the mode for each representation of data
+ */
 function buildResultsChart() {
   var valueLabels = [CHART_TYPES.GRID, CHART_TYPES.MAP, CHART_TYPES.PIE, CHART_TYPES.BAR];
   var dataPoints = getFinalResults();
