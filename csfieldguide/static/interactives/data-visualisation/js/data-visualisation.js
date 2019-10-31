@@ -15,9 +15,9 @@ const CHART_TYPES = {
   PIE:  gettext("Pie chart"),
   BAR:  gettext("Bar chart"),
 };
-const TITLES = {
+const TITLES = {    // Bar/Pie chart titles
   PIE:  gettext("Relative frequency of each number (%)."),
-  BAR:  gettext("Frequency of each number."),
+  BAR:  gettext("Occurences of each number."),
   RESULTS: gettext("Your accuracy (%) when finding the mode of data with different visualisations.")
 };
 const COLOURS = [   // Pie chart colours
@@ -29,7 +29,7 @@ const HEATMAP = [   // Heatmap colours
   "#d400bf","#d80092","#dc0063","#e00032","#e50000",
 ];
 
-var CurrentChart;
+var CurrentChart;   // Chart to be rendered
 
 var NumDataPoints;  // Number of values in the data
 
@@ -39,7 +39,7 @@ var Responses;      // User's choices
 var DataSet;
 var Frequencies;    // Frequency of each value in DataSet
 
-var BarChart;
+var BarChart;       // Charts
 var PieChart;
 var ResultsChart;
 

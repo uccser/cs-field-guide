@@ -20,8 +20,3 @@ This process is repeated with different visualisation techniques, including: a g
 
 This interactive uses [Chart.js](https://www.chartjs.org/).
 Its licence, and that of the original game, is listed in `LICENCE-THIRD-PARTY`, with a full copy available in the `third-party-licences` directory.
-
-## TODO
-
-- Add original authors to community contribs
-- Remove this todo when other todos are todone

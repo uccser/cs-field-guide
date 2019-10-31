@@ -21,7 +21,7 @@ table, th, td {
   border-collapse: collapse;
 }
 
-@include media-breakpoint-down(sm) {
+@include media-breakpoint-down(md) {
   table, th, td {
     padding: 5px;
     padding-left: 15px;
