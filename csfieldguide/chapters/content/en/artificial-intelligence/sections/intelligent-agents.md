@@ -2,11 +2,18 @@
 
 Artificial Intelligence (also known as {glossary-link term="intelligent-systems"}intelligent systems{glossary-link end}) is about creating and analysing machines and computer systems that act intelligently, or demonstrate intelligence. These machines and systems are often referred to as {glossary-link term="agent"}computational agents{glossary-link end}.
 
-An agent is simply something which executes actions within an environment, which is a very broad definition! It can apply to many things &ndash; robots, cats, air-conditioning units, or humans.
+An agent is simply something which can perceive its environment in some way, and act on that environment in some way, which is a very broad definition! It can apply to many things &ndash; robots, cats, air-conditioning units, or humans.
 If the decisions and actions made by an agent can be broken down into computational steps (i.e. steps which could be implemented by programming a device) then it is called a *computational* agent.
 <!-- this might be a little over simplified? -->
 
-For simplicity, throughout the rest of this chapter we will use the term *agent* to refer specifically to agents made up of digital systems, such as computers and robots.
+For simplicity, throughout the rest of this chapter we will use the term *agent* to refer specifically to *computational agents* made up of digital systems, such as computers and robots.
+
+An agent perceives its environment through sensors, and acts on it using actuators.
+
+
+Sensors - examples of these for humans: our eyes, ears, sense of touch. For computational agents this could be things like cameras, infrared sensors, or the input from a keyboard.
+Actuators - for humans these are things like our hands, voices, all the things we use to interact with the world. For computational agents these could be things like what is displayed on a screen, the contents of an output file, or motors moving parts of a robot.
+
 
 Not all agents are called intelligent though. In the field of AI, an agent is generally considered to act intelligently if:
 
@@ -29,8 +36,8 @@ Both of these robots are following a pre-programmed set of instructions, but onl
 
 # Environments
 
-Our use of the word *environment* may seem to imply that agents always exist within, and interact with, a physical setting.
-For example the vacuuming robots that exist within the physical environment of a house, and interact with it by having sucking up dust and having a physical impact on their environment.
+Our use of the word *environment* may seem to imply that agents always exist and act within a physical setting.
+For example the vacuuming robots that exist within the physical environment of a house, and interact with it by sucking up dust, and thus having a physical impact on their environment.
 
 However this is not true for all agents. Some exist within purely artificial computational environments.
 Their environments are restricted to the digital data they take in, the computational processes they perform, and the data they output.
@@ -46,37 +53,11 @@ Agents tend to operate in one of two types of environments:
 
 {image file-path="img/chapters/intelligent-agent-diagram-temporary.png" alt="A basic diagram of an intelligent agent. Temporary image"}
 
+<!--
+This stuff is out of date now so needs reviewing later:
 Some intelligent agents follow preprogrammed rules only, while others are able to learn from their experiences and modify their behaviour.
 There is some debate among AI experts about whether or not systems that do not learn should be considered intelligent, and whether the ability to learn is a requirement of AI.
 People have different opions of what the definition of AI is, and whether this definition should change over time as technology in this area advances.
 
 In this chapter we will look at examples of both learning, and non-learning agents as examples of artificially intelligent agents.
-While you read about these have a think about whether you would consider these different agents to be intelligent, and how you might define intelligence and AI.
-
-## The Turing Test
-
-The Turing test is a famous Artificial Intelligence experiment, that was developed by the Computer Scientist Alan Turing in 1950.
-He proposed this test as a way to determine if a computer truly was intelligent.
-To pass the Turing test, a computer program must convince a human that it is also a human by having a conversation.
-While having a simple conversation seems like a very easy thing to do to us humans, it is actually an extremely complicated thing for a computer to do.
-Correctly interpretting what someone says to you, and choosing appropriate things to say based on the conversation is a form of intelligence.
-Defining intelligence as having this ability is what Turing based his test on.
-
-{panel type="teacher-note"}
-
-# TED video introducing the Turing test
-
-There is a TED video that gives an overview of the Turing test [on YouTube](https://www.youtube.com/watch?v=3wLqsRLvV-c).
-
-{panel end}
-
-Two humans are required to carry out this test.
-One of the humans act as an interrogator, and the other as a "human" to compare the computer program to. The interrogator is put in a separate room from the computer running the computer program and the "human". The interrogator has conversations with both the human and the computer program, but isn’t told which one they are having the conversation with at each time. The conversations are both carried out over something like an instant messaging program so that actual speech isn’t required from the computer program. During the conversations, the human has to convince the interrogator that they are indeed the human, and the computer program has to convince the interrogator that IT is actually the human. At the end of the conversations, the interrogator has to say which was the computer and which was the human. If they can’t reliably tell, then the computer is said to have passed the test.
-
-{image file-path="img/chapters/Turing_Test_version_3.png" source="https://en.wikipedia.org/wiki/File:Turing_Test_version_3.png" alt="A basic Turing test diagram"}
-
-As of the time this chapter was written, no computer program has officially passed the test, but some have been claimed to pass it in [specific circumstances](https://www.cnet.com/news/alphabet-chairman-says-google-duplex-passes-turing-test-in-one-specific-way-io-2018/).
-
-Other forms of the Turing test exist as well. Video games often have computer controlled characters that play with or against you, in place of a second human controlled character. A variation of the Turing test can be used to determine whether or not the computer controlled player seems to have human intelligence by getting an interrogator to play against both the computer character and the human character, and to see whether or not they can tell them apart.
-
-In fact, many parts of human intelligence could be tested using a variation of the Turing test. If you wanted a computer chess player that seemed like a human as opposed to a computer (as some people might prefer to be playing against a human rather than a computer), you could use a Turing test for this as well! What other possible Turing tests can you think of?
+While you read about these have a think about whether you would consider these different agents to be intelligent, and how you might define intelligence and AI. -->

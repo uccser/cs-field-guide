@@ -1,10 +1,10 @@
 whats-the-big-picture:
   section-number: 1
 
-intelligent-agents:
+the-evolution-of-ai:
   section-number: 2
 
-rule-based-systems:
+intelligent-agents:
   section-number: 3
 
 machine-learning:
@@ -19,8 +19,11 @@ unsupervised-learning:
 reinforcement-learning:
   section-number: 7
 
-the-whole-story:
+models:
   section-number: 8
 
-further-reading:
+the-whole-story:
   section-number: 9
+
+further-reading:
+  section-number: 10

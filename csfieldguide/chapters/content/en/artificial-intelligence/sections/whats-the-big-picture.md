@@ -6,6 +6,7 @@ As well as building artificially intelligent systems, AI is about studying human
 But what do we actually mean by intelligence?
 Computers can do a lot of impressive things, like search billions of webpages in milliseconds, or take some code you wrote and run a game, but does that make them truly intelligent?
 What differentiates an intelligent computer system from any other computer program?
+This is one of the core questions tackled by the field of AI.
 
 <!-- Need a picture or something to break stuff up here -->  <!-- Add dropdown about agents? -->
 
@@ -21,5 +22,5 @@ In this chapter we'll explore both rule-based expert systems and machine learnin
 Inevitably discussing AI will mean dealing with ethical and philosophical issues too &ndash; do we really want machines to take over some of our jobs?
 Can we trust them?
 Might it all go too far one day?
-<!-- What do we really mean by a computer being intelligent? -->
+What do we really mean by a computer being intelligent?
 While we won't address these questions directly in this chapter, gaining some technical knowledge about AI will enable you to make more informed decisions about the deeper issues.

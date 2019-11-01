@@ -2,8 +2,11 @@
 
 {image file-path="img/chapters/computer-studying-turing-test.png" alt="The computer is reading a book titled 'Talk like a human'"}
 
-Many humans take for granted the fact that they can easily have a conversation with another person, and choose appropriate things to say based on the conversation.
-The ability to do this is a form of intelligence, and for computers it isn’t so easy!
+<!-- Many humans take for granted the fact that they can easily have a conversation with another person, and choose appropriate things to say based on the conversation.
+
+
+The ability to do this is a form of intelligence, and for computers it isn’t so easy! -->
+
 Many attempts have been made to design {glossary-link term="program"}computer programs{glossary-link end} that can have a conversation with a human and sound intelligent.
 These computer programs are called {glossary-link term="chatbot"}chatbots{glossary-link end}, or just *chatbots*.
 
@@ -12,7 +15,7 @@ Sometimes it's hard to tell if you're getting an automated response.
 We'll start off by looking at some very simple chatbots that are only designed as an experiment rather than to offer serious advice.
 
 ## A therapy session with Eliza the chatbot
-
+<!--
 {panel type="teacher-note"}
 
 # Chatbots in the classroom
@@ -20,12 +23,12 @@ We'll start off by looking at some very simple chatbots that are only designed a
 If this material is being used in the classroom, and time is limited, ensure students don’t spend too long talking to each chatbot.
 15 minutes maximum for each of Eliza, Alice, and Cleverbot (45 minutes total), and an extra 15-45 minutes (depending on time constraints) for students to search for other chatbots will be sufficient for students to learn about the different chatbots.
 
-{panel end}
+{panel end} -->
 
 One such chatbot is **Eliza**.
 Eliza attempts to sound like a Rogerian Psychotherapist, and sounds most intelligent in the kind of conversation that would be had in a therapy session ([Rogerian Psychotherapy](https://en.wikipedia.org/w/index.php?title=Rogerian_psychotherapy) is a technique that revolves around trying to understand the client by asking questions and reflecting their statements back to clarify that they've been understood).
 
-{panel type="caution"}
+<!-- {panel type="caution"}
 
 # Chatbots and personal information!
 
@@ -34,11 +37,11 @@ You should never enter personal information into a computer that you wouldn’t 
 So you don’t want to be telling Eliza the kinds of things a person would say in a therapy session &ndash; just make stuff up when talking to Eliza!
 For the same reason, do *not* tell any chatbot other personal information such as your full name, date of birth, or address.
 
-{panel end}
+{panel end} -->
 
-Go to the link just below and have a conversation with Eliza (keeping in mind that she is supposed to be a Rogerian Psychotherapist, so will respond like one).
+<!-- Go to the link just below and have a conversation with Eliza (keeping in mind that she is supposed to be a Rogerian Psychotherapist, so will respond like one).
 
-[Click here to use the Eliza chatbot](http://www.manifestation.com/neurotoys/eliza.php3)
+[Click here to use the Eliza chatbot](http://www.manifestation.com/neurotoys/eliza.php3) -->
 
 {image file-path="img/chapters/eliza-chatbot-screenshot.png" alt="A screenshot of an Eliza chatbot"}
 
@@ -63,15 +66,15 @@ Eliza also has rules that are triggered if somebody repeats themselves, that say
 Because Eliza doesn’t actually understand meanings but instead just follows rules that say what might be appropriate responses, she had no way of knowing that it actually *was* meaningful to respond with "Yes" twice!
 This is a big giveaway that Eliza really isn’t that intelligent, and doesn’t actually understand meanings in conversation, or even whether or not a response to her own question is actually reasonable.
 
-{panel type="teacher-note"}
+<!-- {panel type="teacher-note"}
 
 # Eliza's responses
 
 These responses that Eliza is giving are called *canned responses*.
 
-{panel end}
+{panel end} -->
 
-Now go back and have another conversation with Eliza.
+<!-- Now go back and have another conversation with Eliza.
 There are many other examples of Eliza saying stuff that make no sense such as the above dialogue.
 How many can you find?
 In addition, investigate how Eliza responds when you do the following:
@@ -79,7 +82,7 @@ In addition, investigate how Eliza responds when you do the following:
 - Try being a "parrot" that just copies everything Eliza says.
 - What happens when you don’t give meaningful answers to her questions?
 - If you say the same thing you said earlier in the conversation (not immediately after, as she'll comment on how you repeated yourself), does Eliza always respond in the same way?
-- What happens when you talk about things that are unrelated to her domain as a therapist?
+- What happens when you talk about things that are unrelated to her domain as a therapist? -->
 
 ## Alice the chatbot
 
@@ -95,7 +98,7 @@ Try having a conversation with another chatbot &ndash; **A.L.I.C.E**.
 
 Does Alice sound more intelligent than Eliza?
 Does she sound as intelligent as a human, or can you trick her into saying things that make no sense?
-Try using the same tricks you used to fool Eliza and see if they fool Alice as well (look back at the list of bullet points in the Eliza section just above).
+<!-- Try using the same tricks you used to fool Eliza and see if they fool Alice as well (look back at the list of bullet points in the Eliza section just above). -->
 
 Like Eliza, Alice also uses predetermined rules to know what to say, although she has a lot more of these rules and a more sophisticated algorithm for choosing which rules should be used to determine what to say.
 If you want to know more, just ask Alice how she works, and she’ll tell you!
@@ -112,7 +115,7 @@ Sometimes the reply is just a template for a sentence, and the chatbot analyses 
 That’s why the replies sometimes use part of what you typed.
 
 The quality of these rules determines how intelligent the chatbot will sound.  
-
+<!--
 While Alice is undoubtedly more intelligent sounding than Eliza, Alice still has her limitations.
 Sometimes she even admits to those limitations!
 
@@ -124,7 +127,7 @@ Sometimes she even admits to those limitations!
 **A.L.I.C.E:** It was a preprogrammed response completely determined by your statements.
 
 It was a bit mean to trick her by saying *what will*.
-Her rules assume a human wouldn’t mislead her like that.
+Her rules assume a human wouldn’t mislead her like that. -->
 
 ## Chatbots that learn from humans
 
@@ -140,7 +143,7 @@ The idea is that if it responds in similar ways to what a human does, then perha
 Most of these chatbots aim to have very general conversations, i.e. they aren’t restrained to one domain such as Eliza the therapist is.
 
 If it is human intelligence you are trying to simulate, then perhaps learning from humans is the way to go?
-
+<!--
 {panel type="caution"}
 
 # Interacting with chatbots that learn
@@ -156,9 +159,9 @@ A chatbot that learns from people quite possibly *will* pass on what you say to 
 
 These warnings will make more sense once you’ve learnt how these chatbots work.
 
-{panel end}
+{panel end} -->
 
-An example of a chatbot that learns from humans is **Cleverbot**.
+<!-- An example of a chatbot that learns from humans is **Cleverbot**.
 
 [Click on this link to have a conversation with Cleverbot](http://www.cleverbot.com/)
 
@@ -171,10 +174,10 @@ In turn, when Cleverbot says something like "sup!" or "hello!", it will look at 
 And then it will learn responses for those responses.
 This allows Cleverbot to build up an increasingly large database.
 
-{comment Perhaps we need to include a diagram that shows this learning process so that the students better at understanding diagrams than text have a chance of being able to understand it? It’s kinda recursive, and is a bit confusing!}
-
+{comment Perhaps we need to include a diagram that shows this learning process so that the students better at understanding diagrams than text have a chance of being able to understand it? It’s kinda recursive, and is a bit confusing!} -->
+<!--
 An implication of learning from humans is that Cleverbot makes the assumption that the humans actually *are* intelligent, and will teach it to say intelligent things.
-If for example people told Cleverbot something like "School is boring" in response to Cleverbot saying "hi", Cleverbot might learn that when a person says "hi" to it, it should say "School is boring"!
+If for example people told Cleverbot something like "School is boring" in response to Cleverbot saying "hi", Cleverbot might learn that when a person says "hi" to it, it should say "School is boring"! -->
 
 {panel type="curiosity"}
 
@@ -183,7 +186,7 @@ If for example people told Cleverbot something like "School is boring" in respon
 Check out the short film ["Do You Love Me"](https://www.youtube.com/watch?v=QkNA7sy5M5s) (~3 mins), the result when Chris R Wilson collaborated with Cleverbot to write a movie script.
 
 {panel end}
-
+<!--
 ## Even more chatbots!
 
 There are even more chatbots you can talk to.
@@ -194,7 +197,7 @@ Some of these will have rules that were determined by programmers, and others wi
 
 If you have a device that runs Apple iOS (for example an iPhone), have a look at the [Siri](https://en.wikipedia.org/wiki/Siri_%28software%29) chatbot in the device’s help system.
 Siri is an example of a chatbot that has the job of *helping* a human, unlike most chatbots which simply have the purpose of web entertainment.
-It also has voice recognition, so you can talk to it rather than just typing to it.
+It also has voice recognition, so you can talk to it rather than just typing to it. -->
 
 ## The Turing test
 
@@ -219,7 +222,7 @@ He thought about how intelligence could be defined (defining intelligence is sur
 This definition doesn’t cover all of intelligence, as it only considers what a person or a computer says and ignores other components of intelligence such as determining the best way to walk through a building (or maze) or deciding how to act in a specific situation (such as at a social event, when deciding what to do next at work, or when lost).
 However, communication is still a very significant component of human intelligence.
 
-In order to test whether or not a computer program can communicate like a human, Turing proposed a test.
+<!-- In order to test whether or not a computer program can communicate like a human, Turing proposed a test.
 In addition to the computer program, two humans are required to carry out the test.
 One of the humans act as an interrogator, and the other as a "human" to compare the computer program to.
 The interrogator is put in a separate room from the computer running the computer program and the "human".
@@ -227,13 +230,13 @@ The interrogator has conversations with both the human and the computer program,
 The conversations are both carried out over something like an instant messaging program so that actual speech isn’t required from the computer program.
 During the conversations, the human has to convince the interrogator that they are indeed the human, and the computer program has to convince the interrogator that IT is actually the human.
 At the end of the conversations, the interrogator has to say which was the computer and which was the human.
-If they can’t reliably tell, then the computer is said to have passed the test.
+If they can’t reliably tell, then the computer is said to have passed the test. -->
 
 {image file-path="img/chapters/Turing_Test_version_3.png" source="https://en.wikipedia.org/wiki/File:Turing_Test_version_3.png" alt="A basic Turing test diagram"}
 
-This test proposed by Turing eventually became very famous and got the name "The Turing test".
+<!-- This test proposed by Turing eventually became very famous and got the name "The Turing test".
 One of the motivations for writing chatbots is to try and make one that passes the Turing test.
-Unfortunately, making a chatbot that successfully passes the Turing test hasn't yet been achieved, and whether or not it is even possible is still an open question in computer science, along with many other questions in artificial intelligence that you will encounter later in this chapter.
+Unfortunately, making a chatbot that successfully passes the Turing test hasn't yet been achieved, and whether or not it is even possible is still an open question in computer science, along with many other questions in artificial intelligence that you will encounter later in this chapter. -->
 
 Other forms of the Turing test exist as well.
 Video games often have computer controlled characters that play with or against you, in place of a second human controlled character.
@@ -243,7 +246,7 @@ In fact, many parts of human intelligence could be tested using a variation of t
 If you wanted a computer chess player that seemed like a human as opposed to a computer (as some people might prefer to be playing against a human rather than a computer), you could use a Turing test for this as well!
 What other possible Turing tests can you think of?
 
-{panel type="project"}
+<!-- {panel type="project"}
 
 # Run your own Turing test on a chatbot
 
@@ -314,4 +317,4 @@ These are some questions you can consider after you have finished carrying out t
 - Were there any questions you asked that were "unfair" &ndash; that depended on knowledge your classmate might have but no-one (computer or person) from another place could possibly have?
 - Which gave it away more: the content of the answers, or the way in which the content was expressed?
 
-{panel end}
+{panel end} -->
