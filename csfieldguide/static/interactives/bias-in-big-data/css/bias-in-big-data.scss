@@ -15,17 +15,43 @@
     padding: 6rem !important;
 }
 
-#background-colour-slider .noUi-pips {
+.noUi-pips {
     padding-top: 0.3125rem;
-}
-
-#background-colour-slider .noUi-connect {
-    background: aqua;
 }
 
 #background-colour-slider-container {
     padding-left: 4rem !important;
     padding-right: 4rem !important;
+}
+
+.noUi-target {
+    background: linear-gradient(
+        to right,
+        hsl(0,100%,50%),
+        hsl(60,100%,50%),
+        hsl(120,100%,50%),
+        hsl(180,100%,50%),
+        hsl(240,100%,50%),
+        hsl(300,100%,50%),
+        hsl(360,100%,50%)
+    );
+}
+
+.noUi-handle {
+    border: 0.125rem white solid;
+    height: 1.75rem !important;
+    width: 1.75rem !important;
+    border-radius: 50%;
+    top: -6px !important;
+}
+
+.noUi-handle:before,
+.noUi-handle:after {
+    content: none;
+}
+
+.noUi-connect {
+    background: none;
 }
 
 .glow {
@@ -36,8 +62,8 @@
     background: red;
 }
 
-.green {
-    background: green;
+.lime {
+    background: lime;
 }
 
 .blue {
@@ -49,19 +75,7 @@
 }
 
 .purple {
-    background: purple;
-}
-
-.white {
-    background: white;
-}
-
-.black {
-    background: black;
-}
-
-.lime {
-    background: lime;
+    background: #9d03fc;
 }
 
 .darkorange {
@@ -70,4 +84,12 @@
 
 .fuchsia {
     background: fuchsia;
+}
+
+.aquamarine {
+    background: #00ffcc;
+}
+
+.deeppink {
+    background: #ff0088;
 }

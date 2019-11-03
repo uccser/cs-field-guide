@@ -1,11 +1,11 @@
 const noUiSlider = require('nouislider');
 const wNumb = require('wnumb');
 
-const COLOURS = ['red', 'green', 'blue', 'yellow', 'purple', 'white', 'black', 'lime', 'darkorange', 'fuchsia'];
+const COLOURS = ['red', 'lime', 'blue', 'yellow', 'purple', 'darkorange', 'fuchsia', 'aquamarine', 'deeppink'];
 const MISSED_CIRCLES_TEXT = gettext('You seem to have missed some dots! Forced perspective like this can be used in data representation and cause bias in the overall results.');
 const SLIDER_TEXT = gettext('Click and drag the slider to change background colour. What do you notice is happening?')
 const SLIDER_MIN = 0;
-const SLIDER_MAX = 256 ** 3;
+const SLIDER_MAX = 360;
 const PERENTAGE_BOUNDARY = 95; // 95%
 const REDUCE_PERCENTAGE = 6; // 6%
 var count = 0;
@@ -16,7 +16,6 @@ $(document).ready(function() {
     $('.circle').each(function() {
         $(this).css(getRandomPosition());
     });
-    $('#circles-area').css('background-color', 'black');
     for (i=0; i < 8; i++) {
         createCircle();
     }
@@ -24,7 +23,7 @@ $(document).ready(function() {
     $('.circle').click(function() {
         count += 1;
         $('#count').text(count);
-        // make clicked circle white
+        // add glow around clicked circle
         $(this).addClass('glow');
     })
     createSlider();
@@ -48,16 +47,9 @@ function createSlider() {
     });
     bgColourSlider[0].noUiSlider.on('update', function() {
         var value = bgColourSlider[0].noUiSlider.get();
-        // var blue = value % 256;
-        // var green = ((value - blue) / 256) % 256;
-        // var red = ((value - blue) / (256 ** 2)) - (green / 256);
-        // var colourValue = 'rgb(' + red + ', ' + green + ', ' + blue + ')'; 
-        value = value.toString(16);
-        // hexValue = '#' + value + value + value;
-        var hexValue = '#' + ('000000' + ((value)>>>0).toString(16)).slice(-6);
-        // ('000000' + ((number)>>>0).toString(16)).slice(-6)
-        console.log(hexValue);
-        $('#circles-area').css('background-color', hexValue);
+        hslColour = 'hsl(' + value + ', 100%, 50%)';
+        $('#circles-area').css('background-color', hslColour);
+        $('.noUi-handle').css('background-color', hslColour);
     });
 }
 
@@ -100,6 +92,8 @@ function loadNextStage() {
         firstStage = false;
     } else {
         $('#instruction-text').text(SLIDER_TEXT);
+        $('.circle').removeClass('glow');
+        $('#circles-area').css('background-color', 'red');
         $('#background-colour-slider').removeClass('d-none');
     }
 }
