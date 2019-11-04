@@ -16,7 +16,7 @@ This game serves to teach students that visualisation can help a user quickly id
 ## The Game
 
 The user is presented with a data set for a short period, then expected to enter the mode (most common value) of the data.
-This process is repeated with different visualisation techniques, including: a grid, heatmap, pie chard and bar chart.
+This process is repeated with different visualisation techniques, including: a grid, heatmap, pie chart and bar chart.
 
 ## Licences
 

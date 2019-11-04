@@ -1,3 +1,4 @@
+// For readability this is the variable name syntax used:
 // const  = CAPS
 // global = CamelCase (start upper)
 // local  = camelCase (start lower)
