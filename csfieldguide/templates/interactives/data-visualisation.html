@@ -5,7 +5,7 @@
 
 {% block html %}
   <div class="container-fluid my-3 text-center">
-    <div id="data-vis-title" class="col-12">{% trans 'Data Visualisation' %}</div>
+    <h1 id="data-vis-title" class="col-12">{% trans 'Data Visualisation' %}</h1>
     <div id="data-vis-instructions" class="col-12">
       <div class="col-12">
         {% blocktrans %}
@@ -18,7 +18,7 @@
     <div id="data-vis-guesser" class="col-12 d-none">
       <label for="data-vis-selector">{% trans 'What was the mode (most common number) of the data?' %}</label>
       <form class="form-inline justify-content-center">
-        <select id="data-vis-selector" class="form-control text-center d-inline mx-2" size="1">
+        <select id="data-vis-selector" class="form-control text-center d-inline mx-2 my-1" size="1">
           <option>0</option>
           <option>1</option>
           <option>2</option>
@@ -30,7 +30,7 @@
           <option>8</option>
           <option>9</option>
         </select>
-        <button id="button-submit" type="button" class="btn btn-secondary d-inline mx-2">{% trans 'Submit' %}</button>
+        <button id="button-submit" type="button" class="btn btn-secondary d-inline mx-2 my-1">{% trans 'Submit' %}</button>
       </form>
     </div>
     <div id="data-vis-next" class="col-12 my-1 d-none">

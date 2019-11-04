@@ -207,8 +207,7 @@ function buildPieChart() {
       }]
     },
     options: {
-      responsive: false,
-      maintainAspectRatio: false,
+      responsive: true,
       legend: {
         display: true,
         position: 'right'
@@ -249,7 +248,7 @@ function buildBarChart() {
       }]
     },
     options: {
-      responsive: false,
+      responsive: true,
       legend: {
         display: false
       },
@@ -285,7 +284,7 @@ function buildResultsChart() {
       }]
     },
     options: {
-      responsive: false,
+      responsive: true,
       legend: {
         display: false
       },

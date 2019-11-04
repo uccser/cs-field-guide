@@ -2,10 +2,6 @@
 @import "node_modules/bootstrap/scss/variables";
 @import "node_modules/bootstrap/scss/mixins";
 
-#data-vis-title {
-  font-size: 2rem;
-}
-
 canvas {
   margin: auto;
 }
@@ -19,6 +15,12 @@ table, th, td {
   padding-right: 50px;
   border: 1px solid #000;
   border-collapse: collapse;
+}
+
+#data-vis-results, #data-vis-game {
+  position: relative;
+  margin: auto;
+  max-width: 800px;
 }
 
 @include media-breakpoint-down(md) {
