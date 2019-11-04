@@ -16,7 +16,7 @@
 }
 
 #bias-in-big-data-container {
-    padding: 6rem !important;
+    padding: 4rem !important;
 }
 
 .noUi-pips {
@@ -101,7 +101,7 @@
     }
 
     #bias-in-big-data-container {
-        padding: 2rem !important;
+        padding: 1rem 3rem !important;
     }
 
     #instruction-text {
@@ -115,8 +115,8 @@
 }
 
 @include media-breakpoint-up(xl) {
-    #background-colour-slider-container {
-        padding-left: 2rem !important;
-        padding-right: 2rem !important;
+    #circles-area {
+        max-width: 60%;
+        max-height: 80%;
     }
 }
