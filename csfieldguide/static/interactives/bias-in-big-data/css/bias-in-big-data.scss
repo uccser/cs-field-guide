@@ -1,4 +1,7 @@
 @import "node_modules/nouislider/distribute/nouislider";
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+@import "node_modules/bootstrap/scss/mixins";
 
 .circle {
     border-radius: 50%;
@@ -20,12 +23,8 @@
     padding-top: 0.3125rem;
 }
 
-#background-colour-slider-container {
-    padding-left: 4rem !important;
-    padding-right: 4rem !important;
-}
-
 .noUi-target {
+    border: none;
     background: linear-gradient(
         to right,
         hsl(0,100%,50%),
@@ -56,7 +55,7 @@
 }
 
 .glow {
-    box-shadow: 0 0 1rem 0.5rem aqua;
+    box-shadow: 0 0 1rem 0.5rem black;
 }
 
 .red {
@@ -87,10 +86,37 @@
     background: fuchsia;
 }
 
-.aquamarine {
-    background: #00ffcc;
+.deepskyblue {
+    background: deepskyblue;
 }
 
-.deeppink {
-    background: #ff0088;
+.grey {
+    background: grey !important;
+}
+
+@include media-breakpoint-down(sm) {
+    #instruction-area,
+    #background-colour-slider-container {
+        padding: 0rem !important;
+    }
+
+    #bias-in-big-data-container {
+        padding: 2rem !important;
+    }
+
+    #instruction-text {
+        margin: 1rem 0rem;
+    }
+
+    .circle {
+        width: 2.5rem !important;
+        height: 2.5rem !important;
+    }
+}
+
+@include media-breakpoint-up(xl) {
+    #background-colour-slider-container {
+        padding-left: 2rem !important;
+        padding-right: 2rem !important;
+    }
 }
