@@ -1,8 +1,3 @@
-// For readability this is the variable name syntax used:
-// const  = CAPS
-// global = CamelCase (start upper)
-// local  = camelCase (start lower)
-
 const CHART = require('chart.js');
 
 const MIN = 0;      // Numbers for data
@@ -30,21 +25,23 @@ const HEATMAP = [   // Heatmap colours
   "#d400bf","#d80092","#dc0063","#e00032","#e50000",
 ];
 
-var CurrentChart;   // Chart to be rendered
+var dataVis = {};           // https://google.github.io/styleguide/javascriptguide.xml#Naming
 
-var NumDataPoints;  // Number of values in the data
+dataVis.renderChart;        // Chart to be rendered
 
-var Solutions;      // List of lists: [[type of representation, correct answer]]
-var Responses;      // User's choices
+dataVis.numberOfDataPoints; // Number of values in the data
 
-var DataSet;
-var Frequencies;    // Frequency of each value in DataSet
+dataVis.typesAndSolutions;  // List of lists: [[type of representation, correct answer]]
+dataVis.userResponses;      // User's choices
 
-var BarChart;       // Charts
-var PieChart;
-var ResultsChart;
+dataVis.currentDataSet;
+dataVis.dataFrequencies;    // Frequency of each value in dataVis.currentDataSet
 
-var BaseTable;      // For storing just the headings of the results table
+dataVis.chartBar;           // Charts
+dataVis.chartPie;
+dataVis.chartResults;
+
+dataVis.tableHeadings;      // For storing just the headings of the results table
 
 $(document).ready(function() {
   init();
@@ -62,16 +59,16 @@ $(document).ready(function() {
 function init() {
   showStartScreen();
 
-  CurrentChart = CHART_TYPES.GRID;
-  NumDataPoints = BASE_DATA_POINTS;
-  Solutions = [];
-  Responses = [];
-  DataSet = [];
-  Frequencies = {};
-  if (BaseTable) {
-    $('#data-vis-performance').html(BaseTable);
+  dataVis.renderChart = CHART_TYPES.GRID;
+  dataVis.numberOfDataPoints = BASE_DATA_POINTS;
+  dataVis.typesAndSolutions = [];
+  dataVis.userResponses = [];
+  dataVis.currentDataSet = [];
+  dataVis.dataFrequencies = {};
+  if (dataVis.tableHeadings) {
+    $('#data-vis-performance').html(dataVis.tableHeadings);
   } else {
-    BaseTable = $('#data-vis-performance').html();
+    dataVis.tableHeadings = $('#data-vis-performance').html();
   }
 
   newDataSet();
@@ -91,8 +88,8 @@ function runStart() {
  */
 function runGuessCheck() {
   var guess = $('#data-vis-selector').val();
-  Responses.push(guess);
-  if (Responses.length != Solutions.length) { // At this point the two should always be equal
+  dataVis.userResponses.push(guess);
+  if (dataVis.userResponses.length != dataVis.typesAndSolutions.length) { // At this point the two should always be equal
     console.log("ERROR: Number of responses does not match number of solutions.")
   }
   populatePerformanceTable();
@@ -121,15 +118,15 @@ function runQuit() {
  * If the loop has completed, doubles the amount of data to create, up to MAX_DATA_POINTS
  */
 function getNextChart() {
-  if (CurrentChart == CHART_TYPES.GRID) {
-    CurrentChart = CHART_TYPES.MAP;
-  } else if (CurrentChart == CHART_TYPES.MAP) {
-    CurrentChart = CHART_TYPES.PIE;
-  } else if (CurrentChart == CHART_TYPES.PIE) {
-    CurrentChart = CHART_TYPES.BAR;
-  } else /*(CurrentChart == CHART_TYPES.BAR)*/ {
-    NumDataPoints = Math.min(MAX_DATA_POINTS, NumDataPoints * 2); // More data points for the next cycle
-    CurrentChart = CHART_TYPES.GRID;
+  if (dataVis.renderChart == CHART_TYPES.GRID) {
+    dataVis.renderChart = CHART_TYPES.MAP;
+  } else if (dataVis.renderChart == CHART_TYPES.MAP) {
+    dataVis.renderChart = CHART_TYPES.PIE;
+  } else if (dataVis.renderChart == CHART_TYPES.PIE) {
+    dataVis.renderChart = CHART_TYPES.BAR;
+  } else /*(dataVis.renderChart == CHART_TYPES.BAR)*/ {
+    dataVis.numberOfDataPoints = Math.min(MAX_DATA_POINTS, dataVis.numberOfDataPoints * 2); // More data points for the next cycle
+    dataVis.renderChart = CHART_TYPES.GRID;
   }
 }
 
@@ -140,7 +137,7 @@ function buildChart() {
   $('#data-vis-barchart').addClass('d-none');
   $('#data-vis-piechart').addClass('d-none');
   $('#data-vis-grid').addClass('d-none');
-  var type = CurrentChart;
+  var type = dataVis.renderChart;
   if (type == CHART_TYPES.GRID || type == CHART_TYPES.MAP) {
     buildGridChart();
   } else if (type == CHART_TYPES.BAR) {
@@ -156,7 +153,7 @@ function buildChart() {
  * If the representation should be a heatmap, also colours each grid square appropriately
  */
 function buildGridChart() {
-  var numValues = DataSet.length;
+  var numValues = dataVis.currentDataSet.length;
 
   // We can afford to have fewer columns with a low number of values
   var numColumns = numValues > (BASE_DATA_POINTS * 3) ? (BASE_DATA_POINTS / 2) : (BASE_DATA_POINTS / 4);
@@ -166,10 +163,10 @@ function buildGridChart() {
   while (i < numValues) {
     html += "<tr>\n";
     for (var x=0; x < numColumns; x++) {
-      if (CurrentChart == CHART_TYPES.MAP) {
-        html += "<td style='color: white; background-color: " + HEATMAP[DataSet[i]] + ";'>" + DataSet[i] + "</td>\n";
+      if (dataVis.renderChart == CHART_TYPES.MAP) {
+        html += "<td style='color: white; background-color: " + HEATMAP[dataVis.currentDataSet[i]] + ";'>" + dataVis.currentDataSet[i] + "</td>\n";
       } else {
-        html += "<td>" + DataSet[i] + "</td>\n";
+        html += "<td>" + dataVis.currentDataSet[i] + "</td>\n";
       }
       i++;
     }
@@ -185,19 +182,19 @@ function buildGridChart() {
 function buildPieChart() {
   var valueLabels = [];
   var dataPoints = [];
-  for (var i in Frequencies) {
-    if (Frequencies[i]) {
+  for (var i in dataVis.dataFrequencies) {
+    if (dataVis.dataFrequencies[i]) {
       valueLabels.push(i.toString());
-      dataPoints.push(Math.round(Frequencies[i] / DataSet.length * 100)); // Percentage of total
+      dataPoints.push(Math.round(dataVis.dataFrequencies[i] / dataVis.currentDataSet.length * 100)); // Percentage of total
     }
   }
   var canvas = $('#data-vis-piechart');
-  if (PieChart) {
-    PieChart.destroy();
+  if (dataVis.chartPie) {
+    dataVis.chartPie.destroy();
   }
   canvas.attr('width', Math.min(600, 0.8 * $( window ).width())); // 600 is the value in the html
   canvas.attr('height', canvas.attr('width') / 2);
-  PieChart = new CHART.Chart(canvas, {
+  dataVis.chartPie = new CHART.Chart(canvas, {
     type: 'pie',
     data: {
       labels: valueLabels,
@@ -227,17 +224,17 @@ function buildPieChart() {
 function buildBarChart() {
   var valueLabels = [];
   var dataPoints = [];
-  for (var i in Frequencies) {
+  for (var i in dataVis.dataFrequencies) {
     valueLabels.push(i.toString());
-    dataPoints.push(Frequencies[i]);
+    dataPoints.push(dataVis.dataFrequencies[i]);
   }
   var canvas = $('#data-vis-barchart');
-  if (BarChart) {
-    BarChart.destroy();
+  if (dataVis.chartBar) {
+    dataVis.chartBar.destroy();
   }
   canvas.attr('width', Math.min(800, 0.8 * $( window ).width())); // 800 is the value in the html
   canvas.attr('height', canvas.attr('width') / 2);
-  BarChart = new CHART.Chart(canvas, {
+  dataVis.chartBar = new CHART.Chart(canvas, {
     type: 'bar',
     data: {
       labels: valueLabels,
@@ -268,12 +265,12 @@ function buildResultsChart() {
   var valueLabels = [CHART_TYPES.GRID, CHART_TYPES.MAP, CHART_TYPES.PIE, CHART_TYPES.BAR];
   var dataPoints = getFinalResults();
   var canvas = $('#data-vis-results-chart');
-  if (ResultsChart) {
-    ResultsChart.destroy();
+  if (dataVis.chartResults) {
+    dataVis.chartResults.destroy();
   }
   canvas.attr('width', Math.min(800, 0.8 * $( window ).width())); // 800 is the value in the html
   canvas.attr('height', canvas.attr('width') / 2);
-  ResultsChart = new CHART.Chart(canvas, {
+  dataVis.chartResults = new CHART.Chart(canvas, {
     type: 'bar',
     data: {
       labels: valueLabels,
@@ -309,7 +306,7 @@ function buildResultsChart() {
 
 function populatePerformanceTable() {
   var table = $('#data-vis-performance');
-  var data = [last(Solutions), last(Responses)]; // [[type, solution], response]
+  var data = [last(dataVis.typesAndSolutions), last(dataVis.userResponses)]; // [[type, solution], response]
   var newRow = "<tr style='background-color: " + (data[0][1] == data[1] ? "#cdffd8" : "#ffc2a6") + "'>\n"
              +   "<td>" + data[0][0] + "</td>\n"
              +   "<td>" + data[0][1] + "</td>\n"
@@ -325,8 +322,8 @@ function populatePerformanceTable() {
  * [grid, heatmap, pie, bar]
  */
 function getFinalResults() {
-  var localSolutions = Solutions; // List of [[type, solution]]
-  var localResponses = Responses; // List of [response]
+  var localSolutions = dataVis.typesAndSolutions; // List of [[type, solution]]
+  var localResponses = dataVis.userResponses; // List of [response]
   var proportionGrid = [0, 0];    // [correct, out-of]
   var proportionHeatmap = [0, 0];
   var proportionPie = [0, 0];
@@ -367,14 +364,14 @@ function getFinalResults() {
  * Also sets the next solution appropriately.
  */
 function newDataSet() {
-  fillDataSet(NumDataPoints);
+  fillDataSet(dataVis.numberOfDataPoints);
   var [solution, frequencies] = getFrequencies();
-  Solutions.push([CurrentChart, solution])
-  Frequencies = frequencies;
+  dataVis.typesAndSolutions.push([dataVis.renderChart, solution])
+  dataVis.dataFrequencies = frequencies;
 }
 
 /**
- * Sets the 'DataSet' global to a list of the given number of random values.
+ * Sets the 'dataVis.currentDataSet' global to a list of the given number of random values.
  */
 function fillDataSet(num) {
   var newDataSet = [];
@@ -382,15 +379,15 @@ function fillDataSet(num) {
     newDataSet.push(getRandomInteger(MIN, MAX))
   }
 
-  DataSet = newDataSet;
+  dataVis.currentDataSet = newDataSet;
 }
 
 /**
  * Returns two values in a list:
  * [
- * The mode (most common value) of the global DataSet - ensuring only one value is most common
+ * The mode (most common value) of the global dataVis.currentDataSet - ensuring only one value is most common
  * ,
- * The frequency of each value in the global DataSet
+ * The frequency of each value in the global dataVis.currentDataSet
  * ]
  * 
  * If two or more values share the mode (most common value), one of the mode values is chosen at random.
@@ -402,7 +399,7 @@ function getFrequencies() {
   var modes = [];
   var frequencies = {};
   var max = 0;
-  var localDataSet = DataSet;                         // Store a copy locally for performance
+  var localDataSet = dataVis.currentDataSet;                         // Store a copy locally for performance
   for (var v in localDataSet) {
     frequencies[localDataSet[v]] = (frequencies[localDataSet[v]] || 0) + 1;
     if (frequencies[localDataSet[v]] == max) {        // More than one current mode
@@ -422,7 +419,7 @@ function getFrequencies() {
       randomValue++;
     }
     frequencies[localDataSet[randomValue]]--;   // Reduce the frequecy of that number
-    DataSet[randomValue] = mode;                // Set best mode (actual DataSet)
+    dataVis.currentDataSet[randomValue] = mode;                // Set best mode (actual dataVis.currentDataSet)
     frequencies[localDataSet[randomValue]]++;   // Increase the frequency of best-mode
   } else {
     mode = modes[0];

@@ -10,9 +10,9 @@ table, th, td {
   margin: auto;
   font-family: monospace;
   text-align: center;
-  padding: 15px;
-  padding-left: 50px;
-  padding-right: 50px;
+  padding: 1rem;
+  padding-left: 3rem;
+  padding-right: 3rem;
   border: 1px solid #000;
   border-collapse: collapse;
 }
@@ -25,8 +25,8 @@ table, th, td {
 
 @include media-breakpoint-down(md) {
   table, th, td {
-    padding: 5px;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding: 0.3rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 }
