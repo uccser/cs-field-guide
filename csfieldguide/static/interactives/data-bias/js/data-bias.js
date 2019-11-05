@@ -4,7 +4,7 @@ const wNumb = require('wnumb');
 const COLOURS = ['red', 'lime', 'blue', 'yellow', 'purple', 'darkorange', 'fuchsia', 'deepskyblue'];
 const START_TEXT = gettext("Click each dot that you see on the screen, then click 'Next stage' to reveal the answer!");
 const MISSED_CIRCLES_TEXT = gettext('You seem to have missed some dots! <br><br>Forced perspective like this can be used in data representation and cause bias in the overall results.');
-const SLIDER_TEXT = gettext('Click and drag the slider to change background colour. <br><br>What do you notice is happening?')
+const SLIDER_TEXT = gettext('Click and drag the slider to change the background colour. <br><br>What do you notice is happening?')
 const SLIDER_MIN = 0;
 const SLIDER_MAX = 360;
 const PERENTAGE_BOUNDARY_UPPER = 85; // 85%
@@ -36,13 +36,16 @@ $(document).ready(function() {
 });
 
 
+/** 
+ * Returns everything to the inital 'page laoded' state.
+ */
 function init() {
     // get random background colour to start
     startColour =  getRandomColour();
     sliderStartPos = SLIDER_COLOUR_VALUES[startColour];
     $('#circles-area').addClass(startColour);
-    // make sure we have at least 3 circles that are the same as the background colour
-    createCircle(startColour);
+    // make sure we have at least 2 circles that are the same as the background colour
+    // a third circle is added later in loadNextStage to make sure the user NEVER finds all of the circles
     createCircle(startColour);
     createCircle(startColour);
     // generate 8 more randomly coloured circles
@@ -61,6 +64,9 @@ function init() {
 }
 
 
+/** 
+ * Creates slider that controls background colour.
+ */
 function createSlider() {
     noUiSlider.create(bgColourSlider[0], {
         start: sliderStartPos,
@@ -78,6 +84,9 @@ function createSlider() {
 }
 
 
+/** 
+ * Updates background colour when slider is moved.
+ */
 function updateSlider() {
     var value = bgColourSlider[0].noUiSlider.get();
     hslColour = 'hsl(' + value + ', 100%, 50%)';
@@ -86,6 +95,9 @@ function updateSlider() {
 }
 
 
+/** 
+ * Returns a random position in the form of {top: ..., left: ...} to randomly place circles.
+ */
 function getRandomPosition() {
     var circlesAreaHeight = $('#circles-area').height();
     var circlesAreaWidth = $('#circles-area').width();
@@ -115,17 +127,29 @@ function getRandomPosition() {
 }
 
 
+/** 
+ * Creates a circle div and adds it to the page.
+ */
 function createCircle(colour) {
     var colour =  colour || getRandomColour();
     var $circle = $("<div>").addClass('circle dynamic d-none ' + colour);
     $circle.css(getRandomPosition());
+    // so overlapping circles don't give away the hidden circles
+    // brings non hidden circles up 1 layer
+    if (colour !== startColour) {
+        $circle.css('z-index', 1);
+    }
     $('#circles-area').append($circle);
 }
 
 
+/** 
+ * Loads the next stage which is either revealing the hidden circles or adjusting the background colour with the slider.
+ */
 function loadNextStage() {
     if (firstStage) {
-        // what happens if they haven't missed any circles?
+        // add a sneaky extra circle in the off chance they find all of the hidden circles :P
+        createCircle(startColour);
         $('#circles-area').removeClass(startColour);
         $('#circles-area').addClass('grey');
         $('#instruction-text').html(MISSED_CIRCLES_TEXT);
@@ -144,6 +168,9 @@ function loadNextStage() {
 }
 
 
+/**
+ * Resets the interactive and calls init() to return page to the 'page loaded' state.
+ */
 function restartInteractive() {
     $('.circle').remove();
     $('#background-colour-slider-container').addClass('d-none');
@@ -154,6 +181,9 @@ function restartInteractive() {
 }
 
 
+/**
+ * Returns a random colour from the COLOURS array.
+ */
 function getRandomColour() {
     return COLOURS[Math.floor(Math.random() * COLOURS.length)];
 }

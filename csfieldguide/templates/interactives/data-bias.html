@@ -4,7 +4,8 @@
 {% load static %}
 
 {% block html %}
-  <div id="bias-in-big-data-container" class="h-100 row justify-content-center overflow-scroll">
+  <div id="data-bias-container" class="h-100 row justify-content-center overflow-scroll">
+    <h1 class="col-12 text-center">{% trans "Data Bias" %}</h1>
     <div id="instruction-area" class="col-sm-12 col-md-8 col-lg-8 col-xl-5 text-center mb-3">
       <h5 id="instruction-text">{% trans "Click each dot that you see on the screen, then click 'Next stage' to reveal the answer!" %}</h5>
       <div id="background-colour-slider-container" class="container mt-3 d-none">
@@ -20,9 +21,9 @@
 {% endblock html %}
 
 {% block css %}
-  <link rel="stylesheet" href="{% static 'interactives/bias-in-big-data/css/bias-in-big-data.css' %}">
+  <link rel="stylesheet" href="{% static 'interactives/data-bias/css/data-bias.css' %}">
 {% endblock css %}
 
 {% block js %}
-  <script type="text/javascript" src="{% static 'interactives/bias-in-big-data/js/bias-in-big-data.js' %}"></script>
+  <script type="text/javascript" src="{% static 'interactives/data-bias/js/data-bias.js' %}"></script>
 {% endblock js %}

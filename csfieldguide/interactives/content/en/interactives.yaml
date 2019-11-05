@@ -12,8 +12,6 @@ awful-calculator:
   name: Awful Calculator
 base-calculator:
   name: Base Calculator
-bias-in-big-data:
-  name: Bias in Big Data
 big-number-calculator:
   name: Big Number Calculator
 bin-packing:
@@ -48,6 +46,8 @@ confused-buttons:
   name: Confused Buttons
 confusing-error:
   name: Confusing Error
+data-bias:
+  name: Data Bias
 date-picker:
   name: Date Picker
 deceiver:

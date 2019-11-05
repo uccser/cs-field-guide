@@ -2,10 +2,10 @@
 
 **Created by:**
 
-- Sofia DiGirolamo - https://github.com/sdigiro
-- Minji Kong - https://github.com/mkong001
-- Korey Mitchell - https://github.com/koreymitchell
-- Mark Wolgin - https://github.com/NCC74656
+- Sofia DiGirolamo
+- Minji Kong
+- Korey Mitchell
+- Mark Wolgin
 
 The original can be found [here](https://github.com/NCC74656/Bias-In-Big-Data-Interactive).
 
