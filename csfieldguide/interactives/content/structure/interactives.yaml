@@ -30,6 +30,10 @@ awful-calculator:
     de: interactives/awful-calculator.html
     es: interactives/awful-calculator.html
   is_interactive: true
+bakery-simulator:
+  languages:
+    en: interactives/bakery-simulator.html
+  is_interactive: true
 base-calculator:
   languages:
     en: interactives/base-calculator.html
