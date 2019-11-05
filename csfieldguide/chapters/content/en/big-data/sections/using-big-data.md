@@ -8,6 +8,17 @@ Now that we understand what big data is, let’s look at how we can use it. Ther
 
 So where does all the data come from to make Big Data? Here are a few examples you may have encountered:
 
+- Apps and Websites
+    - Instagram, Facebook, Twitter, SnapChat, TradeMe, Spotify, Uber, Netflix, Messenger, etc, all care about how, when, why, and for how long you use their service. Therefore a lot of what you do while using their service is captured.
+
+- The Internet of Things
+    - ...
+
+- Mobile devices
+    - ...
+
+Big Data is also being collected from the physical world all around us!
+
 
 
 ## Bias
