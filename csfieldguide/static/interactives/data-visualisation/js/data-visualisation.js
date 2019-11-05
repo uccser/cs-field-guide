@@ -156,7 +156,7 @@ function buildGridChart() {
   var numValues = dataVis.currentDataSet.length;
 
   // We can afford to have fewer columns with a low number of values
-  var numColumns = numValues > (BASE_DATA_POINTS * 3) ? (BASE_DATA_POINTS / 2) : (BASE_DATA_POINTS / 4);
+  var numColumns = numValues > (65) ? (8) : (4);
 
   var html = "";
   var i=0;
@@ -323,8 +323,8 @@ function populatePerformanceTable() {
  */
 function getFinalResults() {
   var localSolutions = dataVis.typesAndSolutions; // List of [[type, solution]]
-  var localResponses = dataVis.userResponses; // List of [response]
-  var proportionGrid = [0, 0];    // [correct, out-of]
+  var localResponses = dataVis.userResponses;     // List of [response]
+  var proportionGrid = [0, 0];                    // [correct, out-of]
   var proportionHeatmap = [0, 0];
   var proportionPie = [0, 0];
   var proportionBar = [0, 0];
@@ -399,7 +399,7 @@ function getFrequencies() {
   var modes = [];
   var frequencies = {};
   var max = 0;
-  var localDataSet = dataVis.currentDataSet;                         // Store a copy locally for performance
+  var localDataSet = dataVis.currentDataSet;          // Store a copy locally for performance
   for (var v in localDataSet) {
     frequencies[localDataSet[v]] = (frequencies[localDataSet[v]] || 0) + 1;
     if (frequencies[localDataSet[v]] == max) {        // More than one current mode
@@ -419,7 +419,7 @@ function getFrequencies() {
       randomValue++;
     }
     frequencies[localDataSet[randomValue]]--;   // Reduce the frequecy of that number
-    dataVis.currentDataSet[randomValue] = mode;                // Set best mode (actual dataVis.currentDataSet)
+    dataVis.currentDataSet[randomValue] = mode; // Set best mode (actual dataVis.currentDataSet)
     frequencies[localDataSet[randomValue]]++;   // Increase the frequency of best-mode
   } else {
     mode = modes[0];
