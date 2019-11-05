@@ -15,8 +15,8 @@ In this chapter we've tried to capture what really happens in industry, and sugg
 
 {panel end}
 
-Software failures happen all the time.
-Sometimes it’s a little bug that makes a program difficult to use; other times an error might crash your entire computer.
+{glossary-link term="software"}Software{glossary-link end} failures happen all the time.
+Sometimes it’s a little {glossary-link term="bug"}bug{glossary-link end} that makes a {glossary-link term="program"}program{glossary-link end} difficult to use; other times an error might crash your entire computer.
 Some software failures are more spectacular than others.
 
 In 1996, The ARIANE 5 rocket of the European Space Agency was launched for its first test flight: Countdown, ignition, flame and smoke, soaring rocket... then BANG!
@@ -36,7 +36,7 @@ And in 1979, a US Army computer [almost started a nuclear war](https://nsarchive
 If you are interested in other software failures, [CS4FN](http://www.cs4fn.org/softwareengineering/backtodrawingboard.php) lists the most spectacular ones!
 
 Our society today is so reliant on software that we can’t even imagine life without it anymore.
-In many ways, software has made our lives easier: we write emails, chat with friends on Facebook, play computer games and search for information on Google.
+In many ways, software has made our lives easier: we write emails, chat with friends on Facebook, play computer games and search for information on the internet.
 Heaps of software is hidden behind the scenes too, so we don’t even know we’re using it.
 There's software in cars, traffic lights, TVs, washing machines, Japanese toilets, and hearing aids.
 We've become so used to having software, we expect it to work at all times!
@@ -55,7 +55,7 @@ If you wanted to read through Vista and try to understand how it works, you can 
 {image file-path="img/chapters/stacks-of-code-cartoon.png" alt="Stacks of Code Cartoon"}
 
 Software engineering is all about how we can create software despite this enormous size and complexity while hopefully get a working product in the end.
-It was first introduced as a topic of computer science in the 1960s during the so-called "[software crisis](https://en.wikipedia.org/wiki/Software_crisis)", when people realised that the capability of hardware was increasing at incredible speeds while our ability to develop software is staying pretty much the same.
+It was first introduced as a topic of computer science in the 1960s during the so-called "[software crisis](https://en.wikipedia.org/wiki/Software_crisis)", when people realised that the capability of hardware was increasing at incredible speeds while our ability to develop software was staying pretty much the same.
 
 As the name software engineering suggests, we are taking ideas and processes from other engineering disciplines (such as building bridges or computer hardware) and applying them to software.
 Having a structured process in place for developing software turns out to be hugely important because it allows us to manage the size and complexity of software.

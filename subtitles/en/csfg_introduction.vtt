@@ -1,11 +1,11 @@
 WEBVTT
 
-NOTE
 Computer Science Education Research,
 University of Canterbury, New Zealand
 Subtitle file for the video "Computer Science Field Guide: Introduction"
 Author: Alasdair Smith
 Date: 14/02/2017
+Modified by: Courtney Bracefield on 15/10/2019
 
 00:00.000 --> 00:02.700
 Welcome to our guide to Computer Science.
@@ -23,8 +23,8 @@ A lot of people don't really understand
 what Computer Science is.
 
 00:13.000 --> 00:18.000
-<i>I was going to take Computer Science but,</i>
-<00:15.400><i>I basically already know how to use Word and Excel.</i>
+I was going to take Computer Science but,
+I basically already know how to use Word and Excel.
 
 00:18.000 --> 00:22.200
 And it is one of those things that
@@ -32,10 +32,10 @@ you don't really notice until it's missing.
 
 00:22.200 --> 00:32.200
 For example then you end up with things like
-<00:24.400>really.<00:27.200> Slow.<00:29.800> Programs.
+really. Slow. Programs.
 
 00:36.200 --> 00:46.600
-Or, incredibly,<00:39.200> frustrating,<00:44.600> interfaces.
+Or, incredibly, frustrating, interfaces.
 
 00:51.200 --> 00:55.600
 Or, systems, that can't cope with
@@ -77,7 +77,7 @@ even on the fastest computer.
 
 01:32.600 --> 01:36.000
 We'll think about what it means for a computer
-to be <i>intelligent</i>.
+to be intelligent.
 
 01:36.000 --> 01:39.800
 And we'll look at how compression works

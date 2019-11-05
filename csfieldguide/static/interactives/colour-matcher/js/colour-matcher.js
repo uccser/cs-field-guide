@@ -286,15 +286,22 @@ function setHexadecimalRepresentation(bit, colours) {
 
 // Update sliders from binary representations
 function updateSlidersFromRepresentation() {
-  ColourMatcher.bit_24.sliders[0].noUiSlider.set(getValuesFromRepresentation(24,0,8));
-  ColourMatcher.bit_24.sliders[1].noUiSlider.set(getValuesFromRepresentation(24,8,16));
-  ColourMatcher.bit_24.sliders[2].noUiSlider.set(getValuesFromRepresentation(24,16,24));
-  update24BitPanel()
+  // Get all the values first; setting a nouislider triggers code that may change them
+  var values = [
+    getValuesFromRepresentation(24,0,8),
+    getValuesFromRepresentation(24,8,16),
+    getValuesFromRepresentation(24,16,24),
+    getValuesFromRepresentation(8,0,3),
+    getValuesFromRepresentation(8,3,6),
+    getValuesFromRepresentation(8,6,8)
+  ];
+  ColourMatcher.bit_24.sliders[0].noUiSlider.set(values[0]);
+  ColourMatcher.bit_24.sliders[1].noUiSlider.set(values[1]);
+  ColourMatcher.bit_24.sliders[2].noUiSlider.set(values[2]);
 
-  ColourMatcher.bit_8.sliders[0].noUiSlider.set(getValuesFromRepresentation(8,0,3));
-  ColourMatcher.bit_8.sliders[1].noUiSlider.set(getValuesFromRepresentation(8,3,6));
-  ColourMatcher.bit_8.sliders[2].noUiSlider.set(getValuesFromRepresentation(8,6,8));
-  update8BitPanel()
+  ColourMatcher.bit_8.sliders[0].noUiSlider.set(values[3]);
+  ColourMatcher.bit_8.sliders[1].noUiSlider.set(values[4]);
+  ColourMatcher.bit_8.sliders[2].noUiSlider.set(values[5]);
 };
 
 

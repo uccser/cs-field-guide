@@ -47,7 +47,7 @@ But even if we can’t test everything, we can design tests to cover as much as 
 As with design, we can’t possibly deal with the entire software at once, so we again just look at smaller pieces, testing one of them at a time.
 We call this approach *unit testing*.
 A unit test is usually done by a separate program which runs the tests on the program that you're writing.
-That way you can run the tests as often as you like — perhaps once a day, or even every time there is a change to the program.
+That way you can run the tests as often as you like &ndash; perhaps once a day, or even every time there is a change to the program.
 
 It's not unusual to write a unit test program before you write the actual program.
 It might seem like wasted work to have to write two programs instead of one, but being able to have your system tested carefully any time you make a change greatly improves the reliability of your final product, and can save a lot of time trying to find bugs in the overall system, since you have some assurance that each unit is working correctly.
