@@ -114,7 +114,7 @@ confusing-error:
 data-bias:
   languages:
     en: interactives/data-bias.html
-   is_interactive: true
+  is_interactive: true
 data-visualisation:
   languages:
     en: interactives/data-visualisation.html
