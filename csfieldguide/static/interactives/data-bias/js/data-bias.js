@@ -135,9 +135,9 @@ function createCircle(colour) {
         $circle.css('z-index', 1);
     }
     $('#circles-area').append($circle);
-    $('.circle').click(function() {
-        // add glow around clicked circle
-        $(this).toggleClass('glow');
+    $circle.click(function() {
+        // toggle glow around clicked circle
+        $circle.toggleClass('glow');
     });
 }
 
