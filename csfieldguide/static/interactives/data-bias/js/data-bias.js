@@ -37,7 +37,7 @@ $(document).ready(function() {
 
 
 /** 
- * Returns everything to the inital 'page laoded' state.
+ * Returns everything to the inital 'page loaded' state.
  */
 function init() {
     // get random background colour to start
@@ -52,11 +52,6 @@ function init() {
     for (i=0; i < NUM_CIRCLES_TO_ADD; i++) {
         createCircle();
     }
-    $('.circle').removeClass('d-none');
-    $('.circle').click(function() {
-        // add glow around clicked circle
-        $(this).addClass('glow');
-    });
     $('#next-stage').removeClass('d-none');
     $('#start-again').addClass('d-none');
     createSlider();
@@ -132,7 +127,7 @@ function getRandomPosition() {
  */
 function createCircle(colour) {
     var colour =  colour || getRandomColour();
-    var $circle = $("<div>").addClass('circle dynamic d-none ' + colour);
+    var $circle = $("<div>").addClass('circle ' + colour);
     $circle.css(getRandomPosition());
     // so overlapping circles don't give away the hidden circles
     // brings non hidden circles up 1 layer
@@ -140,6 +135,10 @@ function createCircle(colour) {
         $circle.css('z-index', 1);
     }
     $('#circles-area').append($circle);
+    $('.circle').click(function() {
+        // add glow around clicked circle
+        $(this).toggleClass('glow');
+    });
 }
 
 
@@ -162,8 +161,6 @@ function loadNextStage() {
         $('#next-stage').addClass('d-none');
         $('#start-again').removeClass('d-none');
         $('#background-colour-slider-container').removeClass('d-none');
-        // disable click event for circles
-        $('.circle').off('click');
     }
 }
 
