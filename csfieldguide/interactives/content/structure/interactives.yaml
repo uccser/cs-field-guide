@@ -111,6 +111,10 @@ confusing-error:
     de: interactives/confusing-error.html
     es: interactives/confusing-error.html
   is_interactive: false
+data-bias:
+  languages:
+    en: interactives/data-bias.html
+   is_interactive: true
 data-visualisation:
   languages:
     en: interactives/data-visualisation.html

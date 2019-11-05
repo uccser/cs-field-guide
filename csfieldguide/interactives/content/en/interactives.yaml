@@ -46,6 +46,8 @@ confused-buttons:
   name: Confused Buttons
 confusing-error:
   name: Confusing Error
+data-bias:
+  name: Data Bias
 data-visualisation:
   name: Data Visualisation
 date-picker:
