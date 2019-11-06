@@ -7,7 +7,7 @@ const QUESTIONS = {
     'flavour': gettext("What should the flavour be?"),
     'decorations': gettext("What decorations should it have?"),
     'size': gettext("What size should it be?"),
-    'shape': gettext("What kind of a question is that? Cake shaped?"),
+    'shape': gettext("What shape should it be?"),
     'event': gettext("What is the event?"),
     'avoid': gettext("Anything you’d like to avoid?"),
     'layers': gettext("How many layers should it be?"),
@@ -67,4 +67,6 @@ $(document).ready(function() {
 function loadCustomer() {
     $('#starter-info').addClass('d-none');
     $('#background-image').attr('src', bakerySimImages['customer-1']);
+    $('#customer-answer').text(CUSTOMER_INTRO).removeClass('d-none');
+    $('#question-dropdown').removeClass('d-none');
 }
