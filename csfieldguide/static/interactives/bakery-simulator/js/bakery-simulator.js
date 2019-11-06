@@ -59,8 +59,15 @@ const CUSTOMER_3_ANS = {
     'layers': gettext("The cake should be large with 3 layers."),
 };
 
+var bakerySim = {};
+
+bakerySim.currentCustomer = 1;
+bakerySim.questionsAsked = 0;
+bakerySim.maxQuestions = 6;
+
 $(document).ready(function() {
     $('#start-button').click(loadCustomer);
+    $('#question-dropdown').change(askQuestion);
 });
 
 
@@ -69,4 +76,17 @@ function loadCustomer() {
     $('#background-image').attr('src', bakerySimImages['customer-1']);
     $('#customer-answer').text(CUSTOMER_INTRO).removeClass('d-none');
     $('#question-dropdown').removeClass('d-none');
+}
+
+function askQuestion() {
+    questionID = $("select option:selected").attr('id');
+    if (bakerySim.currentCustomer == 1) {
+        $('#customer-answer').text(CUSTOMER_1_ANS[questionID]);
+    } else if (bakerySim.currentCustomer == 2) {
+        $('#customer-answer').text(CUSTOMER_2_ANS[questionID]);
+    } else if (bakerySim.currentCustomer == 3) {
+        $('#customer-answer').text(CUSTOMER_3_ANS[questionID]);
+    }
+
+    bakerySim.questionsAsked += 1
 }
