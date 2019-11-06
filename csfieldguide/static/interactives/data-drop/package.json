@@ -1,0 +1,8 @@
+{
+    "name": "csfg-interactive-data-drop",
+    "version": "1.0.0",
+    "private": true,
+    "dependencies": {
+        "phaser": "3.20.1"
+    }
+}
