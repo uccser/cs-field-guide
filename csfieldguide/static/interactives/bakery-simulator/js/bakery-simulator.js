@@ -68,6 +68,7 @@ bakerySim.maxQuestions = 6;
 $(document).ready(function() {
     $('#start-button').click(loadCustomer);
     $('#question-dropdown').change(askQuestion);
+    $('#time-to-bake').click(startBaking);
 });
 
 
@@ -91,5 +92,14 @@ function askQuestion() {
     bakerySim.questionsAsked += 1
     $('#num-asked').text(bakerySim.questionsAsked);
     $("select option:selected").attr('disabled', true);
-    // if questions asked == 6 next stage
+
+    if (bakerySim.questionsAsked == 6) {
+        $('#question-dropdown').addClass('d-none');
+        $('#customer-answer').addClass('d-none');
+        $('#time-to-bake').removeClass('d-none');
+    }
+}
+
+function startBaking() {
+    
 }

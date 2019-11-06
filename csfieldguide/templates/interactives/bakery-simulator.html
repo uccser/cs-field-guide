@@ -39,6 +39,35 @@
           <option id="style">{% trans "How do you want it to look?" %}</option>
         </select>
       </div>
+      <button id="time-to-bake" class="position-absolute btn btn-lg btn-success d-none">{% trans "Time to bake!" %}</button>
+    </div>
+
+    <div class="modal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">{% trans "Make your cake using the options below. You may select multiple decorations." %}</h5>
+          </div>
+          <div class="modal-body">
+            <!-- Radio buttons for layers  -->
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+              <label class="btn btn-secondary active">
+                <input type="radio" name="layers" id="option1" autocomplete="off" checked> Active
+              </label>
+              <label class="btn btn-secondary">
+                <input type="radio" name="layers" id="option2" autocomplete="off"> Radio
+              </label>
+              <label class="btn btn-secondary">
+                <input type="radio" name="optilayersons" id="option3" autocomplete="off"> Radio
+              </label>
+            </div>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-success" data-dismiss="modal">{% trans "Bake!" %}</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 {% endblock html %}
