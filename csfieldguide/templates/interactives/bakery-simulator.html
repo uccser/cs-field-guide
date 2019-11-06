@@ -4,7 +4,23 @@
 {% load static %}
 
 {% block html %}
-  <div>
+  <div class="container text-center py-5">
+    <h1>{% trans "Bakery Simulator" %}</h1>
+    <div class="row justify-content-center position-relative text-center">
+      <img id="background-image" src="{% static 'interactives/bakery-simulator/img/title-screen.jpg' %}">
+      <div id="starter-info" class="position-absolute mt-2">
+        <h5>{% trans "Instructions" %}</h5>
+        <p>
+          {% blocktrans %}
+          Welcome to the Bakery Simulator; today you are the baker!<br>
+          Much like with a stakeholder, you will need to ask this "cake-holder" questions to determine their desired product.<br>
+          Use their answers to construct a cake based on 6 criteria; number of layers, flavour, icing colour, size, decorations and shape.<br>
+          You are able to ask 6 questions.
+          {% endblocktrans %}
+        </p>
+        <button id="start-button" class="btn btn-primary">{% trans "Start baking!" %}</button>
+      </div>
+    </div>
   </div>
 {% endblock html %}
 
@@ -13,5 +29,16 @@
 {% endblock css %}
 
 {% block js %}
+<script type="text/javascript">
+  var bakerySimImages = {
+    "title-screen": "{% static 'interactives/bakery-simulator/img/title-screen.jpg' %}",
+    "customer-1": "{% static 'interactives/bakery-simulator/img/customer-1.jpg' %}",
+    "customer-1-results": "{% static 'interactives/bakery-simulator/img/customer-1-results.jpg' %}",
+    "customer-2": "{% static 'interactives/bakery-simulator/img/customer-2.jpg' %}",
+    "customer-2-results": "{% static 'interactives/bakery-simulator/img/customer-2-results.jpg' %}",
+    "customer-3": "{% static 'interactives/bakery-simulator/img/customer-3.jpg' %}",
+    "customer-3-results": "{% static 'interactives/bakery-simulator/img/customer-3-results.jpg' %}",
+  };
+</script>
   <script type="text/javascript" src="{% static 'interactives/bakery-simulator/js/bakery-simulator.js' %}"></script>
 {% endblock js %}
