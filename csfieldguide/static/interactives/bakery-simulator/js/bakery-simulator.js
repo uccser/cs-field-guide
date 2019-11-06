@@ -89,4 +89,7 @@ function askQuestion() {
     }
 
     bakerySim.questionsAsked += 1
+    $('#num-asked').text(bakerySim.questionsAsked);
+    $("select option:selected").attr('disabled', true);
+    // if questions asked == 6 next stage
 }
