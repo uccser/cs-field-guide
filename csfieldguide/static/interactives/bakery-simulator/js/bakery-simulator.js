@@ -1,4 +1,19 @@
 const CUSTOMER_INTRO = gettext("Good morning! I'd like to order a cake.");
+const QUESTIONS = {
+    'who': gettext("Who is it for?"),
+    'budget': gettext("What is your budget?"),
+    'people': gettext("How many people is it for?"),
+    'colour': gettext("What colour should it be?"),
+    'flavour': gettext("What should the flavour be?"),
+    'decorations': gettext("What decorations should it have?"),
+    'size': gettext("What size should it be?"),
+    'shape': gettext("What kind of a question is that? Cake shaped?"),
+    'event': gettext("What is the event?"),
+    'avoid': gettext("Anything you’d like to avoid?"),
+    'layers': gettext("How many layers should it be?"),
+    'style': gettext("How do you want it to look?"),
+};
+
 const CUSTOMER_1_ANS = {
     'who': gettext("Me"),
     'budget': gettext("I don't know, like 30 dollars?"),
@@ -12,7 +27,7 @@ const CUSTOMER_1_ANS = {
     'avoid': gettext("You."),
     'layers': gettext("Cakes have layers?"),
     'style': gettext("Who's the cake-maker here? Me or you?"),
-}
+};
 
 const CUSTOMER_2_ANS = {
     'who': gettext("My son."),
@@ -27,7 +42,7 @@ const CUSTOMER_2_ANS = {
     'avoid': gettext("My son hates sprinkles."),
     'style': gettext("I don't care, a generic boy's birthday cake is fine."),
     'layers': gettext("It's a special birthday, so the bigger the better."),
-}
+};
 
 const CUSTOMER_3_ANS = {
     'who': gettext("My best friend; she is getting married."),
@@ -42,7 +57,7 @@ const CUSTOMER_3_ANS = {
     'avoid': gettext("No sprinkles or candles, please! Also avoid basic flavors, like chocolate and vanilla."),
     'style': gettext("They would like a white rectangular cake with decorative icing and writing."),
     'layers': gettext("The cake should be large with 3 layers."),
-}
+};
 
 $(document).ready(function() {
     $('#start-button').click(loadCustomer);
