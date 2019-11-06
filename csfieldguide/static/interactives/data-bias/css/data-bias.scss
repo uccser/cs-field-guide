@@ -1,0 +1,122 @@
+@import "node_modules/nouislider/distribute/nouislider";
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+@import "node_modules/bootstrap/scss/mixins";
+
+.circle {
+    border-radius: 50%;
+    width: 3.125rem;
+    height: 3.125rem;
+    position: absolute;
+}
+
+#circles-area {
+    position: relative;
+    border-radius: 1rem;
+}
+
+#data-bias-container {
+    padding: 4rem !important;
+}
+
+.noUi-pips {
+    padding-top: 0.3125rem;
+}
+
+.noUi-target {
+    border: none;
+    background: linear-gradient(
+        to right,
+        hsl(0,100%,50%),
+        hsl(60,100%,50%),
+        hsl(120,100%,50%),
+        hsl(180,100%,50%),
+        hsl(240,100%,50%),
+        hsl(300,100%,50%),
+        hsl(360,100%,50%)
+    );
+}
+
+.noUi-handle {
+    border: 0.125rem white solid;
+    height: 1.75rem !important;
+    width: 1.75rem !important;
+    border-radius: 50%;
+    top: -0.375rem !important;
+}
+
+.noUi-handle:before,
+.noUi-handle:after {
+    content: none;
+}
+
+.noUi-connect {
+    background: none;
+}
+
+.glow {
+    box-shadow: 0 0 1rem 0.5rem black;
+}
+
+.red {
+    background: red;
+}
+
+.lime {
+    background: lime;
+}
+
+.blue {
+    background: blue;
+}
+
+.yellow {
+    background: yellow;
+}
+
+.purple {
+    background: #9d03fc;
+}
+
+.darkorange {
+    background: darkorange;
+}
+
+.fuchsia {
+    background: fuchsia;
+}
+
+.deepskyblue {
+    background: deepskyblue;
+}
+
+.grey {
+    background: grey !important;
+}
+
+@include media-breakpoint-down(sm) {
+    #instruction-area,
+    #background-colour-slider-container {
+        padding: 0rem !important;
+    }
+
+    #data-bias-container {
+        padding: 1rem 3rem !important;
+    }
+
+    #instruction-text {
+        margin: 1rem 0rem;
+    }
+
+    .circle {
+        width: 2.5rem !important;
+        height: 2.5rem !important;
+    }
+}
+
+@include media-breakpoint-up(xl) {
+    #circles-area {
+        max-width: 60%;
+        max-height: 80%;
+    }
+}
