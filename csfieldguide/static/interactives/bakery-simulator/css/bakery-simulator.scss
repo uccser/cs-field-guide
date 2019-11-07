@@ -4,8 +4,7 @@
 
 #dialogue-box {
     border-radius: 0.5rem;
-    background-color: black;
-    color: white;
+    background-color: #f8f9fa;
     font-size: 1.25rem;
     padding: 1rem 2rem;
     top: 77%;
@@ -31,9 +30,12 @@
 }
 
 #question-list p:hover {
-    color: gainsboro;
+    cursor: pointer;
+    background-color: #dcddec;
 }
 
 #question-list p {
     font-size: 1rem;
+    padding: 0.5rem 2rem;
+    margin: 0;
 }
