@@ -1,4 +1,5 @@
 const CUSTOMER_INTRO = gettext("Good morning! I'd like to order a cake.");
+const QUESTIONS_MAX_REACHED = gettext("You have asked the maximum of 6 questions. Lets get baking!");
 const QUESTIONS = {
     'who': gettext("Who is it for?"),
     'budget': gettext("What is your budget?"),
@@ -67,7 +68,13 @@ bakerySim.maxQuestions = 6;
 
 $(document).ready(function() {
     $('#start-button').click(loadCustomer);
-    $('#question-dropdown').change(askQuestion);
+    $('#start-asking').click(function() {
+        $('#customer-answer').addClass('d-none');
+        $('#question-list').removeClass('d-none');
+        $('#start-asking').addClass('d-none');
+        $('#num-qs-asked-text').addClass('d-none');
+    });
+    $('#question-list p').click(askQuestion);
     $('#time-to-bake').click(startBaking);
 });
 
@@ -76,27 +83,34 @@ function loadCustomer() {
     $('#starter-info').addClass('d-none');
     $('#background-image').attr('src', bakerySimImages['customer-1']);
     $('#customer-answer').text(CUSTOMER_INTRO).removeClass('d-none');
-    $('#question-dropdown').removeClass('d-none');
+    $('#dialogue-box').removeClass('d-none');
+    $('#start-asking').removeClass('d-none');
 }
 
 function askQuestion() {
-    questionID = $("select option:selected").attr('id');
+    questionID = $(this).attr('id');
+    $('#question-list').addClass('d-none');
     if (bakerySim.currentCustomer == 1) {
-        $('#customer-answer').text(CUSTOMER_1_ANS[questionID]);
+        $('#customer-answer').text(CUSTOMER_1_ANS[questionID]).removeClass('d-none');
     } else if (bakerySim.currentCustomer == 2) {
-        $('#customer-answer').text(CUSTOMER_2_ANS[questionID]);
+        $('#customer-answer').text(CUSTOMER_2_ANS[questionID]).removeClass('d-none');
     } else if (bakerySim.currentCustomer == 3) {
-        $('#customer-answer').text(CUSTOMER_3_ANS[questionID]);
+        $('#customer-answer').text(CUSTOMER_3_ANS[questionID]).removeClass('d-none');
     }
 
     bakerySim.questionsAsked += 1
     $('#num-asked').text(bakerySim.questionsAsked);
-    $("select option:selected").attr('disabled', true);
+    // remove question so it cannot be asked again
+    $(this).remove();
 
     if (bakerySim.questionsAsked == 6) {
-        $('#question-dropdown').addClass('d-none');
-        $('#customer-answer').addClass('d-none');
+        $('#question-list').addClass('d-none');
+        $('#start-asking').addClass('d-none');
+        $('#num-qs-asked-text').text(QUESTIONS_MAX_REACHED);
         $('#time-to-bake').removeClass('d-none');
+    } else {
+        $('#num-qs-asked-text').removeClass('d-none');
+        $('#start-asking').removeClass('d-none');
     }
 }
 

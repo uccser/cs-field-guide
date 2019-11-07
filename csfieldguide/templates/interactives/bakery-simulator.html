@@ -20,25 +20,25 @@
         </p>
         <button id="start-button" class="btn btn-primary">{% trans "Start baking!" %}</button>
       </div>
-      <div id="customer-answer" class="position-absolute d-none m-3"></div>
-      <div id="question-dropdown" class="position-absolute d-none">
-        <p class="text-left">{% trans "Questions asked: <span id='num-asked'>0</span>" %}</p>
-        <p class="text-left m-0">{% trans "Ask a question!" %}</p>
-        <select class="form-control w-auto p-1 d-inline" id="question">
-          <option id="who">{% trans "Who is it for?" %}</option>
-          <option id="budget">{% trans "What is your budget?" %}</option>
-          <option id="people">{% trans "How many people is it for?" %}</option>
-          <option id="colour">{% trans "What colour should it be?" %}</option>
-          <option id="flavour">{% trans "What should the flavour be?" %}</option>
-          <option id="decorations">{% trans "What decorations should it have?" %}</option>
-          <option id="size">{% trans "What size should it be?" %}</option>
-          <option id="shape">{% trans "What shape should it be?" %}</option>
-          <option id="event">{% trans "What is the event?" %}</option>
-          <option id="avoid">{% trans "Anything you’d like to avoid?" %}</option>
-          <option id="layers">{% trans "How many layers should it be?" %}</option>
-          <option id="style">{% trans "How do you want it to look?" %}</option>
-        </select>
+      <div id="dialogue-box" class="col-8 position-absolute d-none m-3">
+        <p id="customer-answer" class="d-none"></p>
+        <div id="question-list" class="position-absolute text-left d-none">
+          <p id="who">{% trans "Who is it for?" %}</p>
+          <p id="budget">{% trans "What is your budget?" %}</p>
+          <p id="people">{% trans "How many people is it for?" %}</p>
+          <p id="colour">{% trans "What colour should it be?" %}</p>
+          <p id="flavour">{% trans "What should the flavour be?" %}</p>
+          <p id="decorations">{% trans "What decorations should it have?" %}</p>
+          <p id="size">{% trans "What size should it be?" %}</p>
+          <p id="shape">{% trans "What shape should it be?" %}</p>
+          <p id="event">{% trans "What is the event?" %}</p>
+          <p id="avoid">{% trans "Anything you’d like to avoid?" %}</p>
+          <p id="layers">{% trans "How many layers should it be?" %}</p>
+          <p id="style">{% trans "How do you want it to look?" %}</p>
+        </div>
       </div>
+      <button id="start-asking" class="btn btn-success position-absolute d-none">{% trans "Ask a question" %}</button>
+      <small id="num-qs-asked-text" class="position-absolute text-white d-none">{% trans "Questions asked: <span id='num-asked'>0</span>" %}</small>
       <button id="time-to-bake" class="position-absolute btn btn-lg btn-success d-none">{% trans "Time to bake!" %}</button>
     </div>
 

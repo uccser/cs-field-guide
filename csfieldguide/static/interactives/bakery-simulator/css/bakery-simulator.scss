@@ -2,12 +2,15 @@
     margin-bottom: 0.3rem;
 }
 
-#customer-answer {
+#dialogue-box {
     border-radius: 0.5rem;
     background-color: black;
     color: white;
     font-size: 1.25rem;
-    padding: 2rem;
+    padding: 1rem 2rem;
+    top: 77%;
+    height: 8rem;
+    overflow-y: scroll;
 }
 
 #question-dropdown {
@@ -16,6 +19,21 @@
 }
 
 #time-to-bake {
-    top: 43%;
-    left: 84%;
+    top: 88%;
+}
+
+#start-asking {
+    top: 88%;
+}
+
+#num-qs-asked-text {
+    top: 94%;
+}
+
+#question-list p:hover {
+    color: gainsboro;
+}
+
+#question-list p {
+    font-size: 1rem;
 }
