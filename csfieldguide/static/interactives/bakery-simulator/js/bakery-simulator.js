@@ -90,8 +90,8 @@ function createModal() {
 function createRadioButtons() {
     for (i=0; i < CONFIG.RADIO_OPTIONS.length; i++) {
         var option = CONFIG.RADIO_OPTIONS[i];
-        var $container = $('<div>').addClass('mb-1');
-        var $title = $('<p>').addClass('d-inline text-left mr-5').text(option.title);
+        var $container = $('<div>').addClass('mb-2').attr('id', option.name + '-radio');
+        var $title = $('<p>').addClass('d-inline text-left').text(option.title);
         $container.append($title);
         var $buttonGroup = $('<div>').addClass('btn-group btn-group-toggle').attr('data-toggle', 'buttons');
         $container.append($buttonGroup);
@@ -105,7 +105,8 @@ function createRadioButtons() {
             catch {
                 var value = option.values[j]
             }
-            var $radioLabel = $('<label>').addClass('btn btn-secondary').text(value);
+            // if is first radio option make it active
+            var $radioLabel = $('<label>').text(value).addClass('btn btn-secondary' + ((j == 0) ? ' active' : ''));
             var $radioInput = $('<input>').attr({
                 type: 'radio',
                 name: option.name,

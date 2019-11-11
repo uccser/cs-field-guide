@@ -63,6 +63,7 @@ const CUSTOMER_3_ANS = {
 
 const RADIO_LAYERS = {
     title: 'Layers:',
+    name: 'layers',
     values: [
         1,
         2,
@@ -114,7 +115,7 @@ const RADIO_DECORATIONS = {
 };
 
 const RADIO_SHAPE = {
-    title: 'Shape:',
+    title: 'Shape',
     name: 'shape',
     values: [
         gettext('Circle'),
