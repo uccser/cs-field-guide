@@ -23,5 +23,5 @@ TODO
 
 ## Known Issues
 
-- The animation of objects will stop while the user has hiden the page, but new data balls are still created.
+- The animation of objects will stop while the webpage is hidden, but new data balls are still created.
   When the user returns all the new balls are dropped at once.
