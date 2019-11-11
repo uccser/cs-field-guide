@@ -15,8 +15,13 @@ This interactive demonstrates the limits of processing a lot of data with a sing
 
 ## Assets
 
-Assets used in the `assets` directory are from the original game, some were edited for the new context.
+Assets used in the `assets` directory are images from the original game, edited by Alasdair Smith for the new context.
 
 ## Licences
 
 TODO
+
+## Known Issues
+
+- The animation of objects will stop while the user has hiden the page, but new data balls are still created.
+  When the user returns all the new balls are dropped at once.
