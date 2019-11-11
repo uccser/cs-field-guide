@@ -1,64 +1,4 @@
-const CUSTOMER_INTRO = gettext("Good morning! I'd like to order a cake.");
-const QUESTIONS_MAX_REACHED = gettext("You have asked the maximum of 6 questions. Lets get baking!");
-const QUESTIONS = {
-    'who': gettext("Who is it for?"),
-    'budget': gettext("What is your budget?"),
-    'people': gettext("How many people is it for?"),
-    'colour': gettext("What colour should it be?"),
-    'flavour': gettext("What should the flavour be?"),
-    'decorations': gettext("What decorations should it have?"),
-    'size': gettext("What size should it be?"),
-    'shape': gettext("What shape should it be?"),
-    'event': gettext("What is the event?"),
-    'avoid': gettext("Anything you’d like to avoid?"),
-    'layers': gettext("How many layers should it be?"),
-    'style': gettext("How do you want it to look?"),
-};
-
-const CUSTOMER_1_ANS = {
-    'who': gettext("Me"),
-    'budget': gettext("I don't know, like 30 dollars?"),
-    'people': gettext("A bunch… I think Susan is coming… Or maybe not, I don’t know."),
-    'colour': gettext("Purple or green."),
-    'flavour': gettext("Do you have lemon? Amy likes lemon. I think Amy is gonna be there."),
-    'decorations': gettext("Just make it look nice, okay? But none of that fancy stuff."),
-    'size': gettext("Medium, maybe."),
-    'shape': gettext("What kind of a question is that? Cake shaped?"),
-    'event': gettext("Does that really matter?"),
-    'avoid': gettext("You."),
-    'layers': gettext("Cakes have layers?"),
-    'style': gettext("Who's the cake-maker here? Me or you?"),
-};
-
-const CUSTOMER_2_ANS = {
-    'who': gettext("My son."),
-    'budget': gettext("As much as is needed."),
-    'people': gettext("About 20 people."),
-    'colour': gettext("Blue is my son's favourite colour."),
-    'flavour': gettext("Whatever most people like."),
-    'decorations': gettext("Birthday decorations."),
-    'size': gettext("Half a rectangular cake tin."),
-    'shape': gettext("I want a fun boys rectangular cake."),
-    'event': gettext("My sons birthday, he's turning 10."),
-    'avoid': gettext("My son hates sprinkles."),
-    'style': gettext("I don't care, a generic boy's birthday cake is fine."),
-    'layers': gettext("It's a special birthday, so the bigger the better."),
-};
-
-const CUSTOMER_3_ANS = {
-    'who': gettext("My best friend; she is getting married."),
-    'budget': gettext("About $400, but I'm willing to pay more for decorative icing."),
-    'people': gettext("About 100, so it should be as large with as many layers as possible."),
-    'colour': gettext("White icing, since it's a wedding."),
-    'flavour': gettext("My best friend and her wife both love red velvet."),
-    'decorations': gettext("Decorative icing and writing with the names of the happy couple."),
-    'size': gettext("Large with as many layers as possible."),
-    'shape': gettext("Rectangular sounds good."),
-    'event': gettext("It's a wedding, so the icing should be white. They want a red velvet cake."),
-    'avoid': gettext("No sprinkles or candles, please! Also avoid basic flavors, like chocolate and vanilla."),
-    'style': gettext("They would like a white rectangular cake with decorative icing and writing."),
-    'layers': gettext("The cake should be large with 3 layers."),
-};
+var CONFIG = require('./config.js');
 
 var bakerySim = {};
 
@@ -67,6 +7,8 @@ bakerySim.questionsAsked = 0;
 bakerySim.maxQuestions = 6;
 
 $(document).ready(function() {
+    createModal();
+    createRadioButtons();
     $('#start-button').click(loadCustomer);
     $('#start-asking').click(function() {
         $('#customer-answer').addClass('d-none');
@@ -82,20 +24,21 @@ $(document).ready(function() {
 function loadCustomer() {
     $('#starter-info').addClass('d-none');
     $('#background-image').attr('src', bakerySimImages['customer-1']);
-    $('#customer-answer').text(CUSTOMER_INTRO).removeClass('d-none');
+    $('#customer-answer').text(CONFIG.CUSTOMER_INTRO).removeClass('d-none');
     $('#dialogue-box').removeClass('d-none');
     $('#start-asking').removeClass('d-none');
 }
+
 
 function askQuestion() {
     questionID = $(this).attr('id');
     $('#question-list').addClass('d-none');
     if (bakerySim.currentCustomer == 1) {
-        $('#customer-answer').text(CUSTOMER_1_ANS[questionID]).removeClass('d-none');
+        $('#customer-answer').text(CONFIG.CUSTOMER_1_ANS[questionID]).removeClass('d-none');
     } else if (bakerySim.currentCustomer == 2) {
-        $('#customer-answer').text(CUSTOMER_2_ANS[questionID]).removeClass('d-none');
+        $('#customer-answer').text(CONFIG.CUSTOMER_2_ANS[questionID]).removeClass('d-none');
     } else if (bakerySim.currentCustomer == 3) {
-        $('#customer-answer').text(CUSTOMER_3_ANS[questionID]).removeClass('d-none');
+        $('#customer-answer').text(CONFIG.CUSTOMER_3_ANS[questionID]).removeClass('d-none');
     }
 
     bakerySim.questionsAsked += 1
@@ -106,7 +49,7 @@ function askQuestion() {
     if (bakerySim.questionsAsked == 6) {
         $('#question-list').addClass('d-none');
         $('#start-asking').addClass('d-none');
-        $('#num-qs-asked-text').text(QUESTIONS_MAX_REACHED);
+        $('#num-qs-asked-text').text(CONFIG.QUESTIONS_MAX_REACHED);
         $('#time-to-bake').removeClass('d-none');
     } else {
         $('#num-qs-asked-text').removeClass('d-none');
@@ -114,6 +57,64 @@ function askQuestion() {
     }
 }
 
+
 function startBaking() {
     
+}
+
+
+function createModal() {
+    var $modalContainer = $('<div>').addClass('modal').attr({
+        id: 'baking-options',
+        tabindex: '-1',
+        role: 'dialog',
+    });
+    var $modalDialog = $('<div>').addClass('modal-dialog').attr('role', 'document');
+    var $modalContent = $('<div>').addClass('modal-content');
+    var $modalHeader = $('<div>').addClass('modal-header');
+    var $modalTitle = $('<div>').addClass('modal-title').text(CONFIG.MODAL_TITLE);
+    var $modalBody = $('<div>').addClass('modal-body text-left').attr('id', 'modal-body');
+    var $modalFooter = $('<div>').addClass('modal-footer');
+    var $bakeButton = $('<button>').addClass('btn btn-success').attr('data-dismiss', 'modal').text(gettext('Bake!'));
+    $modalContainer.append($modalDialog);
+    $modalDialog.append($modalContent);
+    $modalContent.append($modalHeader);
+    $modalHeader.append($modalTitle);
+    $modalContent.append($modalBody);
+    $modalContent.append($modalFooter);
+    $modalFooter.append($bakeButton);
+    $('#bakery-simulator-container').append($modalContainer);
+}
+
+
+function createRadioButtons() {
+    for (i=0; i < CONFIG.RADIO_OPTIONS.length; i++) {
+        var option = CONFIG.RADIO_OPTIONS[i];
+        var $container = $('<div>').addClass('mb-1');
+        var $title = $('<p>').addClass('d-inline text-left mr-5').text(option.title);
+        $container.append($title);
+        var $buttonGroup = $('<div>').addClass('btn-group btn-group-toggle').attr('data-toggle', 'buttons');
+        $container.append($buttonGroup);
+        // start iterating
+        for (j=0; j < option.values.length; j++) {
+            // converting to lowercase for constructing ID. 
+            // some values cannot be converted to lowercase e.g integers
+            try {
+                var value = option.values[j].toLowerCase();
+            }
+            catch {
+                var value = option.values[j]
+            }
+            var $radioLabel = $('<label>').addClass('btn btn-secondary').text(value);
+            var $radioInput = $('<input>').attr({
+                type: 'radio',
+                name: option.name,
+                id: option.name + '-' + value,
+                autocomplete: 'off',
+            });
+            $radioLabel.append($radioInput);
+            $buttonGroup.append($radioLabel);
+        }
+        $('#modal-body').append($container);
+    }
 }

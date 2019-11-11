@@ -4,7 +4,7 @@
 {% load static %}
 
 {% block html %}
-  <div class="container text-center py-5">
+  <div id="bakery-simulator-container" class="container text-center py-5">
     <h1>{% trans "Bakery Simulator" %}</h1>
     <div class="row justify-content-center position-relative text-center">
       <img id="background-image" src="{% static 'interactives/bakery-simulator/img/title-screen.jpg' %}">
@@ -40,90 +40,6 @@
       <button id="start-asking" class="btn btn-success position-absolute d-none">{% trans "Ask a question" %}</button>
       <small id="num-qs-asked-text" class="position-absolute d-none">{% trans "Questions asked: <span id='num-asked'>0</span>" %}</small>
       <button id="time-to-bake" class="position-absolute btn btn-lg btn-success d-none" data-toggle="modal" data-target="#baking-options">{% trans "Time to bake!" %}</button>
-    </div>
-
-    <div id="baking-options" class="modal" tabindex="-1" role="dialog">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">{% trans "Make your cake using the options below. You may select multiple decorations." %}</h5>
-          </div>
-          <div class="modal-body text-left">
-            <!-- Radio buttons for layers  -->
-            <div class="mb-1">
-              <p class="d-inline text-left">{% trans "Layers:" %}</p>
-              <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                <label class="btn btn-secondary active">
-                  <input type="radio" name="layers" id="layers-1" autocomplete="off" checked>1
-                </label>
-                <label class="btn btn-secondary">
-                  <input type="radio" name="layers" id="layers-2" autocomplete="off">2
-                </label>
-                <label class="btn btn-secondary">
-                  <input type="radio" name="layers" id="layers-3" autocomplete="off">3
-                </label>
-              </div>
-            </div>
-
-            <div class="mb-1">
-              <!-- Radio buttons for flavour  -->
-              <p class="d-inline text-left">{% trans "Flavour:" %}</p>
-              <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                <label class="btn btn-secondary active">
-                  <input type="radio" name="flavour" id="vanilla" autocomplete="off" checked>{% trans "Vanilla" %}
-                </label>
-                <label class="btn btn-secondary">
-                  <input type="radio" name="flavour" id="choc" autocomplete="off">{% trans "Chocolate" %}
-                </label>
-                <label class="btn btn-secondary">
-                  <input type="radio" name="flavour" id="red-velvet" autocomplete="off">{% trans "Red Velvet" %}
-                </label>
-              </div>
-            </div>
-
-            <div class="mb-1">
-              <!-- Radio buttons for icing colour  -->
-              <p class="d-inline text-left">{% trans "Icing colour:" %}</p>
-              <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                <label class="btn btn-secondary active">
-                  <input type="radio" name="icing-colour" id="icing-red" autocomplete="off" checked>{% trans "Red" %}
-                </label>
-                <label class="btn btn-secondary">
-                  <input type="radio" name="icing-colour" id="icing-blue" autocomplete="off">{% trans "Blue" %}
-                </label>
-                <label class="btn btn-secondary">
-                  <input type="radio" name="icing-colour" id="icing-green-" autocomplete="off">{% trans "Green" %}
-                </label>
-                <label class="btn btn-secondary">
-                  <input type="radio" name="icing-colour" id="icing-purple" autocomplete="off">{% trans "Purple" %}
-                </label>
-                <label class="btn btn-secondary">
-                  <input type="radio" name="icing-colour" id="icing-white" autocomplete="off">{% trans "White" %}
-                </label>
-              </div>
-            </div>
-
-            <div class="mb-1">
-              <!-- Radio buttons for size  -->
-              <p class="d-inline text-left">{% trans "Size:" %}</p>
-              <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                <label class="btn btn-secondary active">
-                  <input type="radio" name="size" id="size-sm" autocomplete="off" checked>{% trans "Small" %}
-                </label>
-                <label class="btn btn-secondary">
-                  <input type="radio" name="size" id="size-md" autocomplete="off">{% trans "Medium" %}
-                </label>
-                <label class="btn btn-secondary">
-                  <input type="radio" name="size" id="size-lg" autocomplete="off">{% trans "Large" %}
-                </label>
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-success" data-dismiss="modal">{% trans "Bake!" %}</button>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 {% endblock html %}
