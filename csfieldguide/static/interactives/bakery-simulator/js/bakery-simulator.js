@@ -3,8 +3,9 @@ var CONFIG = require('./config.js');
 var bakerySim = {};
 
 bakerySim.currentCustomer = 1;
-bakerySim.questionsAsked = 0;
+bakerySim.numQuestionsAsked = 0;
 bakerySim.maxQuestions = 6;
+
 
 $(document).ready(function() {
     createModal();
@@ -17,7 +18,7 @@ $(document).ready(function() {
         $('#num-qs-asked-text').addClass('d-none');
     });
     $('#question-list p').click(askQuestion);
-    $('#time-to-bake').click(startBaking);
+    $('#bake-cake').click(checkResult);
 });
 
 
@@ -41,12 +42,12 @@ function askQuestion() {
         $('#customer-answer').text(CONFIG.CUSTOMER_3_ANS[questionID]).removeClass('d-none');
     }
 
-    bakerySim.questionsAsked += 1
-    $('#num-asked').text(bakerySim.questionsAsked);
+    bakerySim.numQuestionsAsked += 1
+    $('#num-asked').text(bakerySim.numQuestionsAsked);
     // remove question so it cannot be asked again
     $(this).remove();
 
-    if (bakerySim.questionsAsked == 6) {
+    if (bakerySim.numQuestionsAsked == 6) {
         $('#question-list').addClass('d-none');
         $('#start-asking').addClass('d-none');
         $('#num-qs-asked-text').text(CONFIG.QUESTIONS_MAX_REACHED);
@@ -58,8 +59,12 @@ function askQuestion() {
 }
 
 
-function startBaking() {
-    
+function checkResult() {
+    // get options chosen via active class
+    $('.active').each(function(i, obj) {
+        
+    });
+    // compare them to cake answers in config
 }
 
 
@@ -69,13 +74,17 @@ function createModal() {
         tabindex: '-1',
         role: 'dialog',
     });
-    var $modalDialog = $('<div>').addClass('modal-dialog').attr('role', 'document');
+    var $modalDialog = $('<div>').addClass('modal-dialog modal-lg').attr('role', 'document');
     var $modalContent = $('<div>').addClass('modal-content');
     var $modalHeader = $('<div>').addClass('modal-header');
     var $modalTitle = $('<div>').addClass('modal-title').text(CONFIG.MODAL_TITLE);
     var $modalBody = $('<div>').addClass('modal-body text-left').attr('id', 'modal-body');
     var $modalFooter = $('<div>').addClass('modal-footer');
-    var $bakeButton = $('<button>').addClass('btn btn-success').attr('data-dismiss', 'modal').text(gettext('Bake!'));
+    var $bakeButton = $('<button>').addClass('btn btn-success').text(gettext('Bake!'));
+    $bakeButton.attr({
+        'data-dismiss': 'modal',
+        'id': 'bake-cake',
+    });
     $modalContainer.append($modalDialog);
     $modalDialog.append($modalContent);
     $modalContent.append($modalHeader);
@@ -90,7 +99,7 @@ function createModal() {
 function createRadioButtons() {
     for (i=0; i < CONFIG.RADIO_OPTIONS.length; i++) {
         var option = CONFIG.RADIO_OPTIONS[i];
-        var $container = $('<div>').addClass('mb-2').attr('id', option.name + '-radio');
+        var $container = $('<div>').addClass('mb-2 col-8').attr('id', option.name + '-radio');
         var $title = $('<p>').addClass('d-inline text-left').text(option.title);
         $container.append($title);
         var $buttonGroup = $('<div>').addClass('btn-group btn-group-toggle').attr('data-toggle', 'buttons');
@@ -105,7 +114,7 @@ function createRadioButtons() {
             catch {
                 var value = option.values[j]
             }
-            // if is first radio option make it active
+            // shorthand if statement means if it is first radio option make it active
             var $radioLabel = $('<label>').text(value).addClass('btn btn-secondary' + ((j == 0) ? ' active' : ''));
             var $radioInput = $('<input>').attr({
                 type: 'radio',

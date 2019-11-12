@@ -61,6 +61,33 @@ const CUSTOMER_3_ANS = {
     'layers': gettext("The cake should be large with 3 layers."),
 };
 
+const CUSTOMER_1_CAKE = {
+    'layers': 2,
+    'flavour': 'Chocolate',
+    'colour': 'Purple',
+    'size': 'Large',
+    'decorations': ['Sprinkles'],
+    'shape': 'Circle',
+};
+
+const CUSTOMER_2_CAKE = {
+    'layers': 3,
+    'flavour': 'Banana',
+    'colour': 'Blue',
+    'size': 'Medium',
+    'decorations': ['Candles', 'Writing', 'Deco-Icing'],
+    'shape': 'Rectangular',
+};
+
+const CUSTOMER_3_CAKE = {
+    'layers': 3,
+    'flavour': 'Chocolate',
+    'colour': 'White',
+    'size': 'Large',
+    'decorations': ['Deco-Icing', 'Writing'],
+    'shape': 'Rectangular',
+};
+
 const RADIO_LAYERS = {
     title: 'Layers:',
     name: 'layers',
@@ -72,7 +99,7 @@ const RADIO_LAYERS = {
 };
 
 const RADIO_FLAVOURS = {
-    title: 'Flavour:',
+    title: gettext('Flavour:'),
     name: 'flavour',
     values: [
         gettext('Vanilla'),
@@ -82,7 +109,7 @@ const RADIO_FLAVOURS = {
 };
 
 const RADIO_ICING_COLOUR = {
-    title: 'Icing Colour:',
+    title: gettext('Icing Colour:'),
     name: 'icing-colour',
     values: [
         gettext('Red'),
@@ -94,7 +121,7 @@ const RADIO_ICING_COLOUR = {
 };
 
 const RADIO_SIZE = {
-    title: 'Size:',
+    title: gettext('Size:'),
     name: 'size',
     values: [
         gettext('Small'),
@@ -104,7 +131,7 @@ const RADIO_SIZE = {
 };
 
 const RADIO_DECORATIONS = {
-    title: 'Decorations:',
+    title: gettext('Decorations:'),
     name: 'decorations',
     values: [
         gettext('Deco-Icing'),
@@ -115,7 +142,7 @@ const RADIO_DECORATIONS = {
 };
 
 const RADIO_SHAPE = {
-    title: 'Shape',
+    title: gettext('Shape:'),
     name: 'shape',
     values: [
         gettext('Circle'),
@@ -133,7 +160,6 @@ const RADIO_OPTIONS = [
     RADIO_SHAPE,
 ];
 
-
 module.exports = {
     CUSTOMER_INTRO,
     QUESTIONS_MAX_REACHED,
@@ -142,6 +168,9 @@ module.exports = {
     CUSTOMER_1_ANS,
     CUSTOMER_2_ANS,
     CUSTOMER_3_ANS,
+    CUSTOMER_1_CAKE,
+    CUSTOMER_2_CAKE,
+    CUSTOMER_3_CAKE,
     RADIO_LAYERS,
     RADIO_FLAVOURS,
     RADIO_ICING_COLOUR,
