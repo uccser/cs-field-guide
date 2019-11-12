@@ -5,6 +5,8 @@ const BOUNDARY_RIGHT = 790;
 const SPACING = (BOUNDARY_RIGHT - BOUNDARY_LEFT) / 5; // For four equi-distant drop points
 const MAX_OFFSET = SPACING * 0.8;                     // For variation in the drop points
 
+const BALLS_PER_IMG = 10;
+
 const DROP = [
   BOUNDARY_LEFT + 1 * SPACING,
   BOUNDARY_LEFT + 2 * SPACING,
@@ -19,14 +21,24 @@ const SCALES = {
   IMAGE: 0.3
 };
 const COVER_SIZE = [IMAGE_SIZE[0] * SCALES.IMAGE, Math.ceil(IMAGE_SIZE[1] * SCALES.IMAGE)];
-const SHIFT = Math.ceil(COVER_SIZE[1] / 10);
+const SHIFT = Math.ceil(COVER_SIZE[1] / (BALLS_PER_IMG));
 
-const COLOURS = [
+const YPOS = {
+  KIWI: 10,
+  PINGU: 153,
+  COOK: 296,
+  DOLPHIN: 439
+}
+
+const COLOURS = [ // In order of the images they represent (KPCD)
   'green',
+  'purple',
   'red',
   'blue',
-  'purple'
 ];
+
+const FREQ = 2000; // (ms) Time between sets of ball drops
+const STEP = 150;  // (ms) Time between individual ball drops per set
 
 const TITLE = gettext("DATA DROP");
 const DESCRIPTION = gettext("Use the arrow keys to move your CPU left and right.\n\n\
@@ -50,7 +62,9 @@ class GameScene extends Phaser.Scene {
     var scene = this; // For inline functions only
 
     this.level = 0;
+    this.registry.set('level', this.level);
 
+    this.ballQueue = [];
 
     this.cursors = this.input.keyboard.createCursorKeys();
     this.enterKey = this.input.keyboard.addKey('ENTER');
@@ -79,21 +93,21 @@ class GameScene extends Phaser.Scene {
   create() {
     var scene = this; // For inline functions only
 
-    this.kiwi = [
-      this.add.image(10, 10, 'kiwi').setOrigin(0, 0).setScale(SCALES.IMAGE),
-      this.add.image(10, 10, 'pixel').setOrigin(0, 0).setScale(COVER_SIZE[0], COVER_SIZE[1])
+    this.kiwi = [     // [image, cover]
+      this.add.image(10, YPOS.KIWI, 'kiwi').setOrigin(0, 0).setScale(SCALES.IMAGE),
+      this.add.image(10, YPOS.KIWI, 'pixel').setOrigin(0, 0).setScale(COVER_SIZE[0], COVER_SIZE[1])
     ]
     this.penguin = [
-      this.add.image(10, 153, 'penguin').setOrigin(0, 0).setScale(SCALES.IMAGE),
-      this.add.image(10, 153, 'pixel').setOrigin(0, 0).setScale(COVER_SIZE[0], COVER_SIZE[1])
+      this.add.image(10, YPOS.PINGU, 'penguin').setOrigin(0, 0).setScale(SCALES.IMAGE),
+      this.add.image(10, YPOS.PINGU, 'pixel').setOrigin(0, 0).setScale(COVER_SIZE[0], COVER_SIZE[1])
     ]
     this.cook = [
-      this.add.image(10, 296, 'cook').setOrigin(0, 0).setScale(SCALES.IMAGE),
-      this.add.image(10, 296, 'pixel').setOrigin(0, 0).setScale(COVER_SIZE[0], COVER_SIZE[1])
+      this.add.image(10, YPOS.COOK, 'cook').setOrigin(0, 0).setScale(SCALES.IMAGE),
+      this.add.image(10, YPOS.COOK, 'pixel').setOrigin(0, 0).setScale(COVER_SIZE[0], COVER_SIZE[1])
     ]
     this.dolphin = [
-      this.add.image(10, 439, 'dolphin').setOrigin(0, 0).setScale(SCALES.IMAGE),
-      this.add.image(10, 439, 'pixel').setOrigin(0, 0).setScale(COVER_SIZE[0], COVER_SIZE[1])
+      this.add.image(10, YPOS.DOLPHIN, 'dolphin').setOrigin(0, 0).setScale(SCALES.IMAGE),
+      this.add.image(10, YPOS.DOLPHIN, 'pixel').setOrigin(0, 0).setScale(COVER_SIZE[0], COVER_SIZE[1])
     ]
     this.cup = this.physics.add.image(555, 550, 'cup').setScale(SCALES.CUP);
 
@@ -141,6 +155,65 @@ class GameScene extends Phaser.Scene {
     }
   }
 
+  nextLevel() {
+    this.level++;
+    this.registry.set('level', this.level);
+    this.resetCovers();
+    this.startLevel();
+  }
+
+  /**
+   * 
+   * 
+   * The game logic assumes that level number == number of images to reveal.
+   * Changing that will be difficult
+   */
+  startLevel() {
+    var ballTypes = [];
+    var localBallQueue = [];
+    switch (this.level) {
+      case 4:
+        ballTypes.push(COLOURS[3]);
+      case 3:
+        ballTypes.push(COLOURS[2]);
+      case 2:
+        ballTypes.push(COLOURS[1]);
+      case 1:
+        ballTypes.push(COLOURS[0]);
+      default:
+        break;
+    }
+    for (var i=0; i < BALLS_PER_IMG; i++) {
+      for (var x=0; x < ballTypes.length; x++) {
+        localBallQueue.push('data-' + ballTypes[x]);
+      }
+    }
+    this.ballQueue = localBallQueue;
+    this.releaseBalls(0);
+  }
+
+  releaseBalls(num) {
+    var scene = this;
+    if (num < this.ballQueue.length) {
+      setTimeout(function() { scene.releaseBalls(num + scene.level) }, FREQ);
+      var delay = this.level > 2 ? STEP : STEP * 2;
+      var offset = getRandomInteger(-1 * MAX_OFFSET, MAX_OFFSET);
+      this.releaseBallSet(offset, delay, num, num + scene.level);
+    }
+    else {
+      setTimeout(function() { scene.nextLevel() }, 10000);
+    }
+  }
+
+  releaseBallSet(offset, delay, next, end) {
+    var scene = this;
+    if (next < end) {
+      setTimeout(function() { scene.releaseBallSet(offset, delay, next + 1, end) }, delay);
+      var positionX = offset + DROP[getRandomInteger(0, DROP.length - 1)];
+      scene.dropBall(positionX, scene.ballQueue[next]);
+    }
+  }
+
   /**
    * Drops a new coloured ball
    */
@@ -159,9 +232,8 @@ class GameScene extends Phaser.Scene {
    * The given data ball has hit the cup; deals with it appropriately
    */
   dataHit(data) {
-    if (this.isPreGame) {
-      data.destroy();
-    } else {
+    data.destroy();
+    if (!this.isPreGame) {
       var key = data.texture.key;
       this.shiftCover(key);
     }
@@ -182,6 +254,13 @@ class GameScene extends Phaser.Scene {
     }
   }
 
+  resetCovers() {
+    this.kiwi[1].setY(YPOS.KIWI);
+    this.penguin[1].setY(YPOS.PINGU);
+    this.cook[1].setY(YPOS.COOK);
+    this.dolphin[1].setY(YPOS.DOLPHIN);
+  }
+
   runEnterHandler() {
     if (!this.isPreGame) { // Should never be true but deal with just in case
       return;
@@ -189,6 +268,7 @@ class GameScene extends Phaser.Scene {
     this.enterKey.enabled = false;
     this.isPreGame = false;
     this.datas.clear(true, true); // Remove all existing balls
+    this.nextLevel();
   }
 
   /**
@@ -216,6 +296,16 @@ class UIScene extends Phaser.Scene {
    * Initialises all required variables and handlers
    */
   init() {
+
+    this.title;
+    this.description;
+    this.levelText;
+
+    this.handlers = {
+      'level': this.setLevel,
+    }
+
+    this.registry.events.on('changedata', this.registryUpdate, this);
   }
 
   /**
@@ -230,6 +320,20 @@ class UIScene extends Phaser.Scene {
   create() {
     this.title = this.add.text(400, 10, TITLE, { fontSize: '32pt', fill: '#fff' }).setOrigin(0.5, 0);
     this.description = this.add.text(10, 100, DESCRIPTION);
+    this.levelText = this.add.text(555, 200, '', { fontSize: '200px', fill: '#fff' }).setAlpha(0.2).setOrigin(0.5, 0);
+    this.setLevel(this, 0);
+  }
+
+  setLevel(scene, levelNumber) {
+    if (levelNumber == 0) {
+      scene.title.setVisible(true);
+      scene.description.setVisible(true);
+      scene.levelText.setText('');
+    } else {
+      scene.title.setVisible(false);
+      scene.description.setVisible(false);
+      scene.levelText.setText(levelNumber);
+    }
   }
 
   /**
