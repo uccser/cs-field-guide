@@ -30,7 +30,7 @@ const YPOS = {
   DOLPHIN: 439
 }
 
-const COLOURS = [ // In order of the images they represent (KPCD)
+const COLOURS = [ // Also used to index disctionaries
   'green',
   'purple',
   'red',
@@ -59,12 +59,19 @@ class GameScene extends Phaser.Scene {
    * Initialises all required variables, handlers, and relevant global registry values
    */
   init() {
-    var scene = this; // For inline functions only
+    var scene = this;
 
     this.level = 0;
     this.registry.set('level', this.level);
 
     this.ballQueue = [];
+
+    this.proportions = {};
+    this.proportions[COLOURS[0]] = [0, null]; // Caught, out of
+    this.proportions[COLOURS[1]] = [0, null];
+    this.proportions[COLOURS[2]] = [0, null];
+    this.proportions[COLOURS[3]] = [0, null];
+    this.registry.set('proportions', this.proportions);
 
     this.cursors = this.input.keyboard.createCursorKeys();
     this.enterKey = this.input.keyboard.addKey('ENTER');
@@ -91,27 +98,27 @@ class GameScene extends Phaser.Scene {
    * Creates the GameScene
    */
   create() {
-    var scene = this; // For inline functions only
+    var scene = this;
 
-    this.kiwi = [     // [image, cover]
+    this.scenery = {};
+    this.scenery[COLOURS[0]] = [     // [image, cover]
       this.add.image(10, YPOS.KIWI, 'kiwi').setOrigin(0, 0).setScale(SCALES.IMAGE),
       this.add.image(10, YPOS.KIWI, 'pixel').setOrigin(0, 0).setScale(COVER_SIZE[0], COVER_SIZE[1])
     ]
-    this.penguin = [
+    this.scenery[COLOURS[1]] = [
       this.add.image(10, YPOS.PINGU, 'penguin').setOrigin(0, 0).setScale(SCALES.IMAGE),
       this.add.image(10, YPOS.PINGU, 'pixel').setOrigin(0, 0).setScale(COVER_SIZE[0], COVER_SIZE[1])
     ]
-    this.cook = [
+    this.scenery[COLOURS[2]] = [
       this.add.image(10, YPOS.COOK, 'cook').setOrigin(0, 0).setScale(SCALES.IMAGE),
       this.add.image(10, YPOS.COOK, 'pixel').setOrigin(0, 0).setScale(COVER_SIZE[0], COVER_SIZE[1])
     ]
-    this.dolphin = [
+    this.scenery[COLOURS[3]] = [
       this.add.image(10, YPOS.DOLPHIN, 'dolphin').setOrigin(0, 0).setScale(SCALES.IMAGE),
       this.add.image(10, YPOS.DOLPHIN, 'pixel').setOrigin(0, 0).setScale(COVER_SIZE[0], COVER_SIZE[1])
     ]
-    this.cup = this.physics.add.image(555, 550, 'cup').setScale(SCALES.CUP);
 
-    //this.cover = this.add.image(10, 10, 'pixel').setOrigin(0, 0).setScale(300, 580);
+    this.cup = this.physics.add.image(555, 550, 'cup').setScale(SCALES.CUP);
 
     this.cupBoundary = this.physics.add.staticGroup();
     this.cupBoundary.create(BOUNDARY_LEFT, 550, 'pixel');
@@ -121,7 +128,7 @@ class GameScene extends Phaser.Scene {
     this.physics.add.collider(this.cup, this.cupBoundary);
 
     this.datas = this.physics.add.group();
-    this.physics.add.collider(this.datas, this.cupBoundary, this.dataMiss);
+    this.physics.add.collider(this.cupBoundary, this.datas, function(bound, data) { scene.dataMiss(data) });
     this.physics.add.overlap(this.cup, this.datas, function(cup, data) { scene.dataHit(data) });
 
     this.isPreGame = true;
@@ -158,8 +165,30 @@ class GameScene extends Phaser.Scene {
   nextLevel() {
     this.level++;
     this.registry.set('level', this.level);
+    this.resetProportions();
+    this.setNullProportions();
     this.resetCovers();
     this.startLevel();
+  }
+
+  resetProportions() {
+    this.proportions[COLOURS[0]] = [0, 0];
+    this.proportions[COLOURS[1]] = [0, 0];
+    this.proportions[COLOURS[2]] = [0, 0];
+    this.proportions[COLOURS[3]] = [0, 0];
+  }
+
+  setNullProportions() {
+    switch (this.level) {
+      case 1:
+        this.proportions[COLOURS[2]][1] = null;
+      case 2:
+        this.proportions[COLOURS[1]][1] = null;
+      case 3:
+        this.proportions[COLOURS[3]][1] = null;
+      default:
+        break;
+    }
   }
 
   /**
@@ -169,15 +198,16 @@ class GameScene extends Phaser.Scene {
    * Changing that will be difficult
    */
   startLevel() {
+    this.registry.set('proportions', this.proportions);
     var ballTypes = [];
     var localBallQueue = [];
     switch (this.level) {
       case 4:
         ballTypes.push(COLOURS[3]);
       case 3:
-        ballTypes.push(COLOURS[2]);
-      case 2:
         ballTypes.push(COLOURS[1]);
+      case 2:
+        ballTypes.push(COLOURS[2]);
       case 1:
         ballTypes.push(COLOURS[0]);
       default:
@@ -188,6 +218,7 @@ class GameScene extends Phaser.Scene {
         localBallQueue.push('data-' + ballTypes[x]);
       }
     }
+    shuffle(localBallQueue);
     this.ballQueue = localBallQueue;
     this.releaseBalls(0);
   }
@@ -225,6 +256,11 @@ class GameScene extends Phaser.Scene {
    * The given data ball has fallen out of the 'world'; destroys it
    */
   dataMiss(data) {
+    if (!this.isPreGame) {
+      var colour = data.texture.key.split('data-')[1]; // item 0 is "", 1 is the colour
+      this.proportions[colour][1]++;
+      this.registry.set('proportions', this.proportions);
+    }
     data.destroy();
   }
 
@@ -232,33 +268,36 @@ class GameScene extends Phaser.Scene {
    * The given data ball has hit the cup; deals with it appropriately
    */
   dataHit(data) {
-    data.destroy();
     if (!this.isPreGame) {
-      var key = data.texture.key;
-      this.shiftCover(key);
+      var colour = data.texture.key.split('data-')[1]; // item 0 is "", 1 is the colour
+      this.shiftCover(colour);
+      this.caught(colour);
     }
+    data.destroy();
   }
 
   /**
    * Reveals a bit more of the image being covered
    */
-  shiftCover(key) {
-    if (key == 'data-green') {
-      this.kiwi[1].setY(this.kiwi[1].y + SHIFT);
-    } else if (key == 'data-purple') {
-      this.penguin[1].setY(this.penguin[1].y + SHIFT);
-    } else if (key == 'data-red') {
-      this.cook[1].setY(this.cook[1].y + SHIFT);
-    } else if (key == 'data-blue') {
-      this.dolphin[1].setY(this.dolphin[1].y + SHIFT);
-    }
+  shiftCover(colour) {
+    this.scenery[colour][1].setY(this.scenery[colour][1].y + SHIFT);
+  }
+
+  /**
+   * 
+   */
+  caught(colour) {
+    this.proportions[colour][0]++;
+    this.proportions[colour][1]++;
+    this.registry.set('proportions', this.proportions);
   }
 
   resetCovers() {
-    this.kiwi[1].setY(YPOS.KIWI);
-    this.penguin[1].setY(YPOS.PINGU);
-    this.cook[1].setY(YPOS.COOK);
-    this.dolphin[1].setY(YPOS.DOLPHIN);
+    
+    this.scenery[COLOURS[0]][1].setY(YPOS.KIWI);
+    this.scenery[COLOURS[1]][1].setY(YPOS.PINGU);
+    this.scenery[COLOURS[2]][1].setY(YPOS.COOK);
+    this.scenery[COLOURS[3]][1].setY(YPOS.DOLPHIN);
   }
 
   runEnterHandler() {
@@ -303,6 +342,7 @@ class UIScene extends Phaser.Scene {
 
     this.handlers = {
       'level': this.setLevel,
+      'proportions': this.setProportions,
     }
 
     this.registry.events.on('changedata', this.registryUpdate, this);
@@ -318,13 +358,25 @@ class UIScene extends Phaser.Scene {
    * Builds the UI with all elements
    */
   create() {
-    this.title = this.add.text(400, 10, TITLE, { fontSize: '32pt', fill: '#fff' }).setOrigin(0.5, 0);
+    this.title = this.add.text(400, 10, TITLE, { fontSize: '80px', fill: '#fff' }).setOrigin(0.5, 0);
     this.description = this.add.text(10, 100, DESCRIPTION);
     this.levelText = this.add.text(555, 200, '', { fontSize: '200px', fill: '#fff' }).setAlpha(0.2).setOrigin(0.5, 0);
+
+    this.proportionsText = {};
+    var pos = [10 + (IMAGE_SIZE[0] * SCALES.IMAGE) / 2, YPOS.KIWI + (IMAGE_SIZE[1] * SCALES.IMAGE) / 2];
+    this.proportionsText[COLOURS[0]] = this.add.text(pos[0], pos[1], '', { fontSize: '40px', fill: '#fff' }).setAlpha(0.5).setOrigin(0.5, 0.5);
+    pos[1] = YPOS.PINGU   + (IMAGE_SIZE[1] * SCALES.IMAGE) / 2;
+    this.proportionsText[COLOURS[1]] = this.add.text(pos[0], pos[1], '', { fontSize: '40px', fill: '#fff' }).setAlpha(0.5).setOrigin(0.5, 0.5);
+    pos[1] = YPOS.COOK    + (IMAGE_SIZE[1] * SCALES.IMAGE) / 2;
+    this.proportionsText[COLOURS[2]] = this.add.text(pos[0], pos[1], '', { fontSize: '40px', fill: '#fff' }).setAlpha(0.5).setOrigin(0.5, 0.5);
+    pos[1] = YPOS.DOLPHIN + (IMAGE_SIZE[1] * SCALES.IMAGE) / 2;
+    this.proportionsText[COLOURS[3]] = this.add.text(pos[0], pos[1], '', { fontSize: '40px', fill: '#fff' }).setAlpha(0.5).setOrigin(0.5, 0.5);
+
     this.setLevel(this, 0);
   }
 
   setLevel(scene, levelNumber) {
+    scene.emptyProportionsText();
     if (levelNumber == 0) {
       scene.title.setVisible(true);
       scene.description.setVisible(true);
@@ -334,6 +386,28 @@ class UIScene extends Phaser.Scene {
       scene.description.setVisible(false);
       scene.levelText.setText(levelNumber);
     }
+  }
+
+  setProportions(scene, props) {
+    if (props[COLOURS[0]][1] != null) {
+      scene.proportionsText[COLOURS[0]].setText(props[COLOURS[0]][0] + ' / ' + props[COLOURS[0]][1]);
+    }
+    if (props[COLOURS[1]][1] != null) {
+      scene.proportionsText[COLOURS[1]].setText(props[COLOURS[1]][0] + ' / ' + props[COLOURS[1]][1]);
+    }
+    if (props[COLOURS[2]][1] != null) {
+      scene.proportionsText[COLOURS[2]].setText(props[COLOURS[2]][0] + ' / ' + props[COLOURS[2]][1]);
+    }
+    if (props[COLOURS[3]][1] != null) {
+      scene.proportionsText[COLOURS[3]].setText(props[COLOURS[3]][0] + ' / ' + props[COLOURS[3]][1]);
+    }
+  }
+
+  emptyProportionsText() {
+    this.proportionsText[COLOURS[0]].setText('');
+    this.proportionsText[COLOURS[1]].setText('');
+    this.proportionsText[COLOURS[2]].setText('');
+    this.proportionsText[COLOURS[3]].setText('');
   }
 
   /**
@@ -358,4 +432,21 @@ module.exports = {
  */
 function getRandomInteger(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+// Fisher-Yates shuffle function from http://bost.ocks.org/mike/shuffle/
+function shuffle(array) {
+  var counter = array.length, temp, index;
+  // While there are elements in the array
+  while (counter > 0) {
+    // Pick a random index
+    index = Math.floor(Math.random() * counter);
+    // Decrease counter by 1
+    counter--;
+    // And swap the last element with it
+    temp = array[counter];
+    array[counter] = array[index];
+    array[index] = temp;
+  }
+  return array;
 }
