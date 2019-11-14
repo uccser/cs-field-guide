@@ -1,6 +1,6 @@
 require('phaser');
 
-const BOUNDARY_LEFT = 320;
+const BOUNDARY_LEFT  = 320;
 const BOUNDARY_RIGHT = 790;
 const SPACING = (BOUNDARY_RIGHT - BOUNDARY_LEFT) / 5; // For four equi-distant drop points
 const MAX_OFFSET = SPACING * 0.8;                     // For variation in the drop points
@@ -16,21 +16,21 @@ const DROP = [
 
 const IMAGE_SIZE = [1000, 444];
 const SCALES = {
-  CUP: 0.1,
-  BALL: 0.025,
+  CUP:   0.1,
+  BALL:  0.025,
   IMAGE: 0.3
 };
 const COVER_SIZE = [IMAGE_SIZE[0] * SCALES.IMAGE, Math.ceil(IMAGE_SIZE[1] * SCALES.IMAGE)];
 const SHIFT = Math.ceil(COVER_SIZE[1] / (BALLS_PER_IMG));
 
 const YPOS = {
-  KIWI: 10,
-  PINGU: 153,
-  COOK: 296,
+  KIWI:    10,
+  PINGU:   153,
+  COOK:    296,
   DOLPHIN: 439
 }
 
-const COLOURS = [ // Also used to index disctionaries
+const COLOURS = [ // In order of the images they reveal. Also used to key dictionaries
   'green',
   'purple',
   'red',
@@ -38,7 +38,7 @@ const COLOURS = [ // Also used to index disctionaries
 ];
 
 const FREQ = 2000; // (ms) Time between sets of ball drops
-const STEP = 150;  // (ms) Time between individual ball drops per set
+const STEP = 100;  // (ms) Time between individual ball drops per set
 
 const TITLE = gettext("DATA DROP");
 const DESCRIPTION = gettext("Use the arrow keys to move your CPU left and right.\n\n\
@@ -154,21 +154,23 @@ class GameScene extends Phaser.Scene {
   preGame() {
     var scene = this;
     if (scene.isPreGame) {
-      setTimeout(function() { scene.preGame() }, 1500);
+      setTimeout(function() { scene.preGame() }, 1000);
       var offset = getRandomInteger(-1 * MAX_OFFSET, MAX_OFFSET);
       var positionX = offset + DROP[getRandomInteger(0, DROP.length - 1)];
-      var colour = 'data-' + COLOURS[getRandomInteger(0, COLOURS.length - 1)];
-      scene.dropBall(positionX, colour);
+      var name = 'data-' + COLOURS[getRandomInteger(0, COLOURS.length - 1)];
+      scene.dropBall(positionX, name);
     }
   }
 
   nextLevel() {
     this.level++;
     this.registry.set('level', this.level);
-    this.resetProportions();
-    this.setNullProportions();
-    this.resetCovers();
-    this.startLevel();
+    if (this.level <= 4) {
+      this.resetProportions();
+      this.setNullProportions();
+      this.resetCovers();
+      this.startLevel();
+    }
   }
 
   resetProportions() {
@@ -246,10 +248,10 @@ class GameScene extends Phaser.Scene {
   }
 
   /**
-   * Drops a new coloured ball
+   * Drops a new coloured ball with the given key at the given position
    */
-  dropBall(xPosition, name) {
-    this.datas.create(xPosition, -100, name).setScale(SCALES.BALL).setVelocityY(100).setAngularVelocity(-100);
+  dropBall(xPosition, key) {
+    this.datas.create(xPosition, -100, key).setScale(SCALES.BALL).setVelocityY(100).setAngularVelocity(-100);
   }
 
   /**
@@ -293,7 +295,6 @@ class GameScene extends Phaser.Scene {
   }
 
   resetCovers() {
-    
     this.scenery[COLOURS[0]][1].setY(YPOS.KIWI);
     this.scenery[COLOURS[1]][1].setY(YPOS.PINGU);
     this.scenery[COLOURS[2]][1].setY(YPOS.COOK);
@@ -434,7 +435,9 @@ function getRandomInteger(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-// Fisher-Yates shuffle function from http://bost.ocks.org/mike/shuffle/
+/**
+ * Fisher-Yates shuffle function from http://bost.ocks.org/mike/shuffle/
+ */
 function shuffle(array) {
   var counter = array.length, temp, index;
   // While there are elements in the array

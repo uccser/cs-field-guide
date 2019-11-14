@@ -15,10 +15,10 @@ $(document).ready(function() {
       default: 'arcade',
       arcade: {
         gravity: { y: 0 },
-        debug: true
+        debug: false
       }
     },
-    backgroundColor: '#AAAAAA',
+    backgroundColor: '#000',
     parent: 'data-drop-game',
     scene: gameScene
   }
