@@ -6,12 +6,14 @@ var comparisons = 0;
 var last_left_image;
 var last_right_image;
 var empty_weight = -1;
+var data_type = null;
 const data_weights = [0, 1, 2, 3, 4, 5, 6, 7]; // weights of the images, used for comparisons
 
-window.onload = function() {
+$(document).ready(function() {
   if (urlParameters.getUrlParameter("peek") == "true") {
     $('#eye-icons').removeClass('d-none');
   }
+  data_type = urlParameters.getUrlParameter("data");
 
   var images_to_sort = document.getElementsByClassName('sorting-boxes');
   // shuffle the weights and assign them to each image
@@ -26,12 +28,27 @@ window.onload = function() {
   if (method == "quick") {
     toggleSecondRow();
   }
+});
+
+/**
+ * Returns a shuffled copy of the given array, the result depends on the value of the global data_type
+ */
+function shuffle(array) {
+  if (data_type == "sorted") {
+    return array.slice(0);  // The slice creates a new clone of the array
+  } else if (data_type == "almost") {
+    return slight_shuffle(array.slice(0));
+  } else if (data_type == "reverse") {
+    return array.slice(0).reverse();
+  } else /* random */ {
+    return fisher_yates(array.slice(0));
+  }
 }
 
 /** 
- * shuffle function adapted from https://bost.ocks.org/mike/shuffle
+ * Shuffle function adapted from https://bost.ocks.org/mike/shuffle
  */
-function shuffle(array) {
+function fisher_yates(array) {
   var element_index = array.length;
   var random_index;
   var current_element;
@@ -44,6 +61,25 @@ function shuffle(array) {
     current_element = array[element_index];
     array[element_index] = array[random_index ];
     array[random_index ] = current_element;
+  }
+
+  return array;
+}
+
+/**
+ * Swaps a couple of numbers in array, so that it is nearly sorted, but not
+ */
+function slight_shuffle(array) {
+  var shuffles = 2;
+  var swapA;
+  var swapB;
+  var temp;
+  for (var i=0; i < shuffles; i++) {
+    swapA = Math.floor(Math.random() * array.length);
+    swapB = Math.floor(Math.random() * array.length);
+    temp = array[swapA];
+    array[swapA] = array[swapB];
+    array[swapB] = temp;
   }
 
   return array;
