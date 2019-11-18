@@ -34,14 +34,15 @@ $(document).ready(function() {
  * Returns a shuffled copy of the given array, the result depends on the value of the global data_type
  */
 function shuffle(array) {
+  var clone = array.slice(0);
   if (data_type == "sorted") {
-    return array.slice(0);  // The slice creates a new clone of the array
+    return clone;
   } else if (data_type == "almost") {
-    return slight_shuffle(array.slice(0));
+    return slight_shuffle(clone);
   } else if (data_type == "reverse") {
-    return array.slice(0).reverse();
+    return clone.reverse();
   } else /* random */ {
-    return fisher_yates(array.slice(0));
+    return fisher_yates(clone);
   }
 }
 
