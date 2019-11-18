@@ -4,7 +4,7 @@ const wNumb = require('wnumb');
 const COLOURS = ['red', 'lime', 'blue', 'yellow', 'purple', 'darkorange', 'fuchsia', 'deepskyblue'];
 const START_TEXT = gettext("Click each dot that you see on the screen, then click 'Next stage' to reveal the answer!");
 const MISSED_CIRCLES_TEXT = gettext('You seem to have missed some dots! <br><br>Forced perspective like this can be used in data representation and cause bias in the overall results.');
-const SLIDER_TEXT = gettext('Click and drag the slider to change the background colour. <br><br>What do you notice is happening?')
+const SLIDER_TEXT = gettext('Click and drag the slider to change the background colour. <br>What do you notice is happening?')
 const SLIDER_MIN = 0;
 const SLIDER_MAX = 360;
 const PERENTAGE_BOUNDARY_UPPER = 85; // 85%
@@ -54,8 +54,6 @@ function init() {
     }
     $('#next-stage').removeClass('d-none');
     $('#start-again').addClass('d-none');
-    createSlider();
-    bgColourSlider[0].noUiSlider.on('update', updateSlider);
 }
 
 
@@ -147,6 +145,8 @@ function createCircle(colour) {
  */
 function loadNextStage() {
     if (firstStage) {
+        // so the grey fades in
+        $('#circles-area').addClass('fade-bg-colour');
         // add a sneaky extra circle in the off chance they find all of the hidden circles :P
         createCircle(startColour);
         $('#circles-area').removeClass(startColour);
@@ -154,9 +154,11 @@ function loadNextStage() {
         $('#instruction-text').html(MISSED_CIRCLES_TEXT);
         firstStage = false;
     } else {
+        createSlider();
+        bgColourSlider[0].noUiSlider.on('update', updateSlider);
         $('#instruction-text').html(SLIDER_TEXT);
         $('.circle').removeClass('glow');
-        $('#circles-area').removeClass('grey');
+        $('#circles-area').removeClass('grey fade-bg-colour');
         $('#circles-area').addClass(startColour);
         $('#next-stage').addClass('d-none');
         $('#start-again').removeClass('d-none');

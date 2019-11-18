@@ -13,6 +13,7 @@
 #circles-area {
     position: relative;
     border-radius: 1rem;
+    border: 0.1rem solid;
 }
 
 #data-bias-container {
@@ -119,4 +120,12 @@
         max-width: 60%;
         max-height: 80%;
     }
+}
+
+#instruction-area {
+    min-height: 14%;
+}
+
+.fade-bg-colour {
+    transition: background-color 1s ease-in;
 }
