@@ -40,6 +40,22 @@ img.sorting-boxes {
   }
 }
 
+.item-weight {
+  background-color: transparent;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+  line-height: 100%;
+  padding: 2px;
+  overflow: hidden;
+  text-align: center;
+  vertical-align: middle;
+}
+
+#eye-icons {
+  float: left;
+}
+
 #scale {
   transition: transform 1s;
 }

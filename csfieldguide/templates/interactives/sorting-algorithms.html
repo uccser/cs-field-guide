@@ -54,15 +54,21 @@
         <div class="dashed-box square"></div>
       </div>
 
-      <div class="d-flex justify-content-center">
+      <div id="sorting-algorithms-interactive-item-scales" class="d-flex justify-content-center">
         <div id="left-weight-content" class="dashed-box square"></div>
-        <img id="scale" class="item-box-content point-up square" src="{% static 'interactives/sorting-algorithms/img/scalebar-sheet0.png' %}">
+        <img id="scale" class="item-box-content point-up square" src="{% static 'interactives/sorting-algorithms/assets/scalebar-sheet0.png' %}">
         <div id="right-weight-content" class="dashed-box square"></div>
       </div>
 
-      <p class="text-center mb-3">
-        {% trans "Points to heaviest box" %}
-      </p>
+      <div class="row mb-3 justify-content-center">
+        <div id="eye-icons" class='d-none'>
+          <img id="eye-open"   class="d-none" src="{% static 'interactives/sorting-algorithms/assets/icons8-eye-80-scaled.png' %}">
+          <img id="eye-closed" class=""       src="{% static 'interactives/sorting-algorithms/assets/icons8-closed-eye-80-scaled.png' %}">
+        </div>
+        <p class="text-center">
+        {% trans "Points to heavier box" %}
+        </p>
+      </div>
 
       <div id="sorting-algorithms-interactive-item-sorted-row" class="d-flex justify-content-between mb-1">
         <div class="dashed-box square"></div>
