@@ -123,7 +123,18 @@
 }
 
 #instruction-area {
-    min-height: 14%;
+    @include media-breakpoint-only(xs) {
+        min-height: 38vh;
+    }
+    @include media-breakpoint-only(sm) {
+        min-height: 30vh;
+    }
+    @include media-breakpoint-only(md) {
+        min-height: 20vh;
+    }
+    @include media-breakpoint-up(lg) {
+        min-height: 14vh;
+    }
 }
 
 .fade-bg-colour {
