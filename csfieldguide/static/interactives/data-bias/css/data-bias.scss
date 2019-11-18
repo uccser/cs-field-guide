@@ -123,17 +123,11 @@
 }
 
 #instruction-area {
-    @include media-breakpoint-only(xs) {
-        min-height: 38vh;
+    @include media-breakpoint-down(sm) {
+        min-height: 12.5rem;
     }
-    @include media-breakpoint-only(sm) {
-        min-height: 30vh;
-    }
-    @include media-breakpoint-only(md) {
-        min-height: 20vh;
-    }
-    @include media-breakpoint-up(lg) {
-        min-height: 14vh;
+    @include media-breakpoint-up(sm) {
+        min-height: 8.125rem;
     }
 }
 

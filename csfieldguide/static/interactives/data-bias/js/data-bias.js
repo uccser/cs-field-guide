@@ -41,7 +41,7 @@ $(document).ready(function() {
  */
 function init() {
     // get random background colour to start
-    startColour =  getRandomColour();
+    startColour = getRandomColour();
     sliderStartPos = SLIDER_COLOUR_VALUES[startColour];
     $('#circles-area').addClass(startColour);
     // make sure we have at least 2 circles that are the same as the background colour
@@ -145,10 +145,11 @@ function createCircle(colour) {
  */
 function loadNextStage() {
     if (firstStage) {
+        // add a sneaky extra circle in the off chance they find all of the hidden circles :P
+        // withheld data is also a bias after all
+        createCircle(startColour);
         // so the grey fades in
         $('#circles-area').addClass('fade-bg-colour');
-        // add a sneaky extra circle in the off chance they find all of the hidden circles :P
-        createCircle(startColour);
         $('#circles-area').removeClass(startColour);
         $('#circles-area').addClass('grey');
         $('#instruction-text').html(MISSED_CIRCLES_TEXT);
@@ -176,6 +177,7 @@ function restartInteractive() {
     firstStage = true;
     $('#instruction-text').html(START_TEXT);
     bgColourSlider[0].noUiSlider.destroy();
+    $('#circles-area').removeClass(startColour);
     init();
 }
 
