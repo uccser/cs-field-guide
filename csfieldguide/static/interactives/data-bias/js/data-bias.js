@@ -178,6 +178,7 @@ function restartInteractive() {
     $('#instruction-text').html(START_TEXT);
     bgColourSlider[0].noUiSlider.destroy();
     $('#circles-area').removeClass(startColour);
+    $('#circles-area').removeAttr('style');
     init();
 }
 
