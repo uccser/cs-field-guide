@@ -1,4 +1,10 @@
 whats-the-big-picture:
   section-number: 1
-using-big-data:
+the-three-vs:
   section-number: 2
+collecting-big-data:
+  section-number: 3
+using-big-data:
+  section-number: 4
+the-whole-story:
+  section-number: 5
