@@ -16,10 +16,5 @@ resources:
   cpu: 1
   memory_gb: 3.75
 
-health_check:
-  enable_health_check: True
-  check_interval_sec: 5
-  timeout_sec: 4
-
 manual_scaling:
   instances: 1
