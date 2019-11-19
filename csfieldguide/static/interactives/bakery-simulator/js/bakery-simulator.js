@@ -117,7 +117,7 @@ function createRadioButtons() {
             // shorthand if statement means if it is first radio option make it active
             var $radioLabel = $('<label>').text(value).addClass('btn btn-secondary' + ((j == 0) ? ' active' : ''));
             var $radioInput = $('<input>').attr({
-                type: 'radio',
+                type: (option.name === 'decorations' ? 'checkbox' : 'radio'),
                 name: option.name,
                 id: option.name + '-' + value,
                 autocomplete: 'off',
