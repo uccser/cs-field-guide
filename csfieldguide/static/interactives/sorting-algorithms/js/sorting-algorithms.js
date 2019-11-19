@@ -15,7 +15,7 @@ $(document).ready(function() {
   }
   data_type = urlParameters.getUrlParameter("data");
 
-  var images_to_sort = document.getElementsByClassName('sorting-boxes');
+  var images_to_sort = document.getElementsByClassName('sorting-box');
   // shuffle the weights and assign them to each image
   var shuffled_weights = shuffle(data_weights);
   for (var i = 0; i < images_to_sort.length; i++) {
@@ -274,7 +274,7 @@ function reset() {
 function reshuffle() {
   reset();
 
-  var images_to_sort = document.getElementsByClassName('sorting-boxes');
+  var images_to_sort = document.getElementsByClassName('sorting-box');
   var shuffled_weights = shuffle(data_weights);
   for (var i = 0; i < images_to_sort.length; i++) {
     var image = images_to_sort[i];
@@ -302,21 +302,23 @@ function hidePeek() {
   $('#eye-open').addClass('d-none');
   $('#eye-closed').removeClass('d-none');
 
-  $('.item-weight').remove();
+  $('.item-weight').appendTo($('#image-store'));
+  $('.sorting-box').css('opacity', '1');
 }
 
 function revealWeights(boxes_row) {
   var boxes = boxes_row.children();
   var content;
-  var cover;
+  var image;
+  var weight;
   for (var i=0; i < boxes.length; i++) {
     content = boxes.eq(i);
     if (content.children().length > 0) {
       // There is an image inside, there should never be more than one
-      cover = $('<div class="item-weight">'
-              + content.children().eq(0).attr('data-weight')
-              + '</div>');
-      cover.appendTo(content);
+      weight = (content.children().eq(0).attr('data-weight'));
+      image = $('#number-' + (parseInt(weight) + 1));
+      content.prepend(image);
     }
   }
+  $('.sorting-box').css('opacity', '0.2');
 }

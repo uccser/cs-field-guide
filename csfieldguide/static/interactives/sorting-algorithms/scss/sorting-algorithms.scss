@@ -6,6 +6,7 @@
 .dashed-box {
   background-color: white;
   border: 2px dashed #777;
+  position: relative;
 }
 
 .square {
@@ -24,13 +25,14 @@
   }
 }
 
-img.sorting-boxes {
+.sorting-box {
   touch-action: none;
   height: 100%;
   width: 100%;
   padding: 2px;
   overflow: hidden;
   display: none;
+  z-index: 2;
   &:last-child {
     display: block;
   }
@@ -41,14 +43,20 @@ img.sorting-boxes {
 }
 
 .item-weight {
-  background-color: transparent;
   height: 100%;
   width: 100%;
-  line-height: 100%;
   padding: 2px;
   overflow: hidden;
-  text-align: center;
-  vertical-align: middle;
+  user-select: none;
+  position: absolute;
+  z-index: 1;
+}
+
+// Partial copy of it's namesake from Dragula.css
+// but !important to override changes made in JS for a different purpose
+.gu-transit {
+  opacity: 0.2 !important;
+  filter: alpha(opacity=20);
 }
 
 #eye-icons {
