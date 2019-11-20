@@ -62,7 +62,7 @@ const CUSTOMER_3_ANS = {
 };
 
 const CUSTOMER_1_CAKE = {
-    'layers': 2,
+    'layers': '2',
     'flavour': 'Chocolate',
     'icing-colour': 'Purple',
     'size': 'Large',
@@ -71,7 +71,7 @@ const CUSTOMER_1_CAKE = {
 };
 
 const CUSTOMER_2_CAKE = {
-    'layers': 3,
+    'layers': '3',
     'flavour': 'Banana',
     'icing-colour': 'Blue',
     'size': 'Medium',
@@ -80,7 +80,7 @@ const CUSTOMER_2_CAKE = {
 };
 
 const CUSTOMER_3_CAKE = {
-    'layers': 3,
+    'layers': '3',
     'flavour': 'Chocolate',
     'icing-colour': 'White',
     'size': 'Large',
@@ -88,17 +88,17 @@ const CUSTOMER_3_CAKE = {
     'shape': 'Rectangular',
 };
 
-const RADIO_LAYERS = {
+const FIELD_LAYERS = {
     title: 'Layers:',
     name: 'layers',
     values: [
-        1,
-        2,
-        3,
+        '1',
+        '2',
+        '3',
     ]
 };
 
-const RADIO_FLAVOURS = {
+const FIELD_FLAVOURS = {
     title: gettext('Flavour:'),
     name: 'flavour',
     values: [
@@ -108,7 +108,7 @@ const RADIO_FLAVOURS = {
     ]
 };
 
-const RADIO_ICING_COLOUR = {
+const FIELD_ICING_COLOUR = {
     title: gettext('Icing Colour:'),
     name: 'icing-colour',
     values: [
@@ -120,7 +120,7 @@ const RADIO_ICING_COLOUR = {
     ]
 };
 
-const RADIO_SIZE = {
+const FIELD_SIZE = {
     title: gettext('Size:'),
     name: 'size',
     values: [
@@ -130,7 +130,7 @@ const RADIO_SIZE = {
     ]
 };
 
-const RADIO_DECORATIONS = {
+const FIELD_DECORATIONS = {
     title: gettext('Decorations:'),
     name: 'decorations',
     values: [
@@ -141,7 +141,7 @@ const RADIO_DECORATIONS = {
     ]
 };
 
-const RADIO_SHAPE = {
+const FIELD_SHAPE = {
     title: gettext('Shape:'),
     name: 'shape',
     values: [
@@ -151,7 +151,7 @@ const RADIO_SHAPE = {
     ]
 };
 
-const RADIO_NAMES = [
+const FIELD_NAMES = [
     'layers',
     'flavour',
     'icing-colour',
@@ -160,13 +160,13 @@ const RADIO_NAMES = [
     'shape',
 ];
 
-const RADIO_OPTIONS = [
-    RADIO_LAYERS,
-    RADIO_FLAVOURS,
-    RADIO_ICING_COLOUR,
-    RADIO_SIZE,
-    RADIO_DECORATIONS,
-    RADIO_SHAPE,
+const FIELD_OPTIONS = [
+    FIELD_LAYERS,
+    FIELD_FLAVOURS,
+    FIELD_ICING_COLOUR,
+    FIELD_SIZE,
+    FIELD_DECORATIONS,
+    FIELD_SHAPE,
 ];
 
 module.exports = {
@@ -180,12 +180,12 @@ module.exports = {
     CUSTOMER_1_CAKE,
     CUSTOMER_2_CAKE,
     CUSTOMER_3_CAKE,
-    RADIO_LAYERS,
-    RADIO_FLAVOURS,
-    RADIO_ICING_COLOUR,
-    RADIO_SIZE,
-    RADIO_DECORATIONS,
-    RADIO_SHAPE,
-    RADIO_NAMES,
-    RADIO_OPTIONS,
+    FIELD_LAYERS,
+    FIELD_FLAVOURS,
+    FIELD_ICING_COLOUR,
+    FIELD_SIZE,
+    FIELD_DECORATIONS,
+    FIELD_SHAPE,
+    FIELD_NAMES,
+    FIELD_OPTIONS,
 };

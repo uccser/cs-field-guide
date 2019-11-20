@@ -59,7 +59,7 @@ function askQuestion() {
 }
 
 
-function checkResult() {
+function checkResult(cakeCreated) {
     if (bakerySim.currentCustomer == 1) {
         var cakeWanted = CONFIG.CUSTOMER_1_CAKE;
     } else if (bakerySim.currentCustomer == 2) {
@@ -67,20 +67,23 @@ function checkResult() {
     } else if (bakerySim.currentCustomer == 3) {
         var cakeWanted = CONFIG.CUSTOMER_3_CAKE;
     }
+
+    // for (const field of CONFIG.FIELD_NAMES) {
+
+    // }
+    console.log(cakeWanted);
+    console.log(cakeCreated);
 }
 
 
 function getCakeCreated() {
     var cakeCreated = {};
     // loop through each option and get selected value
-    for (i=0; i < CONFIG.RADIO_NAMES.length; i++) {
-        var name = CONFIG.RADIO_NAMES[i];
+    for (i=0; i < CONFIG.FIELD_NAMES.length; i++) {
+        var name = CONFIG.FIELD_NAMES[i];
         var selected = $('.active input[name=' + name + ']').serialize();
         // decorations can have multiple options selected
-        if (name !== 'decorations') {
-            var value = selected.split('=')[1];
-            cakeCreated[name] = value;
-        } else {
+        if (name === 'decorations') {
             var decorations = [];
             var values = selected.split('&');
             for (j=0; j < values.length; j++) {
@@ -88,9 +91,13 @@ function getCakeCreated() {
                 decorations.push(value);
             }
             cakeCreated[name] = decorations;
+        } else {
+            // is not the decorations field
+            var value = selected.split('=')[1];
+            cakeCreated[name] = value;
         }
-        console.log(cakeCreated);
     }
+    checkResult(cakeCreated);
 }
 
 
@@ -123,8 +130,8 @@ function createModal() {
 
 
 function createRadioButtons() {
-    for (i=0; i < CONFIG.RADIO_OPTIONS.length; i++) {
-        var option = CONFIG.RADIO_OPTIONS[i];
+    for (i=0; i < CONFIG.FIELD_OPTIONS.length; i++) {
+        var option = CONFIG.FIELD_OPTIONS[i];
         var $container = $('<div>').addClass('mb-2 col-8').attr('id', option.name + '-radio');
         var $title = $('<p>').addClass('d-inline text-left').text(option.title);
         $container.append($title);
@@ -132,21 +139,14 @@ function createRadioButtons() {
         $container.append($buttonGroup);
         // start iterating
         for (j=0; j < option.values.length; j++) {
-            // converting to lowercase for constructing ID. 
-            // some values cannot be converted to lowercase e.g integers
-            try {
-                var valueForID = option.values[j].toLowerCase();
-            }
-            catch {
-                var valueForID = option.values[j];
-            }
+            var value = option.values[j];
             // shorthand if statement means if it is first radio option make it active
-            var $radioLabel = $('<label>').text(option.values[j]).addClass('btn btn-secondary' + ((j == 0) ? ' active' : ''));
+            var $radioLabel = $('<label>').text(value).addClass('btn btn-secondary' + ((j == 0) ? ' active' : ''));
             var $radioInput = $('<input>').attr({
                 type: (option.name === 'decorations' ? 'checkbox' : 'radio'),
                 name: option.name,
-                value: option.values[j],
-                id: option.name + '-' + valueForID,
+                value: value,
+                id: option.name + '-' + value.toLowerCase(),
                 autocomplete: 'off',
             });
             // If first radio button add checked attr
