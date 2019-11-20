@@ -64,7 +64,7 @@ const CUSTOMER_3_ANS = {
 const CUSTOMER_1_CAKE = {
     'layers': 2,
     'flavour': 'Chocolate',
-    'colour': 'Purple',
+    'icing-colour': 'Purple',
     'size': 'Large',
     'decorations': ['Sprinkles'],
     'shape': 'Circle',
@@ -73,7 +73,7 @@ const CUSTOMER_1_CAKE = {
 const CUSTOMER_2_CAKE = {
     'layers': 3,
     'flavour': 'Banana',
-    'colour': 'Blue',
+    'icing-colour': 'Blue',
     'size': 'Medium',
     'decorations': ['Candles', 'Writing', 'Deco-Icing'],
     'shape': 'Rectangular',
@@ -82,7 +82,7 @@ const CUSTOMER_2_CAKE = {
 const CUSTOMER_3_CAKE = {
     'layers': 3,
     'flavour': 'Chocolate',
-    'colour': 'White',
+    'icing-colour': 'White',
     'size': 'Large',
     'decorations': ['Deco-Icing', 'Writing'],
     'shape': 'Rectangular',
@@ -151,6 +151,15 @@ const RADIO_SHAPE = {
     ]
 };
 
+const RADIO_NAMES = [
+    'layers',
+    'flavour',
+    'icing-colour',
+    'size',
+    'decorations',
+    'shape',
+];
+
 const RADIO_OPTIONS = [
     RADIO_LAYERS,
     RADIO_FLAVOURS,
@@ -177,5 +186,6 @@ module.exports = {
     RADIO_SIZE,
     RADIO_DECORATIONS,
     RADIO_SHAPE,
+    RADIO_NAMES,
     RADIO_OPTIONS,
 };

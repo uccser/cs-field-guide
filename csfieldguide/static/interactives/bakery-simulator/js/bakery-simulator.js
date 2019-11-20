@@ -18,7 +18,7 @@ $(document).ready(function() {
         $('#num-qs-asked-text').addClass('d-none');
     });
     $('#question-list p').click(askQuestion);
-    $('#bake-cake').click(checkResult);
+    $('#bake-cake').click(getCakeCreated);
 });
 
 
@@ -60,11 +60,31 @@ function askQuestion() {
 
 
 function checkResult() {
-    // get options chosen via active class
-    $('.active').each(function(i, obj) {
-        
-    });
-    // compare them to cake answers in config
+    if (bakerySim.currentCustomer == 1) {
+        var cakeWanted = CONFIG.CUSTOMER_1_CAKE;
+    } else if (bakerySim.currentCustomer == 2) {
+        var cakeWanted = CONFIG.CUSTOMER_2_CAKE;
+    } else if (bakerySim.currentCustomer == 3) {
+        var cakeWanted = CONFIG.CUSTOMER_3_CAKE;
+    }
+}
+
+
+function getCakeCreated() {
+    var cakeCreated = {};
+    // loop through each option and get selected value
+    for (i=0; i < CONFIG.RADIO_NAMES.length; i++) {
+        var name = CONFIG.RADIO_NAMES[i];
+        var selected = $('.active input[name=' + name + ']').serialize();
+        console.log(selected);
+        // decorations can have multiple options selected
+        if (name !== 'decorations') {
+            var value = selected.split('=')[1];
+            cakeCreated[name] = value;
+        } else {
+            
+        }
+    }
 }
 
 
@@ -109,19 +129,24 @@ function createRadioButtons() {
             // converting to lowercase for constructing ID. 
             // some values cannot be converted to lowercase e.g integers
             try {
-                var value = option.values[j].toLowerCase();
+                var valueForID = option.values[j].toLowerCase();
             }
             catch {
-                var value = option.values[j]
+                var valueForID = option.values[j];
             }
             // shorthand if statement means if it is first radio option make it active
-            var $radioLabel = $('<label>').text(value).addClass('btn btn-secondary' + ((j == 0) ? ' active' : ''));
+            var $radioLabel = $('<label>').text(option.values[j]).addClass('btn btn-secondary' + ((j == 0) ? ' active' : ''));
             var $radioInput = $('<input>').attr({
                 type: (option.name === 'decorations' ? 'checkbox' : 'radio'),
                 name: option.name,
-                id: option.name + '-' + value,
+                value: option.values[j],
+                id: option.name + '-' + valueForID,
                 autocomplete: 'off',
             });
+            // If first radio button add checked attr
+            if (j == 0) {
+                $radioInput.attr('checked', 'checked');
+            }
             $radioLabel.append($radioInput);
             $buttonGroup.append($radioLabel);
         }
