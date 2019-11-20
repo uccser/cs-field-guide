@@ -76,14 +76,20 @@ function getCakeCreated() {
     for (i=0; i < CONFIG.RADIO_NAMES.length; i++) {
         var name = CONFIG.RADIO_NAMES[i];
         var selected = $('.active input[name=' + name + ']').serialize();
-        console.log(selected);
         // decorations can have multiple options selected
         if (name !== 'decorations') {
             var value = selected.split('=')[1];
             cakeCreated[name] = value;
         } else {
-            
+            var decorations = [];
+            var values = selected.split('&');
+            for (j=0; j < values.length; j++) {
+                value = values[j].split('=')[1];
+                decorations.push(value);
+            }
+            cakeCreated[name] = decorations;
         }
+        console.log(cakeCreated);
     }
 }
 
