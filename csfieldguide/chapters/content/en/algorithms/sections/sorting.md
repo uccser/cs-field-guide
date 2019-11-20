@@ -41,6 +41,7 @@ Scales Interactive
 # Using the sorting interactive for demonstrations
 
 The above interactive has a couple of extra features you can access to demonstrate sorting algorithms.
+Configure them here:
 
 {interactive slug="sorting-algorithms-configurator" type="in-page"}
 

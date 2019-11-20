@@ -72,7 +72,7 @@ function fisher_yates(array) {
  * Swaps a couple of numbers in array, so that it is nearly sorted, but not
  */
 function slight_shuffle(array) {
-  var shuffles = 2;
+  var shuffles = 1;
   var swapA;
   var swapB;
   var temp;
