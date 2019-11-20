@@ -3,9 +3,9 @@
 **Original Author:** Jack Morgan
 **Modified by:** Hayley van Waas, Alasdair Smith
 
-This interactive is created for teaching sorting algorithms, mostly selection, quick, and merge sort.
+This interactive is created for teaching sorting algorithms; mainly selection, quick, and merge sort.
 
-The interactive will run with one row (used for selection sort) by default.
+The interactive will run with one row of boxes (used for selection sort) by default.
 A second row of boxes can be shown/hidden with a button press or through URL parameters.
 
 ## URL Parameters

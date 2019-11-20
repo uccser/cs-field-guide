@@ -35,7 +35,7 @@ $(document).ready(function() {
 });
 
 /**
- * Defines draging and button handlers
+ * Defines dragging and button handlers
  */
 $(function() {
   var imageList = $('.dashed-box').toArray();
@@ -249,7 +249,7 @@ function getDataWeight(element) {
 }
 
 /**
- * Returns text, but included in a <span> element with class=correct or incorrect
+ * Returns text, but included in a <span> element with class="correct" or "incorrect"
  * depending on the boolean isGood
  */
 function colour(text, isGood) {
@@ -315,13 +315,16 @@ function hidePeek() {
 }
 
 /**
- * On mobile there is not 'hover', you must click the eye to toggle the functionality.
+ * On mobile there is no 'hover', you must tap the eye to toggle the functionality.
  * This function ends the peek by triggering 'mouseleave' on the peek eye symbol
  */
 function mobileEndPeek() {
   $('#eye-icons').trigger('mouseleave');
 }
 
+/**
+ * Reveals the value of the weight of each box in the given row (div)
+ */
 function revealWeights(boxesRow) {
   var boxes = boxesRow.children();
   var content;
