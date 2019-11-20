@@ -3,25 +3,28 @@ const urlParameters = require('../../../js/third-party/url-parameters.js');
 
 // globals
 var comparisons = 0;
-var last_left_image;
-var last_right_image;
-var empty_weight = -1;
-var data_type = null;
-const data_weights = [0, 1, 2, 3, 4, 5, 6, 7]; // weights of the images, used for comparisons
+var lastLeftImage;
+var lastRightImage;
+var emptyWeight = -1;
+var dataType = null;
+const DATA_WEIGHTS = [0, 1, 2, 3, 4, 5, 6, 7]; // weights of the images, used for comparisons
 
 $(document).ready(function() {
   if (urlParameters.getUrlParameter("peek") == "true") {
     $('#eye-icons').removeClass('d-none');
-    $('.dashed-box, #eye-open').bind('touchstart', mobile_endPeek); // For mobile
+    $('.dashed-box, #eye-open').bind('touchstart', mobileEndPeek); // For mobile
   }
-  data_type = urlParameters.getUrlParameter("data");
+  dataType = urlParameters.getUrlParameter("data");
+  if (dataType == "sorted" || dataType == "reverse") {
+    $('#reshuffle-button').addClass('d-none');
+  }
 
-  var images_to_sort = document.getElementsByClassName('sorting-box');
+  var imagesToSort = document.getElementsByClassName('sorting-box');
   // shuffle the weights and assign them to each image
-  var shuffled_weights = shuffle(data_weights);
-  for (var i = 0; i < images_to_sort.length; i++) {
-    var image = images_to_sort[i];
-    image.dataset.weight = shuffled_weights[i];
+  var shuffledWeights = shuffle(DATA_WEIGHTS);
+  for (var i = 0; i < imagesToSort.length; i++) {
+    var image = imagesToSort[i];
+    image.dataset.weight = shuffledWeights[i];
   }
   var method = urlParameters.getUrlParameter("method");
   var button = document.getElementById('toggle-second-row');
@@ -32,71 +35,15 @@ $(document).ready(function() {
 });
 
 /**
- * Returns a shuffled copy of the given array, the result depends on the value of the global data_type
- */
-function shuffle(array) {
-  var clone = array.slice(0);
-  if (data_type == "sorted") {
-    return clone;
-  } else if (data_type == "almost") {
-    return slight_shuffle(clone);
-  } else if (data_type == "reverse") {
-    return clone.reverse();
-  } else /* random */ {
-    return fisher_yates(clone);
-  }
-}
-
-/** 
- * Shuffle function adapted from https://bost.ocks.org/mike/shuffle
- */
-function fisher_yates(array) {
-  var element_index = array.length;
-  var random_index;
-  var current_element;
-
-  while (element_index) {
-    // Pick a remaining element
-    random_index = Math.floor(Math.random() * element_index--);
-
-    // And swap it with the current element
-    current_element = array[element_index];
-    array[element_index] = array[random_index ];
-    array[random_index ] = current_element;
-  }
-
-  return array;
-}
-
-/**
- * Swaps a couple of numbers in array, so that it is nearly sorted, but not
- */
-function slight_shuffle(array) {
-  var shuffles = 1;
-  var swapA;
-  var swapB;
-  var temp;
-  for (var i=0; i < shuffles; i++) {
-    swapA = Math.floor(Math.random() * array.length);
-    swapB = Math.floor(Math.random() * array.length);
-    temp = array[swapA];
-    array[swapA] = array[swapB];
-    array[swapB] = temp;
-  }
-
-  return array;
-}
-
-/**
  * Defines draging and button handlers
  */
 $(function() {
-  var image_list = $('.dashed-box').toArray();
-  var drake = dragula(image_list);
-  drake.on('drop', (image, target_container, source_container) => {
+  var imageList = $('.dashed-box').toArray();
+  var drake = dragula(imageList);
+  drake.on('drop', (image, targetContainer, sourceContainer) => {
     // If an image is dragged on top of another image..
-    if (target_container.children.length == 2) {
-        swap(image, target_container, source_container);
+    if (targetContainer.children.length == 2) {
+        swap(image, targetContainer, sourceContainer);
     }
     document.getElementById('check-order-result-text-feedback').innerHTML = "<br>";
     compareWeights();
@@ -109,35 +56,95 @@ $(function() {
 });
 
 /**
+ * Returns a shuffled copy of the given array, the result depends on the value of the global dataType
+ */
+function shuffle(array) {
+  var clone = array.slice(0);
+  if (dataType == "sorted") {
+    return clone;
+  } else if (dataType == "almost") {
+    return slightShuffle(clone);
+  } else if (dataType == "reverse") {
+    return clone.reverse();
+  } else /* random */ {
+    return fisherYates(clone);
+  }
+}
+
+/** 
+ * Shuffle function adapted from https://bost.ocks.org/mike/shuffle
+ */
+function fisherYates(array) {
+  var elementIndex = array.length;
+  var randomIndex;
+  var currentElement;
+
+  while (elementIndex) {
+    // Pick a remaining element
+    randomIndex = Math.floor(Math.random() * elementIndex--);
+
+    // And swap it with the current element
+    currentElement = array[elementIndex];
+    array[elementIndex] = array[randomIndex ];
+    array[randomIndex ] = currentElement;
+  }
+
+  return array;
+}
+
+/**
+ * Swaps a couple of numbers in array, so that it is nearly sorted, but not
+ */
+function slightShuffle(array) {
+  var shuffles = 1;
+  var swapA;
+  var swapB;
+  var temp;
+  for (var i=0; i < shuffles; i++) {
+    swapA = Math.floor(Math.random() * array.length);
+    swapB = Math.floor(Math.random() * array.length);
+    while (swapA == swapB) {
+      // Probability of this taking a noticable amount of time is too small to worry about
+      swapB = Math.floor(Math.random() * array.length);
+    }
+    temp = array[swapA];
+    array[swapA] = array[swapB];
+    array[swapB] = temp;
+  }
+
+  return array;
+}
+
+/**
  * Swaps the image in the target container and the image in the source container
  */
-function swap(image, target_container, source_container) {
-  // save the original image in target_container to a temp var
-  temp = target_container.children[0];
-  // image is original image in source_container. Swap the images.
-  target_container.appendChild(image);
-  source_container.appendChild(temp);
+function swap(image, targetContainer, sourceContainer) {
+  // save the original image in targetContainer to a temp var
+  temp = targetContainer.children[0];
+  // image is original image in sourceContainer. Swap the images.
+  targetContainer.appendChild(image);
+  sourceContainer.appendChild(temp);
 }
 
 /**
  * Does the comparison between items in the two weight containers
  */
 function compareWeights() {
-  var left_weight_div = document.getElementById('left-weight-content');
-  var right_weight_div = document.getElementById('right-weight-content');
-  var left_weight = getDataWeight(left_weight_div);
-  var right_weight = getDataWeight(right_weight_div);
+  var leftWeightDiv = document.getElementById('left-weight-content');
+  var rightWeightDiv = document.getElementById('right-weight-content');
+  var leftWeight = getDataWeight(leftWeightDiv);
+  var rightWeight = getDataWeight(rightWeightDiv);
 
   // check if left and right are empty
-  if (left_weight == empty_weight && right_weight == empty_weight) {
+  if (leftWeight == emptyWeight && rightWeight == emptyWeight) {
     rotateIndicator('up');
   } else {
-    if (left_weight > right_weight) { // left is heavier
+    if (leftWeight > rightWeight) { // left is heavier
       rotateIndicator('left');
-    } else if (right_weight > left_weight) { // right is heavier
+    } else if (rightWeight > leftWeight) { // right is heavier
       rotateIndicator('right');
     }
-    if (left_weight != empty_weight && right_weight != empty_weight) {
+    if (leftWeight != emptyWeight && rightWeight != emptyWeight) {
       countComparisons();
     }
   }
@@ -168,15 +175,15 @@ function rotateIndicator(direction) {
  * Increases the number of comparisons by 1 if it isn't the comparison made immediately previous
  */
 function countComparisons() {
-  left_image = document.getElementById('left-weight-content').children[0];
-  right_image = document.getElementById('right-weight-content').children[0];
-  if ((left_image != last_left_image) || (right_image != last_right_image)) {
+  leftImage = document.getElementById('left-weight-content').children[0];
+  rightImage = document.getElementById('right-weight-content').children[0];
+  if ((leftImage != lastLeftImage) || (rightImage != lastRightImage)) {
     comparisons += 1
     fmts = gettext("Number of comparisons: %(comparisons)s");
     s = interpolate(fmts, {comparisons: comparisons}, true);
     document.getElementById('comparison-counter-text').innerText = s;
-    last_left_image = left_image;
-    last_right_image = right_image;
+    lastLeftImage = leftImage;
+    lastRightImage = rightImage;
   }
 }
 
@@ -184,15 +191,15 @@ function countComparisons() {
  * Displays a message depending on the order of images in the sorted image row
  */
 function checkOrder() {
-  var ordered_boxes_row = document.getElementById('sorting-algorithms-interactive-item-sorted-row');
-  if (ordered_boxes_row.getElementsByTagName("img").length != 8) {
+  var orderedBoxesRow = document.getElementById('sorting-algorithms-interactive-item-sorted-row');
+  if (orderedBoxesRow.getElementsByTagName("img").length != 8) {
     s = gettext("You need to sort all the boxes before checking!");
     $('#check-order-result-text-feedback').html(s);
   } else {
-    var ordered_boxes = ordered_boxes_row.children;
+    var orderedBoxes = orderedBoxesRow.children;
     var sorted = true;
-    for (var i = 0; i < ordered_boxes.length; i++) {
-      element = ordered_boxes[i];
+    for (var i = 0; i < orderedBoxes.length; i++) {
+      element = orderedBoxes[i];
       var weight = getDataWeight(element);
       if (weight != i) {
         sorted = false;
@@ -219,11 +226,11 @@ function toggleSecondRow() {
     s = gettext("Hide second row of boxes");
   } else {
     s = gettext("Show second row of boxes");
-    var images_to_move = row.getElementsByTagName('img');
-    var empty_boxes = $('#sorting-algorithms-interactive-item-unsorted-row-1 > div:not(:has(*))').toArray();
-    while (images_to_move.length > 0) {
-      empty_boxes[0].appendChild(images_to_move[0]);
-      empty_boxes.shift();
+    var imagesToMove = row.getElementsByTagName('img');
+    var emptyBoxes = $('#sorting-algorithms-interactive-item-unsorted-row-1 > div:not(:has(*))').toArray();
+    while (imagesToMove.length > 0) {
+      emptyBoxes[0].appendChild(imagesToMove[0]);
+      emptyBoxes.shift();
     }
   }
   button.innerText = s;
@@ -233,12 +240,12 @@ function toggleSecondRow() {
  * Returns the weight associated with the given element(image)
  */
 function getDataWeight(element) {
-  var data_weight = empty_weight;
+  var dataWeight = emptyWeight;
   // If the box is not empty
   if (element.hasChildNodes()) {
-    data_weight = element.children[0].dataset.weight;
+    dataWeight = element.children[0].dataset.weight;
   }
-  return data_weight;
+  return dataWeight;
 }
 
 /**
@@ -260,8 +267,8 @@ function reset() {
   }
 
   comparisons = 0;
-  last_left_image = null;
-  last_right_image = null;
+  lastLeftImage = null;
+  lastRightImage = null;
   var fmts = gettext("Number of comparisons: %(comparisons)s");
   var s = interpolate(fmts, {comparisons: comparisons}, true);
   document.getElementById('comparison-counter-text').innerText = s;
@@ -275,11 +282,11 @@ function reset() {
 function reshuffle() {
   reset();
 
-  var images_to_sort = document.getElementsByClassName('sorting-box');
-  var shuffled_weights = shuffle(data_weights);
-  for (var i = 0; i < images_to_sort.length; i++) {
-    var image = images_to_sort[i];
-    image.dataset.weight = shuffled_weights[i];
+  var imagesToSort = document.getElementsByClassName('sorting-box');
+  var shuffledWeights = shuffle(DATA_WEIGHTS);
+  for (var i = 0; i < imagesToSort.length; i++) {
+    var image = imagesToSort[i];
+    image.dataset.weight = shuffledWeights[i];
   }
 }
 
@@ -311,12 +318,12 @@ function hidePeek() {
  * On mobile there is not 'hover', you must click the eye to toggle the functionality.
  * This function ends the peek by triggering 'mouseleave' on the peek eye symbol
  */
-function mobile_endPeek() {
+function mobileEndPeek() {
   $('#eye-icons').trigger('mouseleave');
 }
 
-function revealWeights(boxes_row) {
-  var boxes = boxes_row.children();
+function revealWeights(boxesRow) {
+  var boxes = boxesRow.children();
   var content;
   var image;
   var weight;

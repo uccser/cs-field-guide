@@ -53,11 +53,10 @@
   z-index: 1;
 }
 
-// Partial copy of it's namesake from Dragula.css
+// Partial copy of its namesake from Dragula.css
 // but !important to override changes made in JS for a different purpose
 .gu-transit {
   opacity: 0.2 !important;
-  filter: alpha(opacity=20);
 }
 
 #eye-icons {
