@@ -21,10 +21,10 @@ Big Data tends to be produced continually, and is available in real time.
 For example, every time you make a purchase using your EFTPOS card, that transaction is recorded.
 In New Zealand there are typically 50-60 EFTPOS transactions every single second, and this more than doubles in the Christmas period.
 
-Every time you scroll through Facebook, that is recorded.
+Every time you scroll through Facebook, that is generating data.
 In September 2018, Facebook had an average of 1.49 billion active users each day.
 Some of those users would have posted photos, liked posts, played games, sent messages, shared life events, etc.
-All of this data is recorded as it happens, and needs to be processed just as instantly in order for Facebook to see trends. Imagine all of a sudden there was no activity coming from Australasia.
+All of this is generating data, which is recorded as it happens, and needs to be processed just as quickly as it is created in order for Facebook to see trends. Imagine all of a sudden there was no activity coming from Australasia.
 That is likely to indicate an issue with their system in this part of the world, and Facebook needs to know about that immediately in order to diagnose and fix the problem.
 
 One of the most extreme examples of data velocity is YouTube uploads.
@@ -40,8 +40,12 @@ Different data types have different attributes and therefore the data doesn't si
 
 ## Using Big Data
 
-Now that we understand what big data is, let’s look at how we can use it. There are several stages Big Data goes through, beginning with being captured going through to actually being applied to a real life situation. The diagram illustrates this process.
+Now that we understand what big data is, let’s look at how we can use it. There are several stages Big Data goes through, beginning with being captured going through to actually being applied to a real life situation. These are:
 
-... add diagram ...
+- Capture
+- Store
+- Analyse 
+- Visualise
+- Application
 
-In the nest secions we will take a look at each of these stages.
+In the next sections we will take a look at each of these stages.

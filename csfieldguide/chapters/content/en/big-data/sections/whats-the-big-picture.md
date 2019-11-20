@@ -10,4 +10,4 @@ When you search for penguins and end up on Wikipedia, get directions to your fri
 Together, these data points are used to work out patterns and trends to more accurately predict user behaviour.
 These predictions are used by companies in many ways, for example to make whatever you search for online easier to find.
 
-“Big Data” is the result of you, and millions of other people, generating data. In this chapter we look at the journey these data points take, how they are used, and why we are interested in it in the first place.
+"Big Data" is the result of you, and millions of other people, generating data. In this chapter we look at the journey these data points take, how they are used, and why we are interested in it in the first place.

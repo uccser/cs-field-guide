@@ -12,10 +12,31 @@ So where does all the data come from to make Big Data? Here are a few examples o
 Instagram, Facebook, Twitter, SnapChat, TradeMe, Spotify, Uber, Netflix, Messenger, etc, all care about how, when, why, and for how long you use their service. Therefore a lot of what you do while using their service is captured and recorded.
 
 ### The Internet of Things
-The idea of the "Internet of Things" (IoT) is to wirelessly interconnect multiple devices and objects, usually through Bluetooth or through wireless internet. There are a couple of different areas where IoT has really taken off:
+The idea of the "Internet of Things" (IoT) is to wirelessly interconnect multiple devices and objects, usually through Bluetooth or through wireless internet.
+This data is often stored remotely, and referred to as being stored "in the cloud".
+
+{panel type="jargon-buster"}
+
+# The Cloud
+
+When we say data is being stored "in the cloud" it might seem to imply that all this data is stored in one magical location, or that maybe it's just floating around in the air, ready for us to access whenever we want.
+It actually means something quite different (and sadly a little less magical). When data is stored in the "cloud" it simply means it is stored somewhere other than you're own computer - it is stored in a remote database that you can access over a network (typically the Internet). These databases are generally owned and managed by companies who make this storage space available to their users.
+A commonly used cloud storage service is Dropbox, who provide a certain amount of storage for free, and then have users pay if they want to use more.
+
+An important thing to realise about cloud computing is that this data isn't just floating around in one big... well, cloud! It is being stored in a physical location somewhere, and most likely across several different locations if it has been backed up.
+
+{panel end}
+
+There are a couple of different areas where IoT has really taken off:
 
 - Appliances: It’s becoming more and more popular for people to do things like turn their lights on by talking to their watch, turn their homes air conditioning on from their phone, automatically have their grocery list made by their fridge, etc. It’s still up for debate as to whether this is really useful or not.
 - Health Care: These days it is not uncommon to see people with devices on their wrist that more or less behave like a tiny smartphone, with the added feature of tracking exercise and heart rate.
+
+{image file-path="img/chapters/internet-of-things.png" caption="true" alt="An image of a cloud connected to a large number of icons, each of which symbolise a device that could be connected to in the internet of things. For example, one shows a lightbulb, one shows a washing machine, and one shows a smart watch."}
+
+Some example devices that could be connected to the IoT.
+
+{image end}
 
 But these innovations come with a cost, and that cost is often large amounts of potentially sensitive personal information being captured, and security concerns around its storage and use.
 The sheer amount of data these devices generate also introduces technical challenges.
