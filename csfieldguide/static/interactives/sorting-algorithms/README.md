@@ -14,9 +14,17 @@ A second row of boxes can be shown/hidden with a button press or through URL par
 - `peek=true` reveals an eye symbol that shows the weights of each box to the user when hovered over.
 - `data=[sorted|almost|random|reverse] (default: random)` sets the type of data for the user to sort.
 
-## Dependencies
+## Assets
+
+- Both the Eye icon and Closed Eye icon are from [Icons8](https://icons8.com) and scaled down for use in the interactive.
+- The images `icons8-number-X.png`, where `X` is a number, are also from [Icons8](https://icons8.com).
+
+## Licence
 
 The interactive uses [Dragula](https://github.com/bevacqua/dragula) for intuitive drag and drop behaviour.
 Its licence is listed in `LICENCE-THIRD-PARTY` with a full copy available in the `third-party-licences` directory.
 
-Both the Eye icon and Closed Eye icon are from [Icons8](https://icons8.com) and scaled down for use in the interactive.
+## Known Issues
+
+There is no hover ability on mobile, so the user can only toggle the peek functionality.
+When the peek is toggled off, either by tapping the open eye or dragging a box, the user must tap anywhere else on the screen before it can be toggled back on.

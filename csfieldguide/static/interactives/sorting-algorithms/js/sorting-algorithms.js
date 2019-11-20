@@ -12,6 +12,7 @@ const data_weights = [0, 1, 2, 3, 4, 5, 6, 7]; // weights of the images, used fo
 $(document).ready(function() {
   if (urlParameters.getUrlParameter("peek") == "true") {
     $('#eye-icons').removeClass('d-none');
+    $('.dashed-box, #eye-open').bind('touchstart', mobile_endPeek); // For mobile
   }
   data_type = urlParameters.getUrlParameter("data");
 
@@ -304,6 +305,14 @@ function hidePeek() {
 
   $('.item-weight').appendTo($('#image-store'));
   $('.sorting-box').css('opacity', '1');
+}
+
+/**
+ * On mobile there is not 'hover', you must click the eye to toggle the functionality.
+ * This function ends the peek by triggering 'mouseleave' on the peek eye symbol
+ */
+function mobile_endPeek() {
+  $('#eye-icons').trigger('mouseleave');
 }
 
 function revealWeights(boxes_row) {

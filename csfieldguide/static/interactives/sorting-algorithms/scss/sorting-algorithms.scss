@@ -32,6 +32,7 @@
   padding: 2px;
   overflow: hidden;
   display: none;
+  position: absolute;
   z-index: 2;
   &:last-child {
     display: block;
