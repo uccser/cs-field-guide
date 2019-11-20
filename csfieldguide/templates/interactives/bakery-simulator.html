@@ -40,6 +40,17 @@
       <button id="start-asking" class="btn btn-success position-absolute d-none">{% trans "Ask a question" %}</button>
       <small id="num-qs-asked-text" class="position-absolute d-none">{% trans "Questions asked: <span id='num-asked'>0</span>" %}</small>
       <button id="time-to-bake" class="position-absolute btn btn-lg btn-success d-none" data-toggle="modal" data-target="#baking-options">{% trans "Time to bake!" %}</button>
+
+      <!-- result table -->
+      <table id="result-table" class="table d-none">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">{% trans "Wanted" %}</th>
+            <th scope="col">{% trans "Created" %}</th>
+          </tr>
+        </thead>
+      </table>
     </div>
   </div>
 {% endblock html %}

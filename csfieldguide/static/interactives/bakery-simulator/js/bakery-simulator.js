@@ -73,10 +73,14 @@ function checkResult(cakeCreated) {
     // }
     console.log(cakeWanted);
     console.log(cakeCreated);
+    createResultTable(cakeWanted, cakeCreated);
+    $('#result-table').removeClass('d-none');
 }
 
 
 function getCakeCreated() {
+    $('#dialogue-box').remove();
+    $('#time-to-bake').remove();
     var cakeCreated = {};
     // loop through each option and get selected value
     for (i=0; i < CONFIG.FIELD_NAMES.length; i++) {
@@ -157,5 +161,21 @@ function createRadioButtons() {
             $buttonGroup.append($radioLabel);
         }
         $('#modal-body').append($container);
+    }
+}
+
+
+function createResultTable(cakeWanted, cakeCreated) {
+    var $table = $('#result-table')
+    for (i=0; i < CONFIG.FIELD_NAMES.length; i++) {
+        field = CONFIG.FIELD_NAMES[i];
+        var $tbody = $('<tbody>');
+        var $tr = $('<tr>');
+        var $th = $('<th>').attr('scope', 'row').text(field); // need to make first letter a capital .. need to translate
+        var $tdWanted = $('<td>').text(cakeWanted[field]); // already translated??
+        var $tdCreated = $('<td>').text(cakeCreated[field]); // already translated??
+        $table.append($tbody);
+        $tbody.append($tr);
+        $tr.append($th, $tdWanted, $tdCreated);
     }
 }

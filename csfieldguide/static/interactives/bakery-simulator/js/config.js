@@ -89,7 +89,7 @@ const CUSTOMER_3_CAKE = {
 };
 
 const FIELD_LAYERS = {
-    title: 'Layers:',
+    title: gettext('Layers:'),
     name: 'layers',
     values: [
         '1',
