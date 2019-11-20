@@ -68,11 +68,6 @@ function checkResult(cakeCreated) {
         var cakeWanted = CONFIG.CUSTOMER_3_CAKE;
     }
 
-    // for (const field of CONFIG.FIELD_NAMES) {
-
-    // }
-    console.log(cakeWanted);
-    console.log(cakeCreated);
     createResultTable(cakeWanted, cakeCreated);
     $('#result-table').removeClass('d-none');
 }
@@ -167,11 +162,13 @@ function createRadioButtons() {
 
 function createResultTable(cakeWanted, cakeCreated) {
     var $table = $('#result-table')
-    for (i=0; i < CONFIG.FIELD_NAMES.length; i++) {
-        field = CONFIG.FIELD_NAMES[i];
+    for (i=0; i < CONFIG.FIELD_OPTIONS.length; i++) {
+        fieldDictionary = CONFIG.FIELD_OPTIONS[i];
+        title = fieldDictionary.title.slice(0, -1); // remove ':' from the title
+        field = fieldDictionary.name;
         var $tbody = $('<tbody>');
         var $tr = $('<tr>');
-        var $th = $('<th>').attr('scope', 'row').text(field); // need to make first letter a capital .. need to translate
+        var $th = $('<th>').attr('scope', 'row').text(title); // already translated??
         var $tdWanted = $('<td>').text(cakeWanted[field]); // already translated??
         var $tdCreated = $('<td>').text(cakeCreated[field]); // already translated??
         $table.append($tbody);
