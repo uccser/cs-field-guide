@@ -36,6 +36,31 @@ Scales Interactive
 
 {interactive end}
 
+{panel type="teacher-note"}
+
+# Using the sorting interactive for teaching
+
+The above interactive has a couple of extra features you can access to demonstrate sorting algorithms.
+
+The web address of the interactive will be similar to:
+`www.csfieldguide.org.nz/en/interactives/sorting-algorithms/`
+
+Add `?peek=true` to the end of the address and load the page to reveal an eye icon.
+Hover over this icon to see the weight values for each box.
+
+Add `?data=[type]` to the end of the address to choose how the data is shuffled.
+`[type]` can be any one of:
+
+- `sorted`: The weights will always be arranged lightest to heaviest.
+- `reverse`: The weights will always be arranged heaviest to lightest.
+- `almost`: The weights will be nearly sorted, but not quite.
+- `random`: (default) The weights will be shuffled randomly.
+
+If you wish, you can combine these two with an ampisand (`&`).
+For example: adding `?peek=true&data=sorted` to the address will reveal the eye icon and arrange the weights lightest to heaviest.
+
+{panel end}
+
 {comment link back to the unplugged activity}
 
 ## Selection sort
