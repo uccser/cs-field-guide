@@ -36,7 +36,7 @@ $(document).ready(function() {
 /**
  * Defines dragging and button handlers
  * 
- * Dragging of an image, is dragging of a <div> that contains an image (or two)
+ * The dragging of an image is the dragging of a <div> that contains an image (or two if peeking)
  */
 $(function() {
   var imageList = $('.dashed-box').toArray();
@@ -301,10 +301,7 @@ function showPeek() {
   $('#eye-closed').addClass('d-none');
   $('#eye-open').removeClass('d-none');
 
-  revealWeights($('#sorting-algorithms-interactive-item-unsorted-row-1'));
-  revealWeights($('#sorting-algorithms-interactive-item-unsorted-row-2'));
-  revealWeights($('#sorting-algorithms-interactive-item-scales'));
-  revealWeights($('#sorting-algorithms-interactive-item-sorted-row'));
+  revealWeights();
 }
 
 /**
@@ -319,21 +316,18 @@ function hidePeek() {
 }
 
 /**
- * Reveals the value of the weight of each box in the given row (div)
+ * Reveals the value of the weight of each image
  */
-function revealWeights(boxesRow) {
-  var boxes = boxesRow.children();
+function revealWeights() {
+  var images = $('#sorting-algorithms-interactive').find('.box-img');
   var content;
   var image;
   var weight;
-  for (var i=0; i < boxes.length; i++) {
-    content = boxes.eq(i).children().eq(0); // Get the only img holder in the given box
-    if (content.children().length > 0) {
-      // There is an image inside, there should never be more than one
-      weight = (content.children().eq(0).attr('data-weight'));
-      image = $('#number-' + (parseInt(weight) + 1));
-      content.prepend(image);
-    }
+  for (var i=0; i < images.length; i++) {
+    image = images.eq(i);
+    content = image.parent();
+    weight = image.attr('data-weight');
+    content.prepend($('#number-' + (parseInt(weight) + 1)));
   }
   $('.box-img').css('opacity', '0.2');
 }
