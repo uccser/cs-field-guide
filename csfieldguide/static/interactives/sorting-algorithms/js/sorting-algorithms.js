@@ -220,18 +220,17 @@ function checkOrder() {
  * Toggles the display of a second row of boxes, useful for quick/merge sort etc
  */
 function toggleSecondRow() {
-  var row = document.getElementById('sorting-algorithms-interactive-item-unsorted-row-2');
+  var row = $('#sorting-algorithms-interactive-item-unsorted-row-2');
   var button = document.getElementById('toggle-second-row');
-  row.classList.toggle('d-flex');
-  if (row.classList.contains('d-flex')) {
+  row.toggleClass('d-flex');
+  if (row.hasClass('d-flex')) {
     s = gettext("Hide second row of boxes");
   } else {
     s = gettext("Show second row of boxes");
-    var imagesToMove = row.getElementsByTagName('img');
-    var emptyBoxes = $('#sorting-algorithms-interactive-item-unsorted-row-1 > div:not(:has(*))').toArray();
-    while (imagesToMove.length > 0) {
-      emptyBoxes[0].appendChild(imagesToMove[0]);
-      emptyBoxes.shift();
+    var imagesToMove = row.find('.sorting-box');
+    var emptyBoxes = $('#sorting-algorithms-interactive-item-unsorted-row-1 > div:not(:has(*))');
+    for (var i=0; i < imagesToMove.length; i++) {
+      emptyBoxes.eq(i).append(imagesToMove.eq(i));
     }
   }
   button.innerText = s;
