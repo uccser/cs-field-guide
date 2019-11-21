@@ -17,6 +17,7 @@ A second row of boxes can be shown/hidden with a button press or through URL par
 ## Assets
 
 - Both the Eye icon and Closed Eye icon are from [Icons8](https://icons8.com) and scaled down for use in the interactive.
+  Thery are also used by the Sorting Algorithms Configurator interactive
 - The images `icons8-number-X.png`, where `X` is a number, are also from [Icons8](https://icons8.com).
 
 ## Licence

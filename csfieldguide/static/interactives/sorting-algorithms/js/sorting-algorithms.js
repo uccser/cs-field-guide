@@ -11,7 +11,7 @@ const DATA_WEIGHTS = [0, 1, 2, 3, 4, 5, 6, 7]; // weights of the images, used fo
 
 $(document).ready(function() {
   if (urlParameters.getUrlParameter("peek") == "true") {
-    $('#eye-icons').removeClass('d-none');
+    $('#eyecons').removeClass('d-none');
     $('.dashed-box, #eye-open').bind('touchstart', mobileEndPeek); // For mobile
   }
   dataType = urlParameters.getUrlParameter("data");
@@ -52,7 +52,7 @@ $(function() {
   $('#toggle-second-row').on('click', toggleSecondRow);
   $('#reset-button').on('click', reset);
   $('#reshuffle-button').on('click', reshuffle);
-  $('#eye-icons').hover(showPeek, hidePeek);
+  $('#eyecons').hover(showPeek, hidePeek);
 });
 
 /**
@@ -319,7 +319,7 @@ function hidePeek() {
  * This function ends the peek by triggering 'mouseleave' on the peek eye symbol
  */
 function mobileEndPeek() {
-  $('#eye-icons').trigger('mouseleave');
+  $('#eyecons').trigger('mouseleave');
 }
 
 /**

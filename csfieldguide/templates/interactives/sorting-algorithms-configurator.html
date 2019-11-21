@@ -28,7 +28,11 @@
         <div class="form-group mt-1">
           <small id="peek-help" class="form-text text-muted">{% trans 'Reveal an icon that lets you view the box weights:' %}</small>
           <input id="peek-selector" type="checkbox" class="form-check-input" value="" aria-describedby="peek-help">
-          <label for="peek-selector" class="form-check-label">{% trans 'Enable peek mode' %}</label>
+          <label for="peek-selector" class="form-check-label">
+            <img id="eye-open"   class="mr-1 d-none" src="{% static 'interactives/sorting-algorithms/assets/icons8-eye-80-scaled.png' %}">
+            <img id="eye-closed" class="mr-1 d-none" src="{% static 'interactives/sorting-algorithms/assets/icons8-closed-eye-80-scaled.png' %}">
+            {% trans 'Enable peek mode' %}
+          </label>
         </div>
       </div>
 
