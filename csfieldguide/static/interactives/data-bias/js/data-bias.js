@@ -3,8 +3,6 @@ const wNumb = require('wnumb');
 
 const COLOURS = ['red', 'lime', 'blue', 'yellow', 'purple', 'darkorange', 'fuchsia', 'deepskyblue'];
 const START_TEXT = gettext("Click each dot that you see on the screen, then click 'Next stage' to reveal the answer!");
-// const MISSED_CIRCLES_TEXT = gettext('You seem to have missed some dots! <br><br>Forced perspective like this can be used in data representation and cause bias in the overall results.');
-// const SLIDER_TEXT = gettext('Click and drag the slider to change the background colour. <br>What do you notice is happening?')
 const MISSED_CIRCLES_TEXT = gettext('You seem to have missed some dots! <br><br>Forced perspective like this can influence what data you collect, and can bias overall results.');
 const SLIDER_TEXT = gettext('Click and drag the slider to change the background colour. Changing your perspective can decrease data bias.')
 const SLIDER_MIN = 0;
