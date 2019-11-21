@@ -3,8 +3,10 @@ const wNumb = require('wnumb');
 
 const COLOURS = ['red', 'lime', 'blue', 'yellow', 'purple', 'darkorange', 'fuchsia', 'deepskyblue'];
 const START_TEXT = gettext("Click each dot that you see on the screen, then click 'Next stage' to reveal the answer!");
-const MISSED_CIRCLES_TEXT = gettext('You seem to have missed some dots! <br><br>Forced perspective like this can be used in data representation and cause bias in the overall results.');
-const SLIDER_TEXT = gettext('Click and drag the slider to change the background colour. <br>What do you notice is happening?')
+// const MISSED_CIRCLES_TEXT = gettext('You seem to have missed some dots! <br><br>Forced perspective like this can be used in data representation and cause bias in the overall results.');
+// const SLIDER_TEXT = gettext('Click and drag the slider to change the background colour. <br>What do you notice is happening?')
+const MISSED_CIRCLES_TEXT = gettext('You seem to have missed some dots! <br><br>Forced perspective like this can influence what data you collect, and can bias overall results.');
+const SLIDER_TEXT = gettext('Click and drag the slider to change the background colour. Changing your perspective can decrease data bias.')
 const SLIDER_MIN = 0;
 const SLIDER_MAX = 360;
 const PERENTAGE_BOUNDARY_UPPER = 85; // 85%
@@ -36,7 +38,7 @@ $(document).ready(function() {
 });
 
 
-/** 
+/**
  * Returns everything to the inital 'page loaded' state.
  */
 function init() {
@@ -57,7 +59,7 @@ function init() {
 }
 
 
-/** 
+/**
  * Creates slider that controls background colour.
  */
 function createSlider() {
@@ -77,7 +79,7 @@ function createSlider() {
 }
 
 
-/** 
+/**
  * Updates background colour when slider is moved.
  */
 function updateSlider() {
@@ -88,7 +90,7 @@ function updateSlider() {
 }
 
 
-/** 
+/**
  * Returns a random position in the form of {top: ..., left: ...} to randomly place circles.
  */
 function getRandomPosition() {
@@ -120,7 +122,7 @@ function getRandomPosition() {
 }
 
 
-/** 
+/**
  * Creates a circle div and adds it to the page.
  */
 function createCircle(colour) {
@@ -140,7 +142,7 @@ function createCircle(colour) {
 }
 
 
-/** 
+/**
  * Loads the next stage which is either revealing the hidden circles or adjusting the background colour with the slider.
  */
 function loadNextStage() {
