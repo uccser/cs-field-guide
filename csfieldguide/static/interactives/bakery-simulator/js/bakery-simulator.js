@@ -174,5 +174,11 @@ function createResultTable(cakeWanted, cakeCreated) {
         $table.append($tbody);
         $tbody.append($tr);
         $tr.append($th, $tdWanted, $tdCreated);
+        // if correct add green background, if incorrect add red background
+        if (cakeWanted[field] === cakeCreated[field]) {
+            $tr.addClass('correct');
+        } else {
+            $tr.addClass('incorrect');
+        }
     }
 }
