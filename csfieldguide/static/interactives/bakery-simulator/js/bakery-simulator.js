@@ -19,12 +19,18 @@ $(document).ready(function() {
     });
     $('#question-list p').click(askQuestion);
     $('#bake-cake').click(getCakeCreated);
+    $('#next-customer').click(loadCustomer);
 });
 
 
 function loadCustomer() {
-    $('#starter-info').addClass('d-none');
-    $('#background-image').attr('src', bakerySimImages['customer-1']);
+    if (bakerySim.currentCustomer === 1) {
+        $('#starter-info').addClass('d-none');
+    } else {
+        $('#result-table').addClass('d-none');
+        $('#next-customer').addClass('d-none');
+    }
+    $('#background-image').attr('src', bakerySimImages['customer-' + bakerySim.currentCustomer]);
     $('#customer-answer').text(CONFIG.CUSTOMER_INTRO).removeClass('d-none');
     $('#dialogue-box').removeClass('d-none');
     $('#start-asking').removeClass('d-none');
@@ -70,6 +76,7 @@ function checkResult(cakeCreated) {
 
     createResultTable(cakeWanted, cakeCreated);
     $('#result-table').removeClass('d-none');
+    $('#next-customer').removeClass('d-none');
 }
 
 
@@ -181,4 +188,5 @@ function createResultTable(cakeWanted, cakeCreated) {
             $tr.addClass('incorrect');
         }
     }
+    bakerySim.currentCustomer += 1; // should put this somewhere else
 }
