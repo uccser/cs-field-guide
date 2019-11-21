@@ -6,7 +6,6 @@
 .dashed-box {
   background-color: white;
   border: 2px dashed #777;
-  position: relative;
 }
 
 .square {
@@ -29,11 +28,9 @@
   touch-action: none;
   height: 100%;
   width: 100%;
-  padding: 2px;
   overflow: hidden;
   display: none;
-  position: absolute;
-  z-index: 2;
+  position: relative;
   &:last-child {
     display: block;
   }
@@ -41,6 +38,16 @@
   &.gu-mirror {
     cursor: grabbing;
   }
+}
+
+.box-img {
+  height: 100%;
+  width: 100%;
+  padding: 2px;
+  overflow: hidden;
+  user-select: none;
+  position: absolute;
+  z-index: 2;
 }
 
 .item-weight {

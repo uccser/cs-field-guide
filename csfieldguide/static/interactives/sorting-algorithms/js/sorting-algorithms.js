@@ -12,14 +12,13 @@ const DATA_WEIGHTS = [0, 1, 2, 3, 4, 5, 6, 7]; // weights of the images, used fo
 $(document).ready(function() {
   if (urlParameters.getUrlParameter("peek") == "true") {
     $('#eyecons').removeClass('d-none');
-    $('.dashed-box, #eye-open').bind('touchstart', mobileEndPeek); // For mobile
   }
   dataType = urlParameters.getUrlParameter("data");
   if (dataType == "sorted" || dataType == "reverse") {
     $('#reshuffle-button').addClass('d-none');
   }
 
-  var imagesToSort = document.getElementsByClassName('sorting-box');
+  var imagesToSort = document.getElementsByClassName('box-img');
   // shuffle the weights and assign them to each image
   var shuffledWeights = shuffle(DATA_WEIGHTS);
   for (var i = 0; i < imagesToSort.length; i++) {
@@ -36,6 +35,8 @@ $(document).ready(function() {
 
 /**
  * Defines dragging and button handlers
+ * 
+ * Dragging of an image, is dragging of a <div> that contains an image (or two)
  */
 $(function() {
   var imageList = $('.dashed-box').toArray();
@@ -52,7 +53,8 @@ $(function() {
   $('#toggle-second-row').on('click', toggleSecondRow);
   $('#reset-button').on('click', reset);
   $('#reshuffle-button').on('click', reshuffle);
-  $('#eyecons').hover(showPeek, hidePeek);
+  $('#eye-open').on('click', hidePeek);
+  $('#eye-closed').on('click', showPeek);
 });
 
 /**
@@ -191,16 +193,15 @@ function countComparisons() {
  * Displays a message depending on the order of images in the sorted image row
  */
 function checkOrder() {
-  var orderedBoxesRow = document.getElementById('sorting-algorithms-interactive-item-sorted-row');
-  if (orderedBoxesRow.getElementsByTagName("img").length != 8) {
+  var orderedBoxes = $('#sorting-algorithms-interactive-item-sorted-row').find('.box-img');
+  if (orderedBoxes.length != 8) {
     s = gettext("You need to sort all the boxes before checking!");
     $('#check-order-result-text-feedback').html(s);
   } else {
-    var orderedBoxes = orderedBoxesRow.children;
     var sorted = true;
     for (var i = 0; i < orderedBoxes.length; i++) {
-      element = orderedBoxes[i];
-      var weight = getDataWeight(element);
+      element = orderedBoxes.eq(i);
+      var weight = element.attr('data-weight');
       if (weight != i) {
         sorted = false;
       }
@@ -261,9 +262,9 @@ function colour(text, isGood) {
  * the number of comparisons made
  */
 function reset() {
-  resetRow = document.getElementById('sorting-algorithms-interactive-item-unsorted-row-1').children;
+  resetRow = $('#sorting-algorithms-interactive-item-unsorted-row-1').children();
   for (var i=0; i < resetRow.length; i++) {
-    $("#img-" + i).appendTo(resetRow[i]);
+    $("#group-" + i).appendTo(resetRow.eq(i));
   }
 
   comparisons = 0;
@@ -280,9 +281,12 @@ function reset() {
  * the number of comparisons made
  */
 function reshuffle() {
+  // No point showing the new values, so make sure they're hidden
+  $('#eye-open').trigger('click');
+
   reset();
 
-  var imagesToSort = document.getElementsByClassName('sorting-box');
+  var imagesToSort = document.getElementsByClassName('box-img');
   var shuffledWeights = shuffle(DATA_WEIGHTS);
   for (var i = 0; i < imagesToSort.length; i++) {
     var image = imagesToSort[i];
@@ -311,15 +315,7 @@ function hidePeek() {
   $('#eye-closed').removeClass('d-none');
 
   $('.item-weight').appendTo($('#image-store'));
-  $('.sorting-box').css('opacity', '1');
-}
-
-/**
- * On mobile there is no 'hover', you must tap the eye to toggle the functionality.
- * This function ends the peek by triggering 'mouseleave' on the peek eye symbol
- */
-function mobileEndPeek() {
-  $('#eyecons').trigger('mouseleave');
+  $('.box-img').css('opacity', '1');
 }
 
 /**
@@ -331,7 +327,7 @@ function revealWeights(boxesRow) {
   var image;
   var weight;
   for (var i=0; i < boxes.length; i++) {
-    content = boxes.eq(i);
+    content = boxes.eq(i).children().eq(0); // Get the only img holder in the given box
     if (content.children().length > 0) {
       // There is an image inside, there should never be more than one
       weight = (content.children().eq(0).attr('data-weight'));
@@ -339,5 +335,5 @@ function revealWeights(boxesRow) {
       content.prepend(image);
     }
   }
-  $('.sorting-box').css('opacity', '0.2');
+  $('.box-img').css('opacity', '0.2');
 }
