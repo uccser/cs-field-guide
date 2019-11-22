@@ -124,7 +124,7 @@
 
 #instruction-area {
     @include media-breakpoint-down(sm) {
-        min-height: 12.5rem;
+        min-height: 13.625rem;
     }
     @include media-breakpoint-up(sm) {
         min-height: 8.125rem;
