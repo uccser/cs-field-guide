@@ -1,4 +1,4 @@
-# Using Big Data
+# Analysing Big Data
 
 Collecting and storing this raw data is pointless if we do not try and draw new information and meaning from it, otherwise why did we go to the trouble of collecting it?
 So now let's look at what we can do with this data, and some of the applications of Big Data.
@@ -84,22 +84,3 @@ We have explained just a few of the techniques used to analyse Big Data, and the
 Part of what makes analysing Big Data so challenging is that simply picking which analysis technique to use can influence your results, and is another way for bias to influence studies.
 In addition, with so much raw data available and heuristics needed to efficiently find interesting patterns in subsets of the data, it can be easy to manipulate results intentionally or unintentionally.
 But doing this can sometimes result in a conclusion too specialised to one group and can remove the opportunity to find other interesting trends in the data.
-
-## Visualising Big Data
-
-As humans, it has been said that 90% of all data that is absorbed by your brain is visual, and hence we are not very good at processing large amounts of raw data. Instead we often need something visual to represent the data. "Data visualisation" is a term that is used to describe an effort to convey the significance of data in a visual context. This is an important method that we can use to help us find patterns, trends or correlations that might not have been identified otherwise.
-
-One particularly interesting data visualisation application is Astronomy. Did you know that a lot of the beautiful images of space that NASA releases are not "real" images? They are actually works of [art created by visualisation scientists](https://www.youtube.com/watch?v=xc1V9d8jrr8), not simply photographs taken with a telescope. The reason for this is because the telescopes used by astronomers mainly collect raw data rather than images. Visualisation scientists use this data to create a hypothetical image of what something looks like. This isn't to be confused with 'just making things up'! The images they create are based on the raw data and their own in depth knowledge.
-
-{panel type="curiosity"}
-
-# Accurate Images of Black Holes
-
-The most accurate image of a black hole created to date was created for the 2014 film [Interstellar](https://www.youtube.com/watch?v=MfGfZwQ_qaY), by a team of over 30 people including an expert theoretical physicist.
-Creating the image required over 800 terabytes of data to be processed.
-
-{panel end}
-
-Data visualisations are all around us. As long as something takes some data and turns it into something visual, it is a data visualisation. Chances are you have even made some yourself! Some interesting examples include:
-
-<!-- *Add examples once confirmed they can be used* -->
