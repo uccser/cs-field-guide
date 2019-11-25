@@ -1,18 +1,23 @@
 $(document).ready(function() {
-   $('#submit').on('click', function() {
-      var url = base;
-      
-      url += '?data=' + $('#data-selector').val();
-      
-      if ($('#peek-selector').is(':checked')) {
-        url += '&peek=true';
-      }
-
-      window.open(url, '_blank'); // Attempt to open URL in a new tab.
-   });
-   $('#peek-selector').change(toggle);
-   toggle();
+  $('#submit').on('click', submit);
+  $('#peek-selector').change(toggle);
+  toggle();
 });
+
+/**
+ * Attempts to open the Sorting Algorithms interactive in a new tab with user-selected parameters
+ */
+function submit() {
+  var url = base;
+  
+  url += '?data=' + $('#data-selector').val();
+  
+  if ($('#peek-selector').is(':checked')) {
+    url += '&peek=true';
+  }
+
+  window.open(url, '_blank'); // Attempt to open URL in a new tab.
+}
 
 /**
  * Toggles between showing the open and closed eye depending on whether the checkbox is checked

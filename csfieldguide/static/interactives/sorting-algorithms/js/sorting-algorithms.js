@@ -132,10 +132,8 @@ function swap(image, targetContainer, sourceContainer) {
  * Does the comparison between items in the two weight containers
  */
 function compareWeights() {
-  var leftWeightDiv = document.getElementById('left-weight-content');
-  var rightWeightDiv = document.getElementById('right-weight-content');
-  var leftWeight = getDataWeight(leftWeightDiv);
-  var rightWeight = getDataWeight(rightWeightDiv);
+  var leftWeight = getDataWeight($('#left-weight-content'));
+  var rightWeight = getDataWeight($('#right-weight-content'));
 
   // check if left and right are empty
   if (leftWeight == emptyWeight && rightWeight == emptyWeight) {
@@ -237,13 +235,14 @@ function toggleSecondRow() {
 }
 
 /**
- * Returns the weight associated with the given element(image)
+ * Returns the weight associated with the given element (image)
  */
-function getDataWeight(element) {
+function getDataWeight($element) {
   var dataWeight = emptyWeight;
   // If the box is not empty
-  if (element.hasChildNodes()) {
-    dataWeight = element.children[0].dataset.weight;
+  var img = $element.find('.box-img');
+  if (img.length > 0) {
+    dataWeight = img.eq(0).attr('data-weight');
   }
   return dataWeight;
 }
