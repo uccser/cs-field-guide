@@ -11,7 +11,7 @@ You can move it around using what's called a {glossary-link term="translation"}t
 - A positive or negative change in *y* will shift the box *up or down* respectively.
 - A positive or negative change in *z* will shift the box *in or out* respectively.
 
-The camera will always focus on the cube, so to see the back of the cube move it behind the camera with a positive *z* translation.
+**The camera will always focus on the cube**, so to see the back of the cube move it behind the camera with a positive *z* translation.
 Try typing 3D coordinates into this interactive to find each symbol.
 
 {interactive slug="box-translation" type="whole-page" alt="Box Translation interactive"}
