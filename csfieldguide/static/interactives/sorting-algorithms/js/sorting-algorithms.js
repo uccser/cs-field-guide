@@ -1,4 +1,4 @@
-const dragula = require('./../../../../node_modules/dragula/dragula');
+const dragula = require('dragula');
 const urlParameters = require('../../../js/third-party/url-parameters.js');
 
 // globals
