@@ -1,10 +1,5 @@
-# Collecting Big Data
+# Generating, collecting, and storing Big Data
 
-The first two steps of using Big Data are to capture it, and then to store it.
-This is not as simple as it may sound at first!
-Due to the Volume, Velocity, and Variety of data being generated and stored we need specific processes and algorithms to deal with it.
-
-## Capture
 So where does all the data come from to make Big Data? Here are a few examples of things that generate this data that you may have encountered:
 
 ### Apps and Websites
@@ -41,6 +36,7 @@ Some example devices that could be connected to the IoT.
 But these innovations come with a cost, and that cost is often large amounts of potentially sensitive personal information being captured, and security concerns around its storage and use.
 The sheer amount of data these devices generate also introduces technical challenges.
 Often these devices are sending real time data, that means that every minute, second, or even millisecond some data is being captured and sent somewhere.
+
 Estimates for the number of IoT devices that will be online in 2020 range from 30-50 billion, and that will be up to 75 billion by 2025.
 That’s billions and billions of extra devices sending, receiving, and generating data over the internet, every day!
 
@@ -48,19 +44,21 @@ That’s billions and billions of extra devices sending, receiving, and generati
 The number of people using smartphones has exploded in the last few years, to the point where in this modern society it is unusual to come across someone without one.
 With this comes opportunity for companies to gain more insight into how consumers spend their time, and therefore a lot of the activity on your phone is captured.
 For Pixel users, Google has even released a [new feature](https://play.google.com/store/apps/details?id=com.google.android.apps.wellbeing) for you to see how you use your phone.
+Other personal devices that connect with your smartphone are also constantly collecting data, for example wearable tech like smartwatches or fitness trackers.
 
 ### Sensors
 Big Data is also being collected from the physical world all around us!
 Sensors are devices that detect events or changes in their surrounding environment.
-They capture and digitize a vast variety of data about our environment, for example temperature, sound, visual images, air pressure, physical movement, and even sub-atomic energy.
-They are often relatively basic devices with limited computing power, and so they send this data to other digital devices for processing.
+They capture and digitise a vast variety of data about our environment, for example temperature, sound, visual images, air pressure, physical movement, and even sub-atomic energy.
+They are often relatively basic devices with limited computing power, and so they send this data to other digital devices for processing. This is usually done over a wireless network, and some sensors may be a part of the IoT.
 Environmental sensor data often is captured by proprietary systems and aggregated before being made available to the public.
 Here are some examples you may be familiar with:
 
 - Ground, air, and water movement sensors are distributed across the Earth to record wind, seismic activity, and wave patterns. This data can be used to predict and detect natural disaster events such as earthquakes, tornados, and tsunamis.
 - Many different types of sensors are used for health care monitoring. For example, sensors are frequently used by cardiologists to continuously monitor the electrical signals in a person’s heart, so that they can record and analyse changes in this.
-- There are multiple sensors throughout the  Large Hadron Collider which exist to capture energy readings from subatomic particles. These generate around 25 petabytes of information yearly for physics experiments
-- Some satellites continuously stream images of Earth’s atmosphere and land. Using multiple satellites to combine images across time and location, meteorologists use this data to predict the weather
+- There are multiple sensors throughout the  Large Hadron Collider which exist to capture energy readings from subatomic particles. These generate around 25 petabytes of information yearly for physics experiments.
+- Some satellites continuously stream images of Earth’s atmosphere and land. Using multiple satellites to combine images across time and location, meteorologists use this data to predict the weather.
+- Sensors placed in the environment or on tracking devices can be used to monitor wildlife, and are used for conservation and pest managment.
 
 ## Bias
 
@@ -89,9 +87,13 @@ The first issue is simply the amount of data.
 As we mentioned earlier, Big Data often begins at Terabytes, but more often than not, this expands to Petabytes.
 This is where data centres come in.
 
-... add image ...
-
 Data centres are warehouses (often enormous ones) containing many computers that are connected in a network. They are used to store and process large quantities of data. Data centres have become a popular way for organisations to solve the issue of not having enough computing power for the amount of data they collect. Companies such as Google, Amazon, Microsoft, and even Catalyst here in New Zealand offer services where other organisations can rent space in their data centres instead of having to build their own (an expensive endeavour).
+
+{image file-path="img/chapters/google-data-centre1.png" caption="true" alt="Image shows a long row of server racks at a Google data centre in Oklahoma"}
+
+Server racks in the Google data centre in Oklahoma.
+
+{image end}
 
 These data centres store a mind-boggling amount of information. Just think, every video uploaded to YouTube, every photo on Facebook, every tweet ever written, and every purchase you may have made on Amazon, exists somewhere in one of these data centres (in fact it will exist in several, as there will be multiple backups of it).
 
