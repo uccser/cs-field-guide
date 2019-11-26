@@ -1,0 +1,18 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div class="container-fluid my-3 text-center">
+    <h1 class="col-12">{% trans "Data Size" %}</h1>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/data-size/css/data-size.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'interactives/data-size/js/data-size.js' %}"></script>
+{% endblock js %}
