@@ -9,5 +9,3 @@ With the amount of data we are collecting each day growing rapidly, it’s not s
 
 But not only is there a huge demand for experts in this field, there is also demand for innovation.
 We are already pushing the limits of the infrastructure supporting big data, and there is plenty of space for creative solutions to solve this problem.
-
-This field brings together many different elements of Computer Science: HCI, Compression, Encryption, AI, Complexity and Tractability, Network Communication Protocols...

@@ -1,13 +1,9 @@
 # What's the big picture?
 
-Data is all around us, and it always has been. We use data to finish a biology report, determine what route to take to a friend's house, and to view an amusing comic.
-However, the way data is delivered to us to carry out these tasks even just 20 years ago was very different to how it is now.
-Your parents probably tell you stories about how "back in my day” they had encyclopedias to learn from, physical maps to navigate their way around the city, and newspapers with comic strips for morning entertainment.
-Think about how you carry out these tasks now, would you know how to use an encyclopedia?
+Data is all around us, and it always has been. We use data to finish a biology report, determine what route to take to a friend's house, and to view an amusing comic. We are also creating it constantly. With each day that passes, hundreds of millions of data points are being generated and collected in a variety of different mediums.
 
-With each day that passes, hundreds of millions of data points are being generated and collected in a variety of different mediums.
-When you search for penguins and end up on Wikipedia, get directions to your friend's house on Google Maps or react to someone’s meme on Facebook, that generates {glosary-link term="data-point"}data points{glossary-link-end} (potentially hundreds of them) that are recorded and stored, along with the many others from other people using the internet.
-Together, these data points are used to work out patterns and trends to more accurately predict user behaviour.
-These predictions are used by companies in many ways, for example to make whatever you search for online easier to find.
+When you search online for penguins and end up on Wikipedia, get directions to your friend's house on Google Maps, or click a link on Facebook, that generates {glossary-link term="data-point"}data points{glossary-link end} (potentially hundreds of them) that are recorded, along with data from many other people. Together, these data points are used to work out patterns and trends to more accurately predict user behaviour, or relationships between different variables. These predictions are used by companies in many ways, for example to make whatever you search for online easier to find. Big Data is also collected offline. For example whenever you swipe a loyalty card at a store that transaction and all of your purchases are recorded, and will likely be used by the store to improve their products and marketing in the future.
 
-"Big Data" is the result of you, and millions of other people, generating data. In this chapter we look at the journey these data points take, how they are used, and why we are interested in it in the first place.
+There are non-commercial uses for Big Data as well. DNA mapping generates enormous amounts of data, and environmental sensors around the world are constantly collecting data about things like temperature, air pressure, or pollution levels. Big Data from sources like these can be used to identify genetic disorders, study cancer cells, predict the weather, or investigate the impacts of climate change.
+
+For data sets this enormous and complex we need specialised methods for storing, processing, analysing, and visualising this information.

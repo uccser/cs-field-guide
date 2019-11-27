@@ -89,13 +89,27 @@ This is where data centres come in.
 
 Data centres are warehouses (often enormous ones) containing many computers that are connected in a network. They are used to store and process large quantities of data. Data centres have become a popular way for organisations to solve the issue of not having enough computing power for the amount of data they collect. Companies such as Google, Amazon, Microsoft, and even Catalyst here in New Zealand offer services where other organisations can rent space in their data centres instead of having to build their own (an expensive endeavour).
 
-{image file-path="img/chapters/google-data-centre1.png" caption="true" alt="Image shows a long row of server racks at a Google data centre in Oklahoma"}
+{image file-path="img/chapters/google-data-centre.png" caption="true" alt="Image shows a long row of server racks at a Google data centre in Oklahoma"}
 
 Server racks in the Google data centre in Oklahoma.
 
 {image end}
 
 These data centres store a mind-boggling amount of information. Just think, every video uploaded to YouTube, every photo on Facebook, every tweet ever written, and every purchase you may have made on Amazon, exists somewhere in one of these data centres (in fact it will exist in several, as there will be multiple backups of it).
+
+{panel type="curiosity"}
+
+# A Data Centre on Punch Cards
+
+In 2013, xkcd creator Randall Munroe tried to answer the question [“If all digital data were stored on punch cards, how big would Google's data warehouse be?”](https://what-if.xkcd.com/63/) and with some clever internet-sleuthing calculated that over a quadrillion cards would be needed. It would be enough to cover all six states of New England in 4.5km of punch cards. And that was all the way back in 2013! Imagine how much bigger that pile would be now!
+
+{image file-path="img/chapters/punchcard-layer-google.png" caption="true" alt="Image shows an illustration of how high the stack of punch cards holding Google's data would be in relation to the city of Boston. The layer of punch cards is more than 10 times higher than the buildings in Boston."}
+
+Image courtesy of [xkcd](https://xkcd.com/).
+
+{image end}
+
+{panel end}
 
 The other issue around storing Big Data is the raw data itself.
 There are two general categories we use to classify raw data: structured or unstructured.
