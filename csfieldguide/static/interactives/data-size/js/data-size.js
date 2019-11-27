@@ -91,7 +91,14 @@ function revealBarChart() {
   var canvas = $('#sizeChart');
   canvas.attr('width', Math.min(1000, 0.8 * $( window ).width()));
   canvas.attr('height', canvas.attr('width') / 2);
-  sizeChartData = [];
+  sizeChartData = {
+    labels: [],
+    datasets: [{
+      label: 'temporary',
+      backgroundColor: '#2a3da0', // Primary CSFG colour
+      data: []
+    }]
+  };
   sizeChart = new CHART.Chart(canvas, {
     type: 'bar',
     data: sizeChartData,
@@ -115,18 +122,22 @@ function revealBarChart() {
       }
     }
   });
-  setTimeout(function() {revealBar(0)}, 1000);
+  console.log('chart up');
+  setTimeout(revealBar, 1000);
 }
 
 /**
  * Recursively reveals bars (and hides respective size) in the sizes chart until there are no more.
  */
 function revealBar(n) {
-  if (n < DATA_SIZES.length) {
+  if (!n) {
+    n = 0;
+  }
+  if (n < Object.keys(DATA_SIZES).length) {
     setTimeout(function() {revealBar(n+1)}, TIMEOUT);
-    var label = DATA_SIZES[n];
+    var label = DATA_SIZES[Object.keys(DATA_SIZES)[n]];
     sizeChartData.labels.push(label);
-    sizeChartData.datasets[0].data.push(DATA_VALUES[Object.keys(DATA_SIZES)[n]]);
+    sizeChartData.datasets[0].data.push(DATA_VALUES[n]);
     sizeChart.update();
   }
 }
