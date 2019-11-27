@@ -23,17 +23,26 @@ $(document).ready(function() {
 });
 
 
+function reset() {
+    bakerySim.numQuestionsAsked = 0;
+    $('#num-qs-asked-text').html(CONFIG.NUM_QS_COUNT_TEXT);
+    $('#background-image').attr('src', bakerySimImages['customer-' + bakerySim.currentCustomer]);
+    $('#customer-answer').text(CONFIG.CUSTOMER_INTRO).removeClass('d-none');
+    $('#dialogue-box').removeClass('d-none');
+    $('#start-asking').removeClass('d-none');
+    $('.table-row').remove();
+}
+
+
 function loadCustomer() {
     if (bakerySim.currentCustomer === 1) {
         $('#starter-info').addClass('d-none');
     } else {
         $('#result-table').addClass('d-none');
         $('#next-customer').addClass('d-none');
+        $('#question-list p').removeClass('d-none');
     }
-    $('#background-image').attr('src', bakerySimImages['customer-' + bakerySim.currentCustomer]);
-    $('#customer-answer').text(CONFIG.CUSTOMER_INTRO).removeClass('d-none');
-    $('#dialogue-box').removeClass('d-none');
-    $('#start-asking').removeClass('d-none');
+    reset();
 }
 
 
@@ -50,8 +59,8 @@ function askQuestion() {
 
     bakerySim.numQuestionsAsked += 1
     $('#num-asked').text(bakerySim.numQuestionsAsked);
-    // remove question so it cannot be asked again
-    $(this).remove();
+    // hide question so it cannot be asked again
+    $(this).addClass('d-none');
 
     if (bakerySim.numQuestionsAsked == 6) {
         $('#question-list').addClass('d-none');
@@ -81,8 +90,8 @@ function checkResult(cakeCreated) {
 
 
 function getCakeCreated() {
-    $('#dialogue-box').remove();
-    $('#time-to-bake').remove();
+    $('#dialogue-box').addClass('d-none');
+    $('#time-to-bake').addClass('d-none');
     var cakeCreated = {};
     // loop through each option and get selected value
     for (i=0; i < CONFIG.FIELD_NAMES.length; i++) {
@@ -173,7 +182,7 @@ function createResultTable(cakeWanted, cakeCreated) {
         fieldDictionary = CONFIG.FIELD_OPTIONS[i];
         title = fieldDictionary.title.slice(0, -1); // remove ':' from the title
         field = fieldDictionary.name;
-        var $tbody = $('<tbody>');
+        var $tbody = $('<tbody>').addClass('table-row');
         var $tr = $('<tr>');
         var $th = $('<th>').attr('scope', 'row').text(title); // already translated??
         var $tdWanted = $('<td>').text(cakeWanted[field]); // already translated??
@@ -182,7 +191,19 @@ function createResultTable(cakeWanted, cakeCreated) {
         $tbody.append($tr);
         $tr.append($th, $tdWanted, $tdCreated);
         // if correct add green background, if incorrect add red background
-        if (cakeWanted[field] === cakeCreated[field]) {
+        // if is an array (e.g decorations) calculate set differences
+        if ($.isArray(cakeWanted[field])) {
+            var cakeWantedSet = new Set(cakeWanted[field]);
+            var cakeCreatedSet = new Set(cakeCreated[field]);
+            var inWantedNotCreated = setDifference(cakeWantedSet, cakeCreatedSet);
+            var inCreatedNotWanted = setDifference(cakeCreatedSet, cakeWantedSet);
+            if (inWantedNotCreated.size == 0 && inCreatedNotWanted.size == 0) {
+                $tr.addClass('correct');
+            } else {
+                $tr.addClass('incorrect');
+            }
+        }
+        else if (cakeWanted[field] === cakeCreated[field]) {
             $tr.addClass('correct');
         } else {
             $tr.addClass('incorrect');
@@ -190,3 +211,12 @@ function createResultTable(cakeWanted, cakeCreated) {
     }
     bakerySim.currentCustomer += 1; // should put this somewhere else
 }
+
+
+/** Calulate a\b 
+ *  E.g if a = {1,2,3,4} and b = {5,4,3,2} this function would return {1} */
+function setDifference(a, b) {
+    var aMinusB = new Set([...a].filter(x => !b.has(x)));
+    return aMinusB;
+  }
+  

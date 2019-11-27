@@ -1,4 +1,5 @@
 const CUSTOMER_INTRO = gettext("Good morning! I'd like to order a cake.");
+const NUM_QS_COUNT_TEXT = gettext("Questions asked: <span id='num-asked'>0</span>");
 const QUESTIONS_MAX_REACHED = gettext("You have asked the maximum of 6 questions. Lets get baking!");
 const MODAL_TITLE = gettext("Make your cake using the options below. You may select multiple decorations.");
 const QUESTIONS = {
@@ -171,6 +172,7 @@ const FIELD_OPTIONS = [
 
 module.exports = {
     CUSTOMER_INTRO,
+    NUM_QS_COUNT_TEXT,
     QUESTIONS_MAX_REACHED,
     MODAL_TITLE,
     QUESTIONS,
