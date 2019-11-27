@@ -21,6 +21,16 @@ const DATA_VALUES = [ // Number of bytes in each value in order
   1000000000000000,
   1000000000000000000
 ];
+const DATA_COLOURS = [
+  '#8181ff',
+  '#ff9a54',
+  '#54ff9a',
+  '#ac88df',
+  '#54deff',
+  '#ff5454',
+  '#80ff25',
+  '#df88ce'
+]
 
 const TIMEOUT = 2000;
 
@@ -95,7 +105,7 @@ function revealBarChart() {
     labels: [],
     datasets: [{
       label: 'temporary',
-      backgroundColor: '#2a3da0', // Primary CSFG colour
+      backgroundColor: [],
       data: []
     }]
   };
@@ -122,7 +132,6 @@ function revealBarChart() {
       }
     }
   });
-  console.log('chart up');
   setTimeout(revealBar, 1000);
 }
 
@@ -135,9 +144,10 @@ function revealBar(n) {
   }
   if (n < Object.keys(DATA_SIZES).length) {
     setTimeout(function() {revealBar(n+1)}, TIMEOUT);
-    var label = DATA_SIZES[Object.keys(DATA_SIZES)[n]];
-    sizeChartData.labels.push(label);
+    $('#' + Object.keys(DATA_SIZES)[n]).fadeOut('slow');
+    sizeChartData.labels.push(DATA_SIZES[Object.keys(DATA_SIZES)[n]]);
     sizeChartData.datasets[0].data.push(DATA_VALUES[n]);
+    sizeChartData.datasets[0].backgroundColor.push(DATA_COLOURS[n]);
     sizeChart.update();
   }
 }
@@ -146,7 +156,7 @@ function revealBar(n) {
  * Shuffles the order of the size boxes
  */
 function shuffleBoxes() {
-  var newOrder = Object.keys(DATA_SIZES)//shuffle(Object.keys(DATA_SIZES));
+  var newOrder = shuffle(Object.keys(DATA_SIZES));
   var boxes = $('.dashed-box');
   for (var i=0; i < newOrder.length; i++) {
     $('#' + newOrder[i]).appendTo(boxes.eq(i));
