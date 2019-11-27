@@ -4,8 +4,133 @@
 {% load static %}
 
 {% block html %}
-  <div class="container-fluid my-3 text-center">
-    <h1 class="col-12">{% trans "Data Size" %}</h1>
+  <div class="container-fluid my-3">
+    <h1 class="col-12 text-center">{% trans "Data Size" %}</h1>
+    <h4 id="description" class="col-12 text-center">{% trans "Arrange the units by size, smallest to largest." %}</h4>
+    <div id="number-line" class="container">
+      <div id="sorted-boxes" class="d-flex justify-content-between mb-3">
+
+        <div class="dashed-box square" data-size="Bit">
+          <div id="Bit" class="size-box">
+            <img class="box-image" src="{% static 'img/interactives/colourful-box-images/square1-256px.png' %}">
+            <div class="box-text">
+              <div class="col-12 text-center unit">
+                <!-- SI units should be non-language-specific -->
+                b
+              </div>
+              <div class="col-12 text-center name">
+                {% trans 'Bit' %}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashed-box square" data-size="Byte">
+          <div id="Byte" class="size-box">
+            <img class="box-image" src="{% static 'img/interactives/colourful-box-images/square2-256px.png' %}">
+            <div class="box-text">
+              <div class="col-12 text-center unit">
+                B
+              </div>
+              <div class="col-12 text-center name">
+                {% trans 'Byte' %}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashed-box square" data-size="Kilobyte">
+          <div id="Kilobyte" class="size-box">
+            <img class="box-image" src="{% static 'img/interactives/colourful-box-images/square3-256px.png' %}">
+            <div class="box-text">
+              <div class="col-12 text-center unit">
+                KB
+              </div>
+              <div class="col-12 text-center name">
+                {% trans 'Kilobyte' %}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashed-box square" data-size="Megabyte">
+          <div id="Megabyte" class="size-box">
+            <img class="box-image" src="{% static 'img/interactives/colourful-box-images/square4-256px.png' %}">
+            <div class="box-text">
+              <div class="col-12 text-center unit">
+                MB
+              </div>
+              <div class="col-12 text-center name">
+                {% trans 'Megabyte' %}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashed-box square" data-size="Gigabyte">
+          <div id="Gigabyte" class="size-box">
+            <img class="box-image" src="{% static 'img/interactives/colourful-box-images/square5-256px.png' %}">
+            <div class="box-text">
+              <div class="col-12 text-center unit">
+                GB
+              </div>
+              <div class="col-12 text-center name">
+                {% trans 'Gigabyte' %}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashed-box square" data-size="Terabyte">
+          <div id="Terabyte" class="size-box">
+            <img class="box-image" src="{% static 'img/interactives/colourful-box-images/square6-256px.png' %}">
+            <div class="box-text">
+              <div class="col-12 text-center unit">
+                TB
+              </div>
+              <div class="col-12 text-center name">
+                {% trans 'Terabyte' %}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashed-box square" data-size="Petabyte">
+          <div id="Petabyte" class="size-box">
+            <img class="box-image" src="{% static 'img/interactives/colourful-box-images/square7-256px.png' %}">
+            <div class="box-text">
+              <div class="col-12 text-center unit">
+                PB
+              </div>
+              <div class="col-12 text-center name">
+                {% trans 'Petabyte' %}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashed-box square" data-size="Exabyte">
+          <div id="Exabyte" class="size-box">
+            <img class="box-image" src="{% static 'img/interactives/colourful-box-images/square8-256px.png' %}">
+            <div class="box-text">
+              <div class="col-12 text-center unit">
+                EB
+              </div>
+              <div class="col-12 text-center name">
+                {% trans 'Exabyte' %}
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    <div class="col-12 text-center">
+      <button id="submit-button" class="btn btn-primary">{% trans 'Submit' %}</button>
+      <button id="continue-button" class="btn btn-primary d-none">{% trans 'Continue' %}</button>
+    </div>
+    <div id="status-text" class="col-12 text-center"></div>
+    <canvas id="sizeChart"></canvas>
   </div>
 {% endblock html %}
 

@@ -2,3 +2,83 @@
 @import "node_modules/bootstrap/scss/functions";
 @import "node_modules/bootstrap/scss/variables";
 @import "node_modules/bootstrap/scss/mixins";
+
+.dashed-box {
+  background-color: #ffffff;
+  border: 2px dashed #777777;
+}
+
+.square {
+  margin: 0.2em;
+  $box-size: 30px;
+  width: $box-size;
+  height: $box-size;
+  max-width: $box-size;
+  @each $size, $width in $container-max-widths {
+    @include media-breakpoint-only($size) {
+      $box-size: $width / 10;
+      width: $box-size;
+      height: $box-size;
+      max-width: $box-size;
+    }
+  }
+}
+
+.size-box {
+  touch-action: none;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  display: none;
+  position: relative;
+  &:last-child {
+    display: block;
+  }
+  cursor: grab;
+  &.gu-mirror {
+    cursor: grabbing;
+  }
+}
+
+.box-image {
+  height: 100%;
+  width: 100%;
+  padding: 2px;
+  overflow: hidden;
+  user-select: none;
+  position: absolute;
+  z-index: 1;
+}
+
+.box-text {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  user-select: none;
+  position: absolute;
+  z-index: 2;
+}
+
+.unit {
+  padding: 0px;
+  font-size: 3rem;
+}
+
+.name {
+  position: absolute;
+  bottom: 3px;
+}
+
+.txt-red {
+  color: red;
+}
+
+.txt-grn {
+  color: green;
+}
+
+#sizeChart {
+  position: relative;
+  margin: auto;
+  max-width: 1000px;
+}
