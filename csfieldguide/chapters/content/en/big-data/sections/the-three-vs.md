@@ -37,15 +37,3 @@ And YouTube needs to process this data as fast as it is uploaded to keep its ser
 Variety refers to the many different types of data (plain text, images, videos, audio, and many more types) that are generated and stored.
 Big Data almost always uses more than one data type, and this contributes to the complexity of it.
 Different data types have different attributes and therefore the data doesn't simply fit into rows and columns of a spreadsheet or database (e.g. the dimensions of an image will not fit into the same field as the length of an audio clip).
-
-## Using Big Data
-
-Now that we understand what big data is, let’s look at how we can use it. There are several stages Big Data goes through, beginning with being captured going through to actually being applied to a real life situation. These are:
-
-- Capture
-- Store
-- Analyse 
-- Visualise
-- Application
-
-In the next sections we will take a look at each of these stages.
