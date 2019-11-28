@@ -99,7 +99,7 @@ function revealBarChart() {
     sizeChart.destroy();
   }
   var canvas = $('#sizeChart');
-  canvas.attr('width', Math.min(1000, 0.8 * $( window ).width()));
+  canvas.attr('width', Math.min(1000, 0.8 * $(window).width()));
   canvas.attr('height', canvas.attr('width') / 2);
   sizeChartData = {
     labels: [],
