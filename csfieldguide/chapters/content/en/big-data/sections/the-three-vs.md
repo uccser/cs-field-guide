@@ -8,10 +8,10 @@ Big Data has three main qualities: Volume, Velocity and Variety (often referred 
 
 Volume refers to the quantity of data.
 Your phone might have about 64GB of storage space and it takes a long time for the typical smartphone user to run out of space.
-A laptop might have 256GB of storage space, and some users will never get close to using all that space.
-It wasn't long ago that running out of space was a common problem for users, but advances in engineering of transistor density have continued at a steady pace: doubling the capacity of a single computer's integrated circuit every two years ([Moore's Law](https://en.wikipedia.org/wiki/Moore%27s_law)), so if you're reading this several years after it was written 256GB might sound quite small!
+A laptop might have 1TB of storage space, and some users will never get close to using all that space.
+It wasn't long ago that running out of space was a common problem for users, but advances in engineering of transistor density have continued at a steady pace: doubling the capacity of a single computer's integrated circuit every two years ([Moore's Law](https://en.wikipedia.org/wiki/Moore%27s_law)), so if you're reading this several years after it was written 1TB might sound quite small!
 
-So how big does data have to be to be considered big? Well, it usually starts in the terabytes, then petabytes, then exabytes, and so on… Big Data is so big that simply storing it is an issue in itself; a single computer cannot store the amount of data on its own and multiple computers must be used.
+So how big does data have to be to be considered big? Well, it usually starts in the terabytes, then petabytes, then exabytes, and so on… Big Data is so big that simply storing it is an issue in itself; a single computer cannot store the amount of data on its own, and multiple computers must be used.
 
 ## Velocity
 
@@ -26,11 +26,6 @@ In September 2018, Facebook had an average of 1.49 billion active users each day
 Some of those users would have posted photos, liked posts, played games, sent messages, shared life events, etc.
 All of this is generating data, which is recorded as it happens, and needs to be processed just as quickly as it is created in order for Facebook to see trends. Imagine all of a sudden there was no activity coming from Australasia.
 That is likely to indicate an issue with their system in this part of the world, and Facebook needs to know about that immediately in order to diagnose and fix the problem.
-
-One of the most extreme examples of data velocity is YouTube uploads.
-As of October 2019, over [8 hours](https://everysecond.io/youtube) of video content is uploaded to YouTube every second!
-That means if you wanted to watch every video that was uploaded today it would take you almost 2000 years!
-And YouTube needs to process this data as fast as it is uploaded to keep its services running.
 
 ## Variety
 

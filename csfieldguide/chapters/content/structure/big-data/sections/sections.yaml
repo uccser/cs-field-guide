@@ -4,9 +4,11 @@ the-three-vs:
   section-number: 2
 collecting-big-data:
   section-number: 3
-using-big-data:
+analysis:
   section-number: 4
-applications:
+visualisation:
   section-number: 5
-the-whole-story:
+applications:
   section-number: 6
+the-whole-story:
+  section-number: 7
