@@ -210,6 +210,7 @@ function createResultTable(cakeWanted, cakeCreated) {
         }
     }
     bakerySim.currentCustomer += 1; // should put this somewhere else
+    // if customer num == 4 (3 is the last customer) show end button not next customer button
 }
 
 
