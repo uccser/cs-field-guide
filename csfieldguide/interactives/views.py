@@ -101,6 +101,7 @@ def thumbnail_json(request, **kwargs):
                         language_code,
                         url,
                         get_thumbnail_static_path_for_interactive(interactive),
+                        interactive.is_interactive,
                     ]
                 )
     return JsonResponse(data, safe=False)

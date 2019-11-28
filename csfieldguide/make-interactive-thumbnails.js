@@ -25,13 +25,16 @@ function generateThumbnails(json_data) {
       var slug = data[i][0],
         language = data[i][1],
         url = BASE_URL + data[i][2] + INTERACTIVE_PAGE_PARAMS,
-        dest = data[i][3];
-      console.log('Creating screenshot for interactive ' + slug + ' in language ' + language);
-      await page.goto(url);
-      if (!fs.existsSync(path.dirname(dest))) {
-        fs.mkdirSync(path.dirname(dest));
+        dest = data[i][3],
+        isInteractive = data[i][4];
+      if (isInteractive) {
+        console.log('Creating [' + language + '] screenshot for interactive ' + slug);
+        await page.goto(url);
+        if (!fs.existsSync(path.dirname(dest))) {
+          fs.mkdirSync(path.dirname(dest));
+        }
+        await page.screenshot({ path: dest, omitBackground: true });
       }
-      await page.screenshot({ path: dest, omitBackground: true });
     }
     await browser.close();
   });
