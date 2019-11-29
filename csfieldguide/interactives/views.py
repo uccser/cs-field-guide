@@ -102,6 +102,7 @@ def thumbnail_json(request, **kwargs):
                         url,
                         get_thumbnail_static_path_for_interactive(interactive),
                         interactive.is_interactive,
+                        interactive.use_large_thumbnail
                     ]
                 )
     return JsonResponse(data, safe=False)
