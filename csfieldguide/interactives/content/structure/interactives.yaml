@@ -260,11 +260,11 @@ packet-attack:
   languages:
     en: interactives/packet-attack.html
   is_interactive: true
+  use_large_thumbnail: true
 packet-attack-level-creator:
   languages:
     en: interactives/packet-attack-level-creator.html
   is_interactive: true
-  use_large_thumbnail: true
 parity:
   languages:
     en: interactives/parity.html

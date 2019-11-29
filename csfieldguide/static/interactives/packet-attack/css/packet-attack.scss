@@ -8,7 +8,7 @@
     text-align: center;
 }
 
-@media screen and (min-width: 820.1px) and (min-height: 650.1px) {
+@media screen and (min-width: 820.1px) and (min-height: 550.1px) {
     .warning {
         display: none;
     }
@@ -24,7 +24,7 @@
     }
 }
 
-@media screen and (max-height: 650px) {
+@media screen and (max-height: 550px) {
     .game-canvas {
         display: none;
     }
