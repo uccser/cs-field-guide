@@ -33,6 +33,7 @@ class ThumbnailJSONViewTest(BaseTestWithDB):
                     "en",
                     "/en/interactives/centered/interactive-1/",
                     "build/img/interactives/thumbnails/en/interactive-1.png",
+                    True,
                     False
                 ]
             ]
@@ -53,6 +54,7 @@ class ThumbnailJSONViewTest(BaseTestWithDB):
                     "en",
                     "/en/interactives/centered/interactive-1/",
                     "build/img/interactives/thumbnails/en/interactive-1.png",
+                    True,
                     False
                 ],
                 [
@@ -60,6 +62,7 @@ class ThumbnailJSONViewTest(BaseTestWithDB):
                     "en",
                     "/en/interactives/centered/interactive-2/",
                     "build/img/interactives/thumbnails/en/interactive-2.png",
+                    True,
                     False
                 ],
                 [
@@ -67,6 +70,7 @@ class ThumbnailJSONViewTest(BaseTestWithDB):
                     "en",
                     "/en/interactives/centered/interactive-3/",
                     "build/img/interactives/thumbnails/en/interactive-3.png",
+                    True,
                     False
                 ],
             ]
@@ -94,6 +98,7 @@ class ThumbnailJSONViewTest(BaseTestWithDB):
                     "de",
                     "/de/interactives/centered/interactive-1/",
                     "build/img/interactives/thumbnails/de/interactive-1.png",
+                    True,
                     False
                 ],
                 [
@@ -101,6 +106,7 @@ class ThumbnailJSONViewTest(BaseTestWithDB):
                     "en",
                     "/en/interactives/centered/interactive-1/",
                     "build/img/interactives/thumbnails/en/interactive-1.png",
+                    True,
                     False
                 ],
                 [
@@ -108,6 +114,7 @@ class ThumbnailJSONViewTest(BaseTestWithDB):
                     "fr",
                     "/fr/interactives/centered/interactive-1/",
                     "build/img/interactives/thumbnails/fr/interactive-1.png",
+                    True,
                     False
                 ],
             ]
@@ -128,6 +135,7 @@ class ThumbnailJSONViewTest(BaseTestWithDB):
                     "de",
                     "/de/interactives/centered/interactive-1/",
                     "build/img/interactives/thumbnails/de/interactive-1.png",
+                    True,
                     False
                 ],
                 [
@@ -135,6 +143,7 @@ class ThumbnailJSONViewTest(BaseTestWithDB):
                     "de",
                     "/de/interactives/centered/interactive-2/",
                     "build/img/interactives/thumbnails/de/interactive-2.png",
+                    True,
                     False
                 ],
                 [
@@ -142,6 +151,7 @@ class ThumbnailJSONViewTest(BaseTestWithDB):
                     "de",
                     "/de/interactives/centered/interactive-3/",
                     "build/img/interactives/thumbnails/de/interactive-3.png",
+                    True,
                     False
                 ],
                 [
@@ -149,6 +159,7 @@ class ThumbnailJSONViewTest(BaseTestWithDB):
                     "en",
                     "/en/interactives/centered/interactive-1/",
                     "build/img/interactives/thumbnails/en/interactive-1.png",
+                    True,
                     False
                 ],
                 [
@@ -156,6 +167,7 @@ class ThumbnailJSONViewTest(BaseTestWithDB):
                     "en",
                     "/en/interactives/centered/interactive-2/",
                     "build/img/interactives/thumbnails/en/interactive-2.png",
+                    True,
                     False
                 ],
                 [
@@ -163,6 +175,7 @@ class ThumbnailJSONViewTest(BaseTestWithDB):
                     "en",
                     "/en/interactives/centered/interactive-3/",
                     "build/img/interactives/thumbnails/en/interactive-3.png",
+                    True,
                     False
                 ],
                 [
@@ -170,6 +183,7 @@ class ThumbnailJSONViewTest(BaseTestWithDB):
                     "fr",
                     "/fr/interactives/centered/interactive-1/",
                     "build/img/interactives/thumbnails/fr/interactive-1.png",
+                    True,
                     False
                 ],
                 [
@@ -177,6 +191,7 @@ class ThumbnailJSONViewTest(BaseTestWithDB):
                     "fr",
                     "/fr/interactives/centered/interactive-2/",
                     "build/img/interactives/thumbnails/fr/interactive-2.png",
+                    True,
                     False
                 ],
                 [
@@ -184,6 +199,7 @@ class ThumbnailJSONViewTest(BaseTestWithDB):
                     "fr",
                     "/fr/interactives/centered/interactive-3/",
                     "build/img/interactives/thumbnails/fr/interactive-3.png",
+                    True,
                     False
                 ],
             ]
