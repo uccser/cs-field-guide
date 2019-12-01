@@ -32,7 +32,8 @@ class ThumbnailJSONViewTest(BaseTestWithDB):
                     "interactive-1",
                     "en",
                     "/en/interactives/centered/interactive-1/",
-                    "build/img/interactives/thumbnails/en/interactive-1.png"
+                    "build/img/interactives/thumbnails/en/interactive-1.png",
+                    False
                 ]
             ]
         )
@@ -51,19 +52,22 @@ class ThumbnailJSONViewTest(BaseTestWithDB):
                     "interactive-1",
                     "en",
                     "/en/interactives/centered/interactive-1/",
-                    "build/img/interactives/thumbnails/en/interactive-1.png"
+                    "build/img/interactives/thumbnails/en/interactive-1.png",
+                    False
                 ],
                 [
                     "interactive-2",
                     "en",
                     "/en/interactives/centered/interactive-2/",
-                    "build/img/interactives/thumbnails/en/interactive-2.png"
+                    "build/img/interactives/thumbnails/en/interactive-2.png",
+                    False
                 ],
                 [
                     "interactive-3",
                     "en",
                     "/en/interactives/centered/interactive-3/",
-                    "build/img/interactives/thumbnails/en/interactive-3.png"
+                    "build/img/interactives/thumbnails/en/interactive-3.png",
+                    False
                 ],
             ]
         )
@@ -89,19 +93,22 @@ class ThumbnailJSONViewTest(BaseTestWithDB):
                     "interactive-1",
                     "de",
                     "/de/interactives/centered/interactive-1/",
-                    "build/img/interactives/thumbnails/de/interactive-1.png"
+                    "build/img/interactives/thumbnails/de/interactive-1.png",
+                    False
                 ],
                 [
                     "interactive-1",
                     "en",
                     "/en/interactives/centered/interactive-1/",
-                    "build/img/interactives/thumbnails/en/interactive-1.png"
+                    "build/img/interactives/thumbnails/en/interactive-1.png",
+                    False
                 ],
                 [
                     "interactive-1",
                     "fr",
                     "/fr/interactives/centered/interactive-1/",
-                    "build/img/interactives/thumbnails/fr/interactive-1.png"
+                    "build/img/interactives/thumbnails/fr/interactive-1.png",
+                    False
                 ],
             ]
         )
@@ -120,55 +127,64 @@ class ThumbnailJSONViewTest(BaseTestWithDB):
                     "interactive-1",
                     "de",
                     "/de/interactives/centered/interactive-1/",
-                    "build/img/interactives/thumbnails/de/interactive-1.png"
+                    "build/img/interactives/thumbnails/de/interactive-1.png",
+                    False
                 ],
                 [
                     "interactive-2",
                     "de",
                     "/de/interactives/centered/interactive-2/",
-                    "build/img/interactives/thumbnails/de/interactive-2.png"
+                    "build/img/interactives/thumbnails/de/interactive-2.png",
+                    False
                 ],
                 [
                     "interactive-3",
                     "de",
                     "/de/interactives/centered/interactive-3/",
-                    "build/img/interactives/thumbnails/de/interactive-3.png"
+                    "build/img/interactives/thumbnails/de/interactive-3.png",
+                    False
                 ],
                 [
                     "interactive-1",
                     "en",
                     "/en/interactives/centered/interactive-1/",
-                    "build/img/interactives/thumbnails/en/interactive-1.png"
+                    "build/img/interactives/thumbnails/en/interactive-1.png",
+                    False
                 ],
                 [
                     "interactive-2",
                     "en",
                     "/en/interactives/centered/interactive-2/",
-                    "build/img/interactives/thumbnails/en/interactive-2.png"
+                    "build/img/interactives/thumbnails/en/interactive-2.png",
+                    False
                 ],
                 [
                     "interactive-3",
                     "en",
                     "/en/interactives/centered/interactive-3/",
-                    "build/img/interactives/thumbnails/en/interactive-3.png"
+                    "build/img/interactives/thumbnails/en/interactive-3.png",
+                    False
                 ],
                 [
                     "interactive-1",
                     "fr",
                     "/fr/interactives/centered/interactive-1/",
-                    "build/img/interactives/thumbnails/fr/interactive-1.png"
+                    "build/img/interactives/thumbnails/fr/interactive-1.png",
+                    False
                 ],
                 [
                     "interactive-2",
                     "fr",
                     "/fr/interactives/centered/interactive-2/",
-                    "build/img/interactives/thumbnails/fr/interactive-2.png"
+                    "build/img/interactives/thumbnails/fr/interactive-2.png",
+                    False
                 ],
                 [
                     "interactive-3",
                     "fr",
                     "/fr/interactives/centered/interactive-3/",
-                    "build/img/interactives/thumbnails/fr/interactive-3.png"
+                    "build/img/interactives/thumbnails/fr/interactive-3.png",
+                    False
                 ],
             ]
         )
