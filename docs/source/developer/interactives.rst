@@ -190,6 +190,13 @@ Interactive Configuration Files
       If the ``is_interactive`` field is set to ``false``, it is not displayed in the interactives appendix.
       It means the user cannot interact with it to the extent where it would be useful to have as a standalone feature.
 
+  - The dictionary of interactive data can also include:
+
+    - ``use_large_thumbnail:`` An optional field that should only be included if set to ``true``.
+      If the ``use_large_thumbnail`` field is set to ``true``, the thumbnail generator will use a window 75% larger than normal to generate the thumbnail.
+      This is useful for interactives that cannot be properly displayed at the normal window size.
+      However, this feature should be used sparingly and avoided if possible.
+
 A complete interactive structure file may look like the following:
 
 .. code-block:: yaml
@@ -238,6 +245,6 @@ Uninteractives
 Uninteractives follow the exact same structure as interactives, the biggest difference is that they are not designed to be interacted with.
 They are most commonly used as a replacement for images with text we want translated.
 Uninteractives are distinguished from interactives by setting the ``is_interactive:`` attribute to ``false`` in the ``interactives.yaml`` configuration file.
-Uninteractives are not displayed in the interactives appendix.
+Uninteractives are not displayed in the interactives appendix, and no thumbnails are generated for them.
 
 .. _Bootstrap: https://getbootstrap.com/docs/4.1/getting-started/introduction/
