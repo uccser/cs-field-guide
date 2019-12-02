@@ -1,38 +1,38 @@
 const DRAGULA = require('dragula');
 const CHART = require('chart.js');
 
-const DATA_SIZES = { // HTML size datas in order
-  'Bit'     : gettext("Bit"),
-  'Byte'    : gettext("Byte"),
-  'Kilobyte': gettext("Kilobyte"),
-  'Megabyte': gettext("Megabyte"),
-  'Gigabyte': gettext("Gigabyte"),
-  'Terabyte': gettext("Terabyte"),
-  'Petabyte': gettext("Petabyte"),
-  'Exabyte' : gettext("Exabyte")
+const DATAS = { // Data points ordered by size.
+  //          Name (translated)               , size (bytes)           , colour (for graph, reflects colour of box)
+  'Bit'     : [gettext("1 Bit")               , 0.125                  , '#8181ff'],
+  'Byte'    : [gettext("1 Byte")              , 1                      , '#ff9a54'],
+  'Hex'     : [gettext("Hexadecimal digit")   , 2                      , null     ],
+  'Kilobyte': [gettext("1 Kilobyte")          , 1    * Math.pow(10, 3) , '#54ff9a'],
+  'Inter'   : [gettext("This interactive")    , 4.5  * Math.pow(10, 3) , null     ],
+  'Megabyte': [gettext("1 Megabyte")          , 1    * Math.pow(10, 6) , '#ac88df'],
+  'First HD': [gettext("1st HDD for home PCs"), 5    * Math.pow(10, 6) , null     ],
+  'CSFG'    : [gettext("The CSFG")            , 6.05 * Math.pow(10, 8) , null     ],
+  'Gigabyte': [gettext("1 Gigabyte")          , 1    * Math.pow(10, 9) , '#54deff'],
+  'Terabyte': [gettext("1 Terabyte")          , 1    * Math.pow(10, 12), '#ff5454'],
+  'SSD'     : [gettext("Largest SSD")         , 1    * Math.pow(10, 14), null     ],
+  'Petabyte': [gettext("1 Petabyte")          , 1    * Math.pow(10, 15), '#80ff25'],
+  'GoogEar' : [gettext("Google Earth (2016)") , 3    * Math.pow(10, 15), null     ],
+  'Exabyte' : [gettext("1 Exabyte")           , 1    * Math.pow(10, 18), '#df88ce'],
+  'Zetta'   : [gettext("1 Zettabyte")         , 1    * Math.pow(10, 21), null     ],
+  'Internet': [gettext("The internet (2020)") , 4    * Math.pow(10, 22), null     ],
 };
-const DATA_VALUES = [ // Number of bytes in each value in order
-  0.125,
-  1,
-  1000,
-  1000000,
-  1000000000,
-  1000000000000,
-  1000000000000000,
-  1000000000000000000
+const HTML_BOXES = [
+  'Bit',
+  'Byte',
+  'Kilobyte',
+  'Megabyte',
+  'Gigabyte',
+  'Terabyte',
+  'Petabyte',
+  'Exabyte',
 ];
-const DATA_COLOURS = [
-  '#8181ff',
-  '#ff9a54',
-  '#54ff9a',
-  '#ac88df',
-  '#54deff',
-  '#ff5454',
-  '#80ff25',
-  '#df88ce'
-]
 
-const TIMEOUT = 2000;
+const TIMEOUT = 1500;
+const DEFAULT_COLOUR = '#fffd81';
 
 const TXT_CORRECT_ORDER = gettext("The boxes are in order!");
 const TXT_INCORRECT_ORDER = gettext("The boxes are not in order! Try again");
@@ -104,7 +104,7 @@ function revealBarChart() {
   sizeChartData = {
     labels: [],
     datasets: [{
-      label: 'temporary',
+      label: gettext("Number of Bytes"),
       backgroundColor: [],
       data: []
     }]
@@ -119,7 +119,7 @@ function revealBarChart() {
       },
       title: {
         display: true,
-        text: 'TEMPRelative sizes'
+        text: gettext("Estimated size of various groups of data (Bytes)")
       },
       scales: {
         yAxes: [{
@@ -136,18 +136,35 @@ function revealBarChart() {
 }
 
 /**
- * Recursively reveals bars (and hides respective size) in the sizes chart until there are no more.
+ * Recursively reveals bars (and hides respective box) in the sizes chart until there are no more.
+ * If there are more than 6 values, hides the smallest one
  */
 function revealBar(n) {
   if (!n) {
     n = 0;
   }
-  if (n < Object.keys(DATA_SIZES).length) {
+  if (n < Object.keys(DATAS).length) {
     setTimeout(function() {revealBar(n+1)}, TIMEOUT);
-    $('#' + Object.keys(DATA_SIZES)[n]).fadeOut('slow');
-    sizeChartData.labels.push(DATA_SIZES[Object.keys(DATA_SIZES)[n]]);
-    sizeChartData.datasets[0].data.push(DATA_VALUES[n]);
-    sizeChartData.datasets[0].backgroundColor.push(DATA_COLOURS[n]);
+    var maxLength = 6;
+    var key = Object.keys(DATAS)[n];
+    var object = DATAS[key];
+    var name = object[0],
+        size = object[1],
+        colour = object[2];
+    if (HTML_BOXES.includes(key)) {
+      $('#' + key).fadeOut('slow');
+    }
+    sizeChartData.labels.push(name);
+    sizeChartData.datasets[0].data.push(size);
+    if (colour === null) {
+      colour = DEFAULT_COLOUR;
+    }
+    sizeChartData.datasets[0].backgroundColor.push(colour);
+    if (sizeChartData.datasets[0].data.length > maxLength) {
+      sizeChartData.datasets[0].data.shift();
+      sizeChartData.datasets[0].backgroundColor.shift();
+      sizeChartData.labels.shift();
+    }
     sizeChart.update();
   }
 }
@@ -156,7 +173,7 @@ function revealBar(n) {
  * Shuffles the order of the size boxes
  */
 function shuffleBoxes() {
-  var newOrder = shuffle(Object.keys(DATA_SIZES));
+  var newOrder = shuffle(HTML_BOXES);
   var boxes = $('.dashed-box');
   for (var i=0; i < newOrder.length; i++) {
     $('#' + newOrder[i]).appendTo(boxes.eq(i));
