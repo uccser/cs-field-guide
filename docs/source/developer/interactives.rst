@@ -201,21 +201,21 @@ A complete interactive structure file may look like the following:
 
 .. code-block:: yaml
 
-    colour-matcher:
+    number-memory:
       languages:
-        en: interactives/colour-matcher.html
+        en: interactives/number-memory.html
       is_interactive: true
-    compression-comparer:
+    off-by-one:
       languages:
-        en: interactives/compression-comparer.html
-        de: interactives/compression-comparer.html
-      is_interactive: true
-    confused-buttons:
-      languages:
-        en: interactives/confused-buttons.html
-        de: interactives/confused-buttons.html
-        es: interactives/confused-buttons.html
+        en: interactives/off-by-one.html
+        de: interactives/off-by-one.html
+        es: interactives/off-by-one.html
       is_interactive: false
+    packet-attack:
+      languages:
+        en: interactives/packet-attack.html
+      is_interactive: true
+      use_large_thumbnail: true
 
 Every interactive must also have a YAML file within each locale containing the names of the interactives, in the language for that particular locale.
 
@@ -230,12 +230,12 @@ The translation YAML file:
 
   .. code-block:: yaml
 
-    colour-matcher:
-      name: Colour Matcher
-    compression-comparer:
-      name: Compression Comparer
-    confused-buttons:
-      name: Confused Buttons
+    number-memory:
+      name: Number Memory
+    off-by-one:
+      name: Off By One
+    packet-attack:
+      name: Packet Attack
 
 .. _uninteractives:
 
