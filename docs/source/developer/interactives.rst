@@ -180,7 +180,7 @@ Interactive Configuration Files
 
 - **Required Fields:**
 
-  - ``interactives:`` A dictionary of all interactive data, where each key is a slug for an interacive. 
+  - A dictionary of all interactive data, where each key is a slug for an interactive. 
 
   - The dictionary of interactive data must include:
 
