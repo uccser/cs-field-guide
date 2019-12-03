@@ -19,14 +19,14 @@ Whoosh==2.7.4
 django-widget-tweaks==1.4.5
 
 # XML Parsing
-lxml==4.4.1
+lxml==4.4.2
 cssselect==1.1.0
 
 # YAML Loading
 PyYAML==5.2
 
 # I18n
-django-modeltranslation==0.13.4
+django-modeltranslation==0.14
 uniseg==0.7.1
 python-bidi==0.4.2
 django-bidi-utils==1.0
