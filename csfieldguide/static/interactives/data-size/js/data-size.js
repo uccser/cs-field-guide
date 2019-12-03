@@ -1,24 +1,32 @@
 const DRAGULA = require('dragula');
 const CHART = require('chart.js');
 
+const KILO  = Math.pow(10, 3),
+      MEGA  = Math.pow(10, 6),
+      GIGA  = Math.pow(10, 9),
+      TERA  = Math.pow(10, 12),
+      PETA  = Math.pow(10, 15),
+      EXA   = Math.pow(10, 18),
+      ZETTA = Math.pow(10, 21);
+
 const DATAS = { // Data points ordered by size.
-  //          Name (translated)               , size (bytes)           , colour (for graph, reflects colour of box)
-  'Bit'     : [gettext("1 Bit")               , 0.125                  , '#8181ff'],
-  'Hex'     : [gettext("Hexadecimal digit")   , 0.5                    , null     ],
-  'Byte'    : [gettext("1 Byte")              , 1                      , '#ff9a54'],
-  'Kilobyte': [gettext("1 Kilobyte")          , 1    * Math.pow(10, 3) , '#54ff9a'],
-  'Inter'   : [gettext("This interactive")    , 4.5  * Math.pow(10, 3) , null     ],
-  'Megabyte': [gettext("1 Megabyte")          , 1    * Math.pow(10, 6) , '#ac88df'],
-  'First HD': [gettext("1st HDD for home PCs"), 5    * Math.pow(10, 6) , null     ],
-  'CSFG'    : [gettext("The CSFG")            , 6.05 * Math.pow(10, 8) , null     ],
-  'Gigabyte': [gettext("1 Gigabyte")          , 1    * Math.pow(10, 9) , '#54deff'],
-  'Terabyte': [gettext("1 Terabyte")          , 1    * Math.pow(10, 12), '#ff5454'],
-  'SSD'     : [gettext("Largest single SSD")  , 1    * Math.pow(10, 14), null     ],
-  'Petabyte': [gettext("1 Petabyte")          , 1    * Math.pow(10, 15), '#80ff25'],
-  'GoogEar' : [gettext("Google Earth (2016)") , 3    * Math.pow(10, 15), null     ],
-  'Exabyte' : [gettext("1 Exabyte")           , 1    * Math.pow(10, 18), '#df88ce'],
-  'Zetta'   : [gettext("1 Zettabyte")         , 1    * Math.pow(10, 21), null     ],
-  'Internet': [gettext("The internet (2020)") , 4    * Math.pow(10, 22), null     ],
+  //          Name (translated)               , size (bytes), colour (for graph, reflects colour of box)
+  'Bit'     : [gettext("1 Bit")               , 0.125       , '#8181ff'],
+  'Hex'     : [gettext("Hexadecimal digit")   , 0.5         , null     ],
+  'Byte'    : [gettext("1 Byte")              , 1           , '#ff9a54'],
+  'Kilobyte': [gettext("1 Kilobyte")          , 1   * KILO  , '#54ff9a'],
+  'Inter'   : [gettext("This interactive")    , 4.5 * KILO  , null     ],
+  'Megabyte': [gettext("1 Megabyte")          , 1   * MEGA  , '#ac88df'],
+  'First HD': [gettext("1st HDD for home PCs"), 5   * MEGA  , null     ],
+  'CSFG'    : [gettext("The CSFG")            , 605 * MEGA  , null     ],
+  'Gigabyte': [gettext("1 Gigabyte")          , 1   * GIGA  , '#54deff'],
+  'Terabyte': [gettext("1 Terabyte")          , 1   * TERA  , '#ff5454'],
+  'SSD'     : [gettext("Largest single SSD")  , 100 * TERA  , null     ],
+  'Petabyte': [gettext("1 Petabyte")          , 1   * PETA  , '#80ff25'],
+  'GoogEar' : [gettext("Google Earth (2016)") , 3   * PETA  , null     ],
+  'Exabyte' : [gettext("1 Exabyte")           , 1   * EXA   , '#df88ce'],
+  'Zetta'   : [gettext("1 Zettabyte")         , 1   * ZETTA , null     ],
+  'Internet': [gettext("The internet (2020)") , 40  * ZETTA , null     ],
 };
 const HTML_BOXES = [
   'Bit',
