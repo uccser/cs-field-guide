@@ -5,8 +5,13 @@ In fact, every pixel you see in an image has usually had many calculations made 
 
 Let's start with some simple but common calculations that are needed in graphics programming.
 The following interactive shows a cube with symbols on each face.
-You can move it around using what's called a {glossary-link term="translation"}translation{glossary-link end}, which simply adjusts where it is placed in space.
-The camera will always focus on the cube, so to see the back of the cube move it behind the camera.
+You can move it around using what's called a {glossary-link term="translation"}translation{glossary-link end}, which simply adjusts where it is placed in space:
+
+- A positive or negative change in *x* will shift the box *right or left* respectively.
+- A positive or negative change in *y* will shift the box *up or down* respectively.
+- A positive or negative change in *z* will shift the box *in or out* respectively.
+
+**The camera will always focus on the cube**, so to see the back of the cube move it behind the camera with a positive *z* translation.
 Try typing 3D coordinates into this interactive to find each symbol.
 
 {interactive slug="box-translation" type="whole-page" alt="Box Translation interactive"}
@@ -153,10 +158,10 @@ At this stage you may want to have the interactive open in a separate window so 
 
 Let's take a closer look at what is happening here.
 As we mentioned earlier, each point on our shape can be represented by two values (x and y).
-The rightmost point, on the shape in the interactive above, we say is at point (3, 1) in our coordinate space.
+The upper rightmost point on the shape in the interactive above, we say is at point (2, 3) in our coordinate space.
 
 When we are applying a scaling transformation we are actually doing a type of "matrix multiplication."
-For example, let's scale point (3, 1) by a factor of 2 as we did in the previous interactive:
+For example, let's scale point (2, 3) by a factor of 2 as we did in the previous interactive:
 
 \[
 \begin{bmatrix}
@@ -165,17 +170,17 @@ For example, let's scale point (3, 1) by a factor of 2 as we did in the previous
 \end{bmatrix}
 \times
 \begin{bmatrix}
+2 \\
 3 \\
-1 \\
 \end{bmatrix}
 =
 \begin{bmatrix}
+4 \\
 6 \\
-2 \\
 \end{bmatrix}
 \]
 
-This gives us a new position of (6, 2) for the rightmost point, which matches the previous interactive after applying the scaling matrix!
+This gives us a new position of (4, 6) for the upper rightmost point, which matches the previous interactive after applying the scaling matrix!
 This same matrix multiplication is applied to each of the seven points on the shape.
 
 Now try changing the matrix to
@@ -187,7 +192,7 @@ Now try changing the matrix to
 \end{bmatrix}
 \]
 
-For the rightmost point (starting at (3, 1)), the matrix muliplication for scaling by a factor of 3 is:
+For the upper rightmost point (starting at (2, 3)), the matrix muliplication for scaling by a factor of 3 is:
 
 \[
 \begin{bmatrix}
@@ -196,13 +201,13 @@ For the rightmost point (starting at (3, 1)), the matrix muliplication for scali
 \end{bmatrix}
 \times
 \begin{bmatrix}
+2 \\
 3 \\
-1 \\
 \end{bmatrix}
 =
 \begin{bmatrix}
+6 \\
 9 \\
-3 \\
 \end{bmatrix}
 \]
 
@@ -215,7 +220,7 @@ Now let's try scaling with a number less than one:
 \end{bmatrix}
 \]
 
-For the rightmost point (starting at (3, 1)), the matrix muliplication for scaling by a factor of 0.2 is:
+For the upper rightmost point (starting at (2, 3)), the matrix muliplication for scaling by a factor of 0.2 is:
 
 \[
 \begin{bmatrix}
@@ -224,13 +229,13 @@ For the rightmost point (starting at (3, 1)), the matrix muliplication for scali
 \end{bmatrix}
 \times
 \begin{bmatrix}
+2 \\
 3 \\
-1 \\
 \end{bmatrix}
 =
 \begin{bmatrix}
+0.4 \\
 0.6 \\
-0.2 \\
 \end{bmatrix}
 \]
 
@@ -500,7 +505,7 @@ Combining Translation, Scaling and Rotation
 
 Scale matrix is \( \begin{bmatrix}  2 & 0 \\   0 & 1 \\   \end{bmatrix} \).
 Using x = -90 in the trig function calculator, the rotation matrix is \( \begin{bmatrix}  0 & 1 \\  -1 & 0 \\   \end{bmatrix} \) &ndash; that's a 90 degree clockwise rotation.
-The translation vector is 8,4.
+The translation vector is 8, 4.
 
 {panel end}
 
