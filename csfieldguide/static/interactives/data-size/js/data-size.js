@@ -4,8 +4,8 @@ const CHART = require('chart.js');
 const DATAS = { // Data points ordered by size.
   //          Name (translated)               , size (bytes)           , colour (for graph, reflects colour of box)
   'Bit'     : [gettext("1 Bit")               , 0.125                  , '#8181ff'],
+  'Hex'     : [gettext("Hexadecimal digit")   , 0.5                    , null     ],
   'Byte'    : [gettext("1 Byte")              , 1                      , '#ff9a54'],
-  'Hex'     : [gettext("Hexadecimal digit")   , 2                      , null     ],
   'Kilobyte': [gettext("1 Kilobyte")          , 1    * Math.pow(10, 3) , '#54ff9a'],
   'Inter'   : [gettext("This interactive")    , 4.5  * Math.pow(10, 3) , null     ],
   'Megabyte': [gettext("1 Megabyte")          , 1    * Math.pow(10, 6) , '#ac88df'],
@@ -13,7 +13,7 @@ const DATAS = { // Data points ordered by size.
   'CSFG'    : [gettext("The CSFG")            , 6.05 * Math.pow(10, 8) , null     ],
   'Gigabyte': [gettext("1 Gigabyte")          , 1    * Math.pow(10, 9) , '#54deff'],
   'Terabyte': [gettext("1 Terabyte")          , 1    * Math.pow(10, 12), '#ff5454'],
-  'SSD'     : [gettext("Largest SSD")         , 1    * Math.pow(10, 14), null     ],
+  'SSD'     : [gettext("Largest single SSD")  , 1    * Math.pow(10, 14), null     ],
   'Petabyte': [gettext("1 Petabyte")          , 1    * Math.pow(10, 15), '#80ff25'],
   'GoogEar' : [gettext("Google Earth (2016)") , 3    * Math.pow(10, 15), null     ],
   'Exabyte' : [gettext("1 Exabyte")           , 1    * Math.pow(10, 18), '#df88ce'],
