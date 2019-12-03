@@ -25,7 +25,7 @@ const SHIFT = Math.ceil(COVER_SIZE[1] / (BALLS_PER_IMG));
 
 const YPOS = {
   KIWI:    10,
-  PINGU:   153,
+  PENGUIN: 153,
   COOK:    296,
   DOLPHIN: 439
 }
@@ -106,8 +106,8 @@ class GameScene extends Phaser.Scene {
       this.add.image(10, YPOS.KIWI, 'pixel').setOrigin(0, 0).setScale(COVER_SIZE[0], COVER_SIZE[1])
     ]
     this.scenery[COLOURS[1]] = [
-      this.add.image(10, YPOS.PINGU, 'penguin').setOrigin(0, 0).setScale(SCALES.IMAGE),
-      this.add.image(10, YPOS.PINGU, 'pixel').setOrigin(0, 0).setScale(COVER_SIZE[0], COVER_SIZE[1])
+      this.add.image(10, YPOS.PENGUIN, 'penguin').setOrigin(0, 0).setScale(SCALES.IMAGE),
+      this.add.image(10, YPOS.PENGUIN, 'pixel').setOrigin(0, 0).setScale(COVER_SIZE[0], COVER_SIZE[1])
     ]
     this.scenery[COLOURS[2]] = [
       this.add.image(10, YPOS.COOK, 'cook').setOrigin(0, 0).setScale(SCALES.IMAGE),
@@ -296,7 +296,7 @@ class GameScene extends Phaser.Scene {
 
   resetCovers() {
     this.scenery[COLOURS[0]][1].setY(YPOS.KIWI);
-    this.scenery[COLOURS[1]][1].setY(YPOS.PINGU);
+    this.scenery[COLOURS[1]][1].setY(YPOS.PENGUIN);
     this.scenery[COLOURS[2]][1].setY(YPOS.COOK);
     this.scenery[COLOURS[3]][1].setY(YPOS.DOLPHIN);
   }
@@ -366,7 +366,7 @@ class UIScene extends Phaser.Scene {
     this.proportionsText = {};
     var pos = [10 + (IMAGE_SIZE[0] * SCALES.IMAGE) / 2, YPOS.KIWI + (IMAGE_SIZE[1] * SCALES.IMAGE) / 2];
     this.proportionsText[COLOURS[0]] = this.add.text(pos[0], pos[1], '', { fontSize: '40px', fill: '#fff' }).setAlpha(0.5).setOrigin(0.5, 0.5);
-    pos[1] = YPOS.PINGU   + (IMAGE_SIZE[1] * SCALES.IMAGE) / 2;
+    pos[1] = YPOS.PENGUIN + (IMAGE_SIZE[1] * SCALES.IMAGE) / 2;
     this.proportionsText[COLOURS[1]] = this.add.text(pos[0], pos[1], '', { fontSize: '40px', fill: '#fff' }).setAlpha(0.5).setOrigin(0.5, 0.5);
     pos[1] = YPOS.COOK    + (IMAGE_SIZE[1] * SCALES.IMAGE) / 2;
     this.proportionsText[COLOURS[2]] = this.add.text(pos[0], pos[1], '', { fontSize: '40px', fill: '#fff' }).setAlpha(0.5).setOrigin(0.5, 0.5);
