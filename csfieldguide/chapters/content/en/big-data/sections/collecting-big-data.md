@@ -15,7 +15,7 @@ This data is often stored remotely, and referred to as being stored "in the clou
 # The Cloud
 
 When we say data is being stored "in the cloud" it might seem to imply that all this data is stored in one magical location, or that maybe it's just floating around in the air, ready for us to access whenever we want.
-It actually means something quite different (and sadly a little less magical). When data is stored in the "cloud" it simply means it is stored somewhere other than you're own computer - it is stored in a remote database that you can access over a network (typically the Internet). These databases are generally owned and managed by companies who make this storage space available to their users.
+It actually means something quite different (and sadly a little less magical). When data is stored in the "cloud" it simply means it is stored somewhere other than you're own computer - it is stored in a remote database that you can access over a network (typically the internet). These databases are generally owned and managed by companies who make this storage space available to their users.
 A commonly used cloud storage service is Dropbox, who provide a certain amount of storage for free, and then have users pay if they want to use more.
 
 An important thing to realise about cloud computing is that this data isn't just floating around in one big... well, cloud! It is being stored in a physical location somewhere, and most likely across several different locations if it has been backed up.
@@ -58,7 +58,7 @@ Here are some examples you may be familiar with:
 - Many different types of sensors are used for health care monitoring. For example, sensors are frequently used by cardiologists to continuously monitor the electrical signals in a person’s heart, so that they can record and analyse changes in this.
 - There are multiple sensors throughout the  Large Hadron Collider which exist to capture energy readings from subatomic particles. These generate around 25 petabytes of information yearly for physics experiments.
 - Some satellites continuously stream images of Earth’s atmosphere and land. Using multiple satellites to combine images across time and location, meteorologists use this data to predict the weather.
-- Sensors placed in the environment or on tracking devices can be used to monitor wildlife, and are used for conservation and pest managment.
+- Sensors placed in the environment or on tracking devices can be used to monitor wildlife, and are used for conservation and pest management.
 
 ## Bias
 
@@ -68,7 +68,7 @@ A smart fridge is certainly a luxury item and therefore mostly those earning mor
 Is this group representative of everyone?
 
 This is just a silly example, but think about what happens when you are using Big Data to analyse medical images.
-If you are analysing the effectiveness of a treatment on women and your training data only includes Pākehā (NZ european) and european women, then should you automatically apply the same conclusions to Māori women?
+If you are analysing the effectiveness of a treatment on women and your training data only includes Pākehā (NZ European) and European women, then should you automatically apply the same conclusions to Māori women?
 No, of course not, there are physiological differences between people of different ethnicities, and it would be inaccurate to generalise them into one group.
 This is why it is so important to make sure that you are capturing data that accurately portrays the group of people that you want to investigate.
 
@@ -84,7 +84,7 @@ Data Bias Interactive
 
 So now that all of this data has been collected, it needs to be stored, which is a challenge in itself.
 The first issue is simply the amount of data.
-As we mentioned earlier, Big Data often begins at Terabytes, but more often than not, this expands to Petabytes.
+As we mentioned earlier, Big Data often begins at Terabytes, but more often than not, this expands to Petabytes or even Exabytes.
 This is where data centres come in.
 
 Data centres are warehouses (often enormous ones) containing many computers that are connected in a network. They are used to store and process large quantities of data. Data centres have become a popular way for organisations to solve the issue of not having enough computing power for the amount of data they collect. Companies such as Google, Amazon, Microsoft, and even Catalyst here in New Zealand offer services where other organisations can rent space in their data centres instead of having to build their own (an expensive endeavour).
@@ -95,7 +95,7 @@ Server racks in the Google data centre in Oklahoma.
 
 {image end}
 
-These data centres store a mind-boggling amount of information. Just think, every video uploaded to YouTube, every photo on Facebook, every tweet ever written, and every purchase you may have made on Amazon, exists somewhere in one of these data centres (in fact it will exist in several, as there will be multiple backups of it).
+These data centres store a mind-boggling amount of information. Just think, every video uploaded to YouTube, every tweet ever written, every purchase ever made on Amazon, and every comment on every blog on the internet exists somewhere in one of these data centres (in fact it will exist in several, as there will be multiple backups of it).
 
 {panel type="curiosity"}
 
@@ -115,7 +115,7 @@ The other issue around storing Big Data is the raw data itself.
 There are two general categories we use to classify raw data: structured or unstructured.
 When you describe the qualities of a car, you probably list the colour, make, model, whether it is manual or automatic, etc.
 We would call this data structured because there is a predetermined data model we can use to describe the qualities of the car.
-For unstructured data however, there is no predetermined data model, and the majority of Big Data typically falls into this category.
+For unstructured data however, there is no predetermined data model.
 This is why it cannot easily be poured directly into a typical database, and therefore needs data crunching/preprocessing before it can be stored and used, which takes computing power in itself!
 Some common examples of unstructured data are images in the form of a list of pixels, or recordings of human speech used for natural language processing.
 

@@ -1,9 +1,11 @@
 # Visualisation
 
-As humans, it has been said that 90% of all information absorbed by our brains is visual, and hence we are not very good at processing large amounts of raw data in digital or text form. We often need something visual to represent the data to help us understand it. “Data visualisation” means graphically representing data. This is done to attempt to convey information about, and the significance of that data, in a visual context. This is an important method that we can use to help us find patterns, trends or correlations that might not have been identified otherwise.
-Have a look at the website [Information is Beautiful](https://informationisbeautiful.net/), which contains a huge number of data visualisations.
+As humans, it has been said that 90% of all information absorbed by our brains is visual, and hence we are not very good at processing large amounts of raw data in numeral or text form. We often need something visual to represent the data to help us understand it. “Data visualisation” means graphically representing data.
+This is done to attempt to convey information about data in a visual context. This is an important method that we can use to help us find patterns, trends or correlations that might not have been identified otherwise.
+To see some examples have a look at the website [Information is Beautiful](https://informationisbeautiful.net/), which contains a huge number of data visualisations.
 
-One particularly interesting data visualisation application is Astronomy. Did you know that a lot of the beautiful images of space that NASA releases are not "real" images? They are actually works of [art created by visualisation scientists](https://www.youtube.com/watch?v=xc1V9d8jrr8), not simply photographs taken with a telescope. The reason for this is because the telescopes used by astronomers mainly collect raw data rather than images. Visualisation scientists use this data to create a hypothetical image of what something looks like. This isn't to be confused with 'just making things up'! The images they create are based on the raw data and their own in depth knowledge.
+One particularly interesting data visualisation application is Astronomy. Did you know that a lot of the beautiful images of space that NASA releases are not "real" images? They are actually works of [art created by visualisation scientists](https://www.youtube.com/watch?v=xc1V9d8jrr8), not simply photographs taken with a telescope.
+The reason for this is because the telescopes used by astronomers mainly collect raw data rather than images. Visualisation scientists use this data to create a hypothetical image of what something looks like. This isn't to be confused with 'just making things up'! The images they create are based on the real raw data and their own in depth knowledge.
 
 {panel type="curiosity"}
 
@@ -29,9 +31,10 @@ Although it’s not “Big Data”, it is a great example of taking textual data
 
 {image file-path="img/chapters/periodic-table.png" alt="An image of the periodic table of elements, with different colours grouping classes of elements together."}
 
-- Check out some different visualisations showing New Zealand data at [figure.nz](https://figure.nz/) and infographics published by [Stats NZ](https://www.stats.govt.nz/insights?filters=Infographics).
 
-All of these examples use different techniques to display data in a way that we can easily understand. It is much easier to glance at the Periodic Table to check what the noble gasses by using the colour codes than it is to read it in a line of text.
+You can also check out some different visualisations showing New Zealand data at [figure.nz](https://figure.nz/) and infographics published by [Stats NZ](https://www.stats.govt.nz/insights?filters=Infographics).
+
+All of these examples use different techniques to display data in a way that we can easily understand. It is much easier to glance at the Periodic Table to check which elements are noble gasses by using the colour codes than it is to read it in a line of text.
 
 {panel type="extra-for-experts"}
 
