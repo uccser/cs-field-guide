@@ -4,7 +4,7 @@ So where does all the data come from to make Big Data? Here are a few examples o
 
 ### Apps and Websites
 
-Instagram, Facebook, Twitter, SnapChat, TradeMe, Spotify, Uber, Netflix, Messenger, etc, all care about how, when, why, and for how long you use their service. Therefore a lot of what you do while using their service is captured and recorded.
+Instagram, Facebook, Twitter, SnapChat, TradeMe, Spotify, Uber, Netflix, Messenger, etc. all care about how, when, why, and for how long you use their services. Therefore, a lot of what you do while using their service is captured and recorded.
 
 ### The Internet of Things
 The idea of the "Internet of Things" (IoT) is to wirelessly interconnect multiple devices and objects, usually through Bluetooth or through wireless internet.
