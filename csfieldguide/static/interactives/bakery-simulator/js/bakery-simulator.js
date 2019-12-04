@@ -10,7 +10,10 @@ bakerySim.maxQuestions = 6;
 $(document).ready(function() {
     createModal();
     createRadioButtons();
-    $('#start-button').click(loadCustomer);
+    $('#start-button').click(function() {
+        $('#starter-info').addClass('d-none');
+        loadCustomer();
+    });
     $('#start-asking').click(function() {
         $('#customer-answer').addClass('d-none');
         $('#question-list').removeClass('d-none');
@@ -20,35 +23,28 @@ $(document).ready(function() {
     $('#question-list p').click(askQuestion);
     $('#bake-cake').click(getCakeCreated);
     $('#next-customer').click(loadCustomer);
+    $('#restart').click(function() {
+        bakerySim.currentCustomer = 1;
+        loadCustomer();
+    });
 });
 
 
 /** 
  * Reset variables and the content displayed for new customer
  */
-function reset() {
+function loadCustomer() {
     bakerySim.numQuestionsAsked = 0;
     $('#num-qs-asked-text').html(CONFIG.NUM_QS_COUNT_TEXT);
     $('#background-image').attr('src', bakerySimImages['customer-' + bakerySim.currentCustomer]);
     $('#customer-answer').text(CONFIG.CUSTOMER_INTRO).removeClass('d-none');
     $('#dialogue-box').removeClass('d-none');
     $('#start-asking').removeClass('d-none');
+    $('#result-table').addClass('d-none');
     $('.table-row').remove();
-}
-
-
-/** 
- * Load the next customer, or if it is the first customer, hide the intro screen
- */
-function loadCustomer() {
-    if (bakerySim.currentCustomer === 1) {
-        $('#starter-info').addClass('d-none');
-    } else {
-        $('#result-table').addClass('d-none');
-        $('#next-customer').addClass('d-none');
-        $('#question-list p').removeClass('d-none');
-    }
-    reset();
+    $('#next-customer').addClass('d-none');
+    $('#restart').addClass('d-none');
+    $('#question-list p').removeClass('d-none');
 }
 
 
@@ -97,7 +93,6 @@ function checkResult(cakeCreated) {
 
     createResultTable(cakeWanted, cakeCreated);
     $('#result-table').removeClass('d-none');
-    $('#next-customer').removeClass('d-none');
 }
 
 
@@ -236,6 +231,12 @@ function createResultTable(cakeWanted, cakeCreated) {
     }
     bakerySim.currentCustomer += 1; // should put this somewhere else
     // if customer num == 4 (3 is the last customer) show end button not next customer button
+    if (bakerySim.currentCustomer == 4) {
+        $('#next-customer').addClass('d-none');
+        $('#restart').removeClass('d-none');
+    } else {
+        $('#next-customer').removeClass('d-none');
+    }
 }
 
 
