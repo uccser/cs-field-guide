@@ -23,6 +23,9 @@ $(document).ready(function() {
 });
 
 
+/** 
+ * Reset variables and the content displayed for new customer
+ */
 function reset() {
     bakerySim.numQuestionsAsked = 0;
     $('#num-qs-asked-text').html(CONFIG.NUM_QS_COUNT_TEXT);
@@ -34,6 +37,9 @@ function reset() {
 }
 
 
+/** 
+ * Load the next customer, or if it is the first customer, hide the intro screen
+ */
 function loadCustomer() {
     if (bakerySim.currentCustomer === 1) {
         $('#starter-info').addClass('d-none');
@@ -46,6 +52,9 @@ function loadCustomer() {
 }
 
 
+/** 
+ * Show the customer's answer to question selected
+ */
 function askQuestion() {
     questionID = $(this).attr('id');
     $('#question-list').addClass('d-none');
@@ -74,6 +83,9 @@ function askQuestion() {
 }
 
 
+/** 
+ * Check user's cake against what the customer wanted
+ */
 function checkResult(cakeCreated) {
     if (bakerySim.currentCustomer == 1) {
         var cakeWanted = CONFIG.CUSTOMER_1_CAKE;
@@ -89,6 +101,9 @@ function checkResult(cakeCreated) {
 }
 
 
+/** 
+ * Get values user selected from radio buttons
+ */
 function getCakeCreated() {
     $('#dialogue-box').addClass('d-none');
     $('#time-to-bake').addClass('d-none');
@@ -116,6 +131,9 @@ function getCakeCreated() {
 }
 
 
+/** 
+ * Create modal that contains radio buttons for creating cake
+ */
 function createModal() {
     var $modalContainer = $('<div>').addClass('modal').attr({
         id: 'baking-options',
@@ -144,6 +162,9 @@ function createModal() {
 }
 
 
+/** 
+ * Create radio buttons for each cake option
+ */
 function createRadioButtons() {
     for (i=0; i < CONFIG.FIELD_OPTIONS.length; i++) {
         var option = CONFIG.FIELD_OPTIONS[i];
@@ -176,6 +197,10 @@ function createRadioButtons() {
 }
 
 
+/** 
+ * Create a table comparing what the customer wanted to what the user selected.
+ * Background of table row will be green if correct, red if incorrect.
+ */
 function createResultTable(cakeWanted, cakeCreated) {
     var $table = $('#result-table')
     for (i=0; i < CONFIG.FIELD_OPTIONS.length; i++) {
@@ -214,8 +239,10 @@ function createResultTable(cakeWanted, cakeCreated) {
 }
 
 
-/** Calulate a\b 
- *  E.g if a = {1,2,3,4} and b = {5,4,3,2} this function would return {1} */
+/** 
+ * Calulate a\b 
+ * E.g if a = {1,2,3,4} and b = {5,4,3,2} this function would return {1}
+ */
 function setDifference(a, b) {
     var aMinusB = new Set([...a].filter(x => !b.has(x)));
     return aMinusB;
