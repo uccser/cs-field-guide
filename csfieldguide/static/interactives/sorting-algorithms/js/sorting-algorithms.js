@@ -265,6 +265,7 @@ function reset() {
     $("#group-" + i).appendTo(resetRow.eq(i));
   }
 
+  rotateIndicator('up');
   comparisons = 0;
   lastLeftImage = null;
   lastRightImage = null;

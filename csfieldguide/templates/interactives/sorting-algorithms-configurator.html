@@ -4,7 +4,7 @@
 {% load static %}
 
 {% block html %}
-  <div class="row my-3 container-fluid justify-content-center">
+  <div id="sorting-algorithms-configurator" class="row my-3 container-fluid justify-content-center">
     <div class="row">
       <div class="col-12">
         <h4>{% trans 'Sorting Algorithms Configurator' %}</h4>
@@ -43,6 +43,10 @@
     </div>
   </div>
 {% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/sorting-algorithms-configurator/css/sorting-algorithms-configurator.css' %}">
+{% endblock css %}
 
 {% block js %}
   <script type="text/javascript">
