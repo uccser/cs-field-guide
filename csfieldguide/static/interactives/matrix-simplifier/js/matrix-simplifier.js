@@ -188,7 +188,7 @@ function appendInput(type, inputHtml) {
   var $closeButton = $('<button type="button" class="close dismiss-eqtn" aria-label="Close">');
   $closeButton.append($('<span aria-hidden="true">&times;</span>'));
   var $editButton = $('<button type="button" class="close edit-eqtn" aria-label="Edit">');
-  var $moveLabel = $('<span class="close move-eqtn handle" aria-label="Move">+</span>');
+  var $moveLabel = $('<span class="close move-eqtn handle" aria-label="Move">=</span>');
   $editButton.append(PENCIL_SVG.clone());
   $newContainerDiv.append($moveLabel);
   $newContainerDiv.append($closeButton);
