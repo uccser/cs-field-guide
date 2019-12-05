@@ -5,7 +5,8 @@ const vsprintf = require('sprintf-js').vsprintf;
 
 const ROW_TEMPLATE = "%s & %s & %s";
 const MATRIX_TEMPLATE = "\\begin{bmatrix} %s \\\\ %s \\\\ %s \\end{bmatrix}";
-const PENCIL_SVG = $("#pencil-svg-helper svg")
+const PENCIL_SVG = $("#pencil-svg-helper svg");
+const DRAGGER_SVG = $("#dragger-svg-helper svg");
 
 var TXT_COPY = gettext("Copy to clipboard");
 var TXT_COPIED_SUCCESS = gettext("Equation copied");
@@ -71,12 +72,12 @@ m2String = [
   ['10', '0', '0'],
   ['0', '10', '0'],
   ['0', '0', '10']
-]
+];
 v1String = [
   ['10'],
   ['0'],
   ['0']
-]
+];
 // Arrays that will hold the string version of matrices and vectors.
 // Used for populating modal when editing a matrix or vector.
 // Needed because we don't want to display evaluated trig functions.
@@ -185,10 +186,12 @@ function addVector() {
 function appendInput(type, inputHtml) {
   var $newContainerDiv = $("<div>").addClass('draggable content border rounded m-1 center-block');
   var $newInputDiv = $("<div>").addClass('invisible ' + type);
-  var $closeButton = $('<button type="button" class="close dismiss-eqtn" aria-label="Close">');
+  var $moveLabel = $('<span class="close move-eqtn" aria-label="Move">');
+  $moveLabel.append(DRAGGER_SVG.clone());
+  $moveLabel.append($('<div class="handle cover">')); // The actual handle element
+  var $closeButton = $('<button type="button" class="close dismiss-eqtn" aria-label="Close"></button>');
   $closeButton.append($('<span aria-hidden="true">&times;</span>'));
-  var $editButton = $('<button type="button" class="close edit-eqtn" aria-label="Edit">');
-  var $moveLabel = $('<span class="close move-eqtn handle" aria-label="Move">=</span>');
+  var $editButton = $('<button type="button" class="close edit-eqtn" aria-label="Edit"></button>');
   $editButton.append(PENCIL_SVG.clone());
   $newContainerDiv.append($moveLabel);
   $newContainerDiv.append($closeButton);
@@ -428,12 +431,14 @@ $(function() {
       return target.id === source.id;
     }
   });
-  drake.on('drag', function(eqtn, source) {
+  drake.on('drag', (eqtn, source) => {
     scrollable = false;
-    eqtn.children[0].classList.add('held'); // The handle
+    eqtn.children[0].children[1].classList.add('held'); // The handle
+  });
+  drake.on('dragend', (eqtn) => {
+    eqtn.children[0].children[1].classList.remove('held'); // The handle
   });
   drake.on('drop', (eqtn, target_container, source_container, sibling) => {
-    eqtn.children[0].classList.remove('held'); // The handle
     var eqtnDiv = $(eqtn.children[MATRIX_CHILD_INDEX]);
     if (sibling == null) {
       // eqtn has been inserted last
