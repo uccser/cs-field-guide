@@ -11,19 +11,28 @@
 }
 
 .draggable {
-  touch-action: none;
-  cursor: grab;
   position: relative;
   &.gu-mirror {
-    cursor: grabbing;
     opacity: 1 !important;
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+  }
+}
+
+.handle {
+  touch-action: none;
+  cursor: grab;
+  &.held {
+    cursor: grabbing;
   }
 }
 
 .content {
   background-color: #fff;
   width: 70%;
+}
+
+.matrix, .vector {
+  overflow-x: auto;
 }
 
 // make matrices wider and enlarge close and edit buttons
@@ -76,6 +85,14 @@
 .close:focus, .close:active {
   outline: none !important;
   box-shadow: none;
+}
+
+.move-eqtn {
+  top: 0;
+  left: 0.2rem;
+  font-size: 1.8rem;
+  position: absolute;
+  z-index: 2;
 }
 
 .dismiss-eqtn {

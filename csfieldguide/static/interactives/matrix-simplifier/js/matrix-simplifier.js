@@ -1,4 +1,4 @@
-const dragula = require('./../../../../node_modules/dragula/dragula');
+const dragula = require('dragula');
 const mathjs = require('mathjs');
 const sprintf = require('sprintf-js').sprintf;
 const vsprintf = require('sprintf-js').vsprintf;
@@ -10,6 +10,8 @@ const PENCIL_SVG = $("#pencil-svg-helper svg")
 var TXT_COPY = gettext("Copy to clipboard");
 var TXT_COPIED_SUCCESS = gettext("Equation copied");
 var TXT_COPIED_FAIL = gettext("Oops, unable to copy. Please copy manually");
+
+const MATRIX_CHILD_INDEX = 3; // Index for which child of the draggable element/div is the actual matrix
 
 /**
  * Below is adapted from https://mathjs.org/examples/browser/angle_configuration.html.html
@@ -186,7 +188,9 @@ function appendInput(type, inputHtml) {
   var $closeButton = $('<button type="button" class="close dismiss-eqtn" aria-label="Close">');
   $closeButton.append($('<span aria-hidden="true">&times;</span>'));
   var $editButton = $('<button type="button" class="close edit-eqtn" aria-label="Edit">');
+  var $moveLabel = $('<span class="close move-eqtn handle" aria-label="Move">+</span>');
   $editButton.append(PENCIL_SVG.clone());
+  $newContainerDiv.append($moveLabel);
   $newContainerDiv.append($closeButton);
   $newContainerDiv.append($editButton);
   $newInputDiv.html(inputHtml);
@@ -415,16 +419,22 @@ function showOutput() {
 $(function() {
   var matrix_list = $('.containers').toArray();
   var drake = dragula(matrix_list, {
+    moves: function (el, container, handle) {
+      // Define dragging via a handle instead of the whole box
+      return handle.classList.contains('handle');
+    },
     accepts: function(el, target, source, sibling) {
       // Don't allow dragging of vectors to matrices container and vice versa
       return target.id === source.id;
     }
   });
-  drake.on('drag', function(el, source) {
+  drake.on('drag', function(eqtn, source) {
     scrollable = false;
+    eqtn.children[0].classList.add('held'); // The handle
   });
   drake.on('drop', (eqtn, target_container, source_container, sibling) => {
-    var eqtnDiv = $(eqtn.children[2]);
+    eqtn.children[0].classList.remove('held'); // The handle
+    var eqtnDiv = $(eqtn.children[MATRIX_CHILD_INDEX]);
     if (sibling == null) {
       // eqtn has been inserted last
       if (eqtnDiv.hasClass('matrix')) {
@@ -436,7 +446,7 @@ $(function() {
       }
     } else {
       // Get the matrix/vector it is being swapped with
-      var siblingDiv = $(sibling.children[2]);
+      var siblingDiv = $(sibling.children[MATRIX_CHILD_INDEX]);
       if (eqtnDiv.hasClass('matrix')) {
         var siblingOrder = siblingDiv.attr('data-matrix-order');
       } else {

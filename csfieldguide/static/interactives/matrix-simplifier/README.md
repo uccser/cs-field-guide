@@ -2,6 +2,8 @@
 
 **Author:** Courtney Bracefield
 
+**Modified by:** Alasdair Smith
+
 Simplifies matrix calculations for the rotation, scaling and translation of points to just one matrix.
 
 Built from scratch to replace https://archive.csfieldguide.org.nz/1.9.9/_static/widgets/CG/CG-matrix-simplifier/CG-matrix-simplifier.html?info=Multiple%20transforms (unknown original author).
