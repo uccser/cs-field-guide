@@ -2,7 +2,7 @@
 
 # Check Python style
 flake8==3.7.9
-pydocstyle==4.0.1
+pydocstyle==5.0.1
 
 #Coverage Tools
 coverage==4.5.4
