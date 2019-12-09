@@ -3,19 +3,21 @@
 Being able to find patterns in huge amounts of data can be incredibly valuable for making decisions, for example for setting prices, making recommendations, and detecting suspicious activities.
 This is why Big Data is a bit of a buzzword in tech and in commercial industries these days.
 But how big does it have to be to be called "*Big Data*"?
+
 Big Data is a phrase used to mean an amount of data that is so large and incoming so quickly that it is difficult to store and analyse using traditional sequential programming and storage techniques.
 Big Data has three main qualities: Volume, Variety, and Velocity (often referred to as the "3Vs").
 
 ## Volume
 
-Volume refers to the quantity of data, and when it comes to Big Data there is a lot of it. Have a look at this website showing what happens on the internet [every second](https://everysecond.io/the-internet) to get an idea of just how much data is produced online!
+Volume refers to the quantity of data, and when it comes to Big Data there is a lot of it. Have a look at this website showing what happens on the internet [every second](https://everysecond.io/the-internet) to get an idea of just how much data is constantly produced online!
 
 Your phone might have about 64GB of storage space and it takes a long time for the typical smartphone user to run out of space.
-A laptop might have 1TB of storage space, and some users will never get close to using all that space.
-It wasn't long ago that running out of space was a common problem for users, but advances in engineering of transistor density have continued at a steady pace: doubling the capacity of a single computer's integrated circuit every two years ([Moore's Law](https://en.wikipedia.org/wiki/Moore%27s_law)), so if you're reading this several years after it was written 1TB might sound quite small!
+A laptop might have 1TB of storage, and some users will never get close to using all that space.
+It wasn't long ago that running out of space was a common problem for all users, but advances in engineering of transistor density have continued at a steady pace.
+The capacity of a single computer's integrated circuit doubles about every two years ([Moore's Law](https://en.wikipedia.org/wiki/Moore%27s_law)), so if you're reading this several years after it was written 1TB might sound quite small!
 
 These amounts are nowhere near large enough to be considered Big Data though.
-So how big does data have to be to be considered big? Well, it usually starts in the terabytes, then petabytes, then exabytes, and so on… Big Data is so big that simply storing it is an issue in itself; a single computer cannot store the amount of data on its own, and multiple computers must be used.
+So how big does data have to be to be considered *big*? Well, it usually starts in the terabytes, then petabytes, then exabytes, and so on… Big Data is so big that simply storing it is an issue in itself; a single computer cannot store the amount of data on its own, and multiple computers must be used.
 
 One of the most extreme examples of data volume is YouTube uploads. As of October 2019, over [8 hours](https://everysecond.io/youtube) of video content is uploaded to YouTube every second!
 That's over 80 years worth of videos everyday, and YouTube has to be able to store all of this data to keep its services running.
@@ -23,7 +25,7 @@ That's over 80 years worth of videos everyday, and YouTube has to be able to sto
 
 ## Variety
 
-Variety refers to the many different types of data (plain text, images, videos, and many more types) that are generated and stored. Online transactions, emails, and even individual mouse clicks on a webpage are generating data.
+Variety refers to the many different types of data (plain text, images, videos, and many many more) that are generated and stored. Online transactions, emails, and even individual mouse clicks on a webpage are generating data of different types.
 
 {image file-path="img/chapters/different-data-types.png" alt="Icons representing seven different types of files or data points are shown. These are audio files, mouse clicks, online transactions, online messages, email, images, and a spreadsheet."}
 
@@ -47,5 +49,5 @@ Another example of just how quickly large amounts of real time data needs to be 
 Every time you scroll through Facebook, that is generating data.
 In September 2018, Facebook had an average of 1.49 billion active users each day.
 Some of those users would have posted photos, liked posts, played games, sent messages, shared life events, etc.
-All of this is generating data, which is recorded as it happens, and needs to be processed just as quickly as it is created in order for Facebook to see trends. Imagine all of a sudden there was no activity coming from Australasia.
+All of this is generating data, which is recorded as it happens, and needs to be processed just as quickly as it is created in order for Facebook to keep its services running, and to see trends. Imagine all of a sudden there was no activity coming from Australasia.
 That is likely to indicate an issue with their system in this part of the world, and Facebook needs to know about that immediately in order to diagnose and fix the problem.

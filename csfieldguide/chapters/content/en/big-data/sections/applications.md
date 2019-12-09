@@ -1,6 +1,6 @@
 # Applications
 
-There are many applications for Big Data, which is why so many people are interested in it! There are far too many for us to talk about, or even list, but here are some example applications you can research for yourself:
+There are many applications for Big Data, which is why so many people are interested in it! There are far too many for us to talk about, or even list, but here are some examples you can research yourself:
 
 ## Science
 

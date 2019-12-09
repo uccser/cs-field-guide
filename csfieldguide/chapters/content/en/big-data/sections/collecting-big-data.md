@@ -1,6 +1,6 @@
 # Generating, collecting, and storing Big Data
 
-So where does all the data come from to make Big Data? Here are a few examples of things that generate this data that you may have encountered:
+So where does all this data come from? Here are a few examples of things that generate this data that you may have encountered:
 
 ### Apps and Websites
 
@@ -14,7 +14,7 @@ This data is often stored remotely, and referred to as being stored "in the clou
 
 # The Cloud
 
-When we say data is being stored "in the cloud" it might seem to imply that all this data is stored in one magical location, or that maybe it's just floating around in the air, ready for us to access whenever we want.
+When we say data is being stored "in the cloud" it might seem to imply that all this data is stored in one magical location, or that maybe it's just floating around in the air somewhere, ready for us to access whenever we want.
 It actually means something quite different (and sadly a little less magical). When data is stored in the "cloud" it simply means it is stored somewhere other than you're own computer - it is stored in a remote database that you can access over a network (typically the internet). These databases are generally owned and managed by companies who make this storage space available to their users.
 A commonly used cloud storage service is Dropbox, who provide a certain amount of storage for free, and then have users pay if they want to use more.
 
@@ -29,12 +29,12 @@ There are a couple of different areas where IoT has really taken off:
 
 {image file-path="img/chapters/internet-of-things.png" caption="true" alt="An image of a cloud connected to a large number of icons, each of which symbolise a device that could be connected to in the internet of things. For example, one shows a lightbulb, one shows a washing machine, and one shows a smart watch."}
 
-Some example devices that could be connected to the IoT.
+Some example devices that can be connected in the IoT.
 
 {image end}
 
 But these innovations come with a cost, and that cost is often large amounts of potentially sensitive personal information being captured, and security concerns around its storage and use.
-The sheer amount of data these devices generate also introduces technical challenges.
+The sheer amount of data these devices generate also introduces technical challenges, including the parts of this data which are useful and don't introduce privacy concerns.
 Often these devices are sending real time data, that means that every minute, second, or even millisecond some data is being captured and sent somewhere.
 
 Estimates for the number of IoT devices that will be online in 2020 range from 30-50 billion, and that will be up to 75 billion by 2025.
@@ -43,7 +43,7 @@ That’s billions and billions of extra devices sending, receiving, and generati
 ### Mobile devices
 The number of people using smartphones has exploded in the last few years, to the point where in this modern society it is unusual to come across someone without one.
 With this comes opportunity for companies to gain more insight into how consumers spend their time, and therefore a lot of the activity on your phone is captured.
-For Pixel users, Google has even released a [new feature](https://play.google.com/store/apps/details?id=com.google.android.apps.wellbeing) for you to see how you use your phone.
+For Pixel users, Google has even released a [new feature](https://play.google.com/store/apps/details?id=com.google.android.apps.wellbeing) for you to see how you use your own phone.
 Other personal devices that connect with your smartphone are also constantly collecting data, for example wearable tech like smartwatches or fitness trackers.
 
 ### Sensors
@@ -55,14 +55,14 @@ Environmental sensor data often is captured by proprietary systems and aggregate
 Here are some examples you may be familiar with:
 
 - Ground, air, and water movement sensors are distributed across the Earth to record wind, seismic activity, and wave patterns. This data can be used to predict and detect natural disaster events such as earthquakes, tornados, and tsunamis.
-- Many different types of sensors are used for health care monitoring. For example, sensors are frequently used by cardiologists to continuously monitor the electrical signals in a person’s heart, so that they can record and analyse changes in this.
-- There are multiple sensors throughout the  Large Hadron Collider which exist to capture energy readings from subatomic particles. These generate around 25 petabytes of information yearly for physics experiments.
+- Many different types of sensors are used for health care monitoring. For example, sensors are frequently used by cardiologists to continuously monitor the electrical signals in a person’s heart, so that they can record and closely examine how well the person's heart is functioning.
+- There are multiple sensors throughout the Large Hadron Collider which exist to capture energy readings from subatomic particles. These generate around 25 petabytes of information yearly for physics experiments.
 - Some satellites continuously stream images of Earth’s atmosphere and land. Using multiple satellites to combine images across time and location, meteorologists use this data to predict the weather.
 - Sensors placed in the environment or on tracking devices can be used to monitor wildlife, and are used for conservation and pest management.
 
 ## Bias
 
-The data you choose to capture has a huge effect on the outcome of your analysis.
+The data you choose to capture, and how you capture it, has a huge effect on the outcome of your analysis.
 For example, if you decide to study how often people open their fridge based on how many times a smart fridge detects it is opened and closed, then who have you excluded, and who might be overrepresented?
 A smart fridge is certainly a luxury item and therefore mostly those earning more money will be contributing to your study.
 Is this group representative of everyone?
@@ -72,19 +72,20 @@ If you are analysing the effectiveness of a treatment on women and your training
 No, of course not, there are physiological differences between people of different ethnicities, and it would be inaccurate to generalise them into one group.
 This is why it is so important to make sure that you are capturing data that accurately portrays the group of people that you want to investigate.
 
-It’s also important to think about how data sets captured in the past, or by other people, may have been conditioned by the biases of those people.
-
 {interactive slug="data-bias" type="whole-page" text="true"}
 
 Data Bias Interactive
 
 {interactive end}
 
+It’s also important to think about how data sets captured in the past, or by other people, may have been conditioned by the biases of those people.
+The analysis of biased healthcare data has frequently disadvantaged groups of people in the past who were under-represented in data samples.
+
 ## Store
 
 So now that all of this data has been collected, it needs to be stored, which is a challenge in itself.
 The first issue is simply the amount of data.
-As we mentioned earlier, Big Data often begins at Terabytes, but more often than not, this expands to Petabytes or even Exabytes.
+As we mentioned earlier, Big Data often begins at terabytes, but more often than not, this expands to petabytes or even exabytes.
 This is where data centres come in.
 
 Data centres are warehouses (often enormous ones) containing many computers that are connected in a network. They are used to store and process large quantities of data. Data centres have become a popular way for organisations to solve the issue of not having enough computing power for the amount of data they collect. Companies such as Google, Amazon, Microsoft, and even Catalyst here in New Zealand offer services where other organisations can rent space in their data centres instead of having to build their own (an expensive endeavour).
@@ -112,12 +113,13 @@ Image courtesy of [xkcd](https://xkcd.com/).
 {panel end}
 
 The other issue around storing Big Data is the raw data itself.
-There are two general categories we use to classify raw data: structured or unstructured.
+There are two general categories we use to classify data: structured or unstructured.
 When you describe the qualities of a car, you probably list the colour, make, model, whether it is manual or automatic, etc.
 We would call this data structured because there is a predetermined data model we can use to describe the qualities of the car.
 For unstructured data however, there is no predetermined data model.
 This is why it cannot easily be poured directly into a typical database, and therefore needs data crunching/preprocessing before it can be stored and used, which takes computing power in itself!
 Some common examples of unstructured data are images in the form of a list of pixels, or recordings of human speech used for natural language processing.
+Data is often preprocessed before being stored but storing the raw data, not just processed data, is very important for some applications.
 
 {panel type="jargon-buster"}
 
