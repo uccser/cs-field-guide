@@ -23,7 +23,7 @@ class InteractivesTestDataGenerator:
         )
         interactive.save()
         return interactive
-    
+
     def create_interactive_with_large_thumbnail(self, number):
         """Create interactive object set to use a large thumbnail.
 
@@ -42,7 +42,7 @@ class InteractivesTestDataGenerator:
         )
         interactive.save()
         return interactive
-    
+
     def create_uninteractive(self, number):
         """Create interactive object that is an uninteractive.
 

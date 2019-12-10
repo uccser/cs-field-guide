@@ -223,7 +223,7 @@ class ThumbnailJSONViewTest(BaseTestWithDB):
                 ]
             ]
         )
-    
+
     def test_thumbnail_json_with_one_interactive_with_large_thumbnail(self):
         self.test_data.create_interactive_with_large_thumbnail(1)
         url = reverse("interactives:thumbnail-json")
