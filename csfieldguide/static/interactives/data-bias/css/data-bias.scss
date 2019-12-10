@@ -13,6 +13,7 @@
 #circles-area {
     position: relative;
     border-radius: 1rem;
+    border: 0.1rem solid;
 }
 
 #data-bias-container {
@@ -119,4 +120,17 @@
         max-width: 60%;
         max-height: 80%;
     }
+}
+
+#instruction-area {
+    @include media-breakpoint-down(sm) {
+        min-height: 13.625rem;
+    }
+    @include media-breakpoint-up(sm) {
+        min-height: 8.125rem;
+    }
+}
+
+.fade-bg-colour {
+    transition: background-color 1s ease-in;
 }

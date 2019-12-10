@@ -1,0 +1,52 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div id="sorting-algorithms-configurator" class="row my-3 container-fluid d-inline-block text-center justify-content-center">
+    <div class="row">
+      <div class="col-12">
+        <h4>{% trans 'Sorting Algorithms Configurator' %}</h4>
+      </div>
+
+      <!-- Data type -->
+      <div class="col-12 col-md-6">
+        <div class="form-group">
+          <small id="data-help" class="form-text text-muted">{% trans 'Choose how the data gets shuffled:' %}</small>
+          <select id="data-selector" class="form-control" aria-describedby="data-help">
+            <option value="random" selected>{% trans 'Random' %}</option>
+            <option value="sorted">{% trans 'Sorted' %}</option>
+            <option value="almost">{% trans 'Nearly sorted' %}</option>
+            <option value="reverse">{% trans 'Reverse' %}</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Peek mode -->
+      <div class="col-12 col-md-6">
+        <div class="form-group mt-1">
+          <small id="peek-help" class="form-text text-muted">{% trans 'Reveal an icon that lets you view the box weights:' %}</small>
+          <input id="peek-selector" type="checkbox" class="form-check-input" value="" aria-describedby="peek-help">
+          <label for="peek-selector" class="form-check-label">
+            <img id="eye-open"   class="mr-1 d-none" src="{% static 'interactives/sorting-algorithms/assets/icons8-eye-80-scaled.png' %}">
+            <img id="eye-closed" class="mr-1 d-none" src="{% static 'interactives/sorting-algorithms/assets/icons8-closed-eye-80-scaled.png' %}">
+            {% trans 'Enable peek mode' %}
+          </label>
+        </div>
+      </div>
+
+      <!-- Submit -->
+      <div class="col-12 justify-content-center">
+        <button type="button" class="btn btn-primary" id="submit">{% trans 'Open interactive' %}</button>
+      </div>
+    </div>
+  </div>
+{% endblock html %}
+
+{% block js %}
+  <script type="text/javascript">
+    var base = "{% url 'interactives:interactive' 'sorting-algorithms' %}";
+  </script>
+  <script type="text/javascript" src="{% static 'interactives/sorting-algorithms-configurator/js/sorting-algorithms-configurator.js' %}"></script>
+{% endblock js %}

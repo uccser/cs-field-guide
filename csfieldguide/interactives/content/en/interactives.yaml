@@ -162,6 +162,8 @@ sorting-algorithm-comparison:
   name: Sorting Algorithm Comparison
 sorting-algorithms:
   name: Sorting Algorithms
+sorting-algorithms-configurator:
+  name: Sorting Algorithms Configurator
 system-layers:
   name: System Layers
 tcp-segment:

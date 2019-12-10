@@ -364,6 +364,10 @@ sorting-algorithms:
   languages:
     en: interactives/sorting-algorithms.html
   is_interactive: true
+sorting-algorithms-configurator:
+  languages:
+    en: interactives/sorting-algorithms-configurator.html
+  is_interactive: true
 system-layers:
   languages:
     en: interactives/system-layers.html

@@ -11,35 +11,51 @@
   <div id="content" class="container">
     <div id="sorting-algorithms-interactive-item-unsorted-row-1" class="d-flex justify-content-between mb-3">
         <div class="dashed-box square">
-          <img id="img-0" class="sorting-boxes" data-weight="" src="{% static 'img/interactives/colourful-box-images/square1-256px.png' %}">
+          <div id="group-0" class="sorting-box">
+            <img id="img-0" class="box-img" data-weight="" src="{% static 'img/interactives/colourful-box-images/square1-256px.png' %}">
+          </div>
         </div>
 
         <div class="dashed-box square">
-          <img id="img-1" class="sorting-boxes" data-weight="" src="{% static 'img/interactives/colourful-box-images/square2-256px.png' %}">
+          <div id="group-1" class="sorting-box">
+            <img id="img-1" class="box-img" data-weight="" src="{% static 'img/interactives/colourful-box-images/square2-256px.png' %}">
+          </div>
         </div>
 
         <div class="dashed-box square">
-          <img id="img-2" class="sorting-boxes" data-weight="" src="{% static 'img/interactives/colourful-box-images/square3-256px.png' %}">
+          <div id="group-2" class="sorting-box">
+            <img id="img-2" class="box-img" data-weight="" src="{% static 'img/interactives/colourful-box-images/square3-256px.png' %}">
+          </div>
         </div>
 
         <div class="dashed-box square">
-          <img id="img-3" class="sorting-boxes" data-weight="" src="{% static 'img/interactives/colourful-box-images/square4-256px.png' %}">
+          <div id="group-3" class="sorting-box">
+            <img id="img-3" class="box-img" data-weight="" src="{% static 'img/interactives/colourful-box-images/square4-256px.png' %}">
+          </div>
         </div>
 
         <div class="dashed-box square">
-          <img id="img-4" class="sorting-boxes" data-weight="" src="{% static 'img/interactives/colourful-box-images/square5-256px.png' %}">
+          <div id="group-4" class="sorting-box">
+            <img id="img-4" class="box-img" data-weight="" src="{% static 'img/interactives/colourful-box-images/square5-256px.png' %}">
+          </div>
         </div>
 
         <div class="dashed-box square">
-          <img id="img-5" class="sorting-boxes" data-weight="" src="{% static 'img/interactives/colourful-box-images/square6-256px.png' %}">
+          <div id="group-5" class="sorting-box">
+            <img id="img-5" class="box-img" data-weight="" src="{% static 'img/interactives/colourful-box-images/square6-256px.png' %}">
+          </div>
         </div>
 
         <div class="dashed-box square">
-          <img id="img-6" class="sorting-boxes" data-weight="" src="{% static 'img/interactives/colourful-box-images/square7-256px.png' %}">
+          <div id="group-6" class="sorting-box">
+            <img id="img-6" class="box-img" data-weight="" src="{% static 'img/interactives/colourful-box-images/square7-256px.png' %}">
+          </div>
         </div>
 
         <div class="dashed-box square">
-          <img id="img-7" class="sorting-boxes" data-weight="" src="{% static 'img/interactives/colourful-box-images/square8-256px.png' %}">
+          <div id="group-7" class="sorting-box">
+            <img id="img-7" class="box-img" data-weight="" src="{% static 'img/interactives/colourful-box-images/square8-256px.png' %}">
+          </div>
         </div>
       </div>
 
@@ -54,15 +70,21 @@
         <div class="dashed-box square"></div>
       </div>
 
-      <div class="d-flex justify-content-center">
+      <div id="sorting-algorithms-interactive-item-scales" class="d-flex justify-content-center">
         <div id="left-weight-content" class="dashed-box square"></div>
-        <img id="scale" class="item-box-content point-up square" src="{% static 'interactives/sorting-algorithms/img/scalebar-sheet0.png' %}">
+        <img id="scale" class="item-box-content point-up square" src="{% static 'interactives/sorting-algorithms/assets/scalebar-sheet0.png' %}">
         <div id="right-weight-content" class="dashed-box square"></div>
       </div>
 
-      <p class="text-center mb-3">
-        {% trans "Points to heaviest box" %}
-      </p>
+      <div class="row mb-3 justify-content-center">
+        <div id="eyecons" class='d-none'>
+          <img id="eye-open"   class="d-none mr-1" src="{% static 'interactives/sorting-algorithms/assets/icons8-eye-80-scaled.png' %}">
+          <img id="eye-closed" class="mr-1"        src="{% static 'interactives/sorting-algorithms/assets/icons8-closed-eye-80-scaled.png' %}">
+        </div>
+        <p class="text-center">
+        {% trans "Points to heavier box" %}
+        </p>
+      </div>
 
       <div id="sorting-algorithms-interactive-item-sorted-row" class="d-flex justify-content-between mb-1">
         <div class="dashed-box square"></div>
@@ -96,8 +118,19 @@
           <button class="btn btn-danger" type="button" id="reshuffle-button">{% trans "Reshuffle weights" %}</button>
         </div>
         <p id="comparison-counter-text"></p>
-        <button class="btn btn-secondary btn-sm" type="button" id="toggle-second-row"></button>
+        <button class="btn btn-secondary btn-sm" type="button" id="toggle-second-row">{% trans "Loading" %}</button>
       </div>
+    </div>
+    <!-- Invisible images for peeking -->
+    <div id="image-store" class="d-none">
+      <img id="number-1" class="item-weight" src="{% static 'interactives/sorting-algorithms/assets/icons8-number-1.png' %}">
+      <img id="number-2" class="item-weight" src="{% static 'interactives/sorting-algorithms/assets/icons8-number-2.png' %}">
+      <img id="number-3" class="item-weight" src="{% static 'interactives/sorting-algorithms/assets/icons8-number-3.png' %}">
+      <img id="number-4" class="item-weight" src="{% static 'interactives/sorting-algorithms/assets/icons8-number-4.png' %}">
+      <img id="number-5" class="item-weight" src="{% static 'interactives/sorting-algorithms/assets/icons8-number-5.png' %}">
+      <img id="number-6" class="item-weight" src="{% static 'interactives/sorting-algorithms/assets/icons8-number-6.png' %}">
+      <img id="number-7" class="item-weight" src="{% static 'interactives/sorting-algorithms/assets/icons8-number-7.png' %}">
+      <img id="number-8" class="item-weight" src="{% static 'interactives/sorting-algorithms/assets/icons8-number-8.png' %}">
     </div>
   </div>
 {% endblock html %}
