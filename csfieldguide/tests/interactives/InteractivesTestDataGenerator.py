@@ -42,3 +42,22 @@ class InteractivesTestDataGenerator:
         )
         interactive.save()
         return interactive
+    
+    def create_uninteractive(self, number):
+        """Create interactive object that is an uninteractive.
+
+        Args:
+            number (int): Identifier of the uninteractive.
+
+        Returns:
+            Interactive object.
+        """
+        uninteractive = Interactive(
+            slug="interactive-{}".format(number),
+            name="Interactive {}".format(number),
+            template="interactive-{}.html".format(number),
+            languages=["en"],
+            is_interactive=False,
+        )
+        uninteractive.save()
+        return uninteractive
