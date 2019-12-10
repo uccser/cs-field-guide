@@ -204,3 +204,22 @@ class ThumbnailJSONViewTest(BaseTestWithDB):
                 ],
             ]
         )
+    
+    def test_thumbnail_json_with_one_interactive_with_large_thumbnail(self):
+        self.test_data.create_interactive_with_large_thumbnail(1)
+        url = reverse("interactives:thumbnail-json")
+        response = self.client.get(url)
+        self.assertEqual(HTTPStatus.OK, response.status_code)
+        self.assertJSONEqual(
+            response.content.decode(),
+            [
+                [
+                    "interactive-1",
+                    "en",
+                    "/en/interactives/centered/interactive-1/",
+                    "build/img/interactives/thumbnails/en/interactive-1.png",
+                    True,
+                    True
+                ]
+            ]
+        )
