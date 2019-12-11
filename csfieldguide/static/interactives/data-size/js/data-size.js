@@ -1,5 +1,6 @@
 const DRAGULA = require('dragula');
 const CHART = require('chart.js');
+const NOUISLIDER = require('nouislider');
 
 const KILO  = Math.pow(10, 3),
       MEGA  = Math.pow(10, 6),
@@ -15,7 +16,7 @@ const DATAS = { // Data points ordered by size.
   'Hex'     : [gettext("Hexadecimal digit")   , 0.5         , null     ],
   'Byte'    : [gettext("1 Byte")              , 1           , '#ff9a54'],
   'Kilobyte': [gettext("1 Kilobyte")          , 1   * KILO  , '#54ff9a'],
-  'Inter'   : [gettext("This interactive")    , 4.5 * KILO  , null     ],
+  'Inter'   : [gettext("This interactive")    , 4.5 * KILO  , null     ], //TBC
   'Megabyte': [gettext("1 Megabyte")          , 1   * MEGA  , '#ac88df'],
   'First HD': [gettext("1st HDD for home PCs"), 5   * MEGA  , null     ],
   'CSFG'    : [gettext("The CSFG")            , 605 * MEGA  , null     ],
@@ -39,17 +40,26 @@ const HTML_BOXES = [
   'Exabyte',
 ];
 
-const TIMEOUT = 1500;
+const TIMEOUT = 1000;
 const DEFAULT_COLOUR = '#fffd81';
 
 const TXT_CORRECT_ORDER = gettext("The boxes are in order!");
 const TXT_INCORRECT_ORDER = gettext("The boxes are not in order! Try again");
+const TXT_SLIDER = gettext("Drag the slider to adjust the scale.");
 
 var sizeChart;
 var sizeChartData;
 
+var phase;
+const PHASES = {
+  SORT: 1,
+  GRAPH: 2,
+  SLIDER: 3,
+}
+
 $(document).ready(function() {
-  shuffleBoxes();
+  phase = PHASES.SORT;
+  //shuffleBoxes();
 
   var containerList = $('.dashed-box').toArray();
   var drake = DRAGULA(containerList);
@@ -91,7 +101,12 @@ function submit() {
  * TODO More functionality to be added
  */
 function nextPhase() {
-  setUpForBarChart();
+  phase++;
+  if (phase == PHASES.GRAPH) {
+    setUpForBarChart();
+  } else if (PHASES.SLIDER) {
+    setUpForSlider();
+  }
 }
 
 /**
@@ -140,6 +155,7 @@ function revealBarChart() {
       }
     }
   });
+  createSlider();
   setTimeout(revealBar, 1000);
 }
 
@@ -174,7 +190,49 @@ function revealBar(n) {
       sizeChartData.labels.shift();
     }
     sizeChart.update();
+  } else {
+    nextPhase();
   }
+}
+
+function createSlider() {
+  var div = $('#slider')[0];
+
+  // Dynamic stepping inspired by: https://github.com/leongersen/noUiSlider/issues/140#issuecomment-486832717
+  const max = DATAS['Internet'][1];
+  var range = {
+    "min": [0],
+    "max": [max]
+  }
+  var increment;
+
+  for (var percentage=1; percentage < 100; percentage++) {
+    increment = Math.pow(percentage, 10) * max / (Math.pow(100, 10));
+    console.log(increment);
+    range[percentage.toString() + '%'] = [increment];
+  }
+  console.log('calculated');
+  
+  NOUISLIDER.create(div, {
+    start: 50,
+    padding: [1, 0],
+    range: range,
+    pips: {
+      mode: 'count',
+      values: 11,
+      density: 10,
+    }
+  });
+
+  console.log('created');
+}
+
+function setUpForSlider() {
+  $('#sorted-boxes').fadeOut(400, function() {
+    this.classList.remove('d-flex'); // So it stays faded out
+    $('#slider').fadeIn();
+    $('#description').html(TXT_SLIDER);
+  });
 }
 
 /**
