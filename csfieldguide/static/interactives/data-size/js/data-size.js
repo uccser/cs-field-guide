@@ -215,7 +215,6 @@ function createSlider() {
   
   NOUISLIDER.create(div, {
     start: 50,
-    padding: [1, 0],
     range: range,
     pips: {
       mode: 'count',
