@@ -8,7 +8,6 @@
     <h1 class="col-12 text-center">{% trans "Data Size" %}</h1>
     <h4 id="description" class="col-12 text-center">{% trans "Arrange the units by size, smallest to largest." %}</h4>
     <div id="number-line" class="container">
-      <div id="slider"></div>
       <div id="sorted-boxes" class="d-flex justify-content-between mb-3">
         <!-- These boxes are based on their equivalents in sorting-algorithms -->
         <div class="dashed-box square" data-size="Bit">
@@ -123,7 +122,6 @@
             </div>
           </div>
         </div>
-        
       </div>
     </div>
     <div class="col-12 text-center">
@@ -131,7 +129,6 @@
       <button id="continue-button" class="btn btn-primary d-none">{% trans 'Continue' %}</button>
     </div>
     <div id="status-text" class="col-12 text-center"></div>
-    <canvas id="sizeChart"></canvas>
   </div>
 {% endblock html %}
 

@@ -1,33 +1,4 @@
 const DRAGULA = require('dragula');
-const CHART = require('chart.js');
-
-const KILO  = Math.pow(10, 3),
-      MEGA  = Math.pow(10, 6),
-      GIGA  = Math.pow(10, 9),
-      TERA  = Math.pow(10, 12),
-      PETA  = Math.pow(10, 15),
-      EXA   = Math.pow(10, 18),
-      ZETTA = Math.pow(10, 21);
-
-const DATAS = { // Data points ordered by size.
-  //          Name (translated)               , size (bytes), colour (for graph, reflects colour of box)
-  'Bit'     : [gettext("1 Bit")               , 0.125       , '#8181ff'],
-  'Hex'     : [gettext("Hexadecimal digit")   , 0.5         , null     ],
-  'Byte'    : [gettext("1 Byte")              , 1           , '#ff9a54'],
-  'Kilobyte': [gettext("1 Kilobyte")          , 1   * KILO  , '#54ff9a'],
-  'Inter'   : [gettext("This interactive")    , 4.5 * KILO  , null     ], //TBC
-  'Megabyte': [gettext("1 Megabyte")          , 1   * MEGA  , '#ac88df'],
-  'First HD': [gettext("1st HDD for home PCs"), 5   * MEGA  , null     ],
-  'CSFG'    : [gettext("The CSFG")            , 605 * MEGA  , null     ],
-  'Gigabyte': [gettext("1 Gigabyte")          , 1   * GIGA  , '#54deff'],
-  'Terabyte': [gettext("1 Terabyte")          , 1   * TERA  , '#ff5454'],
-  'SSD'     : [gettext("Largest single SSD")  , 100 * TERA  , null     ],
-  'Petabyte': [gettext("1 Petabyte")          , 1   * PETA  , '#80ff25'],
-  'GoogEar' : [gettext("Google Earth (2016)") , 3   * PETA  , null     ],
-  'Exabyte' : [gettext("1 Exabyte")           , 1   * EXA   , '#df88ce'],
-  'Zetta'   : [gettext("1 Zettabyte")         , 1   * ZETTA , null     ],
-  'Internet': [gettext("The internet (2020)") , 40  * ZETTA , null     ],
-};
 const HTML_BOXES = [
   'Bit',
   'Byte',
@@ -39,26 +10,11 @@ const HTML_BOXES = [
   'Exabyte',
 ];
 
-const TIMEOUT = 1000;
-const DEFAULT_COLOUR = '#fffd81';
-
 const TXT_CORRECT_ORDER = gettext("The boxes are in order!");
 const TXT_INCORRECT_ORDER = gettext("The boxes are not in order! Try again");
-const TXT_SLIDER = gettext("Drag the slider to adjust the scale.");
-
-var sizeChart;
-var sizeChartData;
-
-var phase;
-const PHASES = {
-  SORT: 1,
-  GRAPH: 2,
-  SLIDER: 3,
-}
 
 $(document).ready(function() {
-  phase = PHASES.SORT;
-  //shuffleBoxes();
+  shuffleBoxes();
 
   var containerList = $('.dashed-box').toArray();
   var drake = DRAGULA(containerList);
@@ -100,95 +56,6 @@ function submit() {
  * TODO More functionality to be added
  */
 function nextPhase() {
-  phase++;
-  if (phase == PHASES.GRAPH) {
-    setUpForBarChart();
-  }
-}
-
-/**
- * 
- */
-function setUpForBarChart() {
-  $('#continue-button').prop('disabled', true).fadeOut();
-  $('#status-text').fadeOut(revealBarChart);
-}
-
-function revealBarChart() {
-  if (sizeChart) {
-    sizeChart.destroy();
-  }
-  var canvas = $('#sizeChart');
-  canvas.attr('width', Math.min(1000, 0.8 * $(window).width()));
-  canvas.attr('height', canvas.attr('width') / 2);
-  sizeChartData = {
-    labels: [],
-    datasets: [{
-      label: gettext("Number of Bytes"),
-      backgroundColor: [],
-      data: []
-    }]
-  };
-  sizeChart = new CHART.Chart(canvas, {
-    type: 'bar',
-    data: sizeChartData,
-    options: {
-      responsive: true,
-      legend: {
-        display: false
-      },
-      title: {
-        display: true,
-        text: gettext("Estimated size of various groups of data (Bytes)")
-      },
-      scales: {
-        yAxes: [{
-          display: true,
-          ticks: {
-            beginAtZero: true,
-            suggestedMax: 1
-          }
-        }]
-      }
-    }
-  });
-  setTimeout(revealBar, 1000);
-}
-
-/**
- * Recursively reveals bars (and hides respective box) in the sizes chart until there are no more.
- * If there are more than 6 values, hides the smallest one
- */
-function revealBar(n) {
-  if (!n) {
-    n = 0;
-  }
-  if (n < Object.keys(DATAS).length) {
-    setTimeout(function() {revealBar(n+1)}, TIMEOUT);
-    const maxLength = 10;
-    var key = Object.keys(DATAS)[n];
-    var object = DATAS[key];
-    var name = object[0],
-        size = object[1],
-        colour = object[2];
-    if (HTML_BOXES.includes(key)) {
-      $('#' + key).fadeOut('slow');
-    }
-    sizeChartData.labels.push(name);
-    sizeChartData.datasets[0].data.push(size);
-    if (colour === null) {
-      colour = DEFAULT_COLOUR;
-    }
-    sizeChartData.datasets[0].backgroundColor.push(colour);
-    if (sizeChartData.datasets[0].data.length > maxLength) {
-      sizeChartData.datasets[0].data.shift();
-      sizeChartData.datasets[0].backgroundColor.shift();
-      sizeChartData.labels.shift();
-    }
-    sizeChart.update();
-  } else {
-    nextPhase();
-  }
 }
 
 /**
