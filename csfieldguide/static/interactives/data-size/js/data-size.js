@@ -169,7 +169,7 @@ function revealBar(n) {
   }
   if (n < Object.keys(DATAS).length) {
     setTimeout(function() {revealBar(n+1)}, TIMEOUT);
-    var maxLength = 6;
+    const maxLength = 10;
     var key = Object.keys(DATAS)[n];
     var object = DATAS[key];
     var name = object[0],
@@ -201,29 +201,55 @@ function createSlider() {
   // Dynamic stepping inspired by: https://github.com/leongersen/noUiSlider/issues/140#issuecomment-486832717
   const max = DATAS['Internet'][1];
   var range = {
-    "min": [0],
+    "min": [1, 1],
     "max": [max]
   }
-  var increment;
+  var pip;
 
   for (var percentage=1; percentage < 100; percentage++) {
-    increment = Math.pow(percentage, 10) * max / (Math.pow(100, 10));
-    console.log(increment);
-    range[percentage.toString() + '%'] = [increment];
+    pip = Math.pow((percentage / 100), 11) * max; // Forms an exponential curve, 11 chosen so that pip > 1 when % = 1
+    range[percentage.toString() + '%'] = [pip];
   }
-  console.log('calculated');
-  
+
   NOUISLIDER.create(div, {
-    start: 50,
+    start: 1,
     range: range,
+    tooltips: {
+      // 'to' the formatted value. Receives a number.
+      to: function (value) {
+        if (value < 1001) {
+          return Math.round(value);
+        }
+        return value.toPrecision(2);
+      }
+    },
     pips: {
-      mode: 'count',
-      values: 11,
-      density: 10,
+      mode: 'values',
+      values: [1, 1000000000000, 1000000000000000, 1000000000000000000, 1000000000000000000000, 1000000000000000000000000, max],
+      density: 4,
+      format: {
+        // 'to' the formatted value. Receives a number.
+        to: function (value) {
+          if (value <= 1000) {
+            return value;
+          }
+          return value.toPrecision(2);
+        },
+        from: function (value) {
+          return parseInt(value);
+        }
+      }
     }
   });
 
-  console.log('created');
+  div.noUiSlider.on('update', function (values, handle) {
+    console.log(sizeChart.options);
+    console.log(values[handle]);
+    if (values[handle > 1000]) {
+      sizeChart.options.scales.yAxes[0].ticks.max = values[handle];
+      sizeChart.update();
+    }
+  });
 }
 
 function setUpForSlider() {
