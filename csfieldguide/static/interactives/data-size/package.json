@@ -4,7 +4,6 @@
     "private": true,
     "dependencies": {
         "dragula": "3.7.2",
-        "chart.js": "2.9.3",
-        "nouislider": "14.1.0"
+        "chart.js": "2.9.3"
     }
 }

@@ -1,6 +1,5 @@
 const DRAGULA = require('dragula');
 const CHART = require('chart.js');
-const NOUISLIDER = require('nouislider');
 
 const KILO  = Math.pow(10, 3),
       MEGA  = Math.pow(10, 6),
@@ -104,8 +103,6 @@ function nextPhase() {
   phase++;
   if (phase == PHASES.GRAPH) {
     setUpForBarChart();
-  } else if (PHASES.SLIDER) {
-    setUpForSlider();
   }
 }
 
@@ -155,7 +152,6 @@ function revealBarChart() {
       }
     }
   });
-  createSlider();
   setTimeout(revealBar, 1000);
 }
 
@@ -193,71 +189,6 @@ function revealBar(n) {
   } else {
     nextPhase();
   }
-}
-
-function createSlider() {
-  var div = $('#slider')[0];
-
-  // Dynamic stepping inspired by: https://github.com/leongersen/noUiSlider/issues/140#issuecomment-486832717
-  const max = DATAS['Internet'][1];
-  var range = {
-    "min": [1, 1],
-    "max": [max]
-  }
-  var pip;
-
-  for (var percentage=1; percentage < 100; percentage++) {
-    pip = Math.pow((percentage / 100), 11) * max; // Forms an exponential curve, 11 chosen so that pip > 1 when % = 1
-    range[percentage.toString() + '%'] = [pip];
-  }
-
-  NOUISLIDER.create(div, {
-    start: 1,
-    range: range,
-    tooltips: {
-      // 'to' the formatted value. Receives a number.
-      to: function (value) {
-        if (value < 1001) {
-          return Math.round(value);
-        }
-        return value.toPrecision(2);
-      }
-    },
-    pips: {
-      mode: 'values',
-      values: [1, 1000000000000, 1000000000000000, 1000000000000000000, 1000000000000000000000, 1000000000000000000000000, max],
-      density: 4,
-      format: {
-        // 'to' the formatted value. Receives a number.
-        to: function (value) {
-          if (value <= 1000) {
-            return value;
-          }
-          return value.toPrecision(2);
-        },
-        from: function (value) {
-          return parseInt(value);
-        }
-      }
-    }
-  });
-
-  div.noUiSlider.on('update', function (values, handle) {
-    console.log(sizeChart.options);
-    console.log(values[handle]);
-    if (values[handle > 1000]) {
-      sizeChart.options.scales.yAxes[0].ticks.max = values[handle];
-      sizeChart.update();
-    }
-  });
-}
-
-function setUpForSlider() {
-  $('#sorted-boxes').fadeOut(400, function() {
-    this.classList.remove('d-flex'); // So it stays faded out
-    $('#slider').fadeIn();
-    $('#description').html(TXT_SLIDER);
-  });
 }
 
 /**
