@@ -1,15 +1,15 @@
 # Big Data and The Three V's
 
 Being able to find patterns in huge amounts of data can be incredibly valuable for making decisions, for example for setting prices, making recommendations, and detecting suspicious activities.
-This is why Big Data is a bit of a buzzword in tech and in commercial industries these days.
+This is why "*Big Data*" is a bit of a buzzword in tech and in commercial industries these days.
 But how big does it have to be to be called "*Big Data*"?
 
-Big Data is a phrase used to mean an amount of data that is so large and is generated so quickly that it is difficult to store and analyse using traditional sequential programming and storage techniques.
-Big Data has three main qualities: Volume, Variety, and Velocity (often referred to as the "3Vs"), and we'll look at each of these in this section
+Big data is a phrase used to mean an amount of data that is so large and is generated so quickly that it is difficult to store and analyse using traditional sequential programming and storage techniques.
+Big data has three main qualities: Volume, Variety, and Velocity (often referred to as the "3Vs"), and we'll look at each of these in this section
 
 ## Volume
 
-Volume refers to the quantity of data, and when it comes to Big Data there is a lot of it.
+Volume refers to the quantity of data, and when it comes to big data there is a lot of it.
 Have a look at this website showing what happens on the internet [every second](https://everysecond.io/the-internet) to get an idea of just how much data is constantly produced online!
 
 Your phone might have about 64GB of storage space, and it takes a long time for the typical smartphone user to run out of space.
@@ -17,8 +17,8 @@ A laptop might have 1TB of storage, and some users will never get close to using
 It wasn't long ago that running out of space was a common problem for all users, but advances in engineering of transistor density have continued at a steady pace.
 Since the 60's the capacity of a single computer's integrated circuit has been doubling roughly every two years ([Moore's Law](https://en.wikipedia.org/wiki/Moore%27s_law)), so if this continues and you're reading this several years after it was written, 1TB might sound quite small!
 
-These amounts are nowhere near large enough to be considered Big Data though.
-So how big does data have to be to be considered *big*? Well, it usually starts in the terabytes, then petabytes, then exabytes, and so on… Big Data is so big that simply storing it is an issue in itself; a single computer cannot store the amount of data on its own, and multiple computers must be used.
+These amounts are nowhere near large enough to be considered big data though.
+So how big does data have to be to be considered *big*? Well, it usually starts in the terabytes, then petabytes, then exabytes, and so on… Big data is so big that simply storing it is an issue in itself; a single computer cannot store the amount of data on its own, and multiple computers must be used.
 
 One of the most extreme examples of data volume is YouTube uploads.
 As of October 2019, over [8 hours](https://everysecond.io/youtube) of video content is uploaded to YouTube every second!
@@ -33,13 +33,13 @@ Online transactions, emails, and even individual mouse clicks on a webpage are g
 {image file-path="img/chapters/different-data-types.png" alt="Icons representing seven different types of files or data points are shown.
 These are audio files, mouse clicks, online transactions, online messages, email, images, and a spreadsheet."}
 
-Big Data almost always uses more than one data type, and this contributes to the complexity of it.
+Big data almost always uses more than one data type, and this contributes to the complexity of it.
 Different data types have different attributes and therefore the data doesn't simply fit into rows and columns of a spreadsheet or database (e.g. the dimensions of an image will need to be recorded in a different way to the length of an audio clip).
 
 ## Velocity
 
 There are two ways to measure Velocity: the speed at which the data is being generated, and the speed at which it is being {glossary-link term="data-processing"}processed{glossary-link end}.
-Big Data tends to be produced continually, and is available in real time.
+Big data tends to be produced continually, and is available in real time.
 In many situations it also needs to be processed in real time, and processing this data as quickly as it is created is not easy!
 
 For example, every time you make a purchase using your debit or credit card on an EFTPOS machine, that transaction is recorded and processed.

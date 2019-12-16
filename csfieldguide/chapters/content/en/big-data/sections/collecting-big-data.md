@@ -53,7 +53,7 @@ For Pixel users, Google has even released a [new feature](https://play.google.co
 Other personal devices that connect with your smartphone are also constantly collecting data, for example wearable tech like smartwatches or fitness trackers.
 
 ### Sensors
-Big Data is also being collected from the physical world all around us!
+Big data is also being collected from the physical world all around us!
 Sensors are devices that detect events or changes in their surrounding environment.
 They capture and digitise a vast variety of data about our environment, for example temperature, sound, visual images, air pressure, physical movement, and even sub-atomic energy.
 They are often relatively basic devices with limited computing power, and so they send this data to other digital devices for processing.
@@ -78,7 +78,7 @@ For example, if you decide to study how often people open their fridge based on 
 A smart fridge is certainly a luxury item and therefore mostly those earning more money will be contributing to your study.
 Is this group representative of everyone?
 
-This is just a silly example, but think about what happens when you are using Big Data to analyse medical images.
+This is just a silly example, but think about what happens when you are using big data to analyse medical images.
 If you are analysing the effectiveness of a treatment on women and your training data only includes Pākehā (NZ European) and European women, then should you automatically apply the same conclusions to Māori women?
 No, of course not, there are physiological differences between people of different ethnicities, and it would be inaccurate to generalise them into one group.
 This is why it is so important to make sure that you are capturing data that accurately portrays the group of people that you want to investigate.
@@ -96,7 +96,7 @@ The analysis of biased healthcare data has frequently disadvantaged groups of pe
 
 So now that all of this data has been collected, it needs to be stored, which is a challenge in itself.
 The first issue is simply the amount of data.
-As we mentioned earlier, Big Data often begins at terabytes, but more often than not, this expands to petabytes or even exabytes.
+As we mentioned earlier, big data often begins at terabytes, but more often than not, this expands to petabytes or even exabytes.
 This is where data centres come in.
 
 Data centres are warehouses (often enormous ones) containing many computers that are connected in a network.
@@ -129,7 +129,7 @@ Image courtesy of [xkcd](https://xkcd.com/).
 
 {panel end}
 
-The other issue around storing Big Data is the raw data itself.
+The other issue around storing big data is the raw data itself.
 There are two general categories we use to classify data: "structured" or "unstructured".
 When you describe the qualities of a car, you probably list the colour, make, model, whether it is manual or automatic, etc.
 We would call this data structured because there is a predetermined data model we can use to describe the qualities of the car.
