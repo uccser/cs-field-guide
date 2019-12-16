@@ -3,10 +3,6 @@
 @import "node_modules/bootstrap/scss/variables";
 @import "node_modules/bootstrap/scss/mixins";
 
-#number-line {
-  height: 120px;
-}
-
 .dashed-box {
   background-color: #ffffff;
   border: 2px dashed #777777;
@@ -24,6 +20,12 @@
       width: $box-size;
       height: $box-size;
       max-width: $box-size;
+    }
+    @include media-breakpoint-down(xs) {
+      $box-size: 2rem;
+      width: $box-size !important;
+      height: $box-size !important;
+      max-width: $box-size !important;
     }
   }
 }
@@ -66,11 +68,27 @@
 .unit {
   padding: 0px;
   font-size: 3rem;
+  @each $size, $width in $container-max-widths {
+    @include media-breakpoint-only($size) {
+      font-size: $width / 20;
+    }
+    @include media-breakpoint-down(xs) {
+      text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white; // For clarity
+      font-size: 1rem !important;
+    }
+  }
 }
 
 .name {
   position: absolute;
-  bottom: 3px;
+  bottom: 4px;
+  padding: 0px;
+  @include media-breakpoint-down(md) {
+    font-size: 0.7rem;
+  }
+  @include media-breakpoint-down(sm) {
+    display: none;
+  }
 }
 
 .txt-red {
@@ -79,10 +97,4 @@
 
 .txt-grn {
   color: green;
-}
-
-#sizeChart {
-  position: relative;
-  margin: auto;
-  max-width: 1000px;
 }
