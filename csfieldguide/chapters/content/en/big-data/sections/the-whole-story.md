@@ -10,7 +10,7 @@ With the amount of data we are collecting each day growing rapidly, it’s not s
 
 But not only is there a huge demand for experts in this field, there is also demand for innovation.
 We are already pushing the limits of the infrastructure currently supporting big data.
-For example, once it is completed it is estimated that the [Square Kilometre Array](https://www.skatelescope.org/the-ska-project/) telescope will produce [160 terabytes](https://www.skatelescope.org/frequently-asked-questions/) of raw data every second, which is over 10 exabytes of data being produced everyday!
+For example, once it is completed it is estimated that the [Square Kilometre Array](https://www.skatelescope.org/the-ska-project/) telescope will produce [160 terabytes of raw data every second](https://www.skatelescope.org/frequently-asked-questions/), which is over 10 exabytes of data being produced everyday!
 Which is much, much more data than currently exists on the entire internet.
 The technology to store, let alone process, this amount of data simply does not exist right now.
 There is plenty of space for creative solutions to solve this problem, and other problems related to using big data.

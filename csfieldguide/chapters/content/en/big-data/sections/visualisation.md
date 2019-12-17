@@ -1,9 +1,8 @@
 # Visualisation
 
-It has been said that 90% of all information absorbed by a sighted human's brain is visual, and hence we are not very good at processing large amounts of raw data in numeral or text form.
+Much of the information absorbed by a sighted human's brain is visual, and hence we are not very good at processing large amounts of raw data in numeric or text form.
 We often need something visual to represent data to help us understand it.
-"Data visualisation" means graphically representing data.
-This is done to attempt to convey information about data visually, so that it is easier for us to interpret.
+"Data visualisation" means graphically representing data, to try and convey information about data in a way that is easier for us to interpret.
 This is an important method that we can use to help us find patterns, trends or correlations that might not have been identified otherwise.
 To see some examples have a look at the website [Information is Beautiful](https://informationisbeautiful.net/), which contains a huge number of data visualisations.
 
@@ -11,7 +10,7 @@ One particularly interesting data visualisation application is Astronomy.
 Did you know that a lot of the beautiful images of space that space agencies release are not "real" images? They are actually works of [art created by visualisation scientists](https://www.youtube.com/watch?v=xc1V9d8jrr8), not simply photographs taken with a telescope.
 The reason for this is because the telescopes used by astronomers mainly collect raw data rather than images.
 Visualisation scientists use this data to create a hypothetical image of what something looks like. This isn't to be confused with 'just making things up'!
-The images they create are based on the real raw data and their own in depth knowledge.
+The images they create are based on the real raw data and their own in-depth knowledge.
 
 {panel type="curiosity"}
 
@@ -60,8 +59,4 @@ The most important part however, is that the visualisation accurately conveys th
 
 Investigate how different visualisation techniques can be more useful than others with the data visualisation interactive:
 
-{interactive slug="data-visualisation" type="whole-page" text="true"}
-
-Data Visualisation Interactive
-
-{interactive end}
+{interactive slug="data-visualisation" type="whole-page"}

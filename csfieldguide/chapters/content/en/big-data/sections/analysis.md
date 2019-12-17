@@ -6,7 +6,7 @@ There are many different methods for doing this, so we’re just going to take a
 ## Association Rule Learning
 
 Have you ever wondered why bananas are almost always near the front of the store?
-It's not just because they are nutritious and delicious, it's because they have been identified as an impulse buy so store owners want to make sure you see them.
+It is not just because they are nutritious and delicious, it's because they have been identified as an impulse buy so store owners want to make sure you see them.
 Ever wondered why milk is not at the front of the store?
 It's because a lot of people go to the supermarket to buy milk, so if the milk is put at the back of the store, you end up walking past many other items that you didn't know you wanted or needed on the way in!
 Rules like these can be found in big data by using "{glossary-link term="association-rule-learning"}Association Rule Learning{glossary-link end}".
@@ -67,29 +67,47 @@ Try and trick it and see if you can make it misclassify what you write!
 This is the process of investigating structural connections between data points, where these points are connected in a network. We call each of these individual pieces of data "nodes", and the connections between them are called "edges".
 Here are two prominent examples:
 
-- Social Network Analysis: This is used for investigating social structures using networks.
+**Social Network Analysis:**
+
+- This is used for investigating social structures using networks.
 You can imagine how this works by thinking about the structure of Facebook.
 You and everyone else on Facebook are each an individual node, and two people are connected by an edge if they are Facebook friends.
 Together, these nodes and edges make a graph structure (a different type of [graph](https://en.wikipedia.org/wiki/Graph_(discrete_mathematics)) to the ones you normally see in maths) that can be analysed.
-Social network analysis is useful for understanding many things, for example: information circulation, business networks, social connections, and structures. Even how quickly a meme spreads.
 
-- Webpage Network Analysis: One of the most famous uses of big data network analysis is the [PageRank](https://en.wikipedia.org/wiki/PageRank) algorithm used by Google to determine which webpages to show users for given search words.
+{image file-path="img/chapters/social-network-graph.png" caption="true" alt="Five circles with different names in them are shown with lines connecting each of them to illustrate that they are connected on social media. Each of these circles is then connected to several smaller circles, which represent other friends in their network."}
+
+Friendships between social network users can be modelled as a network. Each circle symbolises a person, or a *node*, and each line symbolises a connection, or an *edge*.
+
+{image end}
+
+- Social network analysis is useful for understanding many things, for example: information circulation, business networks, social connections, and structures. Even how quickly a meme spreads.
+
+**Webpage Network Analysis:**
+
+- One of the most famous uses of big data network analysis is the [PageRank](https://en.wikipedia.org/wiki/PageRank) algorithm used by Google to determine which webpages to show users for given search words.
 Underlying the search results is a complex ranking of more than a billion webpages.
 The rank of a webpage is based on social capital and popularity contest models (and probably some other secret algorithm ingredients).
 A webpage is seen as a node, and a hyperlink to another node (another website) is a directed edge.
 Every incoming link to a target page gives a small amount of rank proportional to the rank of the source page.
-Thus something like a Youtube video blog (or even this CS Field Guide Big Data Chapter page that you are reading!) that links a product page with [Whittaker's chocolate](https://www.whittakers.co.nz/en_WW/products/), gives the Whittaker's chocolate page a higher ranking!
+Thus something like a YouTube video blog (or even this CS Field Guide Big Data Chapter page that you are reading!) that links a product page with [Whittaker's chocolate](https://www.whittakers.co.nz/en_WW/products/), gives the Whittaker's chocolate page a higher ranking!
 
-Network analysis has become an important technique in many natural science and digital humanities subject areas; including sociology, biology, communication studies, economics, history, and many more.
+{image file-path="img/chapters/web-page-network-analysis.png" caption="true" alt="Four webpages are shown with hyperlinks between them represented by arrows. The webpages are labelled as nodes, and the arrows are labelled as edges."}
+
+Links between webpages can be modelled as a network.
+
+{image end}
+
+- Network analysis has become an important technique in many natural science and digital humanities subject areas; including sociology, biology, communication studies, economics, history, and many more.
 
 ## Parallel, Distributed, Clustered Computing
 
 When dealing with big data, analysing it in a useful period of time often requires substantial resources.
-A typical laptop computer is not powerful enough to process such a large amount of data.
-This is where the idea of parallel, distributed, and clustered computing comes in.
-Let's break this down:
+A typical laptop computer is not powerful enough to process such a large amount of data, but luckily there are ways big data analysis can often be split into smaller parts.
+For example, if you wanted to count how often each word appears in a document so that you could conduct sentiment analysis on it, you could break the document into two parts and get two different computers to count the words in each half, and then combine the results.
 
-**Parallel Computing**: when many calculations/processes are carried out simultaneously across multiple processors in the same computer, in order to solve a problem or complete a task.
+This is where the techniques of parallel, distributed, and clustered computing comes in.
+
+**Parallel Computing**: in parallel computing many calculations/processes are carried out simultaneously across multiple processors in the same computer, in order to solve a problem or complete a task.
 
 {image file-path="img/chapters/parallel-computing-diagram.png" caption="true" alt="Image shows a large block, representing a task, going into a computer and then being broken up into four smaller tasks which each go through a separate processor."}
 
@@ -106,7 +124,7 @@ Separate computers communicate with each other over a network in distributed sys
 
 {image end}
 
-**Clustered Computing**: A computer cluster is a set of connected computers or servers, typically in the same location, that work together so that they can be viewed as a single system.
+**Clustered Computing**: a computer cluster is a set of connected computers or servers, typically in the same location, that work together so that they can be viewed as a single system.
 
 {image file-path="img/chapters/cluster-computing-diagram.png" caption="true" alt="Five computers are connected in a circle with a border surrounding all five, to show that it is viewed as one system."}
 
@@ -115,27 +133,28 @@ Multiple computers are connected in a local network and act as one entity in a c
 {image end}
 
 Each of these approaches processes large amounts of data in a much shorter amount of time than a single computer.
+often a combination of these techniques will be used, for example the separate `computers' connected in a distributed system may each be made up of computer clusters!
 They also require any problem they are working on to be broken down, or decomposed into sets of smaller problems or processes, which can each be tackled independently and simultaneously.
 Computer Scientists and Software Engineers need to come up with good methods to decompose their analysis processes, so that they can be effectively tackled with these approaches.
 Some problems are easy to decompose into independent pieces and are called *embarrassingly parallel*.
 
 An example is applying the same image smoothing filter to millions of pixels in an image, each computer or processor can apply the filter to a small section of the image and then the results can be recombined to form the new smoothed image.
-Other problems, such as weather prediction simulations, are harder to decompose, and require advanced techniques including pipe-lining, stochastic sampling, and replication.
+Other problems, such as weather prediction simulations, are harder to decompose because one decision made during the analysis might depend on others being made.
+These problems require advanced techniques such as pipelining, stochastic sampling, and replication.
 
 **MapReduce**
 
 MapReduce is an example of a general algorithmic method that makes the most of Parallel, Distributed, and Clustered Computing.
 MapReduce is named as such because it is made up of two steps: "map" and "reduce", and is a type of split-apply-combine strategy for data analysis.
 
-The best way to illustrate how a MapReduce algorithm works is to imagine you and five friends are making a sandwich.
+A good way to illustrate how a MapReduce algorithm works is to imagine you and five friends are making a sandwich.
 In the sandwich you want cucumber, tomato, lettuce, mayonnaise and of course bread on either end.
 The first stage is "Map".
 In this stage, you each take one of the fillings and prepare it to be put in the sandwich (slice the bread in half, wash the lettuce, cut the tomato, etc).
 This is much quicker than just one of you preparing each ingredient one at a time.
 Now that all the ingredients are prepared, you move on to the "Reduce" stage.
-This is often described as the "summary operation" because each of the 5 ingredients now need to be combined into one.
+This is often described as the "summary operation" because each of the five ingredients now need to be combined into one.
 And now we have a delicious MapReduce sandwich ready to eat.
-
 
 {panel type="teacher-note"}
 
@@ -164,18 +183,18 @@ Being able to analyse the users interests quickly means they can choose what adv
 If this analysis takes too long however, by the time the system chooses what advertisements to use, the user may have closed the tab and left the website!
 The data that was produced by their clicks has lost much of its value by this point.
 
-A more serious example could be notifying citizens about national emergencies, such as an incoming hurricane.
+A more serious example could be notifying citizens about national emergencies, such as an incoming tsunami.
 If the decision to send out an emergency text message takes too long there could be dire consequences.
 Data from environmental sensors is being collected constantly and data stream analytics can be hugely beneficial for monitoring and using this data.
 
-We can also refer back to our example of EFTPOS and credit card transactions in section 17.2 on Velocity, if this data is not being analysed and processed in real time then the system will not be of use.
+We can also refer back to our example of EFTPOS and credit card transactions in the [section on Velocity]('chapters:chapter_section' 'big-data' 'velocity'), if this data is not being analysed and processed in real time then the system will not be of use.
 Decisions like whether a transaction is accepted or not can’t be happening slower than the transactions are being made, otherwise the whole system will break down!
 
 ## Challenges of Analysis
 
 We have explained just a few of the techniques used to analyse big data, and there are obviously many more that you may come across in further reading.
 Part of what makes analysing big data so challenging is that simply picking which analysis technique to use can influence your results, and is another way for bias to influence studies.
-In addition, with so much raw data available and heuristics needed to efficiently find interesting patterns in subsets of the data, it can be easy to manipulate results intentionally or unintentionally.
-But doing this can sometimes result in a conclusion too specialised to one group, and can remove the opportunity to find other interesting trends in the data.
+In addition, with so much raw data available and algorithms needed to efficiently find interesting patterns in subsets of the data, it can be easy to manipulate results intentionally or unintentionally.
+But doing this can sometimes result in a conclusion too specialised to one group, can remove the opportunity to find other interesting trends in the data, or can introduce algorithmic bias.
 
 When analysing big data it is important to think about why you are using the particular analysis method you have chosen, where your data has come from, how it was collected, and how you can best use it for your specific application.

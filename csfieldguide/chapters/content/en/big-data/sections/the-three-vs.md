@@ -1,8 +1,8 @@
 # Big Data and The Three V's
 
-Being able to find patterns in huge amounts of data can be incredibly valuable for making decisions, for example for setting prices, making recommendations, and detecting suspicious activities.
-This is why "*Big Data*" is a bit of a buzzword in tech and in commercial industries these days.
-But how big does it have to be to be called "*Big Data*"?
+Being able to find patterns in huge amounts of data can be incredibly valuable for making decisions, such as for setting prices, making recommendations, and detecting suspicious activities.
+This is why *"Big Data"* is a bit of a buzzword in tech and in commercial industries these days.
+But how big does it have to be to be called "Big Data"?
 
 Big data is a phrase used to mean an amount of data that is so large and is generated so quickly that it is difficult to store and analyse using traditional sequential programming and storage techniques.
 Big data has three main qualities: Volume, Variety, and Velocity (often referred to as the "3Vs"), and we'll look at each of these in this section
@@ -18,16 +18,15 @@ It wasn't long ago that running out of space was a common problem for all users,
 Since the 60's the capacity of a single computer's integrated circuit has been doubling roughly every two years ([Moore's Law](https://en.wikipedia.org/wiki/Moore%27s_law)), so if this continues and you're reading this several years after it was written, 1TB might sound quite small!
 
 These amounts are nowhere near large enough to be considered big data though.
-So how big does data have to be to be considered *big*? Well, it usually starts in the terabytes, then petabytes, then exabytes, and so on… Big data is so big that simply storing it is an issue in itself; a single computer cannot store the amount of data on its own, and multiple computers must be used.
+So how big does data have to be to be considered *big?* Well, it usually starts in the terabytes, then petabytes, then exabytes, and so on… Big data is so big that simply storing it is an issue in itself; a single computer cannot store the amount of data on its own, and multiple computers must be used.
 
 One of the most extreme examples of data volume is YouTube uploads.
 As of October 2019, over [8 hours](https://everysecond.io/youtube) of video content is uploaded to YouTube every second!
 That's over 80 years worth of videos every day, and YouTube has to be able to store all of this data to keep its services running.
 
-
 ## Variety
 
-Variety refers to the many different types of data (plain text, images, videos, and many many more) that are generated and stored.
+Variety refers to the many different types of data (plaintext, images, videos, and many many more) that are generated and stored.
 Online transactions, emails, and even individual mouse clicks on a webpage are generating data of different types.
 
 {image file-path="img/chapters/different-data-types.png" alt="Icons representing seven different types of files or data points are shown.
@@ -47,7 +46,7 @@ In 2018 there were on average 50-60 EFTPOS transactions every single second [in 
 When one of these transactions is made it doesn't just mean a message is sent to your bank and they take the money out of your account; there is much more than that happening.
 The EFTPOS machine must first establish a connection with a card processor network (such as Visa or MasterCard), who connect with your specific bank and pass on the transaction information to ask for approval.
 Checks are run to see if you have enough money, if your PIN is correct, loyalty programs such as petrol points or airpoints might need to be computed, fraud checks might be run, and your bank may send data to a third party to perform some of these steps for them.
-Only after all this happens will your bank authorise (or decline it!) the transaction, send an approval back to the card processor network, then back to the EFTPOS machine saying the payment has been processed - and this all has to happen in a matter of seconds!
+Only after all this happens will your bank authorise (or decline!) the transaction, send an approval back to the card processor network, then back to the EFTPOS machine saying the payment has been processed &ndash; and this all has to happen in a matter of seconds!
 
 Another example of just how quickly large amounts of real time data needs to be processed is social networking websites.
 Every time you scroll through Facebook, you are generating data.
