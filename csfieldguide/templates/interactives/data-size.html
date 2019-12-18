@@ -7,8 +7,8 @@
   <div class="container-fluid my-3">
     <h1 class="col-12 text-center">{% trans "Data Size" %}</h1>
     <h4 id="description" class="col-12 text-center">{% trans "Arrange the units by size, smallest to largest." %}</h4>
-    <div id="number-line" class="container">
-      <div id="sorted-boxes" class="d-flex justify-content-between mb-3">
+    <div class="container">
+      <div id="sorted-boxes" class="d-flex justify-content-between">
         <!-- These boxes are based on their equivalents in sorting-algorithms -->
         <div class="dashed-box square" data-size="Bit">
           <div id="Bit" class="size-box">
@@ -121,6 +121,42 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div id="example-boxes" class="d-none justify-content-between mb-3">
+        <div id="Bit-items" class="example-container dest">
+          <!-- Dragula spaces go here -->
+        </div>
+        <div id="Byte-items" class="example-container dest">
+          <!-- Dragula spaces go here -->
+        </div>
+        <div id="Kilobyte-items" class="example-container dest">
+          <!-- Dragula spaces go here -->
+        </div>
+        <div id="Megabyte-items" class="example-container dest">
+          <!-- Dragula spaces go here -->
+        </div>
+        <div id="Gigabyte-items" class="example-container dest">
+          <!-- Dragula spaces go here -->
+        </div>
+        <div id="Terabyte-items" class="example-container dest">
+          <!-- Dragula spaces go here -->
+        </div>
+        <div id="Petabyte-items" class="example-container dest">
+          <!-- Dragula spaces go here -->
+        </div>
+        <div id="Exabyte-items" class="example-container dest">
+          <!-- Dragula spaces go here -->
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div id="example-items" class="d-none justify-content-center mb-3 example-container source">
+        <!-- Examples of stuff, to be dragged, go here -->
+        <div id="csfg" class="example-item">
+          {% trans 'The CSFG' %}
         </div>
       </div>
     </div>

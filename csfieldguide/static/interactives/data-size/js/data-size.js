@@ -12,18 +12,22 @@ const HTML_BOXES = [
 
 const TXT_CORRECT_ORDER = gettext("The boxes are in order!");
 const TXT_INCORRECT_ORDER = gettext("The boxes are not in order! Try again");
+const TXT_EXAMPLE_SORT = gettext("Try to match the examples below with their relative size.");
 
 $(document).ready(function() {
-  shuffleBoxes();
+  //shuffleBoxes();
 
   var containerList = $('.dashed-box').toArray();
-  var drake = DRAGULA(containerList);
-  drake.on('drop', (div, target, source) => {
+  var drakeSorting = DRAGULA(containerList);
+  drakeSorting.on('drop', (div, target, source) => {
     // When an image is dropped on top of another image
     if (target.children.length == 2) {
       source.appendChild(target.children[0]);
     }
   });
+
+  var exampleList = $('.example-container').toArray();
+  var drakeExamples = DRAGULA(exampleList);
 
   $('#submit-button').on('click', submit);
   $('#continue-button').on('click', nextPhase);
@@ -56,6 +60,11 @@ function submit() {
  * TODO More functionality to be added
  */
 function nextPhase() {
+  $('#example-boxes').addClass('d-flex').removeClass('d-none');
+  $('#example-items').addClass('d-flex').removeClass('d-none');
+  $('#continue-button').addClass('d-none');
+  $('#submit-button').removeClass('d-none');
+  $('#status-text').html('');
 }
 
 /**
