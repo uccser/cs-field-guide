@@ -102,21 +102,21 @@ Links between webpages can be modelled as a network.
 
 ## Parallel Computing
 
-When dealing with big data, analysing it is very {glossary-link term="cost"}costly{glossary-link end}, and to do this in a useful period of time often requires substantial resources.
+Analysing big data can be very time intensive and {glossary-link term="cost"}costly{glossary-link end}, and to do this efficiently often requires substantial resources.
 A typical laptop computer is not powerful enough to process such a large amount of data, but luckily there are ways big data analysis can be split into smaller parts.
 One of the most common ways to process big data is to use parallel computing.
 
-In parallel computing multiple operations are performed simultaneously by multiple {glossary-link term="processor"}processors{glossary-link end}, rather than one processor performing many sequential operations.
+Imagine you wanted to count how often a word appeared in a large document so that you could conduct sentiment analysis on it.
+You could have one computer go through each word in the whole document.
+But if you split the document into two parts, have two different computers count the words in each half, and then combine the results, you'll get this task done in almost half the time.
+By having two (or more) computers working in parallel you can process data more efficiently.
 
-An example is applying the same image smoothing filter to millions of pixels in an image, each processor can apply the filter to a small section of the image and then the results can be recombined to form the new smoothed image.
-Other problems, such as weather prediction simulations, are harder to decompose because one decision made during the analysis might depend on others being made.
-These problems require advanced techniques such as pipelining, stochastic sampling, and replication.
+In parallel computing many computational operations are performed simultaneously by multiple {glossary-link term="processor"}processors{glossary-link end}, rather than one processor performing many sequential operations.
 
 Techniques like multi-core computer processing, distributed computing, and clustered computing are some of the most common techniques used in parallel computing.
 Each of these techniques can process large amounts of data in a much shorter amount of time than a single computer processor.
 They also require any problem they are working on to be broken down, or decomposed into sets of smaller problems or processes, which can each be tackled independently and simultaneously.
 Computer Scientists and Software Engineers need to come up with good methods to decompose their analysis processes, so that they can be effectively tackled with these approaches.
-Some problems are easy to decompose into independent pieces and are called *embarrassingly parallel*.
 
 {panel type="jargon-buster"}
 
@@ -124,9 +124,9 @@ Some problems are easy to decompose into independent pieces and are called *emba
 
 **Multi-core Computing**: in multi-core computing many calculations and computations are carried out simultaneously across multiple processors, or {glossary-link term="core"}cores{glossary-link end}, in the same computer or {glossary-link term="cpu"}CPU{glossary-link end}.
 
-{image file-path="img/chapters/multi-core-computing-diagram.png" caption="true" alt="Image shows a large block, representing a task, going into a computer and then being broken up into four smaller tasks which each go through a separate processor."}
+{image file-path="img/chapters/multi-core-computing-diagram.png" caption="true" alt="Image shows a large block, representing a task, going into a computer and then being broken up into four smaller tasks which each going through a separate processor."}
 
-A computer breaks a task into a set of smaller tasks, each of which is completed by a separate processor at the same time in parallel.
+A computer breaks a task into a set of smaller tasks, each of which is completed by a separate processor at the same time.
 
 {image end}
 
@@ -149,27 +149,10 @@ Multiple computers are connected in a local network and act as one entity in a c
 
 {panel end}
 
-**MapReduce**
-
-MapReduce is an example of a general algorithmic method that makes the most of Parallel, Distributed, and Clustered Computing.
-MapReduce is named as such because it is made up of two steps: "map" and "reduce", and is a type of split-apply-combine strategy for data analysis.
-
-<!-- For example, if you wanted to count how often each word appears in a document so that you could conduct sentiment analysis on it, you could break the document into two parts and get two different computers to count the words in each half, and then combine the results. -->
-
-
-
-{panel type="teacher-note"}
-
-# MapReduce Exercise
-
-Print out two copies of a large document.
-Hand one copy to a single student and ask them to count the number of words in the document.
-Distribute the other copy between the rest of the students in the class and have them count the number of words on their page (Map).
-When each student is finished counting, ask for the number of words each and add them up (Reduce).
-Meanwhile the first student is likely only up to the second or third page!
-This is a great way to illustrate how a MapReduce solution works, while also demonstrating how much quicker it can be to solve a problem distributed between many students/computers rather than just using a single student/computer.
-
-{panel end}
+Some problems are easy to decompose into independent pieces and are called *embarrassingly parallel*.
+One example is applying the same image smoothing filter to millions of pixels in an image, each processor can apply the filter to a small section of the image and then the results can be recombined to form the new smoothed image.
+Other problems, such as weather prediction simulations, are harder to decompose because one decision made during the analysis might depend on others being made.
+These problems require advanced techniques such as pipelining, stochastic sampling, and replication.
 
 ## Data Stream Analysis
 
