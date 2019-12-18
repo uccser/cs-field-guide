@@ -17,9 +17,9 @@ The rules that have been learned here associate a retail item with a location wi
 
 > Milk + back of store -> consumers buy more items
 
-Association Rule Learning is a type of analysis used to find relationships (or the probability of relationships existing) between variables in a large data set.
+Association rule learning is a type of analysis used to find relationships (or the probability of relationships existing) between variables in a large data set.
 It works by defining a set of rules and gradually adding rules over time as it analyses more data, by finding frequent patterns and {glossary-link term="correlation"}correlations{glossary-link end} between variables.
-Large retail chains are famous for using the Association Rule Learning technique to optimise their sales, and chances are you have been influenced by these techniques in the past.
+Large retail chains are famous for using the association rule learning technique to optimise their sales, and chances are you have been influenced by these techniques in the past.
 
 Algorithms such as [Apriori](https://en.wikipedia.org/wiki/Apriori_algorithm) can analyse big datasets of retail transactions for frequent and important item sets and generate these association rules.
 A famous example of such a retail market basket analysis is a study that discovered that between 5:00 and 7:00 p.m. customers of a convenience store often [bought beer and diapers together](http://canworksmart.com/diapers-beer-retail-predictive-analytics/).
@@ -27,7 +27,7 @@ A famous example of such a retail market basket analysis is a study that discove
 Using association rule learning with data created by the millions of online transactions seen by online stores like Amazon or song playlists on Spotify, allows retailers to find important, but niche and sometimes unexpected rules.
 This enables what is referred to as {glossary-link term="long-tail-marketing"}long tail marketing{glossary-link end}, where rather than trying to appeal to a large general group of consumers, retailers will focus on a large number of small and very specific groups and tailor their advertising specifically to them.
 Rules being used for this type of marketing leads to things like advertisements for rock climbing shoes appearing on a webpage you visit because you recently purchased a helmet.
-If it works too well though it can also be disturbing - how did they know I was interested in those exact shoes??
+If it works too well though it can also be disturbing &ndash; how did they know I was interested in those exact shoes??
 
 Targeted advertising, content recommendation, and market research are by far some of the most popular (and profitable) uses of big data!
 
@@ -64,7 +64,8 @@ Try and trick it and see if you can make it misclassify what you write!
 
 ## Network Analysis
 
-This is the process of investigating structural connections between data points, where these points are connected in a network. We call each of these individual pieces of data "nodes", and the connections between them are called "edges".
+This is the process of investigating structural connections between data points, where these points are connected in a network.
+We call each of these individual pieces of data "nodes", and the connections between them are called "edges".
 Here are two prominent examples:
 
 **Social Network Analysis:**
@@ -99,17 +100,31 @@ Links between webpages can be modelled as a network.
 
 - Network analysis has become an important technique in many natural science and digital humanities subject areas; including sociology, biology, communication studies, economics, history, and many more.
 
-## Parallel, Distributed, Clustered Computing
+## Parallel Computing
 
-When dealing with big data, analysing it in a useful period of time often requires substantial resources.
-A typical laptop computer is not powerful enough to process such a large amount of data, but luckily there are ways big data analysis can often be split into smaller parts.
-For example, if you wanted to count how often each word appears in a document so that you could conduct sentiment analysis on it, you could break the document into two parts and get two different computers to count the words in each half, and then combine the results.
+When dealing with big data, analysing it is very {glossary-link term="cost"}costly{glossary-link end}, and to do this in a useful period of time often requires substantial resources.
+A typical laptop computer is not powerful enough to process such a large amount of data, but luckily there are ways big data analysis can be split into smaller parts.
+One of the most common ways to process big data is to use parallel computing.
 
-This is where the techniques of parallel, distributed, and clustered computing comes in.
+In parallel computing multiple operations are performed simultaneously by multiple {glossary-link term="processor"}processors{glossary-link end}, rather than one processor performing many sequential operations.
 
-**Parallel Computing**: in parallel computing many calculations/processes are carried out simultaneously across multiple processors in the same computer, in order to solve a problem or complete a task.
+An example is applying the same image smoothing filter to millions of pixels in an image, each processor can apply the filter to a small section of the image and then the results can be recombined to form the new smoothed image.
+Other problems, such as weather prediction simulations, are harder to decompose because one decision made during the analysis might depend on others being made.
+These problems require advanced techniques such as pipelining, stochastic sampling, and replication.
 
-{image file-path="img/chapters/parallel-computing-diagram.png" caption="true" alt="Image shows a large block, representing a task, going into a computer and then being broken up into four smaller tasks which each go through a separate processor."}
+Techniques like multi-core computer processing, distributed computing, and clustered computing are some of the most common techniques used in parallel computing.
+Each of these techniques can process large amounts of data in a much shorter amount of time than a single computer processor.
+They also require any problem they are working on to be broken down, or decomposed into sets of smaller problems or processes, which can each be tackled independently and simultaneously.
+Computer Scientists and Software Engineers need to come up with good methods to decompose their analysis processes, so that they can be effectively tackled with these approaches.
+Some problems are easy to decompose into independent pieces and are called *embarrassingly parallel*.
+
+{panel type="jargon-buster"}
+
+# Multi-core, Distributed, and Clustered Computing
+
+**Multi-core Computing**: in multi-core computing many calculations and computations are carried out simultaneously across multiple processors, or {glossary-link term="core"}cores{glossary-link end}, in the same computer or {glossary-link term="cpu"}CPU{glossary-link end}.
+
+{image file-path="img/chapters/multi-core-computing-diagram.png" caption="true" alt="Image shows a large block, representing a task, going into a computer and then being broken up into four smaller tasks which each go through a separate processor."}
 
 A computer breaks a task into a set of smaller tasks, each of which is completed by a separate processor at the same time in parallel.
 
@@ -132,35 +147,22 @@ Multiple computers are connected in a local network and act as one entity in a c
 
 {image end}
 
-Each of these approaches processes large amounts of data in a much shorter amount of time than a single computer.
-often a combination of these techniques will be used, for example the separate `computers' connected in a distributed system may each be made up of computer clusters!
-They also require any problem they are working on to be broken down, or decomposed into sets of smaller problems or processes, which can each be tackled independently and simultaneously.
-Computer Scientists and Software Engineers need to come up with good methods to decompose their analysis processes, so that they can be effectively tackled with these approaches.
-Some problems are easy to decompose into independent pieces and are called *embarrassingly parallel*.
-
-An example is applying the same image smoothing filter to millions of pixels in an image, each computer or processor can apply the filter to a small section of the image and then the results can be recombined to form the new smoothed image.
-Other problems, such as weather prediction simulations, are harder to decompose because one decision made during the analysis might depend on others being made.
-These problems require advanced techniques such as pipelining, stochastic sampling, and replication.
+{panel end}
 
 **MapReduce**
 
 MapReduce is an example of a general algorithmic method that makes the most of Parallel, Distributed, and Clustered Computing.
 MapReduce is named as such because it is made up of two steps: "map" and "reduce", and is a type of split-apply-combine strategy for data analysis.
 
-A good way to illustrate how a MapReduce algorithm works is to imagine you and five friends are making a sandwich.
-In the sandwich you want cucumber, tomato, lettuce, mayonnaise and of course bread on either end.
-The first stage is "Map".
-In this stage, you each take one of the fillings and prepare it to be put in the sandwich (slice the bread in half, wash the lettuce, cut the tomato, etc).
-This is much quicker than just one of you preparing each ingredient one at a time.
-Now that all the ingredients are prepared, you move on to the "Reduce" stage.
-This is often described as the "summary operation" because each of the five ingredients now need to be combined into one.
-And now we have a delicious MapReduce sandwich ready to eat.
+<!-- For example, if you wanted to count how often each word appears in a document so that you could conduct sentiment analysis on it, you could break the document into two parts and get two different computers to count the words in each half, and then combine the results. -->
+
+
 
 {panel type="teacher-note"}
 
 # MapReduce Exercise
 
-Print out two copies of a large document
+Print out two copies of a large document.
 Hand one copy to a single student and ask them to count the number of words in the document.
 Distribute the other copy between the rest of the students in the class and have them count the number of words on their page (Map).
 When each student is finished counting, ask for the number of words each and add them up (Reduce).
