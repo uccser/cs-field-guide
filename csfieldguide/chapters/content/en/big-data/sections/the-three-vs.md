@@ -1,11 +1,11 @@
-# Big Data and The Three V's
+# Big Data and The Three Vs
 
 Being able to find patterns in huge amounts of data can be incredibly valuable for making decisions, such as for setting prices, making recommendations, and detecting suspicious activities.
 This is why *"Big Data"* is a bit of a buzzword in tech and in commercial industries these days.
 But how big does it have to be to be called "Big Data"?
 
 Big data is a phrase used to mean an amount of data that is so large and is generated so quickly that it is difficult to store and analyse using traditional sequential programming and storage techniques.
-Big data has three main qualities: Volume, Variety, and Velocity (often referred to as the "3Vs"), and we'll look at each of these in this section
+Big data has three main qualities: Volume, Variety, and Velocity (often referred to as the "three Vs"), and we'll look at each of these in this section
 
 ## Volume
 
@@ -18,7 +18,9 @@ It wasn't long ago that running out of space was a common problem for all users,
 Since the 60's the capacity of a single computer's integrated circuit has been doubling roughly every two years ([Moore's Law](https://en.wikipedia.org/wiki/Moore%27s_law)), so if this continues and you're reading this several years after it was written, 1TB might sound quite small!
 
 These amounts are nowhere near large enough to be considered big data though.
-So how big does data have to be to be considered *big?* Well, it usually starts in the terabytes, then petabytes, then exabytes, and so on… Big data is so big that simply storing it is an issue in itself; a single computer cannot store the amount of data on its own, and multiple computers must be used.
+So how big does data have to be to be considered *big?*
+Well, it usually starts in the terabytes, then petabytes, then exabytes, and so on…
+Big data is so big that simply storing it is an issue in itself; a single computer cannot store the amount of data on its own, and multiple computers must be used.
 
 One of the most extreme examples of data volume is YouTube uploads.
 As of October 2019, over [8 hours](https://everysecond.io/youtube) of video content is uploaded to YouTube every second!

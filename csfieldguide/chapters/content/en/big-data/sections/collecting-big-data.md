@@ -40,7 +40,7 @@ Some example devices that can be connected in the IoT.
 
 {image end}
 
-But these innovations come with a {glossary-link term="cost"}cost{glossary-link end}, and that cost is often large amounts of potentially sensitive personal information being captured, as well as security concerns around its storage and use.
+But these innovations come with a cost, and that cost is often large amounts of potentially sensitive personal information being captured, as well as security concerns around its storage and use.
 The sheer amount of data these devices generate also introduces technical challenges.
 Often these devices are sending real time data, which means that every minute, second, or even millisecond, some data is being captured and sent somewhere.
 

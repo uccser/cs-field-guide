@@ -2,7 +2,8 @@
 
 Data is all around us, and it always has been.
 We use data to share photos, finish a biology report, and determine what route to take to a friend's house.
-We are also creating it constantly. With each day that passes, hundreds of millions of {glossary-link term="data-point"}data points{glossary-link end} are being generated and collected in many different ways.
+We are also creating it constantly.
+With each day that passes, hundreds of millions of {glossary-link term="data-point"}data points{glossary-link end} are being generated and collected in many different ways.
 You can visualise it as a stream (or a raging river!) with information constantly rushing by, as more and more data is continually produced.
 
 When you search online for penguins and end up on Wikipedia, get directions to your friend's house on Google Maps, or click a link on Facebook, that generates data points (potentially hundreds of them) that are recorded, along with data from many other people.

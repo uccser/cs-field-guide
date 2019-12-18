@@ -9,7 +9,8 @@ To see some examples have a look at the website [Information is Beautiful](https
 One particularly interesting data visualisation application is Astronomy.
 Did you know that a lot of the beautiful images of space that space agencies release are not "real" images? They are actually works of [art created by visualisation scientists](https://www.youtube.com/watch?v=xc1V9d8jrr8), not simply photographs taken with a telescope.
 The reason for this is because the telescopes used by astronomers mainly collect raw data rather than images.
-Visualisation scientists use this data to create a hypothetical image of what something looks like. This isn't to be confused with 'just making things up'!
+Visualisation scientists use this data to create a hypothetical image of what something looks like.
+This isn't to be confused with 'just making things up'!
 The images they create are based on the real raw data and their own in-depth knowledge.
 
 {panel type="curiosity"}
