@@ -15,11 +15,3 @@ env_variables:
 resources:
   cpu: 1
   memory_gb: 3.75
-
-liveness_check:
-  path: "/_ah/health"
-  check_interval_sec: 5
-
-readiness_check:
-  path: "/_ah/health"
-  check_interval_sec: 5
