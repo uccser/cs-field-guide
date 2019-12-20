@@ -5,7 +5,7 @@ flake8==3.7.9
 pydocstyle==5.0.1
 
 #Coverage Tools
-coverage==4.5.4
+coverage==5.0
 
 # Skip migration files for local testing
 django-test-without-migrations==0.6
