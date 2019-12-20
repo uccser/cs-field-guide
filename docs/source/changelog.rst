@@ -17,6 +17,48 @@ All notable changes to this project will be documented in this file.
 
 We have listed major changes for each release below.
 
+3.3.0
+==============================================================================
+
+- **Release date:** 20th December 2019
+- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/3.3.0>`__
+
+**Summary of changes:**
+
+This release adds a new chapter on 'Big Data', various improvements for interactives, and updated project and chapter icons.
+A configuration tool for the sorting boxes interactive has been added, allowing teachers to setup specific examples for testing.
+
+**Changelog:**
+
+- Add new chapter: Big Data.
+- Update project icon.
+- Update chapter icons to better reflect their topics.
+- Update rendering of some mathemetical equations.
+- Add missing glossary terms. `#1017 <https://github.com/uccser/cs-field-guide/issues/1017>`__
+- Add ability for resulting equation in matrix-simplifier to be copied and pasted into all versions of the scene-editor interactive. `#1168 <https://github.com/uccser/cs-field-guide/pull/1168>`__
+- Add ability to remove all equations in the matrix-simplifier interactive at once. `#1168 <https://github.com/uccser/cs-field-guide/pull/1168>`__
+- Fix spelling in title of regular expression search interactive. `#1172 <https://github.com/uccser/cs-field-guide/issues/1172>`__
+- Update layout, simplify difficult password, and hide plaintext passwords of password guesser interactive. `#1172 <https://github.com/uccser/cs-field-guide/issues/1172>`__
+- Improve sorting boxes interactive with clearer feedback and configurator for teachers. `#1196 <https://github.com/uccser/cs-field-guide/pull/1196>`__
+- Update number memory interactive to reuse shorter password if the user remembers the longer one. `#1172 <https://github.com/uccser/cs-field-guide/issues/1172>`__
+- Fix bug in colour matcher where some bits did not flip when clicked on. `#1167 <https://github.com/uccser/cs-field-guide/issues/1166>`__
+- Set external links to open in a new tab.  `#1175 <https://github.com/uccser/cs-field-guide/pull/1175>`__
+- Update sentence about mesh points in computer graphics chapter. `#1170 <https://github.com/uccser/cs-field-guide/pull/1170>`__
+- Remove deprecated Google App Engine health check logic. `#1187 <https://github.com/uccser/cs-field-guide/pull/1187>`__
+- Remove use of float-left and float-right Bootstrap mixins. `#1171 <https://github.com/uccser/cs-field-guide/issues/1171>`__
+- Minor typo and grammar fixes.
+- Dependency updates:
+
+  - Update coverage from 4.5.4 to 5.0.
+  - Update django-debug-toolbar from 2.0 to 2.1.
+  - Update django-modeltranslation from 0.13.3 to 0.14.1.
+  - Update flake8 from 3.7.8 to 3.7.9.
+  - Update lxml from 4.4.1 to 4.4.2.
+  - Update Pillow from 6.2.0 to 6.2.1.
+  - Update pydocstyle from 4.0.1 to 5.0.1.
+  - Update PyYAML from 5.1.2 to 5.2.
+  - Update sphinx from 2.2.0 to 2.3.0.
+
 3.2.0
 ==============================================================================
 
