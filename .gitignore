@@ -117,3 +117,7 @@ whoosh_index/
 
 # OSX system files
 .DS_Store
+
+
+# VS Code
+settings.json
