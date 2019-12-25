@@ -20,7 +20,7 @@ We have listed major changes for each release below.
 3.3.0
 ==============================================================================
 
-- **Release date:** 20th December 2019
+- **Release date:** 26th December 2019
 - **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/3.3.0>`__
 
 **Summary of changes:**
@@ -42,7 +42,7 @@ A configuration tool for the sorting boxes interactive has been added, allowing 
 - Improve sorting boxes interactive with clearer feedback and configurator for teachers. `#1196 <https://github.com/uccser/cs-field-guide/pull/1196>`__
 - Update number memory interactive to reuse shorter password if the user remembers the longer one. `#1172 <https://github.com/uccser/cs-field-guide/issues/1172>`__
 - Fix bug in colour matcher where some bits did not flip when clicked on. `#1167 <https://github.com/uccser/cs-field-guide/issues/1166>`__
-- Set external links to open in a new tab.  `#1175 <https://github.com/uccser/cs-field-guide/pull/1175>`__
+- Set some external links to open in a new tab.  `#1175 <https://github.com/uccser/cs-field-guide/pull/1175>`__
 - Update sentence about mesh points in computer graphics chapter. `#1170 <https://github.com/uccser/cs-field-guide/pull/1170>`__
 - Remove deprecated Google App Engine health check logic. `#1187 <https://github.com/uccser/cs-field-guide/pull/1187>`__
 - Remove use of float-left and float-right Bootstrap mixins. `#1171 <https://github.com/uccser/cs-field-guide/issues/1171>`__
