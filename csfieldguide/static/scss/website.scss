@@ -118,8 +118,9 @@ body {
   box-shadow: 0 2px 5px 0 rgba(0,0,0,0.12);
 }
 
-.chapter-icon path {
-  fill: $csfg-light !important;
+.chapter-icon svg {
+  height: 50px;
+  width: 50px;
 }
 
 .btn {
@@ -205,11 +206,11 @@ html {
   @include media-breakpoint-up(md) {
     margin-top: $spacer * 0.5;
     &.img-wrap-left {
-      @include float-left;
+      float: left !important;
       margin-right: $spacer * 0.5;
     }
     &.img-wrap-right {
-      @include float-right;
+      float: right !important;
       margin-left: $spacer * 0.5;
     }
     &.img-wrap-left,
