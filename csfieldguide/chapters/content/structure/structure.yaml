@@ -31,5 +31,7 @@ chapters:
     chapter-number: 15
   software-engineering:
     chapter-number: 16
+  big-data:
+    chapter-number: 17
 
 glossary-folder: glossary
