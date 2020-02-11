@@ -118,8 +118,9 @@ body {
   box-shadow: 0 2px 5px 0 rgba(0,0,0,0.12);
 }
 
-.chapter-icon path {
-  fill: $csfg-light !important;
+.chapter-icon svg {
+  height: 50px;
+  width: 50px;
 }
 
 .btn {
