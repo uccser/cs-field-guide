@@ -16,7 +16,7 @@ python-markdown-math==0.6
 # Search
 django-haystack==2.8.1
 Whoosh==2.7.4
-django-widget-tweaks==1.4.5
+django-widget-tweaks==1.4.8
 
 # XML Parsing
 lxml==4.4.2
