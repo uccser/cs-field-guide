@@ -60,7 +60,7 @@ $( document ).ready(function() {
     var image_filename = 'coloured-roof-small.png';
   }
   var image_filepath = image_base_path + image_filename;
-  document.getElementById('pixel-viewer-interactive-original-image').setAttribute('src', image_filepath);
+  $('#pixel-viewer-interactive-original-image').attr('crossorigin', 'anonymous').attr('src', image_filepath);
   load_resize_image(image_filepath, false);
 
   if (getUrlParameter('mode') == 'threshold') {
@@ -827,12 +827,13 @@ function createPicturePicker(){
   main_div.append($("<p></p>").text(gettext("Or choose from the following supplied images:")));
   for (var i = 0; i < images.length; i++){
     var img_url = image_base_path + images[i]
-    img = document.createElement("IMG");
-    img.setAttribute('crossorigin', 'anonymous')
-    img.setAttribute('src', img_url)
-    img.setAttribute('class', 'img-pick')
-    img.onclick = function(){load_resize_image(this.src, false);}
-    main_div.append(img);
+    main_div.append(
+      $("<img>")
+      .attr('crossorigin', 'anonymous')
+      .attr('src', img_url)
+      .attr('class', 'img-pick')
+      .click(function(){load_resize_image(this.src, false);})
+    );
   }
 }
 
