@@ -17,6 +17,16 @@ All notable changes to this project will be documented in this file.
 
 We have listed major changes for each release below.
 
+3.3.1
+==============================================================================
+
+- **Release date:** 22nd April 2020
+- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/3.3.1>`__
+
+**Changelog:**
+
+- Set crossorigin attribute on the default image in pixel viewer. `#1254 <https://github.com/uccser/cs-field-guide/pull/1254>`__
+
 3.3.0
 ==============================================================================
 
