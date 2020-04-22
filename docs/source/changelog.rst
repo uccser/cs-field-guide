@@ -26,6 +26,10 @@ We have listed major changes for each release below.
 **Changelog:**
 
 - Set crossorigin attribute on the default image in pixel viewer. `#1254 <https://github.com/uccser/cs-field-guide/pull/1254>`__
+- Dependency updates:
+
+  - Update Pillow from 6.2.1 to 7.1.1.
+  - Update PyYAML from 5.2 to 5.3.1.
 
 3.3.0
 ==============================================================================
