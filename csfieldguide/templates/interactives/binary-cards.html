@@ -18,17 +18,17 @@
             <button id="flip-to-black" class="btn btn-dark">{% trans "Black" %}</button>
             <button id="flip-to-white" class="btn btn-light">{% trans "White" %}</button>
           </div>
-          <div class="form-group form-inline">
+          <div id="cards-dropdown" class="form-group form-inline">
             <label for="cards-to-show" class="mr-2">{% trans "Select how many cards to show:" %}</label>
-            <select class="form-control" id="cards-to-show">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-              <option>6</option>
-              <option>7</option>
-              <option>8</option>
+            <select id="cards-to-show" class="form-control">
+              <option value=1>1</option>
+              <option value=2>2</option>
+              <option value=3>3</option>
+              <option value=4>4</option>
+              <option value=5>5</option>
+              <option value=6>6</option>
+              <option value=7>7</option>
+              <option value=8 selected>8</option>
             </select>
           </div>
         </div>
