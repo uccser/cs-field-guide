@@ -13,11 +13,24 @@
           <div id="interactive-binary-cards-container" class="my-2"></div>
           <h5 id="dot-decimal-count"></h5>
 
-          <p>
-            {% trans "Flip all card sides to:" %}
+          <div class="mb-2">
+            <p class="d-inline mr-2">{% trans "Flip all card sides to:" %}</p>
             <button id="flip-to-black" class="btn btn-dark">{% trans "Black" %}</button>
             <button id="flip-to-white" class="btn btn-light">{% trans "White" %}</button>
-          </p>
+          </div>
+          <div class="form-group form-inline">
+            <label for="cards-to-show" class="mr-2">{% trans "Select how many cards to show:" %}</label>
+            <select class="form-control" id="cards-to-show">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+              <option>6</option>
+              <option>7</option>
+              <option>8</option>
+            </select>
+          </div>
         </div>
       </div>
     </div>
