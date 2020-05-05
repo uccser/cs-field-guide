@@ -1,3 +1,6 @@
+.container {
+  max-width: 1220px !important; // To fit cards in groups of 8 on large screens
+}
 #interactive-binary-cards-container {
   display: flex;
   flex-wrap: wrap;
