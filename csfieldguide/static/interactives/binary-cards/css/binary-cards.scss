@@ -73,3 +73,11 @@
 h3, h5, p {
   text-align: left;
 }
+// Hide arrows in input box on some browsers as it's jumpy
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
+}

@@ -1,14 +1,16 @@
 var urlParameters = require('../../../js/third-party/url-parameters.js')
 "use strict";
+MAX_NUM_CARDS = 16;
+DEFAULT_NUM_CARDS_TO_SHOW = 8;
 
 $(document).ready(function () {
     // Settings for interactive
     // Since users can possibly select num of cards from a dropdown,
-    // we first load all of the cards so it is easy to hide and re display cards.
-    // URL parameter for digits is checked after initial 8 cards have loaded.
+    // we first load the max possible num of cards so it is easy to hide and re display cards.
+    // URL parameter for digits is checked after initial 16 cards have loaded.
     var binaryValueSettings = {
         BASE: Number(urlParameters.getUrlParameter('base')) || 2,
-        DIGITS: 8,
+        DIGITS: MAX_NUM_CARDS,
         OFFSET: Number(urlParameters.getUrlParameter('offset')) || 0,
         DROPDOWN: urlParameters.getUrlParameter('dropdown') || 'true',
     }
@@ -16,7 +18,7 @@ $(document).ready(function () {
     var showDropdown = (binaryValueSettings.DROPDOWN == 'true');
     // Don't display the dropdown
     if (!showDropdown) {
-        $("#cards-dropdown").addClass('d-none');
+        $("#cards-input").addClass('d-none');
     }
 
     $('#interactive-binary-cards').on('click', '.binary-card', function(event) {
@@ -36,9 +38,16 @@ $(document).ready(function () {
         updateDotCount();
     });
 
-    // Update number of cards shown based on dropdown choice
-    $('select').change(function() {
-        binaryValueSettings.DIGITS = $("select option:selected").val();
+    // Update number of cards shown based on input
+    $('input').change(function() {
+        binaryValueSettings.DIGITS = $('input')[1].value;
+        if (binaryValueSettings.DIGITS > 16) {
+            binaryValueSettings.DIGITS = 16;
+            $('input')[1].value = 16;
+        } else if (binaryValueSettings.DIGITS < 1) {
+            binaryValueSettings.DIGITS = 1;
+            $('input')[1].value = 1;
+        }
         updateCards(binaryValueSettings.DIGITS);
         updateDotCount();
     });
@@ -49,8 +58,12 @@ $(document).ready(function () {
     if (Number(urlParameters.getUrlParameter('digits'))) {
         digits = Number(urlParameters.getUrlParameter('digits'));
         binaryValueSettings.DIGITS = digits;
-        $("select").find('option[value=' + digits + ']').prop('selected', true);
+        $('input')[1].value = digits;
         updateCards(digits);
+    } else {
+        // Show default number of cards
+        binaryValueSettings.DIGITS = DEFAULT_NUM_CARDS_TO_SHOW;
+        updateCards(binaryValueSettings.DIGITS);
     }
     updateDotCount();
 });
@@ -62,11 +75,11 @@ function createCards(settings) {
 
     var value = Math.pow(settings.BASE, settings.DIGITS + settings.OFFSET - 1);
     var starting_sides = urlParameters.getUrlParameter('start') || "";
-    // Since we always load 8 cards to begin with we should pad the `start` URL parameter
-    // if it contains less than 8 values.
-    if (starting_sides != "" && starting_sides.length < 8) {
-        var padding_length = 8 - starting_sides.length;
-        starting_sides = "W" * padding_length + starting_sides;
+    // Since we always load max num of cards to begin with we should pad the `start` URL parameter
+    // if it contains less than max num values.
+    if (starting_sides != "" && starting_sides.length < MAX_NUM_CARDS) {
+        var padding_length = MAX_NUM_CARDS - starting_sides.length;
+        starting_sides = "W".repeat(padding_length) + starting_sides;
     }
 
     // Iterate through card values
@@ -210,16 +223,24 @@ function updateDotCount() {
 // Change the number of cards shown
 function updateCards(num_cards_to_show) {
     // mapping of card to child number in DOM tree
-    // 8th card (2^8) is the first child, 7th card (2^7) is the second and so on..
+    // 16th card (2^15) is the first child, 15th card (2^14) is the second and so on..
     var card_num_to_child_num = {
-        8: 1,
-        7: 2,
-        6: 3,
-        5: 4,
-        4: 5,
-        3: 6,
-        2: 7,
-        1: 8,
+        16: 1,
+        15: 2,
+        14: 3,
+        13: 4,
+        12: 5,
+        11: 6,
+        10: 7,
+        9: 8,
+        8: 9,
+        7: 10,
+        6: 11,
+        5: 12,
+        4: 13,
+        3: 14,
+        2: 15,
+        1: 16,
     };
     num_current_cards_shown = $('#interactive-binary-cards-container div.visible').length;
     difference = Math.abs(num_current_cards_shown - num_cards_to_show);
