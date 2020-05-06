@@ -41,14 +41,7 @@ $(document).ready(function () {
     // Update number of cards shown based on input
     $('input').change(function() {
         binaryValueSettings.DIGITS = $('input')[1].value;
-        if (binaryValueSettings.DIGITS > 16) {
-            console.log(binaryValueSettings.DIGITS);
-            binaryValueSettings.DIGITS = 16;
-            $('input')[1].value = 16;
-        } else if (binaryValueSettings.DIGITS < 1) {
-            binaryValueSettings.DIGITS = 1;
-            $('input')[1].value = 1;
-        }
+        putDigitsWithinLimits(binaryValueSettings.DIGITS, showInputBox, binaryValueSettings);
         updateCards(binaryValueSettings.DIGITS);
         updateDotCount();
     });
@@ -58,13 +51,7 @@ $(document).ready(function () {
     // Check if digit URL parameter was given and hide appropriate cards if so
     if (Number(urlParameters.getUrlParameter('digits'))) {
         digits = Number(urlParameters.getUrlParameter('digits'));
-        if (digits > 16) {
-            digits = 16;
-        } else if (digits < 1) {
-            digits = 1;
-        }
-        binaryValueSettings.DIGITS = digits;
-        $('input')[1].value = binaryValueSettings.DIGITS;
+        putDigitsWithinLimits(digits, showInputBox, binaryValueSettings);
         updateCards(binaryValueSettings.DIGITS);
     } else {
         // Show default number of cards
@@ -73,6 +60,21 @@ $(document).ready(function () {
     }
     updateDotCount();
 });
+
+
+// Ensure digits value is between 1 and MAX_NUM_CARDS
+function putDigitsWithinLimits(digits, showInputBox, binaryValueSettings) {
+    if (digits > MAX_NUM_CARDS) {
+        binaryValueSettings.DIGITS = MAX_NUM_CARDS;
+    } else if (digits < 1) {
+        binaryValueSettings.DIGITS = 1;
+    } else {
+        binaryValueSettings.DIGITS = digits;
+    }
+    if (showInputBox) {
+        $('input')[1].value = binaryValueSettings.DIGITS;
+    }
+}
 
 
 // Sets up the cards for the interactive
