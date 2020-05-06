@@ -42,6 +42,7 @@ $(document).ready(function () {
     $('input').change(function() {
         binaryValueSettings.DIGITS = $('input')[1].value;
         if (binaryValueSettings.DIGITS > 16) {
+            console.log(binaryValueSettings.DIGITS);
             binaryValueSettings.DIGITS = 16;
             $('input')[1].value = 16;
         } else if (binaryValueSettings.DIGITS < 1) {
@@ -57,9 +58,14 @@ $(document).ready(function () {
     // Check if digit URL parameter was given and hide appropriate cards if so
     if (Number(urlParameters.getUrlParameter('digits'))) {
         digits = Number(urlParameters.getUrlParameter('digits'));
+        if (digits > 16) {
+            digits = 16;
+        } else if (digits < 1) {
+            digits = 1;
+        }
         binaryValueSettings.DIGITS = digits;
-        $('input')[1].value = digits;
-        updateCards(digits);
+        $('input')[1].value = binaryValueSettings.DIGITS;
+        updateCards(binaryValueSettings.DIGITS);
     } else {
         // Show default number of cards
         binaryValueSettings.DIGITS = DEFAULT_NUM_CARDS_TO_SHOW;
