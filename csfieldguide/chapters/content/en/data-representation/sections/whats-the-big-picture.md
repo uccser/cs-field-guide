@@ -11,7 +11,7 @@ Now click on the previous card, which should have two dots on it.
 Before clicking on the next one, how many dots do you predict it will have?
 Carry on clicking on each card moving left, trying to guess how many dots each has.
 
-{interactive slug="binary-cards" type="whole-page" text="Binary Cards" parameters="digits=5&start=BBBBB&dropdown=false"}
+{interactive slug="binary-cards" type="whole-page" text="Binary Cards" parameters="digits=5&start=BBBBB&input=false"}
 
 The challenge for you now is to find a way to have exactly 22 dots showing
 (the answer is in the spoiler below).
