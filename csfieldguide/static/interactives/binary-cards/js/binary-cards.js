@@ -5,19 +5,19 @@ DEFAULT_NUM_CARDS_TO_SHOW = 8;
 
 $(document).ready(function () {
     // Settings for interactive
-    // Since users can possibly select num of cards from a dropdown,
+    // Since users can possibly choose the num of cards from an input box,
     // we first load the max possible num of cards so it is easy to hide and re display cards.
     // URL parameter for digits is checked after initial 16 cards have loaded.
     var binaryValueSettings = {
         BASE: Number(urlParameters.getUrlParameter('base')) || 2,
         DIGITS: MAX_NUM_CARDS,
         OFFSET: Number(urlParameters.getUrlParameter('offset')) || 0,
-        DROPDOWN: urlParameters.getUrlParameter('dropdown') || 'true',
+        INPUT: urlParameters.getUrlParameter('input') || 'true',
     }
 
-    var showDropdown = (binaryValueSettings.DROPDOWN == 'true');
-    // Don't display the dropdown
-    if (!showDropdown) {
+    var showInputBox = (binaryValueSettings.INPUT == 'true');
+    // Don't display the input box
+    if (!showInputBox) {
         $("#cards-input").addClass('d-none');
     }
 
