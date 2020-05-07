@@ -20,6 +20,8 @@ The interactive shows the cards with dots from **128** to **1** by default (128,
 - `?base=16&cards=4` - Shows the first 4 cards of base 16 (hexadecimal).
 - `?cards=4&offset=-2` - Shows 4 cards of base 2 (binary). 2, 1, 0.5 and 0.25.
 - `?cards=5&start=BBBBB` - Shows 5 cards of base 2 (binary), with all sides showing black to start.
+- `?cards=2&start=BBBBB` - Here the number of cards is less than the length of the start parameter. The cards parameter will always take precedence, therefore 2 cards with sides with their sides set to black will be shown to start. The next 3 hidden cards will also have their sides set to black.
+- `?cards=4&start=BB` - Here the number of cards is more than the length of the start parameter. The cards parameter will always take precedence, therefore 4 cards will be displayed, with their sides set to WWBB.
 
 To use these parameters, the interactive must be used in either `whole-page` or `iframe` mode.
 
