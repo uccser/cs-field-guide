@@ -7,10 +7,10 @@ $(document).ready(function () {
     // Settings for interactive
     // Since users can possibly choose the num of cards from an input box,
     // we first load the max possible num of cards so it is easy to hide and re display cards.
-    // URL parameter for digits is checked after initial 16 cards have loaded.
+    // URL parameter for cards is checked after initial 16 cards have loaded.
     var binaryValueSettings = {
         BASE: Number(urlParameters.getUrlParameter('base')) || 2,
-        DIGITS: MAX_NUM_CARDS,
+        CARDS: MAX_NUM_CARDS,
         OFFSET: Number(urlParameters.getUrlParameter('offset')) || 0,
         INPUT: urlParameters.getUrlParameter('input') || 'true',
     }
@@ -40,39 +40,39 @@ $(document).ready(function () {
 
     // Update number of cards shown based on input
     $('input').change(function() {
-        binaryValueSettings.DIGITS = $('input')[1].value;
-        putDigitsWithinLimits(binaryValueSettings.DIGITS, showInputBox, binaryValueSettings);
-        updateCards(binaryValueSettings.DIGITS);
+        binaryValueSettings.CARDS = $('input')[1].value;
+        putCardsWithinLimits(binaryValueSettings.CARDS, showInputBox, binaryValueSettings);
+        updateCards(binaryValueSettings.CARDS);
         updateDotCount();
     });
 
     // Create cards within container and update count
     createCards(binaryValueSettings);
     // Check if digit URL parameter was given and hide appropriate cards if so
-    if (Number(urlParameters.getUrlParameter('digits'))) {
-        digits = Number(urlParameters.getUrlParameter('digits'));
-        putDigitsWithinLimits(digits, showInputBox, binaryValueSettings);
-        updateCards(binaryValueSettings.DIGITS);
+    if (Number(urlParameters.getUrlParameter('cards'))) {
+        cards = Number(urlParameters.getUrlParameter('cards'));
+        putCardsWithinLimits(cards, showInputBox, binaryValueSettings);
+        updateCards(binaryValueSettings.CARDS);
     } else {
         // Show default number of cards
-        binaryValueSettings.DIGITS = DEFAULT_NUM_CARDS_TO_SHOW;
-        updateCards(binaryValueSettings.DIGITS);
+        binaryValueSettings.CARDS = DEFAULT_NUM_CARDS_TO_SHOW;
+        updateCards(binaryValueSettings.CARDS);
     }
     updateDotCount();
 });
 
 
-// Ensure digits value is between 1 and MAX_NUM_CARDS
-function putDigitsWithinLimits(digits, showInputBox, binaryValueSettings) {
-    if (digits > MAX_NUM_CARDS) {
-        binaryValueSettings.DIGITS = MAX_NUM_CARDS;
-    } else if (digits < 1) {
-        binaryValueSettings.DIGITS = 1;
+// Ensure cards value is between 1 and MAX_NUM_CARDS
+function putCardsWithinLimits(cards, showInputBox, binaryValueSettings) {
+    if (cards > MAX_NUM_CARDS) {
+        binaryValueSettings.CARDS = MAX_NUM_CARDS;
+    } else if (cards < 1) {
+        binaryValueSettings.CARDS = 1;
     } else {
-        binaryValueSettings.DIGITS = digits;
+        binaryValueSettings.CARDS = cards;
     }
     if (showInputBox) {
-        $('input')[1].value = binaryValueSettings.DIGITS;
+        $('input')[1].value = binaryValueSettings.CARDS;
     }
 }
 
@@ -81,7 +81,7 @@ function putDigitsWithinLimits(digits, showInputBox, binaryValueSettings) {
 function createCards(settings) {
     var cardContainer = $('#interactive-binary-cards-container');
 
-    var value = Math.pow(settings.BASE, settings.DIGITS + settings.OFFSET - 1);
+    var value = Math.pow(settings.BASE, settings.CARDS + settings.OFFSET - 1);
     var starting_sides = urlParameters.getUrlParameter('start') || "";
     // Since we always load max num of cards to begin with we should pad the `start` URL parameter
     // if it contains less than max num values.
@@ -91,7 +91,7 @@ function createCards(settings) {
     }
 
     // Iterate through card values
-    for (var digit = 0; digit < settings.DIGITS; digit++) {
+    for (var digit = 0; digit < settings.CARDS; digit++) {
         cardContainer.append(createCard(value, starting_sides[digit] == 'B'));
         value /= settings.BASE;
     }
