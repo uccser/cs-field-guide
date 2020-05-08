@@ -1,0 +1,21 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div class="container-fluid my-3 text-center">
+    <div class="col-12" id="data-drop-game"></div>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/data-drop/css/data-drop.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript">
+    var base = "{{ STATIC_URL }}";
+  </script>
+  <script type="text/javascript" src="{% static 'interactives/data-drop/js/data-drop.js' %}"></script>
+{% endblock js %}
