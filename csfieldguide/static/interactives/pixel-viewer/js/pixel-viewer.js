@@ -60,7 +60,7 @@ $( document ).ready(function() {
     var image_filename = 'coloured-roof-small.png';
   }
   var image_filepath = image_base_path + image_filename;
-  $('#pixel-viewer-interactive-original-image').attr('src', image_filepath);
+  $('#pixel-viewer-interactive-original-image').attr('crossorigin', 'anonymous').attr('src', image_filepath);
   load_resize_image(image_filepath, false);
 
   if (getUrlParameter('mode') == 'threshold') {

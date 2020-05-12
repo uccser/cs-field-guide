@@ -24,13 +24,13 @@
   }
 }
 
-img.sorting-boxes {
+.sorting-box {
   touch-action: none;
   height: 100%;
   width: 100%;
-  padding: 2px;
   overflow: hidden;
   display: none;
+  position: relative;
   &:last-child {
     display: block;
   }
@@ -38,6 +38,36 @@ img.sorting-boxes {
   &.gu-mirror {
     cursor: grabbing;
   }
+}
+
+.box-img {
+  height: 100%;
+  width: 100%;
+  padding: 2px;
+  overflow: hidden;
+  user-select: none;
+  position: absolute;
+  z-index: 2;
+}
+
+.item-weight {
+  height: 100%;
+  width: 100%;
+  padding: 2px;
+  overflow: hidden;
+  user-select: none;
+  position: absolute;
+  z-index: 1;
+}
+
+// Partial copy of its namesake from Dragula.css
+// but !important to override changes made in JS for a different purpose
+.gu-transit {
+  opacity: 0.2 !important;
+}
+
+#eyecons {
+  float: left;
 }
 
 #scale {
