@@ -1,0 +1,62 @@
+.card-text {
+    margin-bottom: 0.3rem;
+}
+
+#dialogue-box {
+    border: 0.25rem solid #2a3da0;
+    border-radius: 0.5rem;
+    background-color: #f8f9fa;
+    font-size: 1.25rem;
+    padding: 1rem 2rem;
+    top: 77%;
+    height: 8rem;
+    overflow-y: scroll;
+}
+
+#question-dropdown {
+    top: 37%;
+    left: 78%;
+}
+
+#time-to-bake,
+#start-asking {
+    top: 87%;
+}
+
+#num-qs-asked-text {
+    top: 93%;
+}
+
+#question-list p:hover {
+    cursor: pointer;
+    background-color: #dcddec;
+}
+
+#question-list p {
+    font-size: 1rem;
+    padding: 0.5rem 2rem;
+    margin: 0;
+}
+
+#layers-radio p,
+#flavour-radio p,
+#size-radio p {
+    margin-right: 2rem !important;
+}
+
+#icing-colour-radio p,
+#decorations-radio p {
+    margin-right: 0.5rem !important;
+}
+
+#shape-radio p {
+    margin-right: 1rem !important;
+}
+
+.correct {
+    background-color: #cdffd8;
+}
+
+.incorrect {
+    background-color: #ffc2a6;
+}

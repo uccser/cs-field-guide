@@ -10,6 +10,8 @@ available-menu-items:
   name: Available Menu Items
 awful-calculator:
   name: Awful Calculator
+bakery-simulator:
+  name: Bakery Simulator
 base-calculator:
   name: Base Calculator
 big-number-calculator:

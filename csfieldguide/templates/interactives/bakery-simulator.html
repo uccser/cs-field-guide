@@ -1,0 +1,77 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div id="bakery-simulator-container" class="container text-center py-5">
+    <h1>{% trans "Bakery Simulator" %}</h1>
+    <div class="row justify-content-center position-relative text-center">
+      <img id="background-image" src="{% static 'interactives/bakery-simulator/img/title-screen.jpg' %}">
+      <div id="starter-info" class="position-absolute mt-2">
+        <h5>{% trans "Instructions" %}</h5>
+        <p>
+          {% blocktrans %}
+          Welcome to the Bakery Simulator; today you are the baker!<br>
+          Much like with a stakeholder, you will need to ask this "cake-holder" questions to determine their desired product.<br>
+          Use their answers to construct a cake based on 6 criteria; number of layers, flavour, icing colour, size, decorations and shape.<br>
+          You are able to ask 6 questions.
+          {% endblocktrans %}
+        </p>
+        <button id="start-button" class="btn btn-primary">{% trans "Start baking!" %}</button>
+      </div>
+      <div id="dialogue-box" class="col-8 position-absolute d-none m-3">
+        <p id="customer-answer" class="d-none"></p>
+        <div id="question-list" class="col-11 position-absolute text-left d-none">
+          <p id="who">{% trans "Who is it for?" %}</p>
+          <p id="budget">{% trans "What is your budget?" %}</p>
+          <p id="people">{% trans "How many people is it for?" %}</p>
+          <p id="colour">{% trans "What colour should it be?" %}</p>
+          <p id="flavour">{% trans "What should the flavour be?" %}</p>
+          <p id="decorations">{% trans "What decorations should it have?" %}</p>
+          <p id="size">{% trans "What size should it be?" %}</p>
+          <p id="shape">{% trans "What shape should it be?" %}</p>
+          <p id="event">{% trans "What is the event?" %}</p>
+          <p id="avoid">{% trans "Anything you’d like to avoid?" %}</p>
+          <p id="layers">{% trans "How many layers should it be?" %}</p>
+          <p id="style">{% trans "How do you want it to look?" %}</p>
+        </div>
+      </div>
+      <button id="start-asking" class="btn btn-success position-absolute d-none">{% trans "Ask a question" %}</button>
+      <small id="num-qs-asked-text" class="position-absolute d-none">{% trans "Questions asked: <span id='num-asked'>0</span>" %}</small>
+      <button id="time-to-bake" class="position-absolute btn btn-lg btn-success d-none" data-toggle="modal" data-target="#baking-options">{% trans "Time to bake!" %}</button>
+
+      <!-- result table -->
+      <table id="result-table" class="table d-none">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">{% trans "Wanted" %}</th>
+            <th scope="col">{% trans "Created" %}</th>
+          </tr>
+        </thead>
+      </table>
+      <button id="next-customer" class="btn btn-success d-none">{% trans "Next customer" %}</button>
+      <button id="restart" class="btn btn-danger d-none">{% trans "Restart" %}</button>
+    </div>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/bakery-simulator/css/bakery-simulator.css' %}">
+{% endblock css %}
+
+{% block js %}
+<script type="text/javascript">
+  var bakerySimImages = {
+    "title-screen": "{% static 'interactives/bakery-simulator/img/title-screen.jpg' %}",
+    "customer-1": "{% static 'interactives/bakery-simulator/img/customer-1.jpg' %}",
+    "customer-1-results": "{% static 'interactives/bakery-simulator/img/customer-1-results.jpg' %}",
+    "customer-2": "{% static 'interactives/bakery-simulator/img/customer-2.jpg' %}",
+    "customer-2-results": "{% static 'interactives/bakery-simulator/img/customer-2-results.jpg' %}",
+    "customer-3": "{% static 'interactives/bakery-simulator/img/customer-3.jpg' %}",
+    "customer-3-results": "{% static 'interactives/bakery-simulator/img/customer-3-results.jpg' %}",
+  };
+</script>
+  <script type="text/javascript" src="{% static 'interactives/bakery-simulator/js/bakery-simulator.js' %}"></script>
+{% endblock js %}
