@@ -3,7 +3,7 @@ var string_to_match;
 var num_characters = 1;
 // set the min and max match length
 var min_match_length = 2;
-var max_match_length = 5;
+var max_match_length = 7;
 var encoded_message = [];
 var start_index;
 var end_index;
