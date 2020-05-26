@@ -184,10 +184,10 @@ function compressText(message) {
     }
 
     // initialise sliding window and initial encoded message
-    sliding_window = message.slice(0, 6);
-    encoded_message = message.slice(0, 6);
+    sliding_window = message.slice(0, 1);
+    encoded_message = message.slice(0, 1);
 
-    message.splice(0, 6);
+    message.splice(0, 1);
 
     // read in string to length of max match
     string_to_match = message.splice(0, max_match_length);
