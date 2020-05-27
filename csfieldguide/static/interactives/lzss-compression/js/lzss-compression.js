@@ -191,7 +191,7 @@ function compressText(message) {
 
     // read in string to length of max match
     string_to_match = message.splice(0, max_match_length);
-
+    console.log('string to match: ' + string_to_match);
     while (true) {
         if (string_to_match.length > 0) {
 
@@ -204,6 +204,7 @@ function compressText(message) {
             for (var i = 0; i < sliding_window.length; i++) {
                 // get next character in sliding window
                 sw_character = sliding_window[i];
+                console.log('sw_char: ' + sw_character);
 
                 if (string_to_match[0] == 'null') { // meaning is newline character
                     // add newline character to sliding window and remove from message
@@ -239,6 +240,9 @@ function compressText(message) {
                             break;
                         }
                     }
+                    console.log('next sw char: ' + next_sw_character);
+                    console.log('next search char: ' + next_search_character);
+                    console.log('curr length of match: ' + current_length_of_match);
 
                     // work out if best match so far
                     if (current_length_of_match > longest_match_length) {
@@ -273,6 +277,8 @@ function compressText(message) {
                     }
                 }
             }
+            console.log('sliding window: ' + sliding_window);
+            console.log('string to match: ' + string_to_match);
 
         } else {
             break;
