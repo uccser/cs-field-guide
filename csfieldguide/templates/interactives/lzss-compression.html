@@ -11,7 +11,7 @@
         <div id="lzss-compression-left-box">
           <p>{% trans "Enter the message you want to encode here" %}:</p>
           <div id="lzss-compression-input-text">
-            <textarea class="form-control" rows="5" id="message-to-decode"></textarea>
+            <textarea class="form-control" rows="5" id="message-to-encode"></textarea>
           </div>
           <div>
             <button id="lzss-compression-compress-button" class="btn btn-primary btn-block" type="button">
@@ -21,8 +21,8 @@
         </div>
         <div id="lzss-compression-right-box">
           <p>{% trans "Encoded Message" %}:</p>
-          <div id="lzss-compression-compressed-text">
-          </div>
+          <div id="lzss-compression-compressed-text"></div>
+          <p id="char-replacement-note">{% trans "Note: spaces have been replaced with the &#9251; character." %}</p>
         </div>
       </div>
     </div>

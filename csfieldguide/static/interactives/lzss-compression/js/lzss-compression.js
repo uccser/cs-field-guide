@@ -3,7 +3,7 @@ var string_to_match;
 var num_characters = 1;
 // set the min and max match length
 var min_match_length = 2;
-var max_match_length = 7;
+var max_match_length = 16;
 var encoded_message = [];
 var start_index;
 var end_index;
@@ -15,14 +15,14 @@ Some like it in the pot, nine days old.`);
 
 // Set placeholder message
 window.onload = function() {
-    var message_div = document.getElementById('message-to-decode');
+    var message_div = document.getElementById('message-to-encode');
     message_div.value = placeholder_message;
     document.getElementById('lzss-compression-compress-button').addEventListener('click', compress, false);  
 }
 
 // Compress the message and display the encoded message
 function compress() {
-    var message = document.getElementById('message-to-decode').value;
+    var message = document.getElementById('message-to-encode').value;
     // clear any existed encoded message
     document.getElementById('lzss-compression-compressed-text').innerHTML = '';
     compressText(message);
@@ -181,6 +181,7 @@ function compressText(message) {
 
     for (var i = 0; i < message.length; i++) {
         message[i] = message[i].replace(/[\r\n]+/g, null);
+        message[i] = message[i].replace(/[\s]+/g, "\u2423");
     }
 
     // initialise sliding window and initial encoded message
