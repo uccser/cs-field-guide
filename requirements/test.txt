@@ -1,7 +1,7 @@
 # Test dependencies
 
 # Check Python style
-flake8==3.7.9
+flake8==3.8.3
 pydocstyle==5.0.1
 
 #Coverage Tools
