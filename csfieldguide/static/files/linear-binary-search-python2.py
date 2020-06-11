@@ -1,61 +1,67 @@
-# These programs are provided to experiment with the relative speeds of
-# Linear Search and Binary Search for AS91074 (1.44),
-# comparing two algorithms of size n
-# This is for Python version 2.7, but only the print statements should
-# need changing to adapt it for version 3
-# Caitlin Duncan, January 2014
+"""
+These programs are provided to experiment with the relative speeds of
+Linear Search and Binary Search, comparing two algorithms of size n.
+This is for Python version 2.7, but only the print statements should
+need changing to adapt it for version 3.
+Caitlin Duncan, January 2014
+Modified by Courtney Bracefield, June 2020
+"""
 
 import time
 from random import randint
 
+NUMBER_OF_KEYS = [10, 1000]
 
-def binary_search(array, item):
-    # Performs a Binary search and returns the number
-    # of comparisons made
-    length = len(array)
+
+def binary_search(list_of_keys, search_key):
+    """Perform a Binary search and return the number of comparisons made."""
+    length = len(list_of_keys)
     if length == 0:
-        print "Error: Array is empty"
+        print "List of keys not found."
         return 0
     if length == 1:
         return 1
 
-    count = 0
-    while length > 0:
-        count += 1
-        middle = int(length / 2)
-
-        if array[middle] == item:
-            return count
-        elif array[middle] > item:
-            array = array[:middle]
+    num_key_comparisons = 0
+    low = 0
+    high = len(list_of_keys) - 1
+    while low <= high: 
+        middle = (low + high) / 2
+        num_key_comparisons += 1
+        if list_of_keys[middle] > search_key:
+            high = middle - 1
+        elif list_of_keys[middle] < search_key:
+            low = middle + 1
+            num_key_comparisons += 1
         else:
-            array = array[(middle+1):]
-
-        length = len(array)
-
+            # increment here because the previous comparison was unsuccessful
+            num_key_comparisons += 1
+            return num_key_comparisons
     return 0
 
 
-def linear_search(array, item):
-    # Performs a Binary search and returns the number
-    # of comparisons made
-    length = len(array)
+def linear_search(list_of_keys, search_key):
+    """Perform a Linear search and return the number of comparisons made."""
+    length = len(list_of_keys)
     if length == 0:
-        print "Error: Array is empty"
+        print "List of keys not found."
         return 0
 
-    count = 0
-    while count < length:
-        if array[count] == item:
-            count += 1
-            return count
+    num_key_comparisons = 0
+    while num_key_comparisons < length:
+        num_key_comparisons += 1
+        if list_of_keys[num_key_comparisons] == search_key:
+            return num_key_comparisons
 
-        count += 1
-
-    return count
+    return num_key_comparisons
 
 
-def test_binary(n):
+def test_binary_search(n):
+    """
+    Perform a Binary search on a list of size n.
+
+    Returns the number of key comparisons made and the time taken for the algorithm to run.
+    """
     sample_list = range(n)  # create n keys in ascending order
     item = randint(0, n)
 
@@ -69,7 +75,12 @@ def test_binary(n):
     print "Time taken: ", (end - start) * 1000, " miliseconds elapsed"
 
 
-def test_linear(n):
+def test_linear_search(n):
+    """
+    Perform a Linear search on a list of size n.
+
+    Returns the number of key comparisons made and the time taken for the algorithm to run.
+    """
     sample_list = range(n)  # create n keys in order
     item = randint(0, n)
 
@@ -86,8 +97,8 @@ def test_linear(n):
 # This is an example of how to run an experiment
 # For thorough results, experiments should be run for a larger range of values
 # and experiments should be repeated multiple times
-for number_of_keys in [10, 20, 50, 100, 1000]:
+for number_of_keys in NUMBER_OF_KEYS:
     for repeat_of_experiment in range(5):
-        test_linear(number_of_keys)
+        test_linear_search(number_of_keys)
     for repeat_of_experiment in range(5):
-        test_binary(number_of_keys)
+        test_binary_search(number_of_keys)
