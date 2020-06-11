@@ -1,8 +1,7 @@
 """
 These programs are provided to experiment with the relative speeds of
 Linear Search and Binary Search, comparing two algorithms of size n.
-This is for Python version 2.7, but only the print statements should
-need changing to adapt it for version 3.
+This is for Python version 2.7.
 Caitlin Duncan, January 2014
 Modified by Courtney Bracefield, June 2020
 """
@@ -42,16 +41,18 @@ def binary_search(list_of_keys, search_key):
 
 def linear_search(list_of_keys, search_key):
     """Perform a Linear search and return the number of comparisons made."""
-    length = len(list_of_keys)
-    if length == 0:
+    length_of_list = len(list_of_keys)
+    if length_of_list == 0:
         print "List of keys not found."
         return 0
 
     num_key_comparisons = 0
-    while num_key_comparisons < length:
+    search_key_index = 0
+    while search_key_index < length_of_list:
         num_key_comparisons += 1
-        if list_of_keys[num_key_comparisons] == search_key:
+        if list_of_keys[search_key_index] == search_key:
             return num_key_comparisons
+        search_key_index += 1
 
     return num_key_comparisons
 
@@ -62,8 +63,8 @@ def test_binary_search(n):
 
     Returns the number of key comparisons made and the time taken for the algorithm to run.
     """
-    sample_list = range(n)  # create n keys in ascending order
-    item = randint(0, n)
+    sample_list = range(n)  # create a sorted list of n keys
+    item = randint(0, n - 1)
 
     print "\nBinary Searching for", item, "in a list of", n, "items"
 
@@ -81,8 +82,8 @@ def test_linear_search(n):
 
     Returns the number of key comparisons made and the time taken for the algorithm to run.
     """
-    sample_list = range(n)  # create n keys in order
-    item = randint(0, n)
+    sample_list = range(n)  # create a sorted list of n keys
+    item = randint(0, n - 1)
 
     print "\nLinear Searching for", item, "in a list of", n, "items"
 

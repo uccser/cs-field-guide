@@ -41,16 +41,18 @@ def binary_search(list_of_keys, search_key):
 
 def linear_search(list_of_keys, search_key):
     """Perform a Linear search and return the number of comparisons made."""
-    length = len(list_of_keys)
-    if length == 0:
+    length_of_list = len(list_of_keys)
+    if length_of_list == 0:
         print("List of keys not found.")
         return 0
 
     num_key_comparisons = 0
-    while num_key_comparisons < length:
+    search_key_index = 0
+    while search_key_index < length_of_list:
         num_key_comparisons += 1
-        if list_of_keys[num_key_comparisons] == search_key:
+        if list_of_keys[search_key_index] == search_key:
             return num_key_comparisons
+        search_key_index += 1
 
     return num_key_comparisons
 
@@ -61,8 +63,8 @@ def test_binary_search(n):
 
     Returns the number of key comparisons made and the time taken for the algorithm to run.
     """
-    sample_list = range(n)  # create n keys in order
-    search_key = randint(0, n)
+    sample_list = list(range(n))  # create a sorted list of n keys
+    search_key = randint(0, n - 1)
 
     print("\nBinary Searching for", search_key, "in a list of", n, "items")
 
@@ -71,7 +73,7 @@ def test_binary_search(n):
     end = time.time()
 
     print("For binary search of", n, "items,", comparisons_made, "comparisons of keys were used")
-    print("Time taken: ", (end - start) * 1000, " miliseconds elapsed")
+    print("Time taken: {:.4f} miliseconds elapsed".format((end - start) * 1000))
 
 
 def test_linear_search(n):
@@ -80,8 +82,8 @@ def test_linear_search(n):
 
     Returns the number of key comparisons made and the time taken for the algorithm to run.
     """
-    sample_list = range(n)  # create n keys in order
-    search_key = randint(0, n)
+    sample_list = list(range(n))  # create a sorted list of n keys
+    search_key = randint(0, n - 1)
 
     print("\nLinear Searching for", search_key, "in a list of", n, "items")
 
@@ -90,7 +92,7 @@ def test_linear_search(n):
     end = time.time()
 
     print("For linear search of", n, "items,", comparisons_made, "comparisons of keys were used")
-    print("Time taken: ", (end - start) * 1000, " miliseconds elapsed")
+    print("Time taken: {:.4f} miliseconds elapsed".format((end - start) * 1000))
 
 
 # This is an example of how to run an experiment

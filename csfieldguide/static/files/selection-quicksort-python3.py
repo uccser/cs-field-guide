@@ -1,11 +1,15 @@
-# these programs are provided to experiment with the relative speeds of
-# quicksort and selection sort for AS91074 (1.44),
-# comparing two algorithms of size n
-# This is for Python version 3
-# Tim Bell, August 2012
+"""
+These programs are provided to experiment with the relative speeds of
+quicksort and selection sort, comparing two algorithms of size n.
+This is for Python version 3.
+Tim Bell, August 2012
+Modified by Courtney Bracefield, June 2020
+"""
 
 from random import shuffle
 import time
+
+NUMBER_OF_KEYS = [10, 1000]
 
 
 def test_selection_sort(n, show_list):
@@ -97,7 +101,7 @@ def partition(alist, first, last):
 
 # this is an example of how to run an experiment
 # for thorough results, experiments should be run for a larger range of values
-for number_of_keys in [10, 20, 50, 100, 1000]:
+for number_of_keys in NUMBER_OF_KEYS:
     for repeat_of_experiment in range(1):
         test_selection_sort(number_of_keys, False)
         test_quick_sort(number_of_keys, False)
