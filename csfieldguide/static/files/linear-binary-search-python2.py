@@ -1,6 +1,6 @@
 """
-These programs are provided to experiment with the relative speeds of
-Linear Search and Binary Search, comparing two algorithms of size n.
+Test the relative speeds of linear search and binary search.
+
 This is for Python version 2.7.
 Caitlin Duncan, January 2014
 Modified by Courtney Bracefield, June 2020
@@ -13,7 +13,11 @@ NUMBER_OF_KEYS = [10, 1000]
 
 
 def binary_search(list_of_keys, search_key):
-    """Perform a Binary search and return the number of comparisons made."""
+    """
+    Perform a Binary search and return the number of comparisons made.
+
+    Based on code from http://rosettacode.org/wiki/Binary_search#Python:_Iterative
+    """
     length = len(list_of_keys)
     if length == 0:
         print "List of keys not found."
@@ -21,21 +25,21 @@ def binary_search(list_of_keys, search_key):
     if length == 1:
         return 1
 
-    num_key_comparisons = 0
+    key_comparisons_made = 0
     low = 0
     high = len(list_of_keys) - 1
     while low <= high: 
         middle = (low + high) / 2
-        num_key_comparisons += 1
+        key_comparisons_made += 1
         if list_of_keys[middle] > search_key:
             high = middle - 1
         elif list_of_keys[middle] < search_key:
             low = middle + 1
-            num_key_comparisons += 1
+            key_comparisons_made += 1
         else:
             # increment here because the previous comparison was unsuccessful
-            num_key_comparisons += 1
-            return num_key_comparisons
+            key_comparisons_made += 1
+            return key_comparisons_made
     return 0
 
 
@@ -46,15 +50,15 @@ def linear_search(list_of_keys, search_key):
         print "List of keys not found."
         return 0
 
-    num_key_comparisons = 0
+    key_comparisons_made = 0
     search_key_index = 0
     while search_key_index < length_of_list:
-        num_key_comparisons += 1
+        key_comparisons_made += 1
         if list_of_keys[search_key_index] == search_key:
-            return num_key_comparisons
+            return key_comparisons_made
         search_key_index += 1
 
-    return num_key_comparisons
+    return key_comparisons_made
 
 
 def test_binary_search(n):
