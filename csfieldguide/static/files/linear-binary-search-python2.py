@@ -16,7 +16,8 @@ def binary_search(list_of_keys, search_key):
     """
     Perform a Binary search and return the number of comparisons made.
 
-    Based on code from http://rosettacode.org/wiki/Binary_search#Python:_Iterative
+    Based on code from:
+    http://rosettacode.org/wiki/Binary_search#Python:_Iterative
     """
     length = len(list_of_keys)
     if length == 0:
@@ -28,7 +29,7 @@ def binary_search(list_of_keys, search_key):
     key_comparisons_made = 0
     low = 0
     high = len(list_of_keys) - 1
-    while low <= high: 
+    while low <= high:
         middle = (low + high) / 2
         key_comparisons_made += 1
         if list_of_keys[middle] > search_key:
@@ -65,7 +66,8 @@ def test_binary_search(n):
     """
     Perform a Binary search on a list of size n.
 
-    Returns the number of key comparisons made and the time taken for the algorithm to run.
+    Returns the number of key comparisons made and
+    the time taken for the algorithm to run.
     """
     sample_list = range(n)  # create a sorted list of n keys
     item = randint(0, n - 1)
@@ -73,18 +75,21 @@ def test_binary_search(n):
     print "\nBinary Searching for", item, "in a list of", n, "items"
 
     start = time.clock()
-    comparisons_made = binary_search(sample_list, item)
+    key_comparisons_made = binary_search(sample_list, item)
     end = time.clock()
 
-    print "For binary search of", n, "items,", comparisons_made, "comparisons of keys were used"
-    print "Time taken: ", (end - start) * 1000, " miliseconds elapsed"
+    result = "For binary search of {} items, {} comparisons of keys were used"
+    time_taken = "Time taken: {:.4f} milliseconds elapsed"
+    print result.format(n, key_comparisons_made)
+    print time_taken.format((end - start) * 1000)
 
 
 def test_linear_search(n):
     """
     Perform a Linear search on a list of size n.
 
-    Returns the number of key comparisons made and the time taken for the algorithm to run.
+    Returns the number of key comparisons made and
+    the time taken for the algorithm to run.
     """
     sample_list = range(n)  # create a sorted list of n keys
     item = randint(0, n - 1)
@@ -92,11 +97,13 @@ def test_linear_search(n):
     print "\nLinear Searching for", item, "in a list of", n, "items"
 
     start = time.clock()
-    comparisons_made = linear_search(sample_list, item)
+    key_comparisons_made = linear_search(sample_list, item)
     end = time.clock()
 
-    print "For linear search of", n, "items,", comparisons_made, "comparisons of keys were used"
-    print "Time taken: ", (end - start) * 1000, " miliseconds elapsed"
+    result = "For linear search of {} items, {} comparisons of keys were used"
+    time_taken = "Time taken: {:.4f} milliseconds elapsed"
+    print result.format(n, key_comparisons_made)
+    print time_taken.format((end - start) * 1000)
 
 
 # This is an example of how to run an experiment
