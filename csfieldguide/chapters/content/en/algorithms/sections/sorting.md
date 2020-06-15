@@ -190,11 +190,11 @@ The following files will run selection sort and quicksort in various languages; 
 Note how long these take for various amounts of input (*n*), and show it in a table or graph.
 You should notice that the time taken by quicksort is quite different to that taken by selection sort.
 
-The Scratch implementation of selection sort and quicksort can be downloaded below.
+The scratch implementation of selection sort and quicksort can be downloaded below.
 
-{button-link link="files/selection-quicksort-scratch.zip" text="Download Scratch quicksort example" file="yes"}
+{button-link link="files/selection-quicksort-scratch.zip" text="Download scratch sorting example" file="yes"}
 
-The following Python implementations of selection sort and quicksort can be run in your browser:
+The following python implementations of selection sort and quicksort can be run in your browser:
 
 - [Python 3](https://repl.it/@uccser/selection-quicksort-python3)
 
