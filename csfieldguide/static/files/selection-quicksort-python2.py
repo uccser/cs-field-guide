@@ -1,5 +1,13 @@
 """
-Test the relative speeds of quicksort and selection sort.
+Tests the relative speeds of quicksort and selection sort.
+The current output is human readable, but for large-scale experiments you will
+want to modify it so that the output can be graphed
+(e.g. generate CSV to put in a spreadsheet, or introduce a plotting library).
+You should also consider generating special cases of lists, such as already-sorted lists
+and reverse-sorted lists.
+The following constants should be modified to run the experiments on a wider range of data:
+NUMBER_OF_KEYS
+NUMBER_OF_REPEATED_EXPERIMENTS
 
 This is for Python version 2.7.
 Tim Bell, August 2012
@@ -9,10 +17,13 @@ Modified by Courtney Bracefield, June 2020
 from random import shuffle
 import time
 
+# Each sorting method will be evaluated for lists of the following sizes
 NUMBER_OF_KEYS = [10, 1000]
+# The experiments will be repeated this many times
+NUMBER_OF_REPEATED_EXPERIMENTS = 10
 
 
-def selection_sort(sample_list):
+def selection_sort_count(sample_list):
     """
     Perform min selection sort on values in sample_list.
 
@@ -31,7 +42,7 @@ def selection_sort(sample_list):
     return key_comparisons_made
 
 
-def quick_sort(sample_list):
+def quick_sort_count(sample_list):
     """
     Perform quicksort on values in sample_list.
 
@@ -91,7 +102,7 @@ def partition(alist, first, last):
     return right_to_left
 
 
-def test_selection_sort(n, show_list):
+def test_selection_sort_count(n, show_list):
     """Measure the performance of selection sort on a random list."""
     sample_list = range(n)  # create a sorted list of n keys
     shuffle(sample_list)  # shuffle them
@@ -99,7 +110,7 @@ def test_selection_sort(n, show_list):
     if show_list:
         print "Test list is", sample_list
     start = time.clock()
-    key_comparisons_made = selection_sort(sample_list)
+    key_comparisons_made = selection_sort_count(sample_list)
     end = time.clock()
     if show_list:
         print "Selection sort output is", sample_list
@@ -110,7 +121,7 @@ def test_selection_sort(n, show_list):
     print time_taken.format((end - start) * 1000)
 
 
-def test_quick_sort(n, show_list):
+def test_quick_sort_count(n, show_list):
     """Create a random list and measure the performance of quicksort on it."""
     sample_list = range(n)  # create a sorted list of n keys
     shuffle(sample_list)  # shuffle them
@@ -118,7 +129,7 @@ def test_quick_sort(n, show_list):
     if show_list:
         print "Test list is", sample_list
     start = time.clock()
-    key_comparisons_made = quick_sort(sample_list)
+    key_comparisons_made = quick_sort_count(sample_list)
     end = time.clock()
     if show_list:
         print "Quicksort output is", sample_list
@@ -132,7 +143,7 @@ def test_quick_sort(n, show_list):
 # For thorough results, experiments should be run for a larger range of values
 # and should experiments should be repeated multiple times
 for number_of_keys in NUMBER_OF_KEYS:
-    for repeat_of_experiment in range(5):
-        test_selection_sort(number_of_keys, False)
-    for repeat_of_experiment in range(5):
-        test_quick_sort(number_of_keys, False)
+    for repeat_of_experiment in range(NUMBER_OF_REPEATED_EXPERIMENTS):
+        test_selection_sort_count(number_of_keys, False)
+    for repeat_of_experiment in range(NUMBER_OF_REPEATED_EXPERIMENTS):
+        test_quick_sort_count(number_of_keys, False)
