@@ -5,7 +5,7 @@
 wheel==0.33.6
 
 # Images
-Pillow==6.2.1
+Pillow==7.1.1
 django-inline-svg==0.1.1
 selenium==3.141.0
 
@@ -23,7 +23,7 @@ lxml==4.4.2
 cssselect==1.1.0
 
 # YAML Loading
-PyYAML==5.2
+PyYAML==5.3.1
 
 # I18n
 django-modeltranslation==0.14.1
