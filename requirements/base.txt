@@ -2,7 +2,7 @@
 # like Pillow and psycopg2
 # See http://bitly.com/wheel-building-fails-CPython-35
 # Verified bug on Python 3.5.1
-wheel==0.33.6
+wheel==0.34.2
 
 # Images
 Pillow==7.1.1
@@ -30,4 +30,4 @@ django-modeltranslation==0.15
 uniseg==0.7.1
 python-bidi==0.4.2
 django-bidi-utils==1.0
-django-statici18n==1.8.3
+django-statici18n==1.9.0
