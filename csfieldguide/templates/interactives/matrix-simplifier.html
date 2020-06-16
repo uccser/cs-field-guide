@@ -16,11 +16,15 @@
         <h5>{% trans "Matrices" %}</h5>
         <div id="matrix-input-container" class="containers">
           <div class="draggable content border rounded m-1 center-block">
+            <span class="close move-eqtn" aria-label="Move">
+              {% svg 'matrix-simplifier/icons8-drag-reorder' %}
+              <div class="handle cover"></div>
+            </span>
             <button id="close-matrix-0" type="button" class="close dismiss-eqtn invisible" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
             <button id="edit-matrix-0" type="button" class="close edit-eqtn invisible" aria-label="Edit" data-toggle="modal" data-target="#matrix-modal">
-              {% svg 'icons8-pencil' %}
+              {% svg 'matrix-simplifier/icons8-pencil' %}
             </button>
             <div id="matrix-0" class="matrix invisible" data-matrix-order=0>
               \[
@@ -34,11 +38,15 @@
           </div>
       
           <div class="draggable content border rounded m-1 center-block">
+            <span class="close move-eqtn" aria-label="Move">
+              {% svg 'matrix-simplifier/icons8-drag-reorder' %}
+              <div class="handle cover"></div>
+            </span>
             <button id="close-matrix-1" type="button" class="close dismiss-eqtn invisible" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
             <button id="edit-matrix-1" type="button" class="close edit-eqtn invisible" aria-label="Edit" data-toggle="modal" data-target="#matrix-modal">
-              {% svg 'icons8-pencil' %}
+              {% svg 'matrix-simplifier/icons8-pencil' %}
             </button>
             <div id="matrix-1" class="matrix invisible" data-matrix-order=1>
               \[
@@ -61,11 +69,15 @@
         <h5>{% trans "Vectors" %}</h5>
         <div id="vector-input-container" class="containers">
           <div class="draggable content border rounded m-1 center-block">
+            <span class="close move-eqtn" aria-label="Move">
+              {% svg 'matrix-simplifier/icons8-drag-reorder' %}
+              <div class="handle cover"></div>
+            </span>
             <button id="close-vector-0" type="button" class="close dismiss-eqtn invisible" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
             <button id="edit-vector-0" type="button" class="close edit-eqtn invisible" aria-label="Edit" data-toggle="modal" data-target="#vector-modal">
-              {% svg 'icons8-pencil' %}
+              {% svg 'matrix-simplifier/icons8-pencil' %}
             </button>
             <div id="vector-0" class="vector invisible" data-vector-order=0>
               \[
@@ -193,9 +205,12 @@
         </div>
       </div>
     </div>
-    <!-- helper div so we can access the SVG in the JS file -->
+    <!-- helper divs so we can access the SVG in the JS file -->
     <div id="pencil-svg-helper" class="d-none">
-      {% svg 'icons8-pencil' %}
+      {% svg 'matrix-simplifier/icons8-pencil' %}
+    </div>
+    <div id="dragger-svg-helper" class="d-none">
+      {% svg 'matrix-simplifier/icons8-drag-reorder' %}
     </div>
   </div>
 {% endblock html %}
