@@ -21,6 +21,7 @@ NUMBER_OF_KEYS = [10, 1000]
 # The experiments will be repeated this many times
 NUMBER_OF_REPEATED_EXPERIMENTS = 10
 
+
 def binary_search_count(list_of_keys, search_key):
     """
     Perform a Binary search and return the number of comparisons required.
