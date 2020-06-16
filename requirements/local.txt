@@ -3,7 +3,7 @@
 -r test.txt
 
 # Documentation
-sphinx==2.3.0
+sphinx==3.0.4
 sphinx-rtd-theme==0.4.3
 
 # Debugging Tools
