@@ -17,6 +17,20 @@ All notable changes to this project will be documented in this file.
 
 We have listed major changes for each release below.
 
+3.3.1
+==============================================================================
+
+- **Release date:** 22nd April 2020
+- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/3.3.1>`__
+
+**Changelog:**
+
+- Solved bug in pixel viewer that was affecting some users. `#1254 <https://github.com/uccser/cs-field-guide/pull/1254>`__
+- Dependency updates:
+
+  - Update Pillow from 6.2.1 to 7.1.1.
+  - Update PyYAML from 5.2 to 5.3.1.
+
 3.3.0
 ==============================================================================
 
