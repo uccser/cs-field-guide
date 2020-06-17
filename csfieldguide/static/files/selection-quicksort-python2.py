@@ -3,13 +3,15 @@ Tests the relative speeds of quicksort and selection sort.
 The current output is human readable, but for large-scale experiments you will
 want to modify it so that the output can be graphed
 (e.g. generate CSV to put in a spreadsheet, or introduce a plotting library).
-You should also consider generating special cases of lists, such as already-sorted lists
-and reverse-sorted lists.
-The following constants should be modified to run the experiments on a wider range of data:
+You should also consider generating special cases of lists,
+such as already-sorted lists and reverse-sorted lists.
+
+The following constants should be modified to run the experiments
+on a wider range of data:
 NUMBER_OF_KEYS
 NUMBER_OF_REPEATED_EXPERIMENTS
 
-This is for Python version 2.7.
+This is for Python version 3.
 Tim Bell, August 2012
 Modified by Courtney Bracefield, June 2020
 """

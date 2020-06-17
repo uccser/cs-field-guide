@@ -3,8 +3,11 @@ Tests the relative speeds of linear search and binary search.
 The current output is human readable, but for large-scale experiments you will
 want to modify it so that the output can be graphed
 (e.g. generate CSV to put in a spreadsheet, or introduce a plotting library).
+You should also consider generating special cases of searches, such as
+searching for the last item in a list.
 
-The following constants should be modified to run the experiments on a wider range of data:
+The following constants should be modified to run the experiments
+on a wider range of data:
 NUMBER_OF_KEYS
 NUMBER_OF_REPEATED_EXPERIMENTS
 
@@ -24,8 +27,9 @@ NUMBER_OF_REPEATED_EXPERIMENTS = 10
 
 def binary_search_count(list_of_keys, search_key):
     """
-    Perform a Binary search and return the number of comparisons required.
+    Perform a Binary search.
 
+    Returns the number of comparisons required.
     Based on code from:
     http://rosettacode.org/wiki/Binary_search#Python:_Iterative
     """
@@ -55,7 +59,11 @@ def binary_search_count(list_of_keys, search_key):
 
 
 def linear_search_count(list_of_keys, search_key):
-    """Perform a Linear search and return the number of comparisons required."""
+    """
+    Perform a Linear search.
+
+    Returns the number of comparisons required.
+    """
     length_of_list = len(list_of_keys)
     if length_of_list == 0:
         print("List of keys not found.")
