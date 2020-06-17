@@ -1,3 +1,6 @@
+.container {
+  max-width: 1220px !important; // To fit cards in groups of 8 on large screens
+}
 #interactive-binary-cards-container {
   display: flex;
   flex-wrap: wrap;
@@ -69,4 +72,12 @@
 }
 h3, h5, p {
   text-align: left;
+}
+// Hide arrows in input box on some browsers as it's jumpy
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
 }
