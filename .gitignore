@@ -64,6 +64,7 @@ instance/
 
 # Sphinx documentation
 docs/_build/
+docs/source/_build/
 
 # PyBuilder
 target/
@@ -117,3 +118,7 @@ whoosh_index/
 
 # OSX system files
 .DS_Store
+
+
+# VS Code
+settings.json

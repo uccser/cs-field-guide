@@ -71,6 +71,16 @@ body {
     }
 }
 
+#message-to-encode {
+    font: 1rem "Courier New", monospace;
+    font-size: 1.2rem;
+}
+
+#char-replacement-note {
+    font-size: 0.8rem;
+    color: grey;
+}
+
 .highlight {
     outline: 2px solid #85c1dd;
     outline-offset: 0.5px;
