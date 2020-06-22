@@ -1,5 +1,5 @@
 """
-Tests the relative speeds of linear search and binary search.
+Measures the relative speeds of linear search and binary search.
 The current output is human readable, but for large-scale experiments you will
 want to modify it so that the output can be graphed
 (e.g. generate CSV to put in a spreadsheet, or introduce a plotting library).
@@ -80,7 +80,7 @@ def linear_search_count(list_of_keys, search_key):
     return key_comparisons_made
 
 
-def test_binary_search_count(n):
+def test_binary_search(n):
     """
     Perform a Binary search on a list of size n.
 
@@ -102,7 +102,7 @@ def test_binary_search_count(n):
     print time_taken.format((end - start) * 1000)
 
 
-def test_linear_search_count(n):
+def test_linear_search(n):
     """
     Perform a Linear search on a list of size n.
 
@@ -129,6 +129,6 @@ def test_linear_search_count(n):
 # and experiments should be repeated multiple times
 for number_of_keys in NUMBER_OF_KEYS:
     for repeat_of_experiment in range(NUMBER_OF_REPEATED_EXPERIMENTS):
-        test_linear_search_count(number_of_keys)
+        test_linear_search(number_of_keys)
     for repeat_of_experiment in range(NUMBER_OF_REPEATED_EXPERIMENTS):
-        test_binary_search_count(number_of_keys)
+        test_binary_search(number_of_keys)

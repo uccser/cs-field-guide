@@ -1,5 +1,5 @@
 """
-Tests the relative speeds of quicksort and selection sort.
+Measures the relative speeds of quicksort and selection sort.
 The current output is human readable, but for large-scale experiments you will
 want to modify it so that the output can be graphed
 (e.g. generate CSV to put in a spreadsheet, or introduce a plotting library).
@@ -104,7 +104,7 @@ def partition(alist, first, last):
     return right_to_left
 
 
-def test_selection_sort_count(n, show_list):
+def test_selection_sort(n, show_list):
     """Measure the performance of selection sort on a random list."""
     sample_list = list(range(n))  # create a sorted list of n keys
     shuffle(sample_list)  # shuffle them
@@ -123,9 +123,10 @@ def test_selection_sort_count(n, show_list):
     print(time_taken.format((end - start) * 1000))
 
 
-def test_quick_sort_count(n, show_list):
+def test_quick_sort(n, show_list):
     """Create a random list and measure the performance of quicksort on it."""
     sample_list = list(range(n))  # create a sorted list of n keys
+    # commenting out the line below overflows the recursion limit
     shuffle(sample_list)  # shuffle them
     print("\nQuick sorting", n, "keys")
     if show_list:
@@ -147,6 +148,6 @@ def test_quick_sort_count(n, show_list):
 # and should experiments should be repeated multiple times
 for number_of_keys in NUMBER_OF_KEYS:
     for repeat_of_experiment in range(NUMBER_OF_REPEATED_EXPERIMENTS):
-        test_selection_sort_count(number_of_keys, False)
+        test_selection_sort(number_of_keys, False)
     for repeat_of_experiment in range(NUMBER_OF_REPEATED_EXPERIMENTS):
-        test_quick_sort_count(number_of_keys, False)
+        test_quick_sort(number_of_keys, False)
