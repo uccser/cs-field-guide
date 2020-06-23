@@ -41,13 +41,13 @@ function compressText(message) {
 
       if (stringToMatch[0] == null) { // meaning is newline character
         // add newline character to sliding window and remove from message. TODO: Consider encoding as a normal character
-        newline_character = stringToMatch.slice(0, 1);
-        slidingWindow.push(newline_character);
+        var newlineCharacter = stringToMatch.slice(0, 1);
+        slidingWindow.push(newlineCharacter);
         stringToMatch.splice(0, 1);
-        // put next chracter on string to match
+        // put next character on string to match
         stringToMatch.push(message.splice(0, 1)[0]);
         // add newline to output
-        encodedMessage.push(newline_character);
+        encodedMessage.push(newlineCharacter);
       }
 
       if (windowCharacter == stringToMatch[0]) {
