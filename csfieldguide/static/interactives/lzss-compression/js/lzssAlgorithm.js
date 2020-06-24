@@ -24,8 +24,8 @@ function compressText(message) {
   // initialise sliding window and initial encoded message
   // simplify the sliding window to just 'everything until an index' for simplicity
   // as this interactive won't be used with masses of text
-  slidingWindow = MIN_LENGTH;
-  encodedMessage = message.slice(0, MIN_LENGTH);
+  slidingWindow = 1;
+  encodedMessage = message.slice(0, 1);
 
   // read in string to length of max match
   stringToMatch = message.slice(slidingWindow, slidingWindow + MAX_LENGTH);
