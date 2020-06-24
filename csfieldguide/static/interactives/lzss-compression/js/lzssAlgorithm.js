@@ -43,7 +43,7 @@ function compressText(message) {
 
       if (stringToMatch[0] == newlineCharacter) {
         // add newline character to sliding window and remove from message.
-        // TODO: Consider encoding as a normal character - though Wikipedia implies that as implemented is accurate
+        // TODO: Consider encoding as a normal character - though Wikipedia seems to imply what's implemented is accurate
         slidingWindow++;
         stringToMatch.splice(0, 1);
         // put next character on string to match
