@@ -7,6 +7,7 @@ var placeholder_message = gettext(`Pease porridge hot, pease porridge cold,
 Pease porridge in the pot, nine days old;
 Some like it hot, some like it cold,
 Some like it in the pot, nine days old.`);
+const newlineCharacter = ':n';
 
 
 // Set placeholder message
@@ -43,16 +44,17 @@ function drawEncodedMessage(encoded_message) {
     for (var i = 0; i < encoded_message.length; i++) {
         var string = encoded_message[i];
         
-        if (string.length == 1) { // i.e. just a single character
+        if (string == newlineCharacter) {
+            console.log('new line');
+            // indicates a new line charactor so appead the div to the parent
+            compressed_text_div.append(line_div);
+            // make a new div for the next line
+            var line_div = newLineDiv();
+            index += 1;
+            continue;
+        }
         
-            if (string == 'null') {
-                // indicates a new line charactor so appead the div to the parent
-                compressed_text_div.append(line_div);
-                // make a new div for the next line
-                var line_div = newLineDiv();
-                index += 1;
-                continue;
-            }
+        if (string.length == 1) { // i.e. just a single character
             // add child div for character to line
             var character_div = document.createElement('div');
             character_div.classList.add('lzss-compression-encoded-character');
