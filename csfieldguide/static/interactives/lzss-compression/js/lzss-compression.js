@@ -45,7 +45,6 @@ function drawEncodedMessage(encoded_message) {
         var string = encoded_message[i];
         
         if (string == newlineCharacter) {
-            console.log('new line');
             // indicates a new line charactor so appead the div to the parent
             compressed_text_div.append(line_div);
             // make a new div for the next line

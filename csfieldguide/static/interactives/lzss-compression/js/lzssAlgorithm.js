@@ -100,8 +100,6 @@ function compressText(message) {
     // prepare the next string to check
     stringToMatch = message.slice(slidingWindow, slidingWindow + MAX_LENGTH);
   }
-  console.log(slidingWindow);
-  console.log(encodedMessage);
   return encodedMessage;
 }
 
