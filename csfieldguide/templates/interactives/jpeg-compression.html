@@ -19,7 +19,7 @@
       <p>{% trans 'Error: <span id="mse">0</span>' %}</p>
       <p id="level-specific">{% trans "Level 1 - the image can be made using just 1 basis function." %}</p>
       <p>{% trans "Press the help button to have 1 basis function set to the correct value for you." %}</p>
-      <button class="btn btn-success" id="helpButton">{% trans "Help Me" %}</button>
+      <button class="btn jpeg-btn btn-success" id="helpButton">{% trans "Help Me" %}</button>
     </div>
     <div class="col-sm-6 col-md-4 col-lg-3" id="before">
       <h6>{% trans "Original Image Pixels" %}</h6>
@@ -27,7 +27,7 @@
       <table id="before-labels-8-by-8" width="240" height="240"></table>
       <div class="switch" id="toggleNumberBefore">
         <label>{% trans "Display numbers:" %}
-          <input type="checkbox" checked><span class="lever"></span></label>
+          <input id="toggleNumberBeforeCheckbox" type="checkbox" checked><span class="lever"></span></label>
       </div>
     </div>
     <div class="col-sm-6 col-md-4 col-lg-3" id="after">
@@ -36,19 +36,19 @@
       <table id="after-labels-8-by-8" width="240" height="240"></table>
       <div class="switch" id="toggleDifference">
         <label>{% trans "Difference Values:" %}
-          <input type="checkbox"><span class="lever"></span></label>
+          <input id="toggleDifferenceCheckbox" type="checkbox"><span class="lever"></span></label>
       </div>
     </div>
     <div class="col-sm-12 col-md-12 col-lg-12" id="help">
       <div id="puzzle-next-level">
         <h5>{% trans "That's correct!" %}</h5>
-        <button class="btn btn-primary" id="nextLevelButton">{% trans "Next Level" %}</button>
+        <button class="btn jpeg-btn btn-primary" id="nextLevelButton">{% trans "Next Level" %}</button>
       </div>
     </div>
     <div class="col-sm-12 col-md-12 col-lg-12" id="right-of-dct">
-      <button class="btn btn-primary" id="quantisationButton">{% trans "Apply Quantisation" %}</button>
-      <button class="btn btn-primary" id="zeroButton">{% trans "Zero All" %}</button>
-      <button class="btn btn-primary" id="resetButton">{% trans "Reset to Original" %}</button>
+      <button class="btn jpeg-btn btn-primary" id="quantisationButton">{% trans "Apply Quantisation" %}</button>
+      <button class="btn jpeg-btn btn-primary" id="zeroButton">{% trans "Zero All" %}</button>
+      <button class="btn jpeg-btn btn-primary" id="resetButton">{% trans "Reset to Original" %}</button>
     </div>
     <div class="col-sm-12">
       <div id="jpeg-compression">
