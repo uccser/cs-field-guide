@@ -71,6 +71,7 @@ function drawEncodedMessage(encoded_message) {
                 var placeholder_input = document.createElement('input'); 
                 placeholder_input.classList.add('lzss-compression-placeholder-box');
                 placeholder_input.setAttribute('data-index', index);
+                placeholder_input.setAttribute('readonly', true);
                 placeholder_input.maxLength = 1;
                 placeholder_input.addEventListener('mousemove', function(event) {
                     changeHighlight(event, true);
