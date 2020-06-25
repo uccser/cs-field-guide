@@ -20,14 +20,14 @@ We have listed major changes for each release below.
 3.4.0
 ==============================================================================
 
-- **Release date:** 19th June 2020
+- **Release date:** 29th June 2020
 - **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/3.4.0>`__
 
 **Changelog:**
 
-- Add an input box to allow the number of cards to be changed for the binary cards interactive. `#1262 <https://github.com/uccser/cs-field-guide/issues/1262>`__
-- Fix issues in LZSS compression algorithm and replace space characters with the open box character. `#1271 <https://github.com/uccser/cs-field-guide/issues/1271>`__
-- Fit binary cards in groups of 8 on large screens. `#1241 <https://github.com/uccser/cs-field-guide/issues/1241>`__
+- Add a number of cards input box for the Binary Cards interactive, plus fit cards in groups of 8 on large screens. `#1262 <https://github.com/uccser/cs-field-guide/issues/1262>`__ `#1271 <https://github.com/uccser/cs-field-guide/issues/1271>`__
+- Fix issues in LZSS Compression algorithm and replace space characters with the open box character. `#1271 <https://github.com/uccser/cs-field-guide/issues/1271>`__
+- Fix bug in JPEG Compression interactive where sometimes a checked checkbox was treated as unchecked and vice versa. `#1269 <https://github.com/uccser/cs-field-guide/issues/1269>`__
 - Prevent overflow of matrices in Matrix Simplifier interactive. `#1138 <https://github.com/uccser/cs-field-guide/issues/1138>`__
 - Dependency updates:
 
