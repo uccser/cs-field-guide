@@ -25,10 +25,10 @@ We have listed major changes for each release below.
 
 **Changelog:**
 
-- Add a number of cards input box for the Binary Cards interactive, plus fit cards in groups of 8 on large screens. `#1262 <https://github.com/uccser/cs-field-guide/issues/1262>`__ `#1271 <https://github.com/uccser/cs-field-guide/issues/1271>`__
-- Fix issues in LZSS Compression algorithm and replace space characters with the open box character. `#1271 <https://github.com/uccser/cs-field-guide/issues/1271>`__
+- Allow user to choose number of cards shown in the Binary Cards interactive, plus fit cards in groups of 8 on large screens. `#1262 <https://github.com/uccser/cs-field-guide/issues/1262>`__ `#1271 <https://github.com/uccser/cs-field-guide/issues/1271>`__
+- Fix issues in LZSS Compression algorithm and replace space characters with the open box character for clarity. `#1271 <https://github.com/uccser/cs-field-guide/issues/1271>`__
 - Fix bug in JPEG Compression interactive where sometimes a checked checkbox was treated as unchecked and vice versa. `#1269 <https://github.com/uccser/cs-field-guide/issues/1269>`__
-- Prevent overflow of matrices in Matrix Simplifier interactive. `#1138 <https://github.com/uccser/cs-field-guide/issues/1138>`__
+- Prevent visual overflow of matrices in Matrix Simplifier interactive. `#1138 <https://github.com/uccser/cs-field-guide/issues/1138>`__
 - Dependency updates:
 
   - Update coverage from 5.0 to 5.1.
