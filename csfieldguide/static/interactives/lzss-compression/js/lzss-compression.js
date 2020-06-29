@@ -10,11 +10,15 @@ Some like it in the pot, nine days old.`);
 const newlineCharacter = ':n';
 
 
-// Set placeholder message
+// Clear boxes and set placeholder message
 window.onload = function() {
     var message_div = document.getElementById('message-to-encode');
     message_div.value = placeholder_message;
-    document.getElementById('lzss-compression-compress-button').addEventListener('click', compress, false);  
+    document.getElementById('lzss-compression-compress-button').addEventListener('click', compress, false);
+
+    document.getElementById('message-to-decode').value = '';
+    document.getElementById('base-size').innerHTML = '';
+    document.getElementById('encoded-size').innerHTML = '';
 }
 
 // Compress the message and display the encoded message
@@ -24,6 +28,8 @@ function compress() {
     document.getElementById('lzss-compression-compressed-text').innerHTML = '';
     encoded_message = lzssAlgorithm.compressText(message);
     drawEncodedMessage(encoded_message);
+    writeEncodedMessage(encoded_message);
+    writeEncodeEfficiency(message, encoded_message);
 }
 
 // Create a new div
@@ -33,7 +39,56 @@ function newLineDiv() {
     return line_div;
 }
 
-// Output the encoded message
+// Write a sentence on the before/after compression text size
+function writeEncodeEfficiency(message, encoded_message) {
+    var unencoded_size = message.length;
+    var encoded_size = 0;
+    var flags = 0;
+
+    for (var i=0; i < encoded_message.length; i++) {
+        if (encoded_message[i] == newlineCharacter || encoded_message[i].length == 1) {
+            encoded_size++;
+        } else {
+            // Assuming a 1.5 byte reference value, we know it's a 4 bit length value
+            // This assumption is too low when looking at long encoded texts
+            encoded_size += 2;
+        }
+        flags++; // Need 1-bit flags for whether or not each item is a character or reference
+    }
+
+    // Round flags to an even number of bytes
+    flags = Math.ceil(flags / 8);
+    //encoded_size += flags; //TODO This is somewhat accurate but may confuse users, particularly since those flags aren't mentioned in the content
+
+    var unencoded_size_message = gettext("Base message size:") + " " + interpolate(ngettext('1 Byte', '%s Bytes', unencoded_size), [unencoded_size]);
+    var encoded_size_message = gettext("Approximate encoded size:") + " " + interpolate(ngettext('1 Byte', '%s Bytes', encoded_size), [encoded_size]);
+
+    document.getElementById('base-size').innerHTML = unencoded_size_message;
+    document.getElementById('encoded-size').innerHTML = encoded_size_message;
+}
+
+// Output the encoded message (text box)
+function writeEncodedMessage(encoded_message) {
+    var compressed_text_div = document.getElementById('message-to-decode');
+    var text_to_write = "";
+    var item;
+
+    for (var i=0; i < encoded_message.length; i++) {
+        item = encoded_message[i];
+
+        if (item == newlineCharacter) {
+            text_to_write += "\n";
+        } else if (item.length == 1) { // just a single character)
+            text_to_write += item;
+        } else { // a reference
+            text_to_write += "(" + item[0] + "," + item[1] + ")";
+        }
+    }
+
+    compressed_text_div.value = text_to_write;
+}
+
+// Output the encoded message (visual box)
 function drawEncodedMessage(encoded_message) {
     var compressed_text_div = document.getElementById('lzss-compression-compressed-text');
 
@@ -41,7 +96,7 @@ function drawEncodedMessage(encoded_message) {
     var line_div = newLineDiv();
 
     var index = 0;
-    for (var i = 0; i < encoded_message.length; i++) {
+    for (var i=0; i < encoded_message.length; i++) {
         var string = encoded_message[i];
         
         if (string == newlineCharacter) {
