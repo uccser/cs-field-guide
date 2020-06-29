@@ -78,7 +78,7 @@ function writeEncodedMessage(encoded_message) {
 
         if (item == newlineCharacter) {
             text_to_write += "\n";
-        } else if (item.length == 1) { // just a single character)
+        } else if (item.length == 1) { // just a single character
             text_to_write += item;
         } else { // a reference
             text_to_write += "(" + item[0] + "," + item[1] + ")";
