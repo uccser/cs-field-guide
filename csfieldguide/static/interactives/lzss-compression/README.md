@@ -2,6 +2,8 @@
 
 **Author:** Unknown
 
+**Modified by:** Hayley van Waas, Courtney Bracefield, Alasdair Smith
+
 This interactive shows compression using the LZSS method
 
 ## Required Files
