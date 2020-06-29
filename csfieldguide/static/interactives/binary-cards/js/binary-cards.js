@@ -234,7 +234,7 @@ function updateCards(num_cards_to_show) {
     // mapping of card to child number in DOM tree
     // 16th card (2^15) is the first child, 15th card (2^14) is the second and so on..
     var card_num_to_child_num = {};
-    for (var z=0; z<MAX_NUM_CARDS; z++) {
+    for (var z=0; z < MAX_NUM_CARDS; z++) {
         card_num_to_child_num[z+1] = MAX_NUM_CARDS - z;
     }
     num_current_cards_shown = $('#interactive-binary-cards-container div.visible').length;
