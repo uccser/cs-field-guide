@@ -1,6 +1,6 @@
 var urlParameters = require('../../../js/third-party/url-parameters.js')
 "use strict";
-MAX_NUM_CARDS = 128;
+MAX_NUM_CARDS = 256;
 DEFAULT_NUM_CARDS_TO_SHOW = 8;
 
 $(document).ready(function () {
