@@ -105,14 +105,11 @@ function drawEncodedMessage(encoded_message) {
             // make a new div for the next line
             var line_div = newLineDiv();
             index += 1;
-            continue;
-        }
-        
-        if (string.length == 1) { // i.e. just a single character
+        } else if (string.length == 1) { // i.e. just a single character
             // add child div for character to line
             var character_div = document.createElement('div');
             character_div.classList.add('lzss-compression-encoded-character');
-            character_div.innerHTML = encoded_message[i];
+            character_div.innerHTML = string;
             character_div.setAttribute('data-index', index);
             line_div.append(character_div);
             index += 1;

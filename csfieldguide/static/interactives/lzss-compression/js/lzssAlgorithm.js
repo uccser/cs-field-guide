@@ -36,6 +36,7 @@ function compressText(message) {
     var longestMatchOffset;
     var longestMatchLength = 0;
     var currentMatchLength = 0;
+    var windowCharacter;
 
     for (var i = 0; i < slidingWindow; i++) {
       // get next character in sliding window
@@ -47,12 +48,13 @@ function compressText(message) {
         slidingWindow++;
         stringToMatch.splice(0, 1);
         // put next character on string to match
-        stringToMatch.push(message[slidingWindow + MAX_LENGTH]);
+        stringToMatch.push(message[slidingWindow + MAX_LENGTH - 1]);
         // add newline to output
         encodedMessage.push(newlineCharacter);
+        console.log(stringToMatch);
       }
 
-      if (windowCharacter == stringToMatch[0]) {
+      if (stringToMatch[0] == windowCharacter) {
         // record the current position as the start of the match in the sw
         matchOffset = i;
         currentMatchLength = 1;
@@ -100,6 +102,7 @@ function compressText(message) {
     // prepare the next string to check
     stringToMatch = message.slice(slidingWindow, slidingWindow + MAX_LENGTH);
   }
+  console.log(encodedMessage);
   return encodedMessage;
 }
 
