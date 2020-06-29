@@ -58,7 +58,7 @@ function writeEncodeEfficiency(message, encoded_message) {
 
     // Round flags to an even number of bytes
     flags = Math.ceil(flags / 8);
-    //encoded_size += flags; //TODO This is somewhat accurate but may confuse users, particularly since those flags aren't mentioned in the content
+    //encoded_size += flags; //TODO Decide. It is accurate but may confuse users, particularly since those flags aren't mentioned in the content
 
     var unencoded_size_message = gettext("Base message size:") + " " + interpolate(ngettext('1 Byte', '%s Bytes', unencoded_size), [unencoded_size]);
     var encoded_size_message = gettext("Approximate encoded size:") + " " + interpolate(ngettext('1 Byte', '%s Bytes', encoded_size), [encoded_size]);
