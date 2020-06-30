@@ -6,24 +6,36 @@
 {% block html %}
   <div class="container">
     <div id="lzss-compression">
-      <h3>{% trans "LZSS Compression" %}</h3>
+      <h2>{% trans "LZSS Compression" %}</h2>
       <div id="lzss-compression-wrapper">
         <div id="lzss-compression-left-box">
-          <p>{% trans "Enter the message you want to encode here" %}:</p>
+          <h5>{% trans "Enter the message you want to encode here" %}:</h5>
+          <p class="subtext">{% trans "Note: spaces are replaced with the &#9251; character." %}</p>
           <div id="lzss-compression-input-text">
-            <textarea class="form-control" rows="5" id="message-to-decode"></textarea>
+            <textarea class="form-control" rows="5" id="message-to-encode"></textarea>
           </div>
           <div>
             <button id="lzss-compression-compress-button" class="btn btn-primary btn-block" type="button">
-                {% trans "Compress" %} &rarr;
+              {% trans "Compress" %} &rarr;
             </button>
           </div>
         </div>
         <div id="lzss-compression-right-box">
-          <p>{% trans "Encoded Message" %}:</p>
-          <div id="lzss-compression-compressed-text">
+          <h5>{% trans "Encoded Message (Text)" %}:</h5>
+          <p class="subtext">{% trans "Each reference is shown in parentheses: (start, length)." %}</p>
+          <div id="lzss-compression-output-text">
+            <textarea class="form-control" rows="5" id="message-to-decode" readonly></textarea>
+          </div>
+          <div id="result-note">
+            <div id="base-size"></div>
+            <div id="encoded-size"></div>
           </div>
         </div>
+      </div>
+      <div id="lzss-compression-bottom-box">
+        <h5>{% trans "Encoded Message (Visual)" %}:</h5>
+        <p class="subtext">{% trans "Hover over the encoded portions to see what they reference." %}</p>
+        <div id="lzss-compression-compressed-text"></div>
       </div>
     </div>
   </div>
