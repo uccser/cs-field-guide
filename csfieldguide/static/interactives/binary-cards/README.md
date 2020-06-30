@@ -10,7 +10,7 @@ This interactive is created to teach binary numbers, and emulates the Binary Car
 The interactive shows the cards with dots from **128** to **1** by default (128, 64, 32, 16, 8, 4, 2, 1), however these can be configured by the following parameters:
 
 - `base=value` - Where `value` is the number base to use (defaults as 2).
-- `cards=value | digits=value` - Where `value` is the number of cards to display (default is 8). Min is 1 and max is 256. If both are given then the value of `cards` is used.
+- `cards=value | digits=value` - Where `value` is the number of cards to display (default is 8). Min is 1 and max is 64. If both are given then the value of `cards` is used.
 - `offset=value` - Where `value` is the amount to offset the displayed cards (default is 0). Using a positive number will show the placings from the `cards` + `offset` value, for the number of given cards. For example, using a base of `10`, cards as `3`, and offset as `2` will show the 100,000, 10,000, 1,000, and 100 placings. Using a negative number for the `value` will display floating point numbers.
 - `start=sides` - Where `sides` is a sequence of `W` and `B` characters, to state the sides that should be displayed when the interactive starts. The first letter states whether the first card (on the left) should be white (`W`) or black (`B`), the second letter stands for the second card. Therefore the number of letters should match the number of cards used.
 - `input=value` - Where `value` is `true` or `false` (default is true). Indicates whether or not to display the input box that lets users choose how many cards are displayed.
