@@ -1,4 +1,4 @@
-const lzssAlgorithm = require('./lzssAlgorithm.js');
+const lzssAlgorithm = require('./lzss-algorithm.js');
 
 var encoded_message = [];
 var start_index;
