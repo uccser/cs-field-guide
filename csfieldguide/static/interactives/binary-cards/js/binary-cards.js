@@ -1,9 +1,12 @@
 var urlParameters = require('../../../js/third-party/url-parameters.js')
 "use strict";
-MAX_NUM_CARDS = 64;
+var MAX_NUM_CARDS = 16;
 DEFAULT_NUM_CARDS_TO_SHOW = 8;
 
 $(document).ready(function () {
+
+    MAX_NUM_CARDS = Math.max(MAX_NUM_CARDS, Number(urlParameters.getUrlParameter('cards') || urlParameters.getUrlParameter('digits')))
+
     $('#cards-to-show').prop("max", MAX_NUM_CARDS).val(8);
     // Settings for interactive
     // Since users can possibly choose the num of cards from an input box,
@@ -22,13 +25,13 @@ $(document).ready(function () {
         $("#cards-input").addClass('d-none');
     }
 
-    $('#interactive-binary-cards').on('click', '.binary-card', function(event) {
+    $('#interactive-binary-cards').on('click', '.binary-card', function() {
         $(this).toggleClass('flipped');
         updateDotCount();
     });
 
     // Flip all cards to black
-    $('#interactive-binary-cards button#flip-to-black').on('click', function(){
+    $('#interactive-binary-cards button#flip-to-black').on('click', function() {
         $('#interactive-binary-cards-container > div.binary-card-container > div.binary-card').addClass('flipped');
         updateDotCount();
     });
