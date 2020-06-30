@@ -48,10 +48,11 @@ function compressText(message) {
         slidingWindow++;
         stringToMatch.splice(0, 1);
         // put next character on string to match
-        stringToMatch.push(message[slidingWindow + MAX_LENGTH - 1]);
+        if (message.length > slidingWindow + MAX_LENGTH - 1) {
+          stringToMatch.push(message[slidingWindow + MAX_LENGTH - 1]);
+        }
         // add newline to output
         encodedMessage.push(newlineCharacter);
-        console.log(stringToMatch);
       }
 
       if (stringToMatch[0] == windowCharacter) {
@@ -92,7 +93,7 @@ function compressText(message) {
       encodedMessage.push([longestMatchOffset, longestMatchLength]);
       stringToMatch.splice(0, longestMatchLength);
       slidingWindow += longestMatchLength;
-    } else {
+    } else if (stringToMatch[0]) {
       numCharacters = 1;
       encodedMessage.push(stringToMatch[0]);
       stringToMatch.splice(0, 1);
@@ -102,7 +103,6 @@ function compressText(message) {
     // prepare the next string to check
     stringToMatch = message.slice(slidingWindow, slidingWindow + MAX_LENGTH);
   }
-  console.log(encodedMessage);
   return encodedMessage;
 }
 
