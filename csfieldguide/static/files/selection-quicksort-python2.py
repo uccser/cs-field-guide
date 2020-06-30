@@ -1,10 +1,15 @@
 """
 Measures the relative speeds of quicksort and selection sort.
+
 The current output is human readable, but for large-scale experiments you will
 want to modify it so that the output can be graphed
 (e.g. generate CSV to put in a spreadsheet, or introduce a plotting library).
 You should also consider generating special cases of lists,
 such as already-sorted lists and reverse-sorted lists.
+Note that Quicksort can perform very poorly in some cases,
+and if this happens you may need to limit the list size to around 500
+if it won't run, but in normal circumstances you can try it with tens of
+thousands of items to sort.
 
 The following constants should be modified to run the experiments
 on a wider range of data:
@@ -127,6 +132,7 @@ def test_quick_sort(n, show_list):
     """Create a random list and measure the performance of quicksort on it."""
     sample_list = range(n)  # create a sorted list of n keys
     # commenting out the line below overflows the recursion limit
+    # when the list is large
     shuffle(sample_list)  # shuffle them
     print "\nQuick sorting", n, "keys"
     if show_list:
@@ -144,7 +150,7 @@ def test_quick_sort(n, show_list):
 
 # This is an example of how to run an experiment
 # For thorough results, experiments should be run for a larger range of values
-# and should experiments should be repeated multiple times
+# and experiments should be repeated multiple times
 for number_of_keys in NUMBER_OF_KEYS:
     for repeat_of_experiment in range(NUMBER_OF_REPEATED_EXPERIMENTS):
         test_selection_sort(number_of_keys, False)

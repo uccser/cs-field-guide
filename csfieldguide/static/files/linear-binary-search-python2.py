@@ -1,5 +1,6 @@
 """
 Measures the relative speeds of linear search and binary search.
+
 The current output is human readable, but for large-scale experiments you will
 want to modify it so that the output can be graphed
 (e.g. generate CSV to put in a spreadsheet, or introduce a plotting library).

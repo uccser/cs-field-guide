@@ -1,5 +1,6 @@
 """
 Measures the relative speeds of linear search and binary search.
+
 The current output is human readable, but for large-scale experiments you will
 want to modify it so that the output can be graphed
 (e.g. generate CSV to put in a spreadsheet, or introduce a plotting library).
@@ -126,7 +127,7 @@ def test_linear_search(n):
 
 # This is an example of how to run an experiment
 # For thorough results, experiments should be run for a larger range of values
-# and should experiments should be repeated multiple times
+# and experiments should be repeated multiple times
 for number_of_keys in NUMBER_OF_KEYS:
     for repeat_of_experiment in range(NUMBER_OF_REPEATED_EXPERIMENTS):
         test_linear_search(number_of_keys)

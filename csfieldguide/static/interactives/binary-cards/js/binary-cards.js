@@ -1,13 +1,17 @@
 var urlParameters = require('../../../js/third-party/url-parameters.js')
 "use strict";
-MAX_NUM_CARDS = 16;
+var MAX_NUM_CARDS = 16;
 DEFAULT_NUM_CARDS_TO_SHOW = 8;
 
 $(document).ready(function () {
+
+    MAX_NUM_CARDS = Math.max(MAX_NUM_CARDS, Number(urlParameters.getUrlParameter('cards') || urlParameters.getUrlParameter('digits')))
+
+    $('#cards-to-show').prop("max", MAX_NUM_CARDS).val(8);
     // Settings for interactive
     // Since users can possibly choose the num of cards from an input box,
     // we first load the max possible num of cards so it is easy to hide and re display cards.
-    // URL parameter for cards is checked after initial 16 cards have loaded.
+    // URL parameter for cards is checked after initial MAX_NUM_CARDS cards have loaded.
     var binaryValueSettings = {
         BASE: Number(urlParameters.getUrlParameter('base')) || 2,
         CARDS: MAX_NUM_CARDS,
@@ -21,13 +25,13 @@ $(document).ready(function () {
         $("#cards-input").addClass('d-none');
     }
 
-    $('#interactive-binary-cards').on('click', '.binary-card', function(event) {
+    $('#interactive-binary-cards').on('click', '.binary-card', function() {
         $(this).toggleClass('flipped');
         updateDotCount();
     });
 
     // Flip all cards to black
-    $('#interactive-binary-cards button#flip-to-black').on('click', function(){
+    $('#interactive-binary-cards button#flip-to-black').on('click', function() {
         $('#interactive-binary-cards-container > div.binary-card-container > div.binary-card').addClass('flipped');
         updateDotCount();
     });
@@ -49,8 +53,8 @@ $(document).ready(function () {
     // Create cards within container and update count
     createCards(binaryValueSettings);
     // Check if digit URL parameter was given and hide appropriate cards if so
-    if (Number(urlParameters.getUrlParameter('cards'))) {
-        cards = Number(urlParameters.getUrlParameter('cards'));
+    cards = Number(urlParameters.getUrlParameter('cards') || urlParameters.getUrlParameter('digits'))
+    if (cards) {
         putCardsWithinLimits(cards, showInputBox, binaryValueSettings);
         updateCards(binaryValueSettings.CARDS);
     } else {
@@ -232,24 +236,10 @@ function updateDotCount() {
 function updateCards(num_cards_to_show) {
     // mapping of card to child number in DOM tree
     // 16th card (2^15) is the first child, 15th card (2^14) is the second and so on..
-    var card_num_to_child_num = {
-        16: 1,
-        15: 2,
-        14: 3,
-        13: 4,
-        12: 5,
-        11: 6,
-        10: 7,
-        9: 8,
-        8: 9,
-        7: 10,
-        6: 11,
-        5: 12,
-        4: 13,
-        3: 14,
-        2: 15,
-        1: 16,
-    };
+    var card_num_to_child_num = {};
+    for (var z=0; z < MAX_NUM_CARDS; z++) {
+        card_num_to_child_num[z+1] = MAX_NUM_CARDS - z;
+    }
     num_current_cards_shown = $('#interactive-binary-cards-container div.visible').length;
     difference = Math.abs(num_current_cards_shown - num_cards_to_show);
     if (num_current_cards_shown > num_cards_to_show) {
