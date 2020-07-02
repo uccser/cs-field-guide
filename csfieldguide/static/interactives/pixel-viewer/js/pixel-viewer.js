@@ -996,7 +996,7 @@ var paint = function(row, col, left, top, width, height, zoom) {
             context.fillStyle = "rgba(110, 110, 110, " + text_opacity + ")";
         }
 
-        // Pretty primitive text positioning :)
+        // Pretty primitive text positioning
         var cell_lines = cell_text.split('\n');
 
         for (var i = 0; i < cell_lines.length; i++)
