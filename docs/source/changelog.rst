@@ -17,6 +17,33 @@ All notable changes to this project will be documented in this file.
 
 We have listed major changes for each release below.
 
+3.4.0
+==============================================================================
+
+- **Release date:** 1st July 2020
+- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/3.4.0>`__
+
+**Changelog:**
+
+- Allow user to choose number of cards shown in the Binary Cards interactive, plus fit cards in groups of 8 on large screens. `#1262 <https://github.com/uccser/cs-field-guide/issues/1262>`__ `#1271 <https://github.com/uccser/cs-field-guide/issues/1271>`__
+- Fix issues in LZSS Compression algorithm, expand its functionality, and replace space characters with the open box character for clarity. `#1271 <https://github.com/uccser/cs-field-guide/issues/1271>`__ `#1285 <https://github.com/uccser/cs-field-guide/pull/1285>`__
+- Fix bug in JPEG Compression interactive where sometimes a checked checkbox was treated as unchecked and vice versa. `#1269 <https://github.com/uccser/cs-field-guide/issues/1269>`__
+- Prevent visual overflow of matrices in Matrix Simplifier interactive. `#1138 <https://github.com/uccser/cs-field-guide/issues/1138>`__
+- Replace downloadable Python programs for searching and sorting with links to updated Python programs on repl.it. `#1279 <https://github.com/uccser/cs-field-guide/pull/1279>`__
+- Dependency updates:
+
+  - Update coverage from 5.0 to 5.1.
+  - Update django-debug-toolbar from 2.1 to 2.2.
+  - Update django-modeltranslation from 0.14.1 to 0.15.
+  - Update django-statici18n from 1.8.3 to 1.9.0.
+  - Update django-widget-tweaks from 1.4.5 to 1.4.8.
+  - Update flake8 from 3.7.9 to 3.8.3.
+  - Update lxml from 4.4.2 to 4.5.1.
+  - Update Pillow from 7.1.1 to 7.1.2.
+  - Update pydocstyle from 5.0.1 to 5.0.2.
+  - Update sphinx from 2.3.0 to 3.1.1.
+  - Update wheel from 0.33.6 to 0.34.2.
+
 3.3.1
 ==============================================================================
 

@@ -5,7 +5,10 @@ DEFAULT_NUM_CARDS_TO_SHOW = 8;
 
 $(document).ready(function () {
 
-    MAX_NUM_CARDS = Math.max(MAX_NUM_CARDS, Number(urlParameters.getUrlParameter('cards') || urlParameters.getUrlParameter('digits')))
+    var url_cards = Number(urlParameters.getUrlParameter('cards') || urlParameters.getUrlParameter('digits'));
+    if (url_cards) {
+        MAX_NUM_CARDS = Math.max(MAX_NUM_CARDS, url_cards);
+    }
 
     $('#cards-to-show').prop("max", MAX_NUM_CARDS).val(8);
     // Settings for interactive
@@ -53,9 +56,8 @@ $(document).ready(function () {
     // Create cards within container and update count
     createCards(binaryValueSettings);
     // Check if digit URL parameter was given and hide appropriate cards if so
-    cards = Number(urlParameters.getUrlParameter('cards') || urlParameters.getUrlParameter('digits'))
-    if (cards) {
-        putCardsWithinLimits(cards, showInputBox, binaryValueSettings);
+    if (url_cards) {
+        putCardsWithinLimits(url_cards, showInputBox, binaryValueSettings);
         updateCards(binaryValueSettings.CARDS);
     } else {
         // Show default number of cards
