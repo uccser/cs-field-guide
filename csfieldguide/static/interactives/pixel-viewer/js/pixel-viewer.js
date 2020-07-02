@@ -48,6 +48,8 @@ this.images = [
 this.tiling = new Tiling;
 this.piccache = Array();
 
+var show_hex = true
+
 const image_base_path = base_static_path + 'interactives/pixel-viewer/img/';
 var source_canvas = document.getElementById('pixel-viewer-interactive-source-canvas');
 
@@ -872,6 +874,10 @@ $('#pixel-viewer-interactive-show-pixel-fill').change(function() {
     scroller.finishPullToRefresh();
 });
 
+$("input[name='colourCode']").click(function() {
+    var colour_code = $("input[name='colourCode']:checked").val()
+})
+
 // Caches data about the image
 function init_cache(width, height){
   piccache = Array()
@@ -987,7 +993,6 @@ var paint = function(row, col, left, top, width, height, zoom) {
 
     // If text opacity is greater than 0, then display RGB values
     if (text_opacity > 0) {
-        context.font = (14 * zoom).toFixed(2) + 'px Consolas, Courier New, monospace';
         if (!show_pixel_fill) {
             context.fillStyle = "rgba(0, 0, 0, " + text_opacity + ")";
         } else if ((((pixelData[0] / 255) + (pixelData[1] / 255) + (pixelData[2] / 255)) / 3) < 0.85) {
@@ -996,13 +1001,34 @@ var paint = function(row, col, left, top, width, height, zoom) {
             context.fillStyle = "rgba(110, 110, 110, " + text_opacity + ")";
         }
 
-        // Pretty primitive text positioning
-        var cell_lines = cell_text.split('\n');
-
-        for (var i = 0; i < cell_lines.length; i++)
-            context.fillText(cell_lines[i] + pixelData[i], left + (6 * zoom), top + (14 * zoom) + (i * cell_line_height * zoom) );
+        if (show_hex) {
+          context.font = (10 * zoom).toFixed(2) + 'px Consolas, Courier New, monospace';
+          r = pixelData[0];
+          g = pixelData[1];
+          b = pixelData[2];
+          hex_string = rgbToHex(r, g, b);
+          context.fillText(hex_string, left + (4 * zoom), top + (14 * zoom) + (cell_line_height * zoom));
+        } else {
+          context.font = (14 * zoom).toFixed(2) + 'px Consolas, Courier New, monospace';
+          // Pretty primitive text positioning
+          var cell_lines = cell_text.split('\n');
+          for (var i = 0; i < cell_lines.length; i++) {
+            context.fillText(cell_lines[i] + pixelData[i], left + (6 * zoom), top + (14 * zoom) + (i * cell_line_height * zoom));
+          }
+        }
     }
 };
+
+
+// Taken from https://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb
+function componentToHex(c) {
+  var hex = c.toString(16);
+  return hex.length == 1 ? "0" + hex : hex;
+}
+
+function rgbToHex(r, g, b) {
+  return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+}
 
 var rect = container.getBoundingClientRect();
 scroller.setPosition(rect.left + container.clientLeft, rect.top + container.clientTop);
