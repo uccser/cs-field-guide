@@ -48,10 +48,9 @@ this.images = [
 this.tiling = new Tiling;
 this.piccache = Array();
 
-var show_hex = true
-
 const image_base_path = base_static_path + 'interactives/pixel-viewer/img/';
 var source_canvas = document.getElementById('pixel-viewer-interactive-source-canvas');
+var show_hex = false
 
 $( document ).ready(function() {
   init_cache(300, MAX_HEIGHT);
@@ -61,6 +60,7 @@ $( document ).ready(function() {
   } else {
     var image_filename = 'coloured-roof-small.png';
   }
+
   var image_filepath = image_base_path + image_filename;
   $('#pixel-viewer-interactive-original-image').attr('crossorigin', 'anonymous').attr('src', image_filepath);
   load_resize_image(image_filepath, false);
@@ -74,17 +74,29 @@ $( document ).ready(function() {
   } else if (getUrlParameter('mode') == 'edgedetection') {
     mode = 'edgedetection';
   }
+
   if (getUrlParameter('picturepicker')){
     // Whether or not to allow student to pick from set pictures
     picturePicker = true;
   }
+
   if (getUrlParameter('hide-menu')) {
     $('#pixel-viewer-interactive-menu-toggle').remove();
   }
+
   setUpMode();
   if (picturePicker){
    createPicturePicker();
   }
+
+  if (getUrlParameter('colour-code') == 'hex') {
+    show_hex = true;
+    $("input[id='hex-colour-code']").prop('checked', true);
+  } else {
+    show_hex = false;
+    $("input[id='rgb-colour-code']").prop('checked', true);
+  }
+
   if (getUrlParameter('no-pixel-fill')){
     $('#pixel-viewer-interactive-show-pixel-fill').prop('checked', false);
     $( "#pixel-viewer-interactive-loader" ).hide();
@@ -876,6 +888,12 @@ $('#pixel-viewer-interactive-show-pixel-fill').change(function() {
 
 $("input[name='colourCode']").click(function() {
     var colour_code = $("input[name='colourCode']:checked").val()
+    if (colour_code == 'hex') {
+      show_hex = true
+    } else {
+      show_hex = false
+    }
+    scroller.finishPullToRefresh();
 })
 
 // Caches data about the image
@@ -1018,7 +1036,6 @@ var paint = function(row, col, left, top, width, height, zoom) {
         }
     }
 };
-
 
 // Taken from https://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb
 function componentToHex(c) {
