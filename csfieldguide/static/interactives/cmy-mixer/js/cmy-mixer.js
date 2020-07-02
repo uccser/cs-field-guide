@@ -1,11 +1,15 @@
 // Adapted from http://refreshless.com/nouislider/examples/#section-colorpicker
 
+var urlParameters = require('../../../js/third-party/url-parameters.js')
 const noUiSlider = require('nouislider');
 const wNumb = require('wnumb');
+var useHex = 'false';
 
 CMY_Mixer = {};
 
 $(document).ready(function () {
+  useHex = urlParameters.getUrlParameter('hex') || 'false';
+
   CMY_Mixer.minimum = 0
   CMY_Mixer.maximum = 255
 
@@ -99,4 +103,14 @@ function cmy_to_rgb(c, m, y){
     g = 255 - m,
     b = 255 - y;
     return [r,g,b];
+}
+
+// Taken from https://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb
+function componentToHex(c) {
+  var hex = c.toString(16);
+  return hex.length == 1 ? "0" + hex : hex;
+}
+
+function rgbToHex(r, g, b) {
+  return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
 }

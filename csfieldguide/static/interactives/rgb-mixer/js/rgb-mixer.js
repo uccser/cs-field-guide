@@ -1,5 +1,6 @@
 // Adapted from http://refreshless.com/nouislider/examples/#section-colorpicker
 
+var urlParameters = require('../../../js/third-party/url-parameters.js')
 const noUiSlider = require('nouislider');
 const wNumb = require('wnumb');
 
