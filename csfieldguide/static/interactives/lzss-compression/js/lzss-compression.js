@@ -1,9 +1,5 @@
-var sliding_window;
-var string_to_match;
-var num_characters = 1;
-// set the min and max match length
-var min_match_length = 2;
-var max_match_length = 5;
+const lzssAlgorithm = require('./lzss-algorithm.js');
+
 var encoded_message = [];
 var start_index;
 var end_index;
@@ -11,22 +7,29 @@ var placeholder_message = gettext(`Pease porridge hot, pease porridge cold,
 Pease porridge in the pot, nine days old;
 Some like it hot, some like it cold,
 Some like it in the pot, nine days old.`);
+const newlineCharacter = ':n';
 
 
-// Set placeholder message
+// Clear boxes and set placeholder message
 window.onload = function() {
-    var message_div = document.getElementById('message-to-decode');
+    var message_div = document.getElementById('message-to-encode');
     message_div.value = placeholder_message;
-    document.getElementById('lzss-compression-compress-button').addEventListener('click', compress, false);  
+    document.getElementById('lzss-compression-compress-button').addEventListener('click', compress, false);
+
+    document.getElementById('message-to-decode').value = '';
+    document.getElementById('base-size').innerHTML = '';
+    document.getElementById('encoded-size').innerHTML = '';
 }
 
 // Compress the message and display the encoded message
 function compress() {
-    var message = document.getElementById('message-to-decode').value;
+    var message = document.getElementById('message-to-encode').value;
     // clear any existed encoded message
     document.getElementById('lzss-compression-compressed-text').innerHTML = '';
-    compressText(message);
+    encoded_message = lzssAlgorithm.compressText(message);
     drawEncodedMessage(encoded_message);
+    writeEncodedMessage(encoded_message);
+    writeEncodeEfficiency(message, encoded_message);
 }
 
 // Create a new div
@@ -36,7 +39,56 @@ function newLineDiv() {
     return line_div;
 }
 
-// Output the encoded message
+// Write a sentence on the before/after compression text size
+function writeEncodeEfficiency(message, encoded_message) {
+    var unencoded_size = message.length;
+    var encoded_size = 0;
+    var flags = 0;
+
+    for (var i=0; i < encoded_message.length; i++) {
+        if (encoded_message[i] == newlineCharacter || encoded_message[i].length == 1) {
+            encoded_size++;
+        } else {
+            // Assuming a 1.5 byte reference value, we know it's a 4 bit length value
+            // This assumption is too low when looking at long encoded texts
+            encoded_size += 2;
+        }
+        flags++; // Need 1-bit flags for whether or not each item is a character or reference
+    }
+
+    // Round flags to an even number of bytes
+    flags = Math.ceil(flags / 8);
+    //encoded_size += flags; //TODO Decide. It is accurate but may confuse users, particularly since those flags aren't mentioned in the content
+
+    var unencoded_size_message = gettext("Base message size:") + " " + interpolate(ngettext('1 Byte', '%s Bytes', unencoded_size), [unencoded_size]);
+    var encoded_size_message = gettext("Approximate encoded size:") + " " + interpolate(ngettext('1 Byte', '%s Bytes', encoded_size), [encoded_size]);
+
+    document.getElementById('base-size').innerHTML = unencoded_size_message;
+    document.getElementById('encoded-size').innerHTML = encoded_size_message;
+}
+
+// Output the encoded message (text box)
+function writeEncodedMessage(encoded_message) {
+    var compressed_text_div = document.getElementById('message-to-decode');
+    var text_to_write = "";
+    var item;
+
+    for (var i=0; i < encoded_message.length; i++) {
+        item = encoded_message[i];
+
+        if (item == newlineCharacter) {
+            text_to_write += "\n";
+        } else if (item.length == 1) { // just a single character
+            text_to_write += item;
+        } else { // a reference
+            text_to_write += "(" + item[0] + "," + item[1] + ")";
+        }
+    }
+
+    compressed_text_div.value = text_to_write;
+}
+
+// Output the encoded message (visual box)
 function drawEncodedMessage(encoded_message) {
     var compressed_text_div = document.getElementById('lzss-compression-compressed-text');
 
@@ -44,23 +96,20 @@ function drawEncodedMessage(encoded_message) {
     var line_div = newLineDiv();
 
     var index = 0;
-    for (var i = 0; i < encoded_message.length; i++) {
+    for (var i=0; i < encoded_message.length; i++) {
         var string = encoded_message[i];
         
-        if (string.length == 1) { // i.e. just a single character
-        
-            if (string == 'null') {
-                // indicates a new line charactor so appead the div to the parent
-                compressed_text_div.append(line_div);
-                // make a new div for the next line
-                var line_div = newLineDiv();
-                index += 1;
-                continue;
-            }
+        if (string == newlineCharacter) {
+            // indicates a new line character so append the div to the parent
+            compressed_text_div.append(line_div);
+            // make a new div for the next line
+            var line_div = newLineDiv();
+            index += 1;
+        } else if (string.length == 1) { // i.e. just a single character
             // add child div for character to line
             var character_div = document.createElement('div');
             character_div.classList.add('lzss-compression-encoded-character');
-            character_div.innerHTML = encoded_message[i];
+            character_div.innerHTML = string;
             character_div.setAttribute('data-index', index);
             line_div.append(character_div);
             index += 1;
@@ -172,110 +221,5 @@ function autoTab(event) {
         element.focus();
         changeHighlight(event, false);
         changeHighlight(element, true);
-    }
-}
-
-// Runs the LZSS algorithm
-function compressText(message) {
-    message = message.split('');
-
-    for (var i = 0; i < message.length; i++) {
-        message[i] = message[i].replace(/[\r\n]+/g, null);
-    }
-
-    // initialise sliding window and initial encoded message
-    sliding_window = message.slice(0, 6);
-    encoded_message = message.slice(0, 6);
-
-    message.splice(0, 6);
-
-    // read in string to length of max match
-    string_to_match = message.splice(0, max_match_length);
-
-    while (true) {
-        if (string_to_match.length > 0) {
-
-            // STEP 3 search for longest matching string in sliding window
-            var match_offset;
-            var longest_match_offset;
-            var longest_match_length = 0;
-            var current_length_of_match = 0;
-
-            for (var i = 0; i < sliding_window.length; i++) {
-                // get next character in sliding window
-                sw_character = sliding_window[i];
-
-                if (string_to_match[0] == 'null') { // meaning is newline character
-                    // add newline character to sliding window and remove from message
-                    newline_character = string_to_match.slice(0, 1);
-                    sliding_window.push(newline_character);
-                    string_to_match.splice(0, 1);
-                    // put next chracter on string to match
-                    string_to_match.push(message.splice(0, 1)[0]);
-                    // add newline to output
-                    encoded_message.push(newline_character);
-                }
-
-                if (sw_character == string_to_match[0]) {
-                    // record the current position as the start of the match in the sw
-                    match_offset = i;
-                    current_length_of_match = 1;
-                    var next_sw_character_index = i;
-
-                    for (var j = 1; j < string_to_match.length; j++) {
-                        // work out what the next characters are    
-                        next_sw_character_index = next_sw_character_index + 1;
-                        var next_sw_character = sliding_window[next_sw_character_index];
-                        var next_search_character = string_to_match[j];
-
-                        if (next_search_character == 'null') {
-                            break
-                        }
-
-                        // if the next characters match, increase the length of the match
-                        if (next_sw_character == next_search_character) {
-                            current_length_of_match += 1;
-                        } else {
-                            break;
-                        }
-                    }
-
-                    // work out if best match so far
-                    if (current_length_of_match > longest_match_length) {
-                        longest_match_length = current_length_of_match;
-                        longest_match_offset = match_offset;
-                    }
-                }
-            }
-
-            // STEP 4 write result to output
-            if (longest_match_length >= min_match_length) {
-                num_characters = longest_match_length;
-                var matched_characters = string_to_match.splice(0, longest_match_length);
-                for (var k = 0; k < matched_characters.length; k++) {
-                    sliding_window.push(matched_characters[k]);
-                }
-                encoded_message.push([longest_match_offset, longest_match_length]);
-            } else {
-                num_characters = 1;
-                unencoded_symbol = string_to_match.splice(0, 1)[0];
-                encoded_message.push(unencoded_symbol);
-                sliding_window.push(unencoded_symbol);
-            }
-
-            // prepare the next string to check
-            characters_to_add = message.splice(0, num_characters);
-            if (characters_to_add.length > 0) {
-                for (var l = 0; l < num_characters; l++) {
-                    next_character_to_add = characters_to_add[l];
-                    if (next_character_to_add != undefined) {
-                        string_to_match.push(characters_to_add[l]);
-                    }
-                }
-            }
-
-        } else {
-            break;
-        }
     }
 }

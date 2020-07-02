@@ -7,6 +7,8 @@ const dct = require('dct');
 $(function () {
 
     // Get dummy image src, split on rightmost slash, is base path
+    $("#toggleNumberBeforeCheckbox").prop("checked", true);
+    $("#toggleDifferenceCheckbox").prop("checked", false);
 
     document.onselectstart = function () {
         return false;
