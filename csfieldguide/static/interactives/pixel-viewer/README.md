@@ -20,7 +20,8 @@ The interactive has the following parameters to configure the interactive:
 
 - `colour-code=type` (optional) - Where `type` is one of the following:
 
-  - `rgb` (default) - Shows the colour of the pixel in RGB format.
+  - `rgb` (default) - Shows the colour of the pixel in RGB format using Decimal.
+  - `rgb-hex` - Shows the colour of the pixel in RGB format using Hexadecimal.
   - `hex` - Shows the colour of the pixel in Hexadecimal format.
 
 - `image` (optional) - Filename of image to use (for example `arnold.jpg`).

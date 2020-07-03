@@ -50,7 +50,7 @@ this.piccache = Array();
 
 const image_base_path = base_static_path + 'interactives/pixel-viewer/img/';
 var source_canvas = document.getElementById('pixel-viewer-interactive-source-canvas');
-var show_hex = false
+var colour_code_rep = 'rgb';
 
 $( document ).ready(function() {
   init_cache(300, MAX_HEIGHT);
@@ -89,11 +89,14 @@ $( document ).ready(function() {
    createPicturePicker();
   }
 
-  if (getUrlParameter('colour-code') == 'hex') {
-    show_hex = true;
+  if (getUrlParameter('colour-code') == 'rgb-hex') {
+    colour_code_rep = 'rgb-hex';
+    $("input[id='rgb-hex-colour-code']").prop('checked', true);
+  } else if (getUrlParameter('colour-code') == 'hex') {
+    colour_code_rep = 'hex';
     $("input[id='hex-colour-code']").prop('checked', true);
   } else {
-    show_hex = false;
+    colour_code_rep = 'rgb';
     $("input[id='rgb-colour-code']").prop('checked', true);
   }
 
@@ -887,12 +890,7 @@ $('#pixel-viewer-interactive-show-pixel-fill').change(function() {
 });
 
 $("input[name='colourCode']").click(function() {
-    var colour_code = $("input[name='colourCode']:checked").val()
-    if (colour_code == 'hex') {
-      show_hex = true
-    } else {
-      show_hex = false
-    }
+    colour_code_rep = $("input[name='colourCode']:checked").val()
     scroller.finishPullToRefresh();
 })
 
@@ -1019,7 +1017,8 @@ var paint = function(row, col, left, top, width, height, zoom) {
             context.fillStyle = "rgba(110, 110, 110, " + text_opacity + ")";
         }
 
-        if (show_hex) {
+        // Pretty primitive text positioning
+        if (colour_code_rep == 'hex') { // Shows colour codes in #FFFFFF style
           context.font = (10 * zoom).toFixed(2) + 'px Consolas, Courier New, monospace';
           r = pixelData[0];
           g = pixelData[1];
@@ -1028,10 +1027,14 @@ var paint = function(row, col, left, top, width, height, zoom) {
           context.fillText(hex_string, left + (4 * zoom), top + (14 * zoom) + (cell_line_height * zoom));
         } else {
           context.font = (14 * zoom).toFixed(2) + 'px Consolas, Courier New, monospace';
-          // Pretty primitive text positioning
           var cell_lines = cell_text.split('\n');
           for (var i = 0; i < cell_lines.length; i++) {
-            context.fillText(cell_lines[i] + pixelData[i], left + (6 * zoom), top + (14 * zoom) + (i * cell_line_height * zoom));
+            if (colour_code_rep == 'rgb-hex') { // Shows colour codes in RGB using Hexadecimal
+              value = ' ' + componentToHex(pixelData[i]) // Prefix with space so that the positioning is nice
+            } else { // Shows colour codes in RGB using Decimal
+              value = pixelData[i]
+            }
+            context.fillText(cell_lines[i] + value, left + (6 * zoom), top + (14 * zoom) + (i * cell_line_height * zoom));
           }
         }
     }
