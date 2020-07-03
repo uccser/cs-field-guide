@@ -2,16 +2,30 @@
 
 var urlParameters = require('../../../js/third-party/url-parameters.js')
 const noUiSlider = require('nouislider');
-const wNumb = require('wnumb');
+var useHex = false;
 
 RGB_Mixer = {};
 
 $(document).ready(function () {
+  useHex = (urlParameters.getUrlParameter('hex') || 'false') == 'true';
+
   RGB_Mixer.minimum = 0
   RGB_Mixer.maximum = 255
 
   RGB_Mixer.sliders = document.getElementsByClassName('interactive-rgb-mixer-slider');
   RGB_Mixer.result = document.getElementById('interactive-rgb-mixer-result');
+
+  const sFormat = {
+    to: function (value) {
+      if (useHex) {
+        return decimalToHex(Math.round(value));
+      }
+      return Math.round(value);
+    },
+    from: function (value) {
+      return Math.round(Number(value));
+    }
+  };
 
   for ( var i = 0; i < RGB_Mixer.sliders.length; i++ ) {
     noUiSlider.create(RGB_Mixer.sliders[i], {
@@ -23,14 +37,13 @@ $(document).ready(function () {
         'min': RGB_Mixer.minimum,
         'max': RGB_Mixer.maximum
       },
-      format: wNumb({
-        decimals: 0
-      }),
+      format: sFormat,
       pips: {
         mode: 'count',
     		values: 9,
     		density: 9,
-		    stepped: true
+        stepped: true,
+        format: sFormat
     	}
     });
   }
@@ -50,12 +63,20 @@ $(document).ready(function () {
 
 
 RGB_Mixer.setColor = function(){
-	// Get the slider values,
+  // Get the slider values,
+  var r_val = RGB_Mixer.sliders[0].noUiSlider.get();
+  var g_val = RGB_Mixer.sliders[1].noUiSlider.get();
+  var b_val = RGB_Mixer.sliders[2].noUiSlider.get();
 	// stick them together.
+  if (useHex) {
+    r_val = parseInt(r_val, 16);
+    g_val = parseInt(g_val, 16);
+    b_val = parseInt(b_val, 16);
+  }
 	var color = 'rgb(' +
-		RGB_Mixer.sliders[0].noUiSlider.get() + ',' +
-		RGB_Mixer.sliders[1].noUiSlider.get() + ',' +
-		RGB_Mixer.sliders[2].noUiSlider.get() + ')';
+		r_val + ',' +
+		g_val + ',' +
+		b_val + ')';
 
 	// Fill the color box.
 	RGB_Mixer.result.style.background = color;
@@ -69,10 +90,15 @@ RGB_Mixer.setColor = function(){
 
 RGB_Mixer.setColorFromInputBox = function(){
   // Get the slider values,
-  red_val = $('#interactive-rgb-mixer-red-value').val();
-  green_val = $('#interactive-rgb-mixer-green-value').val();
-  blue_val = $('#interactive-rgb-mixer-blue-value').val();
+  red_val = $('#interactive-rgb-mixer-red-value').val() || 0;
+  green_val = $('#interactive-rgb-mixer-green-value').val() || 0;
+  blue_val = $('#interactive-rgb-mixer-blue-value').val() || 0;
 	// stick them together.
+  if (useHex) {
+    red_val = parseInt(red_val, 16);
+    green_val = parseInt(green_val, 16);
+    blue_val = parseInt(blue_val, 16);
+  }
 	var color = 'rgb(' + red_val + ',' + green_val + ',' + blue_val + ')';
 
 	// Fill the color box.
@@ -84,3 +110,8 @@ RGB_Mixer.setColorFromInputBox = function(){
   RGB_Mixer.sliders[1].noUiSlider.set(green_val);
   RGB_Mixer.sliders[2].noUiSlider.set(blue_val);
 };
+
+function decimalToHex(d) {
+  var hex = d.toString(16).toUpperCase();
+  return hex;
+}
