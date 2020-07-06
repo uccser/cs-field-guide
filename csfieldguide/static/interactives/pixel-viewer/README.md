@@ -18,6 +18,12 @@ The interactive has the following parameters to configure the interactive:
   - `blur` - Adds controls for investigating blurring with images.
   - `edgedetection` - Adds controls for investigating edge detection.
 
+- `colour-code=type` (optional) - Where `type` is one of the following:
+
+  - `rgb` (default) - Shows the colour of the pixel in RGB format using Decimal.
+  - `rgb-hex` - Shows the colour of the pixel in RGB format using Hexadecimal.
+  - `hex` - Shows the colour of the pixel in Hexadecimal format.
+
 - `image` (optional) - Filename of image to use (for example `arnold.jpg`).
 - `picturepicker` (optional) - Displays a set of pictures available for using.
 - `hide-menu` (optional) - Hides the menu.
