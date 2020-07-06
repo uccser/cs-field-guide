@@ -30,7 +30,7 @@
                 <p id="pixel-viewer-extra-feature-description"></p>
 
                 <span id="pixel-viewer-image-manipulator"></span>
-                <p>{% trans "This interactive works best on a desktop Chrome browser, due to the heavy performance load." %}</p>
+                <p>{% trans "This interactive works best on a desktop browser, due to the heavy performance load." %}</p>
 
                 <hr>
 
@@ -39,15 +39,15 @@
                     <input id="pixel-viewer-interactive-show-pixel-fill" type="checkbox" checked="checked">
                     {% trans "Show pixel background" %}
                 </label>
-                <div class="mb-1">
+                <div class="btn-group-vertical d-flex mb-1">
                     {% trans "Colour code: " %}
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" name="colourCode" id="rgb-colour-code" value="rgb" checked>
-                        <label class="form-check-label" for="rgb-colour-code">{% trans "Decimal (as separate RGB values)" %}</label>
+                        <label class="form-check-label" for="rgb-colour-code">{% trans "Decimal (separate RGB)" %}</label>
                     </div>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" name="colourCode" value="rgb-hex" id="rgb-hex-colour-code">
-                        <label class="form-check-label" for="rgb-hex-colour-code">{% trans "Hexadecimal (as separate RGB values)" %}</label>
+                        <label class="form-check-label" for="rgb-hex-colour-code">{% trans "Hexadecimal (separate RGB)" %}</label>
                     </div>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" name="colourCode" value="hex" id="hex-colour-code">

@@ -1030,7 +1030,7 @@ var paint = function(row, col, left, top, width, height, zoom) {
           var cell_lines = cell_text.split('\n');
           for (var i = 0; i < cell_lines.length; i++) {
             if (colour_code_rep == 'rgb-hex') { // Shows colour codes in RGB using Hexadecimal
-              value = ' ' + componentToHex(pixelData[i]) // Prefix with space so that the positioning is nice
+              value = componentToHex(pixelData[i])
             } else { // Shows colour codes in RGB using Decimal
               value = pixelData[i]
             }
@@ -1042,7 +1042,7 @@ var paint = function(row, col, left, top, width, height, zoom) {
 
 // Taken from https://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb
 function componentToHex(c) {
-  var hex = c.toString(16);
+  var hex = c.toString(16).toUpperCase();
   return hex.length == 1 ? "0" + hex : hex;
 }
 
