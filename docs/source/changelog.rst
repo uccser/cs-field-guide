@@ -25,8 +25,8 @@ We have listed major changes for each release below.
 
 **Changelog:**
 
-- Add ability to show colour codes in Hexadecimal on the Pixel Viewer interactive. <https://github.com/uccser/cs-field-guide/issues/1277>`__
-- Add Hexadecimal version of colour mixer interactives. <https://github.com/uccser/cs-field-guide/issues/1290>`__
+- Add hexadecimal options for the Pixel Viewer interactive. <https://github.com/uccser/cs-field-guide/issues/1277>`__
+- Add hexadecimal option for the colour mixer interactives. <https://github.com/uccser/cs-field-guide/issues/1290>`__
 - Dependency updates:
 
   - Update Pillow from 7.1.2 to 7.2.0.
