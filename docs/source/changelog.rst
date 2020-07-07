@@ -17,6 +17,21 @@ All notable changes to this project will be documented in this file.
 
 We have listed major changes for each release below.
 
+3.5.0
+==============================================================================
+
+- **Release date:** 7th July 2020
+- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/3.5.0>`__
+
+**Changelog:**
+
+- Add ability to show colour codes in Hexadecimal on the Pixel Viewer interactive. <https://github.com/uccser/cs-field-guide/issues/1277>`__
+- Add Hexadecimal version of colour mixer interactives. <https://github.com/uccser/cs-field-guide/issues/1290>`__
+- Dependency updates:
+
+  - Update Pillow from 7.1.2 to 7.2.0.
+  - Update sphinx-rtd-theme from 0.4.3 to 0.5.0.
+
 3.4.0
 ==============================================================================
 
