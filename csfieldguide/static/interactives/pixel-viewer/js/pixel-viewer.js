@@ -65,14 +65,17 @@ $( document ).ready(function() {
   $('#pixel-viewer-interactive-original-image').attr('crossorigin', 'anonymous').attr('src', image_filepath);
   load_resize_image(image_filepath, false);
 
-  if (getUrlParameter('mode') == 'threshold') {
-    mode = 'threshold';
-  } else if (getUrlParameter('mode') == 'thresholdgreyscale') {
-    mode = 'thresholdgreyscale';
-  } else if (getUrlParameter('mode') == 'blur') {
-    mode = 'blur';
-  } else if (getUrlParameter('mode') == 'edgedetection') {
-    mode = 'edgedetection';
+  switch(getUrlParameter('mode')) {
+    case 'threshold':
+      mode = 'threshold'; break;
+    case 'thresholdgreyscale':
+      mode = 'thresholdgreyscale'; break;
+    case 'blur':
+      mode = 'blur'; break;
+    case 'edgedetection':
+      mode = 'edgedetection'; break;
+    case 'brightness':
+      mode = 'brightness'; break;
   }
 
   if (getUrlParameter('picturepicker')){
@@ -89,12 +92,14 @@ $( document ).ready(function() {
    createPicturePicker();
   }
 
-  if (getUrlParameter('colour-code') == 'rgb-hex') {
-    colour_code_rep = 'rgb-hex';
+  colour_code_rep = getUrlParameter('colour-code');
+  if (colour_code_rep == 'rgb-hex') {
     $("input[id='rgb-hex-colour-code']").prop('checked', true);
-  } else if (getUrlParameter('colour-code') == 'hex') {
-    colour_code_rep = 'hex';
+  } else if (colour_code_rep == 'hex') {
     $("input[id='hex-colour-code']").prop('checked', true);
+  } else if (colour_code_rep == 'brightness' && mode == 'brightness') {
+    $("#colour-code-radio").addClass('d-none').removeClass('d-flex');
+    $("#configSelector").addClass('d-none');
   } else {
     colour_code_rep = 'rgb';
     $("input[id='rgb-colour-code']").prop('checked', true);
@@ -164,6 +169,12 @@ function setUpMode(){
     Below the grids is a thresholder which you can apply to the result. What results can you get if you combine these two filters to the image? There is an option\
     for outputting the absolute value of the result of the multiplication grid. What does checking and unchecking this box change about the result? What happens if you apply multiple grids?"));
     new EdgeDetector($('#pixel-viewer-image-manipulator'));
+  }
+  if (mode == 'brightness'){
+    addDescription(gettext("Brightness Interactive"), gettext("The image has been converted to greyscale by taking the average of the red, blue and green values for\
+      each pixel."));
+    filter = greyscaler;
+    isGreyscale = true;
   }
 }
 
@@ -1025,6 +1036,10 @@ var paint = function(row, col, left, top, width, height, zoom) {
           b = pixelData[2];
           hex_string = rgbToHex(r, g, b);
           context.fillText(hex_string, left + (4 * zoom), top + (14 * zoom) + (cell_line_height * zoom));
+        } else if (colour_code_rep == 'brightness') {
+          context.font = (10 * zoom).toFixed(2) + 'px Consolas, Courier New, monospace';
+          brightness = pixelData[0]; // All three values are the same provided it's greyscale
+          context.fillText(brightness, left + (16 * zoom), top + (14 * zoom) + (cell_line_height * zoom));
         } else {
           context.font = (14 * zoom).toFixed(2) + 'px Consolas, Courier New, monospace';
           var cell_lines = cell_text.split('\n');

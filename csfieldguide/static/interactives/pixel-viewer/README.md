@@ -17,12 +17,14 @@ The interactive has the following parameters to configure the interactive:
   - `thresholdgreyscale` - Adds controls for manipulating pixels by threshold controls for greyscale pixels.
   - `blur` - Adds controls for investigating blurring with images.
   - `edgedetection` - Adds controls for investigating edge detection.
+  - `brightness` - Shows the pixels in greyscale, but without the extra features of `thresholdgreyscale`.
 
 - `colour-code=type` (optional) - Where `type` is one of the following:
 
   - `rgb` (default) - Shows the colour of the pixel in RGB format using Decimal.
   - `rgb-hex` - Shows the colour of the pixel in RGB format using Hexadecimal.
   - `hex` - Shows the colour of the pixel in Hexadecimal format.
+  - `brightness` (only available with `mode=brightness`) - Shows the brightness of the pixel as a value up to 255.
 
 - `image` (optional) - Filename of image to use (for example `arnold.jpg`).
 - `picturepicker` (optional) - Displays a set of pictures available for using.
