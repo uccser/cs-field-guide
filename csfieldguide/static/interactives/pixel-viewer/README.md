@@ -17,7 +17,7 @@ The interactive has the following optional parameters to configure the interacti
   - `thresholdgreyscale` - Adds controls for manipulating pixels by threshold controls for greyscale pixels.
   - `blur` - Adds controls for investigating blurring with images.
   - `edgedetection` - Adds controls for investigating edge detection.
-  - `greyscale` - Shows the pixels in greyscale, but without the extra features of `thresholdgreyscale`.
+  - `brightness` - Shows the pixels in greyscale, but without the extra features of `thresholdgreyscale`.
 
 - `colour-code=type` - Where `type` is one of the following:
 
