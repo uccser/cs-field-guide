@@ -30,7 +30,7 @@ this.isGreyscale = false; // Global to keep track of whether greyscale is on
 // Names of images to be included in picture picker
 this.images = [
   "coloured-roof-small.png",
-  "roof.jpg",
+  "lake.png",
   "alley.jpg",
   "arnold.jpg",
   "bike.jpg",
@@ -87,6 +87,18 @@ $( document ).ready(function() {
     $('#pixel-viewer-interactive-menu-toggle').remove();
   }
 
+  if (getUrlParameter('pixelmania')){
+    $('#pixelmania-logo').removeClass('d-none');
+  }
+
+  if (getUrlParameter('hide-colour-code-picker')) {
+    $("#colour-code-radio").addClass('d-none').removeClass('d-flex');
+  }
+
+  if (getUrlParameter('hide-config-selector')) {
+    $("#configSelector").addClass('d-none');
+  }
+
   setUpMode();
   if (picturePicker){
    createPicturePicker();
@@ -97,9 +109,8 @@ $( document ).ready(function() {
     $("input[id='rgb-hex-colour-code']").prop('checked', true);
   } else if (colour_code_rep == 'hex') {
     $("input[id='hex-colour-code']").prop('checked', true);
-  } else if (colour_code_rep == 'brightness' && mode == 'brightness') {
-    $("#colour-code-radio").addClass('d-none').removeClass('d-flex');
-    $("#configSelector").addClass('d-none');
+  } else if (colour_code_rep == 'brightness') {
+    $("input[id='brightness-colour-code']").prop('checked', true);
   } else {
     colour_code_rep = 'rgb';
     $("input[id='rgb-colour-code']").prop('checked', true);
@@ -107,11 +118,11 @@ $( document ).ready(function() {
 
   if (getUrlParameter('no-pixel-fill')){
     $('#pixel-viewer-interactive-show-pixel-fill').prop('checked', false);
-    $( "#pixel-viewer-interactive-loader" ).hide();
-    $( "#pixel-viewer-interactive-buttons" ).css({opacity: 1});
+    $("#pixel-viewer-interactive-loader").hide();
+    $("#pixel-viewer-interactive-buttons").css({opacity: 1});
   } else {
-    $( "#pixel-viewer-interactive-original-image" ).show();
-    $( "#pixel-viewer-interactive-original-image" ).delay(1000).animate({width: contentWidth*0.8,
+    $("#pixel-viewer-interactive-original-image").show();
+    $("#pixel-viewer-interactive-original-image").delay(1000).animate({width: contentWidth*0.8,
        height: contentHeight*0.8,
        overflow: "hidden",
        top:"0",
@@ -120,10 +131,10 @@ $( document ).ready(function() {
        4000,
        function() {
         // Animation complete
-        $( "#pixel-viewer-interactive-loader" ).hide();
-        $( "#pixel-viewer-interactive-buttons" ).css({opacity: 0, visibility: "visible"}).animate({opacity: 1}, 'slow');
+        $("#pixel-viewer-interactive-loader").hide();
+        $("#pixel-viewer-interactive-buttons").css({opacity: 0, visibility: "visible"}).animate({opacity: 1}, 'slow');
     });
-    $( "#pixel-viewer-interactive-original-image" ).fadeOut( 2000 );
+    $("#pixel-viewer-interactive-original-image").fadeOut(2000);
   }
   reflow();
 });
@@ -1038,7 +1049,7 @@ var paint = function(row, col, left, top, width, height, zoom) {
           context.fillText(hex_string, left + (4 * zoom), top + (14 * zoom) + (cell_line_height * zoom));
         } else if (colour_code_rep == 'brightness') {
           context.font = (10 * zoom).toFixed(2) + 'px Consolas, Courier New, monospace';
-          brightness = pixelData[0]; // All three values are the same provided it's greyscale
+          brightness = Math.round(average(pixelData));
           context.fillText(brightness, left + (16 * zoom), top + (14 * zoom) + (cell_line_height * zoom));
         } else {
           context.font = (14 * zoom).toFixed(2) + 'px Consolas, Courier New, monospace';
