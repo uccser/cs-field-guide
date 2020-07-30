@@ -46,4 +46,25 @@ urlpatterns = [
         "index.html",
         RedirectView.as_view(permanent=True, pattern_name="general:index"),
     ),
+    path(
+        "pixelmania-1",
+        RedirectView.as_view(
+            permanent=True,
+            url="https://csfieldguide.org.nz/interactives/pixel-viewer/?colour-code=hex&hide-colour-code-picker&pixelmania&image=lake.png"
+        ),
+    ),
+    path(
+        "pixelmania-2",
+        RedirectView.as_view(
+            permanent=True,
+            url="https://csfieldguide.org.nz/interactives/centered/rgb-mixer/?mode=pixelmania"
+        ),
+    ),
+    path(
+        "pixelmania-3",
+        RedirectView.as_view(
+            permanent=True,
+            url="https://csfieldguide.org.nz/interactives/pixel-viewer/?mode=brightness&colour-code=brightness"
+        ),
+    ),
 ]
