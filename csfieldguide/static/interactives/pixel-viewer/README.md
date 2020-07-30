@@ -8,28 +8,31 @@ The user can zoom in and out of the image, and when close enough the pixel value
 
 ## Usage
 
-The interactive has the following parameters to configure the interactive:
+The interactive has the following optional parameters to configure the interactive:
 
-- `mode=type` (optional) - Where `type` is one of the following:
+- `mode=type` - Where `type` is one of the following:
 
   - `datarep` (default) - Normal for viewing pixels in image.
   - `threshold` - Adds controls for manipulating pixels by threshold controls for colour pixels.
   - `thresholdgreyscale` - Adds controls for manipulating pixels by threshold controls for greyscale pixels.
   - `blur` - Adds controls for investigating blurring with images.
   - `edgedetection` - Adds controls for investigating edge detection.
-  - `brightness` - Shows the pixels in greyscale, but without the extra features of `thresholdgreyscale`.
+  - `greyscale` - Shows the pixels in greyscale, but without the extra features of `thresholdgreyscale`.
 
-- `colour-code=type` (optional) - Where `type` is one of the following:
+- `colour-code=type` - Where `type` is one of the following:
 
   - `rgb` (default) - Shows the colour of the pixel in RGB format using Decimal.
   - `rgb-hex` - Shows the colour of the pixel in RGB format using Hexadecimal.
   - `hex` - Shows the colour of the pixel in Hexadecimal format.
-  - `brightness` (only available with `mode=brightness`) - Shows the brightness of the pixel as a value up to 255.
+  - `brightness` - Shows the brightness (i.e greyscale value) of the pixel as a value up to 255.
 
-- `image` (optional) - Filename of image to use (for example `arnold.jpg`).
-- `picturepicker` (optional) - Displays a set of pictures available for using.
-- `hide-menu` (optional) - Hides the menu.
-- `no-pixel-fill` (optional) - Displays pixels without background fill from start (also doesn't show initial image with transition).
+- `image` - Filename of image to use (for example `arnold.jpg`).
+- `picturepicker` - Displays a set of pictures available for using.
+- `hide-menu` - Hides the menu.
+- `hide-colour-code-picker` - Hides the option to change between colour code formats.
+- `hide-config-selector` - Hides the option to change between modes.
+- `no-pixel-fill` - Displays pixels without background fill from start (also doesn't show initial image with transition).
+- `pixelmania` - (for Pixelmania 2020) shows a small Pixelmania logo above the title in the menu.
 
 ## Required files
 
