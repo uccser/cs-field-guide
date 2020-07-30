@@ -25,9 +25,16 @@ RGB_Mixer.sliders = document.getElementsByClassName('interactive-rgb-mixer-slide
 RGB_Mixer.result = document.getElementById('interactive-rgb-mixer-result');
 
 $(document).ready(function () {
-  useHex = (urlParameters.getUrlParameter('hex') || 'false') == 'true';
-  $("input[id='hex-colour-code']").prop('checked', useHex);
-  $("input[id='dec-colour-code']").prop('checked', !useHex);
+  if (urlParameters.getUrlParameter('mode') == 'pixelmania') {
+    // hide radio buttons for switching numeral system
+    $("#numeral-system").addClass('d-none');
+    $("#pixelmania-logo").removeClass("d-none");
+    useHex = true;
+  } else {
+    useHex = (urlParameters.getUrlParameter('hex') || 'false') == 'true';
+    $("input[id='hex-colour-code']").prop('checked', useHex);
+    $("input[id='dec-colour-code']").prop('checked', !useHex);
+  }
 
   for ( var i = 0; i < RGB_Mixer.sliders.length; i++ ) {
     noUiSlider.create(RGB_Mixer.sliders[i], {
@@ -123,9 +130,26 @@ RGB_Mixer.setColor = function() {
   var b_val = RGB_Mixer.sliders[2].noUiSlider.get();
 	// stick them together.
   if (useHex) {
+    // Produce full hex code for displaying inside coloured box
+    full_hex_code = '#' + r_val + g_val + b_val;
+    // Convert values to decimal
     r_val = parseInt(r_val, 16);
     g_val = parseInt(g_val, 16);
     b_val = parseInt(b_val, 16);
+    font_colour = getFontColour(r_val, g_val, b_val);
+    $('#interactive-rgb-mixer-colour-code')
+      .text(full_hex_code)
+      .css('color', font_colour);
+  } else {
+    // Produce full rgb code for displaying inside coloured box
+    full_rgb_code = 'rgb(' +
+      r_val + ',' +
+      g_val + ',' +
+      b_val + ')';
+    font_colour = getFontColour(r_val, g_val, b_val);
+    $('#interactive-rgb-mixer-colour-code')
+      .text(full_rgb_code)
+      .css('color', font_colour);
   }
 	var color = 'rgb(' +
 		r_val + ',' +
@@ -134,7 +158,7 @@ RGB_Mixer.setColor = function() {
 
 	// Fill the color box.
 	RGB_Mixer.result.style.background = color;
-	RGB_Mixer.result.style.color = color;
+  RGB_Mixer.result.style.color = color;
 
   // Set text for labels
   $('#interactive-rgb-mixer-red-value').val(RGB_Mixer.sliders[0].noUiSlider.get());
@@ -149,15 +173,30 @@ RGB_Mixer.setColorFromInputBox = function(){
   blue_val = $('#interactive-rgb-mixer-blue-value').val() || 0;
 	// stick them together.
   if (useHex) {
+    // Produce full hex code for displaying inside coloured box
+    full_hex_code = '#' + red_val + green_val + blue_val;
     red_val = parseInt(red_val, 16);
     green_val = parseInt(green_val, 16);
     blue_val = parseInt(blue_val, 16);
+    font_colour = getFontColour(red_val, green_val, blue_val);
+    $('#interactive-rgb-mixer-colour-code')
+      .text(full_hex_code)
+      .css('colour', font_colour);
+  } else {
+    // Produce full rgb code for displaying inside coloured box
+    full_rgb_code = 'rgb(' +
+      red_val + ',' +
+      green_val + ',' +
+      blue_val + ')';
+    $('#interactive-rgb-mixer-colour-code')
+      .text(full_rgb_code)
+      .css('colour', font_colour);
   }
 	var color = 'rgb(' + red_val + ',' + green_val + ',' + blue_val + ')';
 
 	// Fill the color box.
 	RGB_Mixer.result.style.background = color;
-	RGB_Mixer.result.style.color = color;
+  RGB_Mixer.result.style.color = color;
 
   // Set slider handle position
   RGB_Mixer.sliders[0].noUiSlider.set(red_val);
@@ -168,4 +207,16 @@ RGB_Mixer.setColorFromInputBox = function(){
 function decimalToHex(d) {
   var hex = d.toString(16).toUpperCase();
   return hex;
+}
+
+/**
+ * Determines what the font colour of the hex/rgb code should be based
+ * on the background colour of the box.
+ */
+function getFontColour(r, g, b) {
+  if ((((r / 255) + (g / 255) + (b / 255)) / 3) < 0.85) {
+    return "rgb(255, 255, 255)";
+  } else {
+    return "rgb(110, 110, 110)";
+  }
 }

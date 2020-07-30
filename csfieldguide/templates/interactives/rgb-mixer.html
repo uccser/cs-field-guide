@@ -5,9 +5,14 @@
 
 {% block html %}
   <div id="interactive-rgb-mixer" class="mb-3 container-fluid">
+    <div class="col-lg-4 col-md-6 p-0">
+      <img id="pixelmania-logo" src="{% static 'interactives/rgb-mixer/img/pixelmania-logo-half-size.png' %}" class="d-none img-fluid" crossorigin="anonymous">
+    </div>
     <h3>{% trans "RGB Colour Mixer - Used by Screens" %}</h3>
     <div id="interactive-rgb-mixer-container">
-      <div id="interactive-rgb-mixer-result"></div>
+      <div id="interactive-rgb-mixer-result" class="d-flex align-items-center justify-content-center">
+        <p id="interactive-rgb-mixer-colour-code"></p>
+      </div>
         <div id="interactive-rgb-mixer-sliders">
           <div>
             <div>{% trans '<strong>Red</strong> - Currently set to <input id="interactive-rgb-mixer-red-value" value=127 class="form-control w-auto d-inline" size="3">' %}</div>
@@ -23,7 +28,7 @@
           </div>
       </div>
     </div>
-    <div class="m-1">
+    <div id="numeral-system" class="m-1">
       <div class="form-check form-check-inline">
           <input class="form-check-input" type="radio" name="colourCode" value="dec" id="dec-colour-code" checked>
           <label class="form-check-label" for="dec-colour-code">{% trans "Decimal" %}</label>
