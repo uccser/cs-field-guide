@@ -37,6 +37,7 @@ this.images = [
   "boards.jpg",
   "dark_clock.jpg",
   "dark.jpg",
+  "duck.jpg",
   "fence.jpg",
   "knight.png",
   "roof.jpg",

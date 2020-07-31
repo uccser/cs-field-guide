@@ -50,7 +50,7 @@ urlpatterns = [
         "pixelmania-1",
         RedirectView.as_view(
             permanent=True,
-            url="interactives/pixel-viewer/?colour-code=hex&hide-colour-code-picker&pixelmania&image=lake.png"
+            url="interactives/pixel-viewer/?colour-code=hex&hide-colour-code-picker&hide-config-selector&pixelmania&image=lake.png"
         ),
     ),
     path(
@@ -64,7 +64,7 @@ urlpatterns = [
         "pixelmania-3",
         RedirectView.as_view(
             permanent=True,
-            url="interactives/pixel-viewer/?mode=brightness&colour-code=brightness"
+            url="interactives/pixel-viewer/?mode=brightness&colour-code=brightness&hide-colour-code-picker&hide-config-selector&pixelmania&image=duck.jpg"
         ),
     ),
 ]
