@@ -21,6 +21,7 @@
             <div id="pixel-viewer-interactive-loader"></div>
             <canvas id="pixel-viewer-interactive-content" crossorigin="anonymous"></canvas>
             <div id="pixel-viewer-interactive-settings" class="menu-offscreen p-3">
+                <img id="pixelmania-logo" class="d-none" src="{% static 'interactives/pixel-viewer/img/pixelmania.png' %}">
                 <h3 id="pixel-viewer-interactive-title">
                     {% trans "Pixel Viewer Interactive" %}
                 </h3>
@@ -52,6 +53,10 @@
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" name="colourCode" value="hex" id="hex-colour-code">
                         <label class="form-check-label" for="hex-colour-code">{% trans "Hexadecimal (web colour)" %}</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="colourCode" value="brightness" id="brightness-colour-code">
+                        <label class="form-check-label" for="brightness-colour-code">{% trans "Brightness (average)" %}</label>
                     </div>
                 </div>
                 <div class="dropdown">
