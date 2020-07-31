@@ -5,7 +5,6 @@ from . import views
 from django.views.generic.base import RedirectView
 
 app_name = "general"
-base_url = "https://csfieldguide.org.nz/"
 urlpatterns = [
     # e.g. csfieldguide.org.nz/
     path(
@@ -51,21 +50,21 @@ urlpatterns = [
         "pixelmania-1",
         RedirectView.as_view(
             permanent=True,
-            url=base_url+"interactives/pixel-viewer/?colour-code=hex&hide-colour-code-picker&pixelmania&image=lake.png"
+            url="interactives/pixel-viewer/?colour-code=hex&hide-colour-code-picker&pixelmania&image=lake.png"
         ),
     ),
     path(
         "pixelmania-2",
         RedirectView.as_view(
             permanent=True,
-            url=base_url+"interactives/centered/rgb-mixer/?mode=pixelmania"
+            url="interactives/centered/rgb-mixer/?mode=pixelmania"
         ),
     ),
     path(
         "pixelmania-3",
         RedirectView.as_view(
             permanent=True,
-            url=base_url+"interactives/pixel-viewer/?mode=brightness&colour-code=brightness"
+            url="interactives/pixel-viewer/?mode=brightness&colour-code=brightness"
         ),
     ),
 ]

@@ -17,7 +17,7 @@
 	background: rgb(127, 127, 127);
   color: rgb(127, 127, 127);
 	border: 1px solid black;
-	box-shadow: 0 0 10px;
+  box-shadow: 0 0 10px;
 }
 
 #interactive-rgb-mixer-sliders > div {
@@ -47,6 +47,11 @@
 
 #pixelmania-logo {
   height: 5rem;
+}
+
+#interactive-rgb-mixer-colour-code {
+  font: 1.5rem "Courier New", monospace;
+  word-break: break-word;
 }
 
 /* Settings for displaying on different sized screens */
