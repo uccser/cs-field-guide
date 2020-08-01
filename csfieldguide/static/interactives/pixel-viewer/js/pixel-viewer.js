@@ -28,23 +28,29 @@ this.gridSize = 0; // Global to keep track of size of grid chosen
 this.isGreyscale = false; // Global to keep track of whether greyscale is on
 
 // Names of images to be included in picture picker
-this.images = [
-  "coloured-roof-small.png",
-  "lake.png",
-  "alley.jpg",
-  "arnold.jpg",
-  "bike.jpg",
-  "boards.jpg",
-  "dark_clock.jpg",
-  "dark.jpg",
-  "duck.jpg",
-  "fence.jpg",
-  "knight.png",
-  "roof.jpg",
-  "tuba.jpg",
-  "words_zoom.png",
-  "words.png",
-]
+this.images = {
+  "coloured-roof-small.png": {},
+  "lake.png": {},
+  "alley.jpg": {},
+  "arnold.jpg": {},
+  "bike.jpg": {},
+  "boards.jpg": {},
+  "dark_clock.jpg": {},
+  "dark.jpg": {},
+  "duck.jpg": {
+      "original_image_position": {
+        "top": -1200,
+        "left": -4600,
+      }
+  },
+  "fence.jpg": {},
+  "knight.png": {},
+  "roof.jpg": {},
+  "tuba.jpg": {},
+  "words_zoom.png": {},
+  "words.png": {},
+}
+this.available_images = Object.keys(images)
 
 this.tiling = new Tiling;
 this.piccache = Array();
@@ -166,11 +172,11 @@ function setUpMode(){
       <br><br>\
        If you find that the scroll and zoom are slow with a blur applied, try removing the blur, zooming or scrolling and \
       then reapplying the blur."));
-    images = ["coloured-roof-small.png", "dark.jpg", "dark_clock.jpg"]
+    available_images = ["coloured-roof-small.png", "dark.jpg", "dark_clock.jpg"]
     new Blur($('#pixel-viewer-image-manipulator'));
   }
   if (mode == 'edgedetection'){
-    images = ["coloured-roof-small.png", "alley.jpg", "bike.jpg", "boards.jpg",
+    available_images = ["coloured-roof-small.png", "alley.jpg", "bike.jpg", "boards.jpg",
   "fence.jpg", "roof.jpg", "tuba.jpg","words.png",
   "words_zoom.png", "knight.png"]
     addDescription(gettext("Edge Detection Interactive"), gettext("Find an edge in the graph and zoom right in. What information could a computer use from the values of the pixels surrounding the edge to find it?\
@@ -865,8 +871,8 @@ function createPicturePicker(){
   // Create picker for default pictures
   main_div = $("#picture-picker");
   main_div.append($("<p></p>").text(gettext("Or choose from the following supplied images:")));
-  for (var i = 0; i < images.length; i++){
-    var img_url = image_base_path + images[i]
+  for (var i = 0; i < available_images.length; i++){
+    var img_url = image_base_path + available_images[i]
     main_div.append(
       $("<img>")
       .attr('crossorigin', 'anonymous')
