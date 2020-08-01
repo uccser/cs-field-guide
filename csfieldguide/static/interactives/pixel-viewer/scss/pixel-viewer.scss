@@ -4,12 +4,12 @@
 
 #pixel-viewer-interactive {
   user-select: none !important;
-  background-color: #000;
+  background-color: #3f51b5;
   flex-grow: 1;
 
   #pixel-viewer-interactive-source-canvas {
     height: 133px;
-    width: 200px;
+    // width: 200px;
     display: none;
   }
   #pixel-viewer-interactive-container {

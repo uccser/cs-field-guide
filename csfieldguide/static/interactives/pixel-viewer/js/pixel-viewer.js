@@ -29,29 +29,40 @@ this.isGreyscale = false; // Global to keep track of whether greyscale is on
 
 // Names of images to be included in picture picker
 this.images = {
-  "coloured-roof-small.png": {},
-  "lake.png": {},
-  "alley.jpg": {},
-  "arnold.jpg": {},
-  "bike.jpg": {},
-  "boards.jpg": {},
-  "dark_clock.jpg": {},
-  "dark.jpg": {},
-  "duck.jpg": {
-      "original_image_position": {
-        "top": -1200,
-        "left": -4600,
-      }
-  },
-  "fence.jpg": {},
-  "knight.png": {},
-  "roof.jpg": {},
-  "tuba.jpg": {},
-  "words_zoom.png": {},
-  "words.png": {},
+    "coloured-roof-small.png": {
+        "image_position": {
+            "top": 1037,
+            "left": 794,
+        }
+    },
+    "lake.png": {
+        "image_position": {
+            "top": 3231,
+            "left": 4523,
+        }
+    },
+    "alley.jpg": {},
+    "arnold.jpg": {},
+    "bike.jpg": {},
+    "boards.jpg": {},
+    "dark_clock.jpg": {},
+    "dark.jpg": {},
+    "duck.jpg": {
+        "image_position": {
+            "top": 1121,
+            "left": 2919,
+        }
+    },
+    "fence.jpg": {},
+    "knight.png": {},
+    "roof.jpg": {},
+    "tuba.jpg": {},
+    "words_zoom.png": {},
+    "words.png": {},
 }
 this.available_images = Object.keys(images)
-
+// Default image to load
+this.image_filename = 'coloured-roof-small.png';
 this.tiling = new Tiling;
 this.piccache = Array();
 
@@ -63,9 +74,7 @@ $( document ).ready(function() {
   init_cache(300, MAX_HEIGHT);
 
   if (getUrlParameter('image')){
-    var image_filename = getUrlParameter('image');
-  } else {
-    var image_filename = 'coloured-roof-small.png';
+    image_filename = getUrlParameter('image');
   }
 
   var image_filepath = image_base_path + image_filename;
@@ -123,27 +132,47 @@ $( document ).ready(function() {
     $("input[id='rgb-colour-code']").prop('checked', true);
   }
 
+  // Check if custom zoom parameters are given, otherwise default to 0,0.
+    try {
+        image_position_top = images[image_filename]["image_position"]["top"];
+    } catch (e) {
+        image_position_top = 0;
+    }
+    try {
+        image_position_left = images[image_filename]["image_position"]["left"];
+    } catch (e) {
+        image_position_left = 0;
+    }
+    original_image_position_top = image_position_top * -1;
+    scroller_position_top = image_position_top;
+    original_image_position_left = image_position_left * -1;
+    scroller_position_left = image_position_left;
+    reflow();
+
   if (getUrlParameter('no-pixel-fill')){
     $('#pixel-viewer-interactive-show-pixel-fill').prop('checked', false);
     $("#pixel-viewer-interactive-loader").hide();
     $("#pixel-viewer-interactive-buttons").css({opacity: 1});
   } else {
     $("#pixel-viewer-interactive-original-image").show();
-    $("#pixel-viewer-interactive-original-image").delay(1000).animate({width: contentWidth*0.8,
-       height: contentHeight*0.8,
-       overflow: "hidden",
-       top:"0",
-       left:"0",
-       margin: 0},
-       4000,
-       function() {
-        // Animation complete
-        $("#pixel-viewer-interactive-loader").hide();
-        $("#pixel-viewer-interactive-buttons").css({opacity: 0, visibility: "visible"}).animate({opacity: 1}, 'slow');
-    });
-    $("#pixel-viewer-interactive-original-image").fadeOut(2000);
+    $("#pixel-viewer-interactive-original-image").delay(1000).animate(
+        {
+            height: contentHeight * 0.8,
+            overflow: "hidden",
+            top: original_image_position_top.toString() + 'px',
+            left: original_image_position_left.toString() + 'px',
+            margin: 0
+        },
+        4000,
+        function() {
+            // Animation complete
+            scroller.scrollTo(scroller_position_left, scroller_position_top);
+            $("#pixel-viewer-interactive-loader").hide();
+            $("#pixel-viewer-interactive-buttons").css({opacity: 0, visibility: "visible"}).animate({opacity: 1}, 'slow');
+        }
+    );
+    $("#pixel-viewer-interactive-original-image").fadeOut(300);
   }
-  reflow();
 });
 
 function setUpMode(){
