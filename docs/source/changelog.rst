@@ -17,6 +17,36 @@ All notable changes to this project will be documented in this file.
 
 We have listed major changes for each release below.
 
+3.5.1
+==============================================================================
+
+- **Release date:** 1st August 2020
+- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/3.5.1>`__
+
+**Changelog:**
+
+- Add URL redirects for CS Unplugged Pixelmania activity.
+- Update Pixel Viewer interactive:
+
+    - Add brightness value mode.
+    - Add ability to zoom to specific starting point for an image.
+    - Set image when zooming to be pixelated (only on modern browsers).
+    - Add paramater to hide mode selector.
+    - Add parameter to hide value type selector.
+    - Add paramater to show Pixelmania branding.
+
+- Update RGB Mixer interactive:
+
+    - Show full value of colour in mixed colour.
+    - Add paramater to show Pixelmania branding and force hexadecimal notation.
+
+- Dependency updates:
+
+    - Update lxml from 4.5.1 to 4.5.2.
+    - Update django-modeltranslation from 0.15 to 0.15.1.
+    - Update sphinx from 3.1.1 to 3.1.2.
+    - Update coverage from 5.1 to 5.2.1.
+
 3.5.0
 ==============================================================================
 
