@@ -28,23 +28,41 @@ this.gridSize = 0; // Global to keep track of size of grid chosen
 this.isGreyscale = false; // Global to keep track of whether greyscale is on
 
 // Names of images to be included in picture picker
-this.images = [
-  "coloured-roof-small.png",
-  "roof.jpg",
-  "alley.jpg",
-  "arnold.jpg",
-  "bike.jpg",
-  "boards.jpg",
-  "dark_clock.jpg",
-  "dark.jpg",
-  "fence.jpg",
-  "knight.png",
-  "roof.jpg",
-  "tuba.jpg",
-  "words_zoom.png",
-  "words.png",
-]
-
+this.images = {
+    "coloured-roof-small.png": {
+        "image_position": {
+            "top": 1037,
+            "left": 794,
+        }
+    },
+    "lake.png": {
+        "image_position": {
+            "top": 3231,
+            "left": 4523,
+        }
+    },
+    "alley.jpg": {},
+    "arnold.jpg": {},
+    "bike.jpg": {},
+    "boards.jpg": {},
+    "dark_clock.jpg": {},
+    "dark.jpg": {},
+    "duck.jpg": {
+        "image_position": {
+            "top": 1121,
+            "left": 2919,
+        }
+    },
+    "fence.jpg": {},
+    "knight.png": {},
+    "roof.jpg": {},
+    "tuba.jpg": {},
+    "words_zoom.png": {},
+    "words.png": {},
+}
+this.available_images = Object.keys(images)
+// Default image to load
+this.image_filename = 'coloured-roof-small.png';
 this.tiling = new Tiling;
 this.piccache = Array();
 
@@ -56,23 +74,24 @@ $( document ).ready(function() {
   init_cache(300, MAX_HEIGHT);
 
   if (getUrlParameter('image')){
-    var image_filename = getUrlParameter('image');
-  } else {
-    var image_filename = 'coloured-roof-small.png';
+    image_filename = getUrlParameter('image');
   }
 
   var image_filepath = image_base_path + image_filename;
   $('#pixel-viewer-interactive-original-image').attr('crossorigin', 'anonymous').attr('src', image_filepath);
   load_resize_image(image_filepath, false);
 
-  if (getUrlParameter('mode') == 'threshold') {
-    mode = 'threshold';
-  } else if (getUrlParameter('mode') == 'thresholdgreyscale') {
-    mode = 'thresholdgreyscale';
-  } else if (getUrlParameter('mode') == 'blur') {
-    mode = 'blur';
-  } else if (getUrlParameter('mode') == 'edgedetection') {
-    mode = 'edgedetection';
+  switch(getUrlParameter('mode')) {
+    case 'threshold':
+      mode = 'threshold'; break;
+    case 'thresholdgreyscale':
+      mode = 'thresholdgreyscale'; break;
+    case 'blur':
+      mode = 'blur'; break;
+    case 'edgedetection':
+      mode = 'edgedetection'; break;
+    case 'brightness':
+      mode = 'brightness'; break;
   }
 
   if (getUrlParameter('picturepicker')){
@@ -84,43 +103,76 @@ $( document ).ready(function() {
     $('#pixel-viewer-interactive-menu-toggle').remove();
   }
 
+  if (getUrlParameter('pixelmania')){
+    $('#pixelmania-logo').removeClass('d-none');
+  }
+
+  if (getUrlParameter('hide-colour-code-picker')) {
+    $("#colour-code-radio").addClass('d-none').removeClass('d-flex');
+  }
+
+  if (getUrlParameter('hide-config-selector')) {
+    $("#configSelector").addClass('d-none');
+  }
+
   setUpMode();
   if (picturePicker){
    createPicturePicker();
   }
 
-  if (getUrlParameter('colour-code') == 'rgb-hex') {
-    colour_code_rep = 'rgb-hex';
+  colour_code_rep = getUrlParameter('colour-code');
+  if (colour_code_rep == 'rgb-hex') {
     $("input[id='rgb-hex-colour-code']").prop('checked', true);
-  } else if (getUrlParameter('colour-code') == 'hex') {
-    colour_code_rep = 'hex';
+  } else if (colour_code_rep == 'hex') {
     $("input[id='hex-colour-code']").prop('checked', true);
+  } else if (colour_code_rep == 'brightness') {
+    $("input[id='brightness-colour-code']").prop('checked', true);
   } else {
     colour_code_rep = 'rgb';
     $("input[id='rgb-colour-code']").prop('checked', true);
   }
 
+  // Check if custom zoom parameters are given, otherwise default to 0,0.
+    try {
+        image_position_top = images[image_filename]["image_position"]["top"];
+    } catch (e) {
+        image_position_top = 0;
+    }
+    try {
+        image_position_left = images[image_filename]["image_position"]["left"];
+    } catch (e) {
+        image_position_left = 0;
+    }
+    original_image_position_top = image_position_top * -1;
+    scroller_position_top = image_position_top;
+    original_image_position_left = image_position_left * -1;
+    scroller_position_left = image_position_left;
+    reflow();
+
   if (getUrlParameter('no-pixel-fill')){
     $('#pixel-viewer-interactive-show-pixel-fill').prop('checked', false);
-    $( "#pixel-viewer-interactive-loader" ).hide();
-    $( "#pixel-viewer-interactive-buttons" ).css({opacity: 1});
+    $("#pixel-viewer-interactive-loader").hide();
+    $("#pixel-viewer-interactive-buttons").css({opacity: 1});
   } else {
-    $( "#pixel-viewer-interactive-original-image" ).show();
-    $( "#pixel-viewer-interactive-original-image" ).delay(1000).animate({width: contentWidth*0.8,
-       height: contentHeight*0.8,
-       overflow: "hidden",
-       top:"0",
-       left:"0",
-       margin: 0},
-       4000,
-       function() {
-        // Animation complete
-        $( "#pixel-viewer-interactive-loader" ).hide();
-        $( "#pixel-viewer-interactive-buttons" ).css({opacity: 0, visibility: "visible"}).animate({opacity: 1}, 'slow');
-    });
-    $( "#pixel-viewer-interactive-original-image" ).fadeOut( 2000 );
+    $("#pixel-viewer-interactive-original-image").show();
+    $("#pixel-viewer-interactive-original-image").delay(1000).animate(
+        {
+            height: contentHeight * 0.8,
+            overflow: "hidden",
+            top: original_image_position_top.toString() + 'px',
+            left: original_image_position_left.toString() + 'px',
+            margin: 0
+        },
+        4000,
+        function() {
+            // Animation complete
+            scroller.scrollTo(scroller_position_left, scroller_position_top);
+            $("#pixel-viewer-interactive-loader").hide();
+            $("#pixel-viewer-interactive-buttons").css({opacity: 0, visibility: "visible"}).animate({opacity: 1}, 'slow');
+        }
+    );
+    $("#pixel-viewer-interactive-original-image").fadeOut(300);
   }
-  reflow();
 });
 
 function setUpMode(){
@@ -149,11 +201,11 @@ function setUpMode(){
       <br><br>\
        If you find that the scroll and zoom are slow with a blur applied, try removing the blur, zooming or scrolling and \
       then reapplying the blur."));
-    images = ["coloured-roof-small.png", "dark.jpg", "dark_clock.jpg"]
+    available_images = ["coloured-roof-small.png", "dark.jpg", "dark_clock.jpg"]
     new Blur($('#pixel-viewer-image-manipulator'));
   }
   if (mode == 'edgedetection'){
-    images = ["coloured-roof-small.png", "alley.jpg", "bike.jpg", "boards.jpg",
+    available_images = ["coloured-roof-small.png", "alley.jpg", "bike.jpg", "boards.jpg",
   "fence.jpg", "roof.jpg", "tuba.jpg","words.png",
   "words_zoom.png", "knight.png"]
     addDescription(gettext("Edge Detection Interactive"), gettext("Find an edge in the graph and zoom right in. What information could a computer use from the values of the pixels surrounding the edge to find it?\
@@ -164,6 +216,12 @@ function setUpMode(){
     Below the grids is a thresholder which you can apply to the result. What results can you get if you combine these two filters to the image? There is an option\
     for outputting the absolute value of the result of the multiplication grid. What does checking and unchecking this box change about the result? What happens if you apply multiple grids?"));
     new EdgeDetector($('#pixel-viewer-image-manipulator'));
+  }
+  if (mode == 'brightness'){
+    addDescription(gettext("Brightness Interactive"), gettext("The image has been converted to greyscale by taking the average of the red, blue and green values for\
+      each pixel."));
+    filter = greyscaler;
+    isGreyscale = true;
   }
 }
 
@@ -842,8 +900,8 @@ function createPicturePicker(){
   // Create picker for default pictures
   main_div = $("#picture-picker");
   main_div.append($("<p></p>").text(gettext("Or choose from the following supplied images:")));
-  for (var i = 0; i < images.length; i++){
-    var img_url = image_base_path + images[i]
+  for (var i = 0; i < available_images.length; i++){
+    var img_url = image_base_path + available_images[i]
     main_div.append(
       $("<img>")
       .attr('crossorigin', 'anonymous')
@@ -1025,6 +1083,10 @@ var paint = function(row, col, left, top, width, height, zoom) {
           b = pixelData[2];
           hex_string = rgbToHex(r, g, b);
           context.fillText(hex_string, left + (4 * zoom), top + (14 * zoom) + (cell_line_height * zoom));
+        } else if (colour_code_rep == 'brightness') {
+          context.font = (10 * zoom).toFixed(2) + 'px Consolas, Courier New, monospace';
+          brightness = Math.round(average(pixelData));
+          context.fillText(brightness, left + (16 * zoom), top + (14 * zoom) + (cell_line_height * zoom));
         } else {
           context.font = (14 * zoom).toFixed(2) + 'px Consolas, Courier New, monospace';
           var cell_lines = cell_text.split('\n');

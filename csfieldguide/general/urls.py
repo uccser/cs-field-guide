@@ -46,4 +46,25 @@ urlpatterns = [
         "index.html",
         RedirectView.as_view(permanent=True, pattern_name="general:index"),
     ),
+    path(
+        "pixelmania-1",
+        RedirectView.as_view(
+            permanent=True,
+            url="interactives/pixel-viewer/?colour-code=hex&hide-colour-code-picker&hide-config-selector&pixelmania&image=lake.png"  # noqa: E501
+        ),
+    ),
+    path(
+        "pixelmania-2",
+        RedirectView.as_view(
+            permanent=True,
+            url="interactives/centered/rgb-mixer/?mode=pixelmania"
+        ),
+    ),
+    path(
+        "pixelmania-3",
+        RedirectView.as_view(
+            permanent=True,
+            url="interactives/pixel-viewer/?mode=brightness&colour-code=brightness&hide-colour-code-picker&hide-config-selector&pixelmania&image=duck.jpg"  # noqa: E501
+        ),
+    ),
 ]
