@@ -25,9 +25,16 @@ RGB_Mixer.sliders = document.getElementsByClassName('interactive-rgb-mixer-slide
 RGB_Mixer.result = document.getElementById('interactive-rgb-mixer-result');
 
 $(document).ready(function () {
-  useHex = (urlParameters.getUrlParameter('hex') || 'false') == 'true';
-  $("input[id='hex-colour-code']").prop('checked', useHex);
-  $("input[id='dec-colour-code']").prop('checked', !useHex);
+  if (urlParameters.getUrlParameter('mode') == 'pixelmania') {
+    // hide radio buttons for switching numeral system
+    $("#numeral-system").addClass('d-none');
+    $("#pixelmania-logo").removeClass("d-none");
+    useHex = true;
+  } else {
+    useHex = (urlParameters.getUrlParameter('hex') || 'false') == 'true';
+    $("input[id='hex-colour-code']").prop('checked', useHex);
+    $("input[id='dec-colour-code']").prop('checked', !useHex);
+  }
 
   for ( var i = 0; i < RGB_Mixer.sliders.length; i++ ) {
     noUiSlider.create(RGB_Mixer.sliders[i], {
@@ -123,10 +130,26 @@ RGB_Mixer.setColor = function() {
   var b_val = RGB_Mixer.sliders[2].noUiSlider.get();
 	// stick them together.
   if (useHex) {
+    // Produce full hex code for displaying inside coloured box
+    hex_red = (r_val.length == 1) ? "0" + r_val : r_val;
+    hex_green = (g_val.length == 1) ? "0" + g_val : g_val;
+    hex_blue = (b_val.length == 1) ? "0" + b_val : b_val;
+    var colour_code = '#' + hex_red + hex_green + hex_blue;
+    // Convert values to decimal
     r_val = parseInt(r_val, 16);
     g_val = parseInt(g_val, 16);
     b_val = parseInt(b_val, 16);
+  } else {
+    // Produce full rgb code for displaying inside coloured box
+    var colour_code = 'rgb(' +
+      r_val + ',' +
+      g_val + ',' +
+      b_val + ')';
   }
+  var font_colour = getFontColour(r_val, g_val, b_val);
+  $('#interactive-rgb-mixer-colour-code')
+    .text(colour_code)
+    .css('color', font_colour);
 	var color = 'rgb(' +
 		r_val + ',' +
 		g_val + ',' +
@@ -134,7 +157,7 @@ RGB_Mixer.setColor = function() {
 
 	// Fill the color box.
 	RGB_Mixer.result.style.background = color;
-	RGB_Mixer.result.style.color = color;
+  RGB_Mixer.result.style.color = color;
 
   // Set text for labels
   $('#interactive-rgb-mixer-red-value').val(RGB_Mixer.sliders[0].noUiSlider.get());
@@ -149,15 +172,30 @@ RGB_Mixer.setColorFromInputBox = function(){
   blue_val = $('#interactive-rgb-mixer-blue-value').val() || 0;
 	// stick them together.
   if (useHex) {
+    // Produce full hex code for displaying inside coloured box
+    hex_red = (red_val.length == 1) ? red_val + "0" : red_val;
+    hex_green = (green_val.length == 1) ? green_val + "0" : green_val;
+    hex_blue = (blue_val.length == 1) ? blue_val + "0" : blue_val;
+    var colour_code = '#' + hex_red + hex_green + hex_blue;
     red_val = parseInt(red_val, 16);
     green_val = parseInt(green_val, 16);
     blue_val = parseInt(blue_val, 16);
+  } else {
+    // Produce full rgb code for displaying inside coloured box
+    var colour_code = 'rgb(' +
+      red_val + ',' +
+      green_val + ',' +
+      blue_val + ')';
   }
+  var font_colour = getFontColour(red_val, green_val, blue_val);
+  $('#interactive-rgb-mixer-colour-code')
+    .text(colour_code)
+    .css('color', font_colour);
 	var color = 'rgb(' + red_val + ',' + green_val + ',' + blue_val + ')';
 
 	// Fill the color box.
 	RGB_Mixer.result.style.background = color;
-	RGB_Mixer.result.style.color = color;
+  RGB_Mixer.result.style.color = color;
 
   // Set slider handle position
   RGB_Mixer.sliders[0].noUiSlider.set(red_val);
@@ -168,4 +206,17 @@ RGB_Mixer.setColorFromInputBox = function(){
 function decimalToHex(d) {
   var hex = d.toString(16).toUpperCase();
   return hex;
+}
+
+/**
+ * Determines what the font colour of the hex/rgb code should be based
+ * on the background colour of the box.
+ */
+function getFontColour(r, g, b) {
+  // http://www.w3.org/TR/AERT#color-contrast
+  var brightness = Math.round(((parseInt(r) * 299) +
+                      (parseInt(g) * 587) +
+                      (parseInt(b) * 114)) / 1000);
+  var font_colour = (brightness > 125) ? 'black' : 'white';
+  return font_colour
 }

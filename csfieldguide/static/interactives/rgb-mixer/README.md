@@ -9,6 +9,7 @@ This interactive is used to create colours using RGB values.
 ## URL Parameter
 
 - `hex=true|false (default=false)`: if `true`, sets the interactive to display values in hexadecimal (0 - FF) rather than decimal (0 - 255).
+- `mode=pixelmania`: Forces the display of values in hexadecimal only and displays the Pixelmania logo.
 
 ## Required files
 
