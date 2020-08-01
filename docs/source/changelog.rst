@@ -25,8 +25,8 @@ We have listed major changes for each release below.
 
 **Changelog:**
 
-- Add URL redirects for CS Unplugged Pixelmania activity.
-- Update Pixel Viewer interactive:
+- Add URL redirects for CS Unplugged Pixelmania activity. `#1303 <https://github.com/uccser/cs-field-guide/issues/1303>`__
+- Update Pixel Viewer interactive: `#1300 <https://github.com/uccser/cs-field-guide/pull/1300>`__  `#1302 <https://github.com/uccser/cs-field-guide/issues/1302>`__ `#1304 <https://github.com/uccser/cs-field-guide/pull/1304>`__
 
     - Add brightness value mode.
     - Add ability to zoom to specific starting point for an image.
@@ -35,11 +35,12 @@ We have listed major changes for each release below.
     - Add parameter to hide value type selector.
     - Add paramater to show Pixelmania branding.
 
-- Update RGB Mixer interactive:
+- Update RGB Mixer interactive: `#1305 <https://github.com/uccser/cs-field-guide/pull/1305>`__
 
     - Show full value of colour in mixed colour.
     - Add paramater to show Pixelmania branding and force hexadecimal notation.
 
+- Fix incorrect hexadecimal value in content.
 - Dependency updates:
 
     - Update lxml from 4.5.1 to 4.5.2.
@@ -55,8 +56,8 @@ We have listed major changes for each release below.
 
 **Changelog:**
 
-- Add ability to show colour codes in Hexadecimal on the Pixel Viewer interactive. <https://github.com/uccser/cs-field-guide/issues/1277>`__
-- Add Hexadecimal version of colour mixer interactives. <https://github.com/uccser/cs-field-guide/issues/1290>`__
+- Add ability to show colour codes in Hexadecimal on the Pixel Viewer interactive. `#1227 <https://github.com/uccser/cs-field-guide/issues/1277>`__
+- Add Hexadecimal version of colour mixer interactives. `#1290 <https://github.com/uccser/cs-field-guide/issues/1290>`__
 - Dependency updates:
 
   - Update Pillow from 7.1.2 to 7.2.0.
