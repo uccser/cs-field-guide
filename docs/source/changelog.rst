@@ -31,14 +31,14 @@ We have listed major changes for each release below.
     - Add brightness value mode.
     - Add ability to zoom to specific starting point for an image.
     - Set image when zooming to be pixelated (only on modern browsers).
-    - Add paramater to hide mode selector.
+    - Add parameter to hide mode selector.
     - Add parameter to hide value type selector.
-    - Add paramater to show Pixelmania branding.
+    - Add parameter to show Pixelmania branding.
 
 - Update RGB Mixer interactive: `#1305 <https://github.com/uccser/cs-field-guide/pull/1305>`__
 
     - Show full value of colour in mixed colour.
-    - Add paramater to show Pixelmania branding and force hexadecimal notation.
+    - Add parameter to show Pixelmania branding and force hexadecimal notation.
 
 - Fix incorrect hexadecimal value in content.
 - Dependency updates:
