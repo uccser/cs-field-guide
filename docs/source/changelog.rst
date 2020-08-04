@@ -56,7 +56,7 @@ We have listed major changes for each release below.
 
 **Changelog:**
 
-- Add ability to show colour codes in Hexadecimal on the Pixel Viewer interactive. `#1227 <https://github.com/uccser/cs-field-guide/issues/1277>`__
+- Add ability to show colour codes in Hexadecimal on the Pixel Viewer interactive. `#1277 <https://github.com/uccser/cs-field-guide/issues/1277>`__
 - Add Hexadecimal version of colour mixer interactives. `#1290 <https://github.com/uccser/cs-field-guide/issues/1290>`__
 - Dependency updates:
 
