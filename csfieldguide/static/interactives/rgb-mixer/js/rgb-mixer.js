@@ -25,15 +25,25 @@ RGB_Mixer.sliders = document.getElementsByClassName('interactive-rgb-mixer-slide
 RGB_Mixer.result = document.getElementById('interactive-rgb-mixer-result');
 
 $(document).ready(function () {
-  if (urlParameters.getUrlParameter('mode') == 'pixelmania') {
-    // hide radio buttons for switching numeral system
+
+  useHex = (urlParameters.getUrlParameter('hex') || 'false') == 'true';
+  if ((urlParameters.getUrlParameter('mode') || 'none') == 'pixelmania') {
+    // Certain URLs were permanently redirected to ?mode=pixelmania for pixelmania 2020
+    // so to avoid potential problems this parameter will remain in use
+    useHex = true;
     $("#numeral-system").addClass('d-none');
     $("#pixelmania-logo").removeClass("d-none");
-    useHex = true;
-  } else {
-    useHex = (urlParameters.getUrlParameter('hex') || 'false') == 'true';
-    $("input[id='hex-colour-code']").prop('checked', useHex);
-    $("input[id='dec-colour-code']").prop('checked', !useHex);
+  }
+  $("input[id='hex-colour-code']").prop('checked', useHex);
+  $("input[id='dec-colour-code']").prop('checked', !useHex);
+
+  if ((urlParameters.getUrlParameter('hide-selector') || 'false') == 'true') {
+    $("#numeral-system").addClass('d-none');
+  }
+
+  if (urlParameters.getUrlParameter('pixelmania')) {
+    // hide radio buttons for switching numeral system
+    $("#pixelmania-logo").removeClass("d-none");
   }
 
   for ( var i = 0; i < RGB_Mixer.sliders.length; i++ ) {
