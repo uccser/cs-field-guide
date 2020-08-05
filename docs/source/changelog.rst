@@ -17,6 +17,37 @@ All notable changes to this project will be documented in this file.
 
 We have listed major changes for each release below.
 
+3.5.1
+==============================================================================
+
+- **Release date:** 1st August 2020
+- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/3.5.1>`__
+
+**Changelog:**
+
+- Add URL redirects for CS Unplugged Pixelmania activity. `#1303 <https://github.com/uccser/cs-field-guide/issues/1303>`__
+- Update Pixel Viewer interactive: `#1300 <https://github.com/uccser/cs-field-guide/pull/1300>`__  `#1302 <https://github.com/uccser/cs-field-guide/issues/1302>`__ `#1304 <https://github.com/uccser/cs-field-guide/pull/1304>`__
+
+    - Add brightness value mode.
+    - Add ability to zoom to specific starting point for an image.
+    - Set image when zooming to be pixelated (only on modern browsers).
+    - Add parameter to hide mode selector.
+    - Add parameter to hide value type selector.
+    - Add parameter to show Pixelmania branding.
+
+- Update RGB Mixer interactive: `#1305 <https://github.com/uccser/cs-field-guide/pull/1305>`__
+
+    - Show full value of colour in mixed colour.
+    - Add parameter to show Pixelmania branding and force hexadecimal notation.
+
+- Fix incorrect hexadecimal value in content.
+- Dependency updates:
+
+    - Update lxml from 4.5.1 to 4.5.2.
+    - Update django-modeltranslation from 0.15 to 0.15.1.
+    - Update sphinx from 3.1.1 to 3.1.2.
+    - Update coverage from 5.1 to 5.2.1.
+
 3.5.0
 ==============================================================================
 
@@ -25,8 +56,8 @@ We have listed major changes for each release below.
 
 **Changelog:**
 
-- Add ability to show colour codes in Hexadecimal on the Pixel Viewer interactive. <https://github.com/uccser/cs-field-guide/issues/1277>`__
-- Add Hexadecimal version of colour mixer interactives. <https://github.com/uccser/cs-field-guide/issues/1290>`__
+- Add ability to show colour codes in Hexadecimal on the Pixel Viewer interactive. `#1277 <https://github.com/uccser/cs-field-guide/issues/1277>`__
+- Add Hexadecimal version of colour mixer interactives. `#1290 <https://github.com/uccser/cs-field-guide/issues/1290>`__
 - Dependency updates:
 
   - Update Pillow from 7.1.2 to 7.2.0.
