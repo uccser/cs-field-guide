@@ -1,7 +1,7 @@
 # Pixel Viewer Interactive
 
 **Author:** Jack Morgan  
-**Modified by:** Andy Bell, Courtney Bracefield, Alasdair Smith
+**Modified by:** Andy Bell, Courtney Bracefield, Alasdair Smith, Jack Morgan
 
 This interactive is created to allow users to see the values of each pixel of an image.
 The user can zoom in and out of the image, and when close enough the pixel values are displayed.
