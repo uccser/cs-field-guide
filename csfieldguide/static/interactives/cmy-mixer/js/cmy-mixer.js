@@ -134,14 +134,31 @@ CMY_Mixer.setColor = function(){
   } else {
     cmy_as_rgb = cmy_to_rgb(cyan_val, magenta_val, yellow_val);
   }
-	var color = 'rgb(' +
-		cmy_as_rgb[0] + ',' +
-		cmy_as_rgb[1] + ',' +
-		cmy_as_rgb[2] + ')';
 
-	// Fill the color box.
-	CMY_Mixer.result.style.background = color;
-	CMY_Mixer.result.style.color = color;
+  if (!useHex) {
+    // Display colour as text in coloured box
+    // There is no equivalent hex representation of colour in CMY
+    // _technically_ it should be CMYK since this is describing what printers do, but let's not get into that
+    var font_colour = getFontColour(cmy_as_rgb[0], cmy_as_rgb[1], cmy_as_rgb[2]);
+    var colour_text = 'cmy(' +
+      cyan_val + ',' +
+      magenta_val + ',' +
+      yellow_val + ')';
+    $('#interactive-cmy-mixer-colour-code')
+      .text(colour_text)
+      .css('color', font_colour);
+    } else {
+      $('#interactive-cmy-mixer-colour-code').text('');
+    }
+
+  var color = 'rgb(' +
+    cmy_as_rgb[0] + ',' +
+    cmy_as_rgb[1] + ',' +
+    cmy_as_rgb[2] + ')';
+
+  // Fill the color box.
+  CMY_Mixer.result.style.background = color;
+  CMY_Mixer.result.style.color = color;
 
   // Set text for labels
   $('#interactive-cmy-mixer-cyan-value').val(CMY_Mixer.sliders[0].noUiSlider.get());
@@ -162,11 +179,26 @@ CMY_Mixer.setColorFromInputBox = function() {
     yellow_val = parseInt(yellow_val, 16);
   }
   var cmy_as_rgb = cmy_to_rgb(cyan_val, magenta_val, yellow_val);
+  
+  if (!useHex) {
+    // Display colour as text in coloured box
+    // There is no equivalent hex representation of colour in CMY
+    var font_colour = getFontColour(cmy_as_rgb[0], cmy_as_rgb[1], cmy_as_rgb[2]);
+    var colour_text = 'cmy(' +
+      cyan_val + ',' +
+      magenta_val + ',' +
+      yellow_val + ')';
+    $('#interactive-cmy-mixer-colour-code')
+      .text(colour_text)
+      .css('color', font_colour);
+  } else {
+    $('#interactive-cmy-mixer-colour-code').text('');
+  }
 
-	var color = 'rgb(' +
-		cmy_as_rgb[0] + ',' +
-		cmy_as_rgb[1] + ',' +
-		cmy_as_rgb[2] + ')';
+  var color = 'rgb(' +
+    cmy_as_rgb[0] + ',' +
+    cmy_as_rgb[1] + ',' +
+    cmy_as_rgb[2] + ')';
 
 	// Fill the color box.
 	CMY_Mixer.result.style.background = color;
@@ -189,4 +221,17 @@ function cmy_to_rgb(c, m, y) {
 function decimalToHex(d) {
   var hex = d.toString(16).toUpperCase();
   return hex;
+}
+
+/**
+ * Determines what the font colour of the hex/rgb code should be
+ * based on the background colour of the box.
+ */
+function getFontColour(r, g, b) {
+  // http://www.w3.org/TR/AERT#color-contrast
+  var brightness = Math.round(((parseInt(r) * 299) +
+                      (parseInt(g) * 587) +
+                      (parseInt(b) * 114)) / 1000);
+  var font_colour = (brightness > 125) ? 'black' : 'white';
+  return font_colour
 }
