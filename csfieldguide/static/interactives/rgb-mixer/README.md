@@ -2,7 +2,7 @@
 
 **Author:** Jack Morgan
 
-**Modified By:** Alasdair Smith
+**Modified By:** Alasdair Smith, Courtney Bracefield
 
 This interactive is used to create colours using RGB values.
 

@@ -29,6 +29,10 @@ $(document).ready(function () {
   $("input[id='hex-colour-code']").prop('checked', useHex);
   $("input[id='dec-colour-code']").prop('checked', !useHex);
 
+  if ((urlParameters.getUrlParameter('hide-selector') || 'false') == 'true') {
+    $("#numeral-system").addClass('d-none');
+  }
+
   for ( var i = 0; i < CMY_Mixer.sliders.length; i++ ) {
     noUiSlider.create(CMY_Mixer.sliders[i], {
       start: Math.floor(Math.random() * CMY_Mixer.maximum),
