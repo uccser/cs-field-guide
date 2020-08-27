@@ -285,7 +285,7 @@ Some controls try to offer the best of both worlds by having a small flap that c
 
 # Scary interfaces
 
-The following site identified some of the "scariest" interfaces around, some of which are great examples of *not* having minimalist design:  [OK/Cancel scariest interface](http://okcancel.com/archives/article/2005/11/the-scariest-interface-part-ii.html).
+The following site identified some of the "scariest" interfaces around, some of which are great examples of *not* having minimalist design:  [OK/Cancel scariest interface](https://web.archive.org/web/20191216061736/http://okcancel.com:80/archives/article/2005/11/the-scariest-interface-part-ii.html).
 
 Cartoonist [Roz Chast](http://rozchast.com/) illustrates how scary a remote control can be with her cartoon
 ["How Grandma sees the remote"](http://www.art.com/products/p15063313199-sa-i6845922/roz-chast-how-grandma-sees-the-remote-new-yorker-cartoon.htm).
