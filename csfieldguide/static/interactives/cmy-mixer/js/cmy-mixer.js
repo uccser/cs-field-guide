@@ -120,7 +120,40 @@ $("input[name='colourCode']").click(function() {
 });
 
 
-CMY_Mixer.setColor = function(){
+/**
+ * Displays the given colour values as text and colours the coloured box
+ * _technically_ it should be CMYK since this is describing what printers do, but let's not get into that
+ */
+CMY_Mixer.writeColourBox = function(rgb_colour, cmy_colour) {
+  var font_colour = getFontColour(rgb_colour[0], rgb_colour[1], rgb_colour[2]);
+  var colour_text;
+  if (!useHex) {
+    colour_text = 'cmy(' +
+      cmy_colour[0] + ',' +
+      cmy_colour[1] + ',' +
+      cmy_colour[2] + ')';
+  } else {
+    colour_text = 'cmy(' +
+      '0x' + decimalToHex(cmy_colour[0], true) + ',' +
+      '0x' + decimalToHex(cmy_colour[1], true) + ',' +
+      '0x' + decimalToHex(cmy_colour[2], true) + ')';
+  }
+  $('#interactive-cmy-mixer-colour-code')
+    .text(colour_text)
+    .css('color', font_colour);
+
+  var color = 'rgb(' +
+    rgb_colour[0] + ',' +
+    rgb_colour[1] + ',' +
+    rgb_colour[2] + ')';
+
+  // Fill the color box.
+  CMY_Mixer.result.style.background = color;
+  CMY_Mixer.result.style.color = color;
+}
+
+
+CMY_Mixer.setColor = function() {
   // Get the slider values,
   var cyan_val = CMY_Mixer.sliders[0].noUiSlider.get();
   var magenta_val = CMY_Mixer.sliders[1].noUiSlider.get();
@@ -135,33 +168,7 @@ CMY_Mixer.setColor = function(){
     cmy_as_rgb = cmy_to_rgb(cyan_val, magenta_val, yellow_val);
   }
 
-  // Display colour as text in coloured box
-  // _technically_ it should be CMYK since this is describing what printers do, but let's not get into that
-  var font_colour = getFontColour(cmy_as_rgb[0], cmy_as_rgb[1], cmy_as_rgb[2]);
-  var colour_text;
-  if (!useHex) {
-    colour_text = 'cmy(' +
-      cyan_val + ',' +
-      magenta_val + ',' +
-      yellow_val + ')';
-  } else {
-    colour_text = 'cmy(' +
-      decimalToHex(cyan_val, true) + ',' +
-      decimalToHex(magenta_val, true) + ',' +
-      decimalToHex(yellow_val, true) + ')';
-  }
-  $('#interactive-cmy-mixer-colour-code')
-    .text(colour_text)
-    .css('color', font_colour);
-
-  var color = 'rgb(' +
-    cmy_as_rgb[0] + ',' +
-    cmy_as_rgb[1] + ',' +
-    cmy_as_rgb[2] + ')';
-
-  // Fill the color box.
-  CMY_Mixer.result.style.background = color;
-  CMY_Mixer.result.style.color = color;
+  CMY_Mixer.writeColourBox(cmy_as_rgb, [cyan_val, magenta_val, yellow_val]);
 
   // Set text for labels
   $('#interactive-cmy-mixer-cyan-value').val(CMY_Mixer.sliders[0].noUiSlider.get());
@@ -183,29 +190,7 @@ CMY_Mixer.setColorFromInputBox = function() {
   }
   var cmy_as_rgb = cmy_to_rgb(cyan_val, magenta_val, yellow_val);
   
-  if (!useHex) {
-    // Display colour as text in coloured box
-    // There is no equivalent hex representation of colour in CMY
-    var font_colour = getFontColour(cmy_as_rgb[0], cmy_as_rgb[1], cmy_as_rgb[2]);
-    var colour_text = 'cmy(' +
-      cyan_val + ',' +
-      magenta_val + ',' +
-      yellow_val + ')';
-    $('#interactive-cmy-mixer-colour-code')
-      .text(colour_text)
-      .css('color', font_colour);
-  } else {
-    $('#interactive-cmy-mixer-colour-code').text('');
-  }
-
-  var color = 'rgb(' +
-    cmy_as_rgb[0] + ',' +
-    cmy_as_rgb[1] + ',' +
-    cmy_as_rgb[2] + ')';
-
-	// Fill the color box.
-	CMY_Mixer.result.style.background = color;
-	CMY_Mixer.result.style.color = color;
+  CMY_Mixer.writeColourBox(cmy_as_rgb, [cyan_val, magenta_val, yellow_val]);
 
   // Set slider handle position
   CMY_Mixer.sliders[0].noUiSlider.set(cyan_val);
