@@ -135,21 +135,24 @@ CMY_Mixer.setColor = function(){
     cmy_as_rgb = cmy_to_rgb(cyan_val, magenta_val, yellow_val);
   }
 
+  // Display colour as text in coloured box
+  // _technically_ it should be CMYK since this is describing what printers do, but let's not get into that
+  var font_colour = getFontColour(cmy_as_rgb[0], cmy_as_rgb[1], cmy_as_rgb[2]);
+  var colour_text;
   if (!useHex) {
-    // Display colour as text in coloured box
-    // There is no equivalent hex representation of colour in CMY
-    // _technically_ it should be CMYK since this is describing what printers do, but let's not get into that
-    var font_colour = getFontColour(cmy_as_rgb[0], cmy_as_rgb[1], cmy_as_rgb[2]);
-    var colour_text = 'cmy(' +
+    colour_text = 'cmy(' +
       cyan_val + ',' +
       magenta_val + ',' +
       yellow_val + ')';
-    $('#interactive-cmy-mixer-colour-code')
-      .text(colour_text)
-      .css('color', font_colour);
-    } else {
-      $('#interactive-cmy-mixer-colour-code').text('');
-    }
+  } else {
+    colour_text = 'cmy(' +
+      decimalToHex(cyan_val, true) + ',' +
+      decimalToHex(magenta_val, true) + ',' +
+      decimalToHex(yellow_val, true) + ')';
+  }
+  $('#interactive-cmy-mixer-colour-code')
+    .text(colour_text)
+    .css('color', font_colour);
 
   var color = 'rgb(' +
     cmy_as_rgb[0] + ',' +
@@ -218,8 +221,15 @@ function cmy_to_rgb(c, m, y) {
   return [r,g,b];
 }
 
-function decimalToHex(d) {
+/**
+ * Returns a string of the given decimal number in hexadecimal
+ * If enforceTwoChar is true and the resulting hex is just one character, a 0 will be prepended
+ */
+function decimalToHex(d, enforceTwoChar=false) {
   var hex = d.toString(16).toUpperCase();
+  if (enforceTwoChar && hex.length == 1) {
+    hex = '0' + hex;
+  }
   return hex;
 }
 
