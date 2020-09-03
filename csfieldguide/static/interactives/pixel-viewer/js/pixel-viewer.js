@@ -29,36 +29,36 @@ this.isGreyscale = false; // Global to keep track of whether greyscale is on
 
 // Names of images to be included in picture picker
 this.images = {
-    "coloured-roof-small.png": {
-        "image_position": {
-            "top": 1037,
-            "left": 794,
-        }
-    },
-    "lake.png": {
-        "image_position": {
-            "top": 3231,
-            "left": 4523,
-        }
-    },
-    "alley.jpg": {},
-    "arnold.jpg": {},
-    "bike.jpg": {},
-    "boards.jpg": {},
-    "dark_clock.jpg": {},
-    "dark.jpg": {},
-    "duck.jpg": {
-        "image_position": {
-            "top": 1121,
-            "left": 2919,
-        }
-    },
-    "fence.jpg": {},
-    "knight.png": {},
-    "roof.jpg": {},
-    "tuba.jpg": {},
-    "words_zoom.png": {},
-    "words.png": {},
+  "coloured-roof-small.png": {
+    "image_position": {
+      "top": 1037,
+      "left": 794,
+    }
+  },
+  "alley.jpg": {},
+  "arnold.jpg": {},
+  "bike.jpg": {},
+  "boards.jpg": {},
+  "dark_clock.jpg": {},
+  "dark.jpg": {},
+  "duck.jpg": {
+    "image_position": {
+      "top": 1121,
+      "left": 2919,
+    }
+  },
+  "fence.jpg": {},
+  "knight.png": {},
+  "lake.png": {
+    "image_position": {
+      "top": 3231,
+      "left": 4523,
+    }
+  },
+  "roof.jpg": {},
+  "tuba.jpg": {},
+  "words_zoom.png": {},
+  "words.png": {},
 }
 this.available_images = Object.keys(images)
 // Default image to load
@@ -134,14 +134,14 @@ $( document ).ready(function() {
 
   // Check if custom zoom parameters are given, otherwise default to 0,0.
     try {
-        image_position_top = images[image_filename]["image_position"]["top"];
+      image_position_top = images[image_filename]["image_position"]["top"];
     } catch (e) {
-        image_position_top = 0;
+      image_position_top = 0;
     }
     try {
-        image_position_left = images[image_filename]["image_position"]["left"];
+      image_position_left = images[image_filename]["image_position"]["left"];
     } catch (e) {
-        image_position_left = 0;
+      image_position_left = 0;
     }
     original_image_position_top = image_position_top * -1;
     scroller_position_top = image_position_top;
@@ -156,20 +156,20 @@ $( document ).ready(function() {
   } else {
     $("#pixel-viewer-interactive-original-image").show();
     $("#pixel-viewer-interactive-original-image").delay(1000).animate(
-        {
-            height: contentHeight * 0.8,
-            overflow: "hidden",
-            top: original_image_position_top.toString() + 'px',
-            left: original_image_position_left.toString() + 'px',
-            margin: 0
-        },
-        4000,
-        function() {
-            // Animation complete
-            scroller.scrollTo(scroller_position_left, scroller_position_top);
-            $("#pixel-viewer-interactive-loader").hide();
-            $("#pixel-viewer-interactive-buttons").css({opacity: 0, visibility: "visible"}).animate({opacity: 1}, 'slow');
-        }
+      {
+        height: contentHeight * 0.8,
+        overflow: "hidden",
+        top: original_image_position_top.toString() + 'px',
+        left: original_image_position_left.toString() + 'px',
+        margin: 0
+      },
+      4000,
+      function() {
+        // Animation complete
+        scroller.scrollTo(scroller_position_left, scroller_position_top);
+        $("#pixel-viewer-interactive-loader").hide();
+        $("#pixel-viewer-interactive-buttons").css({opacity: 0, visibility: "visible"}).animate({opacity: 1}, 'slow');
+      }
     );
     $("#pixel-viewer-interactive-original-image").fadeOut(300);
   }
@@ -913,43 +913,43 @@ function createPicturePicker(){
 }
 
 function loadImage(src){
-    //  Prevent any non-image file type from being read.
-    if(!src.type.match(/image.*/)){
-        console.log("The dropped file is not an image: ", src.type);
-        return;
-    }
+  //  Prevent any non-image file type from being read.
+  if(!src.type.match(/image.*/)){
+    console.log("The dropped file is not an image: ", src.type);
+    return;
+  }
   // Remove any noise added
   salt = null
 
-    //  Create our FileReader and run the results through the render function.
-    var reader = new FileReader();
-    reader.onload = function(e){
-        load_resize_image(e.target.result);
-    };
-    reader.readAsDataURL(src);
+  //  Create our FileReader and run the results through the render function.
+  var reader = new FileReader();
+  reader.onload = function(e){
+    load_resize_image(e.target.result);
+  };
+  reader.readAsDataURL(src);
 }
 
 function loadImageDialog(input) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-        reader.onload = function (e) {
-            load_resize_image(e.target.result);
-        }
-        reader.readAsDataURL(input.files[0]);
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+    reader.onload = function (e) {
+      load_resize_image(e.target.result);
     }
+    reader.readAsDataURL(input.files[0]);
+  }
 }
 
 $( "#pixel-viewer-interactive-menu-toggle" ).click(function() {
-    $( "#pixel-viewer-interactive-settings" ).toggleClass('menu-offscreen');
+  $( "#pixel-viewer-interactive-settings" ).toggleClass('menu-offscreen');
 });
 
 $('#pixel-viewer-interactive-show-pixel-fill').change(function() {
-    scroller.finishPullToRefresh();
+  scroller.finishPullToRefresh();
 });
 
 $("input[name='colourCode']").click(function() {
-    colour_code_rep = $("input[name='colourCode']:checked").val()
-    scroller.finishPullToRefresh();
+  colour_code_rep = $("input[name='colourCode']:checked").val()
+  scroller.finishPullToRefresh();
 })
 
 // Caches data about the image
@@ -979,127 +979,127 @@ function get_pixel_data(col, row){
 }
 
 function load_resize_image(src, user_upload=true){
-    var image = new Image();
-    image.onload = function(){
-        var canvas = document.getElementById("pixel-viewer-interactive-source-canvas");
-        if(image.height > MAX_HEIGHT) {
-            image.width *= MAX_HEIGHT / image.height;
-            image.height = MAX_HEIGHT;
-        }
-        var ctx = canvas.getContext("2d");
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        canvas.width = image.width;
-        canvas.height = image.height;
-        init_cache(image.width, image.height);
-        ctx.drawImage(image, 0, 0, image.width, image.height);
-        scroller.scrollTo(0,0);
-        if(user_upload){
-          var text = gettext("Your image has been resized for this interactive to " + image.width + " pixels wide and " + image.height + " pixels high.");
-          canvas.style.display = "inline-block";
-        }
-        else {
-          var text = "";
-          canvas.style.display = "hidden";
-        }
-        $( '#pixel-viewer-interactive-resize-values' ).text(text)
-    };
-    image.crossOrigin = 'anonymous'
-    image.src = src;
+  var image = new Image();
+  image.onload = function(){
+    var canvas = document.getElementById("pixel-viewer-interactive-source-canvas");
+    if(image.height > MAX_HEIGHT) {
+      image.width *= MAX_HEIGHT / image.height;
+      image.height = MAX_HEIGHT;
+    }
+    var ctx = canvas.getContext("2d");
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    canvas.width = image.width;
+    canvas.height = image.height;
+    init_cache(image.width, image.height);
+    ctx.drawImage(image, 0, 0, image.width, image.height);
+    scroller.scrollTo(0,0);
+    if(user_upload){
+      var text = gettext("Your image has been resized for this interactive to " + image.width + " pixels wide and " + image.height + " pixels high.");
+      canvas.style.display = "inline-block";
+    }
+    else {
+    var text = "";
+    canvas.style.display = "hidden";
+    }
+    $( '#pixel-viewer-interactive-resize-values' ).text(text)
+  };
+  image.crossOrigin = 'anonymous'
+  image.src = src;
 }
 
 var target = document.body;
 target.addEventListener("dragover", function(e){e.preventDefault();}, true);
 target.addEventListener("drop", function(e){
-    e.preventDefault();
-    loadImage(e.dataTransfer.files[0]);
+  e.preventDefault();
+  loadImage(e.dataTransfer.files[0]);
 }, true);
 
 
 // Canvas renderer
 var render = function(left, top, zoom) {
-    // Full clearing
-    context.clearRect(0, 0, canvasWidth, canvasHeight);
+  // Full clearing
+  context.clearRect(0, 0, canvasWidth, canvasHeight);
 
-    // Use tiling
-    tiling.setup(canvasWidth, canvasHeight, contentWidth, contentHeight, CELL_SIZE, CELL_SIZE);
-    tiling.render(left, top, zoom, paint);
+  // Use tiling
+  tiling.setup(canvasWidth, canvasHeight, contentWidth, contentHeight, CELL_SIZE, CELL_SIZE);
+  tiling.render(left, top, zoom, paint);
 
-    // Variables to be calculated once per draw
-    // Calculate opacity of labels
-    text_opacity = zoom - 0.8
+  // Variables to be calculated once per draw
+  // Calculate opacity of labels
+  text_opacity = zoom - 0.8
 
-    if (text_opacity >= 1) {
-        text_opacity = 1;
-    } else if (text_opacity <= 0) {
-        text_opacity = 0;
-    }
+  if (text_opacity >= 1) {
+    text_opacity = 1;
+  } else if (text_opacity <= 0) {
+    text_opacity = 0;
+  }
 };
 
 // Initialize Scroller
 this.scroller = new Scroller(render, {
-    zooming: true,
-    bouncing: false,
-    locking: false,
-    animating: false,
-    paging: false,
-    snapping: false,
-    minZoom: 0.001,
-    maxZoom: 4
+  zooming: true,
+  bouncing: false,
+  locking: false,
+  animating: false,
+  paging: false,
+  snapping: false,
+  minZoom: 0.001,
+  maxZoom: 4
 });
 
 // Cell Paint Logic
 var paint = function(row, col, left, top, width, height, zoom) {
-    // Get data for pixel
-    var show_pixel_fill = document.getElementById('pixel-viewer-interactive-show-pixel-fill').checked;
-    var pixelData;
-    if (filter != null){
-      pixelData = filter(col, row);
-    }
-    else {
-      pixelData = get_pixel_data(col, row);
-    }
-    if (show_pixel_fill) {
-      context.fillStyle = 'rgb('+pixelData[0]+','+pixelData[1]+','+pixelData[2]+')';
-      context.fillRect(Math.round(left), Math.round(top), Math.round(width)+1, Math.round(height)+1);
+  // Get data for pixel
+  var show_pixel_fill = document.getElementById('pixel-viewer-interactive-show-pixel-fill').checked;
+  var pixelData;
+  if (filter != null){
+    pixelData = filter(col, row);
+  }
+  else {
+    pixelData = get_pixel_data(col, row);
+  }
+  if (show_pixel_fill) {
+    context.fillStyle = 'rgb('+pixelData[0]+','+pixelData[1]+','+pixelData[2]+')';
+    context.fillRect(Math.round(left), Math.round(top), Math.round(width)+1, Math.round(height)+1);
+  } else {
+    context.strokeRect(Math.round(left), Math.round(top), Math.round(width)+1, Math.round(height)+1);
+  }
+
+  // If text opacity is greater than 0, then display RGB values
+if (text_opacity > 0) {
+    if (!show_pixel_fill) {
+      context.fillStyle = "rgba(0, 0, 0, " + text_opacity + ")";
+    } else if ((((pixelData[0] / 255) + (pixelData[1] / 255) + (pixelData[2] / 255)) / 3) < 0.85) {
+      context.fillStyle = "rgba(255, 255, 255, " + text_opacity + ")";
     } else {
-      context.strokeRect(Math.round(left), Math.round(top), Math.round(width)+1, Math.round(height)+1);
+      context.fillStyle = "rgba(110, 110, 110, " + text_opacity + ")";
     }
 
-    // If text opacity is greater than 0, then display RGB values
-    if (text_opacity > 0) {
-        if (!show_pixel_fill) {
-            context.fillStyle = "rgba(0, 0, 0, " + text_opacity + ")";
-        } else if ((((pixelData[0] / 255) + (pixelData[1] / 255) + (pixelData[2] / 255)) / 3) < 0.85) {
-            context.fillStyle = "rgba(255, 255, 255, " + text_opacity + ")";
-        } else {
-            context.fillStyle = "rgba(110, 110, 110, " + text_opacity + ")";
+    // Pretty primitive text positioning
+    if (colour_code_rep == 'hex') { // Shows colour codes in #FFFFFF style
+      context.font = (10 * zoom).toFixed(2) + 'px Consolas, Courier New, monospace';
+      r = pixelData[0];
+      g = pixelData[1];
+      b = pixelData[2];
+      hex_string = rgbToHex(r, g, b);
+      context.fillText(hex_string, left + (4 * zoom), top + (14 * zoom) + (cell_line_height * zoom));
+    } else if (colour_code_rep == 'brightness') {
+      context.font = (10 * zoom).toFixed(2) + 'px Consolas, Courier New, monospace';
+      brightness = Math.round(average(pixelData));
+      context.fillText(brightness, left + (16 * zoom), top + (14 * zoom) + (cell_line_height * zoom));
+    } else {
+      context.font = (14 * zoom).toFixed(2) + 'px Consolas, Courier New, monospace';
+      var cell_lines = cell_text.split('\n');
+      for (var i = 0; i < cell_lines.length; i++) {
+        if (colour_code_rep == 'rgb-hex') { // Shows colour codes in RGB using Hexadecimal
+          value = componentToHex(pixelData[i])
+        } else { // Shows colour codes in RGB using Decimal
+          value = pixelData[i]
         }
-
-        // Pretty primitive text positioning
-        if (colour_code_rep == 'hex') { // Shows colour codes in #FFFFFF style
-          context.font = (10 * zoom).toFixed(2) + 'px Consolas, Courier New, monospace';
-          r = pixelData[0];
-          g = pixelData[1];
-          b = pixelData[2];
-          hex_string = rgbToHex(r, g, b);
-          context.fillText(hex_string, left + (4 * zoom), top + (14 * zoom) + (cell_line_height * zoom));
-        } else if (colour_code_rep == 'brightness') {
-          context.font = (10 * zoom).toFixed(2) + 'px Consolas, Courier New, monospace';
-          brightness = Math.round(average(pixelData));
-          context.fillText(brightness, left + (16 * zoom), top + (14 * zoom) + (cell_line_height * zoom));
-        } else {
-          context.font = (14 * zoom).toFixed(2) + 'px Consolas, Courier New, monospace';
-          var cell_lines = cell_text.split('\n');
-          for (var i = 0; i < cell_lines.length; i++) {
-            if (colour_code_rep == 'rgb-hex') { // Shows colour codes in RGB using Hexadecimal
-              value = componentToHex(pixelData[i])
-            } else { // Shows colour codes in RGB using Decimal
-              value = pixelData[i]
-            }
-            context.fillText(cell_lines[i] + value, left + (6 * zoom), top + (14 * zoom) + (i * cell_line_height * zoom));
-          }
-        }
+        context.fillText(cell_lines[i] + value, left + (6 * zoom), top + (14 * zoom) + (i * cell_line_height * zoom));
+      }
     }
+  }
 };
 
 // Taken from https://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb
@@ -1117,12 +1117,12 @@ scroller.setPosition(rect.left + container.clientLeft, rect.top + container.clie
 
 // Reflow handling
 var reflow = function() {
-    canvasWidth = container.clientWidth;
-    canvasHeight = container.clientHeight;
-    // Sync current dimensions with canvas
-    content.width = canvasWidth;
-    content.height = canvasHeight;
-    scroller.setDimensions(canvasWidth, canvasHeight, contentWidth, contentHeight);
+  canvasWidth = container.clientWidth;
+  canvasHeight = container.clientHeight;
+  // Sync current dimensions with canvas
+  content.width = canvasWidth;
+  content.height = canvasHeight;
+  scroller.setDimensions(canvasWidth, canvasHeight, contentWidth, contentHeight);
 };
 
 // Set zoom to see numbers if no colour fill
@@ -1133,94 +1133,94 @@ if (getUrlParameter('no-pixel-fill')) {
 window.addEventListener("resize", reflow, false);
 
 document.querySelector("#pixel-viewer-interactive-zoom-in").addEventListener("click", function() {
-    scroller.zoomBy(1.2, true);
+  scroller.zoomBy(1.2, true);
 }, false);
 
 document.querySelector("#pixel-viewer-interactive-zoom-out").addEventListener("click", function() {
-    scroller.zoomBy(0.8, true);
+  scroller.zoomBy(0.8, true);
 }, false);
 
 if ('ontouchstart' in window) {
 
-    content.addEventListener("touchstart", function(e) {
-        // Don't react if initial down happens on a form element
-        if (e.touches[0] && e.touches[0].target && e.touches[0].target.tagName.match(/input|textarea|select/i)) {
-            return;
-        }
+  content.addEventListener("touchstart", function(e) {
+    // Don't react if initial down happens on a form element
+    if (e.touches[0] && e.touches[0].target && e.touches[0].target.tagName.match(/input|textarea|select/i)) {
+      return;
+    }
 
-        scroller.doTouchStart(e.touches, e.timeStamp);
-        e.preventDefault();
-    }, false);
+    scroller.doTouchStart(e.touches, e.timeStamp);
+    e.preventDefault();
+  }, false);
 
-    document.addEventListener("touchmove", function(e) {
-        scroller.doTouchMove(e.touches, e.timeStamp, e.scale);
-    }, false);
+  document.addEventListener("touchmove", function(e) {
+    scroller.doTouchMove(e.touches, e.timeStamp, e.scale);
+  }, false);
 
-    document.addEventListener("touchend", function(e) {
-        scroller.doTouchEnd(e.timeStamp);
-    }, false);
+  document.addEventListener("touchend", function(e) {
+    scroller.doTouchEnd(e.timeStamp);
+  }, false);
 
-    document.addEventListener("touchcancel", function(e) {
-        scroller.doTouchEnd(e.timeStamp);
-    }, false);
+  document.addEventListener("touchcancel", function(e) {
+    scroller.doTouchEnd(e.timeStamp);
+  }, false);
 
 } else {
 
-    var mousedown = false;
+  var mousedown = false;
 
-    content.addEventListener("mousedown", function(e) {
-        if (e.target.tagName.match(/input|textarea|select/i)) {
-            return;
-        }
+  content.addEventListener("mousedown", function(e) {
+    if (e.target.tagName.match(/input|textarea|select/i)) {
+      return;
+    }
 
-        scroller.doTouchStart([{
-            pageX: e.pageX,
-            pageY: e.pageY
-        }], e.timeStamp);
+    scroller.doTouchStart([{
+      pageX: e.pageX,
+      pageY: e.pageY
+    }], e.timeStamp);
 
-        mousedown = true;
-    }, false);
+    mousedown = true;
+  }, false);
 
-    document.addEventListener("mousemove", function(e) {
-        if (!mousedown) {
-            return;
-        }
+  document.addEventListener("mousemove", function(e) {
+    if (!mousedown) {
+      return;
+    }
 
-        scroller.doTouchMove([{
-            pageX: e.pageX,
-            pageY: e.pageY
-        }], e.timeStamp);
+    scroller.doTouchMove([{
+      pageX: e.pageX,
+      pageY: e.pageY
+    }], e.timeStamp);
 
-        mousedown = true;
-    }, false);
+    mousedown = true;
+  }, false);
 
-    document.addEventListener("mouseup", function(e) {
-        if (!mousedown) {
-            return;
-        }
+  document.addEventListener("mouseup", function(e) {
+    if (!mousedown) {
+      return;
+    }
 
-        scroller.doTouchEnd(e.timeStamp);
+    scroller.doTouchEnd(e.timeStamp);
 
-        mousedown = false;
-    }, false);
+    mousedown = false;
+  }, false);
 
-    content.addEventListener(navigator.userAgent.indexOf("Firefox") > -1 ? "DOMMouseScroll" :  "mousewheel", function(e) {
-      // following inspired by https://deepmikoto.com/coding/1--javascript-detect-mouse-wheel-direction
-        e.preventDefault();
-        var delta;
-        var direction;
-        if (e.wheelDelta) { // will work in most cases
-            delta = e.wheelDelta / 60;
-        } else if (e.detail) { // fallback for Firefox
-            delta = -e.detail / 2;
-        }
-        direction = delta > 0 ? 'up' : 'down';
-        if (direction == 'up') {
-            scroller.zoomBy(1.2, true);
-        } else if (direction == 'down') {
-            scroller.zoomBy(0.8, true);
-        }
-    }, false);
+  content.addEventListener(navigator.userAgent.indexOf("Firefox") > -1 ? "DOMMouseScroll" :  "mousewheel", function(e) {
+  // following inspired by https://deepmikoto.com/coding/1--javascript-detect-mouse-wheel-direction
+    e.preventDefault();
+    var delta;
+    var direction;
+    if (e.wheelDelta) { // will work in most cases
+      delta = e.wheelDelta / 60;
+    } else if (e.detail) { // fallback for Firefox
+      delta = -e.detail / 2;
+    }
+    direction = delta > 0 ? 'up' : 'down';
+    if (direction == 'up') {
+      scroller.zoomBy(1.2, true);
+    } else if (direction == 'down') {
+      scroller.zoomBy(0.8, true);
+    }
+  }, false);
 
 }
 
@@ -1236,22 +1236,22 @@ function randomInt(max){
 
 function sum(array){
   return array.reduce(function(prev, curr, currI, arr){
-        return prev + curr;
+    return prev + curr;
   });
 }
 
 // From jquerybyexample.net/2012/06/get-url-parameters-using-jquery.html
 function getUrlParameter(sParam) {
-    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
-        sURLVariables = sPageURL.split('&'),
-        sParameterName,
-        i;
+  var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+      sURLVariables = sPageURL.split('&'),
+      sParameterName,
+      i;
 
-    for (i = 0; i < sURLVariables.length; i++) {
-        sParameterName = sURLVariables[i].split('=');
+  for (i = 0; i < sURLVariables.length; i++) {
+    sParameterName = sURLVariables[i].split('=');
 
-        if (sParameterName[0] === sParam) {
-            return sParameterName[1] === undefined ? true : sParameterName[1];
-        }
+    if (sParameterName[0] === sParam) {
+      return sParameterName[1] === undefined ? true : sParameterName[1];
     }
+  }
 };

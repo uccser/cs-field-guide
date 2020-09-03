@@ -2,14 +2,16 @@
 
 **Author:** Jack Morgan
 
-**Modified By:** Alasdair Smith
+**Modified By:** Alasdair Smith, Courtney Bracefield
 
 This interactive is used to create colours using RGB values.
 
-## URL Parameter
+## URL Parameters
 
-- `hex=true|false (default=false)`: if `true`, sets the interactive to display values in hexadecimal (0 - FF) rather than decimal (0 - 255).
-- `mode=pixelmania`: Forces the display of values in hexadecimal only and displays the Pixelmania logo.
+- `hex=true|false (default=false)`: If `true`, sets the interactive to display values in hexadecimal (0 - FF) rather than decimal (0 - 255).
+- `hide-selector=true|false (default=false)`: If `true`, hides the option to choose between decimal and hexadecimal notations.
+- `pixelmania`: (for Pixelmania 2020) Displays the Pixelmania logo above the title.
+- `mode=pixelmania`: (for compatibility with permanently redirected links, **avoid using**) Sets `hex=true`, `hide-selector=true` and `pixelmania`.
 
 ## Required files
 
