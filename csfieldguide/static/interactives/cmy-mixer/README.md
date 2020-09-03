@@ -6,9 +6,10 @@
 
 This interactive is used to create colours using CMY values.
 
-## URL Parameter
+## URL Parameters
 
 - `hex=true|false (default=false)`: if `true`, sets the interactive to display values in hexadecimal (0 - FF) rather than decimal (0 - 255).
+- `hide-selector=true|false (default=false)`: If `true`, hides the option to choose between decimal and hexadecimal notations.
 
 ## Required files
 
