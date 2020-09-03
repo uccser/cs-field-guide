@@ -1,29 +1,33 @@
 @import "node_modules/nouislider/distribute/nouislider";
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+@import "node_modules/bootstrap/scss/mixins";
 
 #interactive-cmy-mixer .noUi-pips {
   padding-top: 5px;
 }
+
 #interactive-cmy-mixer-container {
   display: flex;
   justify-content: space-between;
   padding-right: 1rem;
 }
+
 #interactive-cmy-mixer-result {
-  width: 22%;
 	background: rgb(127, 127, 127);
   color: rgb(127, 127, 127);
 	border: 1px solid black;
 	box-shadow: 0 0 10px;
 }
-#interactive-cmy-mixer-sliders {
-  width: 72%;
-}
+
 #interactive-cmy-mixer-sliders > div {
   padding-bottom: 5rem;
 }
+
 #interactive-cmy-mixer-sliders > div:last-child {
   padding-bottom: 3rem;
 }
+
 .interactive-cmy-mixer-slider {
   margin-top: 0.2rem;
 }
@@ -39,24 +43,34 @@
 	background: yellow;
 }
 
-/* Settings for displaying on small screens */
-@media (max-width: 259px) {
-  #interactive-cmy-mixer-container {
-    flex-direction: column;
-    padding-right: 0rem;
+#interactive-cmy-mixer-colour-code {
+  font: 1.5rem "Courier New", monospace;
+  word-break: break-word;
+}
+
+/* Settings for displaying on different sized screens */
+@include media-breakpoint-up(xl) {
+  #interactive-cmy-mixer {
+    padding: 10rem;
   }
-  #interactive-cmy-mixer-result {
-    width: 100%;
-    height: 5rem;
-    margin-bottom: 1rem;
+}
+
+@include media-breakpoint-up(lg) {
+  #interactive-cmy-mixer {
+    padding: 5rem;
   }
-  #interactive-cmy-mixer-sliders {
-    width: 100%;
+}
+
+@include media-breakpoint-up(md) {
+  #interactive-cmy-mixer {
+    padding: 2rem;
   }
-  #interactive-cmy-mixer .noUi-pips {
-    display: none;
-  }
-  #interactive-cmy-mixer-sliders > div {
-    padding-bottom: 1rem;
+}
+
+@include media-breakpoint-down(sm) {
+  // We should avoid using viewport height on mobile devices - https://chanind.github.io/javascript/2019/09/28/avoid-100vh-on-mobile-web.html
+  // Viewport height is used in the centered.html template.
+  #csfg-center-page-content {
+    height: auto !important;
   }
 }
