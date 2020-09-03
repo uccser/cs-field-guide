@@ -29,6 +29,10 @@ $(document).ready(function () {
   $("input[id='hex-colour-code']").prop('checked', useHex);
   $("input[id='dec-colour-code']").prop('checked', !useHex);
 
+  if ((urlParameters.getUrlParameter('hide-selector') || 'false') == 'true') {
+    $("#numeral-system").addClass('d-none');
+  }
+
   for ( var i = 0; i < CMY_Mixer.sliders.length; i++ ) {
     noUiSlider.create(CMY_Mixer.sliders[i], {
       start: Math.floor(Math.random() * CMY_Mixer.maximum),
@@ -116,7 +120,40 @@ $("input[name='colourCode']").click(function() {
 });
 
 
-CMY_Mixer.setColor = function(){
+/**
+ * Displays the given colour values as text and colours the coloured box
+ * _technically_ it should be CMYK since this is describing what printers do, but let's not get into that
+ */
+CMY_Mixer.writeColourBox = function(rgb_colour, cmy_colour) {
+  var font_colour = getFontColour(rgb_colour[0], rgb_colour[1], rgb_colour[2]);
+  var colour_text;
+  if (!useHex) {
+    colour_text = 'cmy(' +
+      cmy_colour[0] + ',' +
+      cmy_colour[1] + ',' +
+      cmy_colour[2] + ')';
+  } else {
+    colour_text = 'cmy(' +
+      '0x' + decimalToHex(cmy_colour[0], true) + ',' +
+      '0x' + decimalToHex(cmy_colour[1], true) + ',' +
+      '0x' + decimalToHex(cmy_colour[2], true) + ')';
+  }
+  $('#interactive-cmy-mixer-colour-code')
+    .text(colour_text)
+    .css('color', font_colour);
+
+  var color = 'rgb(' +
+    rgb_colour[0] + ',' +
+    rgb_colour[1] + ',' +
+    rgb_colour[2] + ')';
+
+  // Fill the color box.
+  CMY_Mixer.result.style.background = color;
+  CMY_Mixer.result.style.color = color;
+}
+
+
+CMY_Mixer.setColor = function() {
   // Get the slider values,
   var cyan_val = CMY_Mixer.sliders[0].noUiSlider.get();
   var magenta_val = CMY_Mixer.sliders[1].noUiSlider.get();
@@ -130,14 +167,8 @@ CMY_Mixer.setColor = function(){
   } else {
     cmy_as_rgb = cmy_to_rgb(cyan_val, magenta_val, yellow_val);
   }
-	var color = 'rgb(' +
-		cmy_as_rgb[0] + ',' +
-		cmy_as_rgb[1] + ',' +
-		cmy_as_rgb[2] + ')';
 
-	// Fill the color box.
-	CMY_Mixer.result.style.background = color;
-	CMY_Mixer.result.style.color = color;
+  CMY_Mixer.writeColourBox(cmy_as_rgb, [cyan_val, magenta_val, yellow_val]);
 
   // Set text for labels
   $('#interactive-cmy-mixer-cyan-value').val(CMY_Mixer.sliders[0].noUiSlider.get());
@@ -158,15 +189,8 @@ CMY_Mixer.setColorFromInputBox = function() {
     yellow_val = parseInt(yellow_val, 16);
   }
   var cmy_as_rgb = cmy_to_rgb(cyan_val, magenta_val, yellow_val);
-
-	var color = 'rgb(' +
-		cmy_as_rgb[0] + ',' +
-		cmy_as_rgb[1] + ',' +
-		cmy_as_rgb[2] + ')';
-
-	// Fill the color box.
-	CMY_Mixer.result.style.background = color;
-	CMY_Mixer.result.style.color = color;
+  
+  CMY_Mixer.writeColourBox(cmy_as_rgb, [cyan_val, magenta_val, yellow_val]);
 
   // Set slider handle position
   CMY_Mixer.sliders[0].noUiSlider.set(cyan_val);
@@ -182,7 +206,27 @@ function cmy_to_rgb(c, m, y) {
   return [r,g,b];
 }
 
-function decimalToHex(d) {
+/**
+ * Returns a string of the given decimal number in hexadecimal
+ * If enforceTwoChar is true and the resulting hex is just one character, a 0 will be prepended
+ */
+function decimalToHex(d, enforceTwoChar=false) {
   var hex = d.toString(16).toUpperCase();
+  if (enforceTwoChar && hex.length == 1) {
+    hex = '0' + hex;
+  }
   return hex;
+}
+
+/**
+ * Determines what the font colour of the hex/rgb code should be
+ * based on the background colour of the box.
+ */
+function getFontColour(r, g, b) {
+  // http://www.w3.org/TR/AERT#color-contrast
+  var brightness = Math.round(((parseInt(r) * 299) +
+                      (parseInt(g) * 587) +
+                      (parseInt(b) * 114)) / 1000);
+  var font_colour = (brightness > 125) ? 'black' : 'white';
+  return font_colour
 }

@@ -57,7 +57,7 @@ urlpatterns = [
         "pixelmania-2",
         RedirectView.as_view(
             permanent=True,
-            url="interactives/centered/rgb-mixer/?mode=pixelmania"
+            url="interactives/centered/rgb-mixer/?hex=true&hide-selector=true&pixelmania"
         ),
     ),
     path(
