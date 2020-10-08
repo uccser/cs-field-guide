@@ -24,6 +24,9 @@ const TIME_SCALERS = {
   'centuries': Mathjs.divide(1, 3155760000),
 };
 
+const DIVISOR_LIMIT = Mathjs.bignumber('10000000000000000');                 //10^16
+const STEP_LIMIT    = Mathjs.bignumber('100000000000000000000000000000000'); //10^32
+
 
 $(document).ready(function() {
   var complexity = $('input[name=complexity]:checked').prop('id');
@@ -32,43 +35,45 @@ $(document).ready(function() {
   var speed = $('#speed').val();
   var processors = $('#processors').val();
   var timeUnits = $('input[name=time]:checked').prop('id');
-  updateData();
+  if (inputIsValid(n, speed, processors, complexity)) {
+    updateData();
+  }
 
   $('input[name=complexity]').click(function() {
     complexity = $('input[name=complexity]:checked').prop('id');
     chosenComplexityText = COMPLEXITY_TEXT[complexity];
     $('#complexity-chosen').html(chosenComplexityText);
-    if (inputIsValid(n, speed, processors)) {
+    if (inputIsValid(n, speed, processors, complexity)) {
       updateData();
     }
   });
   $('input[name=result-form]').click(function() {
     resultForm = $('input[name=result-form]:checked').prop('id');
-    if (inputIsValid(n, speed, processors)) {
+    if (inputIsValid(n, speed, processors, complexity)) {
       updateData();
     }
   });
   $('#n-items').on('input', function() {
     n = $('#n-items').val();
-    if (inputIsValid(n, speed, processors)) {
+    if (inputIsValid(n, speed, processors, complexity)) {
       updateData();
     }
   });
   $('#speed').on('input', function() {
     speed = $('#speed').val();
-    if (inputIsValid(n, speed, processors)) {
+    if (inputIsValid(n, speed, processors, complexity)) {
       updateData();
     }
   });
   $('#processors').on('input', function() {
     processors = $('#processors').val();
-    if (inputIsValid(n, speed, processors)) {
+    if (inputIsValid(n, speed, processors, complexity)) {
       updateData();
     }
   });
   $('input[name=time]').click(function() {
     timeUnits = $('input[name=time]:checked').prop('id');
-    if (inputIsValid(n, speed, processors)) {
+    if (inputIsValid(n, speed, processors, complexity)) {
       updateData();
     }
   });
@@ -113,8 +118,33 @@ function calculateTimeTaken(complexity, resultForm, n, speed, processors, timeUn
   processors = Mathjs.bignumber(Math.round(processors));
   $('#processors').val(processors);
   speed = Mathjs.bignumber(speed);
+  $('#speed').val(speed);
+  var steps = multiplyComplexity(n, complexity);
+
+  var denominator = Mathjs.multiply(speed, processors);
+  var timeTaken = Mathjs.divide(steps, denominator);
+
+  var timeScale = Mathjs.bignumber(TIME_SCALERS[timeUnits])
+  timeTaken = Mathjs.multiply(timeTaken, timeScale);
+
+  if (resultForm == 'scientific') {
+    timeTaken = Mathjs.format(Mathjs.bignumber(timeTaken), {notation: 'exponential', precision: 3});
+  } else {
+    timeTaken = Mathjs.format(Mathjs.bignumber(timeTaken), {notation: 'fixed', precision: 2});
+      // If there are no significant decimal places don't show any decimal places (non scientific mode only)
+    if (timeTaken % 1 == 0) {
+      timeTaken = Mathjs.format(Mathjs.bignumber(timeTaken), {notation: 'fixed', precision: 0});
+    }
+  }
+
+  return timeTaken;
+}
+
+
+/** Multiplies the value of n with the given complexity value.
+ * Returns the number of steps required to run on n items */
+function multiplyComplexity(n, complexity) {
   var steps;
-  
   if (complexity == 'log') {
     steps = Math.ceil(Mathjs.log(n, 2));
   } else if (complexity == 'linear') {
@@ -141,67 +171,75 @@ function calculateTimeTaken(complexity, resultForm, n, speed, processors, timeUn
     steps = Mathjs.factorial(n);
   }
 
-  var denominator = Mathjs.multiply(speed, processors);
-  var timeTaken = Mathjs.divide(steps, denominator);
-
-  var timeScale = Mathjs.bignumber(TIME_SCALERS[timeUnits])
-  timeTaken = Mathjs.multiply(timeTaken, timeScale);
-
-  if (resultForm == 'scientific') {
-    timeTaken = Mathjs.format(Mathjs.bignumber(timeTaken), {notation: 'exponential', precision: 3});
-  } else {
-    timeTaken = Mathjs.format(Mathjs.bignumber(timeTaken), {notation: 'fixed', precision: 2});
-      // If there are no significant decimal places don't show any decimal places (non scientific mode only)
-    if (timeTaken % 1 == 0) {
-      timeTaken = Mathjs.format(Mathjs.bignumber(timeTaken), {notation: 'fixed', precision: 0});
-    }
-  }
-
-  return timeTaken;
+  return steps;
 }
 
 
 /** Checks if the user input is valid */
-function inputIsValid(n, speed, processors) {
+function inputIsValid(n, speed, processors, complexity) {
   isValid = true;
 
   // validation for number of items
   nItems = $('#n-items');
-  nItemsErrorMsg = $('#n-items-input-error');
-  if (n < 1 || n > 1000 || isNaN(n)) {
+  nItemsInvalidMsg = $('#n-items-input-invalid');
+  nItemsTooBigMsg = $('#n-items-input-too-big');
+  if (isNaN(n) || n < 1 || Mathjs.smaller(STEP_LIMIT, multiplyComplexity(n, complexity))) {
     nItems.addClass('is-invalid');
-    nItemsErrorMsg.removeClass('d-none');
     isValid = false;
+    if (isNaN(n) || n < 1) {
+      nItemsInvalidMsg.removeClass('d-none');
+      nItemsTooBigMsg.addClass('d-none');
+    } else {
+      nItemsTooBigMsg.removeClass('d-none');
+      nItemsInvalidMsg.addClass('d-none');
+    }
     $('#output').val('');
-  } else if ((1 <= n <= 1000) && !nItemsErrorMsg.hasClass('d-none')) {
+  } else {
     nItems.removeClass('is-invalid');
-    nItemsErrorMsg.addClass('d-none');
+    nItemsTooBigMsg.addClass('d-none');
+    nItemsInvalidMsg.addClass('d-none');
   }
 
   // validation for speed
   speedInput = $('#speed');
-  speedErrorMsg = $('#speed-input-error');
-  if (speed <= 0 || speed > 1000000 || isNaN(speed)) {
+  speedInvalidMsg = $('#speed-input-invalid');
+  speedTooBigMsg = $('#speed-input-too-big');
+  if (isNaN(speed) || speed <= 0 || Mathjs.smaller(DIVISOR_LIMIT, Mathjs.bignumber(speed))) {
     speedInput.addClass('is-invalid');
-    speedErrorMsg.removeClass('d-none');
     isValid = false;
+    if (isNaN(speed) || speed <= 0) {
+      speedInvalidMsg.removeClass('d-none');
+      speedTooBigMsg.addClass('d-none');
+    } else {
+      speedTooBigMsg.removeClass('d-none');
+      speedInvalidMsg.addClass('d-none');
+    }
     $('#output').val('');
-  } else if (speed > 0 && !speedErrorMsg.hasClass('d-none')) {
+  } else {
     speedInput.removeClass('is-invalid');
-    speedErrorMsg.addClass('d-none');
+    speedTooBigMsg.addClass('d-none');
+    speedInvalidMsg.addClass('d-none');
   }
 
   // validation for processors
   processorsInput = $('#processors');
-  processorsErrorMsg = $('#processors-input-error');
-  if (processors < 1 || processors > 1000 || isNaN(processors)) {
+  processorsInvalidMsg = $('#processors-input-invalid');
+  processorsTooManyMsg = $('#processors-input-too-big');
+  if (isNaN(processors) || processors < 1 || Mathjs.smaller(DIVISOR_LIMIT, Mathjs.bignumber(processors))) {
     processorsInput.addClass('is-invalid');
-    processorsErrorMsg.removeClass('d-none');
     isValid = false;
+    if (isNaN(processors) || processors < 1) {
+      processorsInvalidMsg.removeClass('d-none');
+      processorsTooManyMsg.addClass('d-none');
+    } else {
+      processorsTooManyMsg.removeClass('d-none');
+      processorsInvalidMsg.addClass('d-none');
+    }
     $('#output').val('');
-  } else if (processors > 0 && !processorsErrorMsg.hasClass('d-none')) {
+  } else {
     processorsInput.removeClass('is-invalid');
-    processorsErrorMsg.addClass('d-none');
+    processorsTooManyMsg.addClass('d-none');
+    processorsInvalidMsg.addClass('d-none');
   }
 
   return isValid;
