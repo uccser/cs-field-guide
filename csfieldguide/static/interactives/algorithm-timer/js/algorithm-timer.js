@@ -35,6 +35,8 @@ $(document).ready(function() {
   var speed = $('#speed').val();
   var processors = $('#processors').val();
   var timeUnits = $('input[name=time]:checked').prop('id');
+  startingComplexityText = COMPLEXITY_TEXT[complexity];
+  $('#complexity-chosen').html(startingComplexityText);
   if (inputIsValid(n, speed, processors, complexity)) {
     updateData();
   }
@@ -119,7 +121,7 @@ function calculateTimeTaken(complexity, resultForm, n, speed, processors, timeUn
   $('#processors').val(processors);
   speed = Mathjs.bignumber(speed);
   $('#speed').val(speed);
-  var steps = multiplyComplexity(n, complexity);
+  var steps = calculateSteps(n, complexity);
 
   var denominator = Mathjs.multiply(speed, processors);
   var timeTaken = Mathjs.divide(steps, denominator);
@@ -141,9 +143,8 @@ function calculateTimeTaken(complexity, resultForm, n, speed, processors, timeUn
 }
 
 
-/** Multiplies the value of n with the given complexity value.
- * Returns the number of steps required to run on n items */
-function multiplyComplexity(n, complexity) {
+/** Calculates the number of steps required, given the number of items and complexity of the algorithm. */
+function calculateSteps(n, complexity) {
   var steps;
   if (complexity == 'log') {
     steps = Math.ceil(Mathjs.log(n, 2));
@@ -183,7 +184,7 @@ function inputIsValid(n, speed, processors, complexity) {
   nItems = $('#n-items');
   nItemsInvalidMsg = $('#n-items-input-invalid');
   nItemsTooBigMsg = $('#n-items-input-too-big');
-  if (isNaN(n) || n < 1 || Mathjs.smaller(STEP_LIMIT, multiplyComplexity(n, complexity))) {
+  if (isNaN(n) || n < 1 || Mathjs.smaller(STEP_LIMIT, calculateSteps(n, complexity))) {
     nItems.addClass('is-invalid');
     isValid = false;
     if (isNaN(n) || n < 1) {
