@@ -184,7 +184,7 @@ function inputIsValid(n, speed, processors, complexity) {
   nItems = $('#n-items');
   nItemsInvalidMsg = $('#n-items-input-invalid');
   nItemsTooBigMsg = $('#n-items-input-too-big');
-  if (isNaN(n) || n < 1 || Mathjs.smaller(STEP_LIMIT, calculateSteps(n, complexity))) {
+  if (isNaN(n) || n < 1 || nTooBigGivenComplexity(n, complexity)) {
     nItems.addClass('is-invalid');
     isValid = false;
     if (isNaN(n) || n < 1) {
@@ -244,4 +244,17 @@ function inputIsValid(n, speed, processors, complexity) {
   }
 
   return isValid;
+}
+
+function nTooBigGivenComplexity(n, complexity) {
+  // With a big enough complexity, high enough values for n
+  // will freeze the interactive if we actually calculate it
+  if (complexity in ['fourth-power', 'sixth-power']) {
+    return n > 1000000
+  } else if (complexity in ['exponential', 'factorial']) {
+    return n > 1000
+  }
+  //
+  
+  return Mathjs.smaller(STEP_LIMIT, calculateSteps(n, complexity))
 }
