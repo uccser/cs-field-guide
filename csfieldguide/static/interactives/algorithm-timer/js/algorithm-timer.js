@@ -246,6 +246,9 @@ function inputIsValid(n, speed, processors, complexity) {
   return isValid;
 }
 
+
+/** Returns true if the combination of n and complexity will yield a number
+ * too high to calculate safely, false otherwise */
 function nTooBigGivenComplexity(n, complexity) {
   // With a big enough complexity, high enough values for n
   // will freeze the interactive if we actually calculate it
