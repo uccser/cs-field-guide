@@ -124,55 +124,55 @@ defhelp build 'Build or rebuild Docker images.'
 cmd_collect_static() {
   echo
   echo "Collecting static files..."
-  docker-compose exec django /docker_venv/bin/python3 ./manage.py collectstatic --no-input --clear
+  docker-compose exec -T django /docker_venv/bin/python3 ./manage.py collectstatic --no-input --clear
 }
 defhelp collect_static "Collecting static files."
 
 # Run Django compilemessages command
 cmd_compilemessages() {
   echo "Compiling message files..."
-  docker-compose exec django /docker_venv/bin/python3 ./manage.py compilemessages
-  docker-compose exec django /docker_venv/bin/python3 ./manage.py compilejsi18n
+  docker-compose exec -T django /docker_venv/bin/python3 ./manage.py compilemessages
+  docker-compose exec -T django /docker_venv/bin/python3 ./manage.py compilejsi18n
 }
 defhelp compilemessages 'Run Django compilemessages command.'
 
 # Generates the documentation (with warnings as errors)
 cmd_docs() {
   echo "Removing any existing documentation..."
-  docker-compose exec django rm -rf /cs-field-guide/docs/build/
-  docker-compose exec django mkdir /cs-field-guide/docs/build/
+  docker-compose exec -T django rm -rf /cs-field-guide/docs/build/
+  docker-compose exec -T django mkdir /cs-field-guide/docs/build/
   echo
   echo "Creating documentation..."
-  docker-compose exec django /docker_venv/bin/sphinx-build -W /cs-field-guide/docs/source/ /cs-field-guide/docs/build/
+  docker-compose exec -T django /docker_venv/bin/sphinx-build -W /cs-field-guide/docs/source/ /cs-field-guide/docs/build/
 }
 defhelp docs 'Generate documentation.'
 
 # Run Django makemessages command
 cmd_makemessages() {
   echo "Creating message files..."
-  docker-compose exec django /docker_venv/bin/python3 ./manage.py makemessages -l en
-  docker-compose exec django /docker_venv/bin/python3 ./manage.py makemessages --ignore=build/* -d djangojs
+  docker-compose exec -T django /docker_venv/bin/python3 ./manage.py makemessages -l en
+  docker-compose exec -T django /docker_venv/bin/python3 ./manage.py makemessages --ignore=build/* -d djangojs
 }
 defhelp makemessages 'Run Django makemessages command.'
 
 # Run Node make_interactive_thumbnails command
 cmd_make_interactive_thumbnails() {
   echo "Creating interactive thumbnails..."
-  docker-compose exec nginx node make-interactive-thumbnails.js
+  docker-compose exec -T nginx node make-interactive-thumbnails.js
 }
 defhelp make_interactive_thumbnails 'Run Node make-interactive-thumbnails.js script.'
 
 # Run Django makemigrations command
 cmd_makemigrations() {
   echo "Creating database migrations..."
-  docker-compose exec django /docker_venv/bin/python3 ./manage.py makemigrations --no-input
+  docker-compose exec -T django /docker_venv/bin/python3 ./manage.py makemigrations --no-input
 }
 defhelp makemigrations 'Run Django makemigrations command.'
 
 # Run Django migrate command
 cmd_migrate() {
   echo "Applying database migrations..."
-  docker-compose exec django /docker_venv/bin/python3 ./manage.py migrate
+  docker-compose exec -T django /docker_venv/bin/python3 ./manage.py migrate
 }
 defhelp migrate 'Run Django migrate command.'
 
@@ -185,14 +185,14 @@ defhelp reboot_django 'Reboot Django Docker container.'
 
 # Run shell
 cmd_shell() {
-  docker-compose exec django bash
+  docker-compose exec -T django bash
 }
 defhelp shell "Open shell to Django folder."
 
 # Build static files
 cmd_static() {
   echo "Building static files..."
-  docker-compose exec nginx gulp build
+  docker-compose exec -T nginx gulp build
   cmd_compilemessages
 }
 defhelp static 'Build static files.'
@@ -200,7 +200,7 @@ defhelp static 'Build static files.'
 # Build production static files
 cmd_static_prod() {
   echo "Building production static files..."
-  docker-compose exec nginx gulp build --production
+  docker-compose exec -T nginx gulp build --production
   cmd_compilemessages
 }
 defhelp static_prod 'Build production static files.'
@@ -208,18 +208,18 @@ defhelp static_prod 'Build production static files.'
 # Run Django command rebuild_index
 cmd_rebuild_index() {
   echo "Rebuilding search index..."
-  docker-compose exec django /docker_venv/bin/python3 ./manage.py rebuild_index --noinput
+  docker-compose exec -T django /docker_venv/bin/python3 ./manage.py rebuild_index --noinput
 }
 defhelp rebuild_index "Run Django rebuild_index command."
 
 # Run style checks
 cmd_style() {
   echo "Running PEP8 style checker..."
-  docker-compose exec django /docker_venv/bin/flake8
+  docker-compose exec -T django /docker_venv/bin/flake8
   pep8_status=$?
   echo
   echo "Running Python docstring checker..."
-  docker-compose exec django /docker_venv/bin/pydocstyle --count --explain
+  docker-compose exec -T django /docker_venv/bin/pydocstyle --count --explain
   pydocstyle_status=$?
   ! (( pep8_status || pydocstyle_status ))
 }
@@ -228,36 +228,36 @@ defhelp style 'Run style checks.'
 # Run test suite
 cmd_test_suite() {
   echo "Running test suite..."
-  docker-compose exec django /docker_venv/bin/coverage run --rcfile=/cs-field-guide/.coveragerc ./manage.py test --settings=config.settings.testing --pattern "test_*.py" -v 3 --nomigrations
+  docker-compose exec -T django /docker_venv/bin/coverage run --rcfile=/cs-field-guide/.coveragerc ./manage.py test --settings=config.settings.testing --pattern "test_*.py" -v 3 --nomigrations
 }
 defhelp test_suite 'Run test suite with code coverage.'
 
 # Run specific test suite
 cmd_test_specific() {
   echo "Running specific test suite..."
-  docker-compose exec django /docker_venv/bin/python3 ./manage.py test --settings=config.settings.testing "${1}" -v 3 --nomigrations
+  docker-compose exec -T django /docker_venv/bin/python3 ./manage.py test --settings=config.settings.testing "${1}" -v 3 --nomigrations
 }
 defhelp test_specific 'Run specific test suite. Pass in parameter of Python test module.'
 
 # Display test coverage table
 cmd_test_coverage() {
   echo "Displaying test suite coverage..."
-  docker-compose exec django /docker_venv/bin/coverage xml -i
-  docker-compose exec django /docker_venv/bin/coverage report -m --skip-covered
+  docker-compose exec -T django /docker_venv/bin/coverage xml -i
+  docker-compose exec -T django /docker_venv/bin/coverage report -m --skip-covered
 }
 defhelp test_coverage 'Display code coverage report.'
 
 # Run test suite backwards for CI testing
 cmd_test_backwards() {
   echo "Running test suite backwards..."
-  docker-compose exec django /docker_venv/bin/python3 ./manage.py test --settings=config.settings.testing --pattern "test_*.py" --reverse -v 0 --nomigrations
+  docker-compose exec -T django /docker_venv/bin/python3 ./manage.py test --settings=config.settings.testing --pattern "test_*.py" --reverse -v 0 --nomigrations
 }
 defhelp test_backwards 'Run test suite backwards.'
 
 # Run Django updatedata command
 cmd_updatedata() {
   echo "Loading content..."
-  docker-compose exec django /docker_venv/bin/python3 ./manage.py updatedata
+  docker-compose exec -T django /docker_venv/bin/python3 ./manage.py updatedata
 }
 defhelp updatedata 'Run updatedata command.'
 
@@ -297,7 +297,7 @@ defhelp logs 'View logs.'
 ci_test_general() {
   cmd_static
   cmd_collect_static
-  docker-compose exec django /docker_venv/bin/coverage run --rcfile=/cs-field-guide/.coveragerc ./manage.py test --settings=config.settings.testing --pattern "test_*.py" -v 3 --nomigrations --exclude-tag=management
+  docker-compose exec -T django /docker_venv/bin/coverage run --rcfile=/cs-field-guide/.coveragerc ./manage.py test --settings=config.settings.testing --pattern "test_*.py" -v 3 --nomigrations --exclude-tag=management
   test_status=$?
   cmd_test_coverage
   coverage_status=$?
@@ -308,7 +308,7 @@ ci_test_general() {
 ci_test_management() {
   cmd_static
   cmd_collect_static
-  docker-compose exec django /docker_venv/bin/coverage run --rcfile=/cs-field-guide/.coveragerc ./manage.py test --settings=config.settings.testing --pattern "test_*.py" -v 3 --nomigrations --tag=management
+  docker-compose exec -T django /docker_venv/bin/coverage run --rcfile=/cs-field-guide/.coveragerc ./manage.py test --settings=config.settings.testing --pattern "test_*.py" -v 3 --nomigrations --tag=management
   test_status=$?
   cmd_test_coverage
   coverage_status=$?
