@@ -1,0 +1,61 @@
+name: CI
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    - name: Set up Python 3.6
+      uses: actions/setup-python@v2
+        with:
+          python-version: 3.6
+    - name: Load content
+      run: ./csfg ci load_content
+    - name: Run general tests
+      run: ./csfg ci test_general
+    - name: Run management tests
+      run: ./csfg ci test_management
+    - name: Run test suite backwards
+      if: github.event_name == 'pull_request'
+      run: ./csfg ci test_backwards
+    - name: Run style checker
+      run: ./csfg ci style
+    - name: Build documentation
+      run: ./csfg ci docs
+  
+  develop-deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/develop' # only run this job if the branch is develop
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    - name: Set up Python 3.6
+      uses: actions/setup-python@v2
+        with:
+          python-version: 3.6
+    - name: Deploy app to Google App Engine
+      run: bash ./infrastructure/dev-deploy/deploy-app.sh
+    - name: Copy static files to Google Storage Bucket
+      run: bash ./infrastructure/dev-deploy/deploy-static-files.sh
+    - name: Update Google Cloud Platform database
+      run: bash ./infrastructure/dev-deploy/update-database.sh
+  
+  production-deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master' # only run this job if the branch is master
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    - name: Set up Python 3.6
+      uses: actions/setup-python@v2
+        with:
+          python-version: 3.6
+    - name: Deploy app to Google App Engine
+      run: bash ./infrastructure/prod-deploy/deploy-app.sh
+    - name: Copy static files to Google Storage Bucket
+      run: bash ./infrastructure/prod-deploy/deploy-static-files.sh
+    - name: Update Google Cloud Platform database
+      run: bash ./infrastructure/prod-deploy/update-database.sh
