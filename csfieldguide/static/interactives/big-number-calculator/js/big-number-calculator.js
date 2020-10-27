@@ -19,7 +19,7 @@ $(document).ready(function () {
       }
       else if (button_type == 'multiply') {
         if (x.toString().length > 5000 || y.toString().length > 5000) {
-          updateResult(gettext("The result of this calculation will be massive! We won't try calculating this number as it's so big!"), false);
+          updateResult(gettext("The result of this calculation could be massive! We won't try calculating this number as it's so big!"), false);
         } else {
           updateResult(x.times(y).toFixed(), true);
         }
@@ -38,13 +38,15 @@ $(document).ready(function () {
       else if (button_type == 'power') {
         try {
           var y = parseInt(document.getElementById('interactive-big-number-calculator-y').value.replace(/[\,\s]/g, ""));
-          if ((x.toString().length + y.toString().length) < 10) {
-            updateResult(x.pow(y).toFixed(0), true);
+          // big.js cannot calculate powers when the exponent is greater than 1 million
+          // however we don't want to throw an error if the base is 1
+          if (x == 1) {
+            updateResult(1, true);
           } else {
-            throw false;
+            updateResult(x.pow(y).toFixed(0), true);
           }
         } catch (exception) {
-          updateResult(gettext("The result of this calculation will be massive! We won't try calculating this number as it's so big!"), false);
+          updateResult(gettext("The result of this calculation could be massive! We won't try calculating this number as it's so big!"), false);
         }
       }
     } else if (x === undefined) {
@@ -72,7 +74,7 @@ function factorial(value) {
     }
     updateResult(total.toFixed(), true);
   } else {
-    updateResult(gettext("The result of this factorial will be massive, over 5000 digits long! We won't try calculating this number as it's so big!"), false);
+    updateResult(gettext("The result of this factorial could be massive, over 5000 digits long! We won't try calculating this number as it's so big!"), false);
   }
 };
 
