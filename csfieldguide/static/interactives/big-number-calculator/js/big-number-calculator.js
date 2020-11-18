@@ -1,6 +1,19 @@
 "use strict";
 
 const Big = require('big.js');
+// Dictionary key is the number of digits the base (x) has.
+// Dictionary value is the maximum value that the exponent (y) can have for the given number of digits.
+// E.g for bases that have a value in the range 10 - 99 (2 digits), the exponent value must not exceed 20000.
+const MAX_EXPONENT_VALUES = {
+  '1': 50000,
+  '2': 20000,
+  '3': 15000,
+  '4': 12500,
+  '5': 9999,
+  '6': 999,
+  '7': 99,
+  '8': 9
+};
 
 $(document).ready(function () {
   $('#interactive-big-number-calculator button').on('click', function(){
@@ -38,12 +51,22 @@ $(document).ready(function () {
       else if (button_type == 'power') {
         try {
           var y = parseInt(document.getElementById('interactive-big-number-calculator-y').value.replace(/[\,\s]/g, ""));
+
+          var x_length = x.toString().length;
+          var y_length = y.toString().length;
           // big.js cannot calculate powers when the exponent is greater than 1 million
           // however we don't want to throw an error if the base is 1
           if (x == 1) {
             updateResult(1, true);
+          } else if (y_length < 7 && (x_length + y_length) < 10) {
+            // check if the exponent is less than the maximum allowed value
+            if (y <= MAX_EXPONENT_VALUES[x_length]) {
+              updateResult(x.pow(y).toFixed(0), true);
+            } else {
+              throw false;
+            }
           } else {
-            updateResult(x.pow(y).toFixed(0), true);
+            throw false;
           }
         } catch (exception) {
           updateResult(gettext("The result of this calculation could be massive! We won't try calculating this number as it's so big!"), false);
