@@ -58,6 +58,8 @@ $(document).ready(function () {
           // however we don't want to throw an error if the base is 1
           if (x == 1) {
             updateResult(1, true);
+          } else if (y_length == 1 || y_length == 2) {
+            updateResult(x.pow(y).toFixed(0), true);
           } else if (y_length < 7 && (x_length + y_length) < 10) {
             // check if the exponent is less than the maximum allowed value
             if (y <= MAX_EXPONENT_VALUES[x_length]) {
