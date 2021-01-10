@@ -17,11 +17,11 @@ All notable changes to this project will be documented in this file.
 
 We have listed major changes for each release below.
 
-3.5.2
+3.6.0
 ==============================================================================
 
 - **Release date:** 11th January 2021
-- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/3.5.2>`__
+- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/3.6.0>`__
 
 **Changelog:**
 
