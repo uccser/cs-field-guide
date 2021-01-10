@@ -17,6 +17,31 @@ All notable changes to this project will be documented in this file.
 
 We have listed major changes for each release below.
 
+3.5.2
+==============================================================================
+
+- **Release date:** 11th January 2021
+- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/3.5.2>`__
+
+**Changelog:**
+
+- Improve consistency of the URL parameters for the RGB Mixer interactive: `#1309 <https://github.com/uccser/cs-field-guide/pull/1309>`__
+- Update CMY Mixer interactive to be consistent with RGB Mixer: `#1306 <https://github.com/uccser/cs-field-guide/issues/1306>`__
+- Improve limitations of the Algorithm Timer interactive: `#1332 <https://github.com/uccser/cs-field-guide/issues/1332>`__
+- Replace broken link in the HCI chapter: `#1316 <https://github.com/uccser/cs-field-guide/issues/1316>`__
+- Fix typo in Towers of Hanoi problem description: `#1320 <https://github.com/uccser/cs-field-guide/issues/1320>`__
+- Dependency updates:
+
+    - Update lxml from 4.5.2 to 4.6.2.
+    - Update wheel from 0.34.2 to 0.35.1.
+    - Update django-haystack from 2.8.1 to 3.0.
+    - Update django-modeltranslation from 0.15.1 to 0.15.2.
+    - Update sphinx from 3.1.2 to 3.3.0.
+    - Update django-debug-toolbar from 2.2 to 3.1.1.
+    - Update flake8 from 3.8.3 to 3.8.4.
+    - Update pydocstyle from 5.0.2 to 5.1.1.
+    - Update coverage from 5.2.1 to 5.3.
+
 3.5.1
 ==============================================================================
 
