@@ -14,7 +14,7 @@ verto==0.11.0
 python-markdown-math==0.6
 
 # Search
-django-haystack==2.8.1
+django-haystack==3.0
 Whoosh==2.7.4
 django-widget-tweaks==1.4.8
 
