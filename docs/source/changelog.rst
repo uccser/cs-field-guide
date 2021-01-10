@@ -29,7 +29,7 @@ We have listed major changes for each release below.
 - Update CMY Mixer interactive to be consistent with RGB Mixer: `#1306 <https://github.com/uccser/cs-field-guide/issues/1306>`__
 - Improve limitations of the Algorithm Timer interactive: `#1332 <https://github.com/uccser/cs-field-guide/issues/1332>`__
 - Replace broken link in the HCI chapter: `#1316 <https://github.com/uccser/cs-field-guide/issues/1316>`__
-- Fix typo in Towers of Hanoi problem description: `#1320 <https://github.com/uccser/cs-field-guide/issues/1320>`__
+- Fix typos: `#1320 <https://github.com/uccser/cs-field-guide/issues/1320>`__ `#1358 <https://github.com/uccser/cs-field-guide/issues/1358>`__
 - Dependency updates:
 
     - Update lxml from 4.5.2 to 4.6.2.
