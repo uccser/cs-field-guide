@@ -17,6 +17,31 @@ All notable changes to this project will be documented in this file.
 
 We have listed major changes for each release below.
 
+3.6.0
+==============================================================================
+
+- **Release date:** 11th January 2021
+- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/3.6.0>`__
+
+**Changelog:**
+
+- Improve consistency of the URL parameters for the RGB Mixer interactive: `#1309 <https://github.com/uccser/cs-field-guide/pull/1309>`__
+- Update CMY Mixer interactive to be consistent with RGB Mixer: `#1306 <https://github.com/uccser/cs-field-guide/issues/1306>`__
+- Improve limitations of the Algorithm Timer interactive: `#1332 <https://github.com/uccser/cs-field-guide/issues/1332>`__
+- Replace broken link in the HCI chapter: `#1316 <https://github.com/uccser/cs-field-guide/issues/1316>`__
+- Fix typos: `#1320 <https://github.com/uccser/cs-field-guide/issues/1320>`__ `#1358 <https://github.com/uccser/cs-field-guide/issues/1358>`__
+- Dependency updates:
+
+    - Update lxml from 4.5.2 to 4.6.2.
+    - Update wheel from 0.34.2 to 0.35.1.
+    - Update django-haystack from 2.8.1 to 3.0.
+    - Update django-modeltranslation from 0.15.1 to 0.15.2.
+    - Update sphinx from 3.1.2 to 3.3.0.
+    - Update django-debug-toolbar from 2.2 to 3.1.1.
+    - Update flake8 from 3.8.3 to 3.8.4.
+    - Update pydocstyle from 5.0.2 to 5.1.1.
+    - Update coverage from 5.2.1 to 5.3.
+
 3.5.1
 ==============================================================================
 
@@ -31,14 +56,14 @@ We have listed major changes for each release below.
     - Add brightness value mode.
     - Add ability to zoom to specific starting point for an image.
     - Set image when zooming to be pixelated (only on modern browsers).
-    - Add paramater to hide mode selector.
+    - Add parameter to hide mode selector.
     - Add parameter to hide value type selector.
-    - Add paramater to show Pixelmania branding.
+    - Add parameter to show Pixelmania branding.
 
 - Update RGB Mixer interactive: `#1305 <https://github.com/uccser/cs-field-guide/pull/1305>`__
 
     - Show full value of colour in mixed colour.
-    - Add paramater to show Pixelmania branding and force hexadecimal notation.
+    - Add parameter to show Pixelmania branding and force hexadecimal notation.
 
 - Fix incorrect hexadecimal value in content.
 - Dependency updates:
@@ -56,7 +81,7 @@ We have listed major changes for each release below.
 
 **Changelog:**
 
-- Add ability to show colour codes in Hexadecimal on the Pixel Viewer interactive. `#1227 <https://github.com/uccser/cs-field-guide/issues/1277>`__
+- Add ability to show colour codes in Hexadecimal on the Pixel Viewer interactive. `#1277 <https://github.com/uccser/cs-field-guide/issues/1277>`__
 - Add Hexadecimal version of colour mixer interactives. `#1290 <https://github.com/uccser/cs-field-guide/issues/1290>`__
 - Dependency updates:
 

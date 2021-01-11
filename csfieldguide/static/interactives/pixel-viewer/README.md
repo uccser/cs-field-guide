@@ -1,7 +1,7 @@
 # Pixel Viewer Interactive
 
 **Author:** Jack Morgan  
-**Modified by:** Andy Bell, Courtney Bracefield, Alasdair Smith
+**Modified by:** Andy Bell, Courtney Bracefield, Alasdair Smith, Jack Morgan
 
 This interactive is created to allow users to see the values of each pixel of an image.
 The user can zoom in and out of the image, and when close enough the pixel values are displayed.
@@ -32,7 +32,7 @@ The interactive has the following optional parameters to configure the interacti
 - `hide-colour-code-picker` - Hides the option to change between colour code formats.
 - `hide-config-selector` - Hides the option to change between modes.
 - `no-pixel-fill` - Displays pixels without background fill from start (also doesn't show initial image with transition).
-- `pixelmania` - (for Pixelmania 2020) shows a small Pixelmania logo above the title in the menu.
+- `pixelmania` - (for Pixelmania 2020) Shows a small Pixelmania logo above the title in the menu.
 
 ## Required files
 
