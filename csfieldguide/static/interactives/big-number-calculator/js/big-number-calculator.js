@@ -14,6 +14,7 @@ const MAX_EXPONENT_VALUES = {
   '7': 99,
   '8': 9
 };
+const TIMEOUT_MS = 10;
 
 $(document).ready(function () {
   $('#interactive-big-number-calculator button').on('click', function(){
@@ -62,14 +63,14 @@ $(document).ready(function () {
             disableButtons();
             setTimeout(function() {
               updateResult(x.pow(y).toFixed(0), true);
-            }, 500);
+            }, TIMEOUT_MS);
           } else if ((x_length + y_length) < 10) {
             // check if the exponent is less than the maximum allowed value
             if (y <= MAX_EXPONENT_VALUES[x_length]) {
               disableButtons();
               setTimeout(function() {
                 updateResult(x.pow(y).toFixed(0), true);
-              }, 1000);
+              }, TIMEOUT_MS);
             } else {
               throw false;
             }
@@ -139,13 +140,16 @@ function updateResult(string, is_success) {
   var $result = $('#interactive-big-number-calculator-result');
   $result.text(string);
   if (is_success == true) {
-    $result.removeClass('error');
+    $result.removeClass('calculating').removeClass('error');
   } else {
-    $result.addClass('error');
+    $result.removeClass('calculating').addClass('error');
   }
 };
 
 function disableButtons() {
   $('#interactive-big-number-calculator button').addClass('disabled');
-  $('#interactive-big-number-calculator-result').removeClass('error').text(gettext('Calculating...'));
+  $('#interactive-big-number-calculator-result')
+  .removeClass('error')
+  .addClass('calculating')
+  .text(gettext('Calculating...'));
 };
