@@ -59,11 +59,17 @@ $(document).ready(function () {
           if (x == 1) {
             updateResult(1, true);
           } else if (y_length == 1 || y_length == 2) {
-            updateResult(x.pow(y).toFixed(0), true);
+            disableButtons();
+            setTimeout(function() {
+              updateResult(x.pow(y).toFixed(0), true);
+            }, 500);
           } else if ((x_length + y_length) < 10) {
             // check if the exponent is less than the maximum allowed value
             if (y <= MAX_EXPONENT_VALUES[x_length]) {
-              updateResult(x.pow(y).toFixed(0), true);
+              disableButtons();
+              setTimeout(function() {
+                updateResult(x.pow(y).toFixed(0), true);
+              }, 1000);
             } else {
               throw false;
             }
@@ -92,7 +98,7 @@ $(document).ready(function () {
 
 
 function factorial(value) {
-  if (value < 1800){
+  if (value < 1800) {
     var total = new Big(value);
     for (var i = value - 1; i > 0; i--) {
         total = total.times(i);
@@ -129,6 +135,7 @@ function getYValue() {
 
 
 function updateResult(string, is_success) {
+  $('#interactive-big-number-calculator button').removeClass('disabled');
   var $result = $('#interactive-big-number-calculator-result');
   $result.text(string);
   if (is_success == true) {
@@ -136,4 +143,9 @@ function updateResult(string, is_success) {
   } else {
     $result.addClass('error');
   }
-}
+};
+
+function disableButtons() {
+  $('#interactive-big-number-calculator button').addClass('disabled');
+  $('#interactive-big-number-calculator-result').text(gettext('Calculating...'));
+};
