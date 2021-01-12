@@ -147,5 +147,5 @@ function updateResult(string, is_success) {
 
 function disableButtons() {
   $('#interactive-big-number-calculator button').addClass('disabled');
-  $('#interactive-big-number-calculator-result').text(gettext('Calculating...'));
+  $('#interactive-big-number-calculator-result').removeClass('error').text(gettext('Calculating...'));
 };
