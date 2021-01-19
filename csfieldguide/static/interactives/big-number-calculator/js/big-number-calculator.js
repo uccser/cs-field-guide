@@ -6,10 +6,10 @@ const Big = require('big.js');
 // E.g for bases that have a value in the range 10 - 99 (2 digits), the exponent value must not exceed 20000.
 const MAX_EXPONENT_VALUES = {
   '1': 50000,
-  '2': 20000,
-  '3': 15000,
-  '4': 12500,
-  '5': 9999,
+  '2': 15000,
+  '3': 7500,
+  '4': 6000,
+  '5': 5000,
   '6': 999,
   '7': 99,
   '8': 9

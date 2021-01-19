@@ -22,11 +22,11 @@
   font-weight: bold;
   font-family: sans-serif;
 }
-#interactive-big-number-calculator textarea.materialize-textarea:focus:not([readonly]) {
-  box-shadow: none !important;
-}
-.calculating {
+#interactive-big-number-calculator div#interactive-big-number-calculator-result.calculating {
   color: #2a3da0;
   font-weight: bold;
   font-family: sans-serif;
+}
+#interactive-big-number-calculator textarea.materialize-textarea:focus:not([readonly]) {
+  box-shadow: none !important;
 }
