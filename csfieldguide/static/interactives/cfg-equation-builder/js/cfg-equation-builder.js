@@ -7,9 +7,9 @@
 const PRODUCTIONS = {
   "E": [
     ["D"],
-    ["'-'", "E"],
     ["E", "'+'", "E"],
     ["E", "'\u00D7'", "E"],
+    ["'-'", "E"],
     ["'('", "E", "')'"],
   ],
   "D": [0,1,2,3,4,5,6,7,8,9]
@@ -22,7 +22,7 @@ const PRODUCTIONS = {
 const FINAL_TERMINALS = [0,1,2,3,4,5,6,7,8,9];
 
 var $activeNonterminal = null;
-var previous = '';
+var historyStack = [];
 
 $(document).ready(function() {
   $('#generate-button').on('click', function() {
@@ -33,7 +33,7 @@ $(document).ready(function() {
     $('#cfg-equation').html('<span class="nonterminal">E</span>');
     reapplyNonterminalClickEvent();
     testMatchingEquations();
-    previous = '';
+    historyStack = [];
     $("#undo-button").prop('disabled', true);
   });
   $("#undo-button").on('click', undo);
@@ -110,7 +110,7 @@ function applyProduction($target) {
   var nonterminal = $activeNonterminal.html();
   var replacementIndex = parseInt($target.attr('cfg-replacement'));
   var replacement = PRODUCTIONS[nonterminal][replacementIndex];
-  previous = $("#cfg-equation").html();
+  historyStack.push($("#cfg-equation").html());
   $("#undo-button").prop('disabled', false);
   $activeNonterminal.replaceWith(describeProductionReplacement(replacement));
   reapplyNonterminalClickEvent();
@@ -122,10 +122,11 @@ function applyProduction($target) {
  * Only one previous version is stored.
  */
 function undo() {
-  $("#cfg-equation").html(previous);
+  $("#cfg-equation").html(historyStack.pop());
   $activeNonterminal = null;
-  previous = "";
-  $("#undo-button").prop('disabled', true);
+  if (historyStack.length <= 0) {
+    $("#undo-button").prop('disabled', true);
+  }
   reapplyNonterminalClickEvent();
   testMatchingEquations();
 }
