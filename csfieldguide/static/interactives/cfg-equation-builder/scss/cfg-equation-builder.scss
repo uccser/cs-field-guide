@@ -28,15 +28,17 @@
   }
 }
 
-#productions-table {
+#productions-table-container {
+  border-collapse: separate !important;
   border: 1px solid #a0a0a0;
-  background: #ececec;
-  border-radius: 2rem;
-  max-height: 10rem;
+  border-radius: 1rem;
+  border-spacing: 0;
+  background-color: #ececec;
+  padding: 5px;
   // Border between columns https://stackoverflow.com/a/22775925
   td + td {
     border-left: 1px solid #a0a0a0;
-    padding-left: 10px;
+    padding-left: 7px;
   }
 }
 
