@@ -1,4 +1,5 @@
 var urlParameters = require('../../../js/third-party/url-parameters.js');
+const Examples = require('./examples-hard.js');
 
 /**
  * Productions in the default grammar.
@@ -28,22 +29,32 @@ var historyStack_ = [];
 var productions_ = DEFAULT_PRODUCTIONS;
 var finalTerminals_ = DEFAULT_FINAL_TERMINALS;
 var initialNonterminal_ = 'E'
+var examples_ = Examples.hardExamples;
 
 $(document).ready(function() {
   parseUrlParameters();
   $('#cfg-equation').html(`<span class="nonterminal">${initialNonterminal_}</span>`);
   fillProductionsWindow(productions_);
-  $('#generate-button').on('click', function() {
-    $('#cfg-target').val(randomExpression(initialNonterminal_, productions_, 3, finalTerminals_));
+  $('#generate-button').on('click', function(event) {
+    $('#cfg-target').val(generateTarget(event.target));
     testMatchingEquations();
   });
   $('#reset-button').on('click', function() {
-    $('#cfg-equation').html('<span class="nonterminal">E</span>');
+    $('#cfg-equation').html(`<span class="nonterminal">${initialNonterminal_}</span>`);
     reapplyNonterminalClickEvent();
     testMatchingEquations();
     historyStack_ = [];
     $('#undo-button').prop('disabled', true);
   });
+  $('#set-g-random').on('click', function () {
+    setGenerator('random');
+  })
+  $('#set-g-random-simple').on('click', function () {
+    setGenerator('random-simple');
+  })
+  $('#set-g-from-preset').on('click', function () {
+    setGenerator('from-preset');
+  })
   $('#undo-button').on('click', undo);
   $('#undo-button').prop('disabled', true);
   $('#cfg-target').change(testMatchingEquations);
@@ -67,8 +78,6 @@ $(document).ready(function() {
 
 /**
  * Interprets the given URL parameters and prepares the interactive accordingly
- * 
- * The getUrlParameter function should take care of un-escaping reserved characters
  */
 function parseUrlParameters() {
   var grammar = urlParameters.getUrlParameter('productions');
@@ -77,9 +86,19 @@ function parseUrlParameters() {
 
   if (grammar) {
     productions_ = decodeGrammar(grammar);
+    if (!examples) {
+      $('#set-g-from-preset').hide();
+    }
   }
   if (finalTerminals) {
     finalTerminals_ = decodeTerminals(finalTerminals);
+  }
+  if (examples) {
+    examples = examples.split('|');
+    for (var i=0; i<examples.length; i++) {
+      examples[i] = examples[i].trim();
+    }
+    examples_ = examples;
   }
 }
 
@@ -236,6 +255,27 @@ function describeAndReduceProductions(nonterminal, replacements) {
 /******************************************************************************/
 
 /**
+ * Sets the equation generator to be of the given type
+ */
+function setGenerator(type) {
+  $('#generate-button').html($('#set-g-' + type).html());
+  $('#generate-button').attr('g-type', $('#set-g-' + type).attr('g-type'));
+}
+
+/**
+ * Returns a (string) new equation for the user to try to build depending on the selected generator.
+ */
+function generateTarget($button) {
+  if ($button.getAttribute('g-type') == 'random') {
+    return randomExpression(initialNonterminal_, productions_, 3, finalTerminals_);
+  } else if ($button.getAttribute('g-type') == 'random-simple') {
+    return randomExpression(initialNonterminal_, productions_, 1, finalTerminals_);
+  } else {
+    return examples_[getRandomInt(examples_.length)];
+  }
+}
+
+/**
  * Each time a new nonterminal is created it needs to be bound to the click event.
  */
 function reapplyNonterminalClickEvent() {
@@ -258,9 +298,11 @@ function testMatchingEquations() {
   if ($('#cfg-target').val().trim() == $('#cfg-equation').html().trim()) {
     $('#cfg-equation').addClass('success');
     $('#generate-button').addClass('success');
+    $('#generate-dropdown').addClass('success');
   } else {
     $('#cfg-equation').removeClass('success');
     $('#generate-button').removeClass('success');
+    $('#generate-dropdown').removeClass('success');
   }
 }
 

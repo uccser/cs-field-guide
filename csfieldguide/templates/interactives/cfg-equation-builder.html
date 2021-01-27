@@ -16,7 +16,17 @@
           {% trans "Try to form:" %}
         </div>
         <input type="text" size="16" class="text-center m-2" id="cfg-target" >
-        <button type="button" class="btn btn-secondary btn-sm my-2" id="generate-button">{% trans "Random" %}</button>
+        <div class="btn-group">
+          <button type="button" class="btn btn-secondary btn-sm my-2" g-type="random" id="generate-button">{% trans "Random" %}</button>
+          <button type="button" class="btn btn-secondary btn-sm dropdown-toggle dropdown-toggle-split my-2" data-toggle="dropdown" id="generate-dropdown">
+            <span class="sr-only">Toggle Dropdown</span> <!-- This text should not be visible -->
+          </button>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" g-type="random" href="#" id="set-g-random">{% trans "Random" %}</a>
+            <a class="dropdown-item" g-type="random-simple" href="#" id="set-g-random-simple">{% trans "Simple" %}</a>
+            <a class="dropdown-item" g-type="from-preset" href="#" id="set-g-from-preset">{% trans "From preset" %}</a>
+          </div>
+        </div>
       </div>
       <div class="d-flex justify-content-center my-2" id="cfg-equation"></div>
       <div class="d-flex justify-content-center mb-2">
@@ -26,7 +36,9 @@
     </div>
     <div class="col-12 col-md-3 d-flex justify-content-center">
       <div class="py-2">
-        <table class="m-2" id="productions-table-container"><tbody id="productions-table"></tbody></table>
+        <table class="m-2" id="productions-table-container">
+          <tbody id="productions-table"></tbody>
+        </table>
       </div>
     </div>
   </div>
