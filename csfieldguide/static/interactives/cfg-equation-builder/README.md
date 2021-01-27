@@ -6,21 +6,19 @@ This interactive demonstrates a context-free grammar (CFG) by allowing a user to
 
 ## URL Parameters
 
-It is recommended that parameters have all non-unreserved characters [percent-encoded](https://en.wikipedia.org/wiki/Percent-encoding),
-though some browsers (including Chrome & Firefox) appear to handle this themselves.
+**It is recommended that parameters have all non-unreserved characters [percent-encoded](https://en.wikipedia.org/wiki/Percent-encoding).**
 
 - `productions=`: Set the grammar productions that can be used. Lone integers, as well as strings beginning and ending with an inverted comma, are interpreted as terminals. An example of the correct syntax using the default grammar can be found below.
 - `recursion-depth=int (default: 3)`: Set the maximum recursion depth for the built-in equation generator (`Random`). If this is set then the option to generate with depth 1 (`Simple`) is removed. If the generator reaches the maximum depth, it will replace all remaining nonterminals with random terminals from `final-terminals`, even if such replacements aren't valid.
-- `final-terminals=str|str|str|... (default 0-9)`: Set the terminals that can be selected from if the maximum recursion depth is reached.
-- `examples=str|str|str|...`: Set the examples that can be selected with the `From preset` generator option. If grammar productions are set and this is not, then the option (`From preset`) is removed.
+- `final-terminals=str|str|str|... (default: 0-9)`: Set the terminals that can be selected from if the maximum recursion depth is reached. If grammar productions are set and this is not, final terminals will be chosen at random from all terminals in the grammar.
+- `examples=str|str|str|...`: Set the examples that can be selected by the `From preset` generator option. If grammar productions are set and this is not, then the option (`From preset`) is removed.
 
 ### URL Parameter Limitations
 
 - If a production replaces a nonterminal with one integer, that integer will
 be interpreted as a terminal with or without the inverted commas.
 This allows a shorthand syntax where the inverted commas and spaces can be left out.
-
-- Parameter syntax characters, including spaces and `(:,',|,;)`, are always interpreted as such,
+- Parameter syntax characters, including spaces and (`:`,`'`,`|`,`;`), are always interpreted as such,
 so problems will occur if they are attempted to be used as part of the grammar productions.
 
 ### URL Productions Example

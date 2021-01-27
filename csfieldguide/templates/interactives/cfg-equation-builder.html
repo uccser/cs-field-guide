@@ -15,7 +15,7 @@
         <div class="col-12 col-sm-5" id="txt-try">
           {% trans "Try to form:" %}
         </div>
-        <input type="text" size="16" class="text-center m-2" id="cfg-target" >
+        <input type="text" size="15" class="text-center m-2" id="cfg-target" >
         <div class="btn-group">
           <button type="button" class="btn btn-secondary btn-sm my-2" g-type="random" id="generate-button">{% trans "Random" %}</button>
           <button type="button" class="btn btn-secondary btn-sm dropdown-toggle dropdown-toggle-split my-2" data-toggle="dropdown" id="generate-dropdown">
@@ -28,6 +28,7 @@
           </div>
         </div>
       </div>
+      <div class="row" id="error-notice"></div>
       <div class="d-flex justify-content-center my-2" id="cfg-equation"></div>
       <div class="d-flex justify-content-center mb-2">
         <button type="button" class="btn btn-secondary btn-sm m-1 float-right" id="undo-button">{% trans "Undo" %}</button>

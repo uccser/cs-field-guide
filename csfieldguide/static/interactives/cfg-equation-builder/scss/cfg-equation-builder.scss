@@ -45,7 +45,16 @@
 #selection-popup {
   display: none;
   position: absolute;
+  background-color: #ececec;
   .btn {
     text-align: start;
   }
+}
+
+#error-notice {
+  display: none;
+  color: red;
+  font-weight: bold;
+  font-family: sans-serif;
+  text-align: center;
 }

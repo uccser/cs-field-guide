@@ -72,7 +72,7 @@ $(document).ready(function() {
     $('#selection-popup').is(':visible')) {
       $('#selection-popup').hide();
       $activeNonterminal_ = null;
-    }        
+    }
   });
 });
 
@@ -93,6 +93,9 @@ function parseUrlParameters() {
     productions_ = decodeGrammar(grammar);
     if (!examples) {
       $('#set-g-from-preset').hide();
+    }
+    if (!finalTerminals) {
+      finalTerminals_ = findAllTerminals(productions_);
     }
   }
   if (finalTerminals) {
@@ -171,6 +174,29 @@ function interpretReplacementStrings(replacementStrings) {
 }
 
 /**
+ * Returns a list of all terminals in the given production dict
+ */
+function findAllTerminals(productions) {
+  var key;
+  var terminals = new Set();
+  for (var x in Object.keys(productions)) {
+    key = Object.keys(productions)[x];
+    for (var i=0; i<productions[key].length; i++) {
+      if (typeof(productions[key][i]) == 'object') {
+        for (var j=0; j<productions[key][i].length; j++) {
+          if (isTerminal(productions[key][i][j])) {
+            terminals.add(productions[key][i][j])
+          }
+        }
+      } else {
+        terminals.add(productions[key][i])
+      }
+    }
+  }
+  return Array.from(terminals);
+}
+
+/**
  * Parses the given string to form a list of terminal strings.
  * With outer whitespace and inverted commas removed, everything between '|'
  * symbols is an individual terminal.
@@ -237,7 +263,7 @@ function fillProductionsWindow(productions) {
  */
 function describeAndReduceProductions(nonterminal, replacements) {
   var isCompressable = true;
-  if (typeof(replacements[0]) == 'number') {
+  if (typeof(replacements[0]) == 'number' && replacements.length > 1) {
     for (var i=1; i<replacements.length; i++) {
       if (replacements[i] != replacements[i-1] + 1) {
         isCompressable = false;
@@ -327,7 +353,7 @@ function setActiveNonterminal($target) {
   $('#selection-popup').html('');
   if (Object.keys(productions_).indexOf(nonterminal) < 0) {
     console.error(`Could not find nonterminal ${nonterminal} in available productions.`);
-    $('#selection-popup').html('No replacements available.');
+    $('#selection-popup').html(gettext('No productions available.'));
     return;
   }
   $('#selection-popup').html(getPopupVal(nonterminal, productions_[nonterminal]));
@@ -463,7 +489,15 @@ function randomExpression(replaced, productions, maxDepth, T) {
     return T[getRandomInt(T.length)].toString().replace(/^\'+|\'+$/g, '');
   }
 
-  var replacement = productions[replaced][getRandomInt(productions[replaced].length)]
+  try {
+    var replacement = productions[replaced][getRandomInt(productions[replaced].length)]
+  } catch (error) {
+    console.error(error);
+    $('#error-notice').html(gettext("An error occurred while generating a new equation. This probably means there is a nonterminal in the grammar productions with no corresponding production."));
+    $('#error-notice').show();
+    return;
+  }
+  $('#error-notice').hide();
   if (typeof(replacement) != 'object') {
     return replacement.toString().replace(/^\'+|\'+$/g, '');
   }
