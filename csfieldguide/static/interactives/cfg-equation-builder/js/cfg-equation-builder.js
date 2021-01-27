@@ -58,7 +58,11 @@ $(document).ready(function() {
   $('#undo-button').on('click', undo);
   $('#undo-button').prop('disabled', true);
   $('#cfg-target').change(testMatchingEquations);
-  $('#cfg-target').val(randomExpression(initialNonterminal_, productions_, 1, finalTerminals_));
+  if (urlParameters.getUrlParameter('recursion-depth')) {
+    $('#cfg-target').val(randomExpression(initialNonterminal_, productions_, urlParameters.getUrlParameter('recursion-depth'), finalTerminals_));
+  } else {
+    $('#cfg-target').val(randomExpression(initialNonterminal_, productions_, 1, finalTerminals_));
+  }
   reapplyNonterminalClickEvent();
   //https://stackoverflow.com/a/3028037
   $(document).click(function(event) { 
@@ -83,6 +87,7 @@ function parseUrlParameters() {
   var grammar = urlParameters.getUrlParameter('productions');
   var finalTerminals = urlParameters.getUrlParameter('terminals');
   var examples = urlParameters.getUrlParameter('examples');
+  var recursionDepth = urlParameters.getUrlParameter('recursion-depth');
 
   if (grammar) {
     productions_ = decodeGrammar(grammar);
@@ -99,6 +104,9 @@ function parseUrlParameters() {
       examples[i] = examples[i].trim();
     }
     examples_ = examples;
+  }
+  if (recursionDepth) {
+    $('#set-g-random-simple').hide();
   }
 }
 
@@ -267,6 +275,9 @@ function setGenerator(type) {
  */
 function generateTarget($button) {
   if ($button.getAttribute('g-type') == 'random') {
+    if (urlParameters.getUrlParameter('recursion-depth')) {
+      return randomExpression(initialNonterminal_, productions_, parseInt(urlParameters.getUrlParameter('recursion-depth')), finalTerminals_);
+    }
     return randomExpression(initialNonterminal_, productions_, 3, finalTerminals_);
   } else if ($button.getAttribute('g-type') == 'random-simple') {
     return randomExpression(initialNonterminal_, productions_, 1, finalTerminals_);
