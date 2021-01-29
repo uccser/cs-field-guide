@@ -11,8 +11,8 @@ This interactive demonstrates a context-free grammar (CFG) by allowing a user to
 ### Basic Parameters
 
 - `productions=str`: Set the grammar productions that can be used. Lone integers, as well as strings beginning and ending with an inverted comma, are interpreted as terminals. An example of the correct syntax using the default grammar can be found below.
-- `examples=str|str|str|...`: Set the examples that can be selected by the `From preset` generator option. Examples will be cycled through in the order given. If grammar productions are set and this is not, then the option (`From preset`) is removed.
-- `hide-generator=[true|false] (default: false)`: If `true`, removes the built-in equation generator (`Simple` & `Random`).
+- `examples=str|str|str|...`: Set the examples that can be selected by the `Next` generator option. Examples will be cycled through in the order given.
+- `hide-generator=[true|false] (default: false)`: If `true`, remove the built-in equation generator (`Simple` & `Random`).
 
 ### Advanced Parameters
 
