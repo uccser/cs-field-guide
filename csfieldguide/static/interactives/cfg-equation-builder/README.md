@@ -8,10 +8,20 @@ This interactive demonstrates a context-free grammar (CFG) by allowing a user to
 
 **It is recommended that parameters have all non-unreserved characters [percent-encoded](https://en.wikipedia.org/wiki/Percent-encoding).**
 
-- `productions=`: Set the grammar productions that can be used. Lone integers, as well as strings beginning and ending with an inverted comma, are interpreted as terminals. An example of the correct syntax using the default grammar can be found below.
-- `recursion-depth=int (default: 3)`: Set the maximum recursion depth for the built-in equation generator (`Random`). If this is set then the option to generate with depth 1 (`Simple`) is removed. If the generator reaches the maximum depth, it will replace all remaining nonterminals with random terminals from `final-terminals`, even if such replacements aren't valid.
-- `final-terminals=str|str|str|... (default: 0-9)`: Set the terminals that can be selected from if the maximum recursion depth is reached. If grammar productions are set and this is not, final terminals will be chosen at random from all terminals in the grammar.
-- `examples=str|str|str|...`: Set the examples that can be selected by the `From preset` generator option. If grammar productions are set and this is not, then the option (`From preset`) is removed.
+### Basic Parameters
+
+- `productions=str`: Set the grammar productions that can be used. Lone integers, as well as strings beginning and ending with an inverted comma, are interpreted as terminals. An example of the correct syntax using the default grammar can be found below.
+- `examples=str|str|str|...`: Set the examples that can be selected by the `From preset` generator option. Examples will be cycled through in the order given. If grammar productions are set and this is not, then the option (`From preset`) is removed.
+- `hide-generator=[true|false] (default: false)`: If `true`, removes the built-in equation generator (`Simple` & `Random`).
+
+### Advanced Parameters
+
+These parameters allow more control over the built-in equation generator.
+The defaults work well for the default productions, but in most situations it is recommended that `recursion-depth` is set higher than the default and `retry-if-fail` is set to `true`.
+
+- `recursion-depth=int (default: 3)`: Set the maximum recursion depth for the built-in equation generator (`Random`). If this or `retry-if-fail` is set then the option to generate with depth 1 (`Simple`) is removed.
+- `retry-if-fail=[true|false] (default: false)`: If `true`, the built-in equation generator will restart if it reaches the maximum recursion depth but nonterminals remain in the equation. After 10 tries the generator will quit with an error message. Otherwise if the generator reaches the maximum depth, it will replace all remaining nonterminals with random terminals from `terminals`, even if such replacements aren't valid.
+- `terminals=str|str|str|... (default: 0-9)`: Set the terminals that can be selected from by the built-in equation generator if the maximum recursion depth is reached. If `retry-if-fail` is `true` then this parameter will have no effect.
 
 ### URL Parameter Limitations
 
@@ -41,7 +51,7 @@ D
   ;
 ```
 
-When used as a URL parameter, including the shorthand for integers:
+When used as a URL parameter, including the shorthand for lone integers:
 
 `url?productions=E : N | E '+' E | E '*' E | '-' E | '(' E ')' ; N : 0|1|2|3|4|5|6|7|8|9;`
 

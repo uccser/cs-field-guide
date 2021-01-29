@@ -12,19 +12,19 @@
         {% trans "Use the available productions to build an equation.<br>Click the nonterminal below to replace it." %}
       </div>
       <div class="row justify-content-center mt-3">
-        <div class="col-12 col-sm-5" id="txt-try">
+        <div class="col-12" id="txt-try">
           {% trans "Try to form:" %}
         </div>
-        <input type="text" size="15" class="text-center m-2" id="cfg-target" >
-        <div class="btn-group">
+        <input type="text" class="col-6 text-center m-2" id="cfg-target" >
+        <div class="btn-group" id="generator-buttons">
           <button type="button" class="btn btn-secondary btn-sm my-2" g-type="random" id="generate-button">{% trans "Random" %}</button>
           <button type="button" class="btn btn-secondary btn-sm dropdown-toggle dropdown-toggle-split my-2" data-toggle="dropdown" id="generate-dropdown">
-            <span class="sr-only">Toggle Dropdown</span> <!-- This text should not be visible -->
+            <span class="sr-only">{% trans "Toggle Dropdown" %}</span>
           </button>
           <div class="dropdown-menu">
             <a class="dropdown-item" g-type="random" href="#" id="set-g-random">{% trans "Random" %}</a>
             <a class="dropdown-item" g-type="random-simple" href="#" id="set-g-random-simple">{% trans "Simple" %}</a>
-            <a class="dropdown-item" g-type="from-preset" href="#" id="set-g-from-preset">{% trans "From preset" %}</a>
+            <a class="dropdown-item" g-type="from-preset" href="#" id="set-g-from-preset">{% trans "Next" %}</a>
           </div>
         </div>
       </div>
