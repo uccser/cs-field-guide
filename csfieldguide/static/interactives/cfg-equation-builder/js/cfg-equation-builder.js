@@ -110,7 +110,7 @@ function parseUrlParameters() {
   }
   if (examples) {
     examples = examples.split('|');
-    for (var i=0; i<examples.length; i++) {
+    for (let i=0; i<examples.length; i++) {
       examples[i] = examples[i].trim();
     }
     examples_ = examples;
@@ -147,7 +147,7 @@ function decodeGrammar(productionString) {
   var productions = {};
   var blocks = productionString.split(";");
   initialNonterminal_ = blocks[0].split(':')[0].trim();
-  for (var blockIndex=0; blockIndex < blocks.length; blockIndex++) {
+  for (let blockIndex=0; blockIndex < blocks.length; blockIndex++) {
     if (blocks[blockIndex].trim() == '') {
       continue;
     }
@@ -173,7 +173,7 @@ function interpretReplacementStrings(replacementStrings) {
   const isNumber = (value) => typeof(value) == 'number';
   var replacements = [];
   var replacementUnits;
-  for (var i=0; i<replacementStrings.length; i++) {
+  for (let i=0; i<replacementStrings.length; i++) {
     replacementUnits = replacementStrings[i].trim().split(' ');
     var firstUnit = replacementUnits[0].replace(/^\'+|\'+$/g, '');
     if (replacementUnits.length == 1 && !isNaN(firstUnit)
@@ -186,7 +186,7 @@ function interpretReplacementStrings(replacementStrings) {
   }
   if (!replacements.every(isNumber)) {
     // If not all of them are integers then we have to resort to the long form standard
-    for (i=0; i<replacements.length; i++) {
+    for (let i=0; i<replacements.length; i++) {
       if (isNumber(replacements[i])) {
         replacements[i] = [`'${replacements[i].toString()}'`];
       }
@@ -204,7 +204,7 @@ function interpretReplacementStrings(replacementStrings) {
  */
 function decodeTerminals(terminalString) {
   var terminals = terminalString.split('|');
-  for (var i=0; i<terminals.length; i++) {
+  for (let i=0; i<terminals.length; i++) {
     terminals[i] = terminals[i].trim().replace(/^\'+|\'+$/g, '');
   }
   return terminals;
@@ -221,12 +221,12 @@ function decodeTerminals(terminalString) {
 function fillProductionsWindow(productions) {
   var keys = Object.keys(productions)
   var describedProductions = [];
-  for (i=0; i<keys.length; i++) {
+  for (let i=0; i<keys.length; i++) {
     describedProductions = describedProductions.concat(describeAndReduceProductions(keys[i], productions[keys[i]]));
   }
 
   var use2Cols = describedProductions.length > 1;
-  for (var x=0; x<describedProductions.length; x++) {
+  for (let x=0; x<describedProductions.length; x++) {
     // 14 is the length of &#8594 plus 8 characters
     if (describedProductions[x].length > 14) {
       use2Cols = false;
@@ -239,7 +239,7 @@ function fillProductionsWindow(productions) {
   if (use2Cols) {
     table += (`<tr><th colspan="2"><h3>${gettext("Productions:")}</h3></th></tr>`)
     var half = Math.ceil(describedProductions.length / 2);
-    for (var i=0; i<half; i++) {
+    for (let i=0; i<half; i++) {
       if (half + i < describedProductions.length) {
         table += (`<tr><td>${describedProductions[i]}</td><td>${describedProductions[half + i]}</td></tr>`)
       } else {
@@ -248,7 +248,7 @@ function fillProductionsWindow(productions) {
     }
   } else {
     table += (`<tr><th><h3>${gettext("Productions:")}</h3></th></tr>`)
-    for (var j=0; j<describedProductions.length; j++) {
+    for (let j=0; j<describedProductions.length; j++) {
       table += (`<tr><td>${describedProductions[j]}</td></tr>`)
     }
   }
@@ -263,7 +263,7 @@ function fillProductionsWindow(productions) {
 function describeAndReduceProductions(nonterminal, replacements) {
   var isCompressable = true;
   if (typeof(replacements[0]) == 'number' && replacements.length > 1) {
-    for (var i=1; i<replacements.length; i++) {
+    for (let i=1; i<replacements.length; i++) {
       if (replacements[i] != replacements[i-1] + 1) {
         isCompressable = false;
         break;
@@ -277,7 +277,7 @@ function describeAndReduceProductions(nonterminal, replacements) {
     return [`${nonterminal} &#8594 ${replacements[0]}-${replacements[replacements.length - 1]}`]
   }
   var returnList = [];
-  for (i=0; i<replacements.length; i++) {
+  for (let i=0; i<replacements.length; i++) {
     returnList.push(describeProduction(nonterminal, replacements[i]));
   }
   return returnList;
@@ -402,7 +402,7 @@ function undo() {
 function getPopupVal(nonterminal, replacements) {
   var code = '<div class="btn-group-vertical">';
   var nextStr = "";
-  for (var i=0; i<replacements.length; i++) {
+  for (let i=0; i<replacements.length; i++) {
     nextStr = describeProduction(nonterminal, replacements[i]);
     code += `<button type="button" class="btn btn-secondary cfg-popup-replacement" cfg-replacement="${i}">${nextStr}</button>`;
   }
@@ -420,7 +420,7 @@ function describeProduction(nonterminal, replacement) {
   if (typeof(replacement) != 'object') {
     return returnText + replacement.toString().replace(/^\'+|\'+$/g, '');
   }
-  for (var i=0; i<replacement.length; i++) {
+  for (let i=0; i<replacement.length; i++) {
     returnText += replacement[i].toString().replace(/^\'+|\'+$/g, '');
   }
   return returnText;
@@ -437,7 +437,7 @@ function describeProductionReplacement(replacement) {
     return replacement.toString().replace(/^\'+|\'+$/g, '');
   }
   var code = "";
-  for (var i=0; i<replacement.length; i++) {
+  for (let i=0; i<replacement.length; i++) {
     if (isTerminal(replacement[i])) {
       code += replacement[i].toString().replace(/^\'+|\'+$/g, '');
     } else {
@@ -550,7 +550,7 @@ function recursiveRandomExpression(replaced, productions, maxDepth, doRetry, ter
     return replacement.toString().replace(/^\'+|\'+$/g, '');
   }
   var returnString = '';
-  for (var i=0; i<replacement.length; i++) {
+  for (let i=0; i<replacement.length; i++) {
     if (isTerminal(replacement[i])) {
       returnString += replacement[i].toString().replace(/^\'+|\'+$/g, '');
     } else {
