@@ -23,6 +23,9 @@ const DEFAULT_PRODUCTIONS = {
  */
 const DEFAULT_FINAL_TERMINALS = [0,1,2,3,4,5,6,7,8,9];
 
+const RECURSIONDEPTH_SIMPLE = 1;
+const RECURSIONDEPTH_DEFAULT = 3;
+
 var $activeNonterminal_ = null;
 var historyStack_ = [];
 var productions_ = DEFAULT_PRODUCTIONS;
@@ -31,6 +34,7 @@ var initialNonterminal_ = 'E'
 var examples_ = [];
 var nextExample_ = 0;
 var retryIfFail_ = false;
+var hideGenerator_ = false;
 
 $(document).ready(function() {
   parseUrlParameters();
@@ -61,12 +65,14 @@ $(document).ready(function() {
   $('#cfg-target').change(testMatchingEquations);
   if (examples_.length) {
     $('#cfg-target').val(examples_[0]);
+  } else if (hideGenerator_) {
+    $('#cfg-target').val("");
   } else if (urlParameters.getUrlParameter('recursion-depth')) {
     $('#cfg-target').val(randomExpression(initialNonterminal_, productions_, urlParameters.getUrlParameter('recursion-depth')));
   } else if (retryIfFail_) {
-    $('#cfg-target').val(randomExpression(initialNonterminal_, productions_, 3));
+    $('#cfg-target').val(randomExpression(initialNonterminal_, productions_, RECURSIONDEPTH_DEFAULT));
   } else {
-    $('#cfg-target').val(randomExpression(initialNonterminal_, productions_, 1));
+    $('#cfg-target').val(randomExpression(initialNonterminal_, productions_, RECURSIONDEPTH_SIMPLE));
   }
   reapplyNonterminalClickEvent();
   //https://stackoverflow.com/a/3028037
@@ -94,7 +100,7 @@ function parseUrlParameters() {
   var examples = urlParameters.getUrlParameter('examples');
   var recursionDepth = urlParameters.getUrlParameter('recursion-depth');
   retryIfFail_ = urlParameters.getUrlParameter('retry-if-fail') == 'true';
-  var hideGenerator = urlParameters.getUrlParameter('hide-generator') == 'true';
+  hideGenerator_ = urlParameters.getUrlParameter('hide-generator') == 'true';
 
   if (grammar) {
     productions_ = decodeGrammar(grammar);
@@ -111,7 +117,7 @@ function parseUrlParameters() {
   } else {
     $('#set-g-from-preset').hide();
   }
-  if (hideGenerator) {
+  if (hideGenerator_) {
     if (examples) {
       setGenerator('from-preset');
       $('#set-g-random').hide();
@@ -121,10 +127,10 @@ function parseUrlParameters() {
       $('#generator-buttons').hide();
     }
   } else if (recursionDepth || retryIfFail_) {
-    if (examples) {
-      $('#set-g-random-simple').hide();
-    } else {
-      $('#generator-buttons').hide();
+    $('#set-g-random-simple').hide();
+    if (!examples) {
+      $('#set-g-from-preset').hide();
+      $('#generate-dropdown').hide();
     }
   }
 }
@@ -285,8 +291,11 @@ function describeAndReduceProductions(nonterminal, replacements) {
  * Sets the equation generator to be of the given type
  */
 function setGenerator(type) {
-  $('#generate-button').html($('#set-g-' + type).html());
-  $('#generate-button').attr('g-type', $('#set-g-' + type).attr('g-type'));
+  var $button = $('#set-g-' + type);
+  var buttonLabel = $('#set-g-' + type).html();
+  var buttonType = $button.attr('g-type');
+  $('#generate-button').html(buttonLabel);
+  $('#generate-button').attr('g-type', buttonType);
 }
 
 /**
@@ -297,9 +306,9 @@ function generateTarget($button) {
     if (urlParameters.getUrlParameter('recursion-depth')) {
       return randomExpression(initialNonterminal_, productions_, parseInt(urlParameters.getUrlParameter('recursion-depth')));
     }
-    return randomExpression(initialNonterminal_, productions_, 3);
+    return randomExpression(initialNonterminal_, productions_, RECURSIONDEPTH_DEFAULT);
   } else if ($button.getAttribute('g-type') == 'random-simple') {
-    return randomExpression(initialNonterminal_, productions_, 1);
+    return randomExpression(initialNonterminal_, productions_, RECURSIONDEPTH_SIMPLE);
   } else {
     nextExample_ = (nextExample_ + 1) % examples_.length;
     return examples_[nextExample_];
@@ -490,13 +499,16 @@ function randomExpression(startChar, productions, maxDepth) {
       result = recursiveRandomExpression(startChar, productions, maxDepth, true, []);
       success = true;
     } catch (error) {
-      //console.log(error); for debug
+      // If the error is not the error we're trying to catch then re-throw it
+      if (!error.startsWith("Max depth")) {
+        throw error;
+      }
     }
     attempt++;
   }
   if (!success) {
     $('#error-notice').html(gettext("The generator failed to finish a new equation too many times.") + "<br>" +
-    gettext("If this error appears regularly, perhaps the recursion depth is set too low.")); //TODO
+    gettext("If this error appears regularly, perhaps the recursion depth is set too low."));
     $('#error-notice').show();
     return "";
   }

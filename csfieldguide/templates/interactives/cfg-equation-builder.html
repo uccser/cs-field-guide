@@ -8,14 +8,14 @@
   <h2 class="text-center mt-3">{% trans "Context-free Grammar Equation Builder" %}</h2>
   <div class="row">
     <div class="col-12 col-md-9 col-lg-6 offset-lg-3">
-      <div class="d-flex justify-content-center mt-3" id="txt-description">
+      <div class="d-flex justify-content-center mt-3 text-center">
         {% trans "Use the available productions to build an equation.<br>Click the nonterminal below to replace it." %}
       </div>
       <div class="row justify-content-center mt-3">
         <div class="col-12" id="txt-try">
           {% trans "Try to form:" %}
         </div>
-        <input type="text" class="col-6 text-center m-2" id="cfg-target" >
+        <input type="text" class="col-6 text-center m-2 form-control" id="cfg-target" >
         <div class="btn-group" id="generator-buttons">
           <button type="button" class="btn btn-secondary btn-sm my-2" g-type="random" id="generate-button">{% trans "Random" %}</button>
           <button type="button" class="btn btn-secondary btn-sm dropdown-toggle dropdown-toggle-split my-2" data-toggle="dropdown" id="generate-dropdown">
