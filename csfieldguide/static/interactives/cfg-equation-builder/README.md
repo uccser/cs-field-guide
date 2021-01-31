@@ -53,11 +53,11 @@ D
 
 When used as a URL parameter, including the shorthand for lone integers:
 
-`url?productions=E : N | E '+' E | E '*' E | '-' E | '(' E ')' ; N : 0|1|2|3|4|5|6|7|8|9;`
+`url?productions=E:N|E '+' E|E '*' E|'-' E|'(' E ')';N:0|1|2|3|4|5|6|7|8|9;`
 
 With percent encoding:
 
-`url?productions=E%20%3a%20N%20%7c%20E%20%27%2b%27%20E%20%7c%20E%20%27%2a%27%20E%20%7c%20%27-%27%20E%20%7c%20%27%28%27%20E%20%27%29%27%20%3b%20N%20%3a%200%7c1%7c2%7c3%7c4%7c5%7c6%7c7%7c8%7c9%3b`
+`url?productions=E%3aN%7cE%20%27%2b%27%20E%7cE%20%27%2a%27%20E%7c%27-%27%20E%7c%27%28%27%20E%20%27%29%27%3bN%3a0%7c1%7c2%7c3%7c4%7c5%7c6%7c7%7c8%7c9%3b`
 
 ## Required files
 
