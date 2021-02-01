@@ -35,6 +35,7 @@ var examples_ = [];
 var nextExample_ = 0;
 var retryIfFail_ = false;
 var hideGenerator_ = false;
+var recursionDepth_ = RECURSIONDEPTH_DEFAULT;
 
 $(document).ready(function() {
   parseUrlParameters();
@@ -67,10 +68,8 @@ $(document).ready(function() {
     $('#cfg-target').val(examples_[0]);
   } else if (hideGenerator_) {
     $('#cfg-target').val("");
-  } else if (urlParameters.getUrlParameter('recursion-depth')) {
-    $('#cfg-target').val(randomExpression(initialNonterminal_, productions_, urlParameters.getUrlParameter('recursion-depth')));
-  } else if (retryIfFail_) {
-    $('#cfg-target').val(randomExpression(initialNonterminal_, productions_, RECURSIONDEPTH_DEFAULT));
+  } else if (retryIfFail_ || recursionDepth_ != RECURSIONDEPTH_DEFAULT) {
+    $('#cfg-target').val(randomExpression(initialNonterminal_, productions_, recursionDepth_));
   } else {
     $('#cfg-target').val(randomExpression(initialNonterminal_, productions_, RECURSIONDEPTH_SIMPLE));
   }
@@ -116,6 +115,9 @@ function parseUrlParameters() {
     examples_ = examples;
   } else {
     $('#set-g-from-preset').hide();
+  }
+  if (recursionDepth && parseInt(recursionDepth) > 0) {
+    recursionDepth_ = parseInt(recursionDepth);
   }
   if (hideGenerator_) {
     if (examples) {
@@ -175,7 +177,7 @@ function interpretReplacementStrings(replacementStrings) {
   var replacementUnits;
   for (let i=0; i<replacementStrings.length; i++) {
     replacementUnits = replacementStrings[i].trim().split(' ');
-    var firstUnit = replacementUnits[0].replace(/^\'+|\'+$/g, '');
+    let firstUnit = replacementUnits[0].replace(/^\'+|\'+$/g, '');
     if (replacementUnits.length == 1 && !isNaN(firstUnit)
     && parseInt(firstUnit) == parseFloat(firstUnit)) {
       // A full list of integer terminals is interpreted differently
@@ -292,7 +294,7 @@ function describeAndReduceProductions(nonterminal, replacements) {
  */
 function setGenerator(type) {
   var $button = $('#set-g-' + type);
-  var buttonLabel = $('#set-g-' + type).html();
+  var buttonLabel = $button.html();
   var buttonType = $button.attr('g-type');
   $('#generate-button').html(buttonLabel);
   $('#generate-button').attr('g-type', buttonType);
@@ -303,10 +305,7 @@ function setGenerator(type) {
  */
 function generateTarget($button) {
   if ($button.getAttribute('g-type') == 'random') {
-    if (urlParameters.getUrlParameter('recursion-depth')) {
-      return randomExpression(initialNonterminal_, productions_, parseInt(urlParameters.getUrlParameter('recursion-depth')));
-    }
-    return randomExpression(initialNonterminal_, productions_, RECURSIONDEPTH_DEFAULT);
+    return randomExpression(initialNonterminal_, productions_, recursionDepth_);
   } else if ($button.getAttribute('g-type') == 'random-simple') {
     return randomExpression(initialNonterminal_, productions_, RECURSIONDEPTH_SIMPLE);
   } else {
@@ -383,7 +382,6 @@ function applyProduction($target) {
 
 /**
  * Replaces the existing equation with the one immediately before.
- * Only one previous version is stored.
  */
 function undo() {
   $('#cfg-equation').html(historyStack_.pop());
@@ -479,7 +477,7 @@ function isTerminal(s) {
  * Returns a random expression generated from the given grammar productions.
  * 
  * If the maximum depth of recursion (`maxDepth`) is reached then depending on
- * the global retryIfFail either: it will try again up to 10 times; or remaining
+ * the global retryIfFail either it will try again up to 10 times or remaining
  * nonterminals will be replaced with random terminals.
  * 
  * @param {String} startChar initial nonterminal
@@ -521,10 +519,10 @@ function randomExpression(startChar, productions, maxDepth) {
  * @param {String} replaced initial nonterminal
  * @param {Dict} productions all productions
  * @param {Number} maxDepth maximum depth of recursion
- * @param {Boolean} doRetry Throw an error if `maxDepth` is reached and nonterminals remain
- * @param {Array} terminals Terminal characters to use if `maxDepth` is reached
+ * @param {Boolean} doRetry throw an error if `maxDepth` is reached and nonterminals remain
+ * @param {Array} terminals terminal characters to use if `maxDepth` is reached and `doRetry` is `false`
  * 
- * It is assumed that any terminal in T can logically (through one or more steps)
+ * It is assumed that any terminal in `terminals` can logically (through one or more steps)
  * replace any nonterminal.
  */
 function recursiveRandomExpression(replaced, productions, maxDepth, doRetry, terminals) {
