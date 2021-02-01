@@ -1,0 +1,56 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+<div class="container">
+  <h2 class="text-center mt-3">{% trans "Context-free Grammar Equation Builder" %}</h2>
+  <div class="row">
+    <div class="col-12 col-md-9 col-lg-6 offset-lg-3">
+      <div class="d-flex justify-content-center mt-3 text-center">
+        {% trans "Use the available productions to build an equation.<br>Click the nonterminal below to replace it." %}
+      </div>
+      <div class="row justify-content-center mt-3">
+        <div class="col-12" id="txt-try">
+          {% trans "Try to form:" %}
+        </div>
+        <input type="text" class="col-6 text-center m-2 form-control" id="cfg-target" >
+        <div class="btn-group" id="generator-buttons">
+          <button type="button" class="btn btn-secondary btn-sm my-2" g-type="random" id="generate-button">{% trans "Random" %}</button>
+          <button type="button" class="btn btn-secondary btn-sm dropdown-toggle dropdown-toggle-split my-2" data-toggle="dropdown" id="generate-dropdown">
+            <span class="sr-only">{% trans "Toggle Dropdown" %}</span>
+          </button>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" g-type="random" href="#" id="set-g-random">{% trans "Random" %}</a>
+            <a class="dropdown-item" g-type="random-simple" href="#" id="set-g-random-simple">{% trans "Simple" %}</a>
+            <a class="dropdown-item" g-type="from-preset" href="#" id="set-g-from-preset">{% trans "Next" %}</a>
+          </div>
+        </div>
+      </div>
+      <div class="row" id="error-notice"></div>
+      <div class="d-flex justify-content-center my-2" id="cfg-equation"></div>
+      <div class="d-flex justify-content-center mb-2">
+        <button type="button" class="btn btn-secondary btn-sm m-1 float-right" id="undo-button">{% trans "Undo" %}</button>
+        <button type="button" class="btn btn-danger btn-sm m-1 float-right" id="reset-button">{% trans "Reset" %}</button>
+      </div>
+    </div>
+    <div class="col-12 col-md-3 d-flex justify-content-center">
+      <div class="py-2">
+        <table class="m-2" id="productions-table-container">
+          <tbody id="productions-table"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div id="selection-popup"></div>
+</div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/cfg-equation-builder/css/cfg-equation-builder.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'interactives/cfg-equation-builder/js/cfg-equation-builder.js' %}"></script>
+{% endblock js %}
