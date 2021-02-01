@@ -1,0 +1,55 @@
+#txt-try {
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+#generate-button.success, #generate-dropdown.success {
+  background-color: #28a745 !important;
+  border-color: #28a745 !important;
+}
+
+#cfg-equation {
+  font-size: 4rem;
+  .nonterminal {
+    font-weight: bold;
+    color:#6c757d; // btn-secondary style colours
+  }
+  .nonterminal:hover {
+    color: #444444;
+    cursor: pointer;
+  }
+  &.success {
+    background-color: #cdffd8 !important;
+    border-radius: 2rem;
+  }
+}
+
+#productions-table-container {
+  border-collapse: separate !important;
+  border: 1px solid #a0a0a0;
+  border-radius: 1rem;
+  border-spacing: 0;
+  background-color: #ececec;
+  padding: 5px;
+  // Border between columns https://stackoverflow.com/a/22775925
+  td + td {
+    border-left: 1px solid #a0a0a0;
+    padding-left: 7px;
+  }
+}
+
+#selection-popup {
+  display: none;
+  position: absolute;
+  background-color: #ececec;
+  .btn {
+    text-align: start;
+  }
+}
+
+#error-notice {
+  display: none;
+  color: red;
+  font-family: sans-serif;
+  text-align: center;
+}
