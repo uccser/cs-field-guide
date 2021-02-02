@@ -28,8 +28,8 @@ braille-alphabet:
   name: Braille Alphabet
 caesar-cipher:
   name: Caesar Cipher
-cfg-equation-builder:
-  name: CFG Equation Builder
+cfg-parsing-challenge:
+  name: CFG Parsing Challenge
 checksum-calculator:
   name: Checksum Calculator
 checksum-calculator-gtin-13:

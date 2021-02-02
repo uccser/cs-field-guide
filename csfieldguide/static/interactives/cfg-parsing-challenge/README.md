@@ -1,8 +1,8 @@
-# CFG Equation Builder Interactive
+# CFG Parsing Challenge Interactive
 
 **Author:** Alasdair Smith
 
-This interactive demonstrates a context-free grammar (CFG) by allowing a user to use it to build a mathematical equation.
+This interactive demonstrates a context-free grammar (CFG) by allowing a user to use it to build a mathematical equation (default behaviour) or sentences. The interactive has the ability to do any grammar via use of the URL parameters.
 
 ## URL Parameters
 
