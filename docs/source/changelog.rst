@@ -17,6 +17,17 @@ All notable changes to this project will be documented in this file.
 
 We have listed major changes for each release below.
 
+3.7.0
+==============================================================================
+
+- **Release date:** 2nd February 2021
+- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/3.7.0>`__
+
+**Changelog:**
+
+- Add context-free grammar interactive. `#1364 <https://github.com/uccser/cs-field-guide/pull/1364>`__
+- Update the list of editors. `#1361 <https://github.com/uccser/cs-field-guide/pull/1361>`__
+
 3.6.0
 ==============================================================================
 

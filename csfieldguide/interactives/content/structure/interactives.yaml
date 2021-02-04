@@ -68,6 +68,10 @@ caesar-cipher:
   languages:
     en: interactives/caesar-cipher.html
   is_interactive: true
+cfg-equation-builder:
+  languages:
+    en: interactives/cfg-equation-builder.html
+  is_interactive: true
 checksum-calculator:
   languages:
     en: interactives/checksum-calculator.html

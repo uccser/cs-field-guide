@@ -4,11 +4,6 @@
 {% load static %}
 
 {% block html %}
-  <div class="row too-small">
-    <div class="col-12">{% trans 'Sorry, for screens less than 500px wide, the solution is only available in English.' %}</div>
-    <div class="col-12"><img class="solutionimg" src="{% static 'interactives/trainsylvania-complete/img/english-solution.png' %}"></div>
-  </div>
-
   <div class="container mt-3 uninteractive trainsylvania-complete">
     <!-- Top row: Suburbopolis and North Stations -->
     <div class="row justify-content-center">
@@ -56,7 +51,7 @@
       </div>
     </div>
     <!-- SVG based on https://stackoverflow.com/questions/20037122/draw-an-arrow-between-two-divs -->
-    <svg width="500" height="300">
+    <svg id="map" width="500" height="300">
       <defs>
         <marker id="arrow" markerWidth="10" markerHeight="13" refx="2" refy="6" orient="auto">
           <path d="M2,1 L2,9 L8,6 L2,3" style="fill: #3f51b5;" />
