@@ -86,21 +86,24 @@
           <label for="n-items" class="col-sm-6 col-form-label">{% trans "Number of items (n):" %}</label>
           <div class="col-sm-6 mt-1">
             <input class="form-control form-control-sm" id="n-items" value=10>
-            <div id="n-items-input-error" class="invalid-feedback d-none">{% trans "Please enter an integer between 1 and 1000 inclusive." %}</div>
+            <div id="n-items-input-invalid" class="invalid-feedback d-none">{% trans "Please enter a positive integer." %}</div>
+            <div id="n-items-input-too-big" class="invalid-feedback d-none">{% trans "This number is too big for the chosen complexity!" %}</div>
           </div>
         </div>
         <div class="form-group row">
           <label for="speed" class="col-sm-6 col-form-label">{% trans "Operations per second:" %}</label>
           <div class="col-sm-6 mt-1">
             <input class="form-control form-control-sm" id="speed" value=1>
-            <div id="speed-input-error" class='invalid-feedback d-none'>{% trans "Please enter a positive number no higher than 1000000." %}</div>
+            <div id="speed-input-invalid" class='invalid-feedback d-none'>{% trans "Please enter a positive number." %}</div>
+            <div id="speed-input-too-big" class='invalid-feedback d-none'>{% trans "This number is too big!" %}</div>
           </div>
         </div>
         <div class="form-group row">
           <label for="processors" class="col-sm-6 col-form-label">{% trans "Processors:" %}</label>
           <div class="col-sm-6 mt-1">
             <input class="form-control form-control-sm" id="processors" value=1>
-            <div id="processors-input-error" class='invalid-feedback d-none'>{% trans "Please enter an integer between 1 and 1000 inclusive." %}</div>
+            <div id="processors-input-invalid" class='invalid-feedback d-none'>{% trans "Please enter a positive integer." %}</div>
+            <div id="processors-input-too-big" class='invalid-feedback d-none'>{% trans "This number is too big!" %}</div>
           </div>
         </div>
 

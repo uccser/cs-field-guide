@@ -262,7 +262,7 @@ The Towers of Hanoi problem is a challenge where you have a stack of disks of in
 The challenge is to move all the disks from one peg to another, but you may not put a larger disk on top of a smaller one.
 There's a description of it at [Wikipedia](https://en.wikipedia.org/wiki/Tower_of_Hanoi).
 
-This problem cannot be solved in fewer than \( 2^{n-1} \) moves, so it's an intractable problem (a computer program that lists all the moves to make would use at least \( 2^{n-1} \) steps).
+This problem cannot be solved in fewer than \( 2^n - 1 \) moves, so it's an intractable problem (a computer program that lists all the moves to make would use at least \( 2^n - 1 \) steps).
 For 6 disks it only needs 63 moves, but for 50 disks this would be 1,125,899,906,842,623 moves.
 
 We usually characterise a problem like this as having a complexity of \( 2^n \), as subtracting one to get a precise value makes almost no difference, and the shorter expression is simpler to communicate to others.
