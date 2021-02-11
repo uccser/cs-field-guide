@@ -62,6 +62,8 @@ $(document).ready(function() {
     setGenerator('from-preset');
   })
   $('#undo-button').on('click', undo);
+  $('#cfg-grammar-link-button').on('click', getLink);
+  $('#cfg-default-link-button').on('click', resetLink);
   $('#undo-button').prop('disabled', true);
   $('#cfg-target').change(testMatchingEquations);
   if (examples_.length) {
@@ -73,6 +75,8 @@ $(document).ready(function() {
   } else {
     $('#cfg-target').val(randomExpression(initialNonterminal_, productions_, RECURSIONDEPTH_SIMPLE));
   }
+  $('#cfg-grammar-input').val('');
+  getLink();
   reapplyNonterminalClickEvent();
   //https://stackoverflow.com/a/3028037
   $(document).click(function(event) { 
@@ -556,4 +560,41 @@ function recursiveRandomExpression(replaced, productions, maxDepth, doRetry, ter
     }
   }
   return returnString;
+}
+
+/******************************************************************************/
+// FUNCTIONS FOR THE TEACHER MODE PRODUCTIONS SETTER //
+/******************************************************************************/
+
+/**
+ * Sets the link in the teacher-mode productions setter to the base url of the interactive
+ */
+function resetLink() {
+  var instruction = gettext("This link will open the default version of this interactive:");
+  var link = window.location.href.split('?', 1)[0].replace(/^\/+|\/+$/g, '');
+  $("#cfg-grammar-link").html(`${instruction}<br><a href=${link}>${link}</a>`);
+}
+
+/**
+ * Sets the link in the teacher-mode productions setter based on the productions submitted
+ */
+function getLink() {
+  var instruction = gettext("This link will open the interactive with your set productions:");
+  var productions = $("#cfg-grammar-input").val().trim();
+  if (productions.length <= 0) {
+    $("#cfg-grammar-link").html("");
+    return;
+  }
+  var productionsParameter = percentEncode(productions.replace(/\n/g, ' '));
+  var otherParameters = "&hide-generator=true";
+  var basePath = window.location.href.split('?', 1)[0];
+  var fullUrl = basePath + "?productions=" + productionsParameter + otherParameters;
+  $("#cfg-grammar-link").html(`${instruction}<br><a href=${fullUrl}>${fullUrl}</a>`);
+}
+
+/**
+ * Returns the given string percent-encoded
+ */
+function percentEncode(string) {
+  return encodeURIComponent(string);
 }
