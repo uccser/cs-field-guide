@@ -145,7 +145,7 @@ function parseUrlParameters() {
  * Parses the given string to form a dictionary of grammar productions.
  * 
  * e.g. the default productions could be parsed from:
- * E : N | E '+' E | E '*' E | '-' E | '(' E ')' ; N : '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' ;
+ * E:N|E '+' E|E '*' E|'-' E|'(' E ')'; N:'0'|'1'|'2'|'3'|'4'|'5'|'6'|'7'|'8'|'9';
  */
 function decodeGrammar(productionString) {
   var duo, nonterminal, replacementString;
@@ -172,7 +172,7 @@ function decodeGrammar(productionString) {
 
 /**
  * Returns a list of production replacements in the format expected by this program.
- * If every replacement is an integer, returns a list of elements rather than
+ * If every replacement is an integer terminal, returns a list of elements rather than
  * a list of lists
  */
 function interpretReplacementStrings(replacementStrings) {
@@ -181,11 +181,10 @@ function interpretReplacementStrings(replacementStrings) {
   var replacementUnits;
   for (let i=0; i<replacementStrings.length; i++) {
     replacementUnits = replacementStrings[i].trim().split(' ');
-    let firstUnit = replacementUnits[0].replace(/^\'+|\'+$/g, '');
-    if (replacementUnits.length == 1 && !isNaN(firstUnit)
-    && parseInt(firstUnit) == parseFloat(firstUnit)) {
+    let firstUnit = replacementUnits[0];
+    if (replacementUnits.length == 1 && firstUnit.match(/^\'\d+\'$/g)) {
       // A full list of integer terminals is interpreted differently
-      replacements.push(parseInt(firstUnit));
+      replacements.push(parseInt(firstUnit.replace(/^\'+|\'+$/g, '')));
     } else {
       replacements.push(replacementUnits);
     }

@@ -3,7 +3,7 @@
 **Author:** Alasdair Smith
 
 This interactive demonstrates a context-free grammar (CFG) by allowing a user to use it to build a mathematical equation (default behaviour) or sentences.
-The interactive has the ability to do any grammar via use of the URL parameters.
+The interactive can demonstrate most grammars via use of the URL parameters.
 
 ## URL Parameters
 
@@ -29,10 +29,8 @@ After 10 tries the generator will quit with an error message. Otherwise if the g
 
 ### URL Parameter Limitations
 
-- If a production replaces a nonterminal with one integer, that integer will be interpreted as a terminal with or without the inverted commas.
-This allows a shorthand syntax where the inverted commas can be left out.
 - Parameter syntax characters, including spaces and (`:`,`'`,`|`,`;`), are always interpreted as such, so problems will occur if they are attempted to be used as part of the grammar productions.
-- The ampisand (&) is used to separate url parameters so will also cause problems if used in grammar productions.
+- The ampisand (`&`) is used to separate url parameters so will also cause problems if used in grammar productions.
 
 ### URL Productions Example
 
@@ -54,13 +52,13 @@ D
   ;
 ```
 
-When used as a URL parameter, including the shorthand for lone integers:
+When used as a URL parameter:
 
-`url?productions=E:N|E '+' E|E '*' E|'-' E|'(' E ')';N:0|1|2|3|4|5|6|7|8|9;`
+`url?productions=E:N|E '+' E|E '*' E|'-' E|'(' E ')';N:'0'|'1'|'2'|'3'|'4'|'5'|'6'|'7'|'8'|'9';`
 
 With percent encoding:
 
-`url?productions=E%3aN%7cE%20%27%2b%27%20E%7cE%20%27%2a%27%20E%7c%27-%27%20E%7c%27%28%27%20E%20%27%29%27%3bN%3a0%7c1%7c2%7c3%7c4%7c5%7c6%7c7%7c8%7c9%3b`
+`url?productions=E%3aN%7cE%20%27%2b%27%20E%7cE%20%27%2a%27%20E%7c%27-%27%20E%7c%27%28%27%20E%20%27%29%27%3bN%3a%270%27%7c%271%27%7c%272%27%7c%273%27%7c%274%27%7c%275%27%7c%276%27%7c%277%27%7c%278%27%7c%279%27%3b`
 
 ## Required files
 

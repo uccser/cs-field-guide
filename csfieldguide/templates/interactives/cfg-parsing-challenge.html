@@ -30,9 +30,9 @@
                 <li>{% trans "The syntax is a simplified YACC syntax." %}</li>
                 <li>{% trans "Begin each line with a nonterminal and colon (:), and end it with a semicolon (;)." %}</li>
                 <li>{% trans "Between the colon and semicolon, list replacements for the nonterminal separated by vertical bars (|)." %}</li>
-                <li>{% trans "An integer or a string enclosed in inverted commas (') is interpreted as a terminal." %}</li>
+                <li>{% trans "Enclose terminals with inverted commas (')." %}</li>
                 <li>{% trans "Separate nonterminals from each other, and terminals from nonterminals, with spaces." %}</li>
-                <li>{% trans "Spaces, colons, semicolons, inverted commas, and vertical bars are all reserved for defining the productions and should not be used in the productions themselves." %}</li>
+                <li>{% trans "Spaces, colons, semicolons, inverted commas and vertical bars are all reserved for defining the productions and should not be used in the productions themselves." %}</li>
                 <li>{% trans "Ampisands (&) are reserved for interpreting the url and should not be used either." %}</li>
               </div>
             </div>
@@ -40,8 +40,8 @@
               <div class="card card-body">
                 <p>{% trans "The default grammar productions can be obtained from:" %}</p>
                 <div class="p-2" id="cfg-example-productions">
-                  E:N|E '+' E|E '*' E| '-' E|'(' E ')';
-                  N:0|1|2|3|4|5|6|7|8|9;
+                  E:N|E '+' E|E '*' E|'-' E|'(' E ')';
+                  N:'0'|'1'|'2'|'3'|'4'|'5'|'6'|'7'|'8'|'9';
                 </div>
               </div>
             </div>
