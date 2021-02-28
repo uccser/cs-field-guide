@@ -15,6 +15,7 @@ class Interactive(TranslatableModel):
     name = models.CharField(max_length=100, default="")
     template = models.CharField(max_length=150)
     is_interactive = models.BooleanField(default=True)
+    use_large_thumbnail = models.BooleanField(default=False)
 
     def __str__(self):
         """Text representation of Interactive object.
