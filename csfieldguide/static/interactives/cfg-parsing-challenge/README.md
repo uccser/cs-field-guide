@@ -30,7 +30,7 @@ After 10 tries the generator will quit with an error message. Otherwise if the g
 ### URL Parameter Limitations
 
 - Parameter syntax characters, including spaces and (`:`,`'`,`|`,`;`), are always interpreted as such, so problems will occur if they are attempted to be used as part of the grammar productions.
-- The ampisand (`&`) is used to separate url parameters so will also cause problems if used in grammar productions.
+- The ampersand (`&`) is used to separate url parameters so will also cause problems if used in grammar productions.
 
 ### URL Productions Example
 
