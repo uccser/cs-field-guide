@@ -62,6 +62,8 @@ delayed-checkbox:
   name: Delayed Checkbox
 dictionary-compression:
   name: Dictionary Compression
+distance-from-stereo-images:
+  name: Distance From Stereo Images
 dot-combinations:
   name: Dot Combinations
 flowcharts-interpreter-compiler:

@@ -151,6 +151,10 @@ dictionary-compression:
   languages:
     en: interactives/dictionary-compression.html
   is_interactive: true
+distance-from-stereo-images:
+  languages:
+    en: interactives/distance-from-stereo-images.html
+  is_interactive: true
 dot-combinations:
   languages:
     en: interactives/dot-combinations.html

@@ -1,0 +1,36 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+<div class="container">
+  <h3 class="text-center mb-2">{% trans "Getting Distance From Stereo Images" %}</h3>
+
+  <div class="row">
+    <div class="col-lg-6">
+      <div id="image-container-left">
+        <div class="d-none">
+          <img id="img-left" src="{% static 'interactives/distance-from-stereo-images/images/pick_left.jpg' %}">
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div id="image-container-right">
+        <div class="d-none">
+          <img id="img-right" src="{% static 'interactives/distance-from-stereo-images/images/pick_right.jpg' %}">
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endblock html %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'interactives/distance-from-stereo-images/css/distance-from-stereo-images.css' %}">
+{% endblock css %}
+
+{% block js %}
+<script type="text/javascript" src="{% static 'interactives/distance-from-stereo-images/js/distance-from-stereo-images.js' %}"></script>
+{% endblock js %}
