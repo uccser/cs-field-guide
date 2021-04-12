@@ -1,4 +1,27 @@
 img {
   max-width: 100%;
   object-fit: cover;
+  position: absolute;
+  z-index: -1;
+}
+
+canvas {
+  width: 100%;
+  object-fit: cover;
+
+}
+
+#canvas-div {
+  max-width: 100%;
+  object-fit: cover;
+  position: absolute;
+}
+
+#image-container {
+  position: absolute;
+  z-index: 1;
+}
+
+#images-div {
+  height: 405px;
 }
