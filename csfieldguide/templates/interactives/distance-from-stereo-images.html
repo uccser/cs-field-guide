@@ -9,28 +9,44 @@
 
   <div class="row">
     <div class="col-lg-6">
-      <div id="image-container-left">
-        <div class="d-none">
-          <img id="img-left" src="{% static 'interactives/distance-from-stereo-images/images/pick_left.jpg' %}">
+      <h4 class="text-center mb-2">{% trans "Left Camera" %}</h4>
+      <img id="img-left" src="{% static 'interactives/distance-from-stereo-images/images/pick_left.jpg' %}">
+    </div>
+    <div class="col-lg-6">
+      <h4 class="text-center mb-2">{% trans "Right Camera" %}</h4>
+      <img id="img-right" src="{% static 'interactives/distance-from-stereo-images/images/pick_right.jpg' %}">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-6">
+      <p>{% trans "Upload a custom image:" %}</p>
+      <div class="input-group mb-3">
+        <div class="custom-file">
+          <input type="file" class="custom-file-input" id="stereo-left-input" accept="image/*">
+          <label class="custom-file-label" for="stereo-left-input">{% trans "Choose file" %}</label>
         </div>
       </div>
     </div>
     <div class="col-lg-6">
-      <div id="image-container-right">
-        <div class="d-none">
-          <img id="img-right" src="{% static 'interactives/distance-from-stereo-images/images/pick_right.jpg' %}">
+      <p>{% trans "Upload a custom image:" %}</p>
+      <div class="input-group mb-3">
+        <div class="custom-file">
+          <input type="file" class="custom-file-input" id="stereo-right-input" accept="image/*">
+          <label class="custom-file-label" for="stereo-right-input">{% trans "Choose file" %}</label>
         </div>
       </div>
     </div>
   </div>
-
 </div>
 {% endblock html %}
 
 {% block css %}
-<link rel="stylesheet" href="{% static 'interactives/distance-from-stereo-images/css/distance-from-stereo-images.css' %}">
+<link rel="stylesheet"
+      href="{% static 'interactives/distance-from-stereo-images/css/distance-from-stereo-images.css' %}">
 {% endblock css %}
 
 {% block js %}
-<script type="text/javascript" src="{% static 'interactives/distance-from-stereo-images/js/distance-from-stereo-images.js' %}"></script>
+<script type="text/javascript"
+        src="{% static 'interactives/distance-from-stereo-images/js/distance-from-stereo-images.js' %}"></script>
 {% endblock js %}
