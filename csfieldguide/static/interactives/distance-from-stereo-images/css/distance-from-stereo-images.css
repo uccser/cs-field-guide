@@ -3,3 +3,6 @@ img {
   object-fit: cover;
 }
 
+canvas {
+  position: absolute;
+}

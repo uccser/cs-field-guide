@@ -1,13 +1,32 @@
-let leftImage = document.getElementById("img-left");
-leftImage.onmousedown = getLeftCoordinates;
-let rightImage = document.getElementById("img-right");
-rightImage.onmousedown = getRightCoordinates;
-
+let leftImage = null
+let rightImage = null
+let leftCanvas = null
+let rightCanvas = null
 
 $(document).ready(function () {
     $('#stereo-left-input').change(loadLeftImageDialog);
     $('#stereo-right-input').change(loadRightImageDialog);
+
+  leftImage = document.getElementById("img-left");
+  leftCanvas = document.getElementById("canvas-left");
+  leftCanvas.onmousedown = getLeftCoordinates;
+  rightImage = document.getElementById("img-right");
+  rightCanvas = document.getElementById("canvas-right");
+  rightCanvas.onmousedown = getRightCoordinates;
+
+  updateLeftCanvas();
+  updateRightCanvas()
 });
+
+function updateLeftCanvas() {
+  leftCanvas.width = leftImage.clientWidth;
+  leftCanvas.height = leftImage.clientHeight;
+}
+
+function updateRightCanvas() {
+  rightCanvas.width = rightImage.clientWidth;
+  rightCanvas.height = rightImage.clientHeight;
+}
 
 /*
  * Updates the left camera image with the one selected by the user.
@@ -62,7 +81,7 @@ function getLeftCoordinates(event)
 {
   let posX = 0;
   let posY = 0;
-  let imgPos = findPosition(leftImage);
+  let imgPos = findPosition(leftCanvas);
   if (event.pageX || event.pageY)
   {
     posX = event.pageX;
@@ -86,7 +105,7 @@ function getRightCoordinates(event)
 {
   let posX = 0;
   let posY = 0;
-  let imgPos = findPosition(rightImage);
+  let imgPos = findPosition(rightCanvas);
   if (event.pageX || event.pageY)
   {
     posX = event.pageX;
