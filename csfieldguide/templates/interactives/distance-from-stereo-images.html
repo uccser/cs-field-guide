@@ -4,16 +4,16 @@
 {% load static %}
 
 {% block html %}
-<div class="container">
+<div id="outer-div" class="container">
   <h3 class="text-center mb-2">{% trans "Getting Distance From Stereo Images" %}</h3>
 
   <div class="row">
-    <div class="col-lg-6">
+    <div class="col-sm-6">
       <h4 class="text-center mb-2">{% trans "Left Camera" %}</h4>
       <canvas id="canvas-left"></canvas>
       <img id="img-left" src="{% static 'interactives/distance-from-stereo-images/images/pick_left.jpg' %}">
     </div>
-    <div class="col-lg-6">
+    <div class="col-sm-6">
       <h4 class="text-center mb-2">{% trans "Right Camera" %}</h4>
       <canvas id="canvas-right"></canvas>
       <img id="img-right" src="{% static 'interactives/distance-from-stereo-images/images/pick_right.jpg' %}">
@@ -21,7 +21,7 @@
   </div>
 
   <div class="row">
-    <div class="col-lg-6">
+    <div class="col-sm-6">
       <p>{% trans "Upload a custom image:" %}</p>
       <div class="input-group mb-3">
         <div class="custom-file">
@@ -30,7 +30,7 @@
         </div>
       </div>
     </div>
-    <div class="col-lg-6">
+    <div class="col-sm-6">
       <p>{% trans "Upload a custom image:" %}</p>
       <div class="input-group mb-3">
         <div class="custom-file">
@@ -42,11 +42,11 @@
   </div>
 
   <div class="row">
-    <div class="col-lg-6">
+    <div class="col-sm-6">
       <p>X:<span id="left-x"></span></p>
       <p>Y:<span id="left-y"></span></p>
     </div>
-    <div class="col-lg-6">
+    <div class="col-sm-6">
       <p>X:<span id="right-x"></span></p>
       <p>Y:<span id="right-y"></span></p>
     </div>

@@ -6,3 +6,7 @@ img {
 canvas {
   position: absolute;
 }
+
+body, html {
+  max-height: 100%
+}
