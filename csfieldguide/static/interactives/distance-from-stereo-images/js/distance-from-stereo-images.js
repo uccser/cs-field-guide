@@ -115,6 +115,20 @@ function drawDot(x, y, canvas) {
 }
 
 function displayResult() {
+  if (leftX == null || leftY == null) {
+    alert("Select a point in the left camera.");
+    return;
+  } else if (rightX == null || rightY == null) {
+    alert("Select a point in the right camera.");
+    return;
+  } else if (document.getElementById("half-angle").value == "") {
+    alert("Provide a valid half angle-of-view.");
+    return;
+  } else if (document.getElementById("camera-distance").value == "") {
+    alert("Provide a valid distance between cameras.");
+    return;
+  }
+
   document.getElementById("result-title").style.visibility = "visible";
   document.getElementById("result").innerHTML = calculateDistance().toString() + " Meters";
 }

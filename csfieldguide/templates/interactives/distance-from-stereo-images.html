@@ -6,7 +6,12 @@
 {% block html %}
 <div id="outer-div" class="container">
   <h3 class="text-center mb-2">{% trans "Getting Distance From Stereo Images" %}</h3>
-
+  <a data-toggle="collapse" href="#instructions" role="button" aria-expanded="false" aria-controls="instructions">
+    Instructions
+  </a>
+  <div class="collapse" id="instructions">
+    <p>{% trans "Take two side-by-side pictures of an object. Make sure the direction of the pictures are parallel, and that the object is between the two camera positions. Note down the precise distance between the camera positions and the distance between the camera plane and the object plane. Upload the two pictures and click on the common point of the object in both pictures. Enter your camera's half angle-of-view and the distance between the two camera positions, and click 'Go!' to calculate the distance. Note that resizing the window will reset the points as this can affect the size of the pictures." %}</p>
+  </div>
   <div class="row">
     <div class="col-sm-6">
       <h4 class="text-center mb-2">{% trans "Left Camera" %}</h4>
@@ -22,7 +27,7 @@
 
   <div class="row">
     <div class="col-sm-6">
-      <p>{% trans "Upload a custom image:" %}</p>
+      <p>{% trans "Upload a custom left image:" %}</p>
       <div class="input-group mb-3">
         <div class="custom-file">
           <input type="file" class="custom-file-input" id="stereo-left-input" accept="image/*">
@@ -31,7 +36,7 @@
       </div>
     </div>
     <div class="col-sm-6">
-      <p>{% trans "Upload a custom image:" %}</p>
+      <p>{% trans "Upload a custom right image:" %}</p>
       <div class="input-group mb-3">
         <div class="custom-file">
           <input type="file" class="custom-file-input" id="stereo-right-input" accept="image/*">
@@ -43,22 +48,22 @@
 
   <div class="row">
     <div class="col-sm-6">
-      <p>X: <span id="left-x"></span></p>
-      <p>Y: <span id="left-y"></span></p>
+      <p>Left X: <span id="left-x"></span></p>
+      <p>Left Y: <span id="left-y"></span></p>
     </div>
     <div class="col-sm-6">
-      <p>X: <span id="right-x"></span></p>
-      <p>Y: <span id="right-y"></span></p>
+      <p>Right X: <span id="right-x"></span></p>
+      <p>Right Y: <span id="right-y"></span></p>
     </div>
   </div>
 
   <div class="input-group mb-3">
-    <input id="half-angle" type="number" step="0.01" class="form-control" placeholder="Half angle of view" aria-label="half-angle" aria-describedby="basic-addon2">
+    <input id="half-angle" type="number" step="0.01" class="form-control" placeholder="Half angle-of-view (Degrees)" aria-label="half-angle" aria-describedby="basic-addon2">
     <div class="input-group-append">
       <button class="btn btn-outline-secondary" type="button">Info</button>
     </div>
 
-    <input id="camera-distance" type="number" step="0.01" class="form-control" placeholder="Distance between pictures" aria-label="half-angle" aria-describedby="basic-addon2">
+    <input id="camera-distance" type="number" step="0.01" class="form-control" placeholder="Distance between pictures (Metres)" aria-label="half-angle" aria-describedby="basic-addon2">
     <div class="input-group-append">
       <button class="btn btn-outline-secondary" type="button">Info</button>
     </div>
