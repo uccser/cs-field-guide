@@ -51,6 +51,24 @@
       <p>Y: <span id="right-y"></span></p>
     </div>
   </div>
+
+  <div class="input-group mb-3">
+    <input id="half-angle" type="number" step="0.01" class="form-control" placeholder="Half angle of view" aria-label="half-angle" aria-describedby="basic-addon2">
+    <div class="input-group-append">
+      <button class="btn btn-outline-secondary" type="button">Info</button>
+    </div>
+
+    <input id="camera-distance" type="number" step="0.01" class="form-control" placeholder="Distance between pictures" aria-label="half-angle" aria-describedby="basic-addon2">
+    <div class="input-group-append">
+      <button class="btn btn-outline-secondary" type="button">Info</button>
+    </div>
+  </div>
+
+  <div id="result-div" class="container">
+    <button id="go-button" class="btn btn-outline-primary">Go!</button>
+    <p id="result-title" class="result-p">Calculated distance:</p>
+    <p class="result-p"><span id="result"></span></p>
+  </div>
 </div>
 {% endblock html %}
 

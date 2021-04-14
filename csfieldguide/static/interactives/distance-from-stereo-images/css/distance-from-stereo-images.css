@@ -10,3 +10,21 @@ canvas {
 body, html {
   max-height: 100%
 }
+
+#go-button {
+  vertical-align: middle
+}
+
+.result-p {
+  vertical-align: middle;
+  font-size: 18px;
+}
+
+#result-title {
+  margin-top: 50px;
+  visibility: hidden;
+}
+
+#result-div {
+  text-align: center;
+}

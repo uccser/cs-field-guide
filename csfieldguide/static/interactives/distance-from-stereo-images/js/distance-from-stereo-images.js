@@ -13,6 +13,7 @@ const DOT_SIZE = 10;
 $(document).ready(function () {
   $('#stereo-left-input').change(loadLeftImageDialog);
   $('#stereo-right-input').change(loadRightImageDialog);
+  $('#go-button').click(displayResult);
 
   leftImage = document.getElementById("img-left");
   leftCanvas = document.getElementById("canvas-left");
@@ -90,20 +91,20 @@ function loadRightImageDialog() {
 
 function leftCanvasClickHandler(event) {
   const rect = leftCanvas.getBoundingClientRect();
-  const x = Math.round(event.clientX - rect.left);
-  const y = Math.round(event.clientY - rect.top);
-  document.getElementById("left-x").innerHTML = x.toString();
-  document.getElementById("left-y").innerHTML = y.toString();
-  drawDot(x, y, leftCanvas);
+  leftX = Math.round(event.clientX - rect.left);
+  leftY = Math.round(event.clientY - rect.top);
+  document.getElementById("left-x").innerHTML = leftX.toString();
+  document.getElementById("left-y").innerHTML = leftY.toString();
+  drawDot(leftX, leftY, leftCanvas);
 }
 
 function rightCanvasClickHandler(event) {
   const rect = rightCanvas.getBoundingClientRect();
-  const x = Math.round(event.clientX - rect.left);
-  const y = Math.round(event.clientY - rect.top);
-  document.getElementById("right-x").innerHTML = x.toString();
-  document.getElementById("right-y").innerHTML = y.toString();
-  drawDot(x, y, rightCanvas);
+  rightX = Math.round(event.clientX - rect.left);
+  rightY = Math.round(event.clientY - rect.top);
+  document.getElementById("right-x").innerHTML = rightX.toString();
+  document.getElementById("right-y").innerHTML = rightY.toString();
+  drawDot(rightX, rightY, rightCanvas);
 }
 
 function drawDot(x, y, canvas) {
@@ -111,4 +112,29 @@ function drawDot(x, y, canvas) {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.fillStyle = "#FF0000";
   ctx.fillRect(x - 0.5 * DOT_SIZE, y - 0.5 * DOT_SIZE, DOT_SIZE, DOT_SIZE);
+}
+
+function displayResult() {
+  document.getElementById("result-title").style.visibility = "visible";
+  document.getElementById("result").innerHTML = calculateDistance().toString() + " Meters";
+}
+
+function calculateDistance() {
+  let half_angle = Number(document.getElementById("half-angle").value);
+  let distance = Number(document.getElementById("camera-distance").value);
+  let alpha1 = calculateLeftAlphaAngle(leftImage.width, leftX, half_angle);
+  let alpha2 = calculateRightAlphaAngle(rightImage.width, rightX, half_angle)
+  let numerator = Math.tan(Math.PI / 2 - alpha1) * Math.tan(Math.PI / 2 - alpha2) * distance;
+  let denominator = Math.tan(Math.PI / 2 - alpha1) + Math.tan(Math.PI / 2 - alpha2)
+  return numerator / denominator;
+}
+
+function calculateLeftAlphaAngle(imageWidth, x, half_angle) {
+  let half_angle_radians = half_angle * (Math.PI / 180);
+  return Math.atan(((x - imageWidth / 2) / (imageWidth / 2)) * Math.tan(half_angle_radians))
+}
+
+function calculateRightAlphaAngle(imageWidth, x, half_angle) {
+  let half_angle_radians = half_angle * (Math.PI / 180);
+  return Math.atan(((imageWidth / 2 - x) / (imageWidth / 2)) * Math.tan(half_angle_radians))
 }
