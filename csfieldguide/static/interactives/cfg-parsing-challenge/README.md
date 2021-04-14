@@ -3,7 +3,7 @@
 **Author:** Alasdair Smith
 
 This interactive demonstrates a context-free grammar (CFG) by allowing a user to use it to build a mathematical equation (default behaviour) or sentences.
-The interactive has the ability to do any grammar via use of the URL parameters.
+The interactive can demonstrate most grammars via use of the URL parameters.
 
 ## URL Parameters
 
@@ -11,7 +11,8 @@ The interactive has the ability to do any grammar via use of the URL parameters.
 
 ### Basic Parameters
 
-- `productions=str`: Set the grammar productions that can be used. Lone integers, as well as strings beginning and ending with an inverted comma, are interpreted as terminals. An example of the correct syntax using the default grammar can be found below.
+- `productions=str`: Set the grammar productions that can be used. Lone integers, as well as strings beginning and ending with an inverted comma, are interpreted as terminals.
+An example of the correct syntax using the default grammar can be found below.
 - `examples=str|str|str|...`: Set the examples that can be selected by the `Next` generator option. Examples will be cycled through in the order given.
 - `hide-generator=[true|false] (default: false)`: If `true`, remove the built-in equation generator (`Random` & `Simple`).
 
@@ -20,17 +21,16 @@ The interactive has the ability to do any grammar via use of the URL parameters.
 These parameters allow more control over the built-in equation generator.
 The defaults work well for the default productions, but in most situations it is recommended that `recursion-depth` is set higher than the default and `retry-if-fail` is set to `true`.
 
-- `recursion-depth=int (default: 3)`: Set the maximum recursion depth for the built-in equation generator (`Random`). If this or `retry-if-fail` is set then the option to generate with depth 1 (`Simple`) is removed.
-- `retry-if-fail=[true|false] (default: false)`: If `true`, the built-in equation generator will restart if it reaches the maximum recursion depth but nonterminals remain in the equation. After 10 tries the generator will quit with an error message. Otherwise if the generator reaches the maximum depth, it will replace all remaining nonterminals with random terminals from `terminals`, even if such replacements aren't valid.
+- `recursion-depth=int (default: 3)`: Set the maximum recursion depth for the built-in equation generator (`Random`).
+If this or `retry-if-fail` is set then the option to generate with depth 1 (`Simple`) is removed.
+- `retry-if-fail=[true|false] (default: false)`: If `true`, the built-in equation generator will restart if it reaches the maximum recursion depth but nonterminals remain in the equation.
+After 10 tries the generator will quit with an error message. Otherwise if the generator reaches the maximum depth, it will replace all remaining nonterminals with random terminals from `terminals`, even if such replacements aren't valid.
 - `terminals=str|str|str|... (default: 0-9)`: Set the terminals that can be selected from by the built-in equation generator if the maximum recursion depth is reached. If `retry-if-fail` is `true` then this parameter will have no effect.
 
 ### URL Parameter Limitations
 
-- If a production replaces a nonterminal with one integer, that integer will
-be interpreted as a terminal with or without the inverted commas.
-This allows a shorthand syntax where the inverted commas can be left out.
-- Parameter syntax characters, including spaces and (`:`,`'`,`|`,`;`), are always interpreted as such,
-so problems will occur if they are attempted to be used as part of the grammar productions.
+- Parameter syntax characters, including spaces and (`:`,`'`,`|`,`;`), are always interpreted as such, so problems will occur if they are attempted to be used as part of the grammar productions.
+- The ampersand (`&`) is used to separate url parameters so will also cause problems if used in grammar productions.
 
 ### URL Productions Example
 
@@ -52,13 +52,13 @@ D
   ;
 ```
 
-When used as a URL parameter, including the shorthand for lone integers:
+When used as a URL parameter:
 
-`url?productions=E:N|E '+' E|E '*' E|'-' E|'(' E ')';N:0|1|2|3|4|5|6|7|8|9;`
+`url?productions=E:N|E '+' E|E '*' E|'-' E|'(' E ')';N:'0'|'1'|'2'|'3'|'4'|'5'|'6'|'7'|'8'|'9';`
 
 With percent encoding:
 
-`url?productions=E%3aN%7cE%20%27%2b%27%20E%7cE%20%27%2a%27%20E%7c%27-%27%20E%7c%27%28%27%20E%20%27%29%27%3bN%3a0%7c1%7c2%7c3%7c4%7c5%7c6%7c7%7c8%7c9%3b`
+`url?productions=E%3aN%7cE%20%27%2b%27%20E%7cE%20%27%2a%27%20E%7c%27-%27%20E%7c%27%28%27%20E%20%27%29%27%3bN%3a%270%27%7c%271%27%7c%272%27%7c%273%27%7c%274%27%7c%275%27%7c%276%27%7c%277%27%7c%278%27%7c%279%27%3b`
 
 ## Required files
 
