@@ -121,11 +121,14 @@ function displayResult() {
   } else if (rightX == null || rightY == null) {
     alert("Select a point in the right camera.");
     return;
-  } else if (document.getElementById("half-angle").value == "") {
+  } else if (document.getElementById("angle-of-view").value === "") {
     alert("Provide a valid half angle-of-view.");
     return;
-  } else if (document.getElementById("camera-distance").value == "") {
+  } else if (document.getElementById("camera-distance").value === "") {
     alert("Provide a valid distance between cameras.");
+    return;
+  } else if (leftImage.width !== rightImage.width) {
+    alert("The images should be the same width.");
     return;
   }
 
@@ -134,21 +137,8 @@ function displayResult() {
 }
 
 function calculateDistance() {
-  let half_angle = Number(document.getElementById("half-angle").value);
+  let angle_of_view = Number(document.getElementById("angle-of-view").value);
+  let angle_of_view_radians = angle_of_view * Math.PI / 180;
   let distance = Number(document.getElementById("camera-distance").value);
-  let alpha1 = calculateLeftAlphaAngle(leftImage.width, leftX, half_angle);
-  let alpha2 = calculateRightAlphaAngle(rightImage.width, rightX, half_angle)
-  let numerator = Math.tan(Math.PI / 2 - alpha1) * Math.tan(Math.PI / 2 - alpha2) * distance;
-  let denominator = Math.tan(Math.PI / 2 - alpha1) + Math.tan(Math.PI / 2 - alpha2)
-  return numerator / denominator;
-}
-
-function calculateLeftAlphaAngle(imageWidth, x, half_angle) {
-  let half_angle_radians = half_angle * (Math.PI / 180);
-  return Math.atan(((x - imageWidth / 2) / (imageWidth / 2)) * Math.tan(half_angle_radians))
-}
-
-function calculateRightAlphaAngle(imageWidth, x, half_angle) {
-  let half_angle_radians = half_angle * (Math.PI / 180);
-  return Math.atan(((imageWidth / 2 - x) / (imageWidth / 2)) * Math.tan(half_angle_radians))
+  return (distance * leftImage.width) / (2 * Math.tan(angle_of_view_radians / 2) * (leftX - rightX));
 }

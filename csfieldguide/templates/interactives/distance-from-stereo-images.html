@@ -10,7 +10,7 @@
     Instructions
   </a>
   <div class="collapse" id="instructions">
-    <p>{% trans "Take two side-by-side pictures of an object. Make sure the direction of the pictures are parallel, and that the object is between the two camera positions. Note down the precise distance between the camera positions and the distance between the camera plane and the object plane. Upload the two pictures and click on the common point of the object in both pictures. Enter your camera's half angle-of-view and the distance between the two camera positions, and click 'Go!' to calculate the distance. Note that resizing the window will reset the points as this can affect the size of the pictures." %}</p>
+    <p>{% trans "Take two side-by-side pictures of an object. Make sure the direction of the pictures are parallel, and that the object is between the two camera positions. Note down the precise distance between the camera positions and the distance between the camera plane and the object plane. Upload the two pictures and click on the common point of the object in both pictures. Enter your camera's angle-of-view and the distance between the two camera positions, and click 'Go!' to calculate the distance. Note that resizing the window will reset the points as this can affect the size of the pictures." %}</p>
   </div>
   <div class="row">
     <div class="col-sm-6">
@@ -58,7 +58,7 @@
   </div>
 
   <div class="input-group mb-3">
-    <input id="half-angle" type="number" step="0.01" class="form-control" placeholder="Half angle-of-view (Degrees)" aria-label="half-angle" aria-describedby="basic-addon2">
+    <input id="angle-of-view" type="number" step="0.01" class="form-control" placeholder="Angle-of-view (Degrees)" aria-label="half-angle" aria-describedby="basic-addon2">
     <div class="input-group-append">
       <button class="btn btn-outline-secondary" type="button">Info</button>
     </div>
