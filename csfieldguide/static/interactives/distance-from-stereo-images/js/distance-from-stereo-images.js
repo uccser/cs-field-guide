@@ -1,35 +1,50 @@
+/**
+ * An object representing the left side of the interactive.
+ */
 let left = {
   image: null,
   canvas: null,
   x: null,
-  y: null
+  y: null,
+
+  toString: function () {
+    return "left";
+  }
 }
 
+/**
+ * An object representing the right side of the interactive.
+ */
 let right = {
   image: null,
   canvas: null,
   x: null,
-  y: null
+  y: null,
+
+  toString: function () {
+    return "right";
+  }
 }
 
 const DOT_SIZE = 10;
 
-/*
- * Initialization. Prepares the image select and 'Go!' buttons. Assigns the image and canvas global variables and adds
- * the click callbacks to the canvases. Calls the functions to update the canvases. Adds a callback to handle screen
- * size changes as this can change the size of the images.
+
+/**
+ * Initialization. Prepares the image select and 'Go!' buttons. Assigns the values in the left and right objects and
+ * adds the click callbacks to the canvases. Updates the canvases. Adds a callback to handle screen size changes as this
+ *  can change the size of the images.
  */
 $(document).ready(function () {
-  $('#stereo-left-input').change(loadLeftImageDialog);
-  $('#stereo-right-input').change(loadRightImageDialog);
+  $('#stereo-left-input').change(function() { loadImageDialog(this, left) });
+  $('#stereo-right-input').change(function() { loadImageDialog(this, right) });
   $('#go-button').click(displayResult);
 
   left.image = document.getElementById("img-left");
   left.canvas = document.getElementById("canvas-left");
-  left.canvas.onmousedown = leftCanvasClickHandler;
+  left.canvas.onmousedown = (event) => { canvasClickHandler(event, left) };
   right.image = document.getElementById("img-right");
   right.canvas = document.getElementById("canvas-right");
-  right.canvas.onmousedown = rightCanvasClickHandler;
+  right.canvas.onmousedown = (event) => { canvasClickHandler(event, right) };
 
   updateCanvas(left);
   updateCanvas(right);
@@ -37,9 +52,10 @@ $(document).ready(function () {
   window.onresize = reset;
 });
 
+
 /**
- * Resets parts of the interactive by resizing the canvases and clearing the click coordinates of images, both the
- * global variables and the displayed values.
+ * Resets parts of the interactive by resizing the canvases and clearing the click coordinates of images in both the
+ * left and right objects, and the displayed values.
  */
 function reset() {
   updateCanvas(left);
@@ -51,78 +67,65 @@ function reset() {
   document.getElementById("right-y").innerHTML = null;
 }
 
+
 /**
  * Updates a Canvas such that its dimensions match those of its corresponding image.
- * @param canvas The canvas to update.
- * @param image The Image the Canvas is laid over.
+ * @param side The side to update the canvas of.
  */
 function updateCanvas(side) {
   side.canvas.width = side.image.width;
   side.canvas.height = side.image.height;
 }
 
-/*
- * Updates the left camera image with the one selected by the user.
+
+/**
+ * Handles an uploaded image by displaying the image, clearing click coordinates, updating the canvas, and displaying
+ * the filename.
+ * @param input For obtaining the file data.
+ * @param side The side to update.
  */
-function loadLeftImageDialog() {
-  let input = this;
+function loadImageDialog(input, side) {
   if (input.files && input.files[0]) {
     let reader = new FileReader();
     reader.onload = function (e) {
-      left.image.crossOrigin = 'anonymous';
-      left.image.src = e.target.result;
-      left.x = left.y = null;
-      document.getElementById("left-x").innerHTML = null;
-      document.getElementById("left-y").innerHTML = null;
+      side.image.crossOrigin = 'anonymous';
+      side.image.src = e.target.result;
+      side.x = side.y = null;
+      document.getElementById(side.toString() + "-x").innerHTML = null;
+      document.getElementById(side.toString() + "-y").innerHTML = null;
       // Sometimes the image seemingly is not ready yet, meaning the canvas won't update to the new size. A delay is
       // created to reduce the chances of this occurring, though it still does happen very rarely. Increasing the
       // timeout (or finding a better solution) may fix this.
-      setTimeout(() => {  updateCanvas(left); }, 10);
+      setTimeout(() => {  updateCanvas(side); }, 10);
     }
     reader.readAsDataURL(input.files[0]);
-    $("label[for='stereo-left-input']").text(input.files[0].name);
+    const inputName = "stereo-" + side.toString() + "-input";
+    $("label[for=" + inputName + "]").text(input.files[0].name);
   }
 }
 
-/*
- * Updates the right camera image with the one selected by the user.
+
+/**
+ * Handles a click in a canvas by updating the coordinates and drawing a dot.
+ * @param event The click event.
+ * @param side The side to update.
  */
-function loadRightImageDialog() {
-  let input = this;
-  if (input.files && input.files[0]) {
-    let reader = new FileReader();
-    reader.onload = function (e) {
-      right.image.crossOrigin = 'anonymous';
-      right.image.src = e.target.result;
-      right.x = right.y = null;
-      document.getElementById("right-x").innerHTML = null;
-      document.getElementById("right-y").innerHTML = null;
-      setTimeout(() => {  updateCanvas(right); }, 10);
-    }
-    reader.readAsDataURL(input.files[0]);
-    $("label[for='stereo-right-input']").text(input.files[0].name);
-  }
+function canvasClickHandler(event, side) {
+  const rect = side.canvas.getBoundingClientRect();
+  side.x = Math.round(event.clientX - rect.left);
+  side.y = Math.round(event.clientY - rect.top);
+  document.getElementById(side.toString() + "-x").innerHTML = side.x.toString();
+  document.getElementById(side.toString() + "-y").innerHTML = side.y.toString();
+  drawDot(side.x, side.y, side.canvas);
 }
 
 
-function leftCanvasClickHandler(event) {
-  const rect = left.canvas.getBoundingClientRect();
-  left.x = Math.round(event.clientX - rect.left);
-  left.y = Math.round(event.clientY - rect.top);
-  document.getElementById("left-x").innerHTML = left.x.toString();
-  document.getElementById("left-y").innerHTML = left.y.toString();
-  drawDot(left.x, left.y, left.canvas);
-}
-
-function rightCanvasClickHandler(event) {
-  const rect = right.canvas.getBoundingClientRect();
-  right.x = Math.round(event.clientX - rect.left);
-  right.y = Math.round(event.clientY - rect.top);
-  document.getElementById("right-x").innerHTML = right.x.toString();
-  document.getElementById("right-y").innerHTML = right.y.toString();
-  drawDot(right.x, right.y, right.canvas);
-}
-
+/**
+ * Draws a dot in a canvas.
+ * @param x The x-coordinate to place the dot.
+ * @param y The y-coordinate to place the dot.
+ * @param canvas The canvas to draw on.
+ */
 function drawDot(x, y, canvas) {
   let ctx = canvas.getContext("2d");
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -130,6 +133,10 @@ function drawDot(x, y, canvas) {
   ctx.fillRect(x - 0.5 * DOT_SIZE, y - 0.5 * DOT_SIZE, DOT_SIZE, DOT_SIZE);
 }
 
+
+/**
+ * Checks all the inputs have been supplied and are valid. If so, displays the calculated result.
+ */
 function displayResult() {
   if (left.x == null || left.y == null) {
     alert("Select a point in the left camera.");
@@ -152,6 +159,12 @@ function displayResult() {
   document.getElementById("result").innerHTML = calculateDistance().toString() + " Meters";
 }
 
+
+/**
+ * Calculates the distance to the object based on the equation proposed in the paper
+ * http://www.icoci.cms.net.my/proceedings/2017/Pdf_Version_Chap04e/PID105-235-242e.pdf
+ * @returns {number} The distance in metres.
+ */
 function calculateDistance() {
   let angle_of_view = Number(document.getElementById("angle-of-view").value);
   let angle_of_view_radians = angle_of_view * Math.PI / 180;
