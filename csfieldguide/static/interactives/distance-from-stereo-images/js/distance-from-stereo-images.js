@@ -1,14 +1,16 @@
-// Provides global access to images and canvases
-let leftImage = null;
-let rightImage = null;
-let leftCanvas = null;
-let rightCanvas = null;
+let left = {
+  image: null,
+  canvas: null,
+  x: null,
+  y: null
+}
 
-// Provides global access to the left and right x and y coordinates of the selected points in canvases.
-let leftX = null;
-let leftY = null;
-let rightX = null;
-let rightY = null;
+let right = {
+  image: null,
+  canvas: null,
+  x: null,
+  y: null
+}
 
 const DOT_SIZE = 10;
 
@@ -22,15 +24,15 @@ $(document).ready(function () {
   $('#stereo-right-input').change(loadRightImageDialog);
   $('#go-button').click(displayResult);
 
-  leftImage = document.getElementById("img-left");
-  leftCanvas = document.getElementById("canvas-left");
-  leftCanvas.onmousedown = leftCanvasClickHandler;
-  rightImage = document.getElementById("img-right");
-  rightCanvas = document.getElementById("canvas-right");
-  rightCanvas.onmousedown = rightCanvasClickHandler;
+  left.image = document.getElementById("img-left");
+  left.canvas = document.getElementById("canvas-left");
+  left.canvas.onmousedown = leftCanvasClickHandler;
+  right.image = document.getElementById("img-right");
+  right.canvas = document.getElementById("canvas-right");
+  right.canvas.onmousedown = rightCanvasClickHandler;
 
-  updateCanvas(leftCanvas, leftImage);
-  updateCanvas(rightCanvas, rightImage);
+  updateCanvas(left);
+  updateCanvas(right);
 
   window.onresize = reset;
 });
@@ -40,9 +42,9 @@ $(document).ready(function () {
  * global variables and the displayed values.
  */
 function reset() {
-  updateCanvas(leftCanvas, leftImage);
-  updateCanvas(rightCanvas, rightImage);
-  leftX = leftY = rightX = rightY = null;
+  updateCanvas(left);
+  updateCanvas(right);
+  left.x = left.y = right.x = right.y = null;
   document.getElementById("left-x").innerHTML = null;
   document.getElementById("left-y").innerHTML = null;
   document.getElementById("right-x").innerHTML = null;
@@ -54,10 +56,9 @@ function reset() {
  * @param canvas The canvas to update.
  * @param image The Image the Canvas is laid over.
  */
-function updateCanvas(canvas, image) {
-  console.log("yay4");
-  canvas.width = image.width;
-  canvas.height = image.height;
+function updateCanvas(side) {
+  side.canvas.width = side.image.width;
+  side.canvas.height = side.image.height;
 }
 
 /*
@@ -68,15 +69,15 @@ function loadLeftImageDialog() {
   if (input.files && input.files[0]) {
     let reader = new FileReader();
     reader.onload = function (e) {
-      leftImage.crossOrigin = 'anonymous';
-      leftImage.src = e.target.result;
-      leftX = leftY = null;
+      left.image.crossOrigin = 'anonymous';
+      left.image.src = e.target.result;
+      left.x = left.y = null;
       document.getElementById("left-x").innerHTML = null;
       document.getElementById("left-y").innerHTML = null;
       // Sometimes the image seemingly is not ready yet, meaning the canvas won't update to the new size. A delay is
       // created to reduce the chances of this occurring, though it still does happen very rarely. Increasing the
       // timeout (or finding a better solution) may fix this.
-      setTimeout(() => {  updateCanvas(leftCanvas, leftImage); }, 10);
+      setTimeout(() => {  updateCanvas(left); }, 10);
     }
     reader.readAsDataURL(input.files[0]);
     $("label[for='stereo-left-input']").text(input.files[0].name);
@@ -91,12 +92,12 @@ function loadRightImageDialog() {
   if (input.files && input.files[0]) {
     let reader = new FileReader();
     reader.onload = function (e) {
-      rightImage.crossOrigin = 'anonymous';
-      rightImage.src = e.target.result;
-      rightX = rightY = null;
+      right.image.crossOrigin = 'anonymous';
+      right.image.src = e.target.result;
+      right.x = right.y = null;
       document.getElementById("right-x").innerHTML = null;
       document.getElementById("right-y").innerHTML = null;
-      setTimeout(() => {  updateCanvas(rightCanvas, rightImage); }, 10);
+      setTimeout(() => {  updateCanvas(right); }, 10);
     }
     reader.readAsDataURL(input.files[0]);
     $("label[for='stereo-right-input']").text(input.files[0].name);
@@ -105,21 +106,21 @@ function loadRightImageDialog() {
 
 
 function leftCanvasClickHandler(event) {
-  const rect = leftCanvas.getBoundingClientRect();
-  leftX = Math.round(event.clientX - rect.left);
-  leftY = Math.round(event.clientY - rect.top);
-  document.getElementById("left-x").innerHTML = leftX.toString();
-  document.getElementById("left-y").innerHTML = leftY.toString();
-  drawDot(leftX, leftY, leftCanvas);
+  const rect = left.canvas.getBoundingClientRect();
+  left.x = Math.round(event.clientX - rect.left);
+  left.y = Math.round(event.clientY - rect.top);
+  document.getElementById("left-x").innerHTML = left.x.toString();
+  document.getElementById("left-y").innerHTML = left.y.toString();
+  drawDot(left.x, left.y, left.canvas);
 }
 
 function rightCanvasClickHandler(event) {
-  const rect = rightCanvas.getBoundingClientRect();
-  rightX = Math.round(event.clientX - rect.left);
-  rightY = Math.round(event.clientY - rect.top);
-  document.getElementById("right-x").innerHTML = rightX.toString();
-  document.getElementById("right-y").innerHTML = rightY.toString();
-  drawDot(rightX, rightY, rightCanvas);
+  const rect = right.canvas.getBoundingClientRect();
+  right.x = Math.round(event.clientX - rect.left);
+  right.y = Math.round(event.clientY - rect.top);
+  document.getElementById("right-x").innerHTML = right.x.toString();
+  document.getElementById("right-y").innerHTML = right.y.toString();
+  drawDot(right.x, right.y, right.canvas);
 }
 
 function drawDot(x, y, canvas) {
@@ -130,10 +131,10 @@ function drawDot(x, y, canvas) {
 }
 
 function displayResult() {
-  if (leftX == null || leftY == null) {
+  if (left.x == null || left.y == null) {
     alert("Select a point in the left camera.");
     return;
-  } else if (rightX == null || rightY == null) {
+  } else if (right.x == null || right.y == null) {
     alert("Select a point in the right camera.");
     return;
   } else if (document.getElementById("angle-of-view").value === "") {
@@ -142,7 +143,7 @@ function displayResult() {
   } else if (document.getElementById("camera-distance").value === "") {
     alert("Provide a valid distance between cameras.");
     return;
-  } else if (leftImage.width !== rightImage.width) {
+  } else if (left.image.width !== right.image.width) {
     alert("The images should be the same width.");
     return;
   }
@@ -155,5 +156,5 @@ function calculateDistance() {
   let angle_of_view = Number(document.getElementById("angle-of-view").value);
   let angle_of_view_radians = angle_of_view * Math.PI / 180;
   let distance = Number(document.getElementById("camera-distance").value);
-  return (distance * leftImage.width) / (2 * Math.tan(angle_of_view_radians / 2) * (leftX - rightX));
+  return (distance * left.image.width) / (2 * Math.tan(angle_of_view_radians / 2) * (left.x - right.x));
 }
