@@ -1,8 +1,10 @@
+// Provides global access to images and canvases
 let leftImage = null;
 let rightImage = null;
 let leftCanvas = null;
 let rightCanvas = null;
 
+// Provides global access to the left and right x and y coordinates of the selected points in canvases.
 let leftX = null;
 let leftY = null;
 let rightX = null;
@@ -10,6 +12,11 @@ let rightY = null;
 
 const DOT_SIZE = 10;
 
+/*
+ * Initialization. Prepares the image select and 'Go!' buttons. Assigns the image and canvas global variables and adds
+ * the click callbacks to the canvases. Calls the functions to update the canvases. Adds a callback to handle screen
+ * size changes as this can change the size of the images.
+ */
 $(document).ready(function () {
   $('#stereo-left-input').change(loadLeftImageDialog);
   $('#stereo-right-input').change(loadRightImageDialog);
@@ -22,28 +29,35 @@ $(document).ready(function () {
   rightCanvas = document.getElementById("canvas-right");
   rightCanvas.onmousedown = rightCanvasClickHandler;
 
-  updateLeftCanvas();
-  updateRightCanvas()
+  updateCanvas(leftCanvas, leftImage);
+  updateCanvas(rightCanvas, rightImage);
 
-  window.onresize = function() {
-    updateLeftCanvas();
-    updateRightCanvas();
-    leftX = leftY = rightX = rightY = null;
-    document.getElementById("left-x").innerHTML = null;
-    document.getElementById("left-y").innerHTML = null;
-    document.getElementById("right-x").innerHTML = null;
-    document.getElementById("right-y").innerHTML = null;
-  }
+  window.onresize = reset;
 });
 
-function updateLeftCanvas() {
-  leftCanvas.width = leftImage.width;
-  leftCanvas.height = leftImage.height;
+/**
+ * Resets parts of the interactive by resizing the canvases and clearing the click coordinates of images, both the
+ * global variables and the displayed values.
+ */
+function reset() {
+  updateCanvas(leftCanvas, leftImage);
+  updateCanvas(rightCanvas, rightImage);
+  leftX = leftY = rightX = rightY = null;
+  document.getElementById("left-x").innerHTML = null;
+  document.getElementById("left-y").innerHTML = null;
+  document.getElementById("right-x").innerHTML = null;
+  document.getElementById("right-y").innerHTML = null;
 }
 
-function updateRightCanvas() {
-  rightCanvas.width = rightImage.width;
-  rightCanvas.height = rightImage.height;
+/**
+ * Updates a Canvas such that its dimensions match those of its corresponding image.
+ * @param canvas The canvas to update.
+ * @param image The Image the Canvas is laid over.
+ */
+function updateCanvas(canvas, image) {
+  console.log("yay4");
+  canvas.width = image.width;
+  canvas.height = image.height;
 }
 
 /*
@@ -62,7 +76,7 @@ function loadLeftImageDialog() {
       // Sometimes the image seemingly is not ready yet, meaning the canvas won't update to the new size. A delay is
       // created to reduce the chances of this occurring, though it still does happen very rarely. Increasing the
       // timeout (or finding a better solution) may fix this.
-      setTimeout(() => {  updateLeftCanvas(); }, 10);
+      setTimeout(() => {  updateCanvas(leftCanvas, leftImage); }, 10);
     }
     reader.readAsDataURL(input.files[0]);
     $("label[for='stereo-left-input']").text(input.files[0].name);
@@ -82,12 +96,13 @@ function loadRightImageDialog() {
       rightX = rightY = null;
       document.getElementById("right-x").innerHTML = null;
       document.getElementById("right-y").innerHTML = null;
-      setTimeout(() => {  updateRightCanvas(); }, 10);
+      setTimeout(() => {  updateCanvas(rightCanvas, rightImage); }, 10);
     }
     reader.readAsDataURL(input.files[0]);
     $("label[for='stereo-right-input']").text(input.files[0].name);
   }
 }
+
 
 function leftCanvasClickHandler(event) {
   const rect = leftCanvas.getBoundingClientRect();
