@@ -1,6 +1,11 @@
 # Depth
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nisl vel pretium lectus quam id leo. Nulla malesuada pellentesque elit eget. Risus pretium quam vulputate dignissim suspendisse in est ante in. Id leo in vitae turpis massa sed elementum. Leo vel orci porta non. Dui ut ornare lectus sit amet est. Neque egestas congue quisque egestas diam. Est placerat in egestas erat imperdiet sed euismod. Gravida arcu ac tortor dignissim convallis aenean. Arcu dictum varius duis at.
+Depth is a key part of computer vision, which gives the computer information about the locations of objects relative to the camera.
+For example, a self-driving car would want to know how far away the car ahead of it is to avoid collisions.
+One way of obtaining depth information is by using more than two cameras.
+Stereo vision uses two cameras to take two images. 
+Objects that are close to the cameras will have a greater horizontal disparity in the images, whereas far away objects will have a smaller disparity.
+Here, disparity refers to the difference between the positions of the object in the two images.
 
 {interactive slug="distance-from-stereo-images" type="whole-page" text="true"}
 
