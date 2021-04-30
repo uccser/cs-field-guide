@@ -6,10 +6,10 @@
 {% block html %}
 <div id="outer-div" class="container">
   <h3 class="text-center mb-2">{% trans "Getting Distance From Stereo Images" %}</h3>
-  <a data-toggle="collapse" href="#instructions" role="button" aria-expanded="false" aria-controls="instructions">
-    Instructions
+  <a data-toggle="collapse" href="#instructions" role="button" aria-expanded="true" aria-controls="instructions">
+    Instructions (hide/show)
   </a>
-  <div class="collapse" id="instructions">
+  <div class="collapse show" id="instructions">
     <p>
       {% trans "Take two side-by-side pictures of an object." %}
       {% trans "Make sure the direction of the pictures are parallel, and that the object is between the two camera positions." %}
@@ -17,10 +17,13 @@
       {% trans "Upload the two pictures and click on the common point of the object in both pictures." %}
       {% trans "Enter your camera's angle-of-view and the distance between the two camera positions, and click 'Go!' to calculate the distance." %}
       {% trans "Note that resizing the window will reset the points as this can affect the size of the pictures." %}
+      {% trans "The values are inputted into the equation below." %}
     </p>
     <p>
       {% trans "The lighter in the supplied images was 1 metre away. How close is the calculation?" %}
     </p>
+
+    $$ {D =\frac{Bx_0}{2tan(\frac{\theta_0}{2})(x_1-x_2)}} $$
   </div>
   <div class="row">
     <div class="col-sm-6">
@@ -58,25 +61,39 @@
 
   <div class="row">
     <div class="col-sm-6">
-      <p>Left X: <span id="left-x"></span></p>
+      <p>Left Width (x<sub>0</sub>): <span id="left-width"></span>px</p>
+      <p>Left X (x<sub>1</sub>): <span id="left-x"></span></p>
       <p>Left Y: <span id="left-y"></span></p>
     </div>
     <div class="col-sm-6">
-      <p>Right X: <span id="right-x"></span></p>
+      <p>Right Width (x<sub>0</sub>): <span id="right-width"></span>px</p>
+      <p>Right X (x<sub>2</sub>): <span id="right-x"></span></p>
       <p>Right Y: <span id="right-y"></span></p>
     </div>
   </div>
 
   <div class="input-group mb-3">
     <div class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon">Angle-of-view (Degrees)</span>
+      <span class="input-group-text" id="angle-label">Angle of view (&theta;<sub>0</sub>)</span>
     </div>
-    <input id="angle-of-view" type="number" step="0.01" class="form-control" value="63.18" autocomplete=off aria-label="half-angle" aria-describedby="basic-addon">
+    <input id="angle-of-view" type="number" step="0.01" class="form-control" value="63.18" autocomplete=off aria-label="half-angle" aria-describedby="angle-label">
+    <div class="input-group-append">
+      <span class="input-group-text" id="angle-unit">Degrees</span>
+    </div>
+  </div>
 
+  <div class="input-group mb-3">
     <div class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon2">Distance between pictures (Metres)</span>
+      <span class="input-group-text" id="distance-label">Distance between pictures (B)</span>
     </div>
-    <input id="camera-distance" type="number" step="0.01" class="form-control" value="0.1" autocomplete=off aria-label="camera-distance" aria-describedby="basic-addon2">
+    <input id="camera-distance" type="number" step="0.01" class="form-control" value="0.1" autocomplete=off aria-label="camera-distance" aria-describedby="distance-label">
+    <div class="input-group-append">
+      <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="distance-unit">Metres</button>
+      <div class="dropdown-menu" id="distance-unit-list">
+        <a class="dropdown-item" href="#">Metres</a>
+        <a class="dropdown-item" href="#">Inches</a>
+      </div>
+    </div>
   </div>
 
   <div id="result-div" class="container">

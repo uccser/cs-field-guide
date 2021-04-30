@@ -30,14 +30,15 @@ const DOT_SIZE = 10;
 
 
 /**
- * Initialization. Prepares the image select and 'Go!' buttons. Assigns the values in the left and right objects and
- * adds the click callbacks to the canvases. Updates the canvases. Adds a callback to handle screen size changes as this
- *  can change the size of the images.
+ * Initialization. Prepares the image select, confirm ('Go!'), and distance between images dropdown buttons. Assigns the
+ * values in the left and right objects and adds the click callbacks to the canvases. Updates the canvases. Adds a
+ * callback to handle screen size changes as this can change the size of the images.
  */
 $(document).ready(function () {
   $('#stereo-left-input').change(function() { loadImageDialog(this, left) });
   $('#stereo-right-input').change(function() { loadImageDialog(this, right) });
   $('#go-button').click(displayResult);
+  $('#distance-unit-list a').on('click', unitChangeHandler);
 
   left.image = document.getElementById("img-left");
   left.canvas = document.getElementById("canvas-left");
@@ -51,6 +52,24 @@ $(document).ready(function () {
 
   window.onresize = reset;
 });
+
+
+/**
+ * Handles when the user changes the unit. Updates the displayed unit and converts the unit if necessary.
+ */
+function unitChangeHandler() {
+  let distanceUnit = $('#distance-unit');
+  let hasChanged = distanceUnit.html() !== $(this).text();
+  let distance = document.getElementById("camera-distance");
+  distanceUnit.html($(this).text());
+  if (hasChanged) {
+    if (distanceUnit.html() === "Inches") {
+      distance.value = metresToInches(distance.value)
+    } else {
+      distance.value = inchesToMetres(distance.value)
+    }
+  }
+}
 
 
 /**
@@ -69,12 +88,15 @@ function reset() {
 
 
 /**
- * Updates a Canvas such that its dimensions match those of its corresponding image.
+ * Updates a Canvas such that its dimensions match those of its corresponding image. Also updates the displayed width
+ * value under the image.
  * @param side The side to update the canvas of.
  */
 function updateCanvas(side) {
   side.canvas.width = side.image.width;
   side.canvas.height = side.image.height;
+
+  document.getElementById(side.toString() + "-width").innerHTML = side.image.width.toString();
 }
 
 
@@ -162,12 +184,34 @@ function displayResult() {
 
 /**
  * Calculates the distance to the object based on the equation proposed in the paper
- * http://www.icoci.cms.net.my/proceedings/2017/Pdf_Version_Chap04e/PID105-235-242e.pdf
+ * http://www.icoci.cms.net.my/proceedings/2017/Pdf_Version_Chap04e/PID105-235-242e.pdf. Also converts the distance from
+ * inches to metres if necessary.
  * @returns {number} The distance in metres.
  */
 function calculateDistance() {
   let angle_of_view = Number(document.getElementById("angle-of-view").value);
   let angle_of_view_radians = angle_of_view * Math.PI / 180;
   let distance = Number(document.getElementById("camera-distance").value);
+  if ($('#distance-unit').html() === "Inches") {
+    distance = inchesToMetres(distance);
+  }
   return (distance * left.image.width) / (2 * Math.tan(angle_of_view_radians / 2) * (left.x - right.x));
+}
+
+/**
+ * Converts metres to inches.
+ * @param metres Int distance in metres.
+ * @returns {number} Int distance in inches.
+ */
+function metresToInches(metres) {
+  return  metres * 39.37007874;
+}
+
+/**
+ * Converts inches to metres.
+ * @param inches Int distance in inches.
+ * @returns {number} Int distance in metres.
+ */
+function inchesToMetres(inches) {
+  return inches / 39.37007874;
 }

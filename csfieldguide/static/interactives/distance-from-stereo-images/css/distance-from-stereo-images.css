@@ -22,3 +22,9 @@ body, html {
 #result-div {
   text-align: center;
 }
+
+@media only screen and (max-width: 768px) {
+  .form-control {
+    min-width: 200px;
+  }
+}
