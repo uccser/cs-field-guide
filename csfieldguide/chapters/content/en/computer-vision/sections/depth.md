@@ -78,8 +78,64 @@ Think of each image as a grid, where the origin is the centre of the image.
 
 \(x_0\) is the width of the image in pixels. 
 The terms \(x_1\) and \(x_2\) are the x-coordinates of the object in the left and right images, respectively.
+As an example, consider the left view.
+There are two right-angle triangles, both of which share the side \(D\).
+The smaller triangle has a top that goes up to \(x1\).
+This is also the top's length, as \(x1\) is the x-coordinate where the centre is the origin.
+The bigger triangle has a top that goes up to the end of the image.
+Using the smaller triangles in both views, we know the following using some basic trigonometry.
 
+\[
+D = \frac{x_1}{tan\theta_1}\\
+D = \frac{-x_2}{tan\theta_2}
+\]
+
+\(x_2\) is negated as widths should be positive.
+Now consider the bigger triangles.
+As they go up to the end of the image, their widths are half of the width of the image, \(x_0\).
+More trigonometry ensues...
+
+\[
+D = \frac{frac{x_0}{2}}{tan\frac{\theta_0}{2}}
+\]
+
+Equating equations (2) and (4), we get:
+
+\[
+\frac{x_1}{tan\theta_1} = \frac{frac{x_0}{2}}{tan\frac{\theta_0}{2}}\\
+tan\theta_1 = x_1 \div \frac{frac{x_0}{2}}{tan\frac{\theta_0}{2}}\\
+tan\theta_1 = \frac{2 x_1 tan \frac{\theta_0}{2}}{x_0}
+\]
+
+Similarly, equating equations (3) and (4), we get:
+
+\[
+\frac{-x_2}{tan\theta_2} = \frac{frac{x_0}{2}}{tan\frac{\theta_0}{2}}\\
+tan\theta_2 = -x_2 \div \frac{frac{x_0}{2}}{tan\frac{\theta_0}{2}}\\
+tan\theta_2 = \frac{-2 x_2 tan \frac{\theta_0}{2}}{x_0}
+\]
+
+We're nearly there! Adding equations (5) and (6) gives:
+
+\[
+tan\theta_1 + tan\theta_2 = \frac{2 x_1 tan \frac{\theta_0}{2}}{x_0} + \frac{-2 x_2 tan \frac{\theta_0}{2}}{x_0}\\
+tan\theta_1 + tan\theta_2 = \frac{2 tan \frac{\theta_0}{2} (x_1 - x_2)}{x_0}
+\]
+
+Substituting (7) back into (1) gives us our final equation:
+
+\[
+D = \frac{B x_0}{2 tan \frac{\theta_0}{2} (x_1 - x_2)}
+\]
+
+\((x_1 - x_2)\) is the disparity of the objects in the pictures.
+However, the disparity will be the same no matter what we choose as the origin of the coordinate system.
+As such, we can treat \(x_1\) as the x-coordinate of the pixel from the left of the left image, and \(x_2\) as the x-coordinate of the pixel from the left of the right image.
+Thus, we can determine the distance of an object from the cameras only with the distance between the cameras \(B\), the width of the images in pixels \(x_0\), the angle of view \(x_0\), and the x-coordinates of the objects in the images \(x_1\) and \(x_2\).
+The following interactive shows the equation in action.
 
 {interactive slug="distance-from-stereo-images" type="whole-page" text="true"}
+
 Distance from stereo images
+
 {interactive end}
