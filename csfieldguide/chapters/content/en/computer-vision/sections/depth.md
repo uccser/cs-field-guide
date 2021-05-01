@@ -34,6 +34,9 @@ We obtain the follow equation to obtain the half angle of view.
 Where \(r\) is the length of the ruler visible in the picture and \(d\) is the distance of the ruler from the camera.
 Doubling the half angle of view gives us the full angle of view, \(\theta_0\). 
 When using the camera for the next part, it is important that you use the same camera settings (e.g. zoom level) so that the angle of view does not change.
+Below is a calculator to calculate the angle of view.
+
+{interactive slug="angle-of-view-calculator" type="in-page"}
 
 
 Two stereo pictures are taken of an object, where the object is between the two camera positions.

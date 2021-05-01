@@ -6,6 +6,8 @@ alarm-timer:
   name: Alarm Timer
 algorithm-timer:
   name: Algorithm Timer
+angle-of-view-calculator:
+  name: Angle Of View Calculator
 available-menu-items:
   name: Available Menu Items
 awful-calculator:
