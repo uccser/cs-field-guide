@@ -153,3 +153,18 @@ The problem is that the x-coordinates of the object in both pictures are very cl
 Can you see in the equation why having a small disparity would cause the calculated distance to be large?
 
 {panel end}
+
+{panel type="curiosity"}
+    
+# The solution?
+
+We can use higher resolution photos. 
+In the interactive, uploaded images have a maximum width.
+If the width was larger, there would be more freedom to select a point that is closer to the object's centre.
+Therefore the disparity would be more accurate.
+However, higher resolution cameras are more expensive. 
+For a self-driving car, does it matter that it is able to to calculate accurate distances to a very far away object?
+Is there a point in which the car no longer cares about an object?
+What resolution cameras would be sufficient?
+
+{panel end}
