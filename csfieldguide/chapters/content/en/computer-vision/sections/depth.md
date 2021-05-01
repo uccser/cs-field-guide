@@ -142,3 +142,14 @@ The following interactive shows the equation in action.
 Distance from stereo images
 
 {interactive end}
+
+{panel type="curiosity"}
+
+# What about far away objects?
+
+Try placing a small object far away (e.g. five metres) with a small gap between camera positions (e.g. five centimetres).
+The interactive may produce a number much further than the actual distance.
+The problem is that the x-coordinates of the object in both pictures are very close, resulting in a very small disparity.
+Can you see in the equation why having a small disparity would cause the calculated distance to be large?
+
+{panel end}

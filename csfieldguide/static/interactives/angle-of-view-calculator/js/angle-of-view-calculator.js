@@ -1,17 +1,23 @@
+/**
+ * An object containing important variables for the ruler length visible input.
+ */
 let rulerInput = {
   button: null,
   field: null
 }
 
+/**
+ * An object containing important variables for the distance to ruler input.
+ */
 let distanceInput = {
   button: null,
   field: null
 }
 
+
 /**
- * Initialization. Prepares the image select, confirm ('Go!'), and distance between images dropdown buttons. Assigns the
- * values in the left and right objects and adds the click callbacks to the canvases. Updates the canvases. Adds a
- * callback to handle screen size changes as this can change the size of the images.
+ * Initialization. Assigns the values in the rulerInput and distanceInput objects. Prepares the unit dropdown and 'Go!'
+ * buttons.
  */
 $(document).ready(function () {
   rulerInput.button = $('#ruler-unit');
@@ -40,6 +46,7 @@ function unitChangeHandler(selectedUnit, input) {
   }
 }
 
+
 /**
  * Converts metres to inches.
  * @param metres Int distance in metres.
@@ -49,6 +56,7 @@ function metresToInches(metres) {
   return  metres * 39.37007874;
 }
 
+
 /**
  * Converts inches to metres.
  * @param inches Int distance in inches.
@@ -57,6 +65,7 @@ function metresToInches(metres) {
 function inchesToMetres(inches) {
   return inches / 39.37007874;
 }
+
 
 /**
  * Checks all the inputs have been supplied and are valid. If so, displays the calculated result.
@@ -71,9 +80,15 @@ function displayResult() {
   }
 
   document.getElementById("result-title").style.visibility = "visible";
-  document.getElementById("result").innerHTML = calculateAngle().toString() + " degrees";
+  document.getElementById("result").innerHTML = calculateAngle() + " degrees";
 }
 
+
+/**
+ * Calculates the angle of view and returns it as a string rounded to 4 decimal places. Converts inches to metres if
+ * necessary.
+ * @returns {string} The angle of view as a String rounded to 4 dp.
+ */
 function calculateAngle() {
   let rulerLength = rulerInput.field.value;
   let rulerDistance = distanceInput.field.value;

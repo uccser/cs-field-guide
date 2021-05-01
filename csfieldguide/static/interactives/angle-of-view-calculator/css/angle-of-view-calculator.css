@@ -3,8 +3,8 @@
     font-size: 18px;
 }
 #result-title {
-    margin-top: 50px;
     visibility: hidden;
+    margin-bottom: 0;
 }
 #result-div {
     text-align: center;
