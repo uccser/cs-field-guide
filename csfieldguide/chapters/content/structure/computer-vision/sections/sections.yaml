@@ -16,8 +16,11 @@ face-recognition:
 edge-detection:
   section-number: 6
 
+depth:
+    section-number: 7
+
 the-whole-story:
-  section-number: 7
+  section-number: 8
 
 further-reading:
-  section-number: 8
+  section-number: 9

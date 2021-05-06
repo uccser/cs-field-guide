@@ -1,0 +1,11 @@
+.result-p {
+    vertical-align: middle;
+    font-size: 18px;
+}
+#result-title {
+    visibility: hidden;
+    margin-bottom: 0;
+}
+#result-div {
+    text-align: center;
+}

@@ -1,0 +1,53 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+<div id="angle-of-view-calculator">
+  <h5>{% trans "Calculate the angle of view" %}</h5>
+
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="ruler-label">Ruler length visible (r)</span>
+    </div>
+    <input id="ruler-length" type="number" step="0.01" class="form-control" autocomplete=off aria-label="ruler-length" aria-describedby="ruler-label">
+    <div class="input-group-append">
+      <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="ruler-unit">Metres</button>
+      <div class="dropdown-menu" id="ruler-unit-list">
+        <a class="dropdown-item" href="#">Metres</a>
+        <a class="dropdown-item" href="#">Inches</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="distance-label">Distance to ruler (d)</span>
+    </div>
+    <input id="ruler-distance" type="number" step="0.01" class="form-control" autocomplete=off aria-label="ruler-length" aria-describedby="distance-label">
+    <div class="input-group-append">
+      <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="distance-unit">Metres</button>
+      <div class="dropdown-menu" id="distance-unit-list">
+        <a class="dropdown-item" href="#">Metres</a>
+        <a class="dropdown-item" href="#">Inches</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="result-div" class="container">
+    <button id="go-button" class="btn btn-outline-primary">Go!</button>
+    <p id="result-title" class="result-p">Calculated angle of view:</p>
+    <p class="result-p"><span id="result"></span></p>
+  </div>
+
+</div>
+{% endblock html %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'interactives/angle-of-view-calculator/css/angle-of-view-calculator.css' %}">
+{% endblock css %}
+
+{% block js %}
+<script src="{% static 'interactives/angle-of-view-calculator/js/angle-of-view-calculator.js' %}"></script>
+{% endblock js %}
