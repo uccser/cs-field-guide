@@ -43,14 +43,10 @@ $(document).ready(function() {
   fillProductionsWindow(productions_);
   $('#generate-button').on('click', function(event) {
     $('#cfg-target').val(generateTarget(event.target));
-    testMatchingEquations();
+    resetEquation();
   });
   $('#reset-button').on('click', function() {
-    $('#cfg-equation').html(`<span class="nonterminal">${initialNonterminal_}</span>`);
-    reapplyNonterminalClickEvent();
-    testMatchingEquations();
-    historyStack_ = [];
-    $('#undo-button').prop('disabled', true);
+    resetEquation();
   });
   $('#set-g-random').on('click', function () {
     setGenerator('random');
@@ -89,6 +85,17 @@ $(document).ready(function() {
     }
   });
 });
+
+/**
+ * Resets the equation being constructed by the user to solely the original nonterminal
+ */
+function resetEquation() {
+  $('#cfg-equation').html(`<span class="nonterminal">${initialNonterminal_}</span>`);
+  reapplyNonterminalClickEvent();
+  testMatchingEquations();
+  historyStack_ = [];
+  $('#undo-button').prop('disabled', true);
+}
 
 /******************************************************************************/
 // FUNCTIONS FOR PARSING THE URL //
