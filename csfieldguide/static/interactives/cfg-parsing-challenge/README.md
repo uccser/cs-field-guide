@@ -3,7 +3,14 @@
 **Author:** Alasdair Smith
 
 This interactive demonstrates a context-free grammar (CFG) by allowing a user to use it to build a mathematical equation (default behaviour) or sentences.
-The interactive can demonstrate most grammars via use of the URL parameters.
+The interactive can demonstrate most grammars via URL parameters.
+
+## Teacher Mode
+
+While open in Teacher Mode, a button is available for the user to obtain a link to the interactive using their own set of grammar productions.
+
+**Note:** Presently there is no way to toggle Teacher Mode on the interactive page itself.
+The user needs to be in Teacher Mode before opening the interactive, or to switch to teacher mode in another tab and then refresh the interactive page, to see this button.
 
 ## URL Parameters
 
@@ -11,10 +18,12 @@ The interactive can demonstrate most grammars via use of the URL parameters.
 
 ### Basic Parameters
 
-- `productions=str`: Set the grammar productions that can be used. Lone integers, as well as strings beginning and ending with an inverted comma, are interpreted as terminals.
+- `productions=str`: Set the grammar productions that can be used.
+Lone integers, as well as strings beginning and ending with an inverted comma, are interpreted as terminals.
 An example of the correct syntax using the default grammar can be found below.
-- `examples=str|str|str|...`: Set the examples that can be selected by the `Next` generator option. Examples will be cycled through in the order given.
-- `hide-generator=[true|false] (default: false)`: If `true`, remove the built-in equation generator (`Random` & `Simple`).
+- `examples=str|str|str|...`: Set the examples that can be selected by the `Next` generator option.
+Examples will be cycled through in the order given.
+- `hide-generator=[true|false] (default: false)`: If `true`, disable the built-in equation generator (options `Random` & `Simple`).
 
 ### Advanced Parameters
 
@@ -23,9 +32,12 @@ The defaults work well for the default productions, but in most situations it is
 
 - `recursion-depth=int (default: 3)`: Set the maximum recursion depth for the built-in equation generator (`Random`).
 If this or `retry-if-fail` is set then the option to generate with depth 1 (`Simple`) is removed.
-- `retry-if-fail=[true|false] (default: false)`: If `true`, the built-in equation generator will restart if it reaches the maximum recursion depth but nonterminals remain in the equation.
-After 10 tries the generator will quit with an error message. Otherwise if the generator reaches the maximum depth, it will replace all remaining nonterminals with random terminals from `terminals`, even if such replacements aren't valid.
-- `terminals=str|str|str|... (default: 0-9)`: Set the terminals that can be selected from by the built-in equation generator if the maximum recursion depth is reached. If `retry-if-fail` is `true` then this parameter will have no effect.
+- `retry-if-fail=[true|false] (default: false)`:
+  - If `true`, the built-in equation generator will restart if it reaches the maximum recursion depth with nonterminals remaining in the equation.
+After 10 tries the generator will quit with an error message.
+  - If `false`, once the generator reaches the maximum depth, it will replace all remaining nonterminals with random terminals from `terminals`, even if such replacements aren't valid.
+- `terminals=str|str|str|... (default: 0-9)`: Set the terminals that can be selected from by the built-in equation generator if the maximum recursion depth is reached.
+If `retry-if-fail` is `true` then this parameter will have no effect.
 
 ### URL Parameter Limitations
 

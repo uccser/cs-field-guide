@@ -19,7 +19,7 @@ const DEFAULT_PRODUCTIONS = {
 
 /**
  * Used when generating random expressions.
- * When the max recursion depth is reached one of these will be used.
+ * If applicable, when the max recursion depth is reached one of these will be used.
  */
 const DEFAULT_FINAL_TERMINALS = [0,1,2,3,4,5,6,7,8,9];
 
