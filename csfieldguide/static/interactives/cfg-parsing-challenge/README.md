@@ -8,11 +8,17 @@ The interactive can demonstrate most grammars via URL parameters.
 
 ## URL Parameters
 
-**It is recommended that parameters have all non-unreserved characters [percent-encoded](https://en.wikipedia.org/wiki/Percent-encoding).**
+This interactive can be further configured by appending various parameters to the URL.
+To do this, add a question mark (`?`) after the last `/` in the URL, then each parameter separated by ampersands (`&`).
+For this interactive, each parameter is in the form `keyword=value`, where each `keyword` is an option to be changed, and `value` is what that option should be set to.
 
+For example, the URL `[...]/cfg-parsing-challenge/` could be changed to `[...]/cfg-parsing-challenge/?hide-generator=true&examples=1+1|2+3+4`.
+The purpose of the `hide-generator` and `examples` keywords is described below.
+
+**Note**: It is recommended that parameters have all non-unreserved characters [percent-encoded](https://en.wikipedia.org/wiki/Percent-encoding).
 ### Basic Parameters
 
-- `hide-builder=[true|false]`: If `true`, hides the button that would allow the user to set their own productions.
+- `hide-builder=[true|false] (default: false)`: If `true`, hide the button that would allow the user to set their own productions.
 - `hide-generator=[true|false] (default: false)`: If `true`, disable the built-in equation generator (options `Random` & `Simple`).
 - `examples=str|str|str|...`: Set the examples that can be selected by the `Next` generator option.
 Examples will be cycled through in the order given.

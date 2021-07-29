@@ -586,7 +586,7 @@ function recursiveRandomExpression(replaced, productions, maxDepth, doRetry, ter
 function resetLink() {
   var instruction = gettext("This link will open the default version of this interactive:");
   var link = window.location.href.split('?', 1)[0].replace(/^\/+|\/+$/g, '');
-  $("#cfg-grammar-link").html(`${instruction}<br><a href=${link}>${link}</a>`);
+  $("#cfg-grammar-link").html(`${instruction}<br><a target="_blank" href=${link}>${link}</a>`);
 }
 
 /**
@@ -605,7 +605,7 @@ function getLink() {
   // This needs to be removed for the new link, or not added in the first place
   var basePath = window.location.href.split('?', 1)[0].replace(/\#+$/g, '');
   var fullUrl = basePath + "?productions=" + productionsParameter + otherParameters;
-  $("#cfg-grammar-link").html(`${instruction}<br><a href=${fullUrl}>${fullUrl}</a>`);
+  $("#cfg-grammar-link").html(`${instruction}<br><a target="_blank" href=${fullUrl}>${fullUrl}</a>`);
 }
 
 /**
