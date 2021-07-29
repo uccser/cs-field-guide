@@ -589,7 +589,9 @@ function getLink() {
   }
   var productionsParameter = percentEncode(productions.replace(/\n/g, ' '));
   var otherParameters = "&hide-generator=true";
-  var basePath = window.location.href.split('?', 1)[0];
+  // When the user switches between generator types a # appears at the end of the url
+  // This needs to be removed for the new link, or not added in the first place
+  var basePath = window.location.href.split('?', 1)[0].replace(/\#+$/g, '');
   var fullUrl = basePath + "?productions=" + productionsParameter + otherParameters;
   $("#cfg-grammar-link").html(`${instruction}<br><a href=${fullUrl}>${fullUrl}</a>`);
 }
