@@ -32,7 +32,7 @@ If this or `retry-if-fail` is set then the option to generate with depth 1 (`Sim
 - `retry-if-fail=[true|false] (default: false)`:
   - If `true`, the built-in equation generator will restart if it reaches the maximum recursion depth with nonterminals remaining in the equation.
 After 10 tries the generator will quit with an error message.
-  - If `false`, once the generator reaches the maximum depth, it will replace all remaining nonterminals with random terminals from `terminals`, even if such replacements aren't valid.
+  - If `false`, once the generator reaches the maximum depth, it will replace all remaining nonterminals with random terminals from `terminals`, **even if such replacements aren't valid**.
 - `terminals=str|str|str|... (default: 0-9)`: Set the terminals that can be selected from by the built-in equation generator if the maximum recursion depth is reached.
 If `retry-if-fail` is `true` then this parameter will have no effect.
 
