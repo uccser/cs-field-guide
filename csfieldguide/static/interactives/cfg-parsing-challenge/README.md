@@ -3,14 +3,8 @@
 **Author:** Alasdair Smith
 
 This interactive demonstrates a context-free grammar (CFG) by allowing a user to use it to build a mathematical equation (default behaviour) or sentences.
+The user can also obtain a link to the interactive with their own productions through a simple interface.
 The interactive can demonstrate most grammars via URL parameters.
-
-## Teacher Mode
-
-While open in Teacher Mode, a button is available for the user to obtain a link to the interactive using their own set of grammar productions.
-
-**Note:** Presently there is no way to toggle Teacher Mode on the interactive page itself.
-The user needs to be in Teacher Mode before opening the interactive, or to switch to teacher mode in another tab and then refresh the interactive page, to see this button.
 
 ## URL Parameters
 
@@ -18,9 +12,12 @@ The user needs to be in Teacher Mode before opening the interactive, or to switc
 
 ### Basic Parameters
 
+- `hide-builder=[true|false]`: If `true`, hides the button that would allow the user to set their own productions.
 - `productions=str`: Set the grammar productions that can be used.
 Lone integers, as well as strings beginning and ending with an inverted comma, are interpreted as terminals.
-An example of the correct syntax using the default grammar can be found below.
+  - An example of the correct syntax using the default grammar can be found below.
+  - The built-in equation generator is configured as it is because it works well with the default productions.
+  When setting your own productions, it is highly recommended that you investigate the Advanced Parameters section of this README, or to disable it using the `hide-generator` parameter.
 - `examples=str|str|str|...`: Set the examples that can be selected by the `Next` generator option.
 Examples will be cycled through in the order given.
 - `hide-generator=[true|false] (default: false)`: If `true`, disable the built-in equation generator (options `Random` & `Simple`).
@@ -41,8 +38,8 @@ If `retry-if-fail` is `true` then this parameter will have no effect.
 
 ### URL Parameter Limitations
 
-- Parameter syntax characters, including spaces and (`:`,`'`,`|`,`;`), are always interpreted as such, so problems will occur if they are attempted to be used as part of the grammar productions.
-- The ampersand (`&`) is used to separate url parameters so will also cause problems if used in grammar productions.
+- Production-defining syntax characters, including spaces and (`:`,`'`,`|`,`;`), are always interpreted as such, so problems will occur if they are attempted to be used as part of the grammar productions.
+- URL parameter syntax characters, including ampersands (`&`) and equals (`=`) will also cause problems if used in grammar productions.
 
 ### URL Productions Example
 

@@ -8,7 +8,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">{% trans "Teacher mode grammar builder" %}</h5>
+        <h5 class="modal-title">{% trans "Set your own productions" %}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -33,7 +33,7 @@
                 <li>{% trans "Enclose terminals with inverted commas (')." %}</li>
                 <li>{% trans "Separate nonterminals from each other, and terminals from nonterminals, with spaces." %}</li>
                 <li>{% trans "Spaces, colons, semicolons, vertical bars and inverted commas are all reserved for defining the productions and should not be used in the productions themselves." %}</li>
-                <li>{% trans "Ampersands (&) are reserved for interpreting the url and should not be used either." %}</li>
+                <li>{% trans "Ampersands (&) and equals (=) are reserved for interpreting the url and should not be used either." %}</li>
               </div>
             </div>
             <div class="collapse" id="example-collapse">
@@ -99,13 +99,11 @@
           <tbody id="productions-table"></tbody>
         </table>
       </div>
-      {% if teacher_mode %}
-      <div class="row">
-        <button type="button" class="btn btn-primary navbar-teacher-mode mx-auto" data-toggle="modal" data-target="#grammar-builder">
+      <div class="row" id="grammar-builder-button">
+        <button type="button" class="btn btn-primary mx-auto" data-toggle="modal" data-target="#grammar-builder">
           {% trans "New productions" %}
         </button>
       </div>
-      {% endif %}
     </div>
   </div>
   <div id="selection-popup"></div>

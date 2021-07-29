@@ -98,6 +98,9 @@ $(document).ready(function() {
  * Interprets the given URL parameters and prepares the interactive accordingly
  */
 function parseUrlParameters() {
+  if (urlParameters.getUrlParameter('hide-builder') == 'true') {
+    $('#grammar-builder-button').hide();
+  }
   var grammar = urlParameters.getUrlParameter('productions');
   var finalTerminals = urlParameters.getUrlParameter('terminals');
   var examples = urlParameters.getUrlParameter('examples');
@@ -562,11 +565,11 @@ function recursiveRandomExpression(replaced, productions, maxDepth, doRetry, ter
 }
 
 /******************************************************************************/
-// FUNCTIONS FOR THE TEACHER MODE PRODUCTIONS SETTER //
+// FUNCTIONS FOR THE USER-FACING PRODUCTIONS SETTER //
 /******************************************************************************/
 
 /**
- * Sets the link in the teacher-mode productions setter to the base url of the interactive
+ * Sets the link to the base url of the interactive
  */
 function resetLink() {
   var instruction = gettext("This link will open the default version of this interactive:");
@@ -575,7 +578,7 @@ function resetLink() {
 }
 
 /**
- * Sets the link in the teacher-mode productions setter based on the productions submitted
+ * Sets the link based on the productions submitted
  */
 function getLink() {
   var instruction = gettext("This link will open the interactive with your set productions:");
