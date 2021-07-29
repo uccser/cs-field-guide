@@ -289,6 +289,11 @@ function describeAndReduceProductions(nonterminal, replacements) {
   }
 
   if (isCompressable) {
+    if (replacements.length == 2) {
+      // Use syntax A|B where B = A+1, meaning 'Number A or number B'
+      return [`${nonterminal} &#8594 ${replacements[0]}|${replacements[1]}`]
+    }
+    // Use syntax A-B, meaning 'Any number from A through B'
     return [`${nonterminal} &#8594 ${replacements[0]}-${replacements[replacements.length - 1]}`]
   }
   var returnList = [];
