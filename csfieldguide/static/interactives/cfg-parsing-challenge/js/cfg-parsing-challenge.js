@@ -3,7 +3,7 @@ var urlParameters = require('../../../js/third-party/url-parameters.js');
 /**
  * Productions in the default grammar.
  * A number or a string that begins and ends with an inverted comma (') is
- * interpreted as terminal, everything else as nonterminal.
+ * interpreted as terminal, everything else as non-terminal.
  * A production with only terminals can be a list of elements rather than a list of lists
  */
 const DEFAULT_PRODUCTIONS = {
@@ -87,7 +87,7 @@ $(document).ready(function() {
 });
 
 /**
- * Resets the equation being constructed by the user to solely the original nonterminal
+ * Resets the equation being constructed by the user to solely the original non-terminal
  */
 function resetEquation() {
   $('#cfg-equation').html(`<span class="nonterminal">${initialNonterminal_}</span>`);
@@ -271,7 +271,7 @@ function fillProductionsWindow(productions) {
 }
 
 /**
- * Returns a list of strings, each describing productions from a given nonterminal
+ * Returns a list of strings, each describing productions from a given non-terminal
  * 
  * If replacements is an incremental list of integers they are reduced appropriately
  */
@@ -333,7 +333,7 @@ function generateTarget($button) {
 }
 
 /**
- * Each time a new nonterminal is created it needs to be bound to the click event.
+ * Each time a new non-terminal is created it needs to be bound to the click event.
  */
 function reapplyNonterminalClickEvent() {
   $('.nonterminal').unbind('click');
@@ -364,7 +364,7 @@ function testMatchingEquations() {
 }
 
 /**
- * Sets the given html element as the nonterminal to be replaced.
+ * Sets the given html element as the non-terminal to be replaced.
  * Prepares the popup appropriately.
  */
 function setActiveNonterminal($target) {
@@ -372,7 +372,7 @@ function setActiveNonterminal($target) {
   var nonterminal = $target.html();
   $('#selection-popup').html('');
   if (Object.keys(productions_).indexOf(nonterminal) < 0) {
-    console.error(`Could not find nonterminal ${nonterminal} in available productions.`);
+    console.error(`Could not find non-terminal ${nonterminal} in available productions.`);
     $('#selection-popup').html(gettext('No productions available.'));
     return;
   }
@@ -385,7 +385,7 @@ function setActiveNonterminal($target) {
 }
 
 /**
- * Replaces the active nonterminal using the target production.
+ * Replaces the active non-terminal using the target production.
  */
 function applyProduction($target) {
   var nonterminal = $activeNonterminal_.html();
@@ -413,7 +413,7 @@ function undo() {
 
 /**
  * Returns a string of HTML code to be put in the popup, allowing the user to select
- * a replacement for the given nonterminal.
+ * a replacement for the given non-terminal.
  */
 function getPopupVal(nonterminal, replacements) {
   var code = '<div class="btn-group-vertical">';
@@ -496,9 +496,9 @@ function isTerminal(s) {
  * 
  * If the maximum depth of recursion (`maxDepth`) is reached then depending on
  * the global retryIfFail either it will try again up to 10 times or remaining
- * nonterminals will be replaced with random terminals.
+ * non-terminals will be replaced with random terminals.
  * 
- * @param {String} startChar initial nonterminal
+ * @param {String} startChar initial non-terminal
  * @param {Dict} productions all productions
  * @param {Number} maxDepth maximum depth of recursion
  */
@@ -534,14 +534,14 @@ function randomExpression(startChar, productions, maxDepth) {
 /**
  * Returns a random expression generated from the given grammar productions.
  * 
- * @param {String} replaced initial nonterminal
+ * @param {String} replaced initial non-terminal
  * @param {Dict} productions all productions
  * @param {Number} maxDepth maximum depth of recursion
- * @param {Boolean} doRetry throw an error if `maxDepth` is reached and nonterminals remain
+ * @param {Boolean} doRetry throw an error if `maxDepth` is reached and non-terminals remain
  * @param {Array} terminals terminal characters to use if `maxDepth` is reached and `doRetry` is `false`
  * 
  * It is assumed that any terminal in `terminals` can logically (through one or more steps)
- * replace any nonterminal.
+ * replace any non-terminal.
  */
 function recursiveRandomExpression(replaced, productions, maxDepth, doRetry, terminals) {
   if (maxDepth <= 0) {
@@ -557,7 +557,7 @@ function recursiveRandomExpression(replaced, productions, maxDepth, doRetry, ter
   } catch (error) {
     console.error(error);
     $('#error-notice').html(gettext("An error occurred while generating a new equation.") + "<br>" +
-    gettext("There could be a nonterminal in the grammar productions with no corresponding production."));
+    gettext("There could be a non-terminal in the grammar productions with no corresponding production."));
     $('#error-notice').show();
     return;
   }
