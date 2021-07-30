@@ -612,7 +612,7 @@ function getLink() {
   if ($("#examples-checkbox").prop('checked')){
     var examples = $("#cfg-example-input").val().trim();
     if (examples.length > 0) {
-      otherParameters += '&examples=' + examples.replace(/\n/g, '|');
+      otherParameters += '&examples=' + percentEncode(examples.replace(/\n/g, '|'));
     }
   }
   // When the user switches between generator types a # appears at the end of the url
