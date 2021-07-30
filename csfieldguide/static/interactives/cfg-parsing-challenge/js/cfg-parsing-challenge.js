@@ -62,6 +62,8 @@ $(document).ready(function() {
   $('#cfg-default-link-button').on('click', resetLink);
   $('#undo-button').prop('disabled', true);
   $('#cfg-target').change(testMatchingEquations);
+  $("#examples-checkbox").change(toggleExamplesWindow).prop('checked', false);
+  toggleExamplesWindow();
   if (examples_.length) {
     $('#cfg-target').val(examples_[0]);
   } else if (hideGenerator_) {
@@ -524,7 +526,7 @@ function randomExpression(startChar, productions, maxDepth) {
   }
   if (!success) {
     $('#error-notice').html(gettext("The generator failed to finish a new equation too many times.") + "<br>" +
-    gettext("If this error appears regularly, perhaps the recursion depth is set too low."));
+    gettext("This could just be unlucky (try again!), or it could indicate a problem with your productions."));
     $('#error-notice').show();
     return "";
   }
@@ -600,12 +602,33 @@ function getLink() {
     return;
   }
   var productionsParameter = percentEncode(productions.replace(/\n/g, ' '));
-  var otherParameters = "&hide-generator=true";
+  var otherParameters = "";
+  if ($("#generator-checkbox").prop('checked')){
+    // 5 chosen arbitrarily
+    otherParameters += "&recursion-depth=5&retry-if-fail=true";
+  } else {
+    otherParameters += "&hide-generator=true";
+  }
+  if ($("#examples-checkbox").prop('checked')){
+    var examples = $("#cfg-example-input").val().trim();
+    if (examples.length > 0) {
+      otherParameters += '&examples=' + examples.replace(/\n/g, '|');
+    }
+  }
   // When the user switches between generator types a # appears at the end of the url
-  // This needs to be removed for the new link, or not added in the first place
+  // This needs to be removed for the new link, or not added in the first place:
   var basePath = window.location.href.split('?', 1)[0].replace(/\#+$/g, '');
   var fullUrl = basePath + "?productions=" + productionsParameter + otherParameters;
   $("#cfg-grammar-link").html(`${instruction}<br><a target="_blank" href=${fullUrl}>${fullUrl}</a>`);
+}
+
+function toggleExamplesWindow() {
+  if ($("#examples-checkbox").prop('checked')){
+    $("#cfg-example-input-parent").removeClass('d-none');
+  } else {
+    $("#cfg-example-input-parent").addClass('d-none');
+    $("#cfg-example-input").val('')
+  }
 }
 
 /**

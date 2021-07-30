@@ -46,8 +46,21 @@
               </div>
             </div>
           </div>
-          <div class="row py-2">
+          <div class="row pb-2">
             <textarea class="form-control" id="cfg-grammar-input" placeholder="{% trans 'Enter your productions here.' %}"></textarea>
+          </div>
+          <div class="row pb-2">
+            <input type="checkbox" id="examples-checkbox">
+            <label class="form-check-label pl-1" for="examples-checkbox">{% trans "Custom examples" %}</label>
+            <small id="examples-checkbox-help" class="text-muted">{% trans "Provide your own examples that a user can try to match." %}</small>
+          </div>
+          <div class="row pb-2 d-none" id="cfg-example-input-parent">
+            <textarea class="form-control" id="cfg-example-input" placeholder="{% trans 'Type each example on a new line.' %}"></textarea>
+          </div>
+          <div class="row pb-2">
+            <input type="checkbox" id="generator-checkbox">
+            <label class="form-check-label pl-1" for="generator-checkbox">{% trans "Random examples" %}</label>
+            <small id="generator-checkbox-help" class="text-muted">{% trans "Generate new examples by following your productions at random." %}</small>
           </div>
           <div class="row">
             <button type="button" class="btn btn-primary" id="cfg-grammar-link-button">{% trans "Get link" %}</button>
