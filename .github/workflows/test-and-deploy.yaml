@@ -203,4 +203,4 @@ jobs:
           context: .
           push: true
           tags: ghcr.io/uccser/cs-field-guide:develop
-          build-args: GIT_SHA=$GITHUB_SHA
+          build-args: GIT_SHA=${{ env.GITHUB_SHA }}
