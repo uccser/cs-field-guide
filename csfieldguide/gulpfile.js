@@ -24,6 +24,7 @@ const pixrem = require('pixrem')
 const postcss = require('gulp-postcss')
 const postcssFlexbugFixes = require('postcss-flexbugs-fixes')
 const reload = browserSync.reload
+const rename = require('gulp-rename')
 const sass = require('gulp-sass')
 const sourcemaps = require('gulp-sourcemaps')
 const spawn = require('child_process').spawn
@@ -67,9 +68,10 @@ function pathsConfig(appName) {
         svg_output: `${staticOutputRoot}/svg`,
         interactives_output: `${staticOutputRoot}/interactives`,
         files_output: `${staticOutputRoot}/files`,
+        vendor_js_output: `${staticOutputRoot}/js`,
         // These directories are scoped higher to output files in interactives directory
-        css_output: `${staticOutputRoot}/css`,
-        js_output: `${staticOutputRoot}/js`,
+        css_output: `${staticOutputRoot}`,
+        js_output: `${staticOutputRoot}`,
     }
 }
 
@@ -136,6 +138,9 @@ function scss() {
         .pipe(postcss(processCss))
         .pipe(sourcemaps.write())
         .pipe(gulpif(PRODUCTION, postcss(minifyCss))) // Minifies the result
+        .pipe(rename(function (path) {
+            path.dirname = path.dirname.replace("scss", "css");
+        }))
         .pipe(dest(paths.css_output))
 }
 
@@ -166,7 +171,7 @@ function vendorJs() {
         .pipe(concat('vendors.js'))
         .pipe(dest(paths.js_output))
         .pipe(terser())
-        .pipe(dest(paths.js_output))
+        .pipe(dest(paths.vendor_js_output))
 }
 
 // Image compression
