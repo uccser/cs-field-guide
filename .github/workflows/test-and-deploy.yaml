@@ -73,3 +73,134 @@ jobs:
           pip install -r docs/requirements.txt
       - name: Build documentation
         run: sphinx-build -b html -W docs/ docs/_build/
+
+  create-static-files:
+    name: Create static files
+    if: (github.ref == 'refs/heads/develop') || (github.ref == 'refs/heads/server-migration')
+    runs-on: ubuntu-20.04
+    needs: [
+      test-content,
+      test-general,
+      test-management,
+      test-style,
+      test-docs
+    ]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Create Docker network
+        run: docker network create uccser-development-proxy
+
+      - name: Start system
+        run: docker-compose -f docker-compose.local.yml up -d
+
+      - name: Create production static files
+        run: docker-compose -f docker-compose.local.yml run --rm --user="root" node npm run build
+
+      - name: Collect staticfiles
+        run: docker-compose -f docker-compose.local.yml run --rm --user="root" django python manage.py collectstatic --no-input
+
+      - name: Archive static files
+        run: tar czf static-files.tar.gz --directory csfieldguide/staticfiles/ .
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: static-files
+          path: static-files.tar.gz
+          retention-days: 3
+
+  create-interactive-thumbnails:
+    name: Create interactive thumbnails
+    if: (github.ref == 'refs/heads/develop') || (github.ref == 'refs/heads/server-migration')
+    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        language: [
+          'en',
+          'de',
+          'es',
+        ]
+      fail-fast: true
+    needs: [
+      test-content,
+      test-general,
+      test-management,
+      test-style,
+      test-docs
+    ]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Create Docker network
+        run: docker network create uccser-development-proxy
+
+      - name: Start system
+        run: docker-compose -f docker-compose.local.yml up -d
+
+      - name: Create static files
+        run: docker-compose -f docker-compose.local.yml run --rm --user="root" node npm run dev
+
+      - name: Migrate database
+        run: docker-compose -f docker-compose.local.yml run --rm django python ./manage.py migrate
+
+      - name: Load interactives
+        run: docker-compose -f docker-compose.local.yml run --rm django python ./manage.py loadinteractives
+
+      - name: Make interactive thumbnails
+        run: docker-compose -f docker-compose.local.yml run --rm --user="root" puppeteer node /make-interactive-thumbnails.js --language ${{ matrix.language }}
+
+      - name: Archive static files
+        run: tar czf interactive-thumbnails.tar.gz --directory csfieldguide/build/img/interactives/thumbnails/ .
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: interactive-thumbnails-${{ matrix.language }}
+          path: interactive-thumbnails.tar.gz
+          retention-days: 3
+
+  publish-dev-docker-image:
+    name: Create and publish dev image
+    if: (github.ref == 'refs/heads/develop') || (github.ref == 'refs/heads/server-migration')
+    runs-on: ubuntu-20.04
+    needs: [
+      create-static-files,
+      create-interactive-thumbnails,
+    ]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Download all workflow run artifacts
+        uses: actions/download-artifact@v2
+        with:
+          path: artifacts/
+
+      - name: Show file tree of artifacts directory
+        run: ls -R -l artifacts/
+
+      - name: Unpack all artifacts
+        run: |
+          mkdir -p csfieldguide/staticfiles
+          tar -xz --file artifacts/static-files/static-files.tar.gz --directory csfieldguide/staticfiles
+          mkdir -p csfieldguide/staticfiles/img/interactives/thumbnails
+          ls artifacts/interactive-thumbnails-*/interactive-thumbnails.tar.gz | xargs -n1 tar -xz --directory csfieldguide/staticfiles/img/interactives/thumbnails --file
+
+      - name: Log in to the Container registry
+        uses: docker/login-action@v1.10.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v2.6.1
+        with:
+          file: ./infrastructure/production/django/Dockerfile
+          context: .
+          push: true
+          tags: ghcr.io/uccser/cs-field-guide:develop
+          build-args: GIT_SHA=$GITHUB_SHA
