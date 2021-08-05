@@ -17,6 +17,8 @@ jobs:
         run: docker-compose -f docker-compose.local.yml up -d
       - name: Create static files
         run: docker-compose -f docker-compose.local.yml run --rm --user="root" node npm run dev
+      - name: Collect static files
+        run: docker-compose -f docker-compose.local.yml run --rm --user="root" django python ./manage.py collectstatic --no-input
       - name: Migrate database
         run: docker-compose -f docker-compose.local.yml run --rm django python ./manage.py migrate
       - name: Load content
