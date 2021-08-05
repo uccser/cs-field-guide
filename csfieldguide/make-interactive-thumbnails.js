@@ -47,9 +47,13 @@ var args = process.argv.slice(2);
 if (args[0] == '--production') {
     query_parameters = 'all_languages';
     console.log('Generating interactive thumbnails for all languages')
+} else if (args[0] == '--language' && args[1]) {
+    language_code = args[1];
+    query_parameters = `language=${language_code}`;
+    console.log(`Generating interactive thumbnails for '${language_code}' only`)
 } else {
     query_parameters = '';
-    console.log('Generating interactive thumbnails for English only')
+    console.log("Generating interactive thumbnails for 'en' only")
 }
 
 http.get(BASE_URL + `/en/interactives/thumbnail-json/?${query_parameters}`, res => {

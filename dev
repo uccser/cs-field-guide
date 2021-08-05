@@ -44,11 +44,6 @@ cmd_help() {
 }
 defhelp help 'View all help.'
 
-cmd_setup_https() {
-  mkdir -p infrastructure/local/traefik/certs/
-  mkcert -cert-file infrastructure/local/traefik/certs/local-cert.pem -key-file infrastructure/local/traefik/certs/local-key.pem "cs-field-guide.localhost" "*.cs-field-guide.localhost"
-}
-
 # Start development environment
 cmd_start() {
   echo "Creating systems..."
@@ -74,18 +69,21 @@ defhelp restart 'Restart container.'
 # Update all content
 cmd_update() {
   cmd_static
+  cmd_collect_static
 
   echo ""
   cmd_migrate
 
   echo ""
   cmd_update_data
-  cmd_rebuild_index
-  cmd_make_interactive_thumbnails
 
   echo ""
-  cmd_collect_static
+  cmd_rebuild_index
+
   echo ""
+  cmd_make_interactive_thumbnails
+  cmd_collect_static
+
   echo -e "\n${SUCCESS}Content is loaded!${NC}"
   echo "Open your preferred web browser to the URL 'cs-field-guide.localhost'"
 }
