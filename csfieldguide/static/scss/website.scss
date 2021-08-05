@@ -36,7 +36,6 @@
 @import "node_modules/bootstrap/scss/carousel";
 @import "node_modules/bootstrap/scss/utilities";
 @import "third-party/pygments-highlighting";
-@import "third-party/sticky-state";
 @import "third-party/directional";
 @import "third-party/featherlight";
 @import "panels";
@@ -159,7 +158,7 @@ ol, ul {
       border-color: $csfg-light;
     }
   }
-  #section-headings .nav-link {
+  #scrollspy-table-of-contents .nav-link {
     font-size: 0.8rem;
     padding: 0.3rem 0.7rem;
   }

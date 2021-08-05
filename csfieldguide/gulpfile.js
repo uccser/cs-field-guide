@@ -1,7 +1,103 @@
-// gulp build : for a one off development build
-// gulp build --production : for a minified production build
+////////////////////////////////
+// Setup
+////////////////////////////////
 
-'use strict';
+// Gulp and package
+const { src, dest, parallel, series, watch } = require('gulp')
+const pjson = require('./package.json')
+
+// Plugins
+const autoprefixer = require('autoprefixer')
+const browserify = require('browserify')
+const browserSync = require('browser-sync').create()
+const buffer = require('vinyl-buffer');
+const c = require('ansi-colors')
+const concat = require('gulp-concat')
+const cssnano = require('cssnano')
+const errorHandler = require('gulp-error-handle')
+const filter = require('gulp-filter')
+const gulpif = require('gulp-if');
+const { hideBin } = require('yargs/helpers')
+const imagemin = require('gulp-imagemin')
+const log = require('fancy-log')
+const pixrem = require('pixrem')
+const postcss = require('gulp-postcss')
+const postcssFlexbugFixes = require('postcss-flexbugs-fixes')
+const reload = browserSync.reload
+const sass = require('gulp-sass')
+const sourcemaps = require('gulp-sourcemaps')
+const spawn = require('child_process').spawn
+const tap = require('gulp-tap')
+const terser = require('gulp-terser')
+const yargs = require('yargs/yargs')
+
+// Arguments
+const argv = yargs(hideBin(process.argv)).argv
+const PRODUCTION = !!argv.production;
+
+// Relative paths function
+function pathsConfig(appName) {
+    this.app = `./${pjson.name}`
+    const vendorsRoot = 'node_modules'
+    const staticSourceRoot = 'static'
+    const staticOutputRoot = 'build'
+
+    return {
+        app: this.app,
+        // Source files
+        bootstrap_source: `${vendorsRoot}/bootstrap/scss`,
+        images_source: `${staticSourceRoot}/img`,
+        svg_source: `${staticSourceRoot}/svg`,
+        interactives_source: `${staticSourceRoot}/interactives`,
+        files_source: `${staticSourceRoot}/files`,
+        // These directories are scoped higher to catch files in interactives directory
+        css_source: `${staticSourceRoot}`,
+        scss_source: `${staticSourceRoot}`,
+        js_source: `${staticSourceRoot}`,
+        // Vendor
+        vendor_js_source: [
+            `${vendorsRoot}/jquery/dist/jquery.slim.js`,
+            `${vendorsRoot}/popper.js/dist/umd/popper.js`,
+            `${vendorsRoot}/bootstrap/dist/js/bootstrap.js`,
+            `${vendorsRoot}/details-element-polyfill/dist/details-element-polyfill.js`,
+        ],
+        // Output files
+        fonts_output: `${staticOutputRoot}/fonts`,
+        images_output: `${staticOutputRoot}/img`,
+        svg_output: `${staticOutputRoot}/svg`,
+        interactives_output: `${staticOutputRoot}/interactives`,
+        files_output: `${staticOutputRoot}/files`,
+        // These directories are scoped higher to output files in interactives directory
+        css_output: `${staticOutputRoot}/css`,
+        js_output: `${staticOutputRoot}/js`,
+    }
+}
+
+var paths = pathsConfig()
+
+function catchError(error) {
+    log.error(
+        c.bgRed('Error:'),
+        c.red(error)
+    );
+    this.emit('end');
+}
+
+////////////////////////////////
+// Config
+////////////////////////////////
+
+// CSS/SCSS
+const processCss = [
+    autoprefixer(),         // adds vendor prefixes
+    pixrem(),               // add fallbacks for rem units
+    postcssFlexbugFixes(),  // adds flexbox fixes
+]
+const minifyCss = [
+    cssnano({ preset: 'default' })   // minify result
+]
+
+// JS
 
 const js_files_skip_optimisation = [
   // Optimise all files
@@ -11,180 +107,112 @@ const js_files_skip_optimisation = [
   '!static/interactives/pixel-viewer/**/*.js',
 ];
 
-// general
-const gulp = require('gulp');
-const gutil = require('gulp-util');
-const del = require('del');
-const gulpif = require('gulp-if');
-const filter = require('gulp-filter');
-const runSequence = require('run-sequence')
-const notify = require('gulp-notify');
-const log = require('gulplog');
-const buffer = require('vinyl-buffer');
-const argv = require('yargs').argv;
-const rename = require("gulp-rename");
-const sourcemaps = require('gulp-sourcemaps');
-const errorHandler = require('gulp-error-handle');
+////////////////////////////////
+// Tasks
+////////////////////////////////
 
-// sass
-const sass = require('gulp-sass');
-const postcss = require('gulp-postcss');
-const postcssFlexbugFixes = require('postcss-flexbugs-fixes');
-const autoprefixer = require('autoprefixer');
-
-// js
-const tap = require('gulp-tap');
-const babel = require('gulp-babel');
-const terser = require('gulp-terser');
-const browserify = require('browserify');
-const jshint = require('gulp-jshint');
-const stylish = require('jshint-stylish');
-
-// gulp build --production
-const production = !!argv.production;
-// determine if we're doing a build
-// and if so, bypass the livereload
-const build = argv._.length ? argv._[0] === 'build' : true;
-
-// ----------------------------
-// Error notification methods
-// ----------------------------
-var handleError = function(task) {
-  return function(err) {
-      notify.onError({
-        message: task + ' failed, check the logs..',
-        sound: false
-      })(err);
-
-    gutil.log(gutil.colors.bgRed(task + ' error:'), gutil.colors.red(err));
-  };
-};
-
-function catchError(error) {
-    gutil.log(
-      gutil.colors.bgRed('Error:'),
-      gutil.colors.red(error)
-    );
-    this.emit('end');
+// Styles autoprefixing and minification
+function css() {
+    return src(`${paths.css_source}/**/*.css`)
+        .pipe(errorHandler(catchError))
+        .pipe(sourcemaps.init())
+        .pipe(postcss(processCss))
+        .pipe(sourcemaps.write())
+        .pipe(gulpif(PRODUCTION, postcss(minifyCss))) // Minifies the result
+        .pipe(dest(paths.css_output))
 }
 
-// --------------------------
-// CUSTOM TASK METHODS
-// --------------------------
-var tasks = {
-  // --------------------------
-  // Delete build folder
-  // --------------------------
-  clean: function() {
-    return del(['build/']);
-  },
-  // --------------------------
-  // Copy static images
-  // --------------------------
-  images: function() {
-    return gulp.src('static/img/**/*')
-      .pipe(gulp.dest('build/img'));
-  },
-  // --------------------------
-  // Copy interactive files
-  // --------------------------
-  interactives: function() {
-    return gulp.src([
-        'static/interactives/**/*',
-        '!static/interactives/**/*.scss',
-        '!static/interactives/**/*.js'
-      ])
-      .pipe(gulp.dest('build/interactives'));
-  },
-  // --------------------------
-  // Copy downloadable files
-  // --------------------------
-  files: function() {
-    return gulp.src('static/files/**/*')
-      .pipe(gulp.dest('build/files'));
-  },
-  // --------------------------
-  // Copy SVG files
-  // --------------------------
-  svg: function() {
-    return gulp.src('static/svg/**/*')
-      .pipe(gulp.dest('build/svg'));
-  },
-  // --------------------------
-  // CSS
-  // --------------------------
-  css: function() {
-    return gulp.src('static/css/**/*.css')
-      .pipe(gulp.dest('build/css'));
-  },
-  // --------------------------
-  // SASS (libsass)
-  // --------------------------
-  sass: function() {
-    return gulp.src('static/**/*.scss')
-      .pipe(errorHandler(catchError))
-      // sourcemaps + sass + error handling
-      .pipe(gulpif(!production, sourcemaps.init()))
-      .pipe(sass({
-        sourceComments: !production,
-        outputStyle: production ? 'compressed' : 'nested'
-      }))
-      .on('error', handleError('SASS'))
-      // generate .maps
-      .pipe(gulpif(!production, sourcemaps.write({
-        'includeContent': false,
-        'sourceRoot': '.'
-      })))
-      // autoprefixer
-      .pipe(gulpif(!production, sourcemaps.init({
-        'loadMaps': true
-      })))
-      .pipe(postcss([autoprefixer({browsers: ['last 2 versions']}), postcssFlexbugFixes]))
-      .pipe(sourcemaps.write({
-        'includeContent': true
-      }))
-      .pipe(rename(function (path) {
-        path.dirname = path.dirname.replace("scss", "css");
-      }))
-      .pipe(gulp.dest('build/'));
-  },
-  // --------------------------
-  // JavaScript
-  // --------------------------
-  js: function() {
-    const f = filter(js_files_skip_optimisation, {restore: true});
-    return gulp.src(['static/**/*.js', '!static/js/modules/**/*.js'])
-      .pipe(f)
-      .pipe(errorHandler(catchError))
-      .pipe(tap(function (file) {
-        file.contents = browserify(file.path, {debug: true}).bundle().on('error', catchError);
-      }))
-      .pipe(buffer())
-      .pipe(errorHandler(catchError))
-      .pipe(gulpif(production, sourcemaps.init({loadMaps: true})))
-      .pipe(gulpif(production, terser({keep_fnames: true})))
-      .pipe(gulpif(production, sourcemaps.write('./')))
-      .pipe(f.restore)
-      .pipe(gulp.dest('build'));
-  },
-};
+function scss() {
+    return src(`${paths.scss_source}/**/*.scss`)
+        .pipe(errorHandler(catchError))
+        .pipe(sourcemaps.init())
+        .pipe(sass({
+            includePaths: [
+                paths.bootstrap_source,
+                paths.scss_source
+            ],
+            sourceComments: !PRODUCTION,
+        }).on('error', sass.logError))
+        .pipe(postcss(processCss))
+        .pipe(sourcemaps.write())
+        .pipe(gulpif(PRODUCTION, postcss(minifyCss))) // Minifies the result
+        .pipe(dest(paths.css_output))
+}
 
-// // --------------------------
-// // CUSTOMS TASKS
-// // --------------------------
-gulp.task('clean', tasks.clean);
-// // for production we require the clean method on every individual task
-var req = [];
-// // individual tasks
-gulp.task('images', req, tasks.images);
-gulp.task('interactives', req, tasks.interactives);
-gulp.task('files', req, tasks.files);
-gulp.task('svg', req, tasks.svg);
-gulp.task('js', req, tasks.js);
-gulp.task('css', req, tasks.css);
-gulp.task('sass', req, tasks.sass);
+// Javascript
+function js() {
+    const js_filter = filter(js_files_skip_optimisation, { restore: true })
+    return src([
+            `${paths.js_source}/**/*.js`,
+            `!${paths.js_source}/modules/**/*.js`
+        ])
+        .pipe(js_filter)
+        .pipe(errorHandler(catchError))
+        .pipe(sourcemaps.init())
+        .pipe(tap(function (file) {
+            file.contents = browserify(file.path, { debug: true }).bundle().on('error', catchError);
+        }))
+        .pipe(buffer())
+        .pipe(gulpif(PRODUCTION, terser({ keep_fnames: true })))
+        .pipe(sourcemaps.write())
+        .pipe(js_filter.restore)
+        .pipe(dest(paths.js_output))
+}
 
-// // build task
-gulp.task('build', function(callback) {
-  runSequence('clean', ['images', 'svg', 'css', 'sass', 'interactives', 'files', 'js'], callback);
-});
+// Vendor Javascript (always minified)
+function vendorJs() {
+    return src(paths.vendor_js_source)
+        .pipe(errorHandler(catchError))
+        .pipe(concat('vendors.js'))
+        .pipe(dest(paths.js_output))
+        .pipe(terser())
+        .pipe(dest(paths.js_output))
+}
+
+// Image compression
+function img() {
+    return src(`${paths.images_source}/**/*`)
+        .pipe(gulpif(PRODUCTION, imagemin())) // Compresses PNG, JPEG, GIF and SVG images
+        .pipe(dest(paths.images_output))
+}
+
+// SVGs
+function svg() {
+    return src(`${paths.svg_source}/**/*`)
+        .pipe(dest(paths.svg_output))
+}
+
+// Interactive files (not SCSS or JS)
+function interactives() {
+    return src([
+            `${paths.interactives_source}/**/*`,
+            `!${paths.interactives_source}/**/*.scss`,
+            `!${paths.interactives_source}/**/*.js`
+        ])
+        .pipe(dest(paths.interactives_output))
+}
+
+// Downloadable files
+function files() {
+    return src(`${paths.files_source}/**/*`)
+        .pipe(dest(paths.files_output))
+}
+
+// Generate all assets
+const generateAssets = series(
+    parallel(
+        css,
+        scss,
+        vendorJs,
+        img,
+        svg,
+        interactives,
+        files
+    ),
+    js
+)
+
+// TODO: Setup dev environment with live reload (see CS Unplugged repo)
+exports["generate-assets"] = generateAssets
+// TODO: Look at cleaning build folder
+exports.default = generateAssets

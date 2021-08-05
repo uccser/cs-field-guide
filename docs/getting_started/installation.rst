@@ -201,7 +201,7 @@ Type the following command into the terminal (we cover this command in more deta
 
 .. code-block:: bash
 
-    $ ./csfg start
+    $ ./dev start
 
 If this is the first time you're running this script it will need to build system images.
 This may take roughly 15 to 30 minutes, depending on your computer and internet speed.
@@ -211,26 +211,14 @@ Type the following into your terminal:
 
     .. code-block:: bash
 
-        $ ./csfg update
+        $ ./dev update
 
 You can find information about this command on the helper commands page.
 
-Once the update command has completed you should then be able to open your preferred web browser to the URL ``localhost`` and see the CS Field Guide homepage.
+Once the update command has completed you should then be able to open your preferred web browser to the URL ``cs-field-guide.localhost`` and see the CS Field Guide homepage.
 
 Congratulations if you made it this far and everything is working, you're all set to contribute to the CS Field Guide project.
 
-.. _uninstallation:
-
-Uninstallation
-=================================================
-
-If you would like to uninstall the guide you should run the following commands to clear hard drive space before deleting the ``cs-field-guide`` folder:
-
-    .. code-block:: bash
-
-        $ ./csfg end
-        $ ./csfg clean
-        $ ./csfg wipe
 
 .. _one: https://git-scm.com/docs/gittutorial
 .. _two: https://try.github.io/levels/1/challenges/1

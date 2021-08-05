@@ -76,7 +76,7 @@
               <span class="section-heading-number">{{ chapter.number }}.{{ section.number }}.</span> {{ section.name }}
             </a>
             {% if section.slug == chapter_section.slug and headings %}
-              <ul id="section-headings" class="nav nav-pills flex-column my-1 ml-5">
+              <ul  id="scrollspy-table-of-contents" class="nav nav-pills flex-column my-1 ml-5">
                 {% for heading in headings %}
                   <li>
                     <a class="nav-link" href="#{{ heading.slug }}">{{ heading.name }}</a>

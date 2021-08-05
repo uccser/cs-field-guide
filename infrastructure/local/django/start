@@ -1,0 +1,8 @@
+#!/bin/bash
+
+set -o errexit
+set -o pipefail
+set -o nounset
+
+python ./manage.py compilemessages
+gunicorn -c ./gunicorn.conf.py -b :8000 config.wsgi --reload

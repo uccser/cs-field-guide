@@ -1,0 +1,71 @@
+name: Test and deploy
+
+on:
+  workflow_dispatch:
+  push:
+
+jobs:
+  test-content:
+    name: Tests - Content
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Start systems
+        run: docker-compose -f docker-compose.local.yml up -d
+      - name: Create static files
+        run: docker-compose -f docker-compose.local.yml run --rm --user="root" node npm run dev
+      - name: Migrate database
+        run: docker-compose -f docker-compose.local.yml run --rm django python ./manage.py migrate
+      - name: Load content
+        run: docker-compose -f docker-compose.local.yml run --rm django python ./manage.py updatedata
+      - name: Rebuild search
+        run: docker-compose -f docker-compose.local.yml run --rm django python ./manage.py rebuild_index --noinput
+      - name: Make interactive thumbnails
+        run: docker-compose -f docker-compose.local.yml run --rm --user="root" puppeteer node /make-interactive-thumbnails.js
+      - name: Collect static files
+        run: docker-compose -f docker-compose.local.yml run --rm --user="root" django python ./manage.py collectstatic --no-input
+
+  test-general:
+    name: Tests - General
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Run general tests
+        run: ./dev ci test_general
+
+  test-management:
+    name: Tests - Management
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Run management tests
+        run: ./dev ci test_management
+
+  test-style:
+    name: Tests - Style
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Run style tests
+        run: ./dev ci style
+
+  test-docs:
+    name: Tests - Documentation
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r docs/requirements.txt
+      - name: Build documentation
+        run: sphinx-build -b html -W docs/ docs/_build/

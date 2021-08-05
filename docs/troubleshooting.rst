@@ -42,9 +42,9 @@ Firstly check the compiled CSS is located in the ``staticfiles/`` directory, and
 If the CSS file does not include the changes made, run ``./csfg update_static``.
 If you are editing SCSS files, check the ``./csfg static`` command isn't reporting SCSS compilation errors.
 
-The website isn't displaying when I open ``localhost`` in a browser
+The website isn't displaying when I open ``cs-field-guide.localhost`` in a browser
 ----------------------------------------------------------------------------------------------
 
-Check you have run both the ``./csfg start`` and ``./csfg update`` commands (in that order),  and that it hasn't reported any errors.
+Check you have run both the ``./dev start`` and ``./dev update`` commands (in that order),  and that it hasn't reported any errors.
 
 .. _issue tracker: https://github.com/uccser/cs-field-guide/issues
