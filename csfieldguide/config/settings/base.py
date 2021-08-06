@@ -209,7 +209,6 @@ TEMPLATES = [
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#static-root
 STATIC_ROOT = os.path.join(str(ROOT_DIR.path("staticfiles")), "")
 
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#static-url
 BUILD_ROOT = os.path.join(str(ROOT_DIR.path("build")), "")
 
 # See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
@@ -217,6 +216,7 @@ STATICFILES_DIRS = [
     BUILD_ROOT,
 ]
 
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#static-url
 STATIC_URL = "/static/"
 
 # See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#staticfiles-finders
@@ -286,3 +286,4 @@ INTERACTIVES_LINK_TEMPLATE = "interactives/utils/interactive-link.html"
 MODELTRANSLATION_CUSTOM_FIELDS = ("JSONField",)
 CUSTOM_VERTO_TEMPLATES = os.path.join(str(ROOT_DIR.path("utils")), "custom_converter_templates", "")
 STATICI18N_ROOT = BUILD_ROOT
+SVG_DIRS = [os.path.join(str(ROOT_DIR.path("staticfiles")), "svg")]
