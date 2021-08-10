@@ -121,7 +121,7 @@ defhelp updatedata 'Load content into database.'
 # Build static files
 cmd_static() {
   echo "Building static files..."
-  docker-compose -f docker-compose.local.yml run --rm node npm run dev
+  docker-compose -f docker-compose.local.yml run --rm node npm run generate-assets
 }
 defhelp static 'Build static files.'
 
