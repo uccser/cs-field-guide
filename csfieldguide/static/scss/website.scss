@@ -65,6 +65,7 @@ body {
   > #body-content {
     overflow: auto;
     flex-grow: 1;
+    position: relative;
   }
 }
 
@@ -158,7 +159,7 @@ ol, ul {
       border-color: $csfg-light;
     }
   }
-  #scrollspy-table-of-contents.nav-chapter-sections .nav-link {
+  #scrollspy-table-of-contents .nav-link {
     font-size: 0.8rem;
     padding: 0.3rem 0.7rem;
   }

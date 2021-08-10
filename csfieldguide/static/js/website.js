@@ -13,7 +13,7 @@ $(document).ready(function(){
 
     // Scrollspy for sidebar table of contents
     // TODO: Check behaviour is as expected.
-    $("body").scrollspy({ target: "#scrollspy-table-of-contents", offset: 140 });
+    $("#body-content").scrollspy({ target: "#scrollspy-table-of-contents", offset: 140 });
 });
 
 function open_glossary_definition() {
