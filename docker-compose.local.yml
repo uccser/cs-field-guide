@@ -41,10 +41,6 @@ services:
         command: npm run dev
         networks:
             - backend
-        ports:
-            - "3000:3000"
-            # Expose browsersync UI: https://www.browsersync.io/docs/options/#option-ui
-            - "3001:3001"
 
     puppeteer:
         image: buildkite/puppeteer:10.0.0
