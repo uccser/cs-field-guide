@@ -76,6 +76,7 @@ cmd_update() {
 
   echo ""
   cmd_update_data
+  cmd_compilemessages
 
   echo ""
   cmd_rebuild_index
@@ -155,6 +156,14 @@ cmd_make_interactive_thumbnails() {
   docker-compose -f docker-compose.local.yml run --rm puppeteer node /make-interactive-thumbnails.js
 }
 defhelp make_interactive_thumbnails 'Run make-interactive-thumbnails.js script.'
+
+# Run Django compilemessages command
+cmd_compilemessages() {
+  echo "Compiling message files..."
+  docker-compose -f docker-compose.local.yml run --rm --label traefik.enable=false django python ./manage.py compilemessages
+  docker-compose -f docker-compose.local.yml run --rm --label traefik.enable=false django python ./manage.py compilejsi18n
+}
+defhelp compilemessages 'Run Django compilemessages command.'
 
 # Build Docker images
 cmd_build() {
