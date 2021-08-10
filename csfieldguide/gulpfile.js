@@ -57,7 +57,7 @@ function pathsConfig(appName) {
         js_source: `${staticSourceRoot}`,
         // Vendor
         vendor_js_source: [
-            `${vendorsRoot}/jquery/dist/jquery.slim.js`,
+            `${vendorsRoot}/jquery/dist/jquery.js`,
             `${vendorsRoot}/popper.js/dist/umd/popper.js`,
             `${vendorsRoot}/bootstrap/dist/js/bootstrap.js`,
             `${vendorsRoot}/details-element-polyfill/dist/details-element-polyfill.js`,
