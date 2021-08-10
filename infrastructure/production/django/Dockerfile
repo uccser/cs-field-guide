@@ -44,6 +44,8 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     libpq-dev \
     # Translations dependencies
     gettext \
+    # Healthcheck tool
+    curl \
     # Cleaning up unused files
     && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
     && rm -rf /var/lib/apt/lists/*
@@ -72,6 +74,9 @@ RUN chown django:django ${APP_HOME}
 USER django
 
 EXPOSE 8000
+
+HEALTHCHECK --interval=15s --timeout=30s --start-period=5s --retries=3 \
+    CMD curl --fail --silent http://localhost:8000/healthcheck/ || exit 1
 
 ENTRYPOINT ["/entrypoint"]
 CMD ["/start"]
