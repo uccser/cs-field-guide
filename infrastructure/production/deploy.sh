@@ -1,6 +1,29 @@
 #!/bin/bash
 
-docker service create \
+set -e
+
+# Check for environment variables
+checkEnvVariableExists() {
+    if [ -z ${!1} ]
+    then
+        echo "ERROR: Define $1 environment variable."
+        exit 1
+    else
+        echo "INFO: $1 environment variable found."
+    fi
+}
+checkEnvVariableExists CS_FIELD_GUIDE_IMAGE_TAG
+checkEnvVariableExists CS_FIELD_GUIDE_DOMAIN
+
+# Update Django service
+docker service update --force cs-field-guide_django
+
+# Run updata_data command
+if docker service ps cs-field-guide_update-data | grep cs-field-guide_update-data
+then
+    docker service update --force cs-unplugged_update-data
+else
+    docker service create \
     --name cs-field-guide_update-data \
     --detach \
     --mode replicated-job \
@@ -22,3 +45,4 @@ docker service create \
     --secret cs-field-guide_postgres_password \
     --restart-condition none \
     ghcr.io/uccser/cs-field-guide:develop python ./manage.py updatedata
+fi
