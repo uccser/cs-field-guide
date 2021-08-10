@@ -42,9 +42,9 @@
 
 {% block right_column_content %}
   {% if curriculum_guide_section.translation_available %}
-    <div id="sticky-sidebar" class="sticky d-print-none">
+    <div id="sticky-sidebar" class="sticky-top d-print-none">
       <h2 class="mt-2">{% trans "Table of contents" %}</h2>
-      <ul class="nav nav-pills flex-column" id="scrollspy-table-of-contents">
+      <ul class="nav nav-pills flex-column">
         {% for section in curriculum_guide.curriculum_guide_sections.all %}
           <li class="nav-item">
             <a class="nav-link {% if section.slug == curriculum_guide_section.slug %} active text-white{% else %} nav-link-colour{% endif %}" href="{% url 'curriculum_guides:curriculum_guide_section' curriculum_guide.slug section.slug %}">
