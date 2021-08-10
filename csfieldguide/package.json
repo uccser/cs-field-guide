@@ -78,6 +78,7 @@
     ],
     "scripts": {
         "dev": "gulp",
+        "generate-assets": "gulp generate-assets",
         "build": "gulp generate-assets --production"
     }
 }

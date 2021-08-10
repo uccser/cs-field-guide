@@ -39,8 +39,6 @@ services:
             - ./csfieldguide/static:/app/static:z
             - ./csfieldguide/build:/app/build:z
         command: npm run dev
-        profiles:
-            - static-files
         networks:
             - backend
         ports:

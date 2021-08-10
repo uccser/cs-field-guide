@@ -203,6 +203,14 @@ function files() {
         .pipe(dest(paths.files_output))
 }
 
+// Watch
+function watchPaths() {
+    watch([`${paths.js_source}/**/*.js`], js).on("change", reload)
+    watch([`${paths.css_source}/**/*.css`], css).on("change", reload)
+    watch([`${paths.scss_source}/**/*.scss`], scss).on("change", reload)
+    watch([`${paths.images_source}/**/*`], img).on("change", reload)
+}
+
 // Generate all assets
 const generateAssets = series(
     parallel(
@@ -217,7 +225,11 @@ const generateAssets = series(
     js
 )
 
-// TODO: Setup dev environment with live reload (see CS Unplugged repo)
-exports["generate-assets"] = generateAssets
+const dev = parallel(
+    // initBrowserSync,
+    watchPaths
+)
 // TODO: Look at cleaning build folder
-exports.default = generateAssets
+exports["generate-assets"] = generateAssets
+exports["dev"] = dev
+exports.default = series(generateAssets, dev)
