@@ -9,7 +9,7 @@ x-default-opts:
 
 services:
     django:
-        image: ghcr.io/uccser/cs-field-guide:develop
+        image: ghcr.io/uccser/cs-field-guide:${CS_FIELD_GUIDE_IMAGE_TAG}
         deploy:
             replicas: 2
             placement:
@@ -23,8 +23,8 @@ services:
                 - "traefik.docker.network=uccser-dev-public"
                 - "traefik.http.services.cs-field-guide-django.loadbalancer.server.port=8000"
                 - "traefik.http.routers.cs-field-guide-django.service=cs-field-guide-django"
-                - "traefik.http.routers.cs-field-guide-django.rule=Host(`cs-field-guide-dev.csse.canterbury.ac.nz`)"
-                # - "traefik.http.routers.cs-field-guide-django.entryPoints=websecure"
+                - "traefik.http.routers.cs-field-guide-django.rule=Host(`${CS_FIELD_GUIDE_DOMAIN}`)"
+                - "traefik.http.routers.cs-field-guide-django.entryPoints=web"
         environment:
             POSTGRES_HOST: postgres
             POSTGRES_PORT: "5432"
