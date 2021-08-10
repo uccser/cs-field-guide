@@ -1,4 +1,10 @@
 #!/bin/bash
 
-echo -e "${RED}This script is now deprecated.${NC} Use the ${GREEN}./dev${NC} script instead."
+ERROR='\033[0;31m'
+SUCCESS='\033[0;32m'
+CODE='\033[0;36m'
+NC='\033[0m' # No Color
+
+echo -e "${ERROR}This script is now deprecated.${NC} Use the ${SUCCESS}./dev${NC} script instead."
+
 exit 1
