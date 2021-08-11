@@ -16,7 +16,7 @@ selenium==3.141.0
 
 # Markdown
 verto==1.0.1
-python-markdown-math==0.6
+python-markdown-math==0.8
 
 # Search
 django-haystack[elasticsearch]==3.0
