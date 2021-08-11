@@ -172,11 +172,11 @@ cmd_build() {
 }
 defhelp build 'Build or rebuild Docker images.'
 
-# Run shell
+# Run exec
 cmd_exec() {
   docker-compose -f docker-compose.local.yml exec "$@"
 }
-defhelp shell "Execute command in given container."
+defhelp exec "Execute command in given container."
 
 # View Docker logs
 cmd_logs() {
