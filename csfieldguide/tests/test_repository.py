@@ -20,7 +20,7 @@ class RepositoryTests(SimpleTestCase):
 
         with open(ROOT_PACKAGE_JSON) as f:
             data = json.load(f)
-        dependency_data = data["dependencies"]
+        dependency_data = data["devDependencies"]
         listed_files = set()
         for dependency_path in dependency_data.values():
             listed_files.add(dependency_path[len(PATH_PREFIX):])

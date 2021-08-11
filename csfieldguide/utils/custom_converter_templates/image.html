@@ -1,4 +1,8 @@
 <figure class="figure img-container {% if alignment %} img-wrap-{{ alignment }}{% endif %}">
+<a data-lity=""
+{% autoescape false -%}
+  href="{{ "{% static '" }}{{ full_file_path }}{{ "' %}" }}">
+{%- endautoescape %}
 <img
 {% if file_relative %}
 {% autoescape false -%}
@@ -10,6 +14,7 @@
 class="figure-img"
 {% if alt %} alt="{{ alt }}"{% endif %}
 {% if hover_text %} title="{{ hover_text }}"{% endif %}>
+</a>
 {% if caption %}
 <figcaption class="figure-caption text-center">
 {% if caption_link %}

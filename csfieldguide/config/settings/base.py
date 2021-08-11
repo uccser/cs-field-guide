@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Base Django settings for CS Unplugged project.
+Base Django settings for CS Field Guide project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/dev/topics/settings/
@@ -64,6 +64,7 @@ INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRD_PARTY_APPS
 # ----------------------------------------------------------------------------
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -208,14 +209,15 @@ TEMPLATES = [
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#static-root
 STATIC_ROOT = os.path.join(str(ROOT_DIR.path("staticfiles")), "")
 
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#static-url
 BUILD_ROOT = os.path.join(str(ROOT_DIR.path("build")), "")
-STATIC_URL = "/staticfiles/"
 
 # See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
 STATICFILES_DIRS = [
     BUILD_ROOT,
 ]
+
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#static-url
+STATIC_URL = "/static/"
 
 # See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#staticfiles-finders
 STATICFILES_FINDERS = [
@@ -262,15 +264,23 @@ AUTH_PASSWORD_VALIDATORS = [
 # See: http://django-haystack.readthedocs.io/en/v2.6.0/settings.html
 HAYSTACK_CONNECTIONS = {
     "default": {
-        "ENGINE": "haystack.backends.whoosh_backend.WhooshEngine",
-        "PATH": str(ROOT_DIR.path("whoosh_index")),
+        'ENGINE': 'haystack.backends.elasticsearch5_backend.Elasticsearch5SearchEngine',
+        'URL': 'elasticsearch:9200',
+        'INDEX_NAME': 'haystack',
     },
 }
 HAYSTACK_SEARCH_RESULTS_PER_PAGE = 10
 
 # OTHER SETTINGS
 # ------------------------------------------------------------------------------
-DJANGO_PRODUCTION = env.bool("DJANGO_PRODUCTION")
+DEPLOYED = env.bool("DEPLOYED")
+GIT_SHA = env("GIT_SHA", default=None)
+if GIT_SHA:
+    GIT_SHA = GIT_SHA[:8]
+else:
+    GIT_SHA = "local development"
+PRODUCTION_ENVIRONMENT = False
+STAGING_ENVIRONMENT = False
 APPENDICES_CONTENT_BASE_PATH = os.path.join(str(ROOT_DIR.path("appendices")), "content")
 CHAPTERS_CONTENT_BASE_PATH = os.path.join(str(ROOT_DIR.path("chapters")), "content")
 CURRICULUM_GUIDES_CONTENT_BASE_PATH = os.path.join(str(ROOT_DIR.path("curriculum_guides")), "content")
@@ -280,3 +290,4 @@ INTERACTIVES_LINK_TEMPLATE = "interactives/utils/interactive-link.html"
 MODELTRANSLATION_CUSTOM_FIELDS = ("JSONField",)
 CUSTOM_VERTO_TEMPLATES = os.path.join(str(ROOT_DIR.path("utils")), "custom_converter_templates", "")
 STATICI18N_ROOT = BUILD_ROOT
+SVG_DIRS = [os.path.join(str(ROOT_DIR.path("staticfiles")), "svg")]

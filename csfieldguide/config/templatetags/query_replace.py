@@ -2,6 +2,7 @@
 
 from urllib.parse import urlencode
 from django import template
+from django.utils.safestring import mark_safe
 
 register = template.Library()
 
@@ -18,4 +19,4 @@ def query_replace(context, **kwargs):
     """
     query = context["request"].GET.dict()
     query.update(kwargs)
-    return urlencode(query)
+    return mark_safe(urlencode(query))
