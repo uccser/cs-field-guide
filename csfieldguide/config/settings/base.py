@@ -274,7 +274,11 @@ HAYSTACK_SEARCH_RESULTS_PER_PAGE = 10
 # OTHER SETTINGS
 # ------------------------------------------------------------------------------
 DEPLOYED = env.bool("DEPLOYED")
-GIT_SHA = env("GIT_SHA", default="local development")
+GIT_SHA = env("GIT_SHA", default=None)
+if GIT_SHA:
+    GIT_SHA = GIT_SHA[:8]
+else:
+    GIT_SHA = "local development"
 PRODUCTION_ENVIRONMENT = False
 STAGING_ENVIRONMENT = False
 APPENDICES_CONTENT_BASE_PATH = os.path.join(str(ROOT_DIR.path("appendices")), "content")
