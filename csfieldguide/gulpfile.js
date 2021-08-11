@@ -169,7 +169,6 @@ function vendorJs() {
     return src(paths.vendor_js_source)
         .pipe(errorHandler(catchError))
         .pipe(concat('vendors.js'))
-        .pipe(dest(paths.js_output))
         .pipe(terser())
         .pipe(dest(paths.vendor_js_output))
 }
@@ -217,12 +216,12 @@ const generateAssets = series(
         css,
         scss,
         vendorJs,
-        img,
-        svg,
-        interactives,
-        files
+        // img,
+        // svg,
+        // interactives,
+        // files
     ),
-    js
+    // js
 )
 
 const dev = parallel(
