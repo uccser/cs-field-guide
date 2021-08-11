@@ -76,7 +76,7 @@ jobs:
 
   create-static-files:
     name: Create static files
-    if: (github.ref == 'refs/heads/develop') || (github.ref == 'refs/heads/server-migration')
+    if: (github.ref == 'refs/heads/develop')
     runs-on: ubuntu-20.04
     needs: [
       test-content,
@@ -113,7 +113,7 @@ jobs:
 
   create-interactive-thumbnails:
     name: Create interactive thumbnails
-    if: (github.ref == 'refs/heads/develop') || (github.ref == 'refs/heads/server-migration')
+    if: (github.ref == 'refs/heads/develop')
     runs-on: ubuntu-20.04
     strategy:
       matrix:
@@ -164,7 +164,7 @@ jobs:
 
   publish-dev-docker-image:
     name: Create and publish dev image
-    if: (github.ref == 'refs/heads/develop') || (github.ref == 'refs/heads/server-migration')
+    if: (github.ref == 'refs/heads/develop')
     runs-on: ubuntu-20.04
     needs: [
       create-static-files,
