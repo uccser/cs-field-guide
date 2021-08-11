@@ -1,7 +1,3 @@
-// TODO: Setup featherlight
-require('featherlight');
-const iFrameResize = require('iframe-resizer/js/iframeResizer.js');
-
 $(document).ready(function(){
     // Display glossary-modal
     $("#content-container, #glossary-modal").on("click", ".glossary-term", open_glossary_definition);
@@ -9,10 +5,20 @@ $(document).ready(function(){
     // Pause YouTube videos playing within a closed details elements
     $("body").on("click", "details[open]", details_element_closed);
 
+    // Lightbox
+    // TODO: Future plans include only enabling lightbox to elements that right it programatically,
+    // and showing caption underneath (see: https://github.com/jsor/lity/issues/37).
+    // Allow closing lightbox by clicking on image
+    $(document).on("lity:open", function (event, instance) {
+        $(".lity-content").on("click", function () {
+            instance.close();
+        });
+    });
+
+    // Setup iFrameResizer
     iFrameResize({}, 'iframe.iframe-resize');
 
     // Scrollspy for sidebar table of contents
-    // TODO: Check behaviour is as expected.
     $("#body-content").scrollspy({ target: "#scrollspy-table-of-contents", offset: 140 });
 });
 

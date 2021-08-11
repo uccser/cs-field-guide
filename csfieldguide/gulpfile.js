@@ -39,36 +39,38 @@ const PRODUCTION = !!argv.production;
 // Relative paths function
 function pathsConfig(appName) {
     this.app = `./${pjson.name}`
-    const vendorsRoot = 'node_modules'
-    const staticSourceRoot = 'static'
-    const staticOutputRoot = 'build'
+    const vendorsRoot = 'node_modules/'
+    const staticSourceRoot = 'static/'
+    const staticOutputRoot = 'build/'
 
     return {
         app: this.app,
         // Source files
-        bootstrap_source: `${vendorsRoot}/bootstrap/scss`,
-        images_source: `${staticSourceRoot}/img`,
-        svg_source: `${staticSourceRoot}/svg`,
-        interactives_source: `${staticSourceRoot}/interactives`,
-        files_source: `${staticSourceRoot}/files`,
+        bootstrap_source: `${vendorsRoot}bootstrap/scss`,
+        images_source: `${staticSourceRoot}img`,
+        svg_source: `${staticSourceRoot}svg`,
+        interactives_source: `${staticSourceRoot}interactives`,
+        files_source: `${staticSourceRoot}files`,
         // These directories are scoped higher to catch files in interactives directory
         css_source: `${staticSourceRoot}`,
         scss_source: `${staticSourceRoot}`,
         js_source: `${staticSourceRoot}`,
         // Vendor
         vendor_js_source: [
-            `${vendorsRoot}/jquery/dist/jquery.js`,
-            `${vendorsRoot}/popper.js/dist/umd/popper.js`,
-            `${vendorsRoot}/bootstrap/dist/js/bootstrap.js`,
-            `${vendorsRoot}/details-element-polyfill/dist/details-element-polyfill.js`,
+            `${vendorsRoot}jquery/dist/jquery.js`,
+            `${vendorsRoot}popper.js/dist/umd/popper.js`,
+            `${vendorsRoot}bootstrap/dist/js/bootstrap.js`,
+            `${vendorsRoot}details-element-polyfill/dist/details-element-polyfill.js`,
+            `${vendorsRoot}lity/dist/lity.js`,
+            `${vendorsRoot}iframe-resizer/js/iframeResizer.js`,
         ],
         // Output files
-        fonts_output: `${staticOutputRoot}/fonts`,
-        images_output: `${staticOutputRoot}/img`,
-        svg_output: `${staticOutputRoot}/svg`,
-        interactives_output: `${staticOutputRoot}/interactives`,
-        files_output: `${staticOutputRoot}/files`,
-        vendor_js_output: `${staticOutputRoot}/js`,
+        fonts_output: `${staticOutputRoot}fonts`,
+        images_output: `${staticOutputRoot}img`,
+        svg_output: `${staticOutputRoot}svg`,
+        interactives_output: `${staticOutputRoot}interactives`,
+        files_output: `${staticOutputRoot}files`,
+        vendor_js_output: `${staticOutputRoot}js`,
         // These directories are scoped higher to output files in interactives directory
         css_output: `${staticOutputRoot}`,
         js_output: `${staticOutputRoot}`,
@@ -149,7 +151,7 @@ function js() {
     const js_filter = filter(js_files_skip_optimisation, { restore: true })
     return src([
             `${paths.js_source}/**/*.js`,
-            `!${paths.js_source}/modules/**/*.js`
+            `!${paths.js_source}/**/modules/**/*.js`
         ])
         .pipe(js_filter)
         .pipe(errorHandler(catchError))
@@ -216,12 +218,12 @@ const generateAssets = series(
         css,
         scss,
         vendorJs,
-        // img,
-        // svg,
-        // interactives,
-        // files
+        img,
+        svg,
+        interactives,
+        files
     ),
-    // js
+    js
 )
 
 const dev = parallel(
