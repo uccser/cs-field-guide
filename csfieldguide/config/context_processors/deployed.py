@@ -1,15 +1,16 @@
 """Context processor for checking if in deployed environment."""
 
-import environ
+from django.conf import settings
 
 
 def deployed(request):
-    """Return a dictionary containing boolean if deployed environment.
+    """Return a dictionary containing booleans regarding deployed environment.
 
     Returns:
-        Dictionary containing deployed boolean to add to context.
+        Dictionary containing deployed booleans to add to context.
     """
-    env = environ.Env()
     return {
-        "DEPLOYED": env.bool("DJANGO_PRODUCTION", False)
+        "DEPLOYED": settings.DEPLOYED,
+        "PRODUCTION_ENVIRONMENT": settings.PRODUCTION_ENVIRONMENT,
+        "STAGING_ENVIRONMENT": settings.STAGING_ENVIRONMENT,
     }

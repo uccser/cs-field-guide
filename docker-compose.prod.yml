@@ -1,0 +1,120 @@
+version: '3.8'
+
+x-default-opts:
+  &default-opts
+  logging:
+    options:
+      max-size: '1m'
+      max-file: '3'
+
+services:
+    django:
+        image: ghcr.io/uccser/cs-field-guide:${CS_FIELD_GUIDE_IMAGE_TAG}
+        deploy:
+            replicas: 2
+            placement:
+                constraints:
+                    - node.role==worker
+                    - node.labels.role==apps
+            restart_policy:
+                condition: on-failure
+            labels:
+                - "traefik.enable=true"
+                - "traefik.docker.network=uccser-dev-public"
+                - "traefik.http.services.cs-field-guide-django.loadbalancer.server.port=8000"
+                - "traefik.http.routers.cs-field-guide-django.service=cs-field-guide-django"
+                - "traefik.http.routers.cs-field-guide-django.rule=Host(`${CS_FIELD_GUIDE_DOMAIN}`)"
+                - "traefik.http.routers.cs-field-guide-django.entryPoints=web"
+        environment:
+            POSTGRES_HOST: postgres
+            POSTGRES_PORT: "5432"
+            DEPLOYMENT_ENVIRONMENT_FILE: /cs-field-guide_deployment_environment
+            DJANGO_SECRET_KEY_FILE: /run/secrets/cs-field-guide_django_secret_key
+            POSTGRES_DB_FILE: /run/secrets/cs-field-guide_postgres_db
+            POSTGRES_USER_FILE: /run/secrets/cs-field-guide_postgres_user
+            POSTGRES_PASSWORD_FILE: /run/secrets/cs-field-guide_postgres_password
+        configs:
+            - cs-field-guide_deployment_environment
+        secrets:
+            - cs-field-guide_django_secret_key
+            - cs-field-guide_postgres_db
+            - cs-field-guide_postgres_user
+            - cs-field-guide_postgres_password
+        networks:
+            - uccser-dev-public
+            - backend
+
+    postgres:
+        <<: *default-opts
+        image: postgres:13.3
+        # TODO: Write test script that reads secret files
+        # to get correct username
+        # healthcheck:
+        #     test: ["CMD-SHELL", "pg_isready -U postgres"]
+        #     start_period: 10s
+        #     interval: 10s
+        #     timeout: 5s
+        #     retries: 3
+        deploy:
+            replicas: 1
+            placement:
+                constraints:
+                    - node.role==worker
+                    - node.labels.role==data
+            restart_policy:
+                condition: on-failure
+        environment:
+            POSTGRES_DB_FILE: /run/secrets/cs-field-guide_postgres_db
+            POSTGRES_USER_FILE: /run/secrets/cs-field-guide_postgres_user
+            POSTGRES_PASSWORD_FILE: /run/secrets/cs-field-guide_postgres_password
+        secrets:
+            - cs-field-guide_postgres_db
+            - cs-field-guide_postgres_user
+            - cs-field-guide_postgres_password
+        networks:
+            - backend
+        volumes:
+            - postgres-data:/var/lib/postgresql/data:Z
+            - postgres-data-backups:/backups:z
+
+    elasticsearch:
+        <<: *default-opts
+        image: elasticsearch:5
+        deploy:
+            replicas: 1
+            placement:
+                constraints:
+                    - node.role==worker
+                    - node.labels.role==data
+            restart_policy:
+                condition: on-failure
+        networks:
+            - backend
+        volumes:
+            - search-index:/usr/share/elasticsearch/data:Z
+
+configs:
+    cs-field-guide_deployment_environment:
+        external: true
+
+secrets:
+    cs-field-guide_django_secret_key:
+        external: true
+    cs-field-guide_postgres_db:
+        external: true
+    cs-field-guide_postgres_user:
+        external: true
+    cs-field-guide_postgres_password:
+        external: true
+
+networks:
+    uccser-dev-public:
+        external: true
+    backend:
+        driver: overlay
+        attachable: true
+
+volumes:
+    postgres-data: {}
+    postgres-data-backups: {}
+    search-index: {}
