@@ -11,8 +11,7 @@ const MAX_EXPONENT_VALUES = {
   '4': 6000,
   '5': 5000,
   '6': 999,
-  '7': 99,
-  '8': 9
+  '7': 99
 };
 const TIMEOUT_MS = 10;
 
