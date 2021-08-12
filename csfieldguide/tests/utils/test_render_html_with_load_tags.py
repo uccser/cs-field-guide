@@ -24,7 +24,7 @@ class RenderHTMLWithLoadTagsTest(BaseTestWithDB):
     def test_render_html_with_load_tags_with_static(self):
         self.assertHTMLEqual(
             render_html_with_load_tags("<img src='{% static 'image.png' %}'>"),
-            "<img src='/staticfiles/image.png'>",
+            "<img src='/static/image.png'>",
         )
 
     def test_render_html_with_load_tags_with_interactive_tag(self):
@@ -52,7 +52,7 @@ class RenderHTMLWithLoadTagsTest(BaseTestWithDB):
             <h1>in-page mode</h1>
             <p>Interactive 1</p>
             <p>Text 2</p>
-            <img src='/staticfiles/image.png'>
+            <img src='/static/image.png'>
             <p>Text 3</p>
             <h1>in-page mode</h1>
             <p>Interactive 2</p>

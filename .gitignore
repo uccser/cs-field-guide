@@ -1,3 +1,15 @@
+# Generated and collected static files directories
+csfieldguide/build/**
+!csfieldguide/build/.keep
+csfieldguide/staticfiles/**
+!csfieldguide/staticfiles/.keep
+
+# Files for using HTTPS on local development
+infrastructure/local/traefik/certs/
+
+# VS Code
+settings.json
+
 # Byte-compiled / optimized / DLL files
 *__pycache__/
 *.py[cod]
@@ -9,7 +21,6 @@
 # Distribution / packaging
 .Python
 env/
-build/
 develop-eggs/
 dist/
 downloads/
@@ -45,7 +56,7 @@ nosetests.xml
 coverage.xml
 *,cover
 .hypothesis/
-csunplugged/tests/output/
+csfieldguide/tests/output/
 
 # Translations
 *.mo
@@ -53,7 +64,6 @@ csunplugged/tests/output/
 
 # Django stuff:
 *.log
-local_settings.py
 
 # Flask stuff:
 instance/
@@ -80,25 +90,11 @@ celerybeat-schedule
 
 # dotenv
 .env
-
-# virtualenv
-.venv/
-venv/
-docker_venv/
-ENV/
-
 # Spyder project settings
 .spyderproject
 
 # Rope project settings
 .ropeproject
-
-# Installed node modules
-node_modules/
-
-# Ignore package-lock.json file as it's created within Dockerfile so outdates easily
-# TODO: Store this within repository and ensure it remains up to date
-package-lock.json
 
 # vim files
 *.swp
@@ -107,18 +103,5 @@ package-lock.json
 # Custom git settings
 .gitconfig
 
-# Temporary folder
-temp/
-
-# Collected static files folder
-staticfiles/
-
-# Search index
-whoosh_index/
-
 # OSX system files
 .DS_Store
-
-
-# VS Code
-settings.json

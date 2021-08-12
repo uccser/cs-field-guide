@@ -45,7 +45,7 @@
     {% if chapter.translation_available %}
       <div id="side-navbar" class="sticky-top d-print-none">
         <h2 class="mt-2">{% trans "Chapter sections" %}</h2>
-        <ul class="nav nav-pills flex-column" id="scrollspy-table-of-contents">
+        <ul class="nav nav-pills flex-column">
           {% for section in chapter.chapter_sections.all %}
           <li class="nav-item">
             <a class="nav-link {% if section.slug == chapter_section.slug %} active text-white{% else %} nav-link-colour{% endif %}{% if not section.translation_available %} disabled{% endif %}"

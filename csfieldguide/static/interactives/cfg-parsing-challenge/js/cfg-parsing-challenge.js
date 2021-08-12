@@ -3,7 +3,7 @@ var urlParameters = require('../../../js/third-party/url-parameters.js');
 /**
  * Productions in the default grammar.
  * A number or a string that begins and ends with an inverted comma (') is
- * interpreted as terminal, everything else as nonterminal.
+ * interpreted as terminal, everything else as non-terminal.
  * A production with only terminals can be a list of elements rather than a list of lists
  */
 const DEFAULT_PRODUCTIONS = {
@@ -19,7 +19,7 @@ const DEFAULT_PRODUCTIONS = {
 
 /**
  * Used when generating random expressions.
- * When the max recursion depth is reached one of these will be used.
+ * If applicable, when the max recursion depth is reached one of these will be used.
  */
 const DEFAULT_FINAL_TERMINALS = [0,1,2,3,4,5,6,7,8,9];
 
@@ -43,14 +43,10 @@ $(document).ready(function() {
   fillProductionsWindow(productions_);
   $('#generate-button').on('click', function(event) {
     $('#cfg-target').val(generateTarget(event.target));
-    testMatchingEquations();
+    resetEquation();
   });
   $('#reset-button').on('click', function() {
-    $('#cfg-equation').html(`<span class="nonterminal">${initialNonterminal_}</span>`);
-    reapplyNonterminalClickEvent();
-    testMatchingEquations();
-    historyStack_ = [];
-    $('#undo-button').prop('disabled', true);
+    resetEquation();
   });
   $('#set-g-random').on('click', function () {
     setGenerator('random');
@@ -62,8 +58,12 @@ $(document).ready(function() {
     setGenerator('from-preset');
   })
   $('#undo-button').on('click', undo);
+  $('#cfg-grammar-link-button').on('click', getLink);
+  $('#cfg-default-link-button').on('click', resetLink);
   $('#undo-button').prop('disabled', true);
   $('#cfg-target').change(testMatchingEquations);
+  $("#examples-checkbox").change(toggleExamplesWindow).prop('checked', false);
+  toggleExamplesWindow();
   if (examples_.length) {
     $('#cfg-target').val(examples_[0]);
   } else if (hideGenerator_) {
@@ -73,6 +73,8 @@ $(document).ready(function() {
   } else {
     $('#cfg-target').val(randomExpression(initialNonterminal_, productions_, RECURSIONDEPTH_SIMPLE));
   }
+  $('#cfg-grammar-input').val('');
+  getLink();
   reapplyNonterminalClickEvent();
   //https://stackoverflow.com/a/3028037
   $(document).click(function(event) { 
@@ -86,6 +88,17 @@ $(document).ready(function() {
   });
 });
 
+/**
+ * Resets the equation being constructed by the user to solely the original non-terminal
+ */
+function resetEquation() {
+  $('#cfg-equation').html(`<span class="nonterminal">${initialNonterminal_}</span>`);
+  reapplyNonterminalClickEvent();
+  testMatchingEquations();
+  historyStack_ = [];
+  $('#undo-button').prop('disabled', true);
+}
+
 /******************************************************************************/
 // FUNCTIONS FOR PARSING THE URL //
 /******************************************************************************/
@@ -94,6 +107,9 @@ $(document).ready(function() {
  * Interprets the given URL parameters and prepares the interactive accordingly
  */
 function parseUrlParameters() {
+  if (urlParameters.getUrlParameter('hide-builder') == 'true') {
+    $('#grammar-builder-button').hide();
+  }
   var grammar = urlParameters.getUrlParameter('productions');
   var finalTerminals = urlParameters.getUrlParameter('terminals');
   var examples = urlParameters.getUrlParameter('examples');
@@ -141,7 +157,7 @@ function parseUrlParameters() {
  * Parses the given string to form a dictionary of grammar productions.
  * 
  * e.g. the default productions could be parsed from:
- * E : N | E '+' E | E '*' E | '-' E | '(' E ')' ; N : '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' ;
+ * E:N|E '+' E|E '*' E|'-' E|'(' E ')'; N:'0'|'1'|'2'|'3'|'4'|'5'|'6'|'7'|'8'|'9';
  */
 function decodeGrammar(productionString) {
   var duo, nonterminal, replacementString;
@@ -168,7 +184,7 @@ function decodeGrammar(productionString) {
 
 /**
  * Returns a list of production replacements in the format expected by this program.
- * If every replacement is an integer, returns a list of elements rather than
+ * If every replacement is an integer terminal, returns a list of elements rather than
  * a list of lists
  */
 function interpretReplacementStrings(replacementStrings) {
@@ -177,11 +193,10 @@ function interpretReplacementStrings(replacementStrings) {
   var replacementUnits;
   for (let i=0; i<replacementStrings.length; i++) {
     replacementUnits = replacementStrings[i].trim().split(' ');
-    let firstUnit = replacementUnits[0].replace(/^\'+|\'+$/g, '');
-    if (replacementUnits.length == 1 && !isNaN(firstUnit)
-    && parseInt(firstUnit) == parseFloat(firstUnit)) {
+    let firstUnit = replacementUnits[0];
+    if (replacementUnits.length == 1 && firstUnit.match(/^\'\d+\'$/g)) {
       // A full list of integer terminals is interpreted differently
-      replacements.push(parseInt(firstUnit));
+      replacements.push(parseInt(firstUnit.replace(/^\'+|\'+$/g, '')));
     } else {
       replacements.push(replacementUnits);
     }
@@ -258,7 +273,7 @@ function fillProductionsWindow(productions) {
 }
 
 /**
- * Returns a list of strings, each describing productions from a given nonterminal
+ * Returns a list of strings, each describing productions from a given non-terminal
  * 
  * If replacements is an incremental list of integers they are reduced appropriately
  */
@@ -276,6 +291,11 @@ function describeAndReduceProductions(nonterminal, replacements) {
   }
 
   if (isCompressable) {
+    if (replacements.length == 2) {
+      // Use syntax A|B where B = A+1, meaning 'Number A or number B'
+      return [`${nonterminal} &#8594 ${replacements[0]}|${replacements[1]}`]
+    }
+    // Use syntax A-B, meaning 'Any number from A through B'
     return [`${nonterminal} &#8594 ${replacements[0]}-${replacements[replacements.length - 1]}`]
   }
   var returnList = [];
@@ -315,7 +335,7 @@ function generateTarget($button) {
 }
 
 /**
- * Each time a new nonterminal is created it needs to be bound to the click event.
+ * Each time a new non-terminal is created it needs to be bound to the click event.
  */
 function reapplyNonterminalClickEvent() {
   $('.nonterminal').unbind('click');
@@ -346,7 +366,7 @@ function testMatchingEquations() {
 }
 
 /**
- * Sets the given html element as the nonterminal to be replaced.
+ * Sets the given html element as the non-terminal to be replaced.
  * Prepares the popup appropriately.
  */
 function setActiveNonterminal($target) {
@@ -354,7 +374,7 @@ function setActiveNonterminal($target) {
   var nonterminal = $target.html();
   $('#selection-popup').html('');
   if (Object.keys(productions_).indexOf(nonterminal) < 0) {
-    console.error(`Could not find nonterminal ${nonterminal} in available productions.`);
+    console.error(`Could not find non-terminal ${nonterminal} in available productions.`);
     $('#selection-popup').html(gettext('No productions available.'));
     return;
   }
@@ -367,7 +387,7 @@ function setActiveNonterminal($target) {
 }
 
 /**
- * Replaces the active nonterminal using the target production.
+ * Replaces the active non-terminal using the target production.
  */
 function applyProduction($target) {
   var nonterminal = $activeNonterminal_.html();
@@ -395,7 +415,7 @@ function undo() {
 
 /**
  * Returns a string of HTML code to be put in the popup, allowing the user to select
- * a replacement for the given nonterminal.
+ * a replacement for the given non-terminal.
  */
 function getPopupVal(nonterminal, replacements) {
   var code = '<div class="btn-group-vertical">';
@@ -478,9 +498,9 @@ function isTerminal(s) {
  * 
  * If the maximum depth of recursion (`maxDepth`) is reached then depending on
  * the global retryIfFail either it will try again up to 10 times or remaining
- * nonterminals will be replaced with random terminals.
+ * non-terminals will be replaced with random terminals.
  * 
- * @param {String} startChar initial nonterminal
+ * @param {String} startChar initial non-terminal
  * @param {Dict} productions all productions
  * @param {Number} maxDepth maximum depth of recursion
  */
@@ -506,7 +526,7 @@ function randomExpression(startChar, productions, maxDepth) {
   }
   if (!success) {
     $('#error-notice').html(gettext("The generator failed to finish a new equation too many times.") + "<br>" +
-    gettext("If this error appears regularly, perhaps the recursion depth is set too low."));
+    gettext("This could just be unlucky (try again!), or it could indicate a problem with your productions."));
     $('#error-notice').show();
     return "";
   }
@@ -516,14 +536,14 @@ function randomExpression(startChar, productions, maxDepth) {
 /**
  * Returns a random expression generated from the given grammar productions.
  * 
- * @param {String} replaced initial nonterminal
+ * @param {String} replaced initial non-terminal
  * @param {Dict} productions all productions
  * @param {Number} maxDepth maximum depth of recursion
- * @param {Boolean} doRetry throw an error if `maxDepth` is reached and nonterminals remain
+ * @param {Boolean} doRetry throw an error if `maxDepth` is reached and non-terminals remain
  * @param {Array} terminals terminal characters to use if `maxDepth` is reached and `doRetry` is `false`
  * 
  * It is assumed that any terminal in `terminals` can logically (through one or more steps)
- * replace any nonterminal.
+ * replace any non-terminal.
  */
 function recursiveRandomExpression(replaced, productions, maxDepth, doRetry, terminals) {
   if (maxDepth <= 0) {
@@ -539,7 +559,7 @@ function recursiveRandomExpression(replaced, productions, maxDepth, doRetry, ter
   } catch (error) {
     console.error(error);
     $('#error-notice').html(gettext("An error occurred while generating a new equation.") + "<br>" +
-    gettext("There could be a nonterminal in the grammar productions with no corresponding production."));
+    gettext("There could be a non-terminal in the grammar productions with no corresponding production."));
     $('#error-notice').show();
     return;
   }
@@ -556,4 +576,64 @@ function recursiveRandomExpression(replaced, productions, maxDepth, doRetry, ter
     }
   }
   return returnString;
+}
+
+/******************************************************************************/
+// FUNCTIONS FOR THE USER-FACING PRODUCTIONS SETTER //
+/******************************************************************************/
+
+/**
+ * Sets the link to the base url of the interactive
+ */
+function resetLink() {
+  var instruction = gettext("This link will open the default version of this interactive:");
+  var link = window.location.href.split('?', 1)[0].replace(/^\/+|\/+$/g, '');
+  $("#cfg-grammar-link").html(`${instruction}<br><a target="_blank" href=${link}>${link}</a>`);
+}
+
+/**
+ * Sets the link based on the productions submitted
+ */
+function getLink() {
+  var instruction = gettext("This link will open the interactive with your set productions:");
+  var productions = $("#cfg-grammar-input").val().trim();
+  if (productions.length <= 0) {
+    $("#cfg-grammar-link").html("");
+    return;
+  }
+  var productionsParameter = percentEncode(productions.replace(/\n/g, ' '));
+  var otherParameters = "";
+  if ($("#generator-checkbox").prop('checked')){
+    // 5 chosen arbitrarily
+    otherParameters += "&recursion-depth=5&retry-if-fail=true";
+  } else {
+    otherParameters += "&hide-generator=true";
+  }
+  if ($("#examples-checkbox").prop('checked')){
+    var examples = $("#cfg-example-input").val().trim();
+    if (examples.length > 0) {
+      otherParameters += '&examples=' + percentEncode(examples.replace(/\n/g, '|'));
+    }
+  }
+  // When the user switches between generator types a # appears at the end of the url
+  // This needs to be removed for the new link, or not added in the first place:
+  var basePath = window.location.href.split('?', 1)[0].replace(/\#+$/g, '');
+  var fullUrl = basePath + "?productions=" + productionsParameter + otherParameters;
+  $("#cfg-grammar-link").html(`${instruction}<br><a target="_blank" href=${fullUrl}>${fullUrl}</a>`);
+}
+
+function toggleExamplesWindow() {
+  if ($("#examples-checkbox").prop('checked')){
+    $("#cfg-example-input-parent").removeClass('d-none');
+  } else {
+    $("#cfg-example-input-parent").addClass('d-none');
+    $("#cfg-example-input").val('')
+  }
+}
+
+/**
+ * Returns the given string percent-encoded
+ */
+function percentEncode(string) {
+  return encodeURIComponent(string);
 }
