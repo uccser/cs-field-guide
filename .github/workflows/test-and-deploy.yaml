@@ -5,6 +5,19 @@ on:
   push:
 
 jobs:
+  test-django-system-check:
+    name: Tests - Django system check
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Create Docker network
+        run: docker network create uccser-development-proxy
+      - name: Start systems
+        run: docker-compose -f docker-compose.local.yml up -d
+      - name: Run Django system check
+        run: docker-compose -f docker-compose.local.yml run --rm django python ./manage.py check --fail-level WARNING
+
   test-content:
     name: Tests - Content
     runs-on: ubuntu-20.04
@@ -79,6 +92,7 @@ jobs:
     if: (github.ref == 'refs/heads/develop')
     runs-on: ubuntu-20.04
     needs: [
+      test-django-system-check,
       test-content,
       test-general,
       test-management,
@@ -124,6 +138,7 @@ jobs:
         ]
       fail-fast: true
     needs: [
+      test-django-system-check,
       test-content,
       test-general,
       test-management,

@@ -291,3 +291,4 @@ MODELTRANSLATION_CUSTOM_FIELDS = ("JSONField",)
 CUSTOM_VERTO_TEMPLATES = os.path.join(str(ROOT_DIR.path("utils")), "custom_converter_templates", "")
 STATICI18N_ROOT = BUILD_ROOT
 SVG_DIRS = [os.path.join(str(ROOT_DIR.path("staticfiles")), "svg")]
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
