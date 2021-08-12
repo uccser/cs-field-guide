@@ -7,7 +7,7 @@
 - Korey Mitchell
 - Mark Wolgin
 
-The original can be found [here](https://github.com/NCC74656/Bias-In-Big-Data-Interactive).
+The original can be found [here](https://github.com/wolginm/Bias-In-Big-Data-Interactive).
 
 **Rebuilt by:** Courtney Bracefield
 

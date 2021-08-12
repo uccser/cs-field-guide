@@ -1,0 +1,132 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-hidden="true" id="grammar-builder">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{% trans "Set your own productions" %}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>{% trans "Use this window to configure the interactive with your own set of grammar productions." %}</p>
+        <div class="container-fluid">
+          <div class="row d-flex justify-content-between">
+            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#instructions-collapse" aria-expanded="false" aria-controls="instructions-collapse">
+              {% trans "Toggle instructions" %}
+            </button>
+            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#example-collapse" aria-expanded="false" aria-controls="example-collapse">
+              {% trans "Toggle example" %}
+            </button>
+          </div>
+          <div class="row py-2">
+            <div class="collapse" id="instructions-collapse">
+              <div class="card card-body">
+                <li>{% trans "The syntax is a simplified YACC syntax:" %}</li>
+                <li>{% trans "Begin each line with a non-terminal and colon (:), and end it with a semicolon (;)." %}</li>
+                <li>{% trans "Between the colon and semicolon, list replacements for the non-terminal separated by vertical bars (|)." %}</li>
+                <li>{% trans "Enclose terminals with inverted commas (')." %}</li>
+                <li>{% trans "Separate non-terminals from each other, and terminals from non-terminals, with spaces." %}</li>
+                <li>{% trans "Spaces, colons, semicolons, vertical bars and inverted commas are all reserved for defining the productions and should not be used in the productions themselves." %}</li>
+                <li>{% trans "Ampersands (&) and equals (=) are reserved for interpreting the url and should not be used either." %}</li>
+              </div>
+            </div>
+            <div class="collapse" id="example-collapse">
+              <div class="card card-body">
+                <p>{% trans "The default grammar productions can be obtained from:" %}</p>
+                <div class="p-2" id="cfg-example-productions">
+                  E:N|E '+' E|E '*' E|'-' E|'(' E ')';
+                  N:'0'|'1'|'2'|'3'|'4'|'5'|'6'|'7'|'8'|'9';
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row pb-2">
+            <textarea class="form-control" id="cfg-grammar-input" placeholder="{% trans 'Enter your productions here.' %}"></textarea>
+          </div>
+          <div class="row pb-2">
+            <input type="checkbox" id="examples-checkbox">
+            <label class="form-check-label pl-1" for="examples-checkbox">{% trans "Custom examples" %}</label>
+            <small id="examples-checkbox-help" class="text-muted">{% trans "Provide your own examples that a user can try to match." %}</small>
+          </div>
+          <div class="row pb-2 d-none" id="cfg-example-input-parent">
+            <textarea class="form-control" id="cfg-example-input" placeholder="{% trans 'Type each example on a new line.' %}"></textarea>
+          </div>
+          <div class="row pb-2">
+            <input type="checkbox" id="generator-checkbox">
+            <label class="form-check-label pl-1" for="generator-checkbox">{% trans "Random examples" %}</label>
+            <small id="generator-checkbox-help" class="text-muted">{% trans "Generate new examples by following your productions at random." %}</small>
+          </div>
+          <div class="row">
+            <button type="button" class="btn btn-primary" id="cfg-grammar-link-button">{% trans "Get link" %}</button>
+            <button type="button" class="btn btn-secondary mx-2" id="cfg-default-link-button">{% trans "Get link to default" %}</button>
+            <p class="pt-2" id="cfg-grammar-link"></p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans "Close" %}</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <h2 class="text-center mt-3">{% trans "Context-free Grammar Parsing Challenge" %}</h2>
+  <div class="row">
+    <div class="col-12 col-md-9 col-lg-6 offset-lg-3">
+      <div class="d-flex justify-content-center mt-3 text-center">
+        {% trans "Use the available productions to build an equation.<br>Click the non-terminal below to replace it." %}
+      </div>
+      <div class="row justify-content-center mt-3">
+        <div class="col-12" id="txt-try">
+          {% trans "Try to form:" %}
+        </div>
+        <input type="text" class="col-6 text-center m-2 form-control" id="cfg-target" >
+        <div class="btn-group" id="generator-buttons">
+          <button type="button" class="btn btn-secondary btn-sm my-2" g-type="random" id="generate-button">{% trans "Random" %}</button>
+          <button type="button" class="btn btn-secondary btn-sm dropdown-toggle dropdown-toggle-split my-2" data-toggle="dropdown" id="generate-dropdown">
+            <span class="sr-only">{% trans "Toggle Dropdown" %}</span>
+          </button>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" g-type="random" href="#" id="set-g-random">{% trans "Random" %}</a>
+            <a class="dropdown-item" g-type="random-simple" href="#" id="set-g-random-simple">{% trans "Simple" %}</a>
+            <a class="dropdown-item" g-type="from-preset" href="#" id="set-g-from-preset">{% trans "Next" %}</a>
+          </div>
+        </div>
+      </div>
+      <div class="row" id="error-notice"></div>
+      <div class="d-flex justify-content-center my-2" id="cfg-equation"></div>
+      <div class="d-flex justify-content-center mb-2">
+        <button type="button" class="btn btn-secondary btn-sm m-1 float-right" id="undo-button">{% trans "Undo" %}</button>
+        <button type="button" class="btn btn-danger btn-sm m-1 float-right" id="reset-button">{% trans "Reset" %}</button>
+      </div>
+    </div>
+    <div class="col-12 col-md-3">
+      <div class="py-2">
+        <table class="my-2 mx-auto" id="productions-table-container">
+          <tbody id="productions-table"></tbody>
+        </table>
+      </div>
+      <div class="row" id="grammar-builder-button">
+        <button type="button" class="btn btn-primary mx-auto" data-toggle="modal" data-target="#grammar-builder">
+          {% trans "New productions" %}
+        </button>
+      </div>
+    </div>
+  </div>
+  <div id="selection-popup"></div>
+</div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/cfg-parsing-challenge/css/cfg-parsing-challenge.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'interactives/cfg-parsing-challenge/js/cfg-parsing-challenge.js' %}"></script>
+{% endblock js %}
