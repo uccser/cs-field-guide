@@ -21,7 +21,7 @@ docker service update --force cs-field-guide_django
 # Run updata_data command
 if docker service ps cs-field-guide_update-data | grep cs-field-guide_update-data
 then
-    docker service update --force cs-unplugged_update-data
+    docker service update --force cs-field-guide_update-data
 else
     docker service create \
     --name cs-field-guide_update-data \
@@ -44,5 +44,5 @@ else
     --secret cs-field-guide_postgres_user \
     --secret cs-field-guide_postgres_password \
     --restart-condition none \
-    ghcr.io/uccser/cs-field-guide:develop python ./manage.py updatedata
+    ghcr.io/uccser/cs-field-guide:${CS_FIELD_GUIDE_IMAGE_TAG} python ./manage.py updatedata
 fi
