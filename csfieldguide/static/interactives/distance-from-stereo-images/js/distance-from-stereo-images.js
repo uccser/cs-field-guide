@@ -30,14 +30,14 @@ const DOT_SIZE = 10;
 
 
 /**
- * Initialization. Prepares the image select, confirm ('Go!'), and distance between images dropdown buttons. Assigns the
- * values in the left and right objects and adds the click callbacks to the canvases. Updates the canvases. Adds a
- * callback to handle screen size changes as this can change the size of the images.
+ * Initialization. Prepares the image select, confirm ('Calculate distance'), and distance between images dropdown
+ * buttons. Assigns the values in the left and right objects and adds the click callbacks to the canvases. Updates the
+ * canvases. Adds a callback to handle screen size changes as this can change the size of the images.
  */
 $(document).ready(function () {
   $('#stereo-left-input').change(function() { loadImageDialog(this, left) });
   $('#stereo-right-input').change(function() { loadImageDialog(this, right) });
-  $('#go-button').click(displayResult);
+  $('#calculate-distance-button').click(displayResult);
   $('#distance-unit-list a').on('click', unitChangeHandler);
 
   left.image = document.getElementById("img-left");

@@ -16,8 +16,8 @@ let distanceInput = {
 
 
 /**
- * Initialization. Assigns the values in the rulerInput and distanceInput objects. Prepares the unit dropdown and 'Go!'
- * buttons.
+ * Initialization. Assigns the values in the rulerInput and distanceInput objects. Prepares the unit dropdown and
+ * 'Calculate angle of view' buttons.
  */
 $(document).ready(function () {
   rulerInput.button = $('#ruler-unit');
@@ -27,7 +27,7 @@ $(document).ready(function () {
 
   $('#ruler-unit-list a').on('click', function () {unitChangeHandler($(this), rulerInput)});
   $('#distance-unit-list a').on('click', function () {unitChangeHandler($(this), distanceInput)});
-  $('#go-button').click(displayResult);
+  $('#calculate-angle-button').click(displayResult);
 });
 
 
