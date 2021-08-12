@@ -1,12 +1,23 @@
 """URL routing for the interactives application."""
 
-from django.urls import path
-
-from . import views
+from django.urls import path, reverse_lazy
 from django.views.generic.base import RedirectView
+from . import views
 
 app_name = "interactives"
 urlpatterns = [
+    # Redirect due to interactive name change
+    path(
+        "cfg-equation-builder/",
+        RedirectView.as_view(
+            url=reverse_lazy(
+                'interactives:interactive',
+                kwargs={'interactive_slug': 'cfg-parsing-challenge'},
+            ),
+            permanent=True,
+            query_string=True
+        ),
+    ),
     path(
         "thumbnail-json/",
         views.thumbnail_json,
