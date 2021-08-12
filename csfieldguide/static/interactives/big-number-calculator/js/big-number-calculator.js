@@ -3,7 +3,7 @@
 const Big = require('big.js');
 // Dictionary key is the number of digits the base (x) has.
 // Dictionary value is the maximum value that the exponent (y) can have for the given number of digits.
-// E.g for bases that have a value in the range 10 - 99 (2 digits), the exponent value must not exceed 20000.
+// E.g for bases that have a value in the range 10 - 99 (2 digits), the exponent value must not exceed 15,000.
 const MAX_EXPONENT_VALUES = {
   '1': 50000,
   '2': 15000,
