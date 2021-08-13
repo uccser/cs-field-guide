@@ -63,6 +63,7 @@ function pathsConfig(appName) {
             `${vendorsRoot}details-element-polyfill/dist/details-element-polyfill.js`,
             `${vendorsRoot}lity/dist/lity.js`,
             `${vendorsRoot}iframe-resizer/js/iframeResizer.js`,
+            `${vendorsRoot}multiple-select/dist/multiple-select-es.js`,
         ],
         // Output files
         fonts_output: `${staticOutputRoot}fonts`,
@@ -215,15 +216,15 @@ function watchPaths() {
 // Generate all assets
 const generateAssets = series(
     parallel(
-        css,
-        scss,
+    //     css,
+    //     scss,
         vendorJs,
-        img,
-        svg,
-        interactives,
-        files
+    //     img,
+    //     svg,
+    //     interactives,
+    //     files
     ),
-    js
+    // js
 )
 
 const dev = parallel(

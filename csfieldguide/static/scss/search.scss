@@ -1,7 +1,6 @@
 @import "node_modules/bootstrap/scss/functions";
 @import "node_modules/bootstrap/scss/variables";
-
-// TODO: Import multiple-select CSS
+@import "node_modules/multiple-select/dist/multiple-select";
 
 #results {
   .row {
