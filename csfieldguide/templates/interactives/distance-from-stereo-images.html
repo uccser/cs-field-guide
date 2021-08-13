@@ -14,13 +14,13 @@
       {% trans "Take two side-by-side pictures of an object." %}
       {% trans "Make sure the direction of the pictures are parallel, and that the object is between the two camera positions." %}
       {% trans "Note down the precise distance between the camera positions and the distance between the camera plane and the object plane." %}
-      {% trans "Upload the two pictures and click on the common point of the object in both pictures." %}
+      {% trans "Upload the two pictures and click on the common feature of the object in both pictures." %}
       {% trans "Enter your camera's angle-of-view and the distance between the two camera positions, and click 'Calculate distance'." %}
       {% trans "Note that resizing the window will reset the points as this can affect the size of the pictures." %}
       {% trans "The values are inputted into the equation below." %}
     </p>
     <p>
-      {% trans "The lighter in the supplied images was 1 metre away. How close is the calculation?" %}
+      {% trans "The orange in the supplied images was 1 metre away. How close is the calculation?" %}
     </p>
 
     $$ {D =\frac{Bx_0}{2tan(\frac{\theta_0}{2})(x_1-x_2)}} $$
@@ -29,12 +29,12 @@
     <div class="col-sm-6">
       <h4 class="text-center mb-2">{% trans "Left Camera" %}</h4>
       <canvas id="canvas-left"></canvas>
-      <img id="img-left" src="{% static 'interactives/distance-from-stereo-images/images/lighter-left.jpg' %}">
+      <img id="img-left" src="{% static 'interactives/distance-from-stereo-images/images/orange_left.jpg' %}">
     </div>
     <div class="col-sm-6">
       <h4 class="text-center mb-2">{% trans "Right Camera" %}</h4>
       <canvas id="canvas-right"></canvas>
-      <img id="img-right" src="{% static 'interactives/distance-from-stereo-images/images/lighter-right.jpg' %}">
+      <img id="img-right" src="{% static 'interactives/distance-from-stereo-images/images/orange_right.jpg' %}">
     </div>
   </div>
 
@@ -76,7 +76,7 @@
     <div class="input-group-prepend">
       <span class="input-group-text" id="angle-label">Angle of view (&theta;<sub>0</sub>)</span>
     </div>
-    <input id="angle-of-view" type="number" step="0.01" class="form-control" value="63.18" autocomplete=off aria-label="half-angle" aria-describedby="angle-label">
+    <input id="angle-of-view" type="number" step="0.01" class="form-control" value="65.6440" autocomplete=off aria-label="half-angle" aria-describedby="angle-label">
     <div class="input-group-append">
       <span class="input-group-text" id="angle-unit">Degrees</span>
     </div>
