@@ -18,6 +18,10 @@ algorithm-timer:
   languages:
     en: interactives/algorithm-timer.html
   is_interactive: true
+angle-of-view-calculator:
+  languages:
+    en: interactives/angle-of-view-calculator.html
+  is_interactive: true
 available-menu-items:
   languages:
     en: interactives/available-menu-items.html
@@ -150,6 +154,10 @@ delayed-checkbox:
 dictionary-compression:
   languages:
     en: interactives/dictionary-compression.html
+  is_interactive: true
+distance-from-stereo-images:
+  languages:
+    en: interactives/distance-from-stereo-images.html
   is_interactive: true
 dot-combinations:
   languages:
