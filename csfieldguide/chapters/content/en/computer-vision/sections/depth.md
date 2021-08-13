@@ -1,22 +1,24 @@
 # Depth
-Depth is a critical part of computer vision, which gives the computer information about the distance of objects to the camera. 
+
+Depth is a critical part of computer vision, which gives the computer information about the distance of objects to the camera.
 Depth is used in applications like video games, such as [Microsoft's Kinect](https://en.wikipedia.org/wiki/Kinect), and aerial surveys.
-Another significant application is self-driving cars, which need to know how far away the vehicle ahead of it is to avoid collisions. 
+Another significant application is self-driving cars, which need to know how far away the vehicle ahead of it is to avoid collisions.
 One way of obtaining depth information is through stereo vision, which uses two cameras, usually side by side.
 Both cameras take a picture of the same scene.
 Objects that appear in both images will be at different positions, where the disparity is the difference between the positions.
 Objects close to the cameras will have a larger horizontal disparity in the images, whereas faraway objects will have a smaller disparity.
-Humans and many other animals also use this technique to obtain depth information. 
+Humans and many other animals also use this technique to obtain depth information.
 Each eye sees a slightly different image which the brain uses to tell whether an object is close or far away.
 
 ## Distance from stereo images
-One possible method of programmatically obtaining the distance to an object from stereo images is detailed below. 
-Other methods may provide better or worse results, but the following one is (relatively) simple. 
+
+One possible method of programmatically obtaining the distance to an object from stereo images is detailed below.
+Other methods may provide better or worse results, but the following one is (relatively) simple.
 For those looking to learn more, the full paper this was inspired by can be found [here](https://www.researchgate.net/publication/320336266_Distance_Measurement_for_Self-Driving_Cars_Using_Stereo_Camera).
 This section only considers the situation where the object is horizontally between the two camera positions.
 
-
 ### Calculating the angle of view
+
 An aspect of the camera we need to know is its angle of view. This value is the horizontal angle that the camera can see.
 If you cannot find the technical specifications of your camera, there is an easy way to obtain this.
 Prop a ruler up horizontally.
@@ -42,8 +44,8 @@ Below is a calculator to calculate the angle of view.
 
 {interactive slug="angle-of-view-calculator" type="in-page"}
 
-
 ### Calculating the distance
+
 Typically, a stereo vision system would use two identical cameras, but you can simulate this with one camera by taking two photos of a still object.
 Take two stereo pictures of an object where it is between the two camera positions.
 Use the same camera to take both images.
@@ -60,7 +62,6 @@ Their sum is \(B\), the distance between the cameras.
 \(\theta_1\) and \(\theta_2\) are the angles between the camera's axis of view and the line going from the camera to the object.
 Finally, \(D\) is the distance to the object.
 
-
 {panel type="curiosity"}
 
 # Derivation of the formula
@@ -69,7 +70,7 @@ The left camera, LC, the right camera, RC, and the object, O, form a triangle. T
 
 {image file-path="img/chapters/stereo-vision-diagram-2.PNG" alt="A diagram showing the main setup."}
 
-From basic trigonometry, it is known that \(θ_1\) and \(θ_2\) are the same as those in Figure 1. 
+From basic trigonometry, it is known that \(θ_1\) and \(θ_2\) are the same as those in Figure 1.
 Using trigonometry, the following can be derived:
 
 \[
@@ -86,7 +87,6 @@ B = D(tan \theta_1 + tan \theta_2)
 \[
 D = \frac{B}{tan \theta_1 + tan \theta_2} \tag{1}
 \]
-
 
 The following diagram shows the two camera views taken out from the first diagram for clarity.
 Think of each image as a grid, where the origin is the centre of the image.
@@ -185,7 +185,7 @@ Can you see in the equation why a small disparity would cause the calculated dis
 {panel end}
 
 {panel type="spoiler"}
-    
+
 # The solution?
 
 We can increase the gap between camera positions.
