@@ -216,15 +216,15 @@ function watchPaths() {
 // Generate all assets
 const generateAssets = series(
     parallel(
-    //     css,
-    //     scss,
+        css,
+        scss,
         vendorJs,
-    //     img,
-    //     svg,
-    //     interactives,
-    //     files
+        img,
+        svg,
+        interactives,
+        files
     ),
-    // js
+    js
 )
 
 const dev = parallel(
