@@ -54,7 +54,7 @@ For both pictures, the camera should be pointing in the same direction such that
 A possible way of ensuring they are as parallel as possible is to align the camera with a straight line on the floor.
 Note down the distance between the camera positions and the actual distance to the object with rulers or measuring tape.
 
-{image file-path="img/chapters/stereo-vision-diagram-1.PNG" alt="A diagram showing the main setup."}
+{image file-path="img/chapters/stereo-vision-diagram-1.png" alt="A diagram showing the main setup."}
 
 \(\theta_0\) is the camera angle of view, which is the same for both cameras as you used the same camera for both pictures.
 \(B_1\) and \(B_2\) are the distances between the centre of the object and the left and right camera, respectively.
@@ -68,7 +68,7 @@ Finally, \(D\) is the distance to the object.
 
 The left camera, LC, the right camera, RC, and the object, O, form a triangle. This triangle is comprised of two right-angle triangles as shown below.
 
-{image file-path="img/chapters/stereo-vision-diagram-2.PNG" alt="A diagram showing the main setup."}
+{image file-path="img/chapters/stereo-vision-diagram-2.png" alt="A diagram showing the main setup."}
 
 From basic trigonometry, it is known that \(θ_1\) and \(θ_2\) are the same as those in Figure 1.
 Using trigonometry, the following can be derived:
@@ -91,7 +91,7 @@ D = \frac{B}{tan \theta_1 + tan \theta_2} \tag{1}
 The following diagram shows the two camera views taken out from the first diagram for clarity.
 Think of each image as a grid, where the origin is the centre of the image.
 
-{image file-path="img/chapters/stereo-vision-diagram-3.PNG" alt="A diagram showing the main setup."}
+{image file-path="img/chapters/stereo-vision-diagram-3.png" alt="A diagram showing the main setup."}
 
 \(x_0\) is the width of the image in pixels.
 The terms \(x_1\) and \(x_2\) are the x-coordinates of the object in the left and right images, respectively.
