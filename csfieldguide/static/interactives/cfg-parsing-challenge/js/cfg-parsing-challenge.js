@@ -77,7 +77,7 @@ $(document).ready(function() {
   getLink();
   reapplyNonterminalClickEvent();
   //https://stackoverflow.com/a/3028037
-  $(document).click(function(event) { 
+  $(document).click(function(event) {
     var $target = $(event.target);
     if(!$target.closest('.nonterminal').length &&
     !$target.closest('#selection-popup').length &&
@@ -155,7 +155,7 @@ function parseUrlParameters() {
 
 /**
  * Parses the given string to form a dictionary of grammar productions.
- * 
+ *
  * e.g. the default productions could be parsed from:
  * E:N|E '+' E|E '*' E|'-' E|'(' E ')'; N:'0'|'1'|'2'|'3'|'4'|'5'|'6'|'7'|'8'|'9';
  */
@@ -216,7 +216,7 @@ function interpretReplacementStrings(replacementStrings) {
  * Parses the given string to form a list of terminal strings.
  * With outer whitespace and inverted commas removed, everything between '|'
  * symbols is an individual terminal.
- * 
+ *
  * e.g. a|b|c|d , 'a'|'b'|'c'|'d' , 'a' | 'b' | 'c' | 'd' all decode to the same thing
  */
 function decodeTerminals(terminalString) {
@@ -236,45 +236,23 @@ function decodeTerminals(terminalString) {
  * If the productions are sufficiently short, they are displayed in 2 columns
  */
 function fillProductionsWindow(productions) {
-  var keys = Object.keys(productions)
-  var describedProductions = [];
-  for (let i=0; i<keys.length; i++) {
-    describedProductions = describedProductions.concat(describeAndReduceProductions(keys[i], productions[keys[i]]));
-  }
+    var keys = Object.keys(productions)
+    var describedProductions = [];
+    for (let i=0; i<keys.length; i++) {
+        describedProductions = describedProductions.concat(describeAndReduceProductions(keys[i], productions[keys[i]]));
+    }
 
-  var use2Cols = describedProductions.length > 1;
-  for (let x=0; x<describedProductions.length; x++) {
-    // 14 is the length of &#8594 plus 8 characters
-    if (describedProductions[x].length > 14) {
-      use2Cols = false;
-      break;
+    var list = document.getElementById('production-list');
+    for (let j = 0; j < describedProductions.length; j++) {
+        var div = document.createElement('div');
+        div.innerHTML = describedProductions[j];
+        list.appendChild(div);
     }
-  }
-
-  var $table = $('#productions-table')
-  var table = "";
-  if (use2Cols) {
-    table += (`<tr><th colspan="2"><h3>${gettext("Productions:")}</h3></th></tr>`)
-    var half = Math.ceil(describedProductions.length / 2);
-    for (let i=0; i<half; i++) {
-      if (half + i < describedProductions.length) {
-        table += (`<tr><td>${describedProductions[i]}</td><td>${describedProductions[half + i]}</td></tr>`)
-      } else {
-        table += (`<tr><td>${describedProductions[i]}</td><td></td></tr>`)
-      }
-    }
-  } else {
-    table += (`<tr><th><h3>${gettext("Productions:")}</h3></th></tr>`)
-    for (let j=0; j<describedProductions.length; j++) {
-      table += (`<tr><td>${describedProductions[j]}</td></tr>`)
-    }
-  }
-  $table.html(table);
 }
 
 /**
  * Returns a list of strings, each describing productions from a given non-terminal
- * 
+ *
  * If replacements is an incremental list of integers they are reduced appropriately
  */
 function describeAndReduceProductions(nonterminal, replacements) {
@@ -350,7 +328,7 @@ function reapplyNonterminalClickEvent() {
 
 /**
  * Tests to see if the user-created equation matches the target one.
- * 
+ *
  * If they match, applies an effect, else removes it.
  */
 function testMatchingEquations() {
@@ -430,7 +408,7 @@ function getPopupVal(nonterminal, replacements) {
 
 /**
  * Returns a string describing the production formatted nicely
- * 
+ *
  * e.g. E -> E+E
  */
 function describeProduction(nonterminal, replacement) {
@@ -447,7 +425,7 @@ function describeProduction(nonterminal, replacement) {
 /**
  * Returns a string of HTML code describing the production result formatted to
  * be inserted into the user-built equation
- * 
+ *
  * e.g. <span class="nonterminal">E</span>+<span class="nonterminal">E</span>
  */
 function describeProductionReplacement(replacement) {
@@ -480,7 +458,7 @@ function getRandomInt(max) {
 /**
  * Returns true if the given string fits the definition of a terminal,
  * false otherwise.
- * 
+ *
  * A terminal is a number or a string that begins and ends with an
  * inverted comma ('), with at least 1 character in between
  */
@@ -495,11 +473,11 @@ function isTerminal(s) {
 
 /**
  * Returns a random expression generated from the given grammar productions.
- * 
+ *
  * If the maximum depth of recursion (`maxDepth`) is reached then depending on
  * the global retryIfFail either it will try again up to 10 times or remaining
  * non-terminals will be replaced with random terminals.
- * 
+ *
  * @param {String} startChar initial non-terminal
  * @param {Dict} productions all productions
  * @param {Number} maxDepth maximum depth of recursion
@@ -535,13 +513,13 @@ function randomExpression(startChar, productions, maxDepth) {
 
 /**
  * Returns a random expression generated from the given grammar productions.
- * 
+ *
  * @param {String} replaced initial non-terminal
  * @param {Dict} productions all productions
  * @param {Number} maxDepth maximum depth of recursion
  * @param {Boolean} doRetry throw an error if `maxDepth` is reached and non-terminals remain
  * @param {Array} terminals terminal characters to use if `maxDepth` is reached and `doRetry` is `false`
- * 
+ *
  * It is assumed that any terminal in `terminals` can logically (through one or more steps)
  * replace any non-terminal.
  */
