@@ -36,16 +36,10 @@ In certain grammars, the parse tree could continue indefinitely, so the generato
 The following parameters allow more control over the generator, notably the number of branches down that the generator will attempt (the `recursion-depth`), as well as what it will do if it reaches this depth and non-terminals remain in the equation.
 
 The defaults work well for the default productions because there is a direct path from every non-terminal to every terminal.
-**In general it is recommended, and in many situations it is necessary, that `recursion-depth` is set higher than the default and `retry-if-fail` is set to `true`, for the generator to guarantee a valid result.**
 
-- `recursion-depth=int (default: 3)`: Set the maximum recursion depth for the built-in equation generator (`Random`).
-If this or `retry-if-fail` is set then the option to generate with depth 1 (`Simple`) is removed.
-- `retry-if-fail=[true|false] (default: false)`:
-  - If `true`, the built-in equation generator will restart if it reaches the maximum recursion depth with non-terminals remaining in the equation.
-After 10 tries the generator will quit with an error message.
-  - If `false`, once the generator reaches the maximum depth, it will replace all remaining non-terminals with random terminals from `terminals`, **even if such replacements aren't valid**.
-- `terminals=str|str|str|... (default: 0-9)`: Set the terminals that can be selected from by the built-in equation generator if the maximum recursion depth is reached.
-If `retry-if-fail` is `true` then this parameter will have no effect.
+- `recursion-depth=int (default: 4)`: Set the maximum recursion depth for the built-in equation generator (`Random`).
+If this  is set then the option to generate with depth 1 (`Simple`) is removed.
+After 100 tries the generator will quit with an error message.
 
 ### URL Parameter Limitations
 

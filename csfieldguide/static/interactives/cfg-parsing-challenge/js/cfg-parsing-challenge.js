@@ -22,6 +22,7 @@ const RECURSIONDEPTH_DEFAULT = 4;
 
 var $activeNonterminal_ = null;
 var historyStack_ = [];
+var historyListElem_;
 var productions_ = DEFAULT_PRODUCTIONS;
 var initialNonterminal_ = 'E'
 var examples_ = [];
@@ -52,6 +53,7 @@ $(document).ready(function() {
     $('#undo-button').on('click', undo);
     $('#cfg-grammar-link-button').on('click', getLink);
     $('#cfg-default-link-button').on('click', resetLink);
+    historyListElem_ = document.getElementById('history-list');
     $('#undo-button').prop('disabled', true);
     $('#cfg-target').change(testMatchingEquations);
     $("#examples-checkbox").change(toggleExamplesWindow).prop('checked', false);
@@ -86,6 +88,7 @@ function resetEquation() {
     reapplyNonterminalClickEvent();
     testMatchingEquations();
     historyStack_ = [];
+    historyListElem_.innerHTML = '';
     $('#undo-button').prop('disabled', true);
 }
 
@@ -285,9 +288,9 @@ function generateTarget($button) {
 * Each time a new non-terminal is created it needs to be bound to the click event.
 */
 function reapplyNonterminalClickEvent() {
-    $('.nonterminal').unbind('click');
+    $('#cfg-equation .nonterminal').unbind('click');
     //https://stackoverflow.com/a/44753671
-    $('.nonterminal').on('click', function(event) {
+    $('#cfg-equation .nonterminal').on('click', function(event) {
         setActiveNonterminal($(event.target));
         $('#selection-popup').css({left: event.pageX});
         $('#selection-popup').css({top: event.pageY});
@@ -340,11 +343,16 @@ function applyProduction($target) {
     var nonterminal = $activeNonterminal_.html();
     var replacementIndex = parseInt($target.attr('cfg-replacement'));
     var replacement = productions_[nonterminal][replacementIndex];
-    historyStack_.push($('#cfg-equation').html());
     $('#undo-button').prop('disabled', false);
     $activeNonterminal_.replaceWith(describeProductionReplacement(replacement));
     reapplyNonterminalClickEvent();
     $activeNonterminal_ = null;
+    // Track history
+    let cfg_equation = $('#cfg-equation').html();
+    historyStack_.push(cfg_equation);
+    var div = document.createElement('div');
+    div.innerHTML = cfg_equation;
+    historyListElem_.appendChild(div);
 }
 
 /**
@@ -356,6 +364,7 @@ function undo() {
     if (historyStack_.length <= 0) {
         $('#undo-button').prop('disabled', true);
     }
+    historyListElem_.removeChild(historyListElem_.lastChild);
     reapplyNonterminalClickEvent();
     testMatchingEquations();
 }

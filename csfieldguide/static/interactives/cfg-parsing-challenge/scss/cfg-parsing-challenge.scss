@@ -1,3 +1,5 @@
+$non-terminal: #6c757d;
+
 #txt-try {
   font-size: 1.8rem;
   text-align: center;
@@ -9,13 +11,13 @@
 }
 
 #cfg-equation {
-  font-size: 4rem;
-  .nonterminal {
-    font-weight: bold;
-    color:#6c757d; // btn-secondary style colours
-  }
+    font-size: 4rem;
+    .nonterminal {
+        font-weight: bold;
+        color: $non-terminal;
+    }
   .nonterminal:hover {
-    color: #444444;
+    color: darken($non-terminal, 10%);
     cursor: pointer;
   }
   &.success {
@@ -24,13 +26,27 @@
   }
 }
 
-#production-list-container {
+.list-container {
   border-collapse: separate !important;
   border: 1px solid #a0a0a0;
   border-radius: 1rem;
   border-spacing: 0;
   background-color: #ececec;
   padding: .5rem;
+  line-height: 1.8rem;
+
+  h2 {
+    border-bottom: 1px solid grey;
+  }
+}
+
+#history-list {
+    min-height: 10rem;
+    .nonterminal {
+        font-weight: bold;
+        color: $non-terminal;
+    }
+
 }
 
 #selection-popup {
