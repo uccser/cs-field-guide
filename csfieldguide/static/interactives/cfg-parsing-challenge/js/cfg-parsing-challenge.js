@@ -95,7 +95,7 @@ function resetEquation() {
     testMatchingEquations();
     historyStack_ = [];
     historyListElem_.innerHTML = '';
-    addHistoryElement(initial_html);
+    addHistoryElement(initial_html, null);
     $('#undo-button').prop('disabled', true);
 }
 
@@ -355,7 +355,7 @@ function applyProduction($target) {
     $activeNonterminal_ = null;
     // Track history
     let cfg_equation = $('#cfg-equation').html();
-    addHistoryElement(cfg_equation);
+    addHistoryElement(cfg_equation, describeProduction(nonterminal, replacement));
 }
 
 /**
@@ -376,13 +376,29 @@ function undo() {
 
 /**
  *
- * @param {cfg_equation}: Equation to add to history display
+ * @param {cfg_equation}: Equation to add to history display.
+ * @param {production}: Production that resulted in the equation.
  */
-function addHistoryElement(cfg_equation) {
+function addHistoryElement(cfg_equation, production=null) {
     historyStack_.push(cfg_equation);
-    var div = document.createElement('div');
-    div.innerHTML = cfg_equation;
-    historyListElem_.appendChild(div);
+    var outer_div = document.createElement('div');
+    outer_div.classList.add('history-item');
+
+    // Create div for production
+    if (production) {
+        var production_div = document.createElement('div');
+        production_div.classList.add('history-production');
+        production_div.innerHTML = production;
+        outer_div.appendChild(production_div);
+    }
+
+    // Create div for equation
+    var equation_div = document.createElement('div');
+    equation_div.classList.add('history-equation');
+    equation_div.innerHTML = cfg_equation;
+    outer_div.appendChild(equation_div);
+
+    historyListElem_.appendChild(outer_div);
 }
 
 /**

@@ -48,6 +48,14 @@ $non-terminal: #6c757d;
 
 #history-list {
     min-height: 10rem;
+    font-size: 1.2rem;
+    .history-item:not(:last-child) {
+        border-bottom: 1px solid grey;
+    }
+    .history-production {
+        font-size: .8rem;
+        opacity: .9;
+    }
 }
 
 #selection-popup {
