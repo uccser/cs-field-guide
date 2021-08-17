@@ -46,7 +46,7 @@ jobs:
       with:
         upload_sources: false
         download_translations: true
-        download_language: 'es'
+        download_language: 'es-ES'
         skip_untranslated_files: true
         export_only_approved: true
         push_translations: true
