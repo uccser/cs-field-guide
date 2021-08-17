@@ -440,134 +440,134 @@ function isTerminal(s) {
         ));
     }
 
-    /**
-    * Returns a random expression generated from the given grammar productions.
-    *
-    * If the maximum depth of recursion (`maxDepth`) is reached,
-    * it will try again up to 100 times.
-    *
-    * @param {String} startChar initial non-terminal
-    * @param {Dict} productions all productions
-    * @param {Number} maxDepth maximum depth of recursion
-    */
-    function randomExpression(startChar, productions, maxDepth) {
-        const attempts = 100;
-        var attempt = 0;
-        var success = false;
-        var result;
-        while (attempt < attempts && !success) {
-            try {
-                result = recursiveRandomExpression(startChar, productions, maxDepth);
-                success = true;
-            } catch (error) {
-                // If the error is not the error we're trying to catch then re-throw it
-                if (!error.startsWith("Max depth")) {
-                    throw error;
-                }
-            }
-            attempt++;
-        }
-        if (!success) {
-            $('#error-notice').html(gettext("The generator failed to finish a new equation too many times.") + "<br>" +
-            gettext("This could just be unlucky (try again!), or it could indicate a problem with your productions."));
-            $('#error-notice').show();
-            return "";
-        }
-        return result;
-    }
-
-    /**
-    * Returns a random expression generated from the given grammar productions.
-    *
-    * @param {String} replaced initial non-terminal
-    * @param {Dict} productions all productions
-    * @param {Number} maxDepth maximum depth of recursion
-    */
-    function recursiveRandomExpression(replaced, productions, maxDepth) {
-        if (maxDepth <= 0) {
-            throw "Max depth reached replacing " + replaced;
-        }
-
+/**
+* Returns a random expression generated from the given grammar productions.
+*
+* If the maximum depth of recursion (`maxDepth`) is reached,
+* it will try again up to 100 times.
+*
+* @param {String} startChar initial non-terminal
+* @param {Dict} productions all productions
+* @param {Number} maxDepth maximum depth of recursion
+*/
+function randomExpression(startChar, productions, maxDepth) {
+    const attempts = 100;
+    var attempt = 0;
+    var success = false;
+    var result;
+    while (attempt < attempts && !success) {
         try {
-            var replacement = productions[replaced][getRandomInt(productions[replaced].length)]
+            result = recursiveRandomExpression(startChar, productions, maxDepth);
+            success = true;
         } catch (error) {
-            console.error(error);
-            $('#error-notice').html(gettext("An error occurred while generating a new equation.") + "<br>" +
-            gettext("There could be a non-terminal in the grammar productions with no corresponding production."));
-            $('#error-notice').show();
-            return;
-        }
-        $('#error-notice').hide();
-        if (typeof(replacement) != 'object') {
-            return replacement.toString().replace(/^\'+|\'+$/g, '');
-        }
-        var returnString = '';
-        for (let i=0; i<replacement.length; i++) {
-            if (isTerminal(replacement[i])) {
-                returnString += replacement[i].toString().replace(/^\'+|\'+$/g, '');
-            } else {
-                returnString += recursiveRandomExpression(replacement[i], productions, maxDepth - 1);
+            // If the error is not the error we're trying to catch then re-throw it
+            if (!error.startsWith("Max depth")) {
+                throw error;
             }
         }
-        return returnString;
+        attempt++;
+    }
+    if (!success) {
+        $('#error-notice').html(gettext("The generator failed to finish a new equation too many times.") + "<br>" +
+        gettext("This could just be unlucky (try again!), or it could indicate a problem with your productions."));
+        $('#error-notice').show();
+        return "";
+    }
+    return result;
+}
+
+/**
+* Returns a random expression generated from the given grammar productions.
+*
+* @param {String} replaced initial non-terminal
+* @param {Dict} productions all productions
+* @param {Number} maxDepth maximum depth of recursion
+*/
+function recursiveRandomExpression(replaced, productions, maxDepth) {
+    if (maxDepth <= 0) {
+        throw "Max depth reached replacing " + replaced;
     }
 
-    /******************************************************************************/
-    // FUNCTIONS FOR THE USER-FACING PRODUCTIONS SETTER //
-    /******************************************************************************/
-
-    /**
-    * Sets the link to the base url of the interactive
-    */
-    function resetLink() {
-        var instruction = gettext("This link will open the default version of this interactive:");
-        var link = window.location.href.split('?', 1)[0].replace(/^\/+|\/+$/g, '');
-        $("#cfg-grammar-link").html(`${instruction}<br><a target="_blank" href=${link}>${link}</a>`);
+    try {
+        var replacement = productions[replaced][getRandomInt(productions[replaced].length)]
+    } catch (error) {
+        console.error(error);
+        $('#error-notice').html(gettext("An error occurred while generating a new equation.") + "<br>" +
+        gettext("There could be a non-terminal in the grammar productions with no corresponding production."));
+        $('#error-notice').show();
+        return;
     }
-
-    /**
-    * Sets the link based on the productions submitted
-    */
-    function getLink() {
-        var instruction = gettext("This link will open the interactive with your set productions:");
-        var productions = $("#cfg-grammar-input").val().trim();
-        if (productions.length <= 0) {
-            $("#cfg-grammar-link").html("");
-            return;
-        }
-        var productionsParameter = percentEncode(productions.replace(/\n/g, ' '));
-        var otherParameters = "";
-        if ($("#generator-checkbox").prop('checked')){
-            // 5 chosen arbitrarily
-            otherParameters += "&recursion-depth=5&retry-if-fail=true";
+    $('#error-notice').hide();
+    if (typeof(replacement) != 'object') {
+        return replacement.toString().replace(/^\'+|\'+$/g, '');
+    }
+    var returnString = '';
+    for (let i=0; i<replacement.length; i++) {
+        if (isTerminal(replacement[i])) {
+            returnString += replacement[i].toString().replace(/^\'+|\'+$/g, '');
         } else {
-            otherParameters += "&hide-generator=true";
+            returnString += recursiveRandomExpression(replacement[i], productions, maxDepth - 1);
         }
-        if ($("#examples-checkbox").prop('checked')){
-            var examples = $("#cfg-example-input").val().trim();
-            if (examples.length > 0) {
-                otherParameters += '&examples=' + percentEncode(examples.replace(/\n/g, '|'));
-            }
-        }
-        // When the user switches between generator types a # appears at the end of the url
-        // This needs to be removed for the new link, or not added in the first place:
-        var basePath = window.location.href.split('?', 1)[0].replace(/\#+$/g, '');
-        var fullUrl = basePath + "?productions=" + productionsParameter + otherParameters;
-        $("#cfg-grammar-link").html(`${instruction}<br><a target="_blank" href=${fullUrl}>${fullUrl}</a>`);
     }
+    return returnString;
+}
 
-    function toggleExamplesWindow() {
-        if ($("#examples-checkbox").prop('checked')){
-            $("#cfg-example-input-parent").removeClass('d-none');
-        } else {
-            $("#cfg-example-input-parent").addClass('d-none');
-            $("#cfg-example-input").val('')
+/******************************************************************************/
+// FUNCTIONS FOR THE USER-FACING PRODUCTIONS SETTER //
+/******************************************************************************/
+
+/**
+* Sets the link to the base url of the interactive
+*/
+function resetLink() {
+    var instruction = gettext("This link will open the default version of this interactive:");
+    var link = window.location.href.split('?', 1)[0].replace(/^\/+|\/+$/g, '');
+    $("#cfg-grammar-link").html(`${instruction}<br><a target="_blank" href=${link}>${link}</a>`);
+}
+
+/**
+* Sets the link based on the productions submitted
+*/
+function getLink() {
+    var instruction = gettext("This link will open the interactive with your set productions:");
+    var productions = $("#cfg-grammar-input").val().trim();
+    if (productions.length <= 0) {
+        $("#cfg-grammar-link").html("");
+        return;
+    }
+    var productionsParameter = percentEncode(productions.replace(/\n/g, ' '));
+    var otherParameters = "";
+    if ($("#generator-checkbox").prop('checked')){
+        // 5 chosen arbitrarily
+        otherParameters += "&recursion-depth=5&retry-if-fail=true";
+    } else {
+        otherParameters += "&hide-generator=true";
+    }
+    if ($("#examples-checkbox").prop('checked')){
+        var examples = $("#cfg-example-input").val().trim();
+        if (examples.length > 0) {
+            otherParameters += '&examples=' + percentEncode(examples.replace(/\n/g, '|'));
         }
     }
+    // When the user switches between generator types a # appears at the end of the url
+    // This needs to be removed for the new link, or not added in the first place:
+    var basePath = window.location.href.split('?', 1)[0].replace(/\#+$/g, '');
+    var fullUrl = basePath + "?productions=" + productionsParameter + otherParameters;
+    $("#cfg-grammar-link").html(`${instruction}<br><a target="_blank" href=${fullUrl}>${fullUrl}</a>`);
+}
 
-    /**
-    * Returns the given string percent-encoded
-    */
-    function percentEncode(string) {
-        return encodeURIComponent(string);
+function toggleExamplesWindow() {
+    if ($("#examples-checkbox").prop('checked')){
+        $("#cfg-example-input-parent").removeClass('d-none');
+    } else {
+        $("#cfg-example-input-parent").addClass('d-none');
+        $("#cfg-example-input").val('')
     }
+}
+
+/**
+* Returns the given string percent-encoded
+*/
+function percentEncode(string) {
+    return encodeURIComponent(string);
+}
