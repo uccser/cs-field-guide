@@ -205,7 +205,6 @@ function interpretReplacementStrings(replacementStrings) {
 
 /**
 * Fills the user-facing table with the given grammar productions.
-* If the productions are sufficiently short, they are displayed in 2 columns
 */
 function fillProductionsWindow(productions) {
     var keys = Object.keys(productions)
