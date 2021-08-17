@@ -10,12 +10,14 @@ $non-terminal: #6c757d;
   border-color: #28a745 !important;
 }
 
+// Scoped outside due to usage on many components
+.nonterminal {
+    font-weight: bold;
+    color: $non-terminal;
+}
+
 #cfg-equation {
     font-size: 4rem;
-    .nonterminal {
-        font-weight: bold;
-        color: $non-terminal;
-    }
   .nonterminal:hover {
     color: darken($non-terminal, 10%);
     cursor: pointer;
@@ -40,21 +42,27 @@ $non-terminal: #6c757d;
   }
 }
 
+#production-list {
+    font-size: 1.2rem;
+}
+
 #history-list {
     min-height: 10rem;
-    .nonterminal {
-        font-weight: bold;
-        color: $non-terminal;
-    }
-
 }
 
 #selection-popup {
   display: none;
   position: absolute;
   background-color: #ececec;
+  color: white;
   .btn {
     text-align: start;
+  }
+  .nonterminal {
+      color: #ccc;
+      // This prevents clicking on span with no data attribute,
+      // and allows user to click parent element correctly.
+      pointer-events: none;
   }
 }
 
@@ -74,4 +82,8 @@ $non-terminal: #6c757d;
 #cfg-grammar-input, #cfg-example-input {
   font-family: monospace;
   width: 100%;
+}
+
+button:disabled {
+    cursor: not-allowed;
 }

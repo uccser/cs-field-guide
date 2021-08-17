@@ -19,6 +19,7 @@ const DEFAULT_PRODUCTIONS = {
 
 const RECURSIONDEPTH_SIMPLE = 2;
 const RECURSIONDEPTH_DEFAULT = 4;
+const ARROW = '&#10142;'
 
 var $activeNonterminal_ = null;
 var historyStack_ = [];
@@ -31,9 +32,11 @@ var hideGenerator_ = false;
 var recursionDepth_ = RECURSIONDEPTH_DEFAULT;
 
 $(document).ready(function() {
+    // Setup global variables
+    historyListElem_ = document.getElementById('history-list');
     parseUrlParameters();
-    $('#cfg-equation').html(`<span class="nonterminal">${initialNonterminal_}</span>`);
-    fillProductionsWindow(productions_);
+
+    // Setup events
     $('#generate-button').on('click', function(event) {
         $('#cfg-target').val(generateTarget(event.target));
         resetEquation();
@@ -53,11 +56,24 @@ $(document).ready(function() {
     $('#undo-button').on('click', undo);
     $('#cfg-grammar-link-button').on('click', getLink);
     $('#cfg-default-link-button').on('click', resetLink);
-    historyListElem_ = document.getElementById('history-list');
-    $('#undo-button').prop('disabled', true);
-    $('#cfg-target').change(testMatchingEquations);
     $("#examples-checkbox").change(toggleExamplesWindow).prop('checked', false);
+    //https://stackoverflow.com/a/3028037
+    $(document).click(function (event) {
+        var $target = $(event.target);
+        if (!$target.closest('.nonterminal').length &&
+            !$target.closest('#selection-popup').length &&
+            $('#selection-popup').is(':visible')) {
+            $('#selection-popup').hide();
+            $activeNonterminal_ = null;
+        }
+    });
+
+    // Setup interface
+    resetEquation();
+    fillProductionsWindow(productions_);
     toggleExamplesWindow();
+    $('#cfg-target').change(testMatchingEquations);
+
     if (examples_.length) {
         $('#cfg-target').val(examples_[0]);
     } else if (hideGenerator_) {
@@ -67,28 +83,19 @@ $(document).ready(function() {
     }
     $('#cfg-grammar-input').val('');
     getLink();
-    reapplyNonterminalClickEvent();
-    //https://stackoverflow.com/a/3028037
-    $(document).click(function(event) {
-        var $target = $(event.target);
-        if(!$target.closest('.nonterminal').length &&
-        !$target.closest('#selection-popup').length &&
-        $('#selection-popup').is(':visible')) {
-            $('#selection-popup').hide();
-            $activeNonterminal_ = null;
-        }
-    });
 });
 
 /**
 * Resets the equation being constructed by the user to solely the original non-terminal
 */
 function resetEquation() {
-    $('#cfg-equation').html(`<span class="nonterminal">${initialNonterminal_}</span>`);
+    let initial_html = `<span class="nonterminal">${initialNonterminal_}</span>`;
+    $('#cfg-equation').html(initial_html);
     reapplyNonterminalClickEvent();
     testMatchingEquations();
     historyStack_ = [];
     historyListElem_.innerHTML = '';
+    addHistoryElement(initial_html);
     $('#undo-button').prop('disabled', true);
 }
 
@@ -242,10 +249,10 @@ function describeAndReduceProductions(nonterminal, replacements) {
     if (isCompressable) {
         if (replacements.length == 2) {
             // Use syntax A|B where B = A+1, meaning 'Number A or number B'
-            return [`${nonterminal} &#8594 ${replacements[0]}|${replacements[1]}`]
+            return [`<span class="nonterminal">${nonterminal}</span> ${ARROW} ${replacements[0]}|${replacements[1]}`]
         }
         // Use syntax A-B, meaning 'Any number from A through B'
-        return [`${nonterminal} &#8594 ${replacements[0]}-${replacements[replacements.length - 1]}`]
+        return [`<span class="nonterminal">${nonterminal}</span> ${ARROW} ${replacements[0]}-${replacements[replacements.length - 1]}`]
     }
     var returnList = [];
     for (let i=0; i<replacements.length; i++) {
@@ -348,24 +355,34 @@ function applyProduction($target) {
     $activeNonterminal_ = null;
     // Track history
     let cfg_equation = $('#cfg-equation').html();
-    historyStack_.push(cfg_equation);
-    var div = document.createElement('div');
-    div.innerHTML = cfg_equation;
-    historyListElem_.appendChild(div);
+    addHistoryElement(cfg_equation);
 }
 
 /**
 * Replaces the existing equation with the one immediately before.
 */
 function undo() {
-    $('#cfg-equation').html(historyStack_.pop());
+    historyStack_.pop();
+    let cfg_equation = historyStack_[historyStack_.length -1 ];
+    $('#cfg-equation').html(cfg_equation);
     $activeNonterminal_ = null;
-    if (historyStack_.length <= 0) {
+    if (historyStack_.length <= 1) {
         $('#undo-button').prop('disabled', true);
     }
     historyListElem_.removeChild(historyListElem_.lastChild);
     reapplyNonterminalClickEvent();
     testMatchingEquations();
+}
+
+/**
+ *
+ * @param {cfg_equation}: Equation to add to history display
+ */
+function addHistoryElement(cfg_equation) {
+    historyStack_.push(cfg_equation);
+    var div = document.createElement('div');
+    div.innerHTML = cfg_equation;
+    historyListElem_.appendChild(div);
 }
 
 /**
@@ -389,12 +406,17 @@ function getPopupVal(nonterminal, replacements) {
 * e.g. E -> E+E
 */
 function describeProduction(nonterminal, replacement) {
-    var returnText = nonterminal + " &#8594 ";
+    var returnText = `<span class="nonterminal">${nonterminal}</span> ${ARROW} `;
     if (typeof(replacement) != 'object') {
         return returnText + replacement.toString().replace(/^\'+|\'+$/g, '');
     }
     for (let i=0; i<replacement.length; i++) {
-        returnText += replacement[i].toString().replace(/^\'+|\'+$/g, '');
+        let replacement_item = replacement[i];
+        if (replacement_item.startsWith('\'') && replacement_item.endsWith('\'')) {
+            returnText += replacement_item.substring(1, replacement_item.length - 1);
+        } else {
+            returnText += `<span class="nonterminal">${replacement_item}</span >`;
+        }
     }
     return returnText;
 }
