@@ -17,23 +17,15 @@ const DEFAULT_PRODUCTIONS = {
     "N": [0,1,2,3,4,5,6,7,8,9]
 };
 
-/**
-* Used when generating random expressions.
-* If applicable, when the max recursion depth is reached one of these will be used.
-*/
-const DEFAULT_FINAL_TERMINALS = [0,1,2,3,4,5,6,7,8,9];
-
-const RECURSIONDEPTH_SIMPLE = 1;
-const RECURSIONDEPTH_DEFAULT = 3;
+const RECURSIONDEPTH_SIMPLE = 2;
+const RECURSIONDEPTH_DEFAULT = 4;
 
 var $activeNonterminal_ = null;
 var historyStack_ = [];
 var productions_ = DEFAULT_PRODUCTIONS;
-var finalTerminals_ = DEFAULT_FINAL_TERMINALS;
 var initialNonterminal_ = 'E'
 var examples_ = [];
 var nextExample_ = 0;
-var retryIfFail_ = false;
 var hideGenerator_ = false;
 var recursionDepth_ = RECURSIONDEPTH_DEFAULT;
 
@@ -68,10 +60,8 @@ $(document).ready(function() {
         $('#cfg-target').val(examples_[0]);
     } else if (hideGenerator_) {
         $('#cfg-target').val("");
-    } else if (retryIfFail_ || recursionDepth_ != RECURSIONDEPTH_DEFAULT) {
-        $('#cfg-target').val(randomExpression(initialNonterminal_, productions_, recursionDepth_));
     } else {
-        $('#cfg-target').val(randomExpression(initialNonterminal_, productions_, RECURSIONDEPTH_SIMPLE));
+        $('#cfg-target').val(randomExpression(initialNonterminal_, productions_, recursionDepth_));
     }
     $('#cfg-grammar-input').val('');
     getLink();
@@ -111,17 +101,12 @@ function parseUrlParameters() {
         $('#grammar-builder-button').hide();
     }
     var grammar = urlParameters.getUrlParameter('productions');
-    var finalTerminals = urlParameters.getUrlParameter('terminals');
     var examples = urlParameters.getUrlParameter('examples');
     var recursionDepth = urlParameters.getUrlParameter('recursion-depth');
-    retryIfFail_ = urlParameters.getUrlParameter('retry-if-fail') == 'true';
     hideGenerator_ = urlParameters.getUrlParameter('hide-generator') == 'true';
 
     if (grammar) {
         productions_ = decodeGrammar(grammar);
-    }
-    if (finalTerminals) {
-        finalTerminals_ = decodeTerminals(finalTerminals);
     }
     if (examples) {
         examples = examples.split('|');
@@ -144,11 +129,10 @@ function parseUrlParameters() {
         } else {
             $('#generator-buttons').hide();
         }
-    } else if (recursionDepth || retryIfFail_) {
+    } else if (recursionDepth) {
         $('#set-g-random-simple').hide();
         if (!examples) {
             $('#set-g-from-preset').hide();
-            $('#generate-dropdown').hide();
         }
     }
 }
@@ -210,21 +194,6 @@ function interpretReplacementStrings(replacementStrings) {
         }
     }
     return replacements
-}
-
-/**
-* Parses the given string to form a list of terminal strings.
-* With outer whitespace and inverted commas removed, everything between '|'
-* symbols is an individual terminal.
-*
-* e.g. a|b|c|d , 'a'|'b'|'c'|'d' , 'a' | 'b' | 'c' | 'd' all decode to the same thing
-*/
-function decodeTerminals(terminalString) {
-    var terminals = terminalString.split('|');
-    for (let i=0; i<terminals.length; i++) {
-        terminals[i] = terminals[i].trim().replace(/^\'+|\'+$/g, '');
-    }
-    return terminals;
 }
 
 /******************************************************************************/
@@ -474,25 +443,21 @@ function isTerminal(s) {
     /**
     * Returns a random expression generated from the given grammar productions.
     *
-    * If the maximum depth of recursion (`maxDepth`) is reached then depending on
-    * the global retryIfFail either it will try again up to 10 times or remaining
-    * non-terminals will be replaced with random terminals.
+    * If the maximum depth of recursion (`maxDepth`) is reached,
+    * it will try again up to 100 times.
     *
     * @param {String} startChar initial non-terminal
     * @param {Dict} productions all productions
     * @param {Number} maxDepth maximum depth of recursion
     */
     function randomExpression(startChar, productions, maxDepth) {
-        if (!retryIfFail_) {
-            return recursiveRandomExpression(startChar, productions, maxDepth, false, finalTerminals_);
-        }
-        const attempts = 10;
+        const attempts = 100;
         var attempt = 0;
         var success = false;
         var result;
         while (attempt < attempts && !success) {
             try {
-                result = recursiveRandomExpression(startChar, productions, maxDepth, true, []);
+                result = recursiveRandomExpression(startChar, productions, maxDepth);
                 success = true;
             } catch (error) {
                 // If the error is not the error we're trying to catch then re-throw it
@@ -517,19 +482,10 @@ function isTerminal(s) {
     * @param {String} replaced initial non-terminal
     * @param {Dict} productions all productions
     * @param {Number} maxDepth maximum depth of recursion
-    * @param {Boolean} doRetry throw an error if `maxDepth` is reached and non-terminals remain
-    * @param {Array} terminals terminal characters to use if `maxDepth` is reached and `doRetry` is `false`
-    *
-    * It is assumed that any terminal in `terminals` can logically (through one or more steps)
-    * replace any non-terminal.
     */
-    function recursiveRandomExpression(replaced, productions, maxDepth, doRetry, terminals) {
+    function recursiveRandomExpression(replaced, productions, maxDepth) {
         if (maxDepth <= 0) {
-            if (doRetry) {
-                throw "Max depth reached replacing " + replaced;
-            } else {
-                return terminals[getRandomInt(terminals.length)].toString().replace(/^\'+|\'+$/g, '');
-            }
+            throw "Max depth reached replacing " + replaced;
         }
 
         try {
@@ -550,7 +506,7 @@ function isTerminal(s) {
             if (isTerminal(replacement[i])) {
                 returnString += replacement[i].toString().replace(/^\'+|\'+$/g, '');
             } else {
-                returnString += recursiveRandomExpression(replacement[i], productions, maxDepth - 1, doRetry, terminals);
+                returnString += recursiveRandomExpression(replacement[i], productions, maxDepth - 1);
             }
         }
         return returnString;
