@@ -157,6 +157,14 @@ cmd_make_interactive_thumbnails() {
 }
 defhelp make_interactive_thumbnails 'Run make-interactive-thumbnails.js script.'
 
+# Run Django makemessages command
+cmd_makemessages() {
+  echo "Compiling message files..."
+#   docker-compose -f docker-compose.local.yml run --rm --label traefik.enable=false django python ./manage.py makemessages --locale en
+  docker-compose -f docker-compose.local.yml run --rm --label traefik.enable=false django python ./manage.py makemessages --locale en --domain djangojs --ignore build/* --ignore gulpfile.js
+}
+defhelp makemessages 'Run Django makemessages command.'
+
 # Run Django compilemessages command
 cmd_compilemessages() {
   echo "Compiling message files..."

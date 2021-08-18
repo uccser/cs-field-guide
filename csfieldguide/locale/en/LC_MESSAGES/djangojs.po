@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-06 19:45+0000\n"
+"POT-Creation-Date: 2021-08-18 04:21+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,30 +17,352 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: static/interactives/big-number-calculator/js/big-number-calculator.js:22
-#: static/interactives/big-number-calculator/js/big-number-calculator.js:43
+#: static/interactives/2d-shape-manipulations/js/2d-shape-manipulations.js:8
+msgid "Scaling"
+msgstr ""
+
+#: static/interactives/2d-shape-manipulations/js/2d-shape-manipulations.js:9
 msgid ""
-"The result of this calculation will be massive! We won't try calculating "
+"Try multiplying the original coordinates by 2. What is the effect of this "
+"transform?<br>What would happen if you multiply each value by 10? How about "
+"0.5? What if you only multiply the x values?"
+msgstr ""
+
+#: static/interactives/2d-shape-manipulations/js/2d-shape-manipulations.js:15
+msgid "Combining Scaling and Translation Challenge"
+msgstr ""
+
+#: static/interactives/2d-shape-manipulations/js/2d-shape-manipulations.js:16
+msgid ""
+"Try to get the opaque shape to match up with the translucent one.<br>Hint: "
+"you may like to use expressions like 2*(2+1) or fractions like 1/5."
+msgstr ""
+
+#: static/interactives/2d-shape-manipulations/js/2d-shape-manipulations.js:22
+msgid "Swapping Coordinates"
+msgstr ""
+
+#: static/interactives/2d-shape-manipulations/js/2d-shape-manipulations.js:23
+msgid "What happens if you swap the x and y value for each coordinate?"
+msgstr ""
+
+#: static/interactives/2d-shape-manipulations/js/2d-shape-manipulations.js:29
+msgid "Translating"
+msgstr ""
+
+#: static/interactives/2d-shape-manipulations/js/2d-shape-manipulations.js:30
+msgid ""
+"Try adding 2 to all the x points, and 3 to all the y points. What effect "
+"does this have on the original shape? <br>What happens if you subtract 3 "
+"from each of the original coordinates?"
+msgstr ""
+
+#: static/interactives/2d-shape-manipulations/js/2d-shape-manipulations.js:36
+msgid "Matrix Rotation"
+msgstr ""
+
+#: static/interactives/2d-shape-manipulations/js/2d-shape-manipulations.js:37
+msgid ""
+"Rotate and translate the shape to the target position. You can use the Trig "
+"Function Calculator interactive to calculate exact values, use an accuracy "
+"of 2 decimal places."
+msgstr ""
+
+#: static/interactives/2d-shape-manipulations/js/2d-shape-manipulations.js:44
+msgid "Combining Translation, Scaling and Rotation"
+msgstr ""
+
+#: static/interactives/2d-shape-manipulations/js/2d-shape-manipulations.js:45
+#: static/interactives/2d-shape-manipulations/js/2d-shape-manipulations.js:53
+msgid ""
+"Try moving the shape to the target position by using the two multiplication "
+"matrices (one to scale and one to rotate) then translating."
+msgstr ""
+
+#: static/interactives/2d-shape-manipulations/js/2d-shape-manipulations.js:52
+msgid "Multiple Transformation Challenge"
+msgstr ""
+
+#: static/interactives/2d-shape-manipulations/js/2d-shape-manipulations.js:60
+msgid "Using Translation to Simplify Rotation"
+msgstr ""
+
+#: static/interactives/2d-shape-manipulations/js/2d-shape-manipulations.js:61
+msgid ""
+"To move the shape to the new position, you'll have to translate the tip to "
+"the origin, apply the rotation, then translate it back."
+msgstr ""
+
+#: static/interactives/2d-shape-manipulations/js/2d-shape-manipulations.js:69
+msgid "2D Scaling"
+msgstr ""
+
+#: static/interactives/2d-shape-manipulations/js/2d-shape-manipulations.js:70
+msgid "Try replacing the 1s with 2s in the multiplication matrix."
+msgstr ""
+
+#: static/interactives/2d-shape-manipulations/js/2d-shape-manipulations.js:77
+msgid "Scaling and Translation Challenge"
+msgstr ""
+
+#: static/interactives/2d-shape-manipulations/js/2d-shape-manipulations.js:78
+msgid ""
+"Use both scaling and translation to move the shape to the target position."
+msgstr ""
+
+#: static/interactives/2d-shape-manipulations/js/2d-shape-manipulations.js:85
+msgid "Translation before Scaling"
+msgstr ""
+
+#: static/interactives/2d-shape-manipulations/js/2d-shape-manipulations.js:86
+msgid ""
+"This time, the order of translation and scaling has been swapped. Try to "
+"transform the shape to the target position. The order in which operations "
+"happen makes a difference!"
+msgstr ""
+
+#: static/interactives/2d-shape-manipulations/js/2d-shape-manipulations.js:93
+msgid "Using Translation to Simplify Scaling"
+msgstr ""
+
+#: static/interactives/2d-shape-manipulations/js/2d-shape-manipulations.js:94
+msgid ""
+"This time the top left tip of the shape is at<br>(12, 12), so you should "
+"translate it to the origin, scale it, then translate it back."
+msgstr ""
+
+#: static/interactives/2d-shape-manipulations/js/2d-shape-manipulations.js:102
+msgid "Single Matrix"
+msgstr ""
+
+#: static/interactives/2d-shape-manipulations/js/2d-shape-manipulations.js:103
+msgid ""
+"Try putting in the final matrix here and see if it does scale by 2 and "
+"rotate by 45 degrees."
+msgstr ""
+
+#: static/interactives/2d-shape-manipulations/js/2d-shape-manipulations.js:110
+msgid "Translation"
+msgstr ""
+
+#: static/interactives/2d-shape-manipulations/js/2d-shape-manipulations.js:111
+msgid "Use the translation matrix to move the shape to its target position."
+msgstr ""
+
+#: static/interactives/algorithm-timer/js/algorithm-timer.js:88
+#, javascript-format
+msgid "1 nanosecond"
+msgid_plural "%s nanoseconds"
+msgstr[0] ""
+msgstr[1] ""
+
+#: static/interactives/algorithm-timer/js/algorithm-timer.js:90
+#, javascript-format
+msgid "1 microsecond"
+msgid_plural "%s microseconds"
+msgstr[0] ""
+msgstr[1] ""
+
+#: static/interactives/algorithm-timer/js/algorithm-timer.js:92
+#, javascript-format
+msgid "1 millisecond"
+msgid_plural "%s milliseconds"
+msgstr[0] ""
+msgstr[1] ""
+
+#: static/interactives/algorithm-timer/js/algorithm-timer.js:94
+#, javascript-format
+msgid "1 second"
+msgid_plural "%s seconds"
+msgstr[0] ""
+msgstr[1] ""
+
+#: static/interactives/algorithm-timer/js/algorithm-timer.js:96
+#, javascript-format
+msgid "1 minute"
+msgid_plural "%s minutes"
+msgstr[0] ""
+msgstr[1] ""
+
+#: static/interactives/algorithm-timer/js/algorithm-timer.js:98
+#, javascript-format
+msgid "1 hour"
+msgid_plural "%s hours"
+msgstr[0] ""
+msgstr[1] ""
+
+#: static/interactives/algorithm-timer/js/algorithm-timer.js:100
+#, javascript-format
+msgid "1 day"
+msgid_plural "%s days"
+msgstr[0] ""
+msgstr[1] ""
+
+#: static/interactives/algorithm-timer/js/algorithm-timer.js:102
+#, javascript-format
+msgid "1 month"
+msgid_plural "%s months"
+msgstr[0] ""
+msgstr[1] ""
+
+#: static/interactives/algorithm-timer/js/algorithm-timer.js:104
+#, javascript-format
+msgid "1 year"
+msgid_plural "%s years"
+msgstr[0] ""
+msgstr[1] ""
+
+#: static/interactives/algorithm-timer/js/algorithm-timer.js:106
+#, javascript-format
+msgid "1 century"
+msgid_plural "%s centuries"
+msgstr[0] ""
+msgstr[1] ""
+
+#: static/interactives/big-number-calculator/js/big-number-calculator.js:35
+#: static/interactives/big-number-calculator/js/big-number-calculator.js:80
+msgid ""
+"The result of this calculation could be massive! We won't try calculating "
 "this number as it's so big!"
 msgstr ""
 
-#: static/interactives/big-number-calculator/js/big-number-calculator.js:47
+#: static/interactives/big-number-calculator/js/big-number-calculator.js:45
+msgid "You can't divide by zero!"
+msgstr ""
+
+#: static/interactives/big-number-calculator/js/big-number-calculator.js:84
 msgid "Error! Your X value is not a valid number."
 msgstr ""
 
-#: static/interactives/big-number-calculator/js/big-number-calculator.js:49
+#: static/interactives/big-number-calculator/js/big-number-calculator.js:86
 msgid "Error! Your Y value is not a valid number."
 msgstr ""
 
-#: static/interactives/big-number-calculator/js/big-number-calculator.js:71
+#: static/interactives/big-number-calculator/js/big-number-calculator.js:108
 msgid ""
-"The result of this factorial will be massive, over 5000 digits long! We "
+"The result of this factorial could be massive, over 5000 digits long! We "
 "won't try calculating this number as it's so big!"
 msgstr ""
 
-#: static/interactives/binary-cards/js/binary-cards.js:173
+#: static/interactives/big-number-calculator/js/big-number-calculator.js:153
+msgid "Calculating..."
+msgstr ""
+
+#: static/interactives/bin-packing/js/bin-packing.js:116
+msgid ""
+"Something went wrong! Please ensure you entered a comma separated list of "
+"integers between 1 and 100."
+msgstr ""
+
+#: static/interactives/bin-packing/js/bin-packing.js:270
+msgid "Congratulations, you packed the items in "
+msgstr ""
+
+#: static/interactives/bin-packing/js/bin-packing.js:271
+msgid "1 bin!"
+msgid_plural "%(bin_count)s bins!"
+msgstr[0] ""
+msgstr[1] ""
+
+#: static/interactives/binary-cards/js/binary-cards.js:231
 msgid "1 dot is visible"
 msgid_plural "%(dot_count)s dots are visible"
+msgstr[0] ""
+msgstr[1] ""
+
+#: static/interactives/braille-alphabet/js/braille-alphabet.js:107
+msgid "Capital sign"
+msgstr ""
+
+#: static/interactives/braille-alphabet/js/braille-alphabet.js:109
+msgid "Placed before a letter to make the next letter a capital letter."
+msgstr ""
+
+#: static/interactives/braille-alphabet/js/braille-alphabet.js:112
+msgid "Number sign"
+msgstr ""
+
+#: static/interactives/braille-alphabet/js/braille-alphabet.js:114
+msgid ""
+"Placed before the characters a to j to make a number digit. a=1, b=2, c=3, "
+"d=4, e=5, f=6, g=7, h=8, i=9, j=0."
+msgstr ""
+
+#: static/interactives/braille-alphabet/js/braille-alphabet.js:117
+msgid "Period (full stop)"
+msgstr ""
+
+#: static/interactives/braille-alphabet/js/braille-alphabet.js:121
+msgid "Comma"
+msgstr ""
+
+#: static/interactives/braille-alphabet/js/braille-alphabet.js:125
+msgid "Question Mark"
+msgstr ""
+
+#: static/interactives/braille-alphabet/js/braille-alphabet.js:129
+msgid "Semicolon"
+msgstr ""
+
+#: static/interactives/braille-alphabet/js/braille-alphabet.js:133
+msgid "Exclamation point"
+msgstr ""
+
+#: static/interactives/cfg-parsing-challenge/js/cfg-parsing-challenge.js:334
+msgid "No productions available."
+msgstr ""
+
+#: static/interactives/cfg-parsing-challenge/js/cfg-parsing-challenge.js:569
+msgid "This link will open the default version of this interactive:"
+msgstr ""
+
+#: static/interactives/checksum-calculator-gtin-13/js/checksum-calculator-gtin-13.js:20
+msgid "Checksum digit is %(checksum)s"
+msgstr ""
+
+#: static/interactives/checksum-calculator-gtin-13/js/checksum-calculator-gtin-13.js:25
+msgid "Your input must only contain 12 numbers"
+msgstr ""
+
+#: static/interactives/checksum-calculator/js/checksum-calculator.js:17
+#: static/interactives/checksum-calculator/js/checksum-calculator.js:50
+msgid "Boxes must not be empty!"
+msgstr ""
+
+#: static/interactives/checksum-calculator/js/checksum-calculator.js:20
+msgid ""
+"You have more numbers than multipliers! Check your checksum digit isn't "
+"included."
+msgstr ""
+
+#: static/interactives/checksum-calculator/js/checksum-calculator.js:23
+msgid "You have more multipliers than numbers!"
+msgstr ""
+
+#: static/interactives/checksum-calculator/js/checksum-calculator.js:53
+msgid "Numbers must not be 0!"
+msgstr ""
+
+#: static/interactives/city-trip/js/city-trip.js:14
+msgid "complete!"
+msgstr ""
+
+#: static/interactives/city-trip/js/city-trip.js:15
+msgid "ready to go!"
+msgstr ""
+
+#: static/interactives/city-trip/js/city-trip.js:16
+msgid "stopped"
+msgstr ""
+
+#: static/interactives/city-trip/js/city-trip.js:17
+msgid "running"
+msgstr ""
+
+#: static/interactives/city-trip/js/city-trip.js:561
+#: static/interactives/city-trip/js/city-trip.js:563
+msgid "1 "
+msgid_plural "%(value)s "
 msgstr[0] ""
 msgstr[1] ""
 
@@ -52,16 +374,72 @@ msgstr ""
 msgid "Refresh the page"
 msgstr ""
 
-#: static/interactives/colour-matcher/js/colour-matcher.js:16
+#: static/interactives/colour-matcher/js/colour-matcher.js:17
 msgid "Help me set 24 bit red"
 msgstr ""
 
-#: static/interactives/colour-matcher/js/colour-matcher.js:17
+#: static/interactives/colour-matcher/js/colour-matcher.js:18
 msgid "Help me set 24 bit green"
 msgstr ""
 
-#: static/interactives/colour-matcher/js/colour-matcher.js:18
+#: static/interactives/colour-matcher/js/colour-matcher.js:19
 msgid "All help given"
+msgstr ""
+
+#: static/interactives/data-bias/js/data-bias.js:5
+msgid ""
+"Click each dot that you see on the screen, then click 'Next stage' to reveal "
+"the answer!"
+msgstr ""
+
+#: static/interactives/data-bias/js/data-bias.js:6
+msgid ""
+"You seem to have missed some dots! <br><br>Forced perspective like this can "
+"influence what data you collect, and can bias overall results."
+msgstr ""
+
+#: static/interactives/data-bias/js/data-bias.js:7
+msgid ""
+"Click and drag the slider to change the background colour. <br><br>How you "
+"view data can affect how you interpret it."
+msgstr ""
+
+#: static/interactives/data-visualisation/js/data-visualisation.js:9
+msgid "Plain grid"
+msgstr ""
+
+#: static/interactives/data-visualisation/js/data-visualisation.js:10
+msgid "Heatmap"
+msgstr ""
+
+#: static/interactives/data-visualisation/js/data-visualisation.js:11
+msgid "Pie chart"
+msgstr ""
+
+#: static/interactives/data-visualisation/js/data-visualisation.js:12
+msgid "Bar chart"
+msgstr ""
+
+#: static/interactives/data-visualisation/js/data-visualisation.js:15
+msgid "Relative frequency of each number (%)."
+msgstr ""
+
+#: static/interactives/data-visualisation/js/data-visualisation.js:16
+msgid "Occurences of each number."
+msgstr ""
+
+#: static/interactives/data-visualisation/js/data-visualisation.js:17
+msgid ""
+"Your accuracy (%) when finding the mode of data with different "
+"visualisations."
+msgstr ""
+
+#: static/interactives/data-visualisation/js/data-visualisation.js:242
+msgid "Occurences"
+msgstr ""
+
+#: static/interactives/data-visualisation/js/data-visualisation.js:278
+msgid "Success (%)"
 msgstr ""
 
 #: static/interactives/deceiver/js/deceiver.js:7
@@ -102,47 +480,226 @@ msgstr ""
 msgid "You still have tiles to reveal!"
 msgstr ""
 
-#: static/interactives/hex-background-colour/js/hex-background-colour.js:18
+#: static/interactives/dictionary-compression/js/dictionary-compression.js:137
+msgid "%(percent_coded)s% of text compressed using 1 reference."
+msgid_plural ""
+"%(percent_coded)s% of text compressed using %(num_refs_used)s references."
+msgstr[0] ""
+msgstr[1] ""
+
+#: static/interactives/dictionary-compression/js/dictionary-compression.js:248
+msgid "Please enter some text"
+msgstr ""
+
+#: static/interactives/dictionary-compression/js/dictionary-compression.js:270
+msgid "This code is already in the dictionary."
+msgstr ""
+
+#: static/interactives/dot-combinations/js/dot-combinations.js:80
+msgid "You have found 1 combination."
+msgid_plural "You have found %(combos)s combinations."
+msgstr[0] ""
+msgstr[1] ""
+
+#: static/interactives/frequency-analysis/js/frequency-analysis.js:66
+msgid "Character Frequency"
+msgstr ""
+
+#: static/interactives/hex-background-colour/js/hex-background-colour.js:17
 msgid "invalid!"
 msgstr ""
 
-#: static/interactives/high-score-boxes/js/script.js:164
+#: static/interactives/high-score-boxes/js/high-score-boxes.js:164
 msgid "Correct! But you missed a box... You got lucky this time!"
 msgstr ""
 
-#: static/interactives/high-score-boxes/js/script.js:166
+#: static/interactives/high-score-boxes/js/high-score-boxes.js:166
 msgid "Correct! But you could've been more efficient..."
 msgstr ""
 
-#: static/interactives/high-score-boxes/js/script.js:168
+#: static/interactives/high-score-boxes/js/high-score-boxes.js:168
 msgid ""
 "Correct! You've found how to complete this challenge the most efficient "
 "way!\n"
 "Your time was %(seconds_taken)s seconds."
 msgstr ""
 
-#: static/interactives/high-score-boxes/js/script.js:174
+#: static/interactives/high-score-boxes/js/high-score-boxes.js:174
 msgid "Incorrect!"
 msgstr ""
 
-#: static/interactives/high-score-boxes/js/script.js:179
+#: static/interactives/high-score-boxes/js/high-score-boxes.js:179
 msgid "Inputted value must be a whole number"
 msgstr ""
 
-#: static/interactives/image-bit-comparer/js/image-bit-comparer.js:102
+#: static/interactives/image-bit-comparer/js/image-bit-comparer.js:112
 msgid "The dropped file is not an image! File provided was %(file_type)s"
 msgstr ""
 
-#: static/interactives/image-bit-comparer/js/image-bit-comparer.js:136
+#: static/interactives/image-bit-comparer/js/image-bit-comparer.js:147
 msgid "1 bit"
 msgid_plural "%(number_of_bits)s bits"
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/interactives/image-bit-comparer/js/image-bit-comparer.js:232
+#: static/interactives/image-bit-comparer/js/image-bit-comparer.js:244
 msgid ""
 "Starting image cannot be loaded when viewing file locally. Try another "
 "browser or the online version."
+msgstr ""
+
+#: static/interactives/lzss-compression/js/lzss-compression.js:63
+msgid "Base message size:"
+msgstr ""
+
+#: static/interactives/lzss-compression/js/lzss-compression.js:63
+#: static/interactives/lzss-compression/js/lzss-compression.js:64
+#, javascript-format
+msgid "1 Byte"
+msgid_plural "%s Bytes"
+msgstr[0] ""
+msgstr[1] ""
+
+#: static/interactives/lzss-compression/js/lzss-compression.js:64
+msgid "Approximate encoded size:"
+msgstr ""
+
+#: static/interactives/matrix-simplifier/js/matrix-simplifier.js:11
+#: static/interactives/rsa-encryption/js/rsa-encryption.js:31
+#: static/interactives/rsa-key-generator/js/rsa-key-generator.js:3
+msgid "Copy to clipboard"
+msgstr ""
+
+#: static/interactives/matrix-simplifier/js/matrix-simplifier.js:12
+msgid "Equation copied"
+msgstr ""
+
+#: static/interactives/matrix-simplifier/js/matrix-simplifier.js:13
+#: static/interactives/rsa-encryption/js/rsa-encryption.js:33
+#: static/interactives/rsa-key-generator/js/rsa-key-generator.js:6
+msgid "Oops, unable to copy. Please copy manually"
+msgstr ""
+
+#: static/interactives/matrix-simplifier/js/matrix-simplifier.js:320
+msgid "Add a matrix"
+msgstr ""
+
+#: static/interactives/matrix-simplifier/js/matrix-simplifier.js:321
+msgid "Add a vector"
+msgstr ""
+
+#: static/interactives/matrix-simplifier/js/matrix-simplifier.js:587
+msgid "Update matrix"
+msgstr ""
+
+#: static/interactives/matrix-simplifier/js/matrix-simplifier.js:612
+msgid "Update vector"
+msgstr ""
+
+#: static/interactives/mips-assembler/js/mips-assembler.js:27
+#: static/interactives/mips-simulator/js/mips-simulator.js:38
+msgid "input"
+msgstr ""
+
+#: static/interactives/mips-assembler/js/mips-assembler.js:28
+msgid "DATA IN MEMORY"
+msgstr ""
+
+#: static/interactives/mips-assembler/js/mips-assembler.js:29
+msgid "UNSUPPORTED OPERATION"
+msgstr ""
+
+#: static/interactives/mips-assembler/js/mips-assembler.js:30
+msgid "INVALID REGISTER"
+msgstr ""
+
+#: static/interactives/mips-assembler/js/mips-assembler.js:31
+msgid "UNRECOGNISED INSTRUCTION"
+msgstr ""
+
+#: static/interactives/mips-assembler/js/mips-assembler.js:32
+#: static/interactives/mips-simulator/js/mips-simulator.js:55
+msgid ""
+"You've triggered the failsafe error control in this interactive, which means "
+"the programmer who made it didn't prepare for the specific error in your "
+"program. Sorry about that. Double check everything and try again."
+msgstr ""
+
+#: static/interactives/mips-simulator/js/mips-simulator.js:35
+msgid "INVALID HEX VALUE"
+msgstr ""
+
+#: static/interactives/mips-simulator/js/mips-simulator.js:36
+msgid "Program execution complete"
+msgstr ""
+
+#: static/interactives/mips-simulator/js/mips-simulator.js:37
+msgid "Program execution halted early"
+msgstr ""
+
+#: static/interactives/mips-simulator/js/mips-simulator.js:39
+msgid "Parsing completed without finding the quit instruction"
+msgstr ""
+
+#: static/interactives/mips-simulator/js/mips-simulator.js:40
+msgid ""
+"Program executed 1000 instructions, it probably entered an infinite loop!"
+msgstr ""
+
+#: static/interactives/mips-simulator/js/mips-simulator.js:41
+msgid "instruction"
+msgstr ""
+
+#: static/interactives/mips-simulator/js/mips-simulator.js:42
+msgid "Cannot read from empty register"
+msgstr ""
+
+#: static/interactives/mips-simulator/js/mips-simulator.js:43
+msgid "Unsupported value in register"
+msgstr ""
+
+#: static/interactives/mips-simulator/js/mips-simulator.js:44
+msgid "Unsupported instruction in hex"
+msgstr ""
+
+#: static/interactives/mips-simulator/js/mips-simulator.js:45
+msgid "Invalid instruction hex"
+msgstr ""
+
+#: static/interactives/mips-simulator/js/mips-simulator.js:46
+msgid "Print an integer"
+msgstr ""
+
+#: static/interactives/mips-simulator/js/mips-simulator.js:47
+msgid "Print a string"
+msgstr ""
+
+#: static/interactives/mips-simulator/js/mips-simulator.js:48
+msgid "Loading"
+msgstr ""
+
+#: static/interactives/mips-simulator/js/mips-simulator.js:49
+msgid "stored in"
+msgstr ""
+
+#: static/interactives/mips-simulator/js/mips-simulator.js:50
+msgid "points to"
+msgstr ""
+
+#: static/interactives/mips-simulator/js/mips-simulator.js:51
+msgid "Jump to"
+msgstr ""
+
+#: static/interactives/mips-simulator/js/mips-simulator.js:52
+msgid "nothing"
+msgstr ""
+
+#: static/interactives/mips-simulator/js/mips-simulator.js:53
+msgid "Branching"
+msgstr ""
+
+#: static/interactives/mips-simulator/js/mips-simulator.js:54
+msgid "Not Branching"
 msgstr ""
 
 #: static/interactives/nfa-guesser/js/nfa-guesser.js:67
@@ -157,6 +714,260 @@ msgstr ""
 msgid "Error: No help available!"
 msgstr ""
 
+#: static/interactives/number-memory/js/number-memory.js:2
+msgid "Finding some paper..."
+msgstr ""
+
+#: static/interactives/number-memory/js/number-memory.js:3
+msgid "*BONK*"
+msgstr ""
+
+#: static/interactives/number-memory/js/number-memory.js:4
+msgid "Ow!"
+msgstr ""
+
+#: static/interactives/number-memory/js/number-memory.js:5
+msgid "Bumped my head."
+msgstr ""
+
+#: static/interactives/number-memory/js/number-memory.js:6
+msgid "Got it, now where was that pen?"
+msgstr ""
+
+#: static/interactives/number-memory/js/number-memory.js:7
+msgid "Ah ha!"
+msgstr ""
+
+#: static/interactives/number-memory/js/number-memory.js:8
+#: static/interactives/number-memory/js/number-memory.js:13
+msgid "*Scribble scribble*"
+msgstr ""
+
+#: static/interactives/number-memory/js/number-memory.js:9
+msgid "It's empty :("
+msgstr ""
+
+#: static/interactives/number-memory/js/number-memory.js:10
+msgid "Hmmm"
+msgstr ""
+
+#: static/interactives/number-memory/js/number-memory.js:11
+msgid "Really need to sort out this room someday..."
+msgstr ""
+
+#: static/interactives/number-memory/js/number-memory.js:12
+msgid "There you are."
+msgstr ""
+
+#: static/interactives/number-memory/js/number-memory.js:14
+msgid "It works!"
+msgstr ""
+
+#: static/interactives/number-memory/js/number-memory.js:20
+msgid "What was the number?"
+msgstr ""
+
+#: static/interactives/number-memory/js/number-memory.js:21
+msgid "Remember this number!"
+msgstr ""
+
+#: static/interactives/number-memory/js/number-memory.js:22
+msgid "What was the PREVIOUS (shorter) number?"
+msgstr ""
+
+#: static/interactives/number-memory/js/number-memory.js:23
+msgid "Correct!"
+msgstr ""
+
+#: static/interactives/number-memory/js/number-memory.js:24
+msgid "That wasn't the number!"
+msgstr ""
+
+#: static/interactives/packet-attack-level-creator/js/packet-attack-level-creator.js:20
+msgid "Your message cannot be longer than 16 characters"
+msgstr ""
+
+#: static/interactives/packet-attack/js/config.js:9
+msgid "PACKET ATTACK"
+msgstr ""
+
+#: static/interactives/packet-attack/js/config.js:10
+msgid "HELLO"
+msgstr ""
+
+#: static/interactives/packet-attack/js/game.js:20
+msgid "COMMANDS"
+msgstr ""
+
+#: static/interactives/packet-attack/js/game.js:21
+msgid "DELAY"
+msgstr ""
+
+#: static/interactives/packet-attack/js/game.js:22
+msgid "CORRUPT"
+msgstr ""
+
+#: static/interactives/packet-attack/js/game.js:23
+msgid "KILL"
+msgstr ""
+
+#: static/interactives/packet-attack/js/game.js:25
+msgid "Uses:"
+msgstr ""
+
+#: static/interactives/packet-attack/js/game.js:27
+msgid "Sending:"
+msgstr ""
+
+#: static/interactives/packet-attack/js/game.js:28
+msgid "Received:"
+msgstr ""
+
+#: static/interactives/packet-attack/js/game.js:31
+msgid "Level:"
+msgstr ""
+
+#: static/interactives/packet-attack/js/information.js:14
+msgid "START"
+msgstr ""
+
+#: static/interactives/packet-attack/js/information.js:17
+msgid "Information"
+msgstr ""
+
+#: static/interactives/packet-attack/js/information.js:19
+msgid "You let the message get through!"
+msgstr ""
+
+#: static/interactives/packet-attack/js/information.js:19
+msgid "Try again."
+msgstr ""
+
+#: static/interactives/packet-attack/js/information.js:21
+msgid "Awesome!"
+msgstr ""
+
+#: static/interactives/packet-attack/js/information.js:21
+msgid "You stopped the message being delivered."
+msgstr ""
+
+#: static/interactives/packet-attack/js/information.js:22
+msgid "Click 'start' to repeat this custom level."
+msgstr ""
+
+#: static/interactives/packet-attack/js/information.js:23
+msgid "Click 'start' to move to the next level."
+msgstr ""
+
+#: static/interactives/packet-attack/js/information.js:25
+msgid "Welcome to this custom level!"
+msgstr ""
+
+#: static/interactives/packet-attack/js/information.js:26
+msgid "Welcome to level"
+msgstr ""
+
+#: static/interactives/packet-attack/js/information.js:27
+msgid "In this level:"
+msgstr ""
+
+#: static/interactives/packet-attack/js/information.js:28
+msgid "The left pipe is using many creatures to communicate"
+msgstr ""
+
+#: static/interactives/packet-attack/js/information.js:29
+msgid "The creatures have shields to protect from corruption"
+msgstr ""
+
+#: static/interactives/packet-attack/js/information.js:30
+msgid "The creatures have numbers to protect packet order"
+msgstr ""
+
+#: static/interactives/packet-attack/js/information.js:31
+msgid ""
+"The right pipe sends creatures back with results, green is good, red is bad"
+msgstr ""
+
+#: static/interactives/packet-attack/js/information.js:32
+msgid "But the responses are also vulnerable to your attack!"
+msgstr ""
+
+#: static/interactives/packet-attack/js/information.js:33
+msgid "If the left pipe doesn't get a response, it will resend a creature"
+msgstr ""
+
+#: static/interactives/packet-attack/js/information.js:34
+msgid "There are no defenses!"
+msgstr ""
+
+#: static/interactives/packet-attack/js/information.js:51
+msgid "This level is actually impossible to beat"
+msgstr ""
+
+#: static/interactives/packet-attack/js/information.js:52
+msgid "The system can handle anything you throw at it!"
+msgstr ""
+
+#: static/interactives/packet-attack/js/information.js:53
+msgid "Thank you for playing!"
+msgstr ""
+
+#: static/interactives/packet-attack/js/information.js:55
+msgid "Click 'start' if you want to try this level again"
+msgstr ""
+
+#: static/interactives/packet-attack/js/information.js:56
+msgid "Or refresh the page if you want to start from the beginning"
+msgstr ""
+
+#: static/interactives/parity/js/parity.js:31
+msgid "Correct: Every row and column has even parity (of black squares)"
+msgstr ""
+
+#: static/interactives/parity/js/parity.js:34
+msgid "Incorrect: Not every row and column has even parity (of black squares)"
+msgstr ""
+
+#: static/interactives/parity/js/parity.js:88
+msgid "Your parity bits weren't set correctly, try starting again."
+msgstr ""
+
+#: static/interactives/parity/js/parity.js:93
+msgid "Correct! You spotted the flipped bit!"
+msgstr ""
+
+#: static/interactives/parity/js/parity.js:97
+msgid "That's not the flipped bit!"
+msgstr ""
+
+#: static/interactives/parity/js/parity.js:148
+msgid "Setting Parity"
+msgstr ""
+
+#: static/interactives/parity/js/parity.js:160
+msgid "Detect the Error"
+msgstr ""
+
+#: static/interactives/parity/js/parity.js:273
+msgid "Please enter a value between 1 and 20"
+msgstr ""
+
+#: static/interactives/password-guesser/js/passwords.js:21
+msgid "Maths"
+msgstr ""
+
+#: static/interactives/password-guesser/js/passwords.js:22
+msgid "History"
+msgstr ""
+
+#: static/interactives/password-guesser/js/passwords.js:23
+msgid "Art"
+msgstr ""
+
+#: static/interactives/password-guesser/js/passwords.js:24
+msgid "Chemistry"
+msgstr ""
+
 #: static/interactives/payment-interface/js/payment-interface.js:10
 msgid "Valid amount."
 msgstr ""
@@ -165,50 +976,541 @@ msgstr ""
 msgid "Invalid amount. Decimals are allowed up to two places."
 msgstr ""
 
-#: static/interactives/python-interpreter/js/python-interpreter.js:25
-msgid "Welcome to computer programming, Student"
+#: static/interactives/persona-carousel/js/persona-carousel.js:9
+msgid "Accounting student at university"
 msgstr ""
 
-#: static/interactives/rsa-jsencrypt/js/rsa-jsencrypt.js:22
-#: static/interactives/rsa-no-padding/js/rsa-jsencrypt-no-padding.js:20
-msgid "Error in encryption!"
+#: static/interactives/persona-carousel/js/persona-carousel.js:10
+msgid ""
+"Bevan is a busy undergraduate student.      He gets good grades and plays in "
+"a social football league.      He is aware that he probably isn’t getting "
+"enough sleep, particularly as the exam period is coming up and he’s staying "
+"up late most nights to study.      He knows that if he could improve the "
+"quality of the sleep that he is getting he would be more productive when "
+"studying and have more energy for his football games and training."
 msgstr ""
 
-#: static/interactives/rsa-jsencrypt/js/rsa-jsencrypt.js:30
-#: static/interactives/rsa-no-padding/js/rsa-jsencrypt-no-padding.js:28
-msgid "Error in decryption!"
+#: static/interactives/persona-carousel/js/persona-carousel.js:15
+msgid "Wake up feeling rested."
 msgstr ""
 
-#: static/interactives/rsa-jsencrypt/js/rsa-jsencrypt.js:37
-#: static/interactives/rsa-no-padding/js/rsa-jsencrypt-no-padding.js:35
-msgid "Decrypter"
+#: static/interactives/persona-carousel/js/persona-carousel.js:16
+msgid ""
+"Be more productive during the day rather than feeling slow and sluggish."
 msgstr ""
 
-#: static/interactives/rsa-jsencrypt/js/rsa-jsencrypt.js:38
-#: static/interactives/rsa-no-padding/js/rsa-jsencrypt-no-padding.js:36
-msgid "Decrypt"
+#: static/interactives/persona-carousel/js/persona-carousel.js:19
+msgid ""
+"Feels that most nights when he finally gets to bed he lies awake for a while."
 msgstr ""
 
-#: static/interactives/rsa-jsencrypt/js/rsa-jsencrypt.js:39
-#: static/interactives/rsa-no-padding/js/rsa-jsencrypt-no-padding.js:37
-msgid "Cipher"
+#: static/interactives/persona-carousel/js/persona-carousel.js:20
+msgid "His exhaustion is affecting his performance in sport and education."
 msgstr ""
 
-#: static/interactives/rsa-jsencrypt/js/rsa-jsencrypt.js:40
-#: static/interactives/rsa-no-padding/js/rsa-jsencrypt-no-padding.js:38
-msgid "Plain"
+#: static/interactives/persona-carousel/js/persona-carousel.js:21
+msgid "Doesn’t know where to start with improving his sleep habits."
 msgstr ""
 
-#: static/interactives/run-length-encoding/js/run-length-encoding.js:44
+#: static/interactives/persona-carousel/js/persona-carousel.js:22
+msgid "Feels that he can only have two out of sleep, football and good grades."
+msgstr ""
+
+#: static/interactives/persona-carousel/js/persona-carousel.js:30
+msgid "High school student"
+msgstr ""
+
+#: static/interactives/persona-carousel/js/persona-carousel.js:31
+msgid ""
+"Sam recently suffered a leg injury that left her largely bound to a "
+"wheelchair.      She is still getting used to dealing with her new "
+"situation, and finds herself regularly exhausted from the effort.      "
+"During her time off school she fell behind and now has to catch up.      Her "
+"doctor suggested finding a sleep tracking app for her phone so she can "
+"manage good sleep while recovering, and best utilise her remaining time for "
+"study."
+msgstr ""
+
+#: static/interactives/persona-carousel/js/persona-carousel.js:36
+msgid "Get enough sleep to work efficiently in her studies."
+msgstr ""
+
+#: static/interactives/persona-carousel/js/persona-carousel.js:37
+msgid ""
+"Stay on top of shoolwork, but also spare time for extra rest and recovery."
+msgstr ""
+
+#: static/interactives/persona-carousel/js/persona-carousel.js:38
+msgid "Find a way to better organise her time, as suggested by her doctor."
+msgstr ""
+
+#: static/interactives/persona-carousel/js/persona-carousel.js:41
+msgid "Wakes up multiple times a night in pain."
+msgstr ""
+
+#: static/interactives/persona-carousel/js/persona-carousel.js:42
+msgid ""
+"Sometimes she gets so exhausted she is forced to take time off school in the "
+"afternoon, and has to spend extra time at home making up for it."
+msgstr ""
+
+#: static/interactives/persona-carousel/js/persona-carousel.js:43
+msgid "Never knows how many hours of sleep she has actually had."
+msgstr ""
+
+#: static/interactives/persona-carousel/js/persona-carousel.js:51
+msgid "Building Apprentice"
+msgstr ""
+
+#: static/interactives/persona-carousel/js/persona-carousel.js:52
+msgid ""
+"Kate is doing an apprenticeship in construction with a local "
+"polytechnic.      They also love singing and have organised a choir, "
+"practicing on Sunday evenings.      Sometimes the choir practice runs late "
+"into the night, but Kate needs to get up early for work the next "
+"morning.      Sometimes Kate goes home too late, and has trouble "
+"concentrating at their apprenticeship.      But other times they go home too "
+"early and can't get to sleep.      Kate needs a product that can help them "
+"keep a consistent sleep schedule."
+msgstr ""
+
+#: static/interactives/persona-carousel/js/persona-carousel.js:59
+msgid "Consistently get a good night's sleep"
+msgstr ""
+
+#: static/interactives/persona-carousel/js/persona-carousel.js:60
+msgid ""
+"Be able to time their departure from choir so that they get just the right "
+"amount of practice and the right amount of sleep."
+msgstr ""
+
+#: static/interactives/persona-carousel/js/persona-carousel.js:63
+msgid "Gets so engrossed in their singing that they forget to go home on time."
+msgstr ""
+
+#: static/interactives/persona-carousel/js/persona-carousel.js:64
+msgid ""
+"But if they go home early they get easily distracted, and find it hard to "
+"fall asleep."
+msgstr ""
+
+#: static/interactives/persona-carousel/js/persona-carousel.js:86
+msgid "Goals:"
+msgstr ""
+
+#: static/interactives/persona-carousel/js/persona-carousel.js:87
+msgid "Frustrations:"
+msgstr ""
+
+#: static/interactives/picture-memory/js/picture-memory.js:2
+msgid "backpack"
+msgstr ""
+
+#: static/interactives/picture-memory/js/picture-memory.js:3
+msgid "banana"
+msgstr ""
+
+#: static/interactives/picture-memory/js/picture-memory.js:4
+msgid "bike"
+msgstr ""
+
+#: static/interactives/picture-memory/js/picture-memory.js:5
+msgid "book"
+msgstr ""
+
+#: static/interactives/picture-memory/js/picture-memory.js:6
+msgid "cactus"
+msgstr ""
+
+#: static/interactives/picture-memory/js/picture-memory.js:7
+msgid "calculator"
+msgstr ""
+
+#: static/interactives/picture-memory/js/picture-memory.js:8
+msgid "camera"
+msgstr ""
+
+#: static/interactives/picture-memory/js/picture-memory.js:9
+msgid "chair"
+msgstr ""
+
+#: static/interactives/picture-memory/js/picture-memory.js:10
+msgid "mug"
+msgstr ""
+
+#: static/interactives/picture-memory/js/picture-memory.js:11
+msgid "duck"
+msgstr ""
+
+#: static/interactives/picture-memory/js/picture-memory.js:12
+msgid "envelope"
+msgstr ""
+
+#: static/interactives/picture-memory/js/picture-memory.js:13
+msgid "football"
+msgstr ""
+
+#: static/interactives/picture-memory/js/picture-memory.js:14
+msgid "forklift"
+msgstr ""
+
+#: static/interactives/picture-memory/js/picture-memory.js:15
+msgid "glasses"
+msgstr ""
+
+#: static/interactives/picture-memory/js/picture-memory.js:16
+msgid "guitar"
+msgstr ""
+
+#: static/interactives/picture-memory/js/picture-memory.js:17
+msgid "scissors"
+msgstr ""
+
+#: static/interactives/picture-memory/js/picture-memory.js:18
+msgid "sheep"
+msgstr ""
+
+#: static/interactives/picture-memory/js/picture-memory.js:19
+msgid "sock"
+msgstr ""
+
+#: static/interactives/picture-memory/js/picture-memory.js:20
+msgid "teapot"
+msgstr ""
+
+#: static/interactives/picture-memory/js/picture-memory.js:21
+msgid "t-shirt"
+msgstr ""
+
+#: static/interactives/picture-memory/js/picture-memory.js:22
+msgid "toothbrush"
+msgstr ""
+
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:181
+msgid "Colour Threshold Interactive"
+msgstr ""
+
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:182
+msgid ""
+"Create an expression to threshold the image. Any pixels that match the     "
+"expression you come up with will be turned white, and everything else will "
+"become black. What happens      when you threshold on different values or "
+"for different colours? Can you use this technique to identify      regions "
+"of similar colour in the image?"
+msgstr ""
+
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:189
+msgid "Threshold Interactive"
+msgstr ""
+
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:189
+msgid ""
+"The image has been converted to greyscale by taking the average of the red, "
+"blue and green values for      each pixel. Choose a threshold between 0 and "
+"255 and transform this picture into black and white to       identify "
+"regions and edges."
+msgstr ""
+
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:197
+msgid "Picture Blurring Interactive"
+msgstr ""
+
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:197
+msgid ""
+"Experiment with using different blurs to try process the noise. The mean "
+"blur will take the mean values of the pixels surrounding,      the median "
+"will take the median value, the gaussian blurs according to a gaussian "
+"distribution, and the custom blur allows you to give weights to different "
+"surrounding pixels.      How do the different types of blur effect the "
+"image? What happens when you change values in the custom grid? Experiment "
+"with both greyscale and rgb images.        What would happen if every value "
+"in the grid was 0 except one? How come?       <br><br>       If you find "
+"that the scroll and zoom are slow with a blur applied, try removing the "
+"blur, zooming or scrolling and       then reapplying the blur."
+msgstr ""
+
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:211
+msgid "Edge Detection Interactive"
+msgstr ""
+
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:211
+msgid ""
+"Find an edge in the graph and zoom right in. What information could a "
+"computer use from the values of the pixels surrounding the edge to find "
+"it?    <br><br>    We have supplied you with some grids to apply to the "
+"image to transorm it. The numbers in the grids are multiplied against the "
+"values of the pixels that surround each point. What numbers    can you use "
+"in these boxes to discover edges?     <br><br>    Below the grids is a "
+"thresholder which you can apply to the result. What results can you get if "
+"you combine these two filters to the image? There is an option    for "
+"outputting the absolute value of the result of the multiplication grid. What "
+"does checking and unchecking this box change about the result? What happens "
+"if you apply multiple grids?"
+msgstr ""
+
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:221
+msgid "Brightness Interactive"
+msgstr ""
+
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:221
+msgid ""
+"The image has been converted to greyscale by taking the average of the red, "
+"blue and green values for      each pixel."
+msgstr ""
+
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:248
+msgid "Number of grids:"
+msgstr ""
+
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:274
+msgid "Apply grids"
+msgstr ""
+
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:281
+msgid "Restore Image"
+msgstr ""
+
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:287
+msgid ""
+"Try adding a threshold to the picture once the transformation has taken "
+"place to highlight the edges you find."
+msgstr ""
+
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:292
+msgid "Apply grids and Threshold"
+msgstr ""
+
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:304
+msgid ""
+"Sometimes images have noise, and applying a blur can be a helpful way to "
+"preprocess  an image that contains noise before using other Computer Vision "
+"algorithms. Use this to add some \"salt and pepper\" noise to the image and "
+"then  observe what happens when you apply the blurs to a noisy image. "
+"Perhaps you have a noisy image that you could upload yourself?"
+msgstr ""
+
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:308
+msgid "Amount of noise to add (%): "
+msgstr ""
+
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:315
+msgid "Add noise"
+msgstr ""
+
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:320
+msgid "Remove noise"
+msgstr ""
+
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:324
+msgid ""
+"<span id='freeze-warning'>Warning:</span> The 'add noise'  button will "
+"freeze the interactive while it is performing calculations"
+msgstr ""
+
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:335
+msgid "Type of blur:"
+msgstr ""
+
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:357
+msgid "Apply blur"
+msgstr ""
+
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:364
+msgid "Remove blur"
+msgstr ""
+
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:372
+msgid ""
+"Note: The 'AND' operator will always be evaluated before the 'OR' operator."
+msgstr ""
+
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:401
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:417
+msgid "Apply Threshold"
+msgstr ""
+
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:405
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:421
+msgid "Remove Threshold"
+msgstr ""
+
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:430
+msgid "Greyscale or rgb:"
+msgstr ""
+
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:444
+msgid "Grid size:"
+msgstr ""
+
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:458
+msgid "Threshold: "
+msgstr ""
+
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:563
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:575
+msgid "Use absolute value of result: "
+msgstr ""
+
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:902
+msgid "Or choose from the following supplied images:"
+msgstr ""
+
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:997
+msgid "Your image has been resized for this interactive to "
+msgstr ""
+
+#: static/interactives/python-interpreter/js/python-interpreter.js:5
+msgid "Welcome to computer programming, student"
+msgstr ""
+
+#: static/interactives/regular-expression-filter/js/regular-expression-filter.js:77
+msgid "Matched %(matched)s out of %(total)s lower case words"
+msgstr ""
+
+#: static/interactives/rsa-decryption/js/rsa-decryption.js:31
+#: static/interactives/rsa-encryption/js/rsa-encryption.js:18
+msgid "Detected a public PKCS key; mode and format scheme set appropriately."
+msgstr ""
+
+#: static/interactives/rsa-decryption/js/rsa-decryption.js:32
+#: static/interactives/rsa-encryption/js/rsa-encryption.js:19
+msgid "Detected a private PKCS key; mode and format scheme set appropriately."
+msgstr ""
+
+#: static/interactives/rsa-decryption/js/rsa-decryption.js:33
+#: static/interactives/rsa-encryption/js/rsa-encryption.js:20
+msgid ""
+"Detected a public key in the components format; mode and format scheme set "
+"appropriately."
+msgstr ""
+
+#: static/interactives/rsa-decryption/js/rsa-decryption.js:34
+#: static/interactives/rsa-encryption/js/rsa-encryption.js:21
+msgid ""
+"Detected a private key in the components format; mode and format scheme set "
+"appropriately."
+msgstr ""
+
+#: static/interactives/rsa-decryption/js/rsa-decryption.js:35
+msgid "Detected a public key, mode changed to public key decryption."
+msgstr ""
+
+#: static/interactives/rsa-decryption/js/rsa-decryption.js:36
+msgid "Detected a private key, mode changed to private key decryption."
+msgstr ""
+
+#: static/interactives/rsa-decryption/js/rsa-decryption.js:37
+msgid "Decryption successful!"
+msgstr ""
+
+#: static/interactives/rsa-decryption/js/rsa-decryption.js:38
+#: static/interactives/rsa-encryption/js/rsa-encryption.js:26
+msgid ""
+"Detected a problem with the given key, ensure it is entered exactly as it "
+"was given."
+msgstr ""
+
+#: static/interactives/rsa-decryption/js/rsa-decryption.js:39
+#: static/interactives/rsa-encryption/js/rsa-encryption.js:27
+msgid ""
+"Detected a problem with the given 'p' component, ensure it is entered "
+"exactly as it was given."
+msgstr ""
+
+#: static/interactives/rsa-decryption/js/rsa-decryption.js:40
+#: static/interactives/rsa-encryption/js/rsa-encryption.js:28
+msgid ""
+"Detected a problem with the given 'q' component, ensure it is entered "
+"exactly as it was given."
+msgstr ""
+
+#: static/interactives/rsa-decryption/js/rsa-decryption.js:41
+#: static/interactives/rsa-encryption/js/rsa-encryption.js:29
+msgid ""
+"Detected a problem with the given 'd' component, ensure it is entered "
+"exactly as it was given."
+msgstr ""
+
+#: static/interactives/rsa-decryption/js/rsa-decryption.js:42
+msgid "Decryption failed! There is a problem with the given key or data."
+msgstr ""
+
+#: static/interactives/rsa-decryption/js/rsa-decryption.js:43
+msgid "Decryption failed! Cause unidentified."
+msgstr ""
+
+#: static/interactives/rsa-encryption/js/rsa-encryption.js:22
+msgid "Detected a public key, mode changed to public key encryption."
+msgstr ""
+
+#: static/interactives/rsa-encryption/js/rsa-encryption.js:23
+msgid "Detected a private key, mode changed to private key encryption."
+msgstr ""
+
+#: static/interactives/rsa-encryption/js/rsa-encryption.js:24
+msgid "Encryption successful! Result displayed in base64."
+msgstr ""
+
+#: static/interactives/rsa-encryption/js/rsa-encryption.js:25
+msgid "Encryption successful! Result displayed in hexadecimal."
+msgstr ""
+
+#: static/interactives/rsa-encryption/js/rsa-encryption.js:30
+msgid "Encryption failed! Cause unidentified."
+msgstr ""
+
+#: static/interactives/rsa-encryption/js/rsa-encryption.js:32
+msgid "Encrypted message copied"
+msgstr ""
+
+#: static/interactives/rsa-key-generator/js/rsa-key-generator.js:4
+msgid "Public key copied"
+msgstr ""
+
+#: static/interactives/rsa-key-generator/js/rsa-key-generator.js:5
+msgid "Private key copied"
+msgstr ""
+
+#: static/interactives/run-length-encoding/js/run-length-encoding.js:53
 msgid "Please enter a value between 0 and 100"
 msgstr ""
 
-#: static/interactives/run-length-encoding/js/run-length-encoding.js:102
-msgid "Your numbers add up to a different number than the grid requires!"
+#: static/interactives/run-length-encoding/js/run-length-encoding.js:113
+#, javascript-format
+msgid ""
+"Your numbers on row %s add up to a different number than the grid requires!"
 msgstr ""
 
-#: static/interactives/run-length-encoding/js/run-length-encoding.js:109
+#: static/interactives/run-length-encoding/js/run-length-encoding.js:120
 msgid "You have a different number of lines than lines in the grid!"
+msgstr ""
+
+#: static/interactives/scene-editor/js/scene-editor.js:95
+msgid "Transformation:"
+msgstr ""
+
+#: static/interactives/scene-editor/js/scene-editor.js:99
+msgid "Translation:"
+msgstr ""
+
+#: static/interactives/scene-editor/js/scene-editor.js:106
+msgid "Multiple matrices and vectors:"
+msgstr ""
+
+#: static/interactives/scene-editor/js/scene-editor.js:393
+msgid "Sphere "
+msgstr ""
+
+#: static/interactives/scene-editor/js/scene-editor.js:405
+msgid "Cube "
+msgstr ""
+
+#: static/interactives/scene-editor/js/scene-editor.js:417
+msgid "Cone "
+msgstr ""
+
+#: static/interactives/scene-editor/js/scene-editor.js:433
+msgid "Teapot "
 msgstr ""
 
 #: static/interactives/searching-algorithms/js/searching-algorithms.js:85
@@ -235,29 +1537,157 @@ msgstr ""
 msgid "Number of guesses used: %(num_guesses)s"
 msgstr ""
 
-#: static/interactives/sorting-algorithms/js/sorting-algorithms.js:22
-#: static/interactives/sorting-algorithms/js/sorting-algorithms.js:162
+#: static/interactives/sorting-algorithms/js/sorting-algorithms.js:30
+#: static/interactives/sorting-algorithms/js/sorting-algorithms.js:227
 msgid "Show second row of boxes"
 msgstr ""
 
-#: static/interactives/sorting-algorithms/js/sorting-algorithms.js:120
-msgid "Number Of Comparisons: %(comparisons)s"
+#: static/interactives/sorting-algorithms/js/sorting-algorithms.js:182
+#: static/interactives/sorting-algorithms/js/sorting-algorithms.js:272
+msgid "Number of comparisons: %(comparisons)s"
 msgstr ""
 
-#: static/interactives/sorting-algorithms/js/sorting-algorithms.js:132
+#: static/interactives/sorting-algorithms/js/sorting-algorithms.js:196
 msgid "You need to sort all the boxes before checking!"
 msgstr ""
 
-#: static/interactives/sorting-algorithms/js/sorting-algorithms.js:145
-msgid "The boxes are in order!"
+#: static/interactives/sorting-algorithms/js/sorting-algorithms.js:208
+msgid "The boxes are in order, congratulations!"
 msgstr ""
 
-#: static/interactives/sorting-algorithms/js/sorting-algorithms.js:148
-msgid "The boxes are not in order!"
+#: static/interactives/sorting-algorithms/js/sorting-algorithms.js:211
+msgid "The boxes are not in order, try again!"
 msgstr ""
 
-#: static/interactives/sorting-algorithms/js/sorting-algorithms.js:160
+#: static/interactives/sorting-algorithms/js/sorting-algorithms.js:225
 msgid "Hide second row of boxes"
+msgstr ""
+
+#: static/interactives/training-ground/js/html-table.js:1
+msgid "Sticks<br>remaining:"
+msgstr ""
+
+#: static/interactives/training-ground/js/html-table.js:2
+msgid "Chance AI picks (%):"
+msgstr ""
+
+#: static/interactives/training-ground/js/html-table.js:3
+msgid "Nathaniel's neural network:"
+msgstr ""
+
+#: static/interactives/training-ground/js/html-table.js:5
+msgid "1 stick"
+msgstr ""
+
+#: static/interactives/training-ground/js/html-table.js:6
+msgid "2 sticks"
+msgstr ""
+
+#: static/interactives/training-ground/js/html-table.js:7
+msgid "3 sticks"
+msgstr ""
+
+#: static/interactives/training-ground/js/training-ground.js:45
+msgid "Nathaniel wins"
+msgstr ""
+
+#: static/interactives/training-ground/js/training-ground.js:46
+msgid "You win!"
+msgstr ""
+
+#: static/interactives/training-ground/js/training-ground.js:47
+msgid "Your turn."
+msgstr ""
+
+#: static/interactives/training-ground/js/training-ground.js:48
+msgid "Nathaniel is thinking."
+msgstr ""
+
+#: static/interactives/training-ground/js/training-ground.js:49
+msgid "Simulating games<br>(smart opponent)"
+msgstr ""
+
+#: static/interactives/training-ground/js/training-ground.js:50
+msgid "Simulating games<br>(random opponent)"
+msgstr ""
+
+#: static/interactives/training-ground/js/training-ground.js:51
+msgid "Simulating games<br>(against itself)"
+msgstr ""
+
+#: static/interactives/training-ground/js/training-ground.js:52
+msgid "Simulations finished"
+msgstr ""
+
+#: static/interactives/training-ground/js/training-ground.js:53
+msgid "Set the initial parameters below, then hit start"
+msgstr ""
+
+#: static/interactives/training-ground/js/training-ground.js:54
+msgid "You start, how many sticks will you remove?"
+msgstr ""
+
+#: static/interactives/training-ground/js/training-ground.js:55
+msgid "Always"
+msgstr ""
+
+#: static/interactives/training-ground/js/training-ground.js:56
+msgid "Never"
+msgstr ""
+
+#: static/interactives/training-ground/js/training-ground.js:495
+msgid "Nathaniel chose 1 stick."
+msgid_plural "Nathaniel chose %(num_sticks)s sticks."
+msgstr[0] ""
+msgstr[1] ""
+
+#: static/interactives/trainsylvania-planner/js/trainsylvania-planner.js:6
+#: static/interactives/trainsylvania/js/trainsylvania.js:8
+msgid "Central Station"
+msgstr ""
+
+#: static/interactives/trainsylvania-planner/js/trainsylvania-planner.js:7
+#: static/interactives/trainsylvania/js/trainsylvania.js:9
+msgid "City Mall Station"
+msgstr ""
+
+#: static/interactives/trainsylvania-planner/js/trainsylvania-planner.js:8
+#: static/interactives/trainsylvania/js/trainsylvania.js:10
+msgid "East Station"
+msgstr ""
+
+#: static/interactives/trainsylvania-planner/js/trainsylvania-planner.js:9
+#: static/interactives/trainsylvania/js/trainsylvania.js:11
+msgid "Railington Station"
+msgstr ""
+
+#: static/interactives/trainsylvania-planner/js/trainsylvania-planner.js:10
+#: static/interactives/trainsylvania/js/trainsylvania.js:12
+msgid "Midway Station"
+msgstr ""
+
+#: static/interactives/trainsylvania-planner/js/trainsylvania-planner.js:11
+#: static/interactives/trainsylvania/js/trainsylvania.js:13
+msgid "North Station"
+msgstr ""
+
+#: static/interactives/trainsylvania-planner/js/trainsylvania-planner.js:12
+#: static/interactives/trainsylvania/js/trainsylvania.js:14
+msgid "South Station"
+msgstr ""
+
+#: static/interactives/trainsylvania-planner/js/trainsylvania-planner.js:13
+#: static/interactives/trainsylvania/js/trainsylvania.js:15
+msgid "Suburbopolis Station"
+msgstr ""
+
+#: static/interactives/trainsylvania-planner/js/trainsylvania-planner.js:14
+#: static/interactives/trainsylvania/js/trainsylvania.js:16
+msgid "West Station"
+msgstr ""
+
+#: static/interactives/trainsylvania-planner/js/trainsylvania-planner.js:45
+msgid "You will end up at"
 msgstr ""
 
 #: static/interactives/unicode-length/js/unicode-length.js:13
