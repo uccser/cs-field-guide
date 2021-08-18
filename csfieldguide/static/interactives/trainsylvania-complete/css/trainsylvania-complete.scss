@@ -1,7 +1,9 @@
 // This is so damn sensitive that we're just going to make the small version
 
 .trainsylvania-complete {
+    position: relative;
     max-width: 500px;
+    min-width: 500px;
     font-size: 10pt;
     padding-bottom: 20px;
     line-height: 10pt;
@@ -17,8 +19,10 @@
     max-height: 40px;
 }
 
-svg {
-    transform: translate(0px, -300px);
+#map {
+    position: absolute;
+    top: -50px;
+    left: 15px;
 }
 
 .arrow {
@@ -63,24 +67,4 @@ svg {
 
 .t-c-south {
     transform: translate(-25px, 20px);
-}
-
-.too-small {
-    display: none;
-    font-size: 14pt;
-    text-align: center;
-}
-
-.solutionimg {
-    max-width: 450px;
-}
-
-@media screen and (max-width: 500px) {
-    .trainsylvania-complete {
-        display: none;
-    }
-
-    .too-small {
-        display: block;
-    }
 }

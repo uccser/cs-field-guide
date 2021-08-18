@@ -1,0 +1,7 @@
+# PostgreSQL - Local
+
+POSTGRES_HOST=postgres
+POSTGRES_PORT=5432
+POSTGRES_DB=cs_field_guide
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=FSj3f02fj2297f2nsdf

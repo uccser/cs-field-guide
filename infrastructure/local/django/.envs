@@ -1,0 +1,4 @@
+# Django - Local
+
+DJANGO_SETTINGS_MODULE=config.settings.local
+INCLUDE_INCONTEXT_L10N=True

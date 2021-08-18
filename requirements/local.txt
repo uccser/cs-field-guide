@@ -2,9 +2,5 @@
 -r base.txt
 -r test.txt
 
-# Documentation
-sphinx==3.1.1
-sphinx-rtd-theme==0.4.3
-
 # Debugging Tools
-django-debug-toolbar==2.2
+django-debug-toolbar==3.2.2
