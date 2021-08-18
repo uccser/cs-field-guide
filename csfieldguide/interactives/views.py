@@ -88,6 +88,8 @@ def thumbnail_json(request, **kwargs):
 
     if request.GET.get("all_languages", False):
         languages = settings.DEFAULT_LANGUAGES
+    elif request.GET.get("language", False):
+        languages = [(request.GET.get("language"), "")]
     else:
         languages = [("en", "")]
 

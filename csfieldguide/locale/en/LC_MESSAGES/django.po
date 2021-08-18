@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-06 19:45+0000\n"
+"POT-Creation-Date: 2021-08-18 04:03+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: config/settings/base.py:124
+#: config/settings/base.py:126
 msgid "Translation mode"
 msgstr ""
 
-#: config/settings/base.py:130
+#: config/settings/base.py:132
 msgid "Translation mode (Bi-directional)"
 msgstr ""
 
@@ -45,38 +45,355 @@ msgstr ""
 msgid "Home page"
 msgstr ""
 
-#: templates/404.html:26 templates/base.html:79 templates/base.html:84
-#: templates/base.html:214
+#: templates/404.html:26 templates/base.html:90 templates/base.html:95
+#: templates/base.html:241
 msgid "Search"
 msgstr ""
 
-#: templates/appendices/index.html:17 templates/base.html:172
+#: templates/appendices/about.html:6 templates/appendices/about.html:10
+#: templates/appendices/contributors.html:6 templates/appendices/index.html:17
+#: templates/appendices/sitemap.html:57 templates/base.html:186
+#: templates/general/index.html:36
 msgid "About"
 msgstr ""
 
-#: templates/appendices/index.html:23
-msgid "Changelog"
+#: templates/appendices/about.html:15
+msgid ""
+"The Computer Science Field Guide is a free online resource for teaching "
+"Computer Science to students.\n"
+"    This guide was initially developed as an online interactive textbook to "
+"support the new achievement standards in Computer Science that were being "
+"rolled out in New Zealand (2011-2013), and is now being adapted for use all "
+"over the world.\n"
+"    The New Zealand project started in 2012, with the first materials "
+"released to the public in 2013."
 msgstr ""
 
-#: templates/appendices/index.html:28
+#: templates/appendices/about.html:21
+msgid ""
+"This guide is free for you to copy, share and even modify.\n"
+"    It will also be downloadable as a PDF file (although it's recommended to "
+"read through the website because you can watch the videos and use the "
+"interactive activities).\n"
+"    The source material (all raw text, images, videos and interactive "
+"programs) is <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://"
+"github.com/uccser/cs-field-guide\">available on GitHub</a>."
+msgstr ""
+
+#: templates/appendices/about.html:27
+msgid ""
+"This guide is licenced under a <a target=\"_blank\" rel=\"noopener noreferrer"
+"\" href=\"http://creativecommons.org/licenses/by-sa/4.0/\">Creative Commons "
+"Attribution-ShareAlike licence</a>, which means that you are welcome to take "
+"copies and modify them.\n"
+"    If you do make improvements, we ask that you share those, and "
+"acknowledge this guide by linking back to our web site.\n"
+"    You can give away the guide (or any derivatives), use it for teaching, "
+"or use it for commerical purposes."
+msgstr ""
+
+#: templates/appendices/about.html:33
+msgid ""
+"The Computer Science Field Guide has been developed by the <a target=\"_blank"
+"\" rel=\"noopener noreferrer\" href=\"http://www.cosc.canterbury.ac.nz/"
+"research/RG/CSE/\">University of Canterbury Computer Science Education "
+"Research Group</a>, and has been funded by various generous groups.\n"
+"    A list of supporters is available above the footer of this page, and we "
+"welcome donations to support further work on the guide.\n"
+"    You can contact us at <a href=\"mailto:csse-education-"
+"research@canterbury.ac.nz\">csse-education-research@canterbury.ac.nz</a>."
+msgstr ""
+
+#: templates/appendices/about.html:39
+msgid ""
+"If you are a teacher (or involved in education), you can join the <a target="
+"\"_blank\" rel=\"noopener noreferrer\" href=\"https://groups.google.com/"
+"forum/?fromgroups#!forum/csfg-teachers\">CSFG teachers group</a> to receive "
+"updates.\n"
+"    You can access the teacher's version on the guide by using the link in "
+"the page footer."
+msgstr ""
+
+#: templates/appendices/about.html:43
+msgid "Press Contact Details"
+msgstr ""
+
+#: templates/appendices/about.html:47
+msgid "Project Lead"
+msgstr ""
+
+#: templates/appendices/base.html:6 templates/appendices/index.html:6
+#: templates/appendices/index.html:10 templates/appendices/sitemap.html:54
+#: templates/base.html:83
+msgid "Appendices"
+msgstr ""
+
+#: templates/appendices/base.html:10
+msgid "Appendix"
+msgstr ""
+
+#: templates/appendices/contributors.html:10 templates/appendices/index.html:32
+#: templates/appendices/sitemap.html:63
 msgid "Contributors"
 msgstr ""
 
-#: templates/appendices/index.html:33
+#: templates/appendices/contributors.html:14
+msgid ""
+"This project is the result of contributions from a large community of "
+"Computer Science education enthusiasts from all over the world."
+msgstr ""
+
+#: templates/appendices/contributors.html:16
+msgid "Project Leads"
+msgstr ""
+
+#: templates/appendices/contributors.html:18
+#: templates/appendices/contributors.html:19
+msgid "International Field Guide, co-founder"
+msgstr ""
+
+#: templates/appendices/contributors.html:20
+msgid "Project Manager"
+msgstr ""
+
+#: templates/appendices/contributors.html:23
+msgid "Software Development"
+msgstr ""
+
+#: templates/appendices/contributors.html:25
+msgid "Technical Lead"
+msgstr ""
+
+#: templates/appendices/contributors.html:32
+msgid "Interactive Development"
+msgstr ""
+
+#: templates/appendices/contributors.html:50
+msgid "Writers"
+msgstr ""
+
+#: templates/appendices/contributors.html:52
+msgid ""
+"Formal Languages, Compression, Human Computer Interaction, and Coding "
+"Introduction"
+msgstr ""
+
+#: templates/appendices/contributors.html:53
+msgid ""
+"NCEA Assessment Guides, Programming Languages, Data Representation, "
+"Compression, Encryption, Error Control, Artificial Intelligence, and "
+"Complexity and Tractability"
+msgstr ""
+
+#: templates/appendices/contributors.html:54
+msgid "Algorithms"
+msgstr ""
+
+#: templates/appendices/contributors.html:55
+#: templates/appendices/contributors.html:94
+msgid "Network Communication Protocols"
+msgstr ""
+
+#: templates/appendices/contributors.html:56
+#: templates/appendices/contributors.html:92
+msgid "Computer Vision"
+msgstr ""
+
+#: templates/appendices/contributors.html:57
+msgid "Computer Vision (Depth)"
+msgstr ""
+
+#: templates/appendices/contributors.html:58
+#: templates/appendices/contributors.html:61
+msgid "Computer Graphics"
+msgstr ""
+
+#: templates/appendices/contributors.html:59
+#: templates/appendices/contributors.html:60
+#: templates/appendices/contributors.html:84
+msgid "Software Engineering"
+msgstr ""
+
+#: templates/appendices/contributors.html:62
+msgid "Human Computer Interaction, Compression"
+msgstr ""
+
+#: templates/appendices/contributors.html:65
+msgid "Editors"
+msgstr ""
+
+#: templates/appendices/contributors.html:75
+msgid "Advisors"
+msgstr ""
+
+#: templates/appendices/contributors.html:83
+msgid ""
+"Artificial Intelligence, Complexity and Tractability, Data Representation, "
+"Compression, Error Control, and Encryption"
+msgstr ""
+
+#: templates/appendices/contributors.html:85
+#: templates/appendices/contributors.html:86
+#: templates/appendices/contributors.html:87
+#: templates/appendices/contributors.html:88
+msgid "Curriculum (NCEA)"
+msgstr ""
+
+#: templates/appendices/contributors.html:89
+#: templates/appendices/contributors.html:90
+msgid "Curriculum (AP-CSP)"
+msgstr ""
+
+#: templates/appendices/contributors.html:91
+msgid "Computer Graphics, Computer Vision"
+msgstr ""
+
+#: templates/appendices/contributors.html:93
+msgid "Network Communication Protocols, Encryption"
+msgstr ""
+
+#: templates/appendices/contributors.html:95
+msgid "Formal Languages"
+msgstr ""
+
+#: templates/appendices/contributors.html:96
+msgid "Programming Languages"
+msgstr ""
+
+#: templates/appendices/contributors.html:97
+#: templates/appendices/contributors.html:98
+msgid "Runestone Interactive"
+msgstr ""
+
+#: templates/appendices/contributors.html:107
+msgid "Translators"
+msgstr ""
+
+#: templates/appendices/contributors.html:109
+msgid ""
+"Translators are listed on our Crowdin page <a href=\"https://crowdin.com/"
+"project/cs-field-guide\">here"
+msgstr ""
+
+#: templates/appendices/contributors.html:112
+msgid "Other"
+msgstr ""
+
+#: templates/appendices/contributors.html:114
+msgid "Research"
+msgstr ""
+
+#: templates/appendices/contributors.html:116
+msgid "Interactive games and related material"
+msgstr ""
+
+#: templates/appendices/contributors.html:117
+msgid "Video production"
+msgstr ""
+
+#: templates/appendices/contributors.html:118
+msgid "Formal languages material"
+msgstr ""
+
+#: templates/appendices/contributors.html:119
+msgid "Illustrations"
+msgstr ""
+
+#: templates/appendices/contributors.html:122
+msgid "Community Contributors"
+msgstr ""
+
+#: templates/appendices/contributors.html:155
+msgid ""
+"<strong>Note:</strong> If there is an error in the list, please contact <a "
+"href=\"mailto:jack.morgan@canterbury.ac.nz\">Jack Morgan</a>"
+msgstr ""
+
+#: templates/appendices/contributors.html:157
+msgid "Acknowledgements"
+msgstr ""
+
+#: templates/appendices/contributors.html:159
+msgid ""
+"This project has grown out of a partnership for an international field guide "
+"to computing.\n"
+"    In the <a href=\"http://www.canterbury.ac.nz/\">University of "
+"Canterbury</a> CSSE department, it grew from the <a href=\"https://www."
+"csunplugged.org\">Computer Science Unplugged project</a> and the New Zealand "
+"Computer Science resource guides.\n"
+"    At the Naval Postgraduate School in Monterey, California, it grew from a "
+"project called <a href=\"http://nps.edu/Cebrowski/FGSC.html\">A Field Guide "
+"to the Science of Computation</a> and the <a href=\"http://denninginstitute."
+"com/pjd/GP/GP-site/welcome.html\">Great Principles of Computing project</a>, "
+"both led by Peter Denning."
+msgstr ""
+
+#: templates/appendices/contributors.html:165
+msgid ""
+"Funding for this online textbook has been provided by our sponsors listed at "
+"the end of this page.\n"
+"    In addition, countless hours of volunteer time have been contributed by "
+"those listed above.\n"
+"    Tim Bell prepared an initial draft of this material while visiting "
+"Huazhong University of Science and Technology, Wuhan, China, whom we thank "
+"for providing an excellent environment for writing\n"
+"    The project is based at the <a href=\"http://www.canterbury.ac.nz/"
+"\">University of Canterbury</a>, Christchurch, New Zealand; other authors "
+"are at <a href=\"http://www.victoria.ac.nz/\">Victoria University of "
+"Wellington</a>, New Zealand, and <a href=\"http://www.cam.ac.uk/\">Cambridge "
+"University</a>, UK."
+msgstr ""
+
+#: templates/appendices/contributors.html:172
+msgid ""
+"Partial funding for the US field guide project was provided by the US "
+"National Science Foundation under Grant No. 0938809."
+msgstr ""
+
+#: templates/appendices/index.html:22
+msgid "Documentation"
+msgstr ""
+
+#: templates/appendices/index.html:27 templates/appendices/sitemap.html:60
+msgid "Changelog"
+msgstr ""
+
+#: templates/appendices/index.html:37 templates/appendices/sitemap.html:37
+#: templates/base.html:80 templates/base.html:201
+#: templates/curriculum_guides/index.html:12 templates/general/index.html:66
 msgid "Curriculum Guides"
 msgstr ""
 
-#: templates/appendices/index.html:38 templates/base.html:220
+#: templates/appendices/index.html:42 templates/appendices/sitemap.html:66
+#: templates/base.html:247 templates/chapters/glossary.html:7
+#: templates/chapters/glossary.html:11
 msgid "Glossary"
 msgstr ""
 
-#: templates/appendices/index.html:43 templates/base.html:182
-#: templates/interactives/index.html:7
+#: templates/appendices/index.html:47 templates/appendices/sitemap.html:69
+#: templates/base.html:196 templates/general/index.html:81
+#: templates/interactives/index.html:8 templates/interactives/index.html:12
 msgid "Interactives"
 msgstr ""
 
-#: templates/base.html:16 templates/general/index.html:7
+#: templates/appendices/index.html:52 templates/appendices/sitemap.html:6
+#: templates/appendices/sitemap.html:10
+msgid "Sitemap"
+msgstr ""
+
+#: templates/appendices/sitemap.html:14
+msgid "All pages within the Computer Science Field Guide are listed here:"
+msgstr ""
+
+#: templates/appendices/sitemap.html:17 templates/base.html:16
+#: templates/general/index.html:6 templates/general/index.html:18
 msgid "Computer Science Field Guide"
+msgstr ""
+
+#: templates/appendices/sitemap.html:20 templates/base.html:77
+#: templates/base.html:191 templates/chapters/index.html:8
+#: templates/chapters/index.html:12 templates/general/index.html:51
+msgid "Chapters"
 msgstr ""
 
 #: templates/base.html:19
@@ -85,101 +402,219 @@ msgid ""
 "computer science"
 msgstr ""
 
-#: templates/base.html:48
+#: templates/base.html:50
 msgid "Language"
 msgstr ""
 
-#: templates/base.html:69 templates/base.html:177
-#: templates/chapters/index.html:8
-msgid "Chapters"
+#: templates/base.html:65
+msgid "Beta"
 msgstr ""
 
-#: templates/base.html:72
-msgid "Appendices"
-msgstr ""
-
-#: templates/base.html:149
+#: templates/base.html:163
 msgid ""
-"Looking for something for primary schools? Check out <a href=\"http://www."
-"csunplugged.org/\">CS Unplugged</a>."
+"Looking for something for primary schools? Check out <a target=\"_blank\" "
+"rel=\"noopener noreferrer\" href=\"http://www.csunplugged.org/\">CS "
+"Unplugged</a>."
 msgstr ""
 
-#: templates/base.html:161
+#: templates/base.html:175
 msgid ""
 "The Computer Science Field Guide is an online interactive resource for high "
 "school students learning about computer science."
 msgstr ""
 
-#: templates/base.html:168
+#: templates/base.html:182
 msgid "Useful Links"
 msgstr ""
 
-#: templates/base.html:188
+#: templates/base.html:208
+msgid "Release Archive"
+msgstr ""
+
+#: templates/base.html:215
 msgid "Community"
 msgstr ""
 
-#: templates/base.html:192
+#: templates/base.html:219
 msgid "Twitter"
 msgstr ""
 
-#: templates/base.html:197
+#: templates/base.html:224
 msgid "YouTube"
 msgstr ""
 
-#: templates/base.html:202
+#: templates/base.html:229
 msgid "GitHub"
 msgstr ""
 
-#: templates/base.html:208
+#: templates/base.html:235
 msgid "Help"
 msgstr ""
 
-#: templates/base.html:225
+#: templates/base.html:252
 msgid "Feedback"
 msgstr ""
 
-#: templates/base.html:260
-msgid ""
-"The Computer Science Field Guide material is open source on <a href="
-"\"https://github.com/uccser/cs-field-guide\">GitHub</a>, and this website's "
-"content is shared under a <a href=\"https://creativecommons.org/licenses/by-"
-"sa/4.0/\">Creative Commons Attribution-ShareAlike 4.0 International license</"
-"a>. The Computer Science Field Guide is a project by the <a href=\"http://"
-"www.cosc.canterbury.ac.nz/research/RG/CSE/\">Computer Science Education "
-"Research Group</a> at the <a href=\"http://www.canterbury.ac.nz/"
-"\">University of Canterbury</a>, New Zealand. Icons provided generously by "
-"<a href=\"https://icons8.com/\">icons8</a>."
+#: templates/base.html:261 templates/general/index.html:101
+msgid "Switch to student mode"
 msgstr ""
 
-#: templates/base.html:284
+#: templates/base.html:265 templates/general/index.html:107
+msgid "Switch to teacher mode"
+msgstr ""
+
+#: templates/base.html:291
+msgid ""
+"The Computer Science Field Guide material is open source on <a target="
+"\"_blank\" rel=\"noopener noreferrer\" href=\"https://github.com/uccser/cs-"
+"field-guide\">GitHub</a>, and this website's content is shared under a <a "
+"target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://creativecommons."
+"org/licenses/by-sa/4.0/\">Creative Commons Attribution-ShareAlike 4.0 "
+"International license</a>. The Computer Science Field Guide is a project by "
+"the <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"http://www.cosc."
+"canterbury.ac.nz/research/RG/CSE/\">Computer Science Education Research "
+"Group</a> at the <a target=\"_blank\" rel=\"noopener noreferrer\" href="
+"\"http://www.canterbury.ac.nz/\">University of Canterbury</a>, New Zealand. "
+"Icons provided generously by <a target=\"_blank\" rel=\"noopener noreferrer"
+"\" href=\"https://icons8.com/\">icons8</a>."
+msgstr ""
+
+#: templates/base.html:322
 #, python-format
 msgid "This definition is not available in %(language)s, sorry!"
 msgstr ""
 
-#: templates/base.html:291
+#: templates/base.html:329 templates/interactives/cfg-parsing-challenge.html:73
+#: templates/interactives/matrix-simplifier.html:172
+#: templates/interactives/matrix-simplifier.html:201
 msgid "Close"
 msgstr ""
 
-#: templates/chapters/chapter_section.html:46
-msgid "Table of contents"
+#: templates/chapters/chapter.html:23
+msgid "Introduction"
+msgstr ""
+
+#: templates/chapters/chapter.html:35
+#: templates/chapters/chapter_section.html:41
+#: templates/chapters/chapter_section.html:49
+#: templates/curriculum_guides/curriculum_guide_section.html:37
+msgid "Next:"
+msgstr ""
+
+#: templates/chapters/chapter.html:47
+msgid "Chapter sections"
+msgstr ""
+
+#: templates/chapters/chapter_section.html:32
+#: templates/curriculum_guides/curriculum_guide_section.html:32
+msgid "Previous:"
 msgstr ""
 
 #: templates/chapters/index.html:17
 msgid "The following chapters cover key topics within Computer Science."
 msgstr ""
 
-#: templates/general/index.html:19
-msgid "Computer Science<br>Field Guide"
+#: templates/chapters/index.html:34
+msgid "No chapters are available."
 msgstr ""
 
-#: templates/general/index.html:24
+#: templates/curriculum_guides/curriculum_guide_section.html:46
+msgid "Table of contents"
+msgstr ""
+
+#: templates/curriculum_guides/index.html:8
+msgid "Curiculum Guides"
+msgstr ""
+
+#: templates/curriculum_guides/index.html:18
+msgid ""
+"We currently provide guides for using the Computer Science Field Guide in "
+"the following curricula.\n"
+"    We aim to provide guides for curricula all over the world, to aid "
+"educators and students on how to teach and learn Computer Science using the "
+"Computer Science Field Guide."
+msgstr ""
+
+#: templates/curriculum_guides/index.html:36
+msgid "No curriculum guides are available."
+msgstr ""
+
+#: templates/general/index.html:21
 msgid ""
 "An online interactive resource for high school students learning about "
 "computer science."
 msgstr ""
 
-#: templates/general/index.html:29
-msgid "View the chapters"
+#: templates/general/index.html:38
+msgid ""
+"You can find more information about the Computer Science Field Guide on the "
+"about page."
+msgstr ""
+
+#: templates/general/index.html:40
+msgid "View about page"
+msgstr ""
+
+#: templates/general/index.html:53
+msgid ""
+"The Computer Science Field Guide has many chapters to inform you of the "
+"various areas of Computer Science."
+msgstr ""
+
+#: templates/general/index.html:55
+msgid "View chapters"
+msgstr ""
+
+#: templates/general/index.html:68
+msgid ""
+"We provide guides for using the Computer Science Field Guide in different "
+"curricula."
+msgstr ""
+
+#: templates/general/index.html:70
+msgid "View curriculum guides"
+msgstr ""
+
+#: templates/general/index.html:83
+msgid ""
+"We have many interactives throughout the website that teach many different "
+"computer science concepts."
+msgstr ""
+
+#: templates/general/index.html:85
+msgid "View interactives"
+msgstr ""
+
+#: templates/general/index.html:97
+msgid "This is the teacher's guide!"
+msgstr ""
+
+#: templates/general/index.html:99
+msgid ""
+"The teacher version has extra information on how to use this guide for "
+"teaching."
+msgstr ""
+
+#: templates/general/index.html:103
+msgid "Teacher's guide"
+msgstr ""
+
+#: templates/general/index.html:105
+msgid ""
+"If you are an educator, we recommend reading the teacher version for extra "
+"information on how to use this guide for teaching."
+msgstr ""
+
+#: templates/general/index.html:119
+msgid "Open source"
+msgstr ""
+
+#: templates/general/index.html:121
+msgid "This project is completely open source and available on GitHub."
+msgstr ""
+
+#: templates/general/index.html:123
+msgid "View on GitHub"
 msgstr ""
 
 #: templates/generic/not-available-badge.html:4
@@ -198,39 +633,136 @@ msgstr ""
 msgid "Return to homepage "
 msgstr ""
 
-#: templates/interactives/action-menu.html:10
+#: templates/interactives/2d-shape-manipulations.html:9
+msgid "2D Shape Manipulations"
+msgstr ""
+
+#: templates/interactives/2d-shape-manipulations.html:12
+msgid "This interactive is designed for screens larger than 600x600px."
+msgstr ""
+
+#: templates/interactives/2d-shape-manipulations.html:39
+msgid "Select a configuration"
+msgstr ""
+
+#: templates/interactives/2d-shape-manipulations.html:43
+msgid "Coordinates: Translation"
+msgstr ""
+
+#: templates/interactives/2d-shape-manipulations.html:45
+msgid "Coordinates: Scaling"
+msgstr ""
+
+#: templates/interactives/2d-shape-manipulations.html:47
+msgid "Coordinates: Scaling and Translation"
+msgstr ""
+
+#: templates/interactives/2d-shape-manipulations.html:49
+msgid "Coordinates: Swapping Coordinates"
+msgstr ""
+
+#: templates/interactives/2d-shape-manipulations.html:51
+msgid "Matrix: Scaling"
+msgstr ""
+
+#: templates/interactives/2d-shape-manipulations.html:53
+msgid "Matrix: Rotation"
+msgstr ""
+
+#: templates/interactives/2d-shape-manipulations.html:55
+msgid "Matrix: Translation"
+msgstr ""
+
+#: templates/interactives/2d-shape-manipulations.html:57
+msgid "Matrix: Scaling and Translation I"
+msgstr ""
+
+#: templates/interactives/2d-shape-manipulations.html:59
+msgid "Matrix: Scaling and Translation II"
+msgstr ""
+
+#: templates/interactives/2d-shape-manipulations.html:61
+msgid "Matrix: Scaling and Translation III"
+msgstr ""
+
+#: templates/interactives/2d-shape-manipulations.html:63
+msgid "Matrix: Rotation and Translation"
+msgstr ""
+
+#: templates/interactives/2d-shape-manipulations.html:65
+msgid "Matrix: Multiple Transformation Challenge I"
+msgstr ""
+
+#: templates/interactives/2d-shape-manipulations.html:67
+msgid "Matrix: Multiple Transformation Challenge II"
+msgstr ""
+
+#: templates/interactives/2d-shape-manipulations.html:69
+msgid "Matrix: Single Matrix Challenge"
+msgstr ""
+
+#: templates/interactives/2d-shape-manipulations.html:109
+#: templates/interactives/2d-shape-manipulations.html:137
+msgid "Multiplication Matrix"
+msgstr ""
+
+#: templates/interactives/2d-shape-manipulations.html:124
+#: templates/interactives/2d-shape-manipulations.html:152
+msgid "Translation Matrix"
+msgstr ""
+
+#: templates/interactives/2d-shape-manipulations.html:166
+#: templates/interactives/2d-shape-manipulations.html:171
+msgid "Update"
+msgstr ""
+
+#: templates/interactives/2d-shape-manipulations.html:167
+#: templates/interactives/2d-shape-manipulations.html:172
+#: templates/interactives/cfg-parsing-challenge.html:106
+#: templates/interactives/checksum-calculator.html:74
+#: templates/interactives/city-trip.html:32
+#: templates/interactives/hex-background-colour.html:21
+#: templates/interactives/sorting-algorithms.html:115
+msgid "Reset"
+msgstr ""
+
+#: templates/interactives/2d-shape-manipulations.html:174
+msgid "Instant Update"
+msgstr ""
+
+#: templates/interactives/action-menu.html:11
 msgid "Menu"
 msgstr ""
 
-#: templates/interactives/action-menu.html:13
+#: templates/interactives/action-menu.html:14
 msgid "Pizza ordered!"
 msgstr ""
 
-#: templates/interactives/action-menu.html:14
+#: templates/interactives/action-menu.html:15
 msgid "Order a pizza"
 msgstr ""
 
-#: templates/interactives/action-menu.html:16
+#: templates/interactives/action-menu.html:17
 msgid "TV turned on!"
 msgstr ""
 
-#: templates/interactives/action-menu.html:17
+#: templates/interactives/action-menu.html:18
 msgid "Turn on TV"
 msgstr ""
 
-#: templates/interactives/action-menu.html:19
+#: templates/interactives/action-menu.html:20
 msgid "Nuclear attack launched... why did you do that?"
 msgstr ""
 
-#: templates/interactives/action-menu.html:20
+#: templates/interactives/action-menu.html:21
 msgid "Launch nuclear attack"
 msgstr ""
 
-#: templates/interactives/action-menu.html:22
+#: templates/interactives/action-menu.html:23
 msgid "Water boiled!"
 msgstr ""
 
-#: templates/interactives/action-menu.html:23
+#: templates/interactives/action-menu.html:24
 msgid "Boil Water"
 msgstr ""
 
@@ -242,49 +774,141 @@ msgstr ""
 msgid "Alarm already set for 09:00."
 msgstr ""
 
-#: templates/interactives/available-menu-items.html:9
+#: templates/interactives/algorithm-timer.html:10
+msgid "Algorithm Timer"
+msgstr ""
+
+#: templates/interactives/algorithm-timer.html:18
+msgid "Algorithm complexity:"
+msgstr ""
+
+#: templates/interactives/algorithm-timer.html:63
+msgid "Results:"
+msgstr ""
+
+#: templates/interactives/algorithm-timer.html:68
+msgid "Long form"
+msgstr ""
+
+#: templates/interactives/algorithm-timer.html:74
+msgid "Scientific"
+msgstr ""
+
+#: templates/interactives/algorithm-timer.html:86
+msgid "Number of items (n):"
+msgstr ""
+
+#: templates/interactives/algorithm-timer.html:89
+#: templates/interactives/algorithm-timer.html:105
+msgid "Please enter a positive integer."
+msgstr ""
+
+#: templates/interactives/algorithm-timer.html:90
+msgid "This number is too big for the chosen complexity!"
+msgstr ""
+
+#: templates/interactives/algorithm-timer.html:94
+msgid "Operations per second:"
+msgstr ""
+
+#: templates/interactives/algorithm-timer.html:97
+msgid "Please enter a positive number."
+msgstr ""
+
+#: templates/interactives/algorithm-timer.html:98
+#: templates/interactives/algorithm-timer.html:106
+msgid "This number is too big!"
+msgstr ""
+
+#: templates/interactives/algorithm-timer.html:102
+msgid "Processors:"
+msgstr ""
+
+#: templates/interactives/algorithm-timer.html:118
+msgid ""
+"\n"
+"        <span id='complexity-chosen'>n&sup2;</span> operations would take: \n"
+"        "
+msgstr ""
+
+#: templates/interactives/algorithm-timer.html:134
+msgid "Nanoseconds"
+msgstr ""
+
+#: templates/interactives/algorithm-timer.html:140
+msgid "Microseconds"
+msgstr ""
+
+#: templates/interactives/algorithm-timer.html:146
+msgid "Milliseconds"
+msgstr ""
+
+#: templates/interactives/algorithm-timer.html:152
+msgid "Seconds"
+msgstr ""
+
+#: templates/interactives/algorithm-timer.html:158
+msgid "Minutes"
+msgstr ""
+
+#: templates/interactives/algorithm-timer.html:164
+msgid "Hours"
+msgstr ""
+
+#: templates/interactives/algorithm-timer.html:170
+msgid "Days"
+msgstr ""
+
+#: templates/interactives/algorithm-timer.html:176
+msgid "Years"
+msgstr ""
+
+#: templates/interactives/algorithm-timer.html:182
+msgid "Centuries"
+msgstr ""
+
+#: templates/interactives/angle-of-view-calculator.html:8
+msgid "Calculate the angle of view"
+msgstr ""
+
+#: templates/interactives/available-menu-items.html:11
 msgid "Available Menu Items"
 msgstr ""
 
-#: templates/interactives/available-menu-items.html:12
+#: templates/interactives/available-menu-items.html:14
 msgid "Error: Answers unavailable!"
 msgstr ""
 
-#: templates/interactives/available-menu-items.html:13
+#: templates/interactives/available-menu-items.html:15
 msgid "Download answers"
 msgstr ""
 
-#: templates/interactives/available-menu-items.html:15
+#: templates/interactives/available-menu-items.html:17
 msgid "Error: YouTube unavailable!"
 msgstr ""
 
-#: templates/interactives/available-menu-items.html:16
+#: templates/interactives/available-menu-items.html:18
 msgid "Watch YouTube videos"
 msgstr ""
 
-#: templates/interactives/available-menu-items.html:18
+#: templates/interactives/available-menu-items.html:20
 msgid "Error: Facebook unavailable!"
 msgstr ""
 
-#: templates/interactives/available-menu-items.html:19
+#: templates/interactives/available-menu-items.html:21
 msgid "Open Facebook"
 msgstr ""
 
-#: templates/interactives/available-menu-items.html:21
+#: templates/interactives/available-menu-items.html:23
 msgid "Error: Games unavailable!"
 msgstr ""
 
-#: templates/interactives/available-menu-items.html:22
+#: templates/interactives/available-menu-items.html:24
 msgid "Play games"
 msgstr ""
 
 #: templates/interactives/base-calculator.html:8
-msgid "Base"
-msgstr ""
-
-#: templates/interactives/base-calculator.html:8
-#: templates/interactives/binary-mode-calculator.html:10
-msgid "Calculator"
+msgid "Base <span id=\"base-value\"></span> Calculator"
 msgstr ""
 
 #: templates/interactives/big-number-calculator.html:11
@@ -292,7 +916,6 @@ msgid "Big Number Calculator"
 msgstr ""
 
 #: templates/interactives/big-number-calculator.html:15
-#: templates/interactives/trig-function-calculator.html:15
 msgid "X Value:"
 msgstr ""
 
@@ -328,25 +951,83 @@ msgstr ""
 msgid "Clear"
 msgstr ""
 
-#: templates/interactives/big-number-calculator.html:36
+#: templates/interactives/big-number-calculator.html:37
+msgid "Difficult calculations may take up to 5 seconds to complete."
+msgstr ""
+
+#: templates/interactives/big-number-calculator.html:39
 #: templates/interactives/trig-function-calculator.html:26
 msgid "Result:"
 msgstr ""
 
-#: templates/interactives/binary-cards.html:10
+#: templates/interactives/bin-packing.html:13
+msgid ""
+"Enter the comma separated item sizes. The sizes should be between 1 and 100."
+msgstr ""
+
+#: templates/interactives/bin-packing.html:17
+msgid "e.g 12,57,100,10,1,23"
+msgstr ""
+
+#: templates/interactives/bin-packing.html:20
+msgid "Done"
+msgstr ""
+
+#: templates/interactives/bin-packing.html:21
+#: templates/interactives/confused-buttons.html:9
+#: templates/interactives/confusing-error.html:16
+msgid "Cancel"
+msgstr ""
+
+#: templates/interactives/bin-packing.html:30
+msgid "Let's pack some bins!"
+msgstr ""
+
+#: templates/interactives/bin-packing.html:31
+msgid ""
+"The goal is to pack the items on the left into the smallest number of bins "
+"possible."
+msgstr ""
+
+#: templates/interactives/bin-packing.html:34
+msgid "New Game"
+msgstr ""
+
+#: templates/interactives/bin-packing.html:35
+msgid "Set Item Sizes (Advanced)"
+msgstr ""
+
+#: templates/interactives/bin-packing.html:44
+msgid "Add Bin"
+msgstr ""
+
+#: templates/interactives/bin-packing.html:45
+msgid "Unpack All"
+msgstr ""
+
+#: templates/interactives/binary-cards.html:11
 msgid "Binary Cards"
 msgstr ""
 
-#: templates/interactives/binary-cards.html:16
+#: templates/interactives/binary-cards.html:17
 msgid "Flip all card sides to:"
 msgstr ""
 
-#: templates/interactives/binary-cards.html:17
+#: templates/interactives/binary-cards.html:18
 msgid "Black"
 msgstr ""
 
-#: templates/interactives/binary-cards.html:18
+#: templates/interactives/binary-cards.html:19
 msgid "White"
+msgstr ""
+
+#: templates/interactives/binary-cards.html:22
+msgid "Cards to show:"
+msgstr ""
+
+#: templates/interactives/binary-mode-calculator.html:10
+#: templates/interactives/picture-memory.html:138
+msgid "Calculator"
 msgstr ""
 
 #: templates/interactives/binary-mode-calculator.html:19
@@ -358,7 +1039,63 @@ msgid "Mode: "
 msgstr ""
 
 #: templates/interactives/binary-mode-calculator.html:28
+#: templates/interactives/unicode-binary.html:23
 msgid "Binary"
+msgstr ""
+
+#: templates/interactives/box-rotation.html:9
+#: templates/interactives/box-rotation.html:53
+#: templates/interactives/box-translation.html:9
+#: templates/interactives/box-translation.html:52
+#: templates/interactives/high-score-boxes.html:26
+#: templates/interactives/picture-memory.html:245
+msgid "Restart"
+msgstr ""
+
+#: templates/interactives/box-rotation.html:13
+msgid ""
+"The key to unlocking this box is in three coloured symbols. Find out which "
+"by rotating the box about its axes."
+msgstr ""
+
+#: templates/interactives/box-rotation.html:32
+#: templates/interactives/box-translation.html:31
+msgid "Which of the symbols is coloured on the box?"
+msgstr ""
+
+#: templates/interactives/box-rotation.html:46
+#: templates/interactives/box-translation.html:45
+#: templates/interactives/data-visualisation.html:33
+#: templates/interactives/high-score-boxes.html:20
+#: templates/interactives/number-memory.html:20
+#: templates/interactives/picture-memory.html:241
+msgid "Submit"
+msgstr ""
+
+#: templates/interactives/box-rotation.html:54
+#: templates/interactives/box-translation.html:53
+msgid "Check Key"
+msgstr ""
+
+#: templates/interactives/box-translation.html:12
+msgid ""
+"The key to unlocking this box is in three coloured symbols. Find out which "
+"by moving the box around."
+msgstr ""
+
+#: templates/interactives/braille-alphabet.html:8
+msgid "Braille Alphabet"
+msgstr ""
+
+#: templates/interactives/braille-alphabet.html:30
+#: templates/interactives/persona-carousel.html:26
+msgid "Previous"
+msgstr ""
+
+#: templates/interactives/braille-alphabet.html:33
+#: templates/interactives/cfg-parsing-challenge.html:98
+#: templates/interactives/persona-carousel.html:30
+msgid "Next"
 msgstr ""
 
 #: templates/interactives/caesar-cipher.html:9
@@ -366,8 +1103,7 @@ msgid "Plaintext"
 msgstr ""
 
 #: templates/interactives/caesar-cipher.html:11
-#: templates/interactives/rsa-jsencrypt.html:20
-#: templates/interactives/rsa-no-padding.html:18
+#: templates/interactives/rsa-encryption.html:99
 msgid "Encrypt"
 msgstr ""
 
@@ -380,18 +1116,267 @@ msgid "Ciphertext"
 msgstr ""
 
 #: templates/interactives/caesar-cipher.html:20
+#: templates/interactives/rsa-decryption.html:91
 msgid "Decrypt"
 msgstr ""
 
-#: templates/interactives/close-window.html:8
-msgid "Do you wish to close this window?"
+#: templates/interactives/cfg-parsing-challenge.html:11
+msgid "Set your own productions"
 msgstr ""
 
-#: templates/interactives/close-window.html:9
-msgid "Yes"
+#: templates/interactives/cfg-parsing-challenge.html:17
+msgid ""
+"Use this window to configure the interactive with your own set of grammar "
+"productions."
+msgstr ""
+
+#: templates/interactives/cfg-parsing-challenge.html:21
+msgid "Toggle instructions"
+msgstr ""
+
+#: templates/interactives/cfg-parsing-challenge.html:24
+msgid "Toggle example"
+msgstr ""
+
+#: templates/interactives/cfg-parsing-challenge.html:30
+msgid "The syntax is a simplified YACC syntax:"
+msgstr ""
+
+#: templates/interactives/cfg-parsing-challenge.html:31
+msgid ""
+"Begin each line with a non-terminal and colon (:), and end it with a "
+"semicolon (;)."
+msgstr ""
+
+#: templates/interactives/cfg-parsing-challenge.html:32
+msgid ""
+"Between the colon and semicolon, list replacements for the non-terminal "
+"separated by vertical bars (|)."
+msgstr ""
+
+#: templates/interactives/cfg-parsing-challenge.html:33
+msgid "Enclose terminals with inverted commas (')."
+msgstr ""
+
+#: templates/interactives/cfg-parsing-challenge.html:34
+msgid ""
+"Separate non-terminals from each other, and terminals from non-terminals, "
+"with spaces."
+msgstr ""
+
+#: templates/interactives/cfg-parsing-challenge.html:35
+msgid ""
+"Spaces, colons, semicolons, vertical bars and inverted commas are all "
+"reserved for defining the productions and should not be used in the "
+"productions themselves."
+msgstr ""
+
+#: templates/interactives/cfg-parsing-challenge.html:36
+msgid ""
+"Ampersands (&) and equals (=) are reserved for interpreting the url and "
+"should not be used either."
+msgstr ""
+
+#: templates/interactives/cfg-parsing-challenge.html:41
+msgid "The default grammar productions can be obtained from:"
+msgstr ""
+
+#: templates/interactives/cfg-parsing-challenge.html:50
+msgid "Enter your productions here."
+msgstr ""
+
+#: templates/interactives/cfg-parsing-challenge.html:54
+msgid "Custom examples"
+msgstr ""
+
+#: templates/interactives/cfg-parsing-challenge.html:55
+msgid "Provide your own examples that a user can try to match."
+msgstr ""
+
+#: templates/interactives/cfg-parsing-challenge.html:58
+msgid "Type each example on a new line."
+msgstr ""
+
+#: templates/interactives/cfg-parsing-challenge.html:62
+msgid "Random examples"
+msgstr ""
+
+#: templates/interactives/cfg-parsing-challenge.html:63
+msgid "Generate new examples by following your productions at random."
+msgstr ""
+
+#: templates/interactives/cfg-parsing-challenge.html:66
+msgid "Get link"
+msgstr ""
+
+#: templates/interactives/cfg-parsing-challenge.html:67
+msgid "Get link to default"
+msgstr ""
+
+#: templates/interactives/cfg-parsing-challenge.html:79
+msgid "Context-free Grammar Parsing Challenge"
+msgstr ""
+
+#: templates/interactives/cfg-parsing-challenge.html:83
+msgid ""
+"Use the available productions to build an equation.<br>Click the non-"
+"terminal below to replace it."
+msgstr ""
+
+#: templates/interactives/cfg-parsing-challenge.html:87
+msgid "Try to form:"
+msgstr ""
+
+#: templates/interactives/cfg-parsing-challenge.html:91
+#: templates/interactives/cfg-parsing-challenge.html:96
+#: templates/interactives/sorting-algorithms-configurator.html:18
+msgid "Random"
+msgstr ""
+
+#: templates/interactives/cfg-parsing-challenge.html:93
+msgid "Toggle Dropdown"
+msgstr ""
+
+#: templates/interactives/cfg-parsing-challenge.html:97
+msgid "Simple"
+msgstr ""
+
+#: templates/interactives/cfg-parsing-challenge.html:105
+msgid "Undo"
+msgstr ""
+
+#: templates/interactives/cfg-parsing-challenge.html:112
+msgid "Productions:"
+msgstr ""
+
+#: templates/interactives/cfg-parsing-challenge.html:118
+msgid "New productions"
+msgstr ""
+
+#: templates/interactives/cfg-parsing-challenge.html:123
+msgid "History:"
+msgstr ""
+
+#: templates/interactives/checksum-calculator-gtin-13.html:10
+msgid "GTIN-13 Number Checker"
+msgstr ""
+
+#: templates/interactives/checksum-calculator-gtin-13.html:15
+msgid "Enter number here (without checksum digit)"
+msgstr ""
+
+#: templates/interactives/checksum-calculator-gtin-13.html:23
+msgid "Calculate checksum digit"
+msgstr ""
+
+#: templates/interactives/checksum-calculator.html:9
+msgid "Check Digit Calculator"
+msgstr ""
+
+#: templates/interactives/checksum-calculator.html:14
+msgid "Enter number here"
+msgstr ""
+
+#: templates/interactives/checksum-calculator.html:21
+msgid "Enter multiplers here"
+msgstr ""
+
+#: templates/interactives/checksum-calculator.html:28
+msgid "Multiply"
+msgstr ""
+
+#: templates/interactives/checksum-calculator.html:38
+msgid "Products"
+msgstr ""
+
+#: templates/interactives/checksum-calculator.html:45
+msgid "Total for sums above"
+msgstr ""
+
+#: templates/interactives/checksum-calculator.html:52
+msgid "Remainder when divided by"
+msgstr ""
+
+#: templates/interactives/checksum-calculator.html:59
+#: templates/interactives/trig-function-calculator.html:17
+msgid "Calculate"
+msgstr ""
+
+#: templates/interactives/checksum-calculator.html:67
+msgid "Remainder"
+msgstr ""
+
+#: templates/interactives/city-trip.html:10
+msgid "City Trip"
+msgstr ""
+
+#: templates/interactives/city-trip.html:14
+msgid "This interactive is designed for screens larger than 800x800px."
+msgstr ""
+
+#: templates/interactives/city-trip.html:20
+msgid "Number of cities:"
+msgstr ""
+
+#: templates/interactives/city-trip.html:27
+msgid "Add city"
+msgstr ""
+
+#: templates/interactives/city-trip.html:28
+msgid "Remove city"
+msgstr ""
+
+#: templates/interactives/city-trip.html:29
+msgid "Generate map"
+msgstr ""
+
+#: templates/interactives/city-trip.html:30
+#: templates/interactives/data-visualisation.html:16
+#: templates/interactives/deceiver.html:10
+#: templates/interactives/number-memory.html:17
+#: templates/interactives/training-ground.html:28
+#: templates/interactives/training-ground.html:132
+#: templates/interactives/trainsylvania-complete.html:63
+msgid "Start"
+msgstr ""
+
+#: templates/interactives/city-trip.html:31
+msgid "Stop"
+msgstr ""
+
+#: templates/interactives/city-trip.html:35
+msgid "Status: <span id='status'>ready to go!</span>"
+msgstr ""
+
+#: templates/interactives/city-trip.html:58
+msgid "Trial route:"
+msgstr ""
+
+#: templates/interactives/city-trip.html:59
+msgid "Distance: <span id='trial-distance'>0</span> km"
+msgstr ""
+
+#: templates/interactives/city-trip.html:80
+msgid "Best route so far:"
+msgstr ""
+
+#: templates/interactives/city-trip.html:81
+msgid "Distance: <span id='best-route-distance'>0</span> km"
+msgstr ""
+
+#: templates/interactives/city-trip.html:86
+msgid "Estimated time left to run: "
 msgstr ""
 
 #: templates/interactives/close-window.html:10
+msgid "Do you wish to close this window?"
+msgstr ""
+
+#: templates/interactives/close-window.html:13
+msgid "Yes"
+msgstr ""
+
+#: templates/interactives/close-window.html:14
 msgid "No"
 msgstr ""
 
@@ -399,22 +1384,35 @@ msgstr ""
 msgid "CMY Colour Mixer - Used by Printers"
 msgstr ""
 
-#: templates/interactives/cmy-mixer.html:13
+#: templates/interactives/cmy-mixer.html:15
 msgid ""
-"<strong>Cyan</strong> - Currently set to <span id=\"interactive-cmy-mixer-"
-"cyan-value\">127</span>"
+"<strong>Cyan</strong> - Currently set to <input id=\"interactive-cmy-mixer-"
+"cyan-value\" value=127 class=\"form-control w-auto d-inline\" size=\"3\">"
 msgstr ""
 
-#: templates/interactives/cmy-mixer.html:17
+#: templates/interactives/cmy-mixer.html:19
 msgid ""
-"<strong>Magenta</strong> - Currently set to <span id=\"interactive-cmy-mixer-"
-"magenta-value\">127</span>"
+"<strong>Magenta</strong> - Currently set to <input id=\"interactive-cmy-"
+"mixer-magenta-value\" value=127 class=\"form-control w-auto d-inline\" size="
+"\"3\">"
 msgstr ""
 
-#: templates/interactives/cmy-mixer.html:21
+#: templates/interactives/cmy-mixer.html:23
 msgid ""
-"<strong>Yellow</strong> - Currently set to <span id=\"interactive-cmy-mixer-"
-"yellow-value\">127</span>"
+"<strong>Yellow</strong> - Currently set to <input id=\"interactive-cmy-mixer-"
+"yellow-value\" value=127 class=\"form-control w-auto d-inline\" size=\"3\">"
+msgstr ""
+
+#: templates/interactives/cmy-mixer.html:31
+#: templates/interactives/rgb-mixer.html:32
+#: templates/interactives/unicode-binary.html:17
+#: templates/interactives/unicode-chars.html:13
+msgid "Decimal"
+msgstr ""
+
+#: templates/interactives/cmy-mixer.html:35
+#: templates/interactives/rgb-mixer.html:36
+msgid "Hexadecimal"
 msgstr ""
 
 #: templates/interactives/colour-matcher.html:8
@@ -422,7 +1420,8 @@ msgid "Colour Matcher"
 msgstr ""
 
 #: templates/interactives/colour-matcher.html:10
-msgid "Firstly try matching the colour in the goal panel the 24 bit sliders."
+msgid ""
+"Firstly try matching the colour in the goal panel with the 24 bit sliders."
 msgstr ""
 
 #: templates/interactives/colour-matcher.html:15
@@ -463,7 +1462,7 @@ msgstr ""
 
 #: templates/interactives/colour-matcher.html:56
 #: templates/interactives/colour-matcher.html:110
-msgid "<strong>Hexidecimal representation</strong>"
+msgid "<strong>Hexadecimal representation</strong>"
 msgstr ""
 
 #: templates/interactives/colour-matcher.html:62
@@ -524,11 +1523,6 @@ msgstr ""
 msgid "Confirm"
 msgstr ""
 
-#: templates/interactives/confused-buttons.html:9
-#: templates/interactives/confusing-error.html:16
-msgid "Cancel"
-msgstr ""
-
 #: templates/interactives/confusing-error.html:11
 msgid ""
 "This configuration will cause your backup device's status light to blink "
@@ -547,6 +1541,65 @@ msgstr ""
 
 #: templates/interactives/confusing-error.html:17
 msgid "Ignore"
+msgstr ""
+
+#: templates/interactives/data-bias.html:8
+msgid "Data Bias"
+msgstr ""
+
+#: templates/interactives/data-bias.html:12
+msgid ""
+"Click each dot that you see on the screen, then click 'Next stage' to reveal "
+"the answer!"
+msgstr ""
+
+#: templates/interactives/data-bias.html:22
+msgid "Next stage"
+msgstr ""
+
+#: templates/interactives/data-bias.html:23
+msgid "Start again"
+msgstr ""
+
+#: templates/interactives/data-visualisation.html:8
+msgid "Data Visualisation"
+msgstr ""
+
+#: templates/interactives/data-visualisation.html:11
+msgid ""
+"\n"
+"        Find the mode (most common number) of the data below.\n"
+"        You will have a limited amount of time to view the data.\n"
+"        "
+msgstr ""
+
+#: templates/interactives/data-visualisation.html:19
+msgid "What was the mode (most common number) of the data?"
+msgstr ""
+
+#: templates/interactives/data-visualisation.html:37
+#: templates/interactives/number-memory.html:26
+msgid "Continue"
+msgstr ""
+
+#: templates/interactives/data-visualisation.html:38
+msgid "End Game"
+msgstr ""
+
+#: templates/interactives/data-visualisation.html:41
+msgid "Restart Game"
+msgstr ""
+
+#: templates/interactives/data-visualisation.html:51
+msgid "Chart type"
+msgstr ""
+
+#: templates/interactives/data-visualisation.html:52
+msgid "Mode (most common value) of data"
+msgstr ""
+
+#: templates/interactives/data-visualisation.html:53
+msgid "Your answer"
 msgstr ""
 
 #: templates/interactives/date-picker.html:8
@@ -605,10 +1658,6 @@ msgstr ""
 msgid "Do you realise that's not a real date?"
 msgstr ""
 
-#: templates/interactives/deceiver.html:10
-msgid "Start"
-msgstr ""
-
 #: templates/interactives/deceiver.html:14
 msgid "Even"
 msgstr ""
@@ -618,7 +1667,7 @@ msgid "Odd"
 msgstr ""
 
 #: templates/interactives/deceiver.html:24
-msgid " seconds left"
+msgid "<span id=\"interactive-deceiver-seconds\">15</span> seconds left"
 msgstr ""
 
 #: templates/interactives/delay-analyser.html:9
@@ -626,6 +1675,7 @@ msgid "Delay Analyser"
 msgstr ""
 
 #: templates/interactives/delay-analyser.html:12
+#: templates/interactives/jpeg-compression.html:16
 msgid "Instructions"
 msgstr ""
 
@@ -677,13 +1727,218 @@ msgstr ""
 msgid "Created by Rhem Munro - Adapted by Jack Morgan"
 msgstr ""
 
-#: templates/interactives/delayed-checkbox.html:8
+#: templates/interactives/delayed-checkbox.html:10
 msgid "Tick the checkbox"
 msgstr ""
 
-#: templates/interactives/delayed-checkbox.html:11
+#: templates/interactives/delayed-checkbox.html:15
 msgid ""
 "Clicked <span id=\"interactive-delayed-checkbox-counter\">0</span> times"
+msgstr ""
+
+#: templates/interactives/dictionary-compression.html:9
+msgid "Compression using a Dictionary"
+msgstr ""
+
+#: templates/interactives/dictionary-compression.html:11
+msgid ""
+"This interactive demonstrates the concept of using a dictionary to compress "
+"text."
+msgstr ""
+
+#: templates/interactives/dictionary-compression.html:14
+msgid ""
+"Using the input box below, enter a message. Then try and build a dictionary "
+"that compresses every character in the message."
+msgstr ""
+
+#: templates/interactives/dictionary-compression.html:17
+msgid ""
+"How efficient is your dictionary? Are you compressing one character per "
+"dictionary entry, or many? What happens if you add additional text to your "
+"message, does your dictionary still compress all of the text?"
+msgstr ""
+
+#: templates/interactives/dictionary-compression.html:22
+msgid "Enter a message to compress"
+msgstr ""
+
+#: templates/interactives/dictionary-compression.html:25
+#: templates/interactives/lzss-compression.html:19
+#: templates/interactives/lzw-compression.html:16
+msgid "Compress"
+msgstr ""
+
+#: templates/interactives/dictionary-compression.html:27
+msgid "Compressed Message"
+msgstr ""
+
+#: templates/interactives/dictionary-compression.html:29
+msgid ""
+"The highlighted characters represent the characters that are coded in your "
+"dictionary."
+msgstr ""
+
+#: templates/interactives/dictionary-compression.html:38
+msgid "Dictionary"
+msgstr ""
+
+#: templates/interactives/dictionary-compression.html:40
+msgid "New dictionary entry"
+msgstr ""
+
+#: templates/interactives/dictionary-compression.html:44
+msgid "Add"
+msgstr ""
+
+#: templates/interactives/dictionary-compression.html:53
+msgid "Reset Dictionary"
+msgstr ""
+
+#: templates/interactives/distance-from-stereo-images.html:8
+msgid "Getting Distance From Stereo Images"
+msgstr ""
+
+#: templates/interactives/distance-from-stereo-images.html:14
+msgid "Take two side-by-side pictures of an object."
+msgstr ""
+
+#: templates/interactives/distance-from-stereo-images.html:15
+msgid ""
+"Make sure the direction of the pictures are parallel, and that the object is "
+"between the two camera positions."
+msgstr ""
+
+#: templates/interactives/distance-from-stereo-images.html:16
+msgid ""
+"Note down the precise distance between the camera positions and the distance "
+"between the camera plane and the object plane."
+msgstr ""
+
+#: templates/interactives/distance-from-stereo-images.html:17
+msgid ""
+"Upload the two pictures and click on the common feature of the object in "
+"both pictures."
+msgstr ""
+
+#: templates/interactives/distance-from-stereo-images.html:18
+msgid ""
+"Enter your camera's angle-of-view and the distance between the two camera "
+"positions, and click 'Calculate distance'."
+msgstr ""
+
+#: templates/interactives/distance-from-stereo-images.html:19
+msgid ""
+"Note that resizing the window will reset the points as this can affect the "
+"size of the pictures."
+msgstr ""
+
+#: templates/interactives/distance-from-stereo-images.html:20
+msgid "The values are inputted into the equation below."
+msgstr ""
+
+#: templates/interactives/distance-from-stereo-images.html:23
+msgid ""
+"The orange in the supplied images was 1 metre away. How close is the "
+"calculation?"
+msgstr ""
+
+#: templates/interactives/distance-from-stereo-images.html:30
+msgid "Left Camera"
+msgstr ""
+
+#: templates/interactives/distance-from-stereo-images.html:35
+msgid "Right Camera"
+msgstr ""
+
+#: templates/interactives/distance-from-stereo-images.html:43
+msgid "Upload a custom left image:"
+msgstr ""
+
+#: templates/interactives/distance-from-stereo-images.html:47
+#: templates/interactives/distance-from-stereo-images.html:56
+#: templates/interactives/pixel-viewer.html:88
+#: templates/interactives/viola-jones-face-detector.html:29
+msgid "Choose file"
+msgstr ""
+
+#: templates/interactives/distance-from-stereo-images.html:52
+msgid "Upload a custom right image:"
+msgstr ""
+
+#: templates/interactives/dot-combinations.html:11
+msgid "Dot Combinations"
+msgstr ""
+
+#: templates/interactives/dot-combinations.html:14
+msgid "Click on a dot to flip it. Try to find all the combinations."
+msgstr ""
+
+#: templates/interactives/dot-combinations.html:17
+msgid "Number of dots:"
+msgstr ""
+
+#: templates/interactives/dot-combinations.html:49
+msgid "Congratulations, you found them all!"
+msgstr ""
+
+#: templates/interactives/flowcharts-interpreter-compiler.html:15
+msgid "Compiler"
+msgstr ""
+
+#: templates/interactives/flowcharts-interpreter-compiler.html:21
+msgid "Sorting program in C"
+msgstr ""
+
+#: templates/interactives/flowcharts-interpreter-compiler.html:28
+msgid "C compiler"
+msgstr ""
+
+#: templates/interactives/flowcharts-interpreter-compiler.html:33
+#: templates/interactives/flowcharts-interpreter-compiler.html:72
+#: templates/interactives/tcp-segment.html:61
+#: templates/interactives/udp-layers.html:33
+msgid "Data"
+msgstr ""
+
+#: templates/interactives/flowcharts-interpreter-compiler.html:41
+msgid "Sorting program in assembly/machine code"
+msgstr ""
+
+#: templates/interactives/flowcharts-interpreter-compiler.html:48
+#: templates/interactives/flowcharts-interpreter-compiler.html:87
+#: templates/interactives/matrix-simplifier.html:101
+msgid "Result"
+msgstr ""
+
+#: templates/interactives/flowcharts-interpreter-compiler.html:59
+msgid "Interpreter"
+msgstr ""
+
+#: templates/interactives/flowcharts-interpreter-compiler.html:65
+msgid "Sorting program in Scratch"
+msgstr ""
+
+#: templates/interactives/flowcharts-interpreter-compiler.html:80
+msgid "Scratch interpreter"
+msgstr ""
+
+#: templates/interactives/frequency-analysis.html:7
+msgid "Frequency Analysis"
+msgstr ""
+
+#: templates/interactives/frequency-analysis.html:10
+msgid "Enter some text"
+msgstr ""
+
+#: templates/interactives/frequency-analysis.html:13
+msgid "Analyse!"
+msgstr ""
+
+#: templates/interactives/frequency-analysis.html:18
+msgid ""
+"Click a bar to see the exact number of occurences. All characters with 0 "
+"occurences are not shown."
 msgstr ""
 
 #: templates/interactives/fsa-box.html:11
@@ -693,7 +1948,7 @@ msgstr ""
 
 #: templates/interactives/fsa-box.html:19
 #: templates/interactives/fsa-light.html:22
-#: templates/interactives/fsa-washing-machine.html:27
+#: templates/interactives/fsa-washing-machine.html:29
 msgid "Reset to start state"
 msgstr ""
 
@@ -702,26 +1957,38 @@ msgid ""
 "Current state: <span id=\"interactive-fsa-light-current-state-text\"></span>"
 msgstr ""
 
+#: templates/interactives/fsa-terminology.html:18
+msgid "Start state"
+msgstr ""
+
+#: templates/interactives/fsa-terminology.html:26
+msgid "Transition"
+msgstr ""
+
+#: templates/interactives/fsa-terminology.html:34
+msgid "Accepting state"
+msgstr ""
+
+#: templates/interactives/fsa-terminology.html:42
+msgid "Alphabet:"
+msgstr ""
+
 #: templates/interactives/fsa-washing-machine.html:10
 msgid ""
 "Current state: <span id=\"interactive-fsa-washing-machine-current-state-text"
 "\"></span>"
 msgstr ""
 
-#: templates/interactives/fsa-washing-machine.html:26
+#: templates/interactives/fsa-washing-machine.html:28
 msgid "Change spin speed"
 msgstr ""
 
 #: templates/interactives/hex-background-colour.html:8
-msgid "RGB Backround Colour Changer"
+msgid "RGB Background Colour Changer"
 msgstr ""
 
 #: templates/interactives/hex-background-colour.html:18
 msgid "Change"
-msgstr ""
-
-#: templates/interactives/hex-background-colour.html:21
-msgid "Reset"
 msgstr ""
 
 #: templates/interactives/high-score-boxes.html:9
@@ -734,16 +2001,8 @@ msgid ""
 "number and enter it below."
 msgstr ""
 
-#: templates/interactives/high-score-boxes.html:13
+#: templates/interactives/high-score-boxes.html:14
 msgid "Highest number:"
-msgstr ""
-
-#: templates/interactives/high-score-boxes.html:19
-msgid "Submit"
-msgstr ""
-
-#: templates/interactives/high-score-boxes.html:25
-msgid "Restart"
 msgstr ""
 
 #: templates/interactives/huffman-tree.html:10
@@ -795,6 +2054,236 @@ msgstr ""
 msgid "Large (may take longer to load)"
 msgstr ""
 
+#: templates/interactives/index.html:30
+msgid "No interactives are available for this chapter."
+msgstr ""
+
+#: templates/interactives/index.html:46
+msgid "No interactives are available."
+msgstr ""
+
+#: templates/interactives/iterative-software-development.html:9
+msgid "Iterative Software Development"
+msgstr ""
+
+#: templates/interactives/iterative-software-development.html:17
+msgid "Feedback from showing the<br>prototype to the customer"
+msgstr ""
+
+#: templates/interactives/iterative-software-development.html:21
+msgid "Feedback from<br>customer"
+msgstr ""
+
+#: templates/interactives/iterative-software-development.html:27
+#: templates/interactives/waterfall-process.html:16
+msgid "Analysis"
+msgstr ""
+
+#: templates/interactives/iterative-software-development.html:34
+#: templates/interactives/waterfall-process.html:42
+msgid "Testing"
+msgstr ""
+
+#: templates/interactives/iterative-software-development.html:39
+#: templates/interactives/waterfall-process.html:23
+msgid "Design"
+msgstr ""
+
+#: templates/interactives/iterative-software-development.html:46
+#: templates/interactives/waterfall-process.html:30
+msgid "Implementation"
+msgstr ""
+
+#: templates/interactives/jpeg-compression.html:10
+msgid "Drag the square around the image:"
+msgstr ""
+
+#: templates/interactives/jpeg-compression.html:17
+msgid ""
+"Adjust the numbers below the basis functions to make the image on the right."
+msgstr ""
+
+#: templates/interactives/jpeg-compression.html:18
+msgid ""
+"The error value below shows how different the two images are. The goal is to "
+"make it equal zero."
+msgstr ""
+
+#: templates/interactives/jpeg-compression.html:19
+msgid "Error: <span id=\"mse\">0</span>"
+msgstr ""
+
+#: templates/interactives/jpeg-compression.html:20
+msgid "Level 1 - the image can be made using just 1 basis function."
+msgstr ""
+
+#: templates/interactives/jpeg-compression.html:21
+msgid ""
+"Press the help button to have 1 basis function set to the correct value for "
+"you."
+msgstr ""
+
+#: templates/interactives/jpeg-compression.html:22
+msgid "Help Me"
+msgstr ""
+
+#: templates/interactives/jpeg-compression.html:25
+msgid "Original Image Pixels"
+msgstr ""
+
+#: templates/interactives/jpeg-compression.html:29
+msgid "Display numbers:"
+msgstr ""
+
+#: templates/interactives/jpeg-compression.html:34
+msgid "Processed Image Pixels"
+msgstr ""
+
+#: templates/interactives/jpeg-compression.html:38
+msgid "Difference Values:"
+msgstr ""
+
+#: templates/interactives/jpeg-compression.html:44
+msgid "That's correct!"
+msgstr ""
+
+#: templates/interactives/jpeg-compression.html:45
+#: templates/interactives/searching-algorithms.html:42
+msgid "Next Level"
+msgstr ""
+
+#: templates/interactives/jpeg-compression.html:49
+msgid "Apply Quantisation"
+msgstr ""
+
+#: templates/interactives/jpeg-compression.html:50
+msgid "Zero All"
+msgstr ""
+
+#: templates/interactives/jpeg-compression.html:51
+msgid "Reset to Original"
+msgstr ""
+
+#: templates/interactives/jpeg-compression.html:55
+msgid "Basis functions"
+msgstr ""
+
+#: templates/interactives/lzss-compression.html:9
+msgid "LZSS Compression"
+msgstr ""
+
+#: templates/interactives/lzss-compression.html:12
+msgid "Enter the message you want to encode here"
+msgstr ""
+
+#: templates/interactives/lzss-compression.html:13
+msgid "Note: spaces are replaced with the &#9251; character."
+msgstr ""
+
+#: templates/interactives/lzss-compression.html:24
+msgid "Encoded Message (Text)"
+msgstr ""
+
+#: templates/interactives/lzss-compression.html:25
+msgid "Each reference is shown in parentheses: (start, length)."
+msgstr ""
+
+#: templates/interactives/lzss-compression.html:36
+msgid "Encoded Message (Visual)"
+msgstr ""
+
+#: templates/interactives/lzss-compression.html:37
+msgid "Hover over the encoded portions to see what they reference."
+msgstr ""
+
+#: templates/interactives/lzw-compression.html:9
+msgid "LZW Compression"
+msgstr ""
+
+#: templates/interactives/lzw-compression.html:13
+msgid "Message to compress"
+msgstr ""
+
+#: templates/interactives/lzw-compression.html:19
+msgid "Compressed message"
+msgstr ""
+
+#: templates/interactives/lzw-compression.html:24
+msgid "Generated Dictionary"
+msgstr ""
+
+#: templates/interactives/matrix-simplifier.html:7
+msgid "Matrix Simplifier"
+msgstr ""
+
+#: templates/interactives/matrix-simplifier.html:9
+msgid ""
+"\n"
+"      This interactive combines multiple matrix transformations to just one "
+"matrix that can apply each transformation with one operation.<br>\n"
+"      Try dragging the matrices and vectors below to change their order. "
+"Does this affect the output?\n"
+"      "
+msgstr ""
+
+#: templates/interactives/matrix-simplifier.html:16
+msgid "Matrices"
+msgstr ""
+
+#: templates/interactives/matrix-simplifier.html:63
+#: templates/interactives/matrix-simplifier.html:173
+msgid "Add matrix"
+msgstr ""
+
+#: templates/interactives/matrix-simplifier.html:64
+msgid "Remove all matrices"
+msgstr ""
+
+#: templates/interactives/matrix-simplifier.html:69
+msgid "Vectors"
+msgstr ""
+
+#: templates/interactives/matrix-simplifier.html:94
+#: templates/interactives/matrix-simplifier.html:202
+msgid "Add vector"
+msgstr ""
+
+#: templates/interactives/matrix-simplifier.html:95
+msgid "Remove all vectors"
+msgstr ""
+
+#: templates/interactives/matrix-simplifier.html:128
+msgid ""
+"For convenience this code can be pasted into the Scene Editor interactive."
+msgstr ""
+
+#: templates/interactives/matrix-simplifier.html:136
+#: templates/interactives/rsa-encryption.html:109
+#: templates/interactives/rsa-key-generator.html:52
+#: templates/interactives/rsa-key-generator.html:69
+msgid "Copy to clipboard"
+msgstr ""
+
+#: templates/interactives/matrix-simplifier.html:140
+msgid "Remove all"
+msgstr ""
+
+#: templates/interactives/matrix-simplifier.html:148
+msgid "Add a matrix"
+msgstr ""
+
+#: templates/interactives/matrix-simplifier.html:174
+msgid "Update matrix"
+msgstr ""
+
+#: templates/interactives/matrix-simplifier.html:184
+msgid "Add a vector"
+msgstr ""
+
+#: templates/interactives/matrix-simplifier.html:203
+msgid "Update vector"
+msgstr ""
+
 #: templates/interactives/menu-keystrokes.html:14
 msgid "New File"
 msgstr ""
@@ -813,6 +2302,256 @@ msgstr ""
 
 #: templates/interactives/menu-keystrokes.html:38
 msgid "Close Pane"
+msgstr ""
+
+#: templates/interactives/mips-assembler.html:10
+msgid "MIPS Assembler"
+msgstr ""
+
+#: templates/interactives/mips-assembler.html:16
+#, python-format
+msgid ""
+"\n"
+"          Enter MIPS code below to see the assembler output.<br>\n"
+"          Then copy the plain output to the <a href=\"%(simulator_link)s\" "
+"target=\"_blank\">MIPS Simulator</a> interactive to run it.<br>\n"
+"          <strong>Note:</strong> Only a subset of MIPS is implemented. "
+"Comments start with #.<br>\n"
+"          "
+msgstr ""
+
+#: templates/interactives/mips-assembler.html:25
+msgid "Supported Instructions"
+msgstr ""
+
+#: templates/interactives/mips-assembler.html:26
+msgid "The following instructions are supported by both MIPS interactives"
+msgstr ""
+
+#: templates/interactives/mips-assembler.html:28
+msgid ""
+"The <code>la</code>, <code>li</code> and <code>move</code> instructions are "
+"also supported and assembled to appropriate instructions from the list."
+msgstr ""
+
+#: templates/interactives/mips-assembler.html:29
+msgid ""
+"See all MIPS instructions on <a rel=\"noopener noreferrer\" href=\"https://"
+"en.wikipedia.org/wiki/MIPS_architecture\" target=\"_blank\">Wikipedia</a>."
+msgstr ""
+
+#: templates/interactives/mips-assembler.html:38
+msgid "MIPS Input"
+msgstr ""
+
+#: templates/interactives/mips-assembler.html:48
+msgid "Assembler Output"
+msgstr ""
+
+#: templates/interactives/mips-assembler.html:59
+#: templates/interactives/mips-simulator.html:47
+msgid "Show context"
+msgstr ""
+
+#: templates/interactives/mips-assembler.html:63
+msgid "Show details"
+msgstr ""
+
+#: templates/interactives/mips-assembler.html:67
+msgid "Binary output"
+msgstr ""
+
+#: templates/interactives/mips-assembler.html:71
+#: templates/interactives/mips-simulator.html:55
+msgid "Show colours"
+msgstr ""
+
+#: templates/interactives/mips-assembler.html:75
+#: templates/interactives/mips-simulator.html:59
+msgid "Load advanced example"
+msgstr ""
+
+#: templates/interactives/mips-assembler.html:76
+#: templates/interactives/mips-simulator.html:60
+msgid "Load basic example"
+msgstr ""
+
+#: templates/interactives/mips-assembler.html:79
+msgid "Assemble!"
+msgstr ""
+
+#: templates/interactives/mips-assembler.html:86
+msgid ""
+"This simplified Javascript sandbox is based on the work of <a target=\"_blank"
+"\" rel=\"noopener noreferrer\" href=\"https://github.com/alanhogan/online-"
+"mips-assembler\">Alan J. Hogan</a>."
+msgstr ""
+
+#: templates/interactives/mips-assembler.html:93
+msgid "Hello World!"
+msgstr ""
+
+#: templates/interactives/mips-assembler.html:94
+msgid "You can change what is between the quotes if you like"
+msgstr ""
+
+#: templates/interactives/mips-assembler.html:100
+msgid ""
+"# Do the addition\n"
+"# For this, we first need to put the values\n"
+"# to add into registers ($t0 and $t1)\n"
+"# You can change the 30 below to another value"
+msgstr ""
+
+#: templates/interactives/mips-assembler.html:105
+msgid "You can change the 20 below to another value"
+msgstr ""
+
+#: templates/interactives/mips-assembler.html:108
+msgid ""
+"# Now we can add the values in $t0\n"
+"# and $t1, putting the result in special register $a0"
+msgstr ""
+
+#: templates/interactives/mips-assembler.html:112
+msgid ""
+"# Set up for printing the value in $a0.\n"
+"# A 1 in $v0 means we want to print an integer"
+msgstr ""
+
+#: templates/interactives/mips-assembler.html:116
+msgid ""
+"# The system call looks at what is in $v0\n"
+"# and $a0, and knows to print what is in $a0"
+msgstr ""
+
+#: templates/interactives/mips-assembler.html:120
+msgid ""
+"# Now we want to print Hello World\n"
+"# So we load the (address of the) string into $a0.\n"
+"# The address of the string is too big to be stored\n"
+"# by one instruction, so we first load the upper half,\n"
+"# shift it across, then load the lower half"
+msgstr ""
+
+#: templates/interactives/mips-assembler.html:127
+msgid "And put a 4 in $v0 to mean print a string"
+msgstr ""
+
+#: templates/interactives/mips-assembler.html:130
+msgid ""
+"# And just like before syscall looks at\n"
+"# $v0 and $a0 and knows to print the string"
+msgstr ""
+
+#: templates/interactives/mips-assembler.html:134
+msgid "Nicely end the program"
+msgstr ""
+
+#: templates/interactives/mips-assembler.html:140
+msgid "# Define the data strings"
+msgstr ""
+
+#: templates/interactives/mips-assembler.html:142
+msgid "GO!!!!!"
+msgstr ""
+
+#: templates/interactives/mips-assembler.html:146
+msgid "# Where should we start?"
+msgstr ""
+
+#: templates/interactives/mips-assembler.html:150
+msgid ""
+"# Put our starting value 5 into register $t0. We will update it as we go"
+msgstr ""
+
+#: templates/interactives/mips-assembler.html:152
+msgid "# Put our stopping value 0 into register $t1"
+msgstr ""
+
+#: templates/interactives/mips-assembler.html:155
+msgid "# This label is just used for the jumps to refer to"
+msgstr ""
+
+#: templates/interactives/mips-assembler.html:157
+msgid ""
+"# This says that if the values in $t0 and $t1 are the same,\n"
+"  # it should jump down to the end_loop label. This is the\n"
+"  # main loop condition"
+msgstr ""
+
+#: templates/interactives/mips-assembler.html:161
+msgid ""
+"# These three lines prepare for and print the current int\n"
+"  # It must be moved into $a0 for the printing"
+msgstr ""
+
+#: templates/interactives/mips-assembler.html:166
+msgid ""
+"# These three lines print a new line character so that\n"
+"  # each number is on a new line"
+msgstr ""
+
+#: templates/interactives/mips-assembler.html:171
+msgid "# Add -1 to the value in $t0, i.e decrement it by 1"
+msgstr ""
+
+#: templates/interactives/mips-assembler.html:173
+msgid "# Jump back up to the start_loop label"
+msgstr ""
+
+#: templates/interactives/mips-assembler.html:176
+msgid ""
+"# This is the end loop label that we jump to\n"
+"# when the loop condition becomes true"
+msgstr ""
+
+#: templates/interactives/mips-assembler.html:179
+msgid "# These three lines print the “GO!!!!” string."
+msgstr ""
+
+#: templates/interactives/mips-assembler.html:183
+msgid "# And these two lines make the program exit nicely"
+msgstr ""
+
+#: templates/interactives/mips-simulator.html:10
+msgid "MIPS Simulator"
+msgstr ""
+
+#: templates/interactives/mips-simulator.html:15
+#, python-format
+msgid ""
+"\n"
+"        Enter the assembled MIPS code from the <a href=\"%(assembler_link)s"
+"\" target=\"_blank\">MIPS Assembler</a> interactive to run it.<br>\n"
+"        Enter only the assembled hexadecimal values, no other assembler "
+"output.<br>\n"
+"        <strong>Note:</strong> Only a subset of MIPS is implemented, "
+"negative values are rarely supported.\n"
+"      "
+msgstr ""
+
+#: templates/interactives/mips-simulator.html:26
+msgid "Assembled MIPS Input"
+msgstr ""
+
+#: templates/interactives/mips-simulator.html:36
+msgid "Program Output"
+msgstr ""
+
+#: templates/interactives/mips-simulator.html:51
+msgid "Show register trace"
+msgstr ""
+
+#: templates/interactives/mips-simulator.html:63
+msgid "Run Program!"
+msgstr ""
+
+#: templates/interactives/mips-simulator.html:70
+msgid ""
+"This simplified Javascript sandbox is based on the work of <a href=\"https://"
+"github.com/alanhogan/miphps-mips-simulator\" target=\"_blank\">Alan J. "
+"Hogan</a>."
 msgstr ""
 
 #: templates/interactives/nfa-guesser.html:8
@@ -839,7 +2578,7 @@ msgstr ""
 msgid "Generate new input sequence"
 msgstr ""
 
-#: templates/interactives/no-help.html:8
+#: templates/interactives/no-help.html:9
 msgid "Click me for help"
 msgstr ""
 
@@ -864,7 +2603,7 @@ msgid "Trains"
 msgstr ""
 
 #: templates/interactives/number-generator.html:22
-msgid "IRD Number"
+msgid "Tax ID Number"
 msgstr ""
 
 #: templates/interactives/number-generator.html:23
@@ -872,6 +2611,7 @@ msgid "Passport Dates"
 msgstr ""
 
 #: templates/interactives/number-generator.html:29
+#: templates/interactives/rsa-key-generator.html:37
 msgid "Generate"
 msgstr ""
 
@@ -883,6 +2623,11 @@ msgstr ""
 msgid "Codes are generated with no dashes/spaces/etc"
 msgstr ""
 
+#: templates/interactives/number-memory.html:23
+#: templates/interactives/trainsylvania.html:22
+msgid "Start over"
+msgstr ""
+
 #: templates/interactives/off-by-one.html:8
 msgid "Clear form"
 msgstr ""
@@ -891,12 +2636,534 @@ msgstr ""
 msgid "Submit now"
 msgstr ""
 
-#: templates/interactives/payment-interface.html:9
+#: templates/interactives/packet-attack-level-creator.html:11
+msgid "Message:"
+msgstr ""
+
+#: templates/interactives/packet-attack-level-creator.html:13
+msgid "The message to be sent"
+msgstr ""
+
+#: templates/interactives/packet-attack-level-creator.html:18
+msgid "Delays:"
+msgstr ""
+
+#: templates/interactives/packet-attack-level-creator.html:20
+msgid "The number of delay uses"
+msgstr ""
+
+#: templates/interactives/packet-attack-level-creator.html:24
+msgid "Corrupts:"
+msgstr ""
+
+#: templates/interactives/packet-attack-level-creator.html:26
+msgid "The number of corrupt uses"
+msgstr ""
+
+#: templates/interactives/packet-attack-level-creator.html:30
+msgid "Kills:"
+msgstr ""
+
+#: templates/interactives/packet-attack-level-creator.html:32
+msgid "The number of kill uses"
+msgstr ""
+
+#: templates/interactives/packet-attack-level-creator.html:37
+msgid "Shields:"
+msgstr ""
+
+#: templates/interactives/packet-attack-level-creator.html:38
+#: templates/interactives/packet-attack-level-creator.html:45
+#: templates/interactives/packet-attack-level-creator.html:52
+#: templates/interactives/packet-attack-level-creator.html:59
+msgid "TRUE"
+msgstr ""
+
+#: templates/interactives/packet-attack-level-creator.html:39
+#: templates/interactives/packet-attack-level-creator.html:46
+#: templates/interactives/packet-attack-level-creator.html:53
+#: templates/interactives/packet-attack-level-creator.html:60
+msgid "FALSE"
+msgstr ""
+
+#: templates/interactives/packet-attack-level-creator.html:40
+msgid "Shields protect packets from corruption"
+msgstr ""
+
+#: templates/interactives/packet-attack-level-creator.html:44
+msgid "Numbers:"
+msgstr ""
+
+#: templates/interactives/packet-attack-level-creator.html:47
+msgid "Numbers protect packet order"
+msgstr ""
+
+#: templates/interactives/packet-attack-level-creator.html:51
+msgid "Replies:"
+msgstr ""
+
+#: templates/interactives/packet-attack-level-creator.html:54
+msgid "Replies tell the sender about packet status\\"
+msgstr ""
+
+#: templates/interactives/packet-attack-level-creator.html:58
+msgid "Timeouts:"
+msgstr ""
+
+#: templates/interactives/packet-attack-level-creator.html:61
+msgid "A packet will be resent if it doesn\\"
+msgstr ""
+
+#: templates/interactives/packet-attack-level-creator.html:66
+msgid "CREATE LEVEL"
+msgstr ""
+
+#: templates/interactives/packet-attack.html:9
+msgid ""
+"Sorry, this interactive is only available on screens larger than "
+"820x650px<br>If you are using a tablet, this may be achieved by holding it "
+"in landscape."
+msgstr ""
+
+#: templates/interactives/packet-attack.html:13
+msgid "PACKET ATTACK"
+msgstr ""
+
+#: templates/interactives/packet-attack.html:14
+msgid "Information"
+msgstr ""
+
+#: templates/interactives/packet-attack.html:15
+msgid ""
+"Welcome to Packet Attack.<br>\n"
+"        In this game, your job is to attack the packet creatures and stop "
+"messages being delivered.<br>\n"
+"        You pass a level if the received message is any different from the "
+"one sent.<br>\n"
+"        While a creature is in the Danger Zone (indicated by the yellow and "
+"grey area) you may attack by clicking the command buttons.<br>\n"
+"        Good luck!"
+msgstr ""
+
+#: templates/interactives/packet-attack.html:21
+msgid "START"
+msgstr ""
+
+#: templates/interactives/parity.html:12
+msgid "Parity Trick"
+msgstr ""
+
+#: templates/interactives/parity.html:16
+msgid ""
+"The grid is considered valid if each row and column has an even number of "
+"black squares."
+msgstr ""
+
+#: templates/interactives/parity.html:19
+msgid ""
+"Click the parity bits in the last row and column to set them correctly. "
+"Click the 'Flip a bit' button when you are done."
+msgstr ""
+
+#: templates/interactives/parity.html:21
+msgid "Flip a bit"
+msgstr ""
+
+#: templates/interactives/parity.html:25
+msgid "A bit has changed! Click on the single bit that has changed."
+msgstr ""
+
+#: templates/interactives/parity.html:30
+msgid "Check parity"
+msgstr ""
+
+#: templates/interactives/parity.html:34
+#: templates/interactives/run-length-encoding.html:14
+msgid "Grid Size:"
+msgstr ""
+
+#: templates/interactives/parity.html:59
+msgid "Add random data"
+msgstr ""
+
+#: templates/interactives/parity.html:62
+msgid "Clear all"
+msgstr ""
+
+#: templates/interactives/parity.html:66
+msgid "Start Over"
+msgstr ""
+
+#: templates/interactives/parity.html:75
+msgid "<strong>Confusation</strong><br>Please wait"
+msgstr ""
+
+#: templates/interactives/parity.html:82
+msgid "Created by Jack Morgan"
+msgstr ""
+
+#: templates/interactives/password-guesser.html:11
+msgid "Database:"
+msgstr ""
+
+#: templates/interactives/password-guesser.html:17
+#: templates/interactives/system-layers.html:22
+msgid "User"
+msgstr ""
+
+#: templates/interactives/password-guesser.html:20
+msgid "Salt"
+msgstr ""
+
+#: templates/interactives/password-guesser.html:23
+msgid "Password Hash"
+msgstr ""
+
+#: templates/interactives/password-guesser.html:31
+msgid "Guesser:"
+msgstr ""
+
+#: templates/interactives/password-guesser.html:37
+msgid "Password:"
+msgstr ""
+
+#: templates/interactives/password-guesser.html:39
+msgid ""
+"<strong>Warning:</strong> Do not enter any real password into this "
+"interactive."
+msgstr ""
+
+#: templates/interactives/password-guesser.html:42
+msgid "Salt:"
+msgstr ""
+
+#: templates/interactives/password-guesser.html:47
+msgid "Calculate Hash"
+msgstr ""
+
+#: templates/interactives/password-guesser.html:48
+msgid "Whitespace is removed automatically"
+msgstr ""
+
+#: templates/interactives/password-guesser.html:60
+msgid "Clues"
+msgstr ""
+
+#: templates/interactives/password-guesser.html:62
+msgid ""
+"The first few passwords are in your language (we hope the translations are "
+"accurate!):"
+msgstr ""
+
+#: templates/interactives/password-guesser.html:65
+msgid ""
+"Alice, Bob, Casey and Dave all chose their favourite school subjects as "
+"passwords."
+msgstr ""
+
+#: templates/interactives/password-guesser.html:68
+msgid ""
+"The remaining passwords are all in English, if applicable.\n"
+"          These next few are all simple words, some of which you might find "
+"in a dictionary or <a target=\"_blank\" rel=\"noopener noreferrer\" href="
+"\"https://en.wikipedia.org/wiki/List_of_the_most_common_passwords\">list of "
+"the most common passwords</a>:"
+msgstr ""
+
+#: templates/interactives/password-guesser.html:72
+msgid ""
+"Evelyn and Frank both chose really simple passwords.\n"
+"              Without realising, they both chose the same one!"
+msgstr ""
+
+#: templates/interactives/password-guesser.html:76
+msgid "Grant looked down at his keyboard and picked the first thing he saw."
+msgstr ""
+
+#: templates/interactives/password-guesser.html:79
+msgid ""
+"Hannah and Isabelle set up the database and chose basic passwords based on "
+"their roles; user and administrator."
+msgstr ""
+
+#: templates/interactives/password-guesser.html:82
+msgid ""
+"The next few passwords are quite a bit more difficult!\n"
+"          All are 8 characters, and have at least one lower case letter, "
+"upper case letter, and digit.\n"
+"          Some also have a number of symbols:"
+msgstr ""
+
+#: templates/interactives/password-guesser.html:87
+msgid ""
+"Jack chose one of the most simple and popular passwords ever so he could "
+"remember it, but swapped a few characters to make it harder.\n"
+"              Jack chose three digits and/or symbols as replacements that "
+"look a lot like the original letters &ndash; you can still read his password "
+"as an English word."
+msgstr ""
+
+#: templates/interactives/password-guesser.html:91
+msgid ""
+"Kate chose her least favourite type of schoolwork but also made sure to use "
+"two upper case letters and two numbers.\n"
+"              Again, you can still read it as if it were a full word."
+msgstr ""
+
+#: templates/interactives/password-guesser.html:95
+msgid ""
+"Liam is a businessman who enjoys a strong drink to wake up in the morning "
+"and really likes hexadecimal."
+msgstr ""
+
+#: templates/interactives/password-guesser.html:98
+msgid ""
+"Michaela used her name, \"Michaela\", but replaced four letters with two "
+"symbols and two digits.\n"
+"              She chose the replacements logically but not necessarily for "
+"their appearance."
+msgstr ""
+
+#: templates/interactives/password-guesser.html:102
+msgid ""
+"Nat chose the three letters of her name, \"NAT\", then five random "
+"characters on her keyboard; two numbers, two letters and a symbol.\n"
+"              These additions were truly random, you'll have a tough time "
+"getting this one!"
+msgstr ""
+
+#: templates/interactives/password-guesser.html:106
+msgid ""
+"These passwords are all weak compared to what you should use in practice and "
+"can be guessed relatively quickly with the aid of a computer."
+msgstr ""
+
+#: templates/interactives/payment-interface.html:10
 msgid "Payment Amount"
 msgstr ""
 
 #: templates/interactives/payment-interface.html:11
-msgid "How much do you want to pay?"
+msgid "How much to pay?"
+msgstr ""
+
+#: templates/interactives/picture-memory.html:10
+msgid "Short term memory picture game"
+msgstr ""
+
+#: templates/interactives/picture-memory.html:11
+msgid ""
+"What items can you remember in 30 seconds? Don't write anything down!"
+"<br>When you are ready, click the button below to display the items!"
+msgstr ""
+
+#: templates/interactives/picture-memory.html:13
+msgid "Ready"
+msgstr ""
+
+#: templates/interactives/picture-memory.html:17
+msgid "Time left: <b><span id=\"time-left\">30</span> seconds</b>"
+msgstr ""
+
+#: templates/interactives/picture-memory.html:20
+msgid "Congratulations, you remembered all of the items!"
+msgstr ""
+
+#: templates/interactives/picture-memory.html:22
+msgid ""
+"You remembered <span id=\"num-correct\">0</span> out of 16 items! Here\\"
+msgstr ""
+
+#: templates/interactives/picture-memory.html:97
+msgid "You thought you saw the following items when they were never shown!"
+msgstr ""
+
+#: templates/interactives/picture-memory.html:101
+msgid "What items do you remember?"
+msgstr ""
+
+#: templates/interactives/picture-memory.html:108
+msgid "Backpack"
+msgstr ""
+
+#: templates/interactives/picture-memory.html:114
+msgid "Banana"
+msgstr ""
+
+#: templates/interactives/picture-memory.html:120
+msgid "Bike"
+msgstr ""
+
+#: templates/interactives/picture-memory.html:126
+msgid "Book"
+msgstr ""
+
+#: templates/interactives/picture-memory.html:132
+msgid "Cactus"
+msgstr ""
+
+#: templates/interactives/picture-memory.html:144
+msgid "Camera"
+msgstr ""
+
+#: templates/interactives/picture-memory.html:153
+msgid "Chair"
+msgstr ""
+
+#: templates/interactives/picture-memory.html:159
+msgid "Mug"
+msgstr ""
+
+#: templates/interactives/picture-memory.html:165
+msgid "Duck"
+msgstr ""
+
+#: templates/interactives/picture-memory.html:171
+msgid "Envelope"
+msgstr ""
+
+#: templates/interactives/picture-memory.html:177
+msgid "Football"
+msgstr ""
+
+#: templates/interactives/picture-memory.html:183
+msgid "Forklift"
+msgstr ""
+
+#: templates/interactives/picture-memory.html:189
+msgid "Glasses"
+msgstr ""
+
+#: templates/interactives/picture-memory.html:198
+msgid "Guitar"
+msgstr ""
+
+#: templates/interactives/picture-memory.html:204
+msgid "Scissors"
+msgstr ""
+
+#: templates/interactives/picture-memory.html:210
+msgid "Sheep"
+msgstr ""
+
+#: templates/interactives/picture-memory.html:216
+msgid "Sock"
+msgstr ""
+
+#: templates/interactives/picture-memory.html:222
+#: templates/interactives/scene-editor.html:71
+msgid "Teapot"
+msgstr ""
+
+#: templates/interactives/picture-memory.html:228
+msgid "T-Shirt"
+msgstr ""
+
+#: templates/interactives/picture-memory.html:234
+msgid "Toothbrush"
+msgstr ""
+
+#: templates/interactives/pixel-viewer.html:10
+msgid "Zoom In"
+msgstr ""
+
+#: templates/interactives/pixel-viewer.html:13
+msgid "Zoom Out"
+msgstr ""
+
+#: templates/interactives/pixel-viewer.html:16
+msgid "Toggle Menu"
+msgstr ""
+
+#: templates/interactives/pixel-viewer.html:26
+msgid "Pixel Viewer Interactive"
+msgstr ""
+
+#: templates/interactives/pixel-viewer.html:28
+msgid ""
+"This interactive allows you to see the pixels of an image, and details about "
+"those pixels. <strong>Click Zoom\n"
+"                        In</strong> to see details about individual pixels."
+msgstr ""
+
+#: templates/interactives/pixel-viewer.html:34
+msgid ""
+"This interactive works best on a desktop browser, due to the heavy "
+"performance load."
+msgstr ""
+
+#: templates/interactives/pixel-viewer.html:38
+msgid "Options"
+msgstr ""
+
+#: templates/interactives/pixel-viewer.html:41
+msgid "Show pixel background"
+msgstr ""
+
+#: templates/interactives/pixel-viewer.html:44
+msgid "Colour code: "
+msgstr ""
+
+#: templates/interactives/pixel-viewer.html:47
+msgid "Decimal (separate RGB)"
+msgstr ""
+
+#: templates/interactives/pixel-viewer.html:51
+msgid "Hexadecimal (separate RGB)"
+msgstr ""
+
+#: templates/interactives/pixel-viewer.html:55
+msgid "Hexadecimal (web colour)"
+msgstr ""
+
+#: templates/interactives/pixel-viewer.html:59
+msgid "Brightness (average)"
+msgstr ""
+
+#: templates/interactives/pixel-viewer.html:64
+msgid "Reload with a different configuration"
+msgstr ""
+
+#: templates/interactives/pixel-viewer.html:68
+msgid "Default"
+msgstr ""
+
+#: templates/interactives/pixel-viewer.html:70
+msgid "Colour Threshold"
+msgstr ""
+
+#: templates/interactives/pixel-viewer.html:72
+msgid "Greyscale Threshold"
+msgstr ""
+
+#: templates/interactives/pixel-viewer.html:74
+msgid "Blur"
+msgstr ""
+
+#: templates/interactives/pixel-viewer.html:76
+msgid "Edge Detection"
+msgstr ""
+
+#: templates/interactives/pixel-viewer.html:82
+msgid "Upload your own image"
+msgstr ""
+
+#: templates/interactives/pixel-viewer.html:83
+msgid ""
+"Either drag and drop an image onto this page, or click the button below to "
+"load your own image into\n"
+"                    the interactive. The image will be resized for "
+"performance."
+msgstr ""
+
+#: templates/interactives/pixel-viewer.html:98
+msgid ""
+"You can save an image of this interactive by right clicking on the zoomed "
+"image and clicking \"Save\n"
+"                    image as...\" (Chrome/Firefox)."
+msgstr ""
+
+#: templates/interactives/pixel-viewer.html:105
+msgid "Copyright information"
 msgstr ""
 
 #: templates/interactives/python-interpreter.html:12
@@ -911,89 +3178,454 @@ msgstr ""
 msgid "Output"
 msgstr ""
 
-#: templates/interactives/rgb-mixer.html:8
+#: templates/interactives/python-syntax-error.html:11
+msgid "SyntaxError: invalid syntax"
+msgstr ""
+
+#: templates/interactives/regular-expression-filter.html:11
+msgid "Regular Expression Filter"
+msgstr ""
+
+#: templates/interactives/regular-expression-filter.html:13
+msgid "Load word file (2.8MB)"
+msgstr ""
+
+#: templates/interactives/regular-expression-filter.html:14
+msgid "Load more"
+msgstr ""
+
+#: templates/interactives/regular-expression-filter.html:17
+msgid "Loading word file..."
+msgstr ""
+
+#: templates/interactives/regular-expression-filter.html:22
+msgid "Regular Expression"
+msgstr ""
+
+#: templates/interactives/regular-expression-filter.html:24
+msgid "Filter words"
+msgstr ""
+
+#: templates/interactives/regular-expression-search.html:10
+msgid "Regular Expression Search"
+msgstr ""
+
+#: templates/interactives/regular-expression-search.html:11
+msgid "Enter a regular expression below to highlight words in the box."
+msgstr ""
+
+#: templates/interactives/regular-expression-search.html:13
+msgid "You can edit the text below to use your own text to search."
+msgstr ""
+
+#: templates/interactives/regular-expression-search.html:15
+msgid ""
+"\n"
+"The fat cat sat on the mat.\n"
+"The vindication was catastrophic.\n"
+"The bilocation of the cataract required certification.\n"
+"The 42 buffalo baffled them with a pfffffffft sound.\n"
+"Pennsylvania 6-5000.\n"
+"Assorted exhalations: pfft pffft pft.\n"
+"Was that a match or was it not?"
+msgstr ""
+
+#: templates/interactives/regular-expression-search.html:27
+msgid "Quick Reference Guide"
+msgstr ""
+
+#: templates/interactives/regular-expression-search.html:33
+msgid "Expression"
+msgstr ""
+
+#: templates/interactives/regular-expression-search.html:34
+msgid "Description"
+msgstr ""
+
+#: templates/interactives/regular-expression-search.html:40
+msgid "Zero or one of a"
+msgstr ""
+
+#: templates/interactives/regular-expression-search.html:44
+msgid "Zero or more of a"
+msgstr ""
+
+#: templates/interactives/regular-expression-search.html:48
+msgid "One or more of a"
+msgstr ""
+
+#: templates/interactives/regular-expression-search.html:52
+msgid "Exactly 3 of a"
+msgstr ""
+
+#: templates/interactives/regular-expression-search.html:56
+msgid "3 or more of a"
+msgstr ""
+
+#: templates/interactives/regular-expression-search.html:60
+msgid "Between 3 and 6 of a"
+msgstr ""
+
+#: templates/interactives/regular-expression-search.html:64
+msgid "Any single character except: a, b, or c"
+msgstr ""
+
+#: templates/interactives/regular-expression-search.html:68
+msgid "Any single character in the range a-z"
+msgstr ""
+
+#: templates/interactives/regular-expression-search.html:72
+msgid "Any single character in the range a-z or A-Z"
+msgstr ""
+
+#: templates/interactives/regular-expression-search.html:76
+msgid "Start of line"
+msgstr ""
+
+#: templates/interactives/regular-expression-search.html:80
+msgid "End of line"
+msgstr ""
+
+#: templates/interactives/regular-expression-search.html:84
+msgid "Start of string"
+msgstr ""
+
+#: templates/interactives/regular-expression-search.html:88
+msgid "End of string"
+msgstr ""
+
+#: templates/interactives/regular-expression-search.html:92
+msgid "Any single character"
+msgstr ""
+
+#: templates/interactives/regular-expression-search.html:96
+msgid "Any whitespace character"
+msgstr ""
+
+#: templates/interactives/regular-expression-search.html:100
+msgid "Any non-whitespace character"
+msgstr ""
+
+#: templates/interactives/regular-expression-search.html:104
+msgid "Any digit"
+msgstr ""
+
+#: templates/interactives/regular-expression-search.html:108
+msgid "Any non-digit"
+msgstr ""
+
+#: templates/interactives/regular-expression-search.html:112
+msgid "Any word character (letter, number, underscore)"
+msgstr ""
+
+#: templates/interactives/regular-expression-search.html:116
+msgid "Any non-word character"
+msgstr ""
+
+#: templates/interactives/regular-expression-search.html:120
+msgid "Any word boundary"
+msgstr ""
+
+#: templates/interactives/regular-expression-search.html:124
+msgid "Capture everything enclosed"
+msgstr ""
+
+#: templates/interactives/regular-expression-search.html:128
+msgid "a or b"
+msgstr ""
+
+#: templates/interactives/remote-complicated.html:15
+msgid "INPUT"
+msgstr ""
+
+#: templates/interactives/remote-complicated.html:47
+msgid "GUIDE"
+msgstr ""
+
+#: templates/interactives/remote-complicated.html:48
+msgid "STATUS"
+msgstr ""
+
+#: templates/interactives/remote-complicated.html:55
+#: templates/interactives/remote-modified.html:21
+msgid "CH"
+msgstr ""
+
+#: templates/interactives/remote-complicated.html:61
+#: templates/interactives/remote-modified.html:27
+msgid "VOL"
+msgstr ""
+
+#: templates/interactives/remote-complicated.html:74
+#: templates/interactives/remote-simple.html:11
+msgid "MENU"
+msgstr ""
+
+#: templates/interactives/remote-complicated.html:85
+msgid "OPTION"
+msgstr ""
+
+#: templates/interactives/remote-complicated.html:86
+msgid "EXIT"
+msgstr ""
+
+#: templates/interactives/remote-complicated.html:91
+msgid "DIRECT NAVIGATOR"
+msgstr ""
+
+#: templates/interactives/rgb-mixer.html:9
 msgid "RGB Colour Mixer - Used by Screens"
 msgstr ""
 
-#: templates/interactives/rgb-mixer.html:13
+#: templates/interactives/rgb-mixer.html:16
 msgid ""
-"<strong>Red</strong> - Currently set to <span id=\"interactive-rgb-mixer-red-"
-"value\">127</span>"
+"<strong>Red</strong> - Currently set to <input id=\"interactive-rgb-mixer-"
+"red-value\" value=127 class=\"form-control w-auto d-inline\" size=\"3\">"
 msgstr ""
 
-#: templates/interactives/rgb-mixer.html:17
+#: templates/interactives/rgb-mixer.html:20
 msgid ""
-"<strong>Green</strong> - Currently set to <span id=\"interactive-rgb-mixer-"
-"green-value\">127</span>"
+"<strong>Green</strong> - Currently set to <input id=\"interactive-rgb-mixer-"
+"green-value\" value=127 class=\"form-control w-auto d-inline\" size=\"3\">"
 msgstr ""
 
-#: templates/interactives/rgb-mixer.html:21
+#: templates/interactives/rgb-mixer.html:24
 msgid ""
-"<strong>Blue</strong> - Currently set to <span id=\"interactive-rgb-mixer-"
-"blue-value\">127</span>"
+"<strong>Blue</strong> - Currently set to <input id=\"interactive-rgb-mixer-"
+"blue-value\" value=127 class=\"form-control w-auto d-inline\" size=\"3\">"
 msgstr ""
 
-#: templates/interactives/rsa-jsencrypt.html:12
-msgid "RSA <span id=\"interactive-rsa-jsencrypt-mode\">Encrypter</span>"
+#: templates/interactives/rsa-decryption.html:10
+msgid "RSA Decryption"
 msgstr ""
 
-#: templates/interactives/rsa-jsencrypt.html:14
-#: templates/interactives/rsa-no-padding.html:12
-msgid "Key"
+#: templates/interactives/rsa-decryption.html:14
+#: templates/interactives/rsa-encryption.html:14
+msgid "Mode:"
 msgstr ""
 
-#: templates/interactives/rsa-jsencrypt.html:17
-msgid "<span id=\"interactive-rsa-jsencrypt-input-type\">Plain</span> Text"
+#: templates/interactives/rsa-decryption.html:16
+msgid "Public key decryption"
 msgstr ""
 
-#: templates/interactives/rsa-jsencrypt.html:22
-msgid "<span id=\"interactive-rsa-jsencrypt-output-type\">Cipher</span> Text"
+#: templates/interactives/rsa-decryption.html:17
+msgid "Private key decryption"
 msgstr ""
 
-#: templates/interactives/rsa-jsencrypt.html:25
+#: templates/interactives/rsa-decryption.html:22
+#: templates/interactives/rsa-encryption.html:22
+msgid "Key Format Scheme:"
+msgstr ""
+
+#: templates/interactives/rsa-decryption.html:24
+#: templates/interactives/rsa-encryption.html:24
+msgid "PKCS"
+msgstr ""
+
+#: templates/interactives/rsa-decryption.html:25
+#: templates/interactives/rsa-encryption.html:25
+msgid "Components"
+msgstr ""
+
+#: templates/interactives/rsa-decryption.html:32
 msgid ""
-"This interactive uses the <code><a href=\"http://travistidwell.com/jsencrypt/"
-"#\">jsencrypt</a></code> library."
+"<strong>Warning:</strong> Do not trust this interactive for any real "
+"decryption purposes."
 msgstr ""
 
-#: templates/interactives/rsa-no-padding.html:10
-msgid "RSA <span id=\"interactive-rsa-no-padding-mode\">Encrypter</span>"
+#: templates/interactives/rsa-decryption.html:39
+#: templates/interactives/rsa-encryption.html:47
+msgid "Key:"
 msgstr ""
 
-#: templates/interactives/rsa-no-padding.html:15
-msgid "<span id=\"interactive-rsa-no-padding-input-type\">Plain</span> Text"
+#: templates/interactives/rsa-decryption.html:43
+#: templates/interactives/rsa-encryption.html:51
+msgid "Paste your key into this box or enter the components individually"
 msgstr ""
 
-#: templates/interactives/rsa-no-padding.html:20
-msgid "Cipher</span> Text"
+#: templates/interactives/rsa-decryption.html:84
+#: templates/interactives/rsa-encryption.html:106
+msgid "Encrypted Message:"
+msgstr ""
+
+#: templates/interactives/rsa-decryption.html:98
+msgid "Decrypted Message:"
+msgstr ""
+
+#: templates/interactives/rsa-encryption.html:10
+msgid "RSA Encryption"
+msgstr ""
+
+#: templates/interactives/rsa-encryption.html:16
+msgid "Public key encryption"
+msgstr ""
+
+#: templates/interactives/rsa-encryption.html:17
+msgid "Private key encryption"
+msgstr ""
+
+#: templates/interactives/rsa-encryption.html:30
+msgid "Padding:"
+msgstr ""
+
+#: templates/interactives/rsa-encryption.html:32
+msgid "Padding"
+msgstr ""
+
+#: templates/interactives/rsa-encryption.html:33
+msgid "No padding"
+msgstr ""
+
+#: templates/interactives/rsa-encryption.html:40
+msgid ""
+"<strong>Warning:</strong> Do not trust this interactive for any real "
+"encryption purposes."
+msgstr ""
+
+#: templates/interactives/rsa-encryption.html:92
+msgid "Plain Message:"
+msgstr ""
+
+#: templates/interactives/rsa-encryption.html:110
+msgid "Copy Encrypted Message"
+msgstr ""
+
+#: templates/interactives/rsa-key-generator.html:10
+msgid "RSA Key Generator"
+msgstr ""
+
+#: templates/interactives/rsa-key-generator.html:14
+msgid "Key Size"
+msgstr ""
+
+#: templates/interactives/rsa-key-generator.html:17
+msgid "Format Scheme"
+msgstr ""
+
+#: templates/interactives/rsa-key-generator.html:23
+msgid "256 bits"
+msgstr ""
+
+#: templates/interactives/rsa-key-generator.html:24
+msgid "512 bits"
+msgstr ""
+
+#: templates/interactives/rsa-key-generator.html:25
+msgid "1024 bits"
+msgstr ""
+
+#: templates/interactives/rsa-key-generator.html:26
+msgid "2048 bits"
+msgstr ""
+
+#: templates/interactives/rsa-key-generator.html:31
+msgid "PKCS #1 (base64)"
+msgstr ""
+
+#: templates/interactives/rsa-key-generator.html:32
+msgid "PKCS #8 (base64)"
+msgstr ""
+
+#: templates/interactives/rsa-key-generator.html:33
+msgid "Components (base16)"
+msgstr ""
+
+#: templates/interactives/rsa-key-generator.html:43
+msgid ""
+"<strong>Warning:</strong> Keys larger than 512 bits may take longer than a "
+"second to create."
+msgstr ""
+
+#: templates/interactives/rsa-key-generator.html:49
+msgid "Public Key:"
+msgstr ""
+
+#: templates/interactives/rsa-key-generator.html:53
+msgid "Copy Public Key"
+msgstr ""
+
+#: templates/interactives/rsa-key-generator.html:66
+msgid "Private Key:"
+msgstr ""
+
+#: templates/interactives/rsa-key-generator.html:70
+msgid "Copy Private Key"
 msgstr ""
 
 #: templates/interactives/run-length-encoding.html:12
 msgid "Run Length Encoding"
 msgstr ""
 
-#: templates/interactives/run-length-encoding.html:15
-msgid "Grid Size:"
-msgstr ""
-
-#: templates/interactives/run-length-encoding.html:43
+#: templates/interactives/run-length-encoding.html:42
 msgid "Number of bits for grid: <span id=\"bit-count\"></span>"
 msgstr ""
 
-#: templates/interactives/run-length-encoding.html:49
+#: templates/interactives/run-length-encoding.html:48
 msgid "Number of characters for encoding: <span id=\"char-count\"></span>"
 msgstr ""
 
-#: templates/interactives/run-length-encoding.html:54
+#: templates/interactives/run-length-encoding.html:53
 msgid "Invert"
 msgstr ""
 
-#: templates/interactives/run-length-encoding.html:55
+#: templates/interactives/run-length-encoding.html:54
 msgid "Clear all black pixels"
 msgstr ""
 
-#: templates/interactives/run-length-encoding.html:58
-msgid "Created by Hannah Taylor - Adapted by Jack Morgan"
+#: templates/interactives/run-length-encoding.html:57
+msgid "Created by Hannah Taylor - Adapted by Jack Morgan & Alasdair Smith"
+msgstr ""
+
+#: templates/interactives/scene-editor.html:16
+msgid "Target:"
+msgstr ""
+
+#: templates/interactives/scene-editor.html:52
+msgid "You can paste your code from Matrix Simplifier into any box!"
+msgstr ""
+
+#: templates/interactives/scene-editor.html:56
+msgid "Apply"
+msgstr ""
+
+#: templates/interactives/scene-editor.html:57
+msgid "Delete"
+msgstr ""
+
+#: templates/interactives/scene-editor.html:64
+msgid "New object:"
+msgstr ""
+
+#: templates/interactives/scene-editor.html:68
+msgid "Sphere"
+msgstr ""
+
+#: templates/interactives/scene-editor.html:69
+msgid "Cube"
+msgstr ""
+
+#: templates/interactives/scene-editor.html:70
+msgid "Cone"
+msgstr ""
+
+#: templates/interactives/scene-editor.html:75
+msgid "Name (optional)"
+msgstr ""
+
+#: templates/interactives/scene-editor.html:82
+msgid "Colour (Hexadecimal)"
+msgstr ""
+
+#: templates/interactives/scene-editor.html:84
+msgid "Leave blank for a random colour"
+msgstr ""
+
+#: templates/interactives/scene-editor.html:86
+msgid "Add object"
+msgstr ""
+
+#: templates/interactives/scene-editor.html:92
+msgid "Applied matrices:"
 msgstr ""
 
 #: templates/interactives/searching-algorithms.html:10
@@ -1018,10 +3650,6 @@ msgstr ""
 msgid "You found it!"
 msgstr ""
 
-#: templates/interactives/searching-algorithms.html:42
-msgid "Next Level"
-msgstr ""
-
 #: templates/interactives/searching-algorithms.html:45
 msgid "Restart Level"
 msgstr ""
@@ -1030,19 +3658,19 @@ msgstr ""
 msgid "Restart From First Level"
 msgstr ""
 
-#: templates/interactives/sha2.html:7
+#: templates/interactives/sha2.html:8
 msgid "SHA2 Hashing"
 msgstr ""
 
-#: templates/interactives/sha2.html:10
+#: templates/interactives/sha2.html:11
 msgid "Text to convert"
 msgstr ""
 
-#: templates/interactives/sha2.html:13
+#: templates/interactives/sha2.html:14
 msgid "Hash"
 msgstr ""
 
-#: templates/interactives/sha2.html:16
+#: templates/interactives/sha2.html:17
 msgid "Hashed message will be shown here"
 msgstr ""
 
@@ -1064,24 +3692,347 @@ msgid ""
 "algorithms.com/\">www.sorting-algorithms.com"
 msgstr ""
 
+#: templates/interactives/sorting-algorithms-configurator.html:10
+msgid "Sorting Algorithms Configurator"
+msgstr ""
+
+#: templates/interactives/sorting-algorithms-configurator.html:16
+msgid "Choose how the data gets shuffled:"
+msgstr ""
+
+#: templates/interactives/sorting-algorithms-configurator.html:19
+msgid "Sorted"
+msgstr ""
+
+#: templates/interactives/sorting-algorithms-configurator.html:20
+msgid "Nearly sorted"
+msgstr ""
+
+#: templates/interactives/sorting-algorithms-configurator.html:21
+msgid "Reverse"
+msgstr ""
+
+#: templates/interactives/sorting-algorithms-configurator.html:29
+msgid "Reveal an icon that lets you view the box weights:"
+msgstr ""
+
+#: templates/interactives/sorting-algorithms-configurator.html:34
+msgid "Enable peek mode"
+msgstr ""
+
+#: templates/interactives/sorting-algorithms-configurator.html:41
+msgid "Open interactive"
+msgstr ""
+
 #: templates/interactives/sorting-algorithms.html:9
 msgid "Sorting Algorithms"
 msgstr ""
 
-#: templates/interactives/sorting-algorithms.html:64
-msgid "Points to heaviest box"
+#: templates/interactives/sorting-algorithms.html:85
+msgid "Points to heavier box"
 msgstr ""
 
-#: templates/interactives/sorting-algorithms.html:80
+#: templates/interactives/sorting-algorithms.html:102
 msgid "Lightest box"
 msgstr ""
 
-#: templates/interactives/sorting-algorithms.html:83
+#: templates/interactives/sorting-algorithms.html:105
 msgid "Heaviest box"
 msgstr ""
 
-#: templates/interactives/sorting-algorithms.html:91
+#: templates/interactives/sorting-algorithms.html:114
 msgid "Check Order"
+msgstr ""
+
+#: templates/interactives/sorting-algorithms.html:118
+msgid "Reshuffle weights"
+msgstr ""
+
+#: templates/interactives/sorting-algorithms.html:121
+msgid "Loading"
+msgstr ""
+
+#: templates/interactives/system-layers.html:14
+msgid "Your computer as a layered system"
+msgstr ""
+
+#: templates/interactives/system-layers.html:44
+msgid "Programs"
+msgstr ""
+
+#: templates/interactives/system-layers.html:63
+msgid "Operating System"
+msgstr ""
+
+#: templates/interactives/system-layers.html:83
+msgid "Hardware"
+msgstr ""
+
+#: templates/interactives/tcp-segment.html:16
+msgid "Address<br>to"
+msgstr ""
+
+#: templates/interactives/tcp-segment.html:19
+msgid "Address<br>from"
+msgstr ""
+
+#: templates/interactives/tcp-segment.html:26
+msgid "ACK<br>number<br>(if ack)"
+msgstr ""
+
+#: templates/interactives/tcp-segment.html:29
+msgid "Packet<br>number"
+msgstr ""
+
+#: templates/interactives/tcp-segment.html:40
+msgid "Flags"
+msgstr ""
+
+#: templates/interactives/tcp-segment.html:43
+msgid "and"
+msgstr ""
+
+#: templates/interactives/tcp-segment.html:46
+msgid "options"
+msgstr ""
+
+#: templates/interactives/tcp-segment.html:53
+msgid "Checksum"
+msgstr ""
+
+#: templates/interactives/three-tier-website.html:13
+msgid "Facebook as a three-tier system"
+msgstr ""
+
+#: templates/interactives/three-tier-website.html:23
+msgid "Presentation layer"
+msgstr ""
+
+#: templates/interactives/three-tier-website.html:34
+msgid ""
+"Algorithms for:<br>\n"
+"            &nbsp;- Finding friends<br>\n"
+"            &nbsp;- Home feed<br>\n"
+"            &nbsp;- Birthdays<br>\n"
+"            And many more"
+msgstr ""
+
+#: templates/interactives/three-tier-website.html:43
+msgid "Logic Layer"
+msgstr ""
+
+#: templates/interactives/three-tier-website.html:54
+msgid ""
+"Huge databases:<br>\n"
+"            &nbsp;- User Information<br>\n"
+"            &nbsp;- Encoded passwords<br>\n"
+"            &nbsp;- Photos<br>\n"
+"            &nbsp;- Messages<br>"
+msgstr ""
+
+#: templates/interactives/three-tier-website.html:63
+msgid "Data Layer"
+msgstr ""
+
+#: templates/interactives/training-ground.html:9
+msgid ""
+"Sorry, this interactive is only available on screens wider than 490px, and "
+"optimised for those wider than 610px."
+msgstr ""
+
+#: templates/interactives/training-ground.html:12
+msgid "trAIning ground"
+msgstr ""
+
+#: templates/interactives/training-ground.html:14
+msgid ""
+"In this game, take turns with the AI (Nathaniel) picking 1, 2, or 3 sticks.\n"
+"        Whoever picks the last stick wins!<br>\n"
+"        Watch how Nathaniel's picks change as it plays more games."
+msgstr ""
+
+#: templates/interactives/training-ground.html:22
+msgid "Sticks remaining:"
+msgstr ""
+
+#: templates/interactives/training-ground.html:23
+msgid "AI wins:"
+msgstr ""
+
+#: templates/interactives/training-ground.html:24
+msgid "Games played:"
+msgstr ""
+
+#: templates/interactives/training-ground.html:35
+msgid "Simulate"
+msgstr ""
+
+#: templates/interactives/training-ground.html:36
+msgid "Rematch"
+msgstr ""
+
+#: templates/interactives/training-ground.html:39
+msgid "Quit"
+msgstr ""
+
+#: templates/interactives/training-ground.html:43
+msgid "STOP"
+msgstr ""
+
+#: templates/interactives/training-ground.html:51
+msgid "Show game parameters"
+msgstr ""
+
+#: templates/interactives/training-ground.html:59
+msgid "Game parameters:"
+msgstr ""
+
+#: templates/interactives/training-ground.html:66
+#, python-format
+msgid "Nathaniel starts (%%):"
+msgstr ""
+
+#: templates/interactives/training-ground.html:67
+msgid "How likely is the AI to start each game?"
+msgstr ""
+
+#: templates/interactives/training-ground.html:71
+msgid "Number of sticks:"
+msgstr ""
+
+#: templates/interactives/training-ground.html:72
+msgid "How many sticks in the pile?"
+msgstr ""
+
+#: templates/interactives/training-ground.html:76
+#, python-format
+msgid "AI sensitivity (%%):"
+msgstr ""
+
+#: templates/interactives/training-ground.html:77
+msgid "How much to change after each game."
+msgstr ""
+
+#: templates/interactives/training-ground.html:81
+msgid "Number of simulations:"
+msgstr ""
+
+#: templates/interactives/training-ground.html:82
+msgid "Nathaniel can practice before we start."
+msgstr ""
+
+#: templates/interactives/training-ground.html:86
+msgid "Practice opponent:"
+msgstr ""
+
+#: templates/interactives/training-ground.html:87
+msgid "What is Nathaniel&#39;s opponent during simulations?"
+msgstr ""
+
+#: templates/interactives/training-ground.html:90
+msgid "Smartbot"
+msgstr ""
+
+#: templates/interactives/training-ground.html:93
+msgid "Randobot"
+msgstr ""
+
+#: templates/interactives/training-ground.html:96
+msgid "Nathaniel"
+msgstr ""
+
+#: templates/interactives/training-ground.html:102
+msgid ""
+"The smartbot has a probability table that favours \"correct\" choices.\n"
+"                      The fewer sticks that remain, the more likely it is to "
+"choose a number that prevents its opponent from winning."
+msgstr ""
+
+#: templates/interactives/training-ground.html:106
+msgid ""
+"The randobot has an equal probability of choosing any valid number of "
+"sticks.\n"
+"                      It cannot choose more sticks than there are remaining."
+msgstr ""
+
+#: templates/interactives/training-ground.html:110
+msgid ""
+"Both AI will use the same probability table to face eachother.\n"
+"                      Whether they win or lose, both will contribute to "
+"Nathaniel's neural network."
+msgstr ""
+
+#: templates/interactives/training-ground.html:117
+msgid "Quick simulations:"
+msgstr ""
+
+#: templates/interactives/training-ground.html:118
+msgid "Simulations will be hidden but much faster."
+msgstr ""
+
+#: templates/interactives/training-ground.html:121
+msgid "False"
+msgstr ""
+
+#: templates/interactives/training-ground.html:124
+msgid "True"
+msgstr ""
+
+#: templates/interactives/training-ground.html:130
+msgid "Stop simulating"
+msgstr ""
+
+#: templates/interactives/training-ground.html:131
+msgid "Quit current game to make changes"
+msgstr ""
+
+#: templates/interactives/training-ground.html:133
+msgid "Hide game parameters"
+msgstr ""
+
+#: templates/interactives/trainsylvania-blank.html:12
+#: templates/interactives/trainsylvania-complete.html:12
+msgid "Suburbopolis<br>Station"
+msgstr ""
+
+#: templates/interactives/trainsylvania-blank.html:16
+#: templates/interactives/trainsylvania-complete.html:16
+msgid "North<br>Station"
+msgstr ""
+
+#: templates/interactives/trainsylvania-blank.html:23
+#: templates/interactives/trainsylvania-complete.html:23
+msgid "West<br>Station"
+msgstr ""
+
+#: templates/interactives/trainsylvania-blank.html:27
+#: templates/interactives/trainsylvania-complete.html:27
+msgid "Central<br>Station"
+msgstr ""
+
+#: templates/interactives/trainsylvania-blank.html:31
+#: templates/interactives/trainsylvania-complete.html:31
+msgid "Midway<br>Station"
+msgstr ""
+
+#: templates/interactives/trainsylvania-blank.html:35
+#: templates/interactives/trainsylvania-complete.html:35
+msgid "East<br>Station"
+msgstr ""
+
+#: templates/interactives/trainsylvania-blank.html:42
+#: templates/interactives/trainsylvania-complete.html:42
+msgid "City Mall<br>Station"
+msgstr ""
+
+#: templates/interactives/trainsylvania-blank.html:46
+#: templates/interactives/trainsylvania-complete.html:46
+msgid "South<br>Station"
+msgstr ""
+
+#: templates/interactives/trainsylvania-blank.html:50
+#: templates/interactives/trainsylvania-complete.html:50
+msgid "Railington<br>Station"
 msgstr ""
 
 #: templates/interactives/trainsylvania-planner.html:8
@@ -1093,7 +4044,7 @@ msgid "If you take the trains:"
 msgstr ""
 
 #: templates/interactives/trainsylvania-planner.html:10
-msgid "Enter sequence of A\\"
+msgid "Enter sequence of A's and B's here"
 msgstr ""
 
 #: templates/interactives/trainsylvania.html:9
@@ -1120,26 +4071,78 @@ msgstr ""
 msgid "Congratulations! You made it!"
 msgstr ""
 
-#: templates/interactives/trainsylvania.html:22
-msgid "Start over"
-msgstr ""
-
 #: templates/interactives/trig-function-calculator.html:8
 msgid "Trig Function Calculator"
 msgstr ""
 
 #: templates/interactives/trig-function-calculator.html:10
 msgid ""
-"Calculate the sine and cosine values of an angle given in degrees. "
-"(Calculations give up to 9 decimal places)."
-msgstr ""
-
-#: templates/interactives/trig-function-calculator.html:17
-msgid "Calculate"
+"Calculate the sine and cosine values of an angle given in degrees."
+"<br>(Calculations give up to 9 decimal places)."
 msgstr ""
 
 #: templates/interactives/trig-function-calculator.html:22
 msgid "Invalid input!"
+msgstr ""
+
+#: templates/interactives/udp-layers.html:8
+msgid "UDP Packet Layers"
+msgstr ""
+
+#: templates/interactives/udp-layers.html:11
+msgid "Application"
+msgstr ""
+
+#: templates/interactives/udp-layers.html:14
+msgid "Transport"
+msgstr ""
+
+#: templates/interactives/udp-layers.html:17
+msgid "Internet"
+msgstr ""
+
+#: templates/interactives/udp-layers.html:20
+msgid "Link"
+msgstr ""
+
+#: templates/interactives/udp-layers.html:30
+msgid "Frame data"
+msgstr ""
+
+#: templates/interactives/udp-layers.html:45
+msgid "Packet data"
+msgstr ""
+
+#: templates/interactives/udp-layers.html:48
+msgid "UDP<br>header"
+msgstr ""
+
+#: templates/interactives/udp-layers.html:51
+msgid "UDP<br>data"
+msgstr ""
+
+#: templates/interactives/udp-layers.html:63
+msgid "Packet<br>header"
+msgstr ""
+
+#: templates/interactives/udp-layers.html:77
+msgid "Frame<br>header"
+msgstr ""
+
+#: templates/interactives/udp-layers.html:83
+msgid "Frame<br>footer"
+msgstr ""
+
+#: templates/interactives/udp-layers.html:90
+msgid ""
+"\n"
+"    Recreated from <a href=\"https://commons.wikimedia.org/wiki/File:"
+"UDP_encapsulation.svg\" target=\"_blank\">this image by Cburnett</a><br>\n"
+"    Licenced under the <a href=\"https://en.wikipedia.org/wiki/"
+"Creative_Commons\" target=\"_blank\">Creative Commons</a> <a href=\"https://"
+"creativecommons.org/licenses/by-sa/3.0/deed.en\" target=\"_blank"
+"\">Attribution-Share Alike 3.0 Unported</a> licence\n"
+"    "
 msgstr ""
 
 #: templates/interactives/unexpected-error.html:11
@@ -1155,24 +4158,30 @@ msgid ""
 "An unexpected error has occurred. The troubleshooting wizard can't continue."
 msgstr ""
 
-#: templates/interactives/unicode-chars.html:8
-msgid "Unicode Characters"
+#: templates/interactives/unicode-binary.html:9
+msgid ""
+"Unicode to Binary (UTF-<span id=\"interactive-unicode-binary-mode\">8</span>)"
 msgstr ""
 
-#: templates/interactives/unicode-chars.html:11
-msgid "Decimal"
-msgstr ""
-
-#: templates/interactives/unicode-chars.html:12
-msgid "Enter a decimal number"
-msgstr ""
-
-#: templates/interactives/unicode-chars.html:15
+#: templates/interactives/unicode-binary.html:13
+#: templates/interactives/unicode-chars.html:18
 msgid "Character"
 msgstr ""
 
-#: templates/interactives/unicode-chars.html:16
-msgid "Unicode Character"
+#: templates/interactives/unicode-chars.html:10
+msgid "Unicode Characters"
+msgstr ""
+
+#: templates/interactives/unicode-chars.html:14
+msgid "Enter an integer"
+msgstr ""
+
+#: templates/interactives/unicode-chars.html:15
+msgid "No corresponding character"
+msgstr ""
+
+#: templates/interactives/unicode-chars.html:19
+msgid "Enter a character"
 msgstr ""
 
 #: templates/interactives/unicode-length.html:8
@@ -1201,4 +4210,52 @@ msgstr ""
 
 #: templates/interactives/unicode-length.html:19
 msgid "UTF-32:</b> <span id=\"interactive-unicode-length-utf32\">0 bits"
+msgstr ""
+
+#: templates/interactives/viola-jones-face-detector.html:8
+msgid "Viola-Jones Face Detection"
+msgstr ""
+
+#: templates/interactives/viola-jones-face-detector.html:12
+msgid ""
+"Click and drag the five Haar features on the left side of the image, onto "
+"the faces where they are valid."
+msgstr ""
+
+#: templates/interactives/viola-jones-face-detector.html:17
+msgid "White Square intensity:</strong> <span id=\"whiteValue\">0</span>"
+msgstr ""
+
+#: templates/interactives/viola-jones-face-detector.html:18
+msgid "Black Square intensity:</strong> <span id=\"blackValue\">0</span>"
+msgstr ""
+
+#: templates/interactives/viola-jones-face-detector.html:19
+msgid "Haar-like Features found:</strong> <span id=\"found\">0</span>/5"
+msgstr ""
+
+#: templates/interactives/viola-jones-face-detector.html:25
+msgid "Upload a custom image:"
+msgstr ""
+
+#: templates/interactives/viola-jones-face-detector.html:32
+msgid ""
+"After you have found the 5 Haar-like features, use the 'find faces' button "
+"below to run a basic version of the Viola-Jones algorithm."
+msgstr ""
+
+#: templates/interactives/viola-jones-face-detector.html:33
+msgid "Find faces"
+msgstr ""
+
+#: templates/interactives/viola-jones-face-detector.html:34
+msgid "Hide faces"
+msgstr ""
+
+#: templates/interactives/waterfall-process.html:9
+msgid "The Waterfall process"
+msgstr ""
+
+#: templates/interactives/waterfall-process.html:37
+msgid "Usually not<br>allowed!"
 msgstr ""

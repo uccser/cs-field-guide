@@ -6,6 +6,7 @@ The `urlpatterns` list routes URLs to views. For more information please see:
 
 from django.conf import settings
 from django.conf.urls.i18n import i18n_patterns
+from django.http.response import HttpResponse
 from django.urls import include, path
 
 
@@ -19,6 +20,7 @@ urlpatterns = i18n_patterns(
 
 urlpatterns += [
     path("en/search/", include("search.urls", namespace="search")),
+    path('healthcheck/', HttpResponse),
 ]
 
 if settings.DEBUG:  # pragma: no cover
