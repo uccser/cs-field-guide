@@ -24,6 +24,7 @@
     {% else %}
       <link rel="stylesheet" href="{% static 'css/website.css' %}">
     {% endif %}
+    <script src="{% static 'js/vendors.js' %}"></script>
     <script src="{% static 'js/website.js' %}"></script>
     <script type="text/javascript" src="{% statici18n LANGUAGE_CODE %}"></script>
     {% block css %}
@@ -299,7 +300,7 @@
                   </small>
                 </p>
                 <p class="mb-0">
-                  <small><a target="_blank" rel="noopener noreferrer" href="http://cs-field-guide.readthedocs.io/en/latest/changelog.html">{{ VERSION_NUMBER }}</a></small>
+                  <small><a target="_blank" rel="noopener noreferrer" href="http://cs-field-guide.readthedocs.io/en/latest/changelog.html">{{ VERSION_NUMBER }}{% if not PRODUCTION_ENVIRONMENT %} - {{ GIT_SHA }}{% endif %}</a></small>
                 </p>
               </div>
             </footer>

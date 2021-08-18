@@ -4,6 +4,9 @@
   #homepage-logo {
     max-width: 100% !important;
     height: auto !important;
+    path {
+      fill: $white;
+    }
   }
   h1 {
     font-family: $headings-font-family;

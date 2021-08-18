@@ -118,11 +118,11 @@ This means that \( x_1 = 3, y_1 = 4, x_2 = 16 \) and \( y_2 = 9 \).
 
 {panel end}
 
-See if you can work out the \( m \) and \( b \) values for a line from A to B, or you can calculate them using the following formulas:
+See if you can work out the \( m \) and \( c \) values for a line from A to B, or you can calculate them using the following formulas:
 
 \[
 m = \frac{(y_2 - y_1)}{(x_2 - x_1)}\\
-b = \frac{(y_1x_2 - y_2x_1)}{(x_2-x_1)}
+c = \frac{(y_1x_2 - y_2x_1)}{(x_2-x_1)}
 \]
 
 {panel type="teacher-note"}

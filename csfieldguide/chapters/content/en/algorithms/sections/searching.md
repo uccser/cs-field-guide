@@ -137,10 +137,14 @@ This makes the sorting algorithms we will look at next even more important becau
 The following files will run linear and binary search in various languages; you can use them to generate random lists of values and measure how long they take to find a given value.
 Your project is to measure the amount of time taken as the number of items (*n*) increases; try drawing a graph showing this.
 
-{button-link link="files/linear-binary-search-scratch.zip" text="Download Scratch search example" file="yes"}
+A Scratch implementation of linear and binary search can be downloaded below.
 
-{button-link link="files/linear-binary-search-python2.py" text="Download Python 2 search example" file="yes"}
+{button-link link="files/linear-binary-search-scratch.zip" text="Download Scratch searching example" file="yes"}
 
-{button-link link="files/linear-binary-search-python3.py" text="Download Python 3 search example" file="yes"}
+The following Python implementations of linear and binary search can be run in your browser:
+
+{button-link link="https://repl.it/@uccser/linear-binary-search-python3" text="Python 3"}
+
+{button-link link="https://repl.it/@uccser/linear-binary-search-python2" text="Python 2"}
 
 {panel end}

@@ -2,7 +2,7 @@ const cytoscape = require('cytoscape');
 const noOverlap = require('cytoscape-no-overlap');
 const automove = require('cytoscape-automove');
 const Mathjs = require('mathjs');
-const ha = require('./heapsAlgorithm.js');
+const ha = require('./heaps-algorithm.js');
 
 cytoscape.use(noOverlap);
 cytoscape.use(automove);
@@ -489,7 +489,7 @@ function addStartingCityToPath(startingCity, cities) {
 }
 
 
- /** Start timer and begin finding permutations by calling methods in heapsAlgorithm.js. */
+ /** Start timer and begin finding permutations by calling methods in heaps-algorithm.js. */
 function getNextPath(cy, cy2, intermediateCities, startingCity, seconds) {
   // if permutations to do
   if (!stopPathFinding) {
@@ -511,7 +511,7 @@ function getNextPath(cy, cy2, intermediateCities, startingCity, seconds) {
 }
 
 
-/** Get the next permutation from heapsAlgorithm.js and render the graph 
+/** Get the next permutation from heaps-algorithm.js and render the graph 
  *  by calling testNewPath. */
 function computeAndDisplayNextRoute(cy, cy2, intermediateCities, startingCity) {
   var intermediateCities = ha.getNextPermutation();

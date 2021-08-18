@@ -1,0 +1,60 @@
+name: Synchronise with Crowdin
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 3 * * *'
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
+  CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
+
+jobs:
+  synchronise-with-crowdin:
+    runs-on: ubuntu-20.04
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Upload or update source files to Crowdin
+      uses: crowdin/github-action@1.3.2
+      with:
+        upload_sources: true
+
+    - name: Download German translations
+      uses: crowdin/github-action@1.3.2
+      with:
+        upload_sources: false
+        download_translations: true
+        download_language: 'de'
+        skip_untranslated_files: true
+        export_only_approved: true
+        push_translations: true
+        commit_message: 'Update German Crowdin translations by Github Action'
+        localization_branch_name: translation-de
+        create_pull_request: true
+        pull_request_title: 'Update German language translations'
+        pull_request_body: 'This pull request will add/update German language files from Crowdin.'
+        pull_request_labels: 'internationalization'
+        pull_request_base_branch_name: develop
+        config: crowdin.yaml
+
+    - name: Download Spanish translations
+      uses: crowdin/github-action@1.3.2
+      with:
+        upload_sources: false
+        download_translations: true
+        download_language: 'es-ES'
+        skip_untranslated_files: true
+        export_only_approved: true
+        push_translations: true
+        commit_message: 'Update Spanish Crowdin translations by Github Action'
+        localization_branch_name: translation-es
+        create_pull_request: true
+        pull_request_title: 'Update Spanish language translations'
+        pull_request_body: 'This pull request will add/update Spanish language files from Crowdin.'
+        pull_request_labels: 'internationalization'
+        pull_request_base_branch_name: develop
+        config: crowdin.yaml

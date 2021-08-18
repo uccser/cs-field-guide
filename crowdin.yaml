@@ -1,0 +1,61 @@
+project_id_env: CROWDIN_PROJECT_ID
+api_token_env: CROWDIN_PERSONAL_TOKEN
+project_identifier: cs-field-guide
+preserve_hierarchy: true
+files: [
+  {
+    source: csfieldguide/locale/en/LC_MESSAGES/*.po,
+    translation: csfieldguide/locale/%two_letters_code%/LC_MESSAGES/%original_file_name%,
+    languages_mapping": {
+      two_letters_code: {
+        zh-CN: zh_Hans,
+        zh-TW: zh_Hant,
+        en-UD: xx_LR,
+      }
+    }
+  },
+  {
+    source: csfieldguide/chapters/content/en/**/*.md,
+    translation: csfieldguide/chapters/content/%two_letters_code%/**/%original_file_name%,
+    languages_mapping": {
+      two_letters_code: {
+        zh-CN: zh_Hans,
+        zh-TW: zh_Hant,
+        en-UD: xx_LR,
+      }
+    }
+  },
+  {
+    source: csfieldguide/appendices/content/en/**/*.yaml,
+    translation: csfieldguide/appendices/content/%two_letters_code%/**/%original_file_name%,
+    languages_mapping": {
+      two_letters_code: {
+        zh-CN: zh_Hans,
+        zh-TW: zh_Hant,
+        en-UD: xx_LR,
+      }
+    }
+  },
+  {
+    source: csfieldguide/interactives/content/en/**/*.yaml,
+    translation: csfieldguide/interactives/content/%two_letters_code%/**/%original_file_name%,
+    languages_mapping": {
+      two_letters_code: {
+        zh-CN: zh_Hans,
+        zh-TW: zh_Hant,
+        en-UD: xx_LR,
+      }
+    }
+  },
+  {
+    source: subtitles/en/*.vtt,
+    translation: subtitles/%two_letters_code%/%original_file_name%,
+    languages_mapping": {
+      two_letters_code: {
+        zh-CN: zh_Hans,
+        zh-TW: zh_Hant,
+        en-UD: xx_LR,
+      }
+    }
+  },
+]

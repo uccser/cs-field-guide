@@ -1,10 +1,11 @@
 IMAGE PERMISSIONS
 ----------------------------------------------------------------------------
 
-This image was taken by Jack Morgan and is used with his permission.
+These images were taken by Jack Morgan and are used with his permission.
 Email: jack.morgan@canterbury.ac.nz
 
 - `coloured-roof-small.png`
+- `lake.png`
 
 These images were taken by Andy Bell and are used with his permission.
 Email: andy.belltree@gmail.com
