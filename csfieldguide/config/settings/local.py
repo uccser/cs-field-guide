@@ -83,6 +83,8 @@ DEBUG_TOOLBAR_CONFIG = {
 
 }
 
+SVG_DIRS.append(os.path.join(str(ROOT_DIR.path("build")), "svg"))
+
 # TESTING
 # ----------------------------------------------------------------------------
 TEST_RUNNER = "django.test.runner.DiscoverRunner"
