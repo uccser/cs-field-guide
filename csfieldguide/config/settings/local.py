@@ -83,7 +83,7 @@ DEBUG_TOOLBAR_CONFIG = {
 
 }
 
-SVG_DIRS.append(os.path.join(str(ROOT_DIR.path("build")), "svg"))
+SVG_DIRS.append(os.path.join(str(ROOT_DIR.path("build")), "svg"))  # noqa: F405
 
 # TESTING
 # ----------------------------------------------------------------------------

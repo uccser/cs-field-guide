@@ -26,7 +26,7 @@ defhelp() {
   local command="${1?}"
   local text="${2?}"
   local help_str
-  help_str="$(printf '   %-24s %s' "$command" "$text")"
+  help_str="$(printf '   %-28s %s' "$command" "$text")"
   cmd_helps+=("$help_str")
 }
 

@@ -2,11 +2,21 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 const puppeteer = require('puppeteer');
+
+// Screenshots taken at 4 by 3 ratio
+const BASE_VIEWPORT_WIDTH = 480;
+const BASE_VIEWPORT_HEIGHT = 320;
+
 const VIEWPORT = {
-    width: 480,
-    height: 320,
+    width: BASE_VIEWPORT_WIDTH,
+    height: BASE_VIEWPORT_HEIGHT,
     deviceScaleFactor: 1
 };
+const VIEWPORT_LARGE = {
+    width: BASE_VIEWPORT_WIDTH * 2,
+    height: BASE_VIEWPORT_HEIGHT * 2,
+    deviceScaleFactor: 1
+}
 const SCREENSHOT_BASE_PATH = './build/img/interactives/thumbnails/';
 const BASE_URL = 'http://django:8000';
 const INTERACTIVE_PAGE_PARAMS = '?hide-debug-toolbar';
@@ -24,25 +34,40 @@ function generateThumbnails(data) {
             '--disable-dev-shm-usage'
         ]
     }).then(async browser => {
-        const page = await browser.newPage();
-        page.setViewport(VIEWPORT);
+        var generated_count = 0;
         for (var i = 0; i < data.length; i++) {
             var slug = data[i][0],
                 language = data[i][1],
                 url = BASE_URL + data[i][2] + INTERACTIVE_PAGE_PARAMS,
-                dest = data[i][3];
-            console.log('Creating screenshot for interactive ' + slug + ' in language ' + language);
-            await page.goto(url);
-            if (!fs.existsSync(path.dirname(dest))) {
-                fs.mkdirSync(path.dirname(dest));
+                dest = data[i][3],
+                is_interactive = data[i][4],
+                use_large_thumbnail = data[i][5];
+
+            if (is_interactive) {
+                const page = await browser.newPage();
+                if (use_large_thumbnail) {
+                    page.setViewport(VIEWPORT_LARGE)
+                    console.log(`Creating large screenshot for interactive ${slug} in language ${language}`);
+                } else {
+                    page.setViewport(VIEWPORT)
+                    console.log(`Creating screenshot for interactive ${slug} in language ${language}`);
+                }
+                await page.goto(url);
+                if (!fs.existsSync(path.dirname(dest))) {
+                    fs.mkdirSync(path.dirname(dest));
+                }
+                await page.screenshot({ path: dest, omitBackground: true });
+                generated_count++;
             }
-            await page.screenshot({ path: dest, omitBackground: true });
         }
+        console.log(`\nCreated ${generated_count} screenshots.`);
         await browser.close();
     });
 }
 
+
 var args = process.argv.slice(2);
+
 
 if (args[0] == '--production') {
     query_parameters = 'all_languages';
@@ -64,7 +89,8 @@ http.get(BASE_URL + `/en/interactives/thumbnail-json/?${query_parameters}`, res 
     });
 
     res.on('end', () => {
-        generateThumbnails(JSON.parse(Buffer.concat(data).toString()));
+        json_data = Buffer.concat(data).toString();
+        generateThumbnails(JSON.parse(json_data));
     });
 }).on('error', err => {
     console.log('Error: ', err.message);

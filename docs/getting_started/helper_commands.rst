@@ -141,6 +141,7 @@ To follow logs as they output, enter ``docker-compose logs --follow``.
 ==============================================================================
 
 Running ``./csfg make_interactive_thumbnails`` generates the thumbnails for each interactive.
+Thumbnails are not generated for uninteractives.
 You will need to run the ``./csfg collect_static`` command after for them to appear in the ``staticfiles/`` directory.
 The thumbnail for each interactive will be saved under ``staticfiles/img/interactives/thumbnails/<language-code>/<interactive-slug>.png``.
 
