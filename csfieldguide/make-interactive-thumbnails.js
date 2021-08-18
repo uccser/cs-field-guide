@@ -2,15 +2,20 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 const puppeteer = require('puppeteer');
+
+// Screenshots taken at 4 by 3 ratio
+const BASE_VIEWPORT_WIDTH = 480;
+const BASE_VIEWPORT_HEIGHT = 320;
+
 const VIEWPORT = {
-    width: 480,
-    height: 320,
+    width: BASE_VIEWPORT_WIDTH,
+    height: BASE_VIEWPORT_HEIGHT,
     deviceScaleFactor: 1
 };
-const VIEWPORT_LARGE = { // 75% larger
-    width: 840,
-    height: 560,
-    deviceScaleFactor: 1 / 1.75
+const VIEWPORT_LARGE = {
+    width: BASE_VIEWPORT_WIDTH * 2,
+    height: BASE_VIEWPORT_HEIGHT * 2,
+    deviceScaleFactor: 1
 }
 const SCREENSHOT_BASE_PATH = './build/img/interactives/thumbnails/';
 const BASE_URL = 'http://django:8000';
