@@ -16,12 +16,22 @@ All notable changes to this project will be documented in this file.
   - A pre-release version is denoted by appending a hyphen and the alpha label followed by the pre-release version.
 
 We have listed major changes for each release below.
+`All downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/>`__
 
 3.7.0
 ==============================================================================
 
-- **Release date:** 2nd February 2021
-- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/3.7.0>`__
+**Release date:** 2nd February 2021
+
+**Changelog:**
+
+- Add context-free grammar interactive. `#1364 <https://github.com/uccser/cs-field-guide/pull/1364>`__
+- Update the list of editors. `#1361 <https://github.com/uccser/cs-field-guide/pull/1361>`__
+
+3.7.0
+==============================================================================
+
+**Release date:** 2nd February 2021
 
 **Changelog:**
 
@@ -31,8 +41,7 @@ We have listed major changes for each release below.
 3.6.0
 ==============================================================================
 
-- **Release date:** 11th January 2021
-- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/3.6.0>`__
+**Release date:** 11th January 2021
 
 **Changelog:**
 
@@ -56,8 +65,7 @@ We have listed major changes for each release below.
 3.5.1
 ==============================================================================
 
-- **Release date:** 1st August 2020
-- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/3.5.1>`__
+**Release date:** 1st August 2020
 
 **Changelog:**
 
@@ -87,8 +95,7 @@ We have listed major changes for each release below.
 3.5.0
 ==============================================================================
 
-- **Release date:** 7th July 2020
-- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/3.5.0>`__
+**Release date:** 7th July 2020
 
 **Changelog:**
 
@@ -102,8 +109,7 @@ We have listed major changes for each release below.
 3.4.0
 ==============================================================================
 
-- **Release date:** 1st July 2020
-- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/3.4.0>`__
+**Release date:** 1st July 2020
 
 **Changelog:**
 
@@ -129,8 +135,7 @@ We have listed major changes for each release below.
 3.3.1
 ==============================================================================
 
-- **Release date:** 22nd April 2020
-- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/3.3.1>`__
+**Release date:** 22nd April 2020
 
 **Changelog:**
 
@@ -143,8 +148,7 @@ We have listed major changes for each release below.
 3.3.0
 ==============================================================================
 
-- **Release date:** 26th December 2019
-- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/3.3.0>`__
+**Release date:** 26th December 2019
 
 **Summary of changes:**
 
@@ -185,8 +189,7 @@ A configuration tool for the sorting boxes interactive has been added, allowing 
 3.2.0
 ==============================================================================
 
-- **Release date:** 16th October 2019
-- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/3.2.0>`__
+**Release date:** 16th October 2019
 
 **Changelog:**
 
@@ -202,8 +205,7 @@ A configuration tool for the sorting boxes interactive has been added, allowing 
 3.1.0
 ==============================================================================
 
-- **Release date:** 7th October 2019
-- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/3.1.0>`__
+**Release date:** 7th October 2019
 
 **Changelog:**
 
@@ -220,8 +222,7 @@ A configuration tool for the sorting boxes interactive has been added, allowing 
 3.0.5
 ==============================================================================
 
-- **Release date:** 6th September 2019
-- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/3.0.5>`__
+**Release date:** 6th September 2019
 
 **Changelog:**
 
@@ -230,8 +231,7 @@ A configuration tool for the sorting boxes interactive has been added, allowing 
 3.0.4
 ==============================================================================
 
-- **Release date:** 5th September 2019
-- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/3.0.4>`__
+**Release date:** 5th September 2019
 
 **Changelog:**
 
@@ -254,8 +254,7 @@ A configuration tool for the sorting boxes interactive has been added, allowing 
 3.0.3
 ==============================================================================
 
-- **Release date:** 24th July 2019
-- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/3.0.3>`__
+**Release date:** 24th July 2019
 
 **Changelog:**
 
@@ -273,8 +272,7 @@ A configuration tool for the sorting boxes interactive has been added, allowing 
 3.0.2
 ==============================================================================
 
-- **Release date:** 18th July 2019
-- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/3.0.2>`__
+**Release date:** 18th July 2019
 
 **Changelog:**
 
@@ -296,8 +294,7 @@ A configuration tool for the sorting boxes interactive has been added, allowing 
 3.0.1
 ==============================================================================
 
-- **Release date:** 3rd July 2019
-- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/3.0.1>`__
+**Release date:** 3rd July 2019
 
 **Changelog:**
 
@@ -320,8 +317,7 @@ A configuration tool for the sorting boxes interactive has been added, allowing 
 3.0.0
 ==============================================================================
 
-- **Release date**: 30th June 2019
-- **Downloads**: `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/3.0.0>`__
+**Release date**: 30th June 2019
 
 **Changelog:**
 
@@ -375,23 +371,17 @@ A configuration tool for the sorting boxes interactive has been added, allowing 
 2.12.2
 ==============================================================================
 
-- **Release date:** 5th June 2018
-- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/2.12.2>`__
+**Release date:** 5th June 2018
 
 **Changelog:**
 
 - Add optional parameters to Pixel Viewer interactive to specific starting image, hide pixel fill, and hide menu. `#630 <https://github.com/uccser/cs-field-guide/pull/630>`__
 - Grammar/spelling fixes for Data Representation and Compression Coding chapters. `#626 <https://github.com/uccser/cs-field-guide/pull/626>`__
 
-`This release is archived for viewing here <https://archive.csfieldguide.org.nz/2.12.2/>`__
-
-`The teacher version is archived for viewing here <https://archive.csfieldguide.org.nz/2.12.2/en/teacher/>`__
-
 2.12.1
 ==============================================================================
 
-- **Release date:** 7th March 2018
-- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/2.12.1>`__
+**Release date:** 7th March 2018
 
 **Changelog:**
 
@@ -404,8 +394,7 @@ A configuration tool for the sorting boxes interactive has been added, allowing 
 2.12.0
 ==============================================================================
 
-- **Release date:** 13th February 2018
-- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/2.12.0>`__
+**Release date:** 13th February 2018
 
 **Changelog:**
 
@@ -422,8 +411,7 @@ A configuration tool for the sorting boxes interactive has been added, allowing 
 2.11.0
 ==============================================================================
 
-- **Release date:** 18th October 2017
-- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/2.11.0>`__
+**Release date:** 18th October 2017
 
 **Changelog:**
 
@@ -439,8 +427,7 @@ A configuration tool for the sorting boxes interactive has been added, allowing 
 2.10.1
 ==============================================================================
 
-- **Release date:** 3rd September 2017
-- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/2.10.1>`__
+**Release date:** 3rd September 2017
 
 **Changelog:**
 
@@ -451,8 +438,7 @@ A configuration tool for the sorting boxes interactive has been added, allowing 
 2.10.0
 ==============================================================================
 
-- **Release date:** 2nd September 2017
-- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/2.10.0>`__
+**Release date:** 2nd September 2017
 
 **Notable changes:**
 
@@ -482,8 +468,7 @@ This to make the numbering consistent with our other projects (CS Unplugged and 
 2.9.1
 ==============================================================================
 
-- **Release date:** 20th February 2017
-- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/v2.9.1>`__
+**Release date:** 20th February 2017
 
 **Notable changes:**
 
@@ -496,8 +481,7 @@ This release fixes a bug in the Computer Graphics chapter where some links to th
 2.9.0
 ==============================================================================
 
-- **Release date:** 27th January 2017
-- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/v2.9.0>`__
+**Release date:** 27th January 2017
 
 **Notable changes:**
 
@@ -516,8 +500,7 @@ This release adds an introductory video for the Complexity and Tractability chap
 2.8.1
 ==============================================================================
 
-- **Release date:** 21st October 2016
-- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/v2.8.1>`__
+**Release date:** 21st October 2016
 
 **Changelog:**
 
@@ -528,8 +511,7 @@ This release adds an introductory video for the Complexity and Tractability chap
 2.8.0
 ==============================================================================
 
-- **Release date:** 19th October 2016
-- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/v2.8.0>`__
+**Release date:** 19th October 2016
 
 **Notable changes:**
 
@@ -555,8 +537,7 @@ This release adds an introductory video for the Human Computer Interaction chapt
 2.7.1
 ==============================================================================
 
-- **Release date:** 5th September 2016
-- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/v2.7.1>`__
+**Release date:** 5th September 2016
 
 **Notable changes:**
 
@@ -567,17 +548,16 @@ A full list of changes in this version is `available on GitHub <https://github.c
 2.7.0
 ==============================================================================
 
-- **Release date:** 23rd August 2016
-- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/v2.7.0>`__
+**Release date:** 23rd August 2016
 
 **Notable changes:**
 
-- **New video:** Formal Languages now has an introductory video.
-- **New interactive:** The [hexadecimal background colour interactive interactives/hex-background-colour/index.html) allows a user to change the background colour of the page.
-- **New curriculum guide:** A guide for NCEA `Artificial Intelligence: Turing Test <https://docs.google.com/document/d/1TnP0sCW33Yhy4wQITDre1sirB0IonesCfdbO0WqJjow>`__ has been added.
-- **Updated interactives:** The `box translation <interactives/box-translation/index.html>`__ and `box rotation <interactives/box-rotation/index.html>`__ interactives are now open source and have been given a new look and made mobile friendly.
-- **Generation improvements:** Basic translation support. Settings are now specific to each language, and contain the translation text.
-- **Website improvements:** Added `help guide <further-information/interactives.html>`__ for WebGL interactives.
+**New video:** Formal Languages now has an introductory video.
+**New interactive:** The [hexadecimal background colour interactive interactives/hex-background-colour/index.html) allows a user to change the background colour of the page.
+**New curriculum guide:** A guide for NCEA `Artificial Intelligence: Turing Test <https://docs.google.com/document/d/1TnP0sCW33Yhy4wQITDre1sirB0IonesCfdbO0WqJjow>`__ has been added.
+**Updated interactives:** The `box translation <interactives/box-translation/index.html>`__ and `box rotation <interactives/box-rotation/index.html>`__ interactives are now open source and have been given a new look and made mobile friendly.
+**Generation improvements:** Basic translation support. Settings are now specific to each language, and contain the translation text.
+**Website improvements:** Added `help guide <further-information/interactives.html>`__ for WebGL interactives.
 - Also includes bug fixes to interactives, new links to supporting videos, and various text corrections from our staff and contributors.
 
 A full list of changes in this version is `available on GitHub <https://github.com/uccser/cs-field-guide/compare/v2.6.1...v2.7.0>`__
@@ -585,8 +565,7 @@ A full list of changes in this version is `available on GitHub <https://github.c
 2.6.1
 ==============================================================================
 
-- **Release date:** 14th July 2016
-- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/v2.6.1>`__
+**Release date:** 14th July 2016
 
 **Notable changes:**
 
@@ -595,31 +574,29 @@ A full list of changes in this version is `available on GitHub <https://github.c
 2.6.0
 ==============================================================================
 
-- **Release date:** 16th June 2016
-- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/v2.6.0>`__
+**Release date:** 16th June 2016
 
 **Notable changes:**
 
-- **New feature:** PDF output - A downloadable PDF of both student and teacher versions is now available from the homepage. The PDF also functions well as an ebook, with functional links to headings, glossary entries, interactives, and online resources.
-- **New feature:** Printer friendly webpages - When printing a page of the CSFG through a browser, the page displays in a printer friendly manner by hiding navigational panels, opening all panels, and providing extra links to online resources.
-- **New interactive:** The `binary cards interactive <interactives/binary-cards/index.html>`__ emulates the Binary Cards CS Unplugged activity, used to teach binary numbers.
-- **New interactive:** The `high score boxes interactive <interactives/high-score-boxes/index.html>`__ was developed to give an example of searching boxes to find a maximum value to the student.
-- **New interactive:** The `action menu interactive <interactives/action-menu/index.html>`__ is a small dropdown menu with one option that has severe consequences, but no confirmation screen if the user selects that option (used to demonstrate a key HCI concept).
-- **Updated interactive:** The `trainsylvania interactive <interactives/trainsylvania/index.html>`__ (and supporting images/files) have been given a fresh coat of colour and a new station name.
-- **Updated interactive:** The `trainsylvania planner <interactive interactives/trainsylvania-planner/index.html>`__ is used alongside the trainsylvania interactive, and allows the user to input a path of train trips to see the resulting destination.
-- **Updated interactive:** The `base calculator <interactives/base-calculator/index.html>`__ allows a student to calculate a number, using a specific number base (binary, hexadecimal, etc).
-- **Updated interactive:** The `big number calculator <interactives/big-number-calculator/index.html>`__ allows a student to perform calculations with very large numbers/results.
-- **Website improvements:** Redesigned homepage and footer with useful links and a splash of colour. Math equations are now line wrapped, and MathJax is loaded from a CDN. Images can now have text wrapped around them on a page.
-- **Generation improvements:** Improvements to internal link creation (glossary links in particular). Separated dependency installation from generation script (see documentation for how to install and run generation script).
-- **Project improvements:** Added documentation for contributing to and developing this project, including a code of conduct.
+**New feature:** PDF output - A downloadable PDF of both student and teacher versions is now available from the homepage. The PDF also functions well as an ebook, with functional links to headings, glossary entries, interactives, and online resources.
+**New feature:** Printer friendly webpages - When printing a page of the CSFG through a browser, the page displays in a printer friendly manner by hiding navigational panels, opening all panels, and providing extra links to online resources.
+**New interactive:** The `binary cards interactive <interactives/binary-cards/index.html>`__ emulates the Binary Cards CS Unplugged activity, used to teach binary numbers.
+**New interactive:** The `high score boxes interactive <interactives/high-score-boxes/index.html>`__ was developed to give an example of searching boxes to find a maximum value to the student.
+**New interactive:** The `action menu interactive <interactives/action-menu/index.html>`__ is a small dropdown menu with one option that has severe consequences, but no confirmation screen if the user selects that option (used to demonstrate a key HCI concept).
+**Updated interactive:** The `trainsylvania interactive <interactives/trainsylvania/index.html>`__ (and supporting images/files) have been given a fresh coat of colour and a new station name.
+**Updated interactive:** The `trainsylvania planner <interactive interactives/trainsylvania-planner/index.html>`__ is used alongside the trainsylvania interactive, and allows the user to input a path of train trips to see the resulting destination.
+**Updated interactive:** The `base calculator <interactives/base-calculator/index.html>`__ allows a student to calculate a number, using a specific number base (binary, hexadecimal, etc).
+**Updated interactive:** The `big number calculator <interactives/big-number-calculator/index.html>`__ allows a student to perform calculations with very large numbers/results.
+**Website improvements:** Redesigned homepage and footer with useful links and a splash of colour. Math equations are now line wrapped, and MathJax is loaded from a CDN. Images can now have text wrapped around them on a page.
+**Generation improvements:** Improvements to internal link creation (glossary links in particular). Separated dependency installation from generation script (see documentation for how to install and run generation script).
+**Project improvements:** Added documentation for contributing to and developing this project, including a code of conduct.
 
 A full list of changes in this version is `available on GitHub <https://github.com/uccser/cs-field-guide/compare/v2.5.0...v2.6.0>`__
 
 2.5.0
 ==============================================================================
 
-- **Release date:** 13th May 2016
-- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/v2.5.0>`__
+**Release date:** 13th May 2016
 
 **Notable changes:**
 
@@ -647,8 +624,7 @@ A full list of changes in this version is `available on GitHub <https://github.c
 2.4.1
 ==============================================================================
 
-- **Release date:** 29th April 2016
-- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/v2.4.1>`__
+**Release date:** 29th April 2016
 
 **Notable changes:**
 
@@ -659,8 +635,7 @@ A full list of changes in this version is `available on GitHub <https://github.c
 2.4
 ==============================================================================
 
-- **Release date:** 29th April 2016
-- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/v2.4>`__
+**Release date:** 29th April 2016
 
 **Notable changes:**
 
@@ -679,8 +654,7 @@ A full list of changes in this version is `available on GitHub <https://github.c
 2.3
 ==============================================================================
 
-- **Release date:** 10th March 2016
-- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/v2.3>`__
+**Release date:** 10th March 2016
 
 **Notable changes:**
 
@@ -696,8 +670,7 @@ A full list of changes in this version is `available on GitHub <https://github.c
 2.2
 ==============================================================================
 
-- **Release date:** 19th February 2016
-- **Downloads:** `Source downloads are available on GitHub  <https://github.com/uccser/cs-field-guide/releases/tag/v2.2>`__
+**Release date:** 19th February 2016
 
 **Notable changes:**
 
@@ -712,8 +685,7 @@ A full list of changes in this version is `available on GitHub <https://github.c
 2.1
 ==============================================================================
 
-- **Release date:** 12th February 2016
-- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/v2.1>`__
+**Release date:** 12th February 2016
 
 **Notable changes:**
 
@@ -727,8 +699,7 @@ A full list of changes in this version is `available on GitHub <https://github.c
 2.0
 ==============================================================================
 
-- **Release date:** 5th February 2016
-- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/v2.0>`__
+**Release date:** 5th February 2016
 
 **Notable changes:**
 
@@ -748,18 +719,17 @@ For any interactives that are missing, links are in place to the older interacti
 2.0-alpha.3
 ==============================================================================
 
-- **Release date:** 29th January 2016
-- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/compare/d8a69d50575cac8c4e2686ee4d9af7c22b7131a7...v2.0-alpha.3>`__
+**Release date:** 29th January 2016
 
 2.0-alpha.2
 ==============================================================================
 
-- **Release date:** 25th January 2016
+**Release date:** 25th January 2016
 
 2.0-alpha.1
 ==============================================================================
 
-- **Release date:** 2nd December 2015
+**Release date:** 2nd December 2015
 
 **Comments:**
 Released at CS4HS 2015.
@@ -767,12 +737,8 @@ Released at CS4HS 2015.
 1.?.?
 ==============================================================================
 
-- **Release date:** 3rd February 2015
+**Release date:** 3rd February 2015
 
 **Comments:**
 
 The last version of the CSFG before the open source version was adopted.
-
-`This release is archived for viewing here <https://archive.csfieldguide.org.nz/1.9.9/>`__
-
-`The teacher version is archived for viewing here <https://archive.csfieldguide.org.nz/1.9.9/teacher/>`__
