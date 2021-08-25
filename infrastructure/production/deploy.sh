@@ -16,12 +16,12 @@ checkEnvVariableExists CS_FIELD_GUIDE_IMAGE_TAG
 checkEnvVariableExists CS_FIELD_GUIDE_DOMAIN
 
 # Update Django service
-docker service update --force cs-field-guide_django
+docker service update --image ghcr.io/uccser/cs-field-guide:${CS_FIELD_GUIDE_IMAGE_TAG} cs-field-guide_django
 
 # Run updata_data command
 if docker service ps cs-field-guide_update-data | grep cs-field-guide_update-data
 then
-    docker service update --force cs-field-guide_update-data
+    docker service update --image ghcr.io/uccser/cs-field-guide:${CS_FIELD_GUIDE_IMAGE_TAG} cs-field-guide_update-data
 else
     docker service create \
     --name cs-field-guide_update-data \
