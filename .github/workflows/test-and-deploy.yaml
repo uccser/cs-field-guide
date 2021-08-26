@@ -1,8 +1,13 @@
 name: Test and deploy
 
 on:
-  workflow_dispatch:
   push:
+  release:
+    types: [published]
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
 
 jobs:
   test-django-system-check:
@@ -89,7 +94,9 @@ jobs:
 
   create-static-files:
     name: Create static files
-    if: (github.ref == 'refs/heads/develop')
+    if: |
+      github.ref == 'refs/heads/develop' ||
+      startsWith(github.ref, 'refs/tags/')
     runs-on: ubuntu-20.04
     needs: [
       test-django-system-check,
@@ -127,7 +134,9 @@ jobs:
 
   create-interactive-thumbnails:
     name: Create interactive thumbnails
-    if: (github.ref == 'refs/heads/develop')
+    if: |
+      github.ref == 'refs/heads/develop' ||
+      startsWith(github.ref, 'refs/tags/')
     runs-on: ubuntu-20.04
     strategy:
       matrix:
@@ -179,7 +188,7 @@ jobs:
 
   publish-dev-docker-image:
     name: Create and publish dev image
-    if: (github.ref == 'refs/heads/develop')
+    if: github.ref == 'refs/heads/develop'
     runs-on: ubuntu-20.04
     needs: [
       create-static-files,
@@ -204,10 +213,10 @@ jobs:
           mkdir -p csfieldguide/staticfiles/img/interactives/thumbnails
           ls artifacts/interactive-thumbnails-*/interactive-thumbnails.tar.gz | xargs -n1 tar -xz --directory csfieldguide/staticfiles/img/interactives/thumbnails --file
 
-      - name: Log in to the Container registry
+      - name: Log in to ${{ env.REGISTRY }}
         uses: docker/login-action@v1.10.0
         with:
-          registry: ghcr.io
+          registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
@@ -218,4 +227,55 @@ jobs:
           context: .
           push: true
           tags: ghcr.io/uccser/cs-field-guide:develop
+          build-args: GIT_SHA=${{ github.sha }}
+
+  publish-prod-docker-image:
+    name: Create and publish prod image
+    if: startsWith(github.ref, 'refs/tags/')
+    runs-on: ubuntu-20.04
+    needs: [
+      create-static-files,
+      create-interactive-thumbnails,
+    ]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Download all workflow run artifacts
+        uses: actions/download-artifact@v2
+        with:
+          path: artifacts/
+
+      - name: Show file tree of artifacts directory
+        run: ls -R -l artifacts/
+
+      - name: Unpack all artifacts
+        run: |
+          mkdir -p csfieldguide/staticfiles
+          tar -xz --file artifacts/static-files/static-files.tar.gz --directory csfieldguide/staticfiles
+          mkdir -p csfieldguide/staticfiles/img/interactives/thumbnails
+          ls artifacts/interactive-thumbnails-*/interactive-thumbnails.tar.gz | xargs -n1 tar -xz --directory csfieldguide/staticfiles/img/interactives/thumbnails --file
+
+      - name: Log in to ${{ env.REGISTRY }}
+        uses: docker/login-action@v1.10.0
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Docker metadata
+        id: meta
+        uses: docker/metadata-action@v3
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=ref,event=tag,enable=true
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v2.7.0
+        with:
+          file: ./infrastructure/production/django/Dockerfile
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
           build-args: GIT_SHA=${{ github.sha }}
