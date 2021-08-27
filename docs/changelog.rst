@@ -38,12 +38,14 @@ We have listed major changes for each release below.
 
 - Update Context-free Grammar interactive to always generate valid expressions via brute force, and improve the interface with a history log and consistent formatting.
 - Allow Big Number Calculator to calculate numbers with low digit counts. `#1340 <https://github.com/uccser/cs-field-guide/pull/1340>`__
-- Dependency updates:
+- Dependency changes:
 
     - Add ansi-colors 4.1.1.
     - Add browser-sync 2.27.5.
     - Add child_process 1.0.2.
     - Add cssnano 5.0.8.
+    - Add django-bootstrap-breadcrumbs 0.9.2.
+    - Add elasticsearch 5.5.3.
     - Add fancy-log 1.3.3.
     - Add got 11.8.2.
     - Add gulp-concat 2.6.1.
@@ -53,10 +55,12 @@ We have listed major changes for each release below.
     - Add pixrem 5.0.0.
     - Add postcss 8.3.6.
     - Add sass 1.38.0.
+    - Add whitenoise 5.0.3.
     - Remove @babel/core 7.1.2
     - Remove @babel/preset-env 7.1.0
     - Remove del 3.0.0
     - Remove featherlight 1.7.13
+    - Remove gevent 1.4.0.
     - Remove gulp-babel 8.0.0
     - Remove gulp-jshint 2.1.0
     - Remove gulp-notify 3.2.0
@@ -66,14 +70,24 @@ We have listed major changes for each release below.
     - Remove jshint 2.9.6.
     - Remove jshint-stylish 2.2.1.
     - Remove node-gyp 3.8.0
+    - Remove Pillow 7.2.0.
     - Remove request 2.88.0
     - Remove run-sequence 2.2.1
     - Remove sticky-state 2.4.1
+    - Remove wheel 0.35.1.
+    - Remove Whoosh 2.7.4.
     - Update autoprefixer from 9.3.1 to 10.3.2.
     - Update bootstrap from 4.3.1 to 4.6.0.
     - Update browserify from 16.2.2 to 17.0.0.
     - Update codemirror from 5.42.0 to 5.62.3.
+    - Update coverage from 5.3 to 5.5.
     - Update details-element-polyfill from 2.3.1 to 2.4.0.
+    - Update django from 2.2.3 to 3.2.6.
+    - Update django-debug-toolbar from 3.1.1 to 3.2.2.
+    - Update django-haystack 3.0 to django-haystack[elasticsearch] 3.0.
+    - Update django-modeltranslation from 0.15.2 to 0.17.3.
+    - Update django-statici18n from 1.9.0 to 2.0.1.
+    - Update flake8 from 3.8.4 to 3.9.2
     - Update gulp from 3.9.1 to 4.0.2.
     - Update gulp-filter from 5.1.0 to 7.0.0.
     - Update gulp-if from 2.0.2 to 3.0.0.
@@ -83,37 +97,23 @@ We have listed major changes for each release below.
     - Update gulp-sourcemaps from 2.6.4 to 3.0.0.
     - Update gulp-tap from 1.0.1 to 2.0.0.
     - Update gulp-terser from 1.1.5 to 2.0.1.
+    - Update gunicorn from 19.9.0 to 20.1.0.
     - Update iframe-resizer from 4.1.1 to 4.3.2.
     - Update jquery from 3.4.1 to 3.6.0.
+    - Update lxml from 4.6.2 to 4.6.3.
     - Update multiple-select from 1.2.1 to 1.5.2.
     - Update popper.js from 1.15.0 to 1.16.1.
     - Update postcss-flexbugs-fixes from 4.1.0 to 5.0.2.
-    - Update puppeteer from 1.9.0 to Docker image 10.0.0.
-    - Update yargs from 12.0.2 to 17.1.1.
     - Update Postgres database from 9.6 to 13.3.
+    - Update psycopg2 from 2.7.6.1 to 2.9.1.
+    - Update puppeteer from 1.9.0 to Docker image 10.0.0.
+    - Update pydocstyle from 5.1.1 to 6.1.1.
+    - Update PyYAML from 5.3.1 to 5.4.1.
     - Update sphinx from 3.3.0 to 4.1.2.
     - Update sphinx-rtd-theme from 0.5.0 to 0.5.2.
-    - Update django from 2.2.3 to 3.2.6.
-    - Remove gevent 1.4.0.
-    - Update gunicorn from 19.9.0 to 20.1.0.
-    - Update psycopg2 from 2.7.6.1 to 2.9.1.
-    - Add whitenoise 5.0.3.
-    - Add django-bootstrap-breadcrumbs 0.9.2.
-    - Remove Pillow 7.2.0.
-    - Remove wheel 0.35.1.
-    - Update verto 0.11.0 to 1.0.1.
-    - Remove Whoosh 2.7.4.
-    - Update django-haystack 3.0 to django-haystack[elasticsearch] 3.0.
-    - Add elasticsearch 5.5.3.
-    - Update lxml from 4.6.2 to 4.6.3.
-    - Update PyYAML from 5.3.1 to 5.4.1.
-    - Update django-modeltranslation from 0.15.2 to 0.17.3.
     - Update uniseg from 0.7.1 to 0.7.1.post2.
-    - Update django-statici18n from 1.9.0 to 2.0.1.
-    - Update django-debug-toolbar from 3.1.1 to 3.2.2.
-    - Update flake8 from 3.8.4 to 3.9.2
-    - Update pydocstyle from 5.1.1 to 6.1.1.
-    - Update coverage from 5.3 to 5.5.
+    - Update verto 0.11.0 to 1.0.1.
+    - Update yargs from 12.0.2 to 17.1.1.
 
 3.7.0
 ==============================================================================
