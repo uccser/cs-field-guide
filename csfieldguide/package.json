@@ -58,7 +58,6 @@
         "csfg-interactive-packet-attack": "file:./static/interactives/packet-attack/",
         "csfg-interactive-password-guesser": "file:./static/interactives/password-guesser/",
         "csfg-interactive-python-interpreter": "file:./static/interactives/python-interpreter/",
-        "csfg-interactive-regular-expression-search": "file:./static/interactives/regular-expression-search/",
         "csfg-interactive-rgb-mixer": "file:./static/interactives/rgb-mixer/",
         "csfg-interactive-rsa-decryption": "file:./static/interactives/rsa-decryption/",
         "csfg-interactive-rsa-encryption": "file:./static/interactives/rsa-encryption/",
