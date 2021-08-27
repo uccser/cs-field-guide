@@ -28,7 +28,7 @@ An example picture is shown below.
 
 {image file-path="img/chapters/angle-of-view-ruler.jpg" alt="An example of taking a picture of a ruler."}
 
-{image file-path="img/chapters/angle-of-view-ruler.png" alt="A diagram showing the components of the ruler technique."}
+{image file-path="img/chapters/angle-of-view-ruler-diagram.png" alt="A diagram showing the components of the ruler technique."}
 
 As seen in the diagram above, finding the angle of view becomes a simple trigonometry problem.
 We derive the following equation for calculating the half angle of view.
