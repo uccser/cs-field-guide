@@ -44,11 +44,7 @@ You should let students devise their own notation for this.
 They will soon learn (possibly the hard way) that they should record all routes with an arrow (since trains don't necessarily return by the same route), and label their arrows with A or B.
 The full map for the activity is here, but don't spoil the students' fun by providing it &ndash; at least, not yet.
 
-{interactive slug="trainsylvania-complete" text="true" type="whole-page"}
-
-Complete map of Trainsylvania
-
-{interactive end}
+{interactive slug="trainsylvania-complete" type="in-page"}
 
 {panel end}
 

@@ -1,0 +1,115 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+<div id="outer-div" class="container">
+  <h3 class="text-center mb-2">{% trans "Getting Distance From Stereo Images" %}</h3>
+  <a data-toggle="collapse" href="#instructions" role="button" aria-expanded="true" aria-controls="instructions">
+    Instructions (hide/show)
+  </a>
+  <div class="collapse show" id="instructions">
+    <p>
+      {% trans "Take two side-by-side pictures of an object." %}
+      {% trans "Make sure the direction of the pictures are parallel, and that the object is between the two camera positions." %}
+      {% trans "Note down the precise distance between the camera positions and the distance between the camera plane and the object plane." %}
+      {% trans "Upload the two pictures and click on the common feature of the object in both pictures." %}
+      {% trans "Enter your camera's angle-of-view and the distance between the two camera positions, and click 'Calculate distance'." %}
+      {% trans "Note that resizing the window will reset the points as this can affect the size of the pictures." %}
+      {% trans "The values are inputted into the equation below." %}
+    </p>
+    <p>
+      {% trans "The orange in the supplied images was 1 metre away. How close is the calculation?" %}
+    </p>
+
+    $$ {D =\frac{Bx_0}{2tan(\frac{\theta_0}{2})(x_1-x_2)}} $$
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+      <h4 class="text-center mb-2">{% trans "Left Camera" %}</h4>
+      <canvas id="canvas-left"></canvas>
+      <img id="img-left" src="{% static 'interactives/distance-from-stereo-images/images/orange_left.jpg' %}">
+    </div>
+    <div class="col-sm-6">
+      <h4 class="text-center mb-2">{% trans "Right Camera" %}</h4>
+      <canvas id="canvas-right"></canvas>
+      <img id="img-right" src="{% static 'interactives/distance-from-stereo-images/images/orange_right.jpg' %}">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6">
+      <p>{% trans "Upload a custom left image:" %}</p>
+      <div class="input-group mb-3">
+        <div class="custom-file">
+          <input type="file" class="custom-file-input" id="stereo-left-input" accept="image/*">
+          <label class="custom-file-label" for="stereo-left-input">{% trans "Choose file" %}</label>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <p>{% trans "Upload a custom right image:" %}</p>
+      <div class="input-group mb-3">
+        <div class="custom-file">
+          <input type="file" class="custom-file-input" id="stereo-right-input" accept="image/*">
+          <label class="custom-file-label" for="stereo-right-input">{% trans "Choose file" %}</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6">
+      <p>Left Width (x<sub>0</sub>): <span id="left-width"></span>px</p>
+      <p>Left X (x<sub>1</sub>): <span id="left-x"></span></p>
+      <p>Left Y: <span id="left-y"></span></p>
+    </div>
+    <div class="col-sm-6">
+      <p>Right Width (x<sub>0</sub>): <span id="right-width"></span>px</p>
+      <p>Right X (x<sub>2</sub>): <span id="right-x"></span></p>
+      <p>Right Y: <span id="right-y"></span></p>
+    </div>
+  </div>
+
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="angle-label">Angle of view (&theta;<sub>0</sub>)</span>
+    </div>
+    <input id="angle-of-view" type="number" step="0.01" class="form-control" value="65.6440" autocomplete=off aria-label="half-angle" aria-describedby="angle-label">
+    <div class="input-group-append">
+      <span class="input-group-text" id="angle-unit">Degrees</span>
+    </div>
+  </div>
+
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="distance-label">Distance between pictures (B)</span>
+    </div>
+    <input id="camera-distance" type="number" step="0.01" class="form-control" value="0.1" autocomplete=off aria-label="camera-distance" aria-describedby="distance-label">
+    <div class="input-group-append">
+      <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="distance-unit">Metres</button>
+      <div class="dropdown-menu" id="distance-unit-list">
+        <a class="dropdown-item" href="#">Metres</a>
+        <a class="dropdown-item" href="#">Inches</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="result-div" class="container">
+    <button id="calculate-distance-button" class="btn btn-outline-primary">Calculate distance</button>
+    <p id="result-title" class="result-p">Calculated distance:</p>
+    <p class="result-p"><span id="result"></span></p>
+  </div>
+</div>
+{% endblock html %}
+
+{% block css %}
+<link rel="stylesheet"
+      href="{% static 'interactives/distance-from-stereo-images/css/distance-from-stereo-images.css' %}">
+{% endblock css %}
+
+{% block js %}
+<script type="text/javascript"
+        src="{% static 'interactives/distance-from-stereo-images/js/distance-from-stereo-images.js' %}"></script>
+{% endblock js %}

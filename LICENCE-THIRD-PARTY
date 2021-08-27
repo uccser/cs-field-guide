@@ -16,7 +16,7 @@ ArrayMap (es6)
 ------------------------------------------------------------------------------
 https://github.com/Jamesernator/es6-array-map
 Copyright 2016 James "The Jamesernator" Browning
-licensed under MIT licence.
+Licensed under MIT licence.
 third-party-licences/arraymap.txt
 ==============================================================================
 
@@ -34,26 +34,8 @@ Autoprefixer
 ------------------------------------------------------------------------------
 https://github.com/postcss/autoprefixer
 Copyright 2013 Andrey Sitnik
-licensed under MIT licence.
+Licensed under MIT licence.
 third-party-licences/autoprefixer.txt
-==============================================================================
-
-==============================================================================
-@babel/core
-------------------------------------------------------------------------------
-https://github.com/babel/babel/tree/master/packages/babel-core
-Copyright 2014-present Sebastian McKenzie and other contributors
-licensed under MIT licence.
-third-party-licences/babel.txt
-==============================================================================
-
-==============================================================================
-@babel/preset-env
-------------------------------------------------------------------------------
-https://github.com/babel/babel/tree/master/packages/babel-preset-env
-Copyright 2014-present Sebastian McKenzie and other contributors
-licensed under MIT licence.
-third-party-licences/babel.txt
 ==============================================================================
 
 ==============================================================================
@@ -61,16 +43,16 @@ before-after.js
 ------------------------------------------------------------------------------
 https://github.com/jotform/before-after.js
 Copyright 2015 JotForm
-licensed under MIT licence.
+Licensed under MIT licence.
 third-party-licences/before-after.txt
 ==============================================================================
 
 ==============================================================================
 Bias in Big Data
 ------------------------------------------------------------------------------
-https://github.com/NCC74656/Bias-In-Big-Data-Interactive
+https://github.com/wolginm/Bias-In-Big-Data-Interactive
 Copyright 2019 Mark Henszey Wolgin
-licensed under MIT licence.
+Licensed under MIT licence.
 third-party-licences/bias-in-big-data.txt
 ==============================================================================
 
@@ -79,7 +61,7 @@ big.js
 ------------------------------------------------------------------------------
 https://github.com/MikeMcl/big.js
 Copyright 2018 Michael Mclaughlin
-licensed under MIT licence.
+Licensed under MIT licence.
 third-party-licences/bigjs.txt
 ==============================================================================
 
@@ -97,7 +79,7 @@ Bootstrap
 ------------------------------------------------------------------------------
 https://github.com/twbs/bootstrap
 Copyright 2011-2019 Twitter, Inc. & The Bootstrap Authors
-licensed under MIT licence.
+Licensed under MIT licence.
 third-party-licences/bootstrap.txt
 ==============================================================================
 
@@ -106,7 +88,7 @@ Browserify
 ------------------------------------------------------------------------------
 https://github.com/browserify/browserify
 Copyright owner not specified
-licensed under MIT licence.
+Licensed under MIT licence.
 third-party-licences/browserify.txt
 ==============================================================================
 
@@ -115,7 +97,7 @@ Chart.js
 ------------------------------------------------------------------------------
 https://github.com/chartjs/Chart.js
 Copyright 2018 Chart.js Contributors
-licensed under MIT licence.
+Licensed under MIT licence.
 third-party-licences/chartjs.txt
 ==============================================================================
 
@@ -124,7 +106,7 @@ CodeMirror
 ------------------------------------------------------------------------------
 https://github.com/codemirror/CodeMirror
 Copyright 2017 by Marijn Haverbeke and others
-licensed under MIT licence.
+Licensed under MIT licence.
 third-party-licences/codemirror.txt
 ==============================================================================
 
@@ -141,9 +123,9 @@ third-party-licences/coverage.txt
 crypto-js
 ------------------------------------------------------------------------------
 https://github.com/brix/crypto-js
-Copyright 2009-2013 Jeff Mott  
+Copyright 2009-2013 Jeff Mott
 Copyright 2013-2016 Evan Vosberg
-licensed under MIT licence.
+Licensed under MIT licence.
 third-party-licences/cryptojs.txt
 ==============================================================================
 
@@ -152,7 +134,7 @@ css3patterns
 ------------------------------------------------------------------------------
 https://github.com/LeaVerou/css3patterns
 Copyright 2011 Lea Verou
-licensed under MIT licence.
+Licensed under MIT licence.
 third-party-licences/css3patterns.txt
 ==============================================================================
 
@@ -170,7 +152,7 @@ cytoscape.js
 ------------------------------------------------------------------------------
 https://github.com/cytoscape/cytoscape.js
 Copyright 2016-2019 The Cytoscape Consortium.
-licensed under MIT licence.
+Licensed under MIT licence.
 third-party-licences/cytoscapejs.txt
 ==============================================================================
 
@@ -179,7 +161,7 @@ cytoscape-automove
 ------------------------------------------------------------------------------
 https://github.com/cytoscape/cytoscape.js-automove
 Copyright 2016-2018, The Cytoscape Consortium.
-licensed under MIT licence.
+Licensed under MIT licence.
 third-party-licences/cytoscape-automove.txt
 ==============================================================================
 
@@ -188,7 +170,7 @@ cytoscape-no-overlap
 ------------------------------------------------------------------------------
 https://github.com/mo0om/cytoscape-no-overlap
 Copyright 2018, Martin Heon.
-licensed under MIT licence.
+Licensed under MIT licence.
 third-party-licences/cytoscape-no-overlap.txt
 ==============================================================================
 
@@ -197,17 +179,8 @@ Data Visualization
 ------------------------------------------------------------------------------
 https://github.com/ahallak/CISC374
 Copyright 2019 ahallak, sestrobel, joy-kitson, KMeyerUD.
-licensed under MIT licence.
+Licensed under MIT licence.
 third-party-licences/data-visualization.txt
-==============================================================================
-
-==============================================================================
-del
-------------------------------------------------------------------------------
-https://github.com/sindresorhus/del
-Copyright Sindre Sorhus
-licensed under MIT licence.
-third-party-licences/del.txt
 ==============================================================================
 
 ==============================================================================
@@ -215,7 +188,7 @@ details-element-polyfill
 ------------------------------------------------------------------------------
 https://github.com/javan/details-element-polyfill
 Copyright 2019 Javan Makhmali
-licensed under MIT licence.
+Licensed under MIT licence.
 third-party-licences/details-element-polyfill.txt
 ==============================================================================
 
@@ -227,7 +200,7 @@ https://github.com/alteredq/three.js/blob/master/examples/js/Detector.js
 Forked from the Three.js library:
 https://github.com/mrdoob/three.js/
 Copyright 2010-2011 three.js Authors
-licensed under MIT licence.
+Licensed under MIT licence.
 third-party-licences/Detectorjs.txt
 ==============================================================================
 
@@ -247,7 +220,7 @@ django-bidi-utils
 ------------------------------------------------------------------------------
 https://github.com/MeirKriheli/django-bidi-utils
 Copyright 2009 Meir Kriheli
-licensed under MIT licence.
+Licensed under MIT licence.
 third-party-licences/django-bidi-utils.txt
 ==============================================================================
 
@@ -274,7 +247,7 @@ django-inline-svg
 ------------------------------------------------------------------------------
 https://github.com/mixxorz/django-inline-svg
 Copyright 2016 Mitchel Cabuloy
-licensed under MIT licence.
+Licensed under MIT licence.
 third-party-licences/django-inline-svg.txt
 ==============================================================================
 
@@ -301,7 +274,7 @@ Django test Without Migrations
 ------------------------------------------------------------------------------
 https://github.com/henriquebastos/django-test-without-migrations
 Copyright 2014 Henrique Bastos
-licensed under MIT licence.
+Licensed under MIT licence.
 third-party-licences/django-test-without-migrations.txt
 ==============================================================================
 
@@ -310,7 +283,7 @@ django-widget-tweaks
 ------------------------------------------------------------------------------
 https://github.com/jazzband/django-widget-tweaks
 Copyright 2011-2015 Mikhail Korobov
-licensed under MIT licence.
+Licensed under MIT licence.
 third-party-licences/django-widget-tweaks.txt
 ==============================================================================
 
@@ -319,7 +292,7 @@ Dragula
 ------------------------------------------------------------------------------
 https://github.com/bevacqua/dragula
 Copyright 2015-2016 Nicolas Bevacqua
-licensed under MIT licence.
+Licensed under MIT licence.
 third-party-licences/dragula.txt
 ==============================================================================
 
@@ -328,7 +301,7 @@ es5-shim
 ------------------------------------------------------------------------------
 https://github.com/es-shims/es5-shim
 Copyright 2009-2016 Kristopher Michael Kowal and contributors
-licensed under MIT licence.
+Licensed under MIT licence.
 third-party-licences/es5shim.txt
 ==============================================================================
 
@@ -337,17 +310,8 @@ es6-shim
 ------------------------------------------------------------------------------
 https://github.com/paulmillr/es6-shim
 Copyright 22013-2016 Paul Miller and contributors
-licensed under MIT licence.
+Licensed under MIT licence.
 third-party-licences/es6shim.txt
-==============================================================================
-
-==============================================================================
-featherlight
-------------------------------------------------------------------------------
-https://github.com/noelboss/featherlight
-Copyright 2014 Noel Bossart
-licensed under MIT licence.
-third-party-licences/featherlight.txt
 ==============================================================================
 
 ==============================================================================
@@ -356,7 +320,7 @@ Flake8
 https://gitlab.com/pycqa/flake8
 Copyright 2011-2013 Tarek Ziade
 Copyright 2012-2016 Ian Cordasco
-licensed under MIT licence.
+Licensed under MIT licence.
 third-party-licences/flake8.txt
 ==============================================================================
 
@@ -365,26 +329,8 @@ Gulp
 ------------------------------------------------------------------------------
 https://github.com/gulpjs/gulp
 Copyright 2013-2018 Blaine Bublitz, Eric Schoffstall and other contributors
-licensed under MIT licence.
+Licensed under MIT licence.
 third-party-licences/gulp.txt
-==============================================================================
-
-==============================================================================
-gulplog
-------------------------------------------------------------------------------
-https://github.com/gulpjs/gulplog
-Copyright 2015 Blaine Bublitz, Eric Schoffstall and other contributors
-licensed under MIT licence.
-third-party-licences/gulplog.txt
-==============================================================================
-
-==============================================================================
-gulp-babel
-------------------------------------------------------------------------------
-https://github.com/babel/gulp-babel
-Copyright 2014-2018 Sindre Sorhus
-licensed under MIT licence.
-third-party-licences/gulp-babel.txt
 ==============================================================================
 
 ==============================================================================
@@ -392,7 +338,7 @@ gulp-error-handle
 ------------------------------------------------------------------------------
 https://www.npmjs.com/package/gulp-error-handle
 Created by mhmadhamster
-licensed under MIT licence.
+Licensed under MIT licence.
 No known licence file to include
 ==============================================================================
 
@@ -401,7 +347,7 @@ gulp-filter
 ------------------------------------------------------------------------------
 https://github.com/sindresorhus/gulp-filter
 Copyright Sindre Sorhus
-licensed under MIT licence.
+Licensed under MIT licence.
 third-party-licences/gulp-filter.txt
 ==============================================================================
 
@@ -410,26 +356,8 @@ gulp-if
 ------------------------------------------------------------------------------
 https://github.com/robrich/gulp-if
 Copyright 2014 Richardson & Sons, LLC
-licensed under MIT licence.
+Licensed under MIT licence.
 third-party-licences/gulp-if.txt
-==============================================================================
-
-==============================================================================
-gulp-jshint
-------------------------------------------------------------------------------
-https://github.com/spalger/gulp-jshint
-Copyright 2015 Spencer Alger
-licensed under MIT licence.
-third-party-licences/gulp-jshint.txt
-==============================================================================
-
-==============================================================================
-gulp-notify
-------------------------------------------------------------------------------
-https://github.com/mikaelbr/gulp-notify
-Copyright 2014 Mikael Brevik
-licensed under MIT licence.
-third-party-licences/gulp-notify.txt
 ==============================================================================
 
 ==============================================================================
@@ -437,7 +365,7 @@ gulp-postcss
 ------------------------------------------------------------------------------
 https://github.com/postcss/gulp-postcss
 Copyright 2014 Andrey Kuzmin
-licensed under MIT licence.
+Licensed under MIT licence.
 third-party-licences/gulp-postcss.txt
 ==============================================================================
 
@@ -446,7 +374,7 @@ gulp-rename
 ------------------------------------------------------------------------------
 https://github.com/hparra/gulp-rename
 Copyright 2013 Hector Guillermo Parra Alvarez
-licensed under MIT licence.
+Licensed under MIT licence.
 third-party-licences/gulp-rename.txt
 ==============================================================================
 
@@ -455,7 +383,7 @@ gulp-sass
 ------------------------------------------------------------------------------
 https://github.com/dlmanning/gulp-sass
 Copyright 2013 David Manning
-licensed under MIT licence.
+Licensed under MIT licence.
 third-party-licences/gulp-sass.txt
 ==============================================================================
 
@@ -473,7 +401,7 @@ gulp-tap
 ------------------------------------------------------------------------------
 https://github.com/geejs/gulp-tap
 Copyright 2014 Mario Gutierrez
-licensed under MIT licence.
+Licensed under MIT licence.
 third-party-licences/gulp-tap.txt
 ==============================================================================
 
@@ -482,17 +410,8 @@ gulp-terser
 ------------------------------------------------------------------------------
 https://github.com/duan602728596/gulp-terser
 Copyright 2017 段昊辰
-licensed under MIT licence.
+Licensed under MIT licence.
 third-party-licences/gulp-terser.txt
-==============================================================================
-
-==============================================================================
-gulp-util
-------------------------------------------------------------------------------
-https://github.com/gulpjs/gulp-util
-Copyright 2014 Fractal
-licensed under MIT licence.
-third-party-licences/gulp-util.txt
 ==============================================================================
 
 ==============================================================================
@@ -500,7 +419,7 @@ iFrame Resizer V3
 ------------------------------------------------------------------------------
 https://github.com/davidjbradshaw/iframe-resizer
 Copyright 2013-2019 David J. Bradshaw
-licensed under MIT licence.
+Licensed under MIT licence.
 third-party-licences/iframe-resizer.txt
 ==============================================================================
 
@@ -509,7 +428,7 @@ interact.js
 ------------------------------------------------------------------------------
 https://github.com/taye/interact.js
 Copyright 2012-2019 Taye Adeyemi
-licensed under MIT licence.
+Licensed under MIT licence.
 third-party-licences/interactjs.txt
 ==============================================================================
 
@@ -518,7 +437,7 @@ jQuery
 ------------------------------------------------------------------------------
 https://github.com/jquery/jquery
 Copyright JS Foundation and other contributors
-licensed under MIT licence.
+Licensed under MIT licence.
 third-party-licences/jquery.txt
 ==============================================================================
 
@@ -527,17 +446,8 @@ jshint
 ------------------------------------------------------------------------------
 https://github.com/jshint/jshint
 Copyright 2012 Anton Kovalyov
-licensed under MIT licence.
+Licensed under MIT licence.
 third-party-licences/jshint.txt
-==============================================================================
-
-==============================================================================
-jshint-stylish
-------------------------------------------------------------------------------
-https://github.com/sindresorhus/jshint-stylish
-Copyright Sindre Sorhus
-licensed under MIT licence.
-third-party-licences/jshint-stylish.txt
 ==============================================================================
 
 ==============================================================================
@@ -562,7 +472,7 @@ third-party-licences/mathjax.txt
 Mathjs
 ------------------------------------------------------------------------------
 https://github.com/josdejong/mathjs
-Copyright 2013-2019 Jos de Jong 
+Copyright 2013-2019 Jos de Jong
 licensed under the Apache License, Version 2.0
 third-party-licences/mathjs.txt
 ==============================================================================
@@ -592,7 +502,7 @@ Multiple Select
 ------------------------------------------------------------------------------
 https://github.com/wenzhixin/multiple-select
 Copyright 2012-2014 Zhixin Wen
-licensed under MIT licence.
+Licensed under MIT licence.
 third-party-licences/multiple-select.txt
 ==============================================================================
 
@@ -610,17 +520,8 @@ node-dct
 ------------------------------------------------------------------------------
 https://github.com/vail-systems/node-dct
 Copyright 2015 Vail Systems
-licensed under MIT licence.
+Licensed under MIT licence.
 third-party-licences/dct.txt
-==============================================================================
-
-==============================================================================
-node-gyp
-------------------------------------------------------------------------------
-https://github.com/nodejs/node-gyp
-Copyright 2012 Nathan Rajlich
-licensed under MIT licence.
-third-party-licences/node-gyp.txt
 ==============================================================================
 
 ==============================================================================
@@ -628,7 +529,7 @@ node-rsa
 ------------------------------------------------------------------------------
 https://github.com/rzcoder/node-rsa
 Copyright 2014 rzcoder
-licensed under MIT licence.
+Licensed under MIT licence.
 third-party-licences/node-rsa.txt
 ==============================================================================
 
@@ -637,7 +538,7 @@ noUiSlider
 ------------------------------------------------------------------------------
 https://github.com/leongersen/noUiSlider
 Copyright 2018 Léon Gersen
-licensed under MIT licence.
+Licensed under MIT licence.
 third-party-licences/nouislider.txt
 ==============================================================================
 
@@ -667,7 +568,7 @@ Popper.js
 ------------------------------------------------------------------------------
 https://github.com/FezVrasta/popper.js
 Copyright 2016 Federico Zivolo and contributors
-licensed under MIT licence.
+Licensed under MIT licence.
 third-party-licences/popperjs.txt
 ==============================================================================
 
@@ -676,17 +577,8 @@ postcss-flexbugs-fixes
 ------------------------------------------------------------------------------
 https://github.com/luisrudge/postcss-flexbugs-fixes
 Copyright 2015 Luis Rudge
-licensed under MIT licence.
+Licensed under MIT licence.
 third-party-licences/postcss-flexbugs-fixes.txt
-==============================================================================
-
-==============================================================================
-Puppeteer
-------------------------------------------------------------------------------
-https://github.com/GoogleChrome/puppeteer
-Copyright holder not stated
-licensed under Apache License 2.0.
-third-party-licences/puppeteer.txt
 ==============================================================================
 
 ==============================================================================
@@ -713,7 +605,7 @@ python-markdown-math
 ------------------------------------------------------------------------------
 https://github.com/mitya57/python-markdown-math
 Copyright 2015-2017 Dmitry Shachnev
-licensed under MIT licence.
+Licensed under MIT licence.
 third-party-licences/python-markdown-math.txt
 ==============================================================================
 
@@ -723,26 +615,8 @@ PyYAML
 https://github.com/yaml/pyyaml
 Copyright 2017-2019 Ingy döt Net
 Copyright 2006-2016 Kirill Simonov
-licensed under MIT licence.
+Licensed under MIT licence.
 third-party-licences/pyyaml.txt
-==============================================================================
-
-==============================================================================
-Request
-------------------------------------------------------------------------------
-https://github.com/request/request
-Copyright holder not stated
-licensed under Apache License 2.0.
-third-party-licences/request.txt
-==============================================================================
-
-==============================================================================
-run-sequence
-------------------------------------------------------------------------------
-https://github.com/OverZealous/run-sequence
-Copyright 2014 Phil DeJarnett
-licensed under MIT licence.
-third-party-licences/run-sequence.txt
 ==============================================================================
 
 ==============================================================================
@@ -760,7 +634,7 @@ Skulpt
 ------------------------------------------------------------------------------
 https://github.com/skulpt/skulpt
 Copyright 2009-2016 Scott Graham and contributors
-licensed under MIT licence.
+Licensed under MIT licence.
 third-party-licences/skulpt.txt
 ==============================================================================
 
@@ -778,7 +652,7 @@ sphinx-rtd-theme (AKA Read The Docs Sphinx Theme)
 ------------------------------------------------------------------------------
 https://github.com/rtfd/sphinx_rtd_theme
 Copyright 2013-2018 Dave Snider, Read the Docs, Inc. & contributors
-licensed under MIT licence.
+Licensed under MIT licence.
 third-party-licences/sphinx-rtd-theme.txt
 ==============================================================================
 
@@ -792,20 +666,11 @@ third-party-licences/sprintf-js.txt
 ==============================================================================
 
 ==============================================================================
-StickyState
-------------------------------------------------------------------------------
-https://github.com/soenkekluth/sticky-state
-Created by Soenke Kluth
-licensed under MIT licence.
-No known licence file to include
-==============================================================================
-
-==============================================================================
 String.fromCodePoint
 ------------------------------------------------------------------------------
 https://github.com/mathiasbynens/String.fromCodePoint
 Copyright Mathias Bynens
-licensed under MIT licence.
+Licensed under MIT licence.
 third-party-licences/stringfromcodepoint.txt
 ==============================================================================
 
@@ -815,7 +680,7 @@ TeapotBufferGeometry.js
 Modified by Alasdair Smith from the original file:
 https://github.com/mrdoob/three.js/blob/master/examples/js/geometries/TeapotBufferGeometry.js
 Copyright 2010-2019 Three.js authors
-licensed under MIT licence.
+Licensed under MIT licence.
 third-party-licences/threejs.txt
 ==============================================================================
 
@@ -824,7 +689,7 @@ Three.js
 ------------------------------------------------------------------------------
 https://github.com/mrdoob/three.js/
 Copyright 2010-2019 three.js Authors
-licensed under MIT licence.
+Licensed under MIT licence.
 third-party-licences/threejs.txt
 ==============================================================================
 
@@ -835,9 +700,9 @@ https://github.com/mattdesl/three-orbit-controls
 Created by mattdesl
 Modified from the original three.js example:
     Copyright 2010-2019 three.js Authors
-    licensed under MIT licence.
+    Licensed under MIT licence.
     third-party-licences/threejs.txt
-licensed under MIT licence.
+Licensed under MIT licence.
 No known licence file to include.
 ==============================================================================
 
@@ -855,7 +720,7 @@ trAIning_ground
 ------------------------------------------------------------------------------
 https://github.com/wtaylor45/374-sticks-game
 Copyright 2017 Lia Dawson, Greg Mohler, Rachel Muzzelo, William Taylor
-licensed under MIT licence.
+Licensed under MIT licence.
 third-party-licences/training_ground.txt
 ==============================================================================
 
@@ -864,7 +729,7 @@ Tween.js
 ------------------------------------------------------------------------------
 https://github.com/tweenjs/tween.js/
 Copyright 2010-2012 Tween.js Authors
-licensed under MIT licence.
+Licensed under MIT licence.
 third-party-licences/tweenjs.txt
 ==============================================================================
 
@@ -873,7 +738,7 @@ underscore
 ------------------------------------------------------------------------------
 https://github.com/jashkenas/underscore
 Copyright 2009-2018 Jeremy Ashkenas, DocumentCloud and Investigative
-licensed under MIT licence.
+Licensed under MIT licence.
 third-party-licences/underscore.txt
 ==============================================================================
 
@@ -882,7 +747,7 @@ underscore.string
 ------------------------------------------------------------------------------
 https://github.com/epeli/underscore.string
 Copyright 2011 Esa-Matti Suuronen
-licensed under MIT licence.
+Licensed under MIT licence.
 third-party-licences/underscorestring.txt
 ==============================================================================
 
@@ -891,7 +756,7 @@ uniseg
 ------------------------------------------------------------------------------
 https://bitbucket.org/emptypage/uniseg-python
 Copyright 2013 Masaaki Shibata
-licensed under MIT licence.
+Licensed under MIT licence.
 third-party-licences/uniseg.txt
 ==============================================================================
 
@@ -900,7 +765,7 @@ urijs
 ------------------------------------------------------------------------------
 https://github.com/medialize/URI.js
 Copyright 2011 Rodney Rehm
-licensed under MIT licence.
+Licensed under MIT licence.
 third-party-licences/urijs.txt
 ==============================================================================
 
@@ -909,7 +774,7 @@ Verto
 ------------------------------------------------------------------------------
 https://github.com/uccser/verto
 Copyright University of Canterbury Computer Science Education Research and contributors.
-licensed under MIT licence.
+Licensed under MIT licence.
 third-party-licences/verto.txt
 ==============================================================================
 
@@ -918,7 +783,7 @@ vinyl-buffer
 ------------------------------------------------------------------------------
 https://github.com/hughsk/vinyl-buffer
 Copyright 2014 Hugh Kennedy
-licensed under MIT licence.
+Licensed under MIT licence.
 third-party-licences/vinyl-buffer.txt
 ==============================================================================
 
@@ -928,7 +793,7 @@ viz-lite.js
 Source file obtained from
 https://github.com/mdaines/viz.js
 Copyright 2014-2017 Michael Daines
-licensed under MIT licence.
+Licensed under MIT licence.
 third-party-licences/vizlite.txt
 ==============================================================================
 
@@ -937,7 +802,7 @@ wheel
 ------------------------------------------------------------------------------
 https://github.com/pypa/wheel
 Copyright 2012-2014 Daniel Holth and contributors
-licensed under MIT licence.
+Licensed under MIT licence.
 third-party-licences/wheel.txt
 ==============================================================================
 

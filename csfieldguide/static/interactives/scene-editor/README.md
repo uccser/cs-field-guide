@@ -4,8 +4,6 @@
 
 Allows the user to apply 3D matrix transformations to objects in a scene
 
-Built from scratch to replace https://archive.csfieldguide.org.nz/1.9.9/_static/widgets/CG/CG-mini-editor/main%20%28cutdown%29.html (unknown original author).
-
 ## Modes
 
 The interactive has four modes, defined by url parameters:

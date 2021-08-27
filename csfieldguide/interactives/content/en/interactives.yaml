@@ -6,6 +6,8 @@ alarm-timer:
   name: Alarm Timer
 algorithm-timer:
   name: Algorithm Timer
+angle-of-view-calculator:
+  name: Angle Of View Calculator
 available-menu-items:
   name: Available Menu Items
 awful-calculator:
@@ -28,8 +30,8 @@ braille-alphabet:
   name: Braille Alphabet
 caesar-cipher:
   name: Caesar Cipher
-cfg-equation-builder:
-  name: CFG Equation Builder
+cfg-parsing-challenge:
+  name: CFG Parsing Challenge
 checksum-calculator:
   name: Checksum Calculator
 checksum-calculator-gtin-13:
@@ -62,6 +64,8 @@ delayed-checkbox:
   name: Delayed Checkbox
 dictionary-compression:
   name: Dictionary Compression
+distance-from-stereo-images:
+  name: Distance From Stereo Images
 dot-combinations:
   name: Dot Combinations
 flowcharts-interpreter-compiler:

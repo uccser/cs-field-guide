@@ -2,6 +2,7 @@
   languages:
     en: interactives/2d-shape-manipulations.html
   is_interactive: true
+  use_large_thumbnail: true
 action-menu:
   languages:
     en: interactives/action-menu.html
@@ -17,6 +18,10 @@ alarm-timer:
 algorithm-timer:
   languages:
     en: interactives/algorithm-timer.html
+  is_interactive: true
+angle-of-view-calculator:
+  languages:
+    en: interactives/angle-of-view-calculator.html
   is_interactive: true
 available-menu-items:
   languages:
@@ -56,10 +61,12 @@ box-rotation:
   languages:
     en: interactives/box-rotation.html
   is_interactive: true
+  use_large_thumbnail: true
 box-translation:
   languages:
     en: interactives/box-translation.html
   is_interactive: true
+  use_large_thumbnail: true
 braille-alphabet:
   languages:
     en: interactives/braille-alphabet.html
@@ -68,9 +75,9 @@ caesar-cipher:
   languages:
     en: interactives/caesar-cipher.html
   is_interactive: true
-cfg-equation-builder:
+cfg-parsing-challenge:
   languages:
-    en: interactives/cfg-equation-builder.html
+    en: interactives/cfg-parsing-challenge.html
   is_interactive: true
 checksum-calculator:
   languages:
@@ -150,6 +157,10 @@ delayed-checkbox:
 dictionary-compression:
   languages:
     en: interactives/dictionary-compression.html
+  is_interactive: true
+distance-from-stereo-images:
+  languages:
+    en: interactives/distance-from-stereo-images.html
   is_interactive: true
 dot-combinations:
   languages:
@@ -261,6 +272,7 @@ packet-attack:
   languages:
     en: interactives/packet-attack.html
   is_interactive: true
+  use_large_thumbnail: true
 packet-attack-level-creator:
   languages:
     en: interactives/packet-attack-level-creator.html
@@ -347,6 +359,7 @@ scene-editor:
   languages:
     en: interactives/scene-editor.html
   is_interactive: true
+  use_large_thumbnail: true
 searching-algorithms:
   languages:
     en: interactives/searching-algorithms.html
@@ -383,6 +396,7 @@ training-ground:
   languages:
     en: interactives/training-ground.html
   is_interactive: true
+  use_large_thumbnail: true
 trainsylvania:
   languages:
     en: interactives/trainsylvania.html

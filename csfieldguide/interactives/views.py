@@ -88,6 +88,8 @@ def thumbnail_json(request, **kwargs):
 
     if request.GET.get("all_languages", False):
         languages = settings.DEFAULT_LANGUAGES
+    elif request.GET.get("language", False):
+        languages = [(request.GET.get("language"), "")]
     else:
         languages = [("en", "")]
 
@@ -101,6 +103,8 @@ def thumbnail_json(request, **kwargs):
                         language_code,
                         url,
                         get_thumbnail_static_path_for_interactive(interactive),
+                        interactive.is_interactive,
+                        interactive.use_large_thumbnail,
                     ]
                 )
     return JsonResponse(data, safe=False)

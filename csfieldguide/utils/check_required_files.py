@@ -1,6 +1,8 @@
 """Module for checking required files found within Markdown conversions."""
 
-from django.contrib.staticfiles import finders
+import os
+import os.path
+from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from interactives.models import Interactive
 from utils.errors.CouldNotFindImageError import CouldNotFindImageError
@@ -27,7 +29,7 @@ def find_image_files(images, md_file_path):
         CouldNotFindImageError: when image file cannot be found.
     """
     for image in images:
-        if not finders.find(image):
+        if not os.path.exists(os.path.join(settings.STATIC_ROOT, image)):
             raise CouldNotFindImageError(image, md_file_path)
 
 
