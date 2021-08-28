@@ -18,6 +18,16 @@ All notable changes to this project will be documented in this file.
 We have listed major changes for each release below.
 `All downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/>`__
 
+3.8.1
+==============================================================================
+
+**Release date:** 28th August 2021
+
+**Changelog:**
+
+- Fix encoding of JPG image that prevented minifying.
+- Modify workflow to only produce production docker image run on published release.
+
 3.8.0
 ==============================================================================
 
