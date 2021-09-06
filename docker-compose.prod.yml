@@ -20,7 +20,7 @@ services:
                 condition: on-failure
             labels:
                 - "traefik.enable=true"
-                - "traefik.docker.network=uccser-dev-public"
+                - "traefik.docker.network=uccser-public"
                 - "traefik.http.services.cs-field-guide-django.loadbalancer.server.port=8000"
                 - "traefik.http.routers.cs-field-guide-django.service=cs-field-guide-django"
                 - "traefik.http.routers.cs-field-guide-django.rule=Host(`${CS_FIELD_GUIDE_DOMAIN}`)"
@@ -41,7 +41,7 @@ services:
             - cs-field-guide_postgres_user
             - cs-field-guide_postgres_password
         networks:
-            - uccser-dev-public
+            - uccser-public
             - backend
 
     postgres:
@@ -108,7 +108,7 @@ secrets:
         external: true
 
 networks:
-    uccser-dev-public:
+    uccser-public:
         external: true
     backend:
         driver: overlay
