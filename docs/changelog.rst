@@ -18,6 +18,15 @@ All notable changes to this project will be documented in this file.
 We have listed major changes for each release below.
 `All downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/>`__
 
+3.8.2
+==============================================================================
+
+**Release date:** 6th September 2021
+
+**Changelog:**
+
+- Modify network name for production deployments.
+
 3.8.1
 ==============================================================================
 
