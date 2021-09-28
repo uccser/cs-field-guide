@@ -7,6 +7,4 @@ set -o nounset
 python /app/manage.py migrate
 python /app/manage.py compilemessages
 python /app/manage.py compilejsi18n
-# TODO: Move to occur during updatadata
-# python /app/manage.py rebuild_index --noinput
 gunicorn -c /app/gunicorn.conf.py --bind 0.0.0.0:8000 --log-level 'debug' config.wsgi
