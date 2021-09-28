@@ -18,6 +18,15 @@ All notable changes to this project will be documented in this file.
 We have listed major changes for each release below.
 `All downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/>`__
 
+3.8.4
+==============================================================================
+
+**Release date:** 29th September 2021
+
+**Changelog:**
+
+- Allow greater customisation for the website's Traefik routing rule.
+
 3.8.3
 ==============================================================================
 
