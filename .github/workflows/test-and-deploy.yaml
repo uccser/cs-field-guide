@@ -41,8 +41,6 @@ jobs:
         run: docker-compose -f docker-compose.local.yml run --rm django python ./manage.py migrate
       - name: Load content
         run: docker-compose -f docker-compose.local.yml run --rm django python ./manage.py updatedata
-      - name: Rebuild search
-        run: docker-compose -f docker-compose.local.yml run --rm django python ./manage.py rebuild_index --noinput
       - name: Make interactive thumbnails
         run: docker-compose -f docker-compose.local.yml run --rm --user="root" puppeteer node /make-interactive-thumbnails.js
       - name: Collect static files
