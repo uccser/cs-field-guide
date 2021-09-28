@@ -18,6 +18,25 @@ All notable changes to this project will be documented in this file.
 We have listed major changes for each release below.
 `All downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/>`__
 
+3.8.3
+==============================================================================
+
+**Release date:** 28th September 2021
+
+**Changelog:**
+
+    - Rebuild serach index when updating data, instead of application start.
+    - Modify configuration for Docker Swarm services to specify updatedata task.
+    - Update crowdin/github-action from 1.3.2 to 1.4.0.
+    - Update autoprefixer from 10.3.2 to 10.3.6.
+    - Update intro.js from 4.1.0 to 4.2.2.
+    - Update sass from 1.38.0 to 1.42.1.
+    - Update sphinx from 4.1.2 to 4.2.1.
+    - Update sphinx-rtd-theme from 0.5.2 to 1.0.0.
+    - Update django from 3.2.6 to 3.2.7.
+    - Update django-environ from 0.4.5 to 0.7.0.
+    - Update django-haystack[elasticsearch] from 3.0 to 3.1.1.
+
 3.8.2
 ==============================================================================
 
