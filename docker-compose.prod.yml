@@ -49,7 +49,7 @@ services:
                 - "traefik.docker.network=uccser-public"
                 - "traefik.http.services.cs-field-guide-django.loadbalancer.server.port=8000"
                 - "traefik.http.routers.cs-field-guide-django.service=cs-field-guide-django"
-                - "traefik.http.routers.cs-field-guide-django.rule=Host(`${CS_FIELD_GUIDE_DOMAIN}`)"
+                - "traefik.http.routers.cs-field-guide-django.rule=${CS_FIELD_GUIDE_ROUTER_RULE}"
                 - "traefik.http.routers.cs-field-guide-django.entryPoints=web"
         networks:
             - uccser-public
