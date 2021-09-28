@@ -6,7 +6,7 @@
     "dependencies": {},
     "devDependencies": {
         "ansi-colors": "4.1.1",
-        "autoprefixer": "10.3.2",
+        "autoprefixer": "10.3.6",
         "bootstrap": "4.6.0",
         "browser-sync": "2.27.5",
         "browserify": "17.0.0",
