@@ -1,6 +1,7 @@
 # CFG Parsing Challenge Interactive
 
 **Author:** Alasdair Smith
+**Modified by:** Jack Morgan, Alasdair Smith
 
 This interactive demonstrates a context-free grammar (CFG) by allowing a user to use it to build a mathematical equation (default behaviour) or sentences.
 The user can also obtain a link to the interactive with their own productions through a simple interface.
@@ -15,10 +16,11 @@ For example:
 
 - The URL `[...]/cfg-parsing-challenge/` could be changed to `[...]/cfg-parsing-challenge/?hide-generator=true&examples=1+1|2+3+4`
 
-**Note**: It is recommended, though often not necessary, that parameter values have all non-unreserved characters [percent-encoded](https://en.wikipedia.org/wiki/Percent-encoding).
+**Note**: It is recommended that parameter values have all non-unreserved characters [percent-encoded](https://en.wikipedia.org/wiki/Percent-encoding).
 
 ### Basic Parameters
 
+- `editable-target=[true|false] (default: false)`: If `true`, allow the target equation to be edited via keyboard input.
 - `hide-builder=[true|false] (default: false)`: If `true`, hide the button that would allow the user to set their own productions.
 - `hide-generator=[true|false] (default: false)`: If `true`, disable the built-in equation generator (options `Random` & `Simple`).
 - `examples=str|str|str|...`: Set the examples that can be selected by the `Next` generator option.

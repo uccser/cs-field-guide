@@ -17,8 +17,8 @@ const DEFAULT_PRODUCTIONS = {
   "N": [0,1,2,3,4,5,6,7,8,9]
 };
 
-const RECURSIONDEPTH_SIMPLE = 2;
-const RECURSIONDEPTH_DEFAULT = 4;
+const RECURSIONDEPTH_SIMPLE = 3;
+const RECURSIONDEPTH_DEFAULT = 5;
 const ARROW = '&#10142;'
 
 var $activeNonterminal_ = null;
@@ -109,6 +109,11 @@ function resetEquation() {
 function parseUrlParameters() {
   if (urlParameters.getUrlParameter('hide-builder') == 'true') {
     $('#grammar-builder-button').hide();
+  }
+  if (urlParameters.getUrlParameter('editable-target') == 'true') {
+    $('#cfg-target').attr('disabled', false);
+  } else {
+    $('#cfg-target').attr('disabled', true);
   }
   var grammar = urlParameters.getUrlParameter('productions');
   var examples = urlParameters.getUrlParameter('examples');
