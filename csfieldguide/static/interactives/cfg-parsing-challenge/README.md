@@ -1,6 +1,6 @@
 # CFG Parsing Challenge Interactive
 
-**Author:** Alasdair Smith
+**Author:** Alasdair Smith  
 **Modified by:** Jack Morgan, Alasdair Smith
 
 This interactive demonstrates a context-free grammar (CFG) by allowing a user to use it to build a mathematical equation (default behaviour) or sentences.
@@ -18,29 +18,22 @@ For example:
 
 **Note**: It is recommended that parameter values have all non-unreserved characters [percent-encoded](https://en.wikipedia.org/wiki/Percent-encoding).
 
-### Basic Parameters
+### Parameters
 
-- `editable-target=[true|false] (default: false)`: If `true`, allow the target equation to be edited via keyboard input.
+- `editable-target=[true|false] (default: false)`: If `true`, allow the target equation field to be edited.
 - `hide-builder=[true|false] (default: false)`: If `true`, hide the button that would allow the user to set their own productions.
-- `hide-generator=[true|false] (default: false)`: If `true`, disable the built-in equation generator (options `Random` & `Simple`).
-- `examples=str|str|str|...`: Set the examples that can be selected by the `Next` generator option.
+- `examples=str|str|str|...`: Enable the `Next` option, and set the examples that can be selected by it.
 Examples will be cycled through in the order given.
 - `productions=str`: Set the grammar productions that can be used.
 An example of the correct syntax using the default grammar can be found below.
-  - The built-in equation generator is configured as it is because it works well with the default productions.
-  When setting your own productions, it is highly recommended that you investigate the Advanced Parameters section of this README, or to disable the generator entirely using the `hide-generator` parameter.
-
-### Advanced Parameters
+  - When setting your own productions, it is recommended that you also use either the `recursion-depth` or `hide-generator` parameters.
 
 The built-in equation generator works by following productions at random from the initial non-terminal - essentially building a parse tree - until there are no non-terminals left in the equation.
-In certain grammars, the parse tree could continue indefinitely, so the generator is forced to stop a certain number of branches down the tree.
+In certain grammars, the parse tree could continue indefinitely, so the generator is forced to stop a certain number of branches down the tree:
 
-The following parameters allow more control over the generator, notably the number of branches down that the generator will attempt (the `recursion-depth`), as well as what it will do if it reaches this depth and non-terminals remain in the equation.
-
-The defaults work well for the default productions because there is a direct path from every non-terminal to every terminal.
-
-- `recursion-depth=int (default: 4)`: Set the maximum recursion depth for the built-in equation generator (`Random`).
-If this  is set then the option to generate with depth 1 (`Simple`) is removed.
+- `hide-generator=[true|false] (default: false)`: If `true`, disable the built-in equation generator (options `Random` & `Simple`).
+- `recursion-depth=int (default: 5)`: Set the maximum depth of the parse tree for the built-in equation generator (`Random`).
+If this is set then the option to generate with depth 3 (`Simple`) is removed.
 After 100 tries the generator will quit with an error message.
 
 ### URL Parameter Limitations
