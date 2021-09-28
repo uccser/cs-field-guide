@@ -79,9 +79,6 @@ cmd_update() {
   cmd_compilemessages
 
   echo ""
-  cmd_rebuild_index
-
-  echo ""
   cmd_make_interactive_thumbnails
   cmd_collect_static
 

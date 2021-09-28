@@ -15,3 +15,4 @@ class Command(management.base.BaseCommand):
         management.call_command("loadinteractives")
         management.call_command("loadchapters")
         management.call_command("loadcurriculumguides")
+        management.call_command("rebuild_index", "--noinput")
