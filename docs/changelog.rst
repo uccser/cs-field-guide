@@ -25,7 +25,7 @@ We have listed major changes for each release below.
 
 **Changelog:**
 
-- Rebuild serach index when updating data, instead of application start.
+- Rebuild search index when updating data, instead of application start.
 - Modify configuration for Docker Swarm services to specify updatedata task.
 - Update crowdin/github-action from 1.3.2 to 1.4.0.
 - Update autoprefixer from 10.3.2 to 10.3.6.
