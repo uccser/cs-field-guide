@@ -11,7 +11,7 @@ The interactive can demonstrate most grammars via URL parameters.
 
 This interactive can be configured by appending various parameters to the default URL.
 To do this, add a question mark (`?`) after the last `/` in the URL, then each parameter separated by ampersands (`&`).
-For this interactive, each parameter is in the form `keyword=value`, where each `keyword` is an option to be changed and `value` is what that option should be set to.
+For this interactive, each parameter is in the form `keyword=value`, where `keyword` is an option to be changed and `value` is what that option should be set to.
 For example:
 
 - The URL `[...]/cfg-parsing-challenge/` could be changed to `[...]/cfg-parsing-challenge/?hide-generator=true&examples=1+1|2+3+4`
@@ -26,7 +26,7 @@ For example:
 Examples will be cycled through in the order given.
 - `productions=str`: Set the grammar productions that can be used.
 An example of the correct syntax using the default grammar can be found below.
-  - When setting your own productions, it is recommended that you also use either the `recursion-depth` or `hide-generator` parameters.
+  - When setting your own productions, it is recommended that you also use either the `recursion-depth` or `hide-generator` parameter.
 
 The built-in equation generator works by following productions at random from the initial non-terminal - essentially building a parse tree - until there are no non-terminals left in the equation.
 In certain grammars, the parse tree could continue indefinitely, so the generator is forced to stop a certain number of branches down the tree:
