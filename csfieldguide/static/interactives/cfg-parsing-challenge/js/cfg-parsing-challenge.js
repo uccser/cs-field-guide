@@ -4,7 +4,6 @@ var urlParameters = require('../../../js/third-party/url-parameters.js');
 * Productions in the default grammar.
 * A number or a string that begins and ends with an inverted comma (') is
 * interpreted as terminal, everything else as non-terminal.
-* A production with only terminals can be a list of elements rather than a list of lists
 */
 const DEFAULT_PRODUCTIONS = {
   "E": [
@@ -14,7 +13,7 @@ const DEFAULT_PRODUCTIONS = {
     ["'-'", "E"],
     ["'('", "E", "')'"],
   ],
-  "N": [0,1,2,3,4,5,6,7,8,9]
+  "N": [["'0'"],["'1'"],["'2'"],["'3'"],["'4'"],["'5'"],["'6'"],["'7'"],["'8'"],["'9'"]]
 };
 
 const RECURSIONDEPTH_SIMPLE = 3;
@@ -80,7 +79,7 @@ $(document).ready(function() {
   if (examples_.length) {
     $('#cfg-target').val(examples_[0]);
   } else if (hideGenerator_) {
-    $('#cfg-target').val("");
+    $('#cfg-target').val('');
   } else {
     //$('#cfg-target').val(randomExpression(initialNonterminal_, productions_, recursionDepth_));
   }
@@ -165,7 +164,7 @@ function decodeGrammar(productionString) {
   var duo, nonterminal, replacementString;
   var replacements = [];
   var productions = {};
-  var blocks = productionString.split(";");
+  var blocks = productionString.split(';');
   initialNonterminal_ = blocks[0].split(':')[0].trim();
   for (let blockIndex=0; blockIndex < blocks.length; blockIndex++) {
     if (blocks[blockIndex].trim() == '') {
@@ -181,35 +180,17 @@ function decodeGrammar(productionString) {
     replacements = (interpretReplacementStrings(replacementString.split('|')));
     productions[nonterminal] = replacements;
   }
+  console.log(productions);
   return productions;
 }
 
 /**
 * Returns a list of production replacements in the format expected by this program.
-* If every replacement is an integer terminal, returns a list of elements rather than
-* a list of lists
 */
 function interpretReplacementStrings(replacementStrings) {
-  const isNumber = (value) => typeof(value) == 'number';
   var replacements = [];
-  var replacementUnits;
   for (let i=0; i<replacementStrings.length; i++) {
-    replacementUnits = replacementStrings[i].trim().split(' ');
-    let firstUnit = replacementUnits[0];
-    if (replacementUnits.length == 1 && firstUnit.match(/^\'\d+\'$/g)) {
-      // A full list of integer terminals is interpreted differently
-      replacements.push(parseInt(firstUnit.replace(/^\'+|\'+$/g, '')));
-    } else {
-      replacements.push(replacementUnits);
-    }
-  }
-  if (!replacements.every(isNumber)) {
-    // If not all of them are integers then we have to resort to the long form standard
-    for (let i=0; i<replacements.length; i++) {
-      if (isNumber(replacements[i])) {
-        replacements[i] = [`'${replacements[i].toString()}'`];
-      }
-    }
+    replacements.push(replacementStrings[i].trim().split(' '));
   }
   return replacements
 }
@@ -242,31 +223,76 @@ function fillProductionsWindow(productions) {
 * If replacements is an incremental list of integers they are reduced appropriately
 */
 function describeAndReduceProductions(nonterminal, replacements) {
-  var isCompressable = true;
-  if (typeof(replacements[0]) == 'number' && replacements.length > 1) {
-    for (let i=1; i<replacements.length; i++) {
-      if (replacements[i] != replacements[i-1] + 1) {
-        isCompressable = false;
-        break;
-      }
-    }
-  } else {
-    isCompressable = false;
-  }
-
-  if (isCompressable) {
+  if (isCompressable(replacements)) {
     if (replacements.length == 2) {
       // Use syntax A|B where B = A+1, meaning 'Number A or number B'
-      return [`<span class="nonterminal">${nonterminal}</span> ${ARROW} ${replacements[0]}|${replacements[1]}`]
+      return [`<span class="nonterminal">${nonterminal}</span> ${ARROW} ${trimICs(replacements[0][0])}|${trimICs(replacements[1][0])}`]
     }
     // Use syntax A-B, meaning 'Any number from A through B'
-    return [`<span class="nonterminal">${nonterminal}</span> ${ARROW} ${replacements[0]}-${replacements[replacements.length - 1]}`]
+    return [`<span class="nonterminal">${nonterminal}</span> ${ARROW} ${trimICs(replacements[0][0])} &#8211; ${trimICs(replacements[replacements.length - 1][0])}`]
   }
   var returnList = [];
   for (let i=0; i<replacements.length; i++) {
     returnList.push(describeProduction(nonterminal, replacements[i]));
   }
   return returnList;
+}
+
+/**
+ * Returns true if the given list of replacements for a nonterminal is compressable
+ * 
+ * The list is compressable if:
+ * - There are at least 2 possible replacements
+ * - All replacements are single values
+ * - All replacements are terminals
+ * - All replacements are integers (positive or negative)
+ * - All replacements are in sequentially increasing order ([1, 2, 3, ...])
+ */
+function isCompressable(replacements) {
+  if (replacements.length < 2) return false;
+  let firstValue = replacements[0];
+  if (!(firstValue.length == 1 && isIntegerTerminal(firstValue[0]))) {
+    return false;
+  }
+  let counter = parseInt(trimICs(firstValue[0]));
+  for (let r=1; r<replacements.length; r++) {
+    if (!(replacements[r].length == 1 &&
+      isIntegerTerminal(replacements[r][0]) &&
+      counter + 1 == parseInt(trimICs(replacements[r][0]))
+      )) {
+        return false
+    }
+    counter++;
+  }
+  return true
+}
+
+
+/**
+* Returns true if s fits the definition of a terminal AND contains only
+* an integer (positive or negative) between the inverted commas,
+* false otherwise.
+*/
+function isIntegerTerminal(s) {
+  return (isTerminal(s) && /^'-?\d+'$/.test(s))
+}
+
+/**
+* Returns true if s fits the definition of a terminal,
+* false otherwise.
+*
+* A terminal is a string that begins and ends with an
+* inverted comma ('), with at least 1 character in between
+*/
+function isTerminal(s) {
+  return /^'.+'$/.test(s);
+}
+
+/**
+* Returns the given string with leading and trailing inverted commas removed 
+*/
+function trimICs(s) {
+  return s.replace(/^\'+|\'+$/g, '');
 }
 
 /******************************************************************************/
@@ -432,7 +458,7 @@ function getPopupVal(nonterminal, replacements) {
 function describeProduction(nonterminal, replacement) {
   var returnText = `<span class="nonterminal">${nonterminal}</span> ${ARROW} `;
   if (typeof(replacement) != 'object') {
-    return returnText + replacement.toString().replace(/^\'+|\'+$/g, '');
+    return returnText + trimICs(replacement.toString());
   }
   for (let i=0; i<replacement.length; i++) {
     let replacement_item = replacement[i];
@@ -453,33 +479,17 @@ function describeProduction(nonterminal, replacement) {
 */
 function describeProductionReplacement(replacement) {
   if (typeof(replacement) != 'object') {
-    return replacement.toString().replace(/^\'+|\'+$/g, '');
+    return trimICs(replacement.toString());
   }
   var code = "";
   for (let i=0; i<replacement.length; i++) {
     if (isTerminal(replacement[i])) {
-      code += replacement[i].toString().replace(/^\'+|\'+$/g, '');
+      code += trimICs(replacement[i].toString());
     } else {
-      code += `<span class="nonterminal">${replacement[i].toString().replace(/^\'+|\'+$/g, '')}</span>`;
+      code += `<span class="nonterminal">${trimICs(replacement[i].toString())}</span>`;
     }
   }
   return code;
-}
-
-/**
-* Returns true if s fits the definition of a terminal,
-* false otherwise.
-*
-* A terminal is a number or a string that begins and ends with an
-* inverted comma ('), with at least 1 character in between
-*/
-function isTerminal(s) {
-  return (typeof(s) == 'number' ||
-  (
-    s.length > 2
-    && s.charAt(0) == "'"
-    && s.charAt(s.length - 1) == "'"
-  ));
 }
 
 /******************************************************************************/
