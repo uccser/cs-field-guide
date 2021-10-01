@@ -81,7 +81,7 @@ $(document).ready(function() {
   } else if (hideGenerator_) {
     $('#cfg-target').val('');
   } else {
-    //$('#cfg-target').val(randomExpression(recursionDepth_));
+    $('#cfg-target').val(randomExpression(recursionDepth_));
   }
   $('#cfg-grammar-input').val('');
   getLink();
@@ -504,17 +504,10 @@ function getRandomInt(max) {
 }
 
 /**
-* Follows the parse tree of the available productions to find every possible
-* complete expression up to the defined depths (DFS).
-*
-* Produces expressions as strings in the form "[nonterminal]'[stringofterminals]'[nonterminal]'[etc]"
-* Only results for the 'random' and 'simple' depths are saved
+* Builds a parse tree for finding any possible expression up to a given depth
 */
 function parseAllExpressions() {
   var maxDepth = recursionDepth_ > RECURSIONDEPTH_SIMPLE ? recursionDepth_ : RECURSIONDEPTH_SIMPLE;
-
-  // For this implementation we will work bottom up to find all paths
-  // that result in a valid expression from any given nonterminal
   for (let d=1; d<=maxDepth; d++) {
     expressionsAtDepth_[d] = {};
     findPossibleExpressionsAtDepth(d);
@@ -523,6 +516,10 @@ function parseAllExpressions() {
   expressionsAreParsed_ = true;
 }
 
+/**
+* Finds and sets possible expressions at the given depth in terms of combinations
+* of possible expressions at depths lower than the given depth
+*/
 function findPossibleExpressionsAtDepth(depth) {
   if (depth <= 1) {
     // Look for productions that result in terminals
@@ -540,7 +537,7 @@ function findPossibleExpressionsAtDepth(depth) {
   for (let nonterminal of Object.keys(productions_)) {
     expressionsAtDepth_[depth][nonterminal] = [];
     for (let replacement of productions_[nonterminal]) {
-      let path = []; // A valid expression with nonterminals replaced by pointers to more expression
+      let path = []; // A valid expression with all nonterminals replaced with pointers to lower expressions
       let outerSuccess = true;
       let e = 0;
       while (e < replacement.length && outerSuccess) {
@@ -573,35 +570,7 @@ function findPossibleExpressionsAtDepth(depth) {
 }
 
 /**
-* Returns a set of all expressions in expressionSet that have no remaining nonterminals
-* 
-* Syntax based on code in https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set
-*/
-function allCompleteExpressions(expressionSet) {
-  return new Set([...expressionSet].filter(expression => isCompleteExpression(expression)));
-}
-
-/**
-* Returns true if the given string is a string of only terminals
-*
-* Every expression is in the form "[nonterminal]'[stringofterminals]'[nonterminal]'[etc]"
-* So a string that meets this criteria begins and ends with an inverted comma (')
-* with no inverted commas in between
-*/
-function isCompleteExpression(expression) {
-  let split = expression.split("'")
-  return (split.length == 3 && split[0] == '' && split[2] == '' && split[1] != '');
-}
-
-/**
-* Returns a random expression generated from the given grammar productions.
-*
-* If the maximum depth of recursion (`maxDepth`) is reached,
-* it will try again up to 100 times.
-*
-* @param {String} startChar initial non-terminal
-* @param {Dict} productions all productions
-* @param {Number} maxDepth maximum depth of recursion
+* Returns a random expression by following the parse tree at random no farther than the given depth.
 */
 function randomExpression(depth) {
   if (!expressionsAreParsed_) {
@@ -621,6 +590,9 @@ function randomExpression(depth) {
   }
 }
 
+/**
+* Recursive step for generating random expressions
+*/
 function recursiveRandomExpression(depth, nonterminal) {
   if (expressionsAtDepth_[depth][nonterminal].length <= 0) {
     throw (`${depth}: No possible replacements for ${nonterminal}.`
