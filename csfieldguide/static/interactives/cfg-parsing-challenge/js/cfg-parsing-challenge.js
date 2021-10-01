@@ -30,7 +30,7 @@ var nextExample_ = 0;
 var hideGenerator_ = false;
 var recursionDepth_ = RECURSIONDEPTH_DEFAULT;
 
-var expressionsUpToDepth_ = {}
+var expressionsAtDepth_ = {}
 var expressionsAreParsed_ = false;
 
 $(document).ready(function() {
@@ -81,7 +81,7 @@ $(document).ready(function() {
   } else if (hideGenerator_) {
     $('#cfg-target').val('');
   } else {
-    //$('#cfg-target').val(randomExpression(initialNonterminal_, productions_, recursionDepth_));
+    //$('#cfg-target').val(randomExpression(recursionDepth_));
   }
   $('#cfg-grammar-input').val('');
   getLink();
@@ -180,7 +180,6 @@ function decodeGrammar(productionString) {
     replacements = (interpretReplacementStrings(replacementString.split('|')));
     productions[nonterminal] = replacements;
   }
-  console.log(productions);
   return productions;
 }
 
@@ -315,9 +314,9 @@ function setGenerator(type) {
 */
 function generateTarget($button) {
   if ($button.getAttribute('g-type') == 'random') {
-    return randomExpression(initialNonterminal_, productions_, recursionDepth_);
+    return randomExpression(recursionDepth_);
   } else if ($button.getAttribute('g-type') == 'random-simple') {
-    return randomExpression(initialNonterminal_, productions_, RECURSIONDEPTH_SIMPLE);
+    return randomExpression(RECURSIONDEPTH_SIMPLE);
   } else {
     nextExample_ = (nextExample_ + 1) % examples_.length;
     return examples_[nextExample_];
@@ -506,107 +505,71 @@ function getRandomInt(max) {
 
 /**
 * Follows the parse tree of the available productions to find every possible
-* complete expression up to the defined depths.
+* complete expression up to the defined depths (DFS).
 *
 * Produces expressions as strings in the form "[nonterminal]'[stringofterminals]'[nonterminal]'[etc]"
 * Only results for the 'random' and 'simple' depths are saved
 */
 function parseAllExpressions() {
   var maxDepth = recursionDepth_ > RECURSIONDEPTH_SIMPLE ? recursionDepth_ : RECURSIONDEPTH_SIMPLE;
-  // Start with the initial nonterminal
-  var expressionsAtCurrentDepth = new Set(initialNonterminal_);
-  // For each level to the max depth needed
-  for (let depth=1; depth<=maxDepth; depth++) {
-    console.log(`Increasing depth to ${depth}`);
-    // Find every expression at the current depth, including those with nonterminals
-    expressionsAtCurrentDepth = increaseParseDepth(expressionsAtCurrentDepth, productions_)
-    // Copy the ones that are only terminals
-    if (depth == recursionDepth_) {
-      expressionsUpToDepth_[recursionDepth_] = allCompleteExpressions(expressionsAtCurrentDepth);
-    } else if (depth == RECURSIONDEPTH_SIMPLE) {
-      expressionsUpToDepth_[RECURSIONDEPTH_SIMPLE] = allCompleteExpressions(expressionsAtCurrentDepth);
-    }
+
+  // For this implementation we will work bottom up to find all paths
+  // that result in a valid expression from any given nonterminal
+  for (let d=1; d<=maxDepth; d++) {
+    expressionsAtDepth_[d] = {};
+    findPossibleExpressionsAtDepth(d);
   }
-  console.log(`${expressionsUpToDepth_[maxDepth].size} expressions parsed`);
+
   expressionsAreParsed_ = true;
 }
 
-/**
-* Follows the given productions for every nonterminal in the given set of expressions
-* to create a set of expressions 1 level deeper in the parse tree
-*/
-function increaseParseDepth(expressions, productions) {
-  console.log(`increasing parse depth for ${expressions.size} expressions`);
-  var returnExpressions = new Set();
-  var expressionComponents;
-  for (let expression of expressions) {
-    console.log(`Increasing parse depth of ${expression}`);
-    if (isCompleteExpression(expression)) {
-      console.log(`(${expression}) is a complete expression`);
-      returnExpressions.add(expression);
-      continue
-    }
-
-    // Every expression is in the form "[nonterminal]'[stringofterminals]'[nonterminal]'[etc]"
-    // So items 0, 2, 4, etc are nonterminals; 1, 3, 5, etc are terminal strings
-    expressionComponents = expression.split("'");
-
-    // Find every alternative
-    let alternatives = {};
-    for (let i=0; i<expressionComponents.length; i+=2) {
-      if (expressionComponents[i] == '') {
-        alternatives[i] = '';
-      } else {
-        alternatives[i] = productions[expressionComponents[i]];
-      }
-    }
-
-    // Find every combination of alternatives
-    // Adapted from code by Wensheng Wang
-    // https://code.activestate.com/recipes/496807-list-of-all-combination-from-multiple-lists/
-    let combinations = [[]];
-    for (let key of Object.keys(alternatives)) {
-      let newCombinations = [];
-      for (let alternative of alternatives[key]) {
-        for (let subcombo of combinations) {
-          newCombinations.push(subcombo.concat([alternative]));
+function findPossibleExpressionsAtDepth(depth) {
+  if (depth <= 1) {
+    // Look for productions that result in terminals
+    for (let nonterminal of Object.keys(productions_)) {
+      expressionsAtDepth_[1][nonterminal] = [];
+      for (let replacement of productions_[nonterminal]) {
+        if (replacement.every(isTerminal)) {
+          expressionsAtDepth_[1][nonterminal].push(replacement);
         }
       }
-      combinations = newCombinations;
     }
-    console.log(`combinations found: ${combinations}`)
+    return
+  }
 
-    // Apply every combination of alternatives
-    for (let combination of combinations) {
-      let newExpression = '';
-      for (let componentNum=0; componentNum<expressionComponents.length; componentNum++) {
-        if (componentNum % 2 == 0) {
-          let newComponent = combination[componentNum / 2];
-          if (typeof(newComponent) != 'object') {
-            if (typeof(newComponent) == 'number') {
-              newExpression += `'${newComponent}'`
-            } else {
-              newExpression += newComponent;
-            }
-          } else {
-            for (let component of newComponent) {
-              if (typeof(component) == 'number') {
-                newExpression += `'${component}'`
-              } else {
-                newExpression += component;
-              }
-            }
-          }
+  for (let nonterminal of Object.keys(productions_)) {
+    expressionsAtDepth_[depth][nonterminal] = [];
+    for (let replacement of productions_[nonterminal]) {
+      let path = []; // A valid expression with nonterminals replaced by pointers to more expression
+      let outerSuccess = true;
+      let e = 0;
+      while (e < replacement.length && outerSuccess) {
+        let element = replacement[e];
+        if (isTerminal(element)) {
+          path.push(element);
         } else {
-          newExpression += `'${expressionComponents[componentNum]}'`;
+          let innerSuccess = false;
+          let d=1;
+          path.push([]);
+          while (d<depth) {
+            if (expressionsAtDepth_[d][element].length > 0) {
+              path[path.length - 1].push([d, element]);
+              innerSuccess = true;
+            }
+            d++;
+          }
+          if (!innerSuccess) {
+            outerSuccess = false;
+          }
         }
+        e++;
       }
-      // If two inverted commas are now next to eachother, then the two terminal strings can be merged
-      console.log(`Adding new expression ${newExpression}`);
-      returnExpressions.add(newExpression.replace(/\'\'/g, ''))
+      if (outerSuccess) {
+        expressionsAtDepth_[depth][nonterminal].push(path);
+      }
     }
   }
-  return returnExpressions;
+  return
 }
 
 /**
@@ -640,12 +603,47 @@ function isCompleteExpression(expression) {
 * @param {Dict} productions all productions
 * @param {Number} maxDepth maximum depth of recursion
 */
-function randomExpression(startChar, productions, maxDepth) {
+function randomExpression(depth) {
   if (!expressionsAreParsed_) {
     parseAllExpressions();
   }
-  let expressions = Array.from(expressionsUpToDepth_[maxDepth.toString()]);
-  return expressions[getRandomInt(expressions.length)];
+  try {
+    return recursiveRandomExpression(depth, initialNonterminal_);
+  } catch (error) {
+    // If the error is not the one we expect to catch then rethrow it
+    if (!error.startsWith(depth.toString())) {
+      throw error;
+    } else {
+      // The error was thrown in the first level of recursion
+      // indicating that there is no reachable expression from the starting point
+      console.log('Nothing found');
+    }
+  }
+}
+
+function recursiveRandomExpression(depth, nonterminal) {
+  if (expressionsAtDepth_[depth][nonterminal].length <= 0) {
+    throw (`${depth}: No possible replacements for ${nonterminal}.`
+    + 'If this is NOT the first level of recursion then we have a problem.');
+  }
+  let potentialExpressions = expressionsAtDepth_[depth][nonterminal];
+  // Pick a replacement
+  let replacement = potentialExpressions[getRandomInt(potentialExpressions.length)];
+  if (replacement.every(isTerminal)) {
+    return replacement.join('').replace(/\'\'/g, '');
+  }
+
+  let expression = '';
+  for (let element of replacement) {
+    if (isTerminal(element)) {
+      expression += element;
+    } else {
+      // element is an array of potential paths
+      let newPath = element[getRandomInt(element.length)];
+      expression += recursiveRandomExpression(newPath[0], newPath[1]);
+    }
+  }
+  return expression.replace(/\'+/g, '');
 }
 
 /******************************************************************************/
