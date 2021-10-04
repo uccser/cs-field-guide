@@ -18,6 +18,7 @@ const DEFAULT_PRODUCTIONS = {
 
 const RECURSIONDEPTH_SIMPLE = 3;
 const RECURSIONDEPTH_DEFAULT = 5;
+const RECURSIONDEPTH_MAX = 50;
 const ARROW = '&#10142;'
 
 var $activeNonterminal_ = null;
@@ -83,7 +84,7 @@ $(document).ready(function() {
   } else {
     $('#cfg-target').val(randomExpression(recursionDepth_));
   }
-  $('#cfg-grammar-input').val('');
+  prefillGrammar();
   getLink();
 });
 
@@ -134,8 +135,14 @@ function parseUrlParameters() {
   } else {
     $('#set-g-from-preset').hide();
   }
-  if (recursionDepth && parseInt(recursionDepth) > 0) {
-    recursionDepth_ = parseInt(recursionDepth);
+  if (recursionDepth) {
+    if (parseInt(recursionDepth) > RECURSIONDEPTH_MAX) {
+      $('#error-notice').html(gettext("The recursion depth in the URL is too high so we ignored it."));
+      $('#error-notice').show();
+    } else if (parseInt(recursionDepth) > 0) {
+      recursionDepth_ = parseInt(recursionDepth);
+      $('#error-notice').hide();
+    }
   }
   if (hideGenerator_) {
     if (examples) {
@@ -219,7 +226,7 @@ function fillProductionsWindow(productions) {
 /**
 * Returns a list of strings, each describing productions from a given non-terminal
 *
-* If replacements is an incremental list of integers they are reduced appropriately
+* If replacements is an incremental list of integer terminals they are reduced appropriately
 */
 function describeAndReduceProductions(nonterminal, replacements) {
   if (isCompressable(replacements)) {
@@ -517,8 +524,8 @@ function parseAllExpressions() {
 }
 
 /**
-* Finds and sets possible expressions at the given depth in terms of combinations
-* of possible expressions at depths lower than the given depth
+* Finds and sets possible expressions at the given depth as combinations
+* of possible expressions at lower depths
 */
 function findPossibleExpressionsAtDepth(depth) {
   if (depth <= 1) {
@@ -534,12 +541,14 @@ function findPossibleExpressionsAtDepth(depth) {
     return
   }
 
+  // Look for productions that eventually give a valid result
   for (let nonterminal of Object.keys(productions_)) {
     expressionsAtDepth_[depth][nonterminal] = [];
     for (let replacement of productions_[nonterminal]) {
-      let path = []; // A valid expression with all nonterminals replaced with pointers to lower expressions
+      let path = [];
       let outerSuccess = true;
       let e = 0;
+      // Check all components of the potential replacement can lead to a valid result
       while (e < replacement.length && outerSuccess) {
         let element = replacement[e];
         if (isTerminal(element)) {
@@ -548,6 +557,8 @@ function findPossibleExpressionsAtDepth(depth) {
           let innerSuccess = false;
           let d=1;
           path.push([]);
+          // Find at least 1 depth where a replacement production can be followed
+          // In theory if a depth can be found then every depth above it is guaranteed
           while (d<depth) {
             if (expressionsAtDepth_[d][element].length > 0) {
               path[path.length - 1].push([d, element]);
@@ -586,6 +597,13 @@ function randomExpression(depth) {
       // The error was thrown in the first level of recursion
       // indicating that there is no reachable expression from the starting point
       console.log('Nothing found');
+      let errorText = ngettext("We tried the first level of the parse tree.", "We tried the first %s levels of the parse tree.", depth);
+      let output = interpolate(errorText, [depth]);
+      $('#error-notice').html(
+        gettext("We checked your productions and couldn't build any examples!") +
+        "<br>" + output
+        );
+      $('#error-notice').show();
     }
   }
 }
@@ -621,6 +639,26 @@ function recursiveRandomExpression(depth, nonterminal) {
 /******************************************************************************/
 // FUNCTIONS FOR THE USER-FACING PRODUCTIONS SETTER //
 /******************************************************************************/
+
+/**
+* Fills the productions setter with the set grammar productions re-converted to
+* YACC syntax
+*/
+function prefillGrammar() {
+  let yacc = '';
+  for (let nonterminal of Object.keys(productions_)) {
+    yacc += nonterminal + ':';
+    let replacements = productions_[nonterminal][0];
+    yacc += replacements.join(' ');
+    for (let r=1; r<productions_[nonterminal].length; r++) {
+      replacements = productions_[nonterminal][r];
+      yacc += '|' + replacements.join(' ');
+    }
+    yacc += ';\n';
+  }
+  console.log(yacc);
+  $("#cfg-grammar-input").val(yacc);
+}
 
 /**
 * Sets the link to the base url of the interactive

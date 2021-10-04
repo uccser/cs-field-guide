@@ -3,7 +3,7 @@
 **Author:** Alasdair Smith  
 **Modified by:** Jack Morgan, Alasdair Smith
 
-This interactive demonstrates a context-free grammar (CFG) by allowing a user to use it to build a mathematical equation (default behaviour) or sentences.
+This interactive demonstrates a context-free grammar (CFG) by allowing a user to use it to build a mathematical expression (default behaviour) or sentences.
 The user can also obtain a link to the interactive with their own productions through a simple interface.
 The interactive can demonstrate most grammars via URL parameters.
 
@@ -20,7 +20,7 @@ For example:
 
 ### Parameters
 
-- `editable-target=[true|false] (default: false)`: If `true`, allow the target equation field to be edited.
+- `editable-target=[true|false] (default: false)`: If `true`, allow the target field to be edited.
 - `hide-builder=[true|false] (default: false)`: If `true`, hide the button that would allow the user to set their own productions.
 - `examples=str|str|str|...`: Enable the `Next` option, and set the examples that can be selected by it.
 Examples will be cycled through in the order given.
@@ -28,13 +28,12 @@ Examples will be cycled through in the order given.
 An example of the correct syntax using the default grammar can be found below.
   - When setting your own productions, it is recommended that you also use either the `recursion-depth` or `hide-generator` parameter.
 
-The built-in equation generator works by following productions at random from the initial non-terminal - essentially building a parse tree - until there are no non-terminals left in the equation.
+The built-in expression generator follows productions (almost) at random from the initial non-terminal - essentially following a parse tree - until there are no non-terminals left in the expression.
 In certain grammars, the parse tree could continue indefinitely, so the generator is forced to stop a certain number of branches down the tree:
 
-- `hide-generator=[true|false] (default: false)`: If `true`, disable the built-in equation generator (options `Random` & `Simple`).
-- `recursion-depth=int (default: 5)`: Set the maximum depth of the parse tree for the built-in equation generator (`Random`).
+- `hide-generator=[true|false] (default: false)`: If `true`, disable the built-in expression generator (options `Random` & `Simple`).
+- `recursion-depth=int (default: 5)`: Set the maximum depth of the parse tree for the built-in expression generator (`Random`).
 If this is set then the option to generate with depth 3 (`Simple`) is removed.
-After 100 tries the generator will quit with an error message.
 
 ### URL Parameter Limitations
 
