@@ -1,6 +1,5 @@
 #firewall-sorting {
     background-color: white;
-    font-family: monospace;
     
 	:root {
 		--my-start-width: 100%;
@@ -118,6 +117,7 @@
 		position: absolute;
 		color: lime;
 		background-color: black;
+		font-family: monospace;
 	}
 
 	#packageTagText {

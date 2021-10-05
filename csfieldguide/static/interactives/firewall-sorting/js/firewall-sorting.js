@@ -131,8 +131,6 @@ function animation(status) {
 			choosePort(score, P);
 			document.getElementById("box").src = boxImgPath + imgSource + ".png";
 			document.getElementById("portrait").className = "packageEntrance";
-			document.getElementById("accept").disabled = false; 
-			document.getElementById("deny").disabled = false; 
 		}, 350)
 	}, 350)
 }
@@ -278,6 +276,8 @@ function healthChange(result) {
 	setTimeout(function(){
 		document.getElementById("healthBar").style.width = end_width + "%";
 		if (end_width > 0) {
+			document.getElementById("accept").disabled = false; 
+			document.getElementById("deny").disabled = false; 
 			document.getElementById("healthBar").className = "";
 		}
 		else {
