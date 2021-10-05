@@ -292,3 +292,4 @@ CUSTOM_VERTO_TEMPLATES = os.path.join(str(ROOT_DIR.path("utils")), "custom_conve
 STATICI18N_ROOT = BUILD_ROOT
 SVG_DIRS = [os.path.join(str(ROOT_DIR.path("staticfiles")), "svg")]
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+X_FRAME_OPTIONS = "SAMEORIGIN"

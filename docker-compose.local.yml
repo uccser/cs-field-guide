@@ -64,18 +64,12 @@ services:
             - ./infrastructure/local/postgres/.envs
         networks:
             - backend
-        volumes:
-            - local-postgres-data:/var/lib/postgresql/data:Z
-            - local-postgres-data-backups:/backups:z
-
 
     elasticsearch:
         image: elasticsearch:5
         restart: always
         networks:
             - backend
-        volumes:
-            - local-search-index:/usr/share/elasticsearch/data:Z
 
     docs:
         image: ghcr.io/uccser/local-docs-image:latest
@@ -98,8 +92,3 @@ networks:
         driver: bridge
     uccser-development-proxy:
         external: true
-
-volumes:
-    local-postgres-data: {}
-    local-postgres-data-backups: {}
-    local-search-index: {}

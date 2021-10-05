@@ -90,14 +90,14 @@ defhelp update 'Run Django migrate and updatedata commands and build static file
 # Run Django makemigrations command
 cmd_makemigrations() {
   echo "Creating database migrations..."
-  docker-compose -f docker-compose.local.yml run --rm --label traefik.enable=false django python ./manage.py makemigrations --no-input
+  docker-compose -f docker-compose.local.yml exec django python ./manage.py makemigrations --no-input
 }
 defhelp makemigrations 'Run Django makemigrations command.'
 
 # Run Django migrate command
 cmd_migrate() {
   echo "Applying database migrations..."
-  docker-compose -f docker-compose.local.yml run --rm --label traefik.enable=false django python ./manage.py migrate
+  docker-compose -f docker-compose.local.yml exec django python ./manage.py migrate
 }
 defhelp migrate 'Run Django migrate command.'
 
