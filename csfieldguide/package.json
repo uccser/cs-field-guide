@@ -27,7 +27,7 @@
         "gulp-sass": "5.0.0",
         "gulp-sourcemaps": "3.0.0",
         "gulp-tap": "2.0.0",
-        "gulp-terser": "2.0.1",
+        "gulp-terser": "2.1.0",
         "iframe-resizer": "4.3.2",
         "intro.js": "4.2.2",
         "jquery": "3.6.0",
