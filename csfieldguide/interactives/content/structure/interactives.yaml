@@ -166,6 +166,10 @@ dot-combinations:
   languages:
     en: interactives/dot-combinations.html
   is_interactive: true
+firewall-sorting:
+  languages:
+    en: interactives/firewall-sorting.html
+  is_interactive: true
 flowcharts-interpreter-compiler:
   languages:
     en: interactives/flowcharts-interpreter-compiler.html
@@ -284,6 +288,14 @@ parity:
 password-guesser:
   languages:
     en: interactives/password-guesser.html
+  is_interactive: true
+password-strength-brute:
+  languages:
+    en: interactives/password-strength-brute.html
+  is_interactive: true
+password-strength-dict:
+  languages:
+    en: interactives/password-strength-dict.html
   is_interactive: true
 payment-interface:
   languages:

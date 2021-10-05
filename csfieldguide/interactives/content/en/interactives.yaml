@@ -68,6 +68,8 @@ distance-from-stereo-images:
   name: Distance From Stereo Images
 dot-combinations:
   name: Dot Combinations
+firewall-sorting:
+  name: Firewall Sorting
 flowcharts-interpreter-compiler:
   name: Flowcharts - Interpreter and Compiler
 frequency-analysis:
@@ -124,6 +126,10 @@ parity:
   name: Parity
 password-guesser:
   name: Password Guesser
+password-strength-brute:
+  name: Password Strength - Brute Force
+password-strength-dict:
+  name: Password Strength - Dictionary
 payment-interface:
   name: Payment Interface
 persona-carousel:

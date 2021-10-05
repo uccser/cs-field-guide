@@ -1,0 +1,199 @@
+#firewall-sorting {
+    background-color: white;
+    font-family: monospace;
+    
+	:root {
+		--my-start-width: 100%;
+		--my-end-width: 95%;
+	}
+
+	img{
+		max-width: 100%;
+		max-height: 100%;
+	}
+
+	#firewall-header {
+		text-align: center;
+		overflow: hidden;
+		width: 90vw;
+		margin: auto;
+	}
+
+	#yourIP {
+		background-color: #6610f2;
+		text-align: center;
+		color: white;
+		width: 100%;
+		float: left;
+		vertical-align: top;
+	}
+
+	#healthBarContainer {
+		background-color: black;
+		text-align: center;
+		overflow: hidden;
+		width: 90vw;
+		color: white;
+		margin: auto;
+	}
+
+	#healthBar {
+		text-align: center;
+		overflow: hidden;
+		margin: auto;
+		float: left;
+		min-height: 3vh;
+		display: block;
+		background-color: lime;
+		width: 100%;
+	}
+
+	#main {
+		overflow: hidden;
+		width: 90vw;
+		margin: auto;
+	}
+
+
+	#contentContainer {
+		background: linear-gradient(black, white, black);
+		text-align: center;
+		overflow: hidden;
+		width: 75%;
+		height: 59vh;
+		float: left;
+		position: relative;
+	}
+
+	#portrait {
+		height: 80%;
+		position: relative;
+		overflow: hidden;
+		display: block;
+	}
+
+	#buttons {
+		height: 100%;
+	}
+
+	#accept {
+		position: relative;
+		background-color: lime;
+		width: 15%;
+		height: 20%;
+		float: left;
+		color: white;
+		padding: 1%;
+		border: 0.5% solid #000;
+		z-index:10;
+		font-size: 200%;
+		border-radius: 15px;
+		-moz-border-radius: 15px;
+	}
+
+	#deny {
+		position: relative;
+		background-color: red;
+		width: 15%;
+		height: 20%;
+		float: right;
+		color: white;
+		padding: 1%;
+		border: 0.5% solid #000;
+		z-index:10;
+		font-size: 200%;
+		border-radius: 15px;
+		-moz-border-radius: 15px;
+	}
+
+	#rules {
+		position:relative;
+		float: left;
+		background-color: black;
+		width: 25%;
+		height: 59vh;
+	}
+
+	#rulesText {
+		position: absolute;
+		color: lime;
+		background-color: black;
+	}
+
+	#packageTagText {
+		color: black;
+		text-align: left;
+		background-color: white;
+		padding: 1%;
+		border: 0.1vw outset black;
+		margin: 0 auto;
+		max-height: 80%;
+		position: absolute;
+		bottom: 15%;
+		left: 27.5%;
+	}
+
+
+	#warningText {
+		position: relative;
+		color: red;
+		text-align: center;
+		font-size: 300%;
+	}
+
+	.packageEntrance {
+		animation-name: entrance;
+		animation-duration: 0.4s;
+		animation-fill-mode: forwards;
+	}
+
+	.packageAccept {
+		animation-name: accept;
+		animation-duration: 0.4s;
+		animation-fill-mode: forwards;
+	}
+
+	.packageDeny {
+		animation-name: deny;
+		animation-duration: 0.4s;
+		animation-fill-mode: forwards;
+	}
+
+	.healthAlter {
+		animation-name: change;
+		animation-duration: 0.4s;
+		animation-fill-mode: forwards;
+	}
+
+	.rulesFade {
+		animation-name: fadeIn;
+		animation-duration: 0.5s;
+		animation-fill-mode: forwards;
+	}
+
+	@keyframes entrance {
+		0% {left: -100%;}
+		100% {left: 0%;}
+	}
+
+	@keyframes accept {
+		0% {left: 0%;}
+		100% {left: 100%;}
+	}
+
+	@keyframes deny {
+		0% {left: 0%;}
+		100% {left: -100%;}
+	}
+
+	@keyframes change {
+		0% { width: var(--my-start-width); }
+		100% { width: var(--my-end-width); }
+	}
+
+	@keyframes fadeIn {
+		0% {opacity:0;}
+		100% {opacity:1;}
+	}
+}
+

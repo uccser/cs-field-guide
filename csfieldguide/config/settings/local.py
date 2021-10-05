@@ -77,6 +77,7 @@ def show_django_debug_toolbar(request):
 DEBUG_TOOLBAR_CONFIG = {
     "DISABLE_PANELS": [
         "debug_toolbar.panels.redirects.RedirectsPanel",
+        "debug_toolbar.panels.staticfiles.StaticFilesPanel",
     ],
     "SHOW_TEMPLATE_CONTEXT": True,
     "SHOW_TOOLBAR_CALLBACK": show_django_debug_toolbar,
