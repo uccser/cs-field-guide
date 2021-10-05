@@ -588,7 +588,7 @@ function randomExpression(depth) {
     parseAllExpressions();
   }
   try {
-    return recursiveRandomExpression(depth, initialNonterminal_);
+    return recursiveRandomExpression(depth, initialNonterminal_).replace(/\'+/g, '');
   } catch (error) {
     // If the error is not the one we expect to catch then rethrow it
     if (!error.startsWith(depth.toString())) {
@@ -610,6 +610,7 @@ function randomExpression(depth) {
 
 /**
 * Recursive step for generating random expressions
+* Returns a string of two inverted commas with only terminals in between
 */
 function recursiveRandomExpression(depth, nonterminal) {
   if (expressionsAtDepth_[depth][nonterminal].length <= 0) {
@@ -633,7 +634,7 @@ function recursiveRandomExpression(depth, nonterminal) {
       expression += recursiveRandomExpression(newPath[0], newPath[1]);
     }
   }
-  return expression.replace(/\'+/g, '');
+  return expression;
 }
 
 /******************************************************************************/
