@@ -17,7 +17,9 @@ $non-terminal: #6c757d;
 }
 
 #cfg-equation {
-    font-size: 4rem;
+  font-size: 4rem;
+  overflow-x: auto;
+  white-space: nowrap;
   .nonterminal:hover {
     color: darken($non-terminal, 10%);
     cursor: pointer;
@@ -61,7 +63,7 @@ $non-terminal: #6c757d;
 #selection-popup {
   display: none;
   position: absolute;
-  background-color: #ececec;
+  background-color: #6c757d; // bootstrap secondary
   color: white;
   .btn {
     text-align: start;

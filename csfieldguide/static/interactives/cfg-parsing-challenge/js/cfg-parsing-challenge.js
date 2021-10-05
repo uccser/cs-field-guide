@@ -85,7 +85,7 @@ $(document).ready(function() {
     $('#cfg-target').val(randomExpression(recursionDepth_));
   }
   prefillGrammar();
-  getLink();
+  $("#cfg-grammar-link").html("");
 });
 
 /**
@@ -136,10 +136,11 @@ function parseUrlParameters() {
     $('#set-g-from-preset').hide();
   }
   if (recursionDepth) {
-    if (parseInt(recursionDepth) > RECURSIONDEPTH_MAX) {
-      $('#error-notice').html(gettext("The recursion depth in the URL is too high so we ignored it."));
+    recursionDepth = parseInt(recursionDepth);
+    if (recursionDepth > RECURSIONDEPTH_MAX) {
+      $('#error-notice').html(gettext("The recursion depth in the URL is too high so it was ignored."));
       $('#error-notice').show();
-    } else if (parseInt(recursionDepth) > 0) {
+    } else if (recursionDepth > 0) {
       recursionDepth_ = parseInt(recursionDepth);
       $('#error-notice').hide();
     }
@@ -577,7 +578,6 @@ function findPossibleExpressionsAtDepth(depth) {
       }
     }
   }
-  return
 }
 
 /**
@@ -656,7 +656,6 @@ function prefillGrammar() {
     }
     yacc += ';\n';
   }
-  console.log(yacc);
   $("#cfg-grammar-input").val(yacc);
 }
 
@@ -681,16 +680,16 @@ function getLink() {
   }
   var productionsParameter = percentEncode(productions.replace(/\n/g, ' '));
   var otherParameters = "";
-  if ($("#generator-checkbox").prop('checked')){
-    // 5 chosen arbitrarily
-    otherParameters += "";
-  } else {
-    otherParameters += "&hide-generator=true";
-  }
   if ($("#examples-checkbox").prop('checked')){
     var examples = $("#cfg-example-input").val().trim();
     if (examples.length > 0) {
       otherParameters += '&examples=' + percentEncode(examples.replace(/\n/g, '|'));
+    }
+  }
+  if (!$("#generator-checkbox").prop('checked')){
+    otherParameters += '&hide-generator=true';
+    if (!$("#examples-checkbox").prop('checked')) {
+      otherParameters += '&editable-target=true';
     }
   }
   // When the user switches between generator types a # appears at the end of the url
@@ -700,6 +699,10 @@ function getLink() {
   $("#cfg-grammar-link").html(`${instruction}<br><a target="_blank" href=${fullUrl}>${fullUrl}</a>`);
 }
 
+/**
+* Changes the visibility of the example input window depending on whether or not
+* the appropriate checkbox is checked
+*/
 function toggleExamplesWindow() {
   if ($("#examples-checkbox").prop('checked')){
     $("#cfg-example-input-parent").removeClass('d-none');
