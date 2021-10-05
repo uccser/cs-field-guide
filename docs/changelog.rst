@@ -18,6 +18,26 @@ All notable changes to this project will be documented in this file.
 We have listed major changes for each release below.
 `All downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/>`__
 
+3.8.5
+==============================================================================
+
+**Release date:** 6th October 2021
+
+**Changelog:**
+
+- Fix bug where interactives in chapters were not displaying.
+- Redirect non-www requests to www subdomain at Traefik router.
+- Run migration commands in existing container to allow access to created files.
+- Remove Docker compose volumes to avoid issues with development.
+- Dependency changes:
+
+  - Update autoprefixer from 10.3.6 to 10.3.7.
+  - Update codemirror from 5.62.3 to 5.63.1.
+  - Update django from 3.2.7 to 3.2.8.
+  - Update gulp-postcss from 2.0.1 to 2.1.0.
+  - Update postcss from 8.3.6 to 8.3.9.
+  - Update yargs from 17.1.1 to 17.2.1.
+
 3.8.4
 ==============================================================================
 
@@ -36,15 +56,17 @@ We have listed major changes for each release below.
 
 - Rebuild search index when updating data, instead of application start.
 - Modify configuration for Docker Swarm services to specify updatedata task.
-- Update crowdin/github-action from 1.3.2 to 1.4.0.
-- Update autoprefixer from 10.3.2 to 10.3.6.
-- Update intro.js from 4.1.0 to 4.2.2.
-- Update sass from 1.38.0 to 1.42.1.
-- Update sphinx from 4.1.2 to 4.2.1.
-- Update sphinx-rtd-theme from 0.5.2 to 1.0.0.
-- Update django from 3.2.6 to 3.2.7.
-- Update django-environ from 0.4.5 to 0.7.0.
-- Update django-haystack[elasticsearch] from 3.0 to 3.1.1.
+- Dependency changes:
+
+  - Update crowdin/github-action from 1.3.2 to 1.4.0.
+  - Update autoprefixer from 10.3.2 to 10.3.6.
+  - Update intro.js from 4.1.0 to 4.2.2.
+  - Update sass from 1.38.0 to 1.42.1.
+  - Update sphinx from 4.1.2 to 4.2.1.
+  - Update sphinx-rtd-theme from 0.5.2 to 1.0.0.
+  - Update django from 3.2.6 to 3.2.7.
+  - Update django-environ from 0.4.5 to 0.7.0.
+  - Update django-haystack[elasticsearch] from 3.0 to 3.1.1.
 
 3.8.2
 ==============================================================================
