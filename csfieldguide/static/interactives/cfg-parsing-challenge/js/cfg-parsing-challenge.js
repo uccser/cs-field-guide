@@ -41,7 +41,14 @@ $(document).ready(function() {
 
   // Setup events
   $('#generate-button').on('click', function(event) {
-    $('#cfg-target').val(generateTarget(event.target));
+    let newTarget = generateTarget(event.target);
+    let t=0;
+    // Avoid (but don't prevent) the new target expression being the same as the old one
+    while (newTarget == $('#cfg-target').val() && t<RECURSIONDEPTH_MAX) {
+      newTarget = generateTarget(event.target);
+      t++;
+    }
+    $('#cfg-target').val(newTarget);
     resetEquation();
   });
   $('#reset-button').on('click', function() {
