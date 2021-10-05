@@ -52,7 +52,7 @@ services:
                 - "traefik.http.routers.cs-field-guide-django.rule=${CS_FIELD_GUIDE_ROUTER_RULE}"
                 - "traefik.http.routers.cs-field-guide-django.entryPoints=web"
                 # Redirect non-www to www, only triggers in production swarm.
-                - "traefik.http.middlewares.redirect-non-www.redirectregex.regex=^https://csfieldguide\.org(.*)"
+                - "traefik.http.middlewares.redirect-non-www.redirectregex.regex=^https://csfieldguide\\.org(.*)"
                 - "traefik.http.middlewares.redirect-non-www.redirectregex.replacement=https://www.csfieldguide.org$${1}"
                 - "traefik.http.middlewares.redirect-non-www.redirectregex.permanent=true"
         networks:
