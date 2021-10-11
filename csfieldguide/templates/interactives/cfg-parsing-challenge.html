@@ -84,7 +84,7 @@
       </div>
       <div class="row justify-content-center mt-3">
         <div class="col-12" id="txt-try">
-          {% trans "Try to form:" %}
+          {% trans "Try to generate:" %}
         </div>
         <input type="text" class="col-6 text-center m-2 form-control" id="cfg-target" >
         <div class="btn-group" id="generator-buttons">
@@ -99,30 +99,34 @@
           </div>
         </div>
       </div>
-      <div class="row" id="error-notice"></div>
-      <div class="d-flex justify-content-center my-2" id="cfg-equation"></div>
+      <div class="row alert-danger" id="error-notice"></div>
+      <div class="d-flex justify-content-center my-2">
+        <div id="cfg-equation"></div>
+      </div>
       <div class="d-flex justify-content-center mb-2">
         <button type="button" class="btn btn-secondary btn-sm m-1 float-right" id="undo-button">{% trans "Undo" %}</button>
         <button type="button" class="btn btn-danger btn-sm m-1 float-right" id="reset-button">{% trans "Reset" %}</button>
       </div>
     </div>
     <div class="col-12 col-md-3">
-      <div class="py-2">
-        <div class="my-2 mx-auto list-container">
+      <div class="pt-2">
+        <div class="mx-auto list-container">
           <h3 class="h5">{% trans "Productions:" %}</h3>
           <div id="production-list"></div>
         </div>
       </div>
-      <div class="row" id="grammar-builder-button">
-        <button type="button" class="btn btn-primary mx-auto" data-toggle="modal" data-target="#grammar-builder">
-          {% trans "New productions" %}
-        </button>
-      </div>
-      <div class="py-2">
-        <div class="my-2 mx-auto list-container">
+      <div class="pt-2">
+        <div class="mx-auto list-container">
           <h3 class="h5">{% trans "History:" %}</h3>
           <div id="history-list"></div>
         </div>
+      </div>
+    </div>
+    <div class="col-12 py-2">
+      <div class="text-right"  id="grammar-builder-button">
+        <button type="button" class="btn btn-outline-secondary btn-sm" data-toggle="modal" data-target="#grammar-builder">
+          {% trans "Customise productions" %}
+        </button>
       </div>
     </div>
   </div>
