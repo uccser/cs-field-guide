@@ -209,7 +209,7 @@ And now, each of these groups of 4 bits will need to be represented with a **hex
 - 0111 -> 7
 - 1011 -> B
 
-Which gives `#51327B`.
+Which gives `#91327B`.
 
 Understanding how these hexadecimal colour codes are derived also allows you to change them slightly without having to refer back to the colour table, when the colour isn’t exactly the one you want.
 Remember that in the 24 bit color code, the first 8 bits specify the amount of red (so this is the first 2 digits of the hexadecimal code), the next 8 bits specify the amount of green (the next 2 digits of the hexadecimal code), and the last 8 bits specify the amount of blue (the last 2 digits of the hexadecimal code).

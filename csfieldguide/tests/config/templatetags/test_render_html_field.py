@@ -37,7 +37,7 @@ class RenderHTMLFieldTest(BaseTestWithDB):
             "{% load render_html_field %}\n{% render_html_field chapter.introduction %}",
             context
         )
-        self.assertHTMLEqual(rendered, "<img src='/staticfiles/image.png'>")
+        self.assertHTMLEqual(rendered, "<img src='/static/image.png'>")
 
     def test_render_html_field_with_interactive_tag(self):
         self.interactive_test_data.create_interactive(1)

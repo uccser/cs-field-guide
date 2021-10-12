@@ -35,10 +35,9 @@
 @import "node_modules/bootstrap/scss/popover";
 @import "node_modules/bootstrap/scss/carousel";
 @import "node_modules/bootstrap/scss/utilities";
+@import "node_modules/lity/dist/lity";
 @import "third-party/pygments-highlighting";
-@import "third-party/sticky-state";
 @import "third-party/directional";
-@import "third-party/featherlight";
 @import "panels";
 @import "navbar";
 @import "footer";
@@ -66,6 +65,7 @@ body {
   > #body-content {
     overflow: auto;
     flex-grow: 1;
+    position: relative;
   }
 }
 
@@ -118,8 +118,9 @@ body {
   box-shadow: 0 2px 5px 0 rgba(0,0,0,0.12);
 }
 
-.chapter-icon path {
-  fill: $csfg-light !important;
+.chapter-icon svg {
+  height: 50px;
+  width: 50px;
 }
 
 .btn {
@@ -158,7 +159,7 @@ ol, ul {
       border-color: $csfg-light;
     }
   }
-  #section-headings .nav-link {
+  #scrollspy-table-of-contents .nav-link {
     font-size: 0.8rem;
     padding: 0.3rem 0.7rem;
   }
@@ -228,6 +229,14 @@ html {
     display: block;
     text-align: center;
   }
+}
+
+// Lightbox tweaks
+.lity-content {
+    background-color: white;
+}
+.lity-wrap {
+    cursor: pointer;
 }
 
 h1, h2, h3, h4, h5, h6, details {

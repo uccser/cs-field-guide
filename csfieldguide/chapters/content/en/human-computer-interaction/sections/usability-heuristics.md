@@ -285,7 +285,9 @@ Some controls try to offer the best of both worlds by having a small flap that c
 
 # Scary interfaces
 
-The following site identified some of the "scariest" interfaces around, some of which are great examples of *not* having minimalist design:  [OK/Cancel scariest interface](http://okcancel.com/archives/article/2005/11/the-scariest-interface-part-ii.html).
+In 2005 Tom Chi put out a call for people to nominate the "scariest" interfaces around (the original site is [here](http://okcancel.com/archives/article/2005/11/the-scariest-interface-part-ii.html), although it may be unavailable).
+Some of the sites he named include complicated [weather pages](http://www.ussartf.org/predicting_weather.htm), [cluttered interfaces](http://thedailywtf.com/articles/Enter_The_Matrix), and the two top nominations were a [horse rental site](http://horserentals.com/massachusetts.html) and the interface for [Band-in-a-Box](https://en.wikipedia.org/wiki/Band-in-a-Box).
+Even if these have been fixed or removed by the time you read this, you probably won't need to look far to find cluttered and confusing interfaces.
 
 Cartoonist [Roz Chast](http://rozchast.com/) illustrates how scary a remote control can be with her cartoon
 ["How Grandma sees the remote"](http://www.art.com/products/p15063313199-sa-i6845922/roz-chast-how-grandma-sees-the-remote-new-yorker-cartoon.htm).

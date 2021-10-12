@@ -10,8 +10,8 @@
   <div class="jumbotron jumbotron-fluid py-5">
     <div class="container text-center">
       <div class="row align-items-center">
-        <div class="col-6 mx-auto col-md-4 order-md-2">
-          <img id="homepage-logo" src="{% static 'img/logos/guide-logo-light.png' %}">
+        <div id="homepage-logo" class="col-6 mx-auto col-md-4 order-md-2">
+          {% svg 'csfg-icon' %}
         </div>
         <div class="col-md-8 order-md-1 text-center text-md-left pr-lg-5">
           <h1 class="mb-3 bd-text-purple-bright">
@@ -56,7 +56,7 @@
           </div>
         </div>
       </div>
-    
+
       <div class="col-12 col-md-6 homepage-cta">
         <div class="row no-gutters">
           <div class="col-12 col-lg-3 text-center">

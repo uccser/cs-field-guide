@@ -1,4 +1,289 @@
 #!/bin/bash
-# Calls csfg script with same parameters.
+# Helper script for commands related to the CS Field Guide repository.
+#
+# Notes:
+#  - Changes to template only require user to refresh browser.
+#  - Changes to static files require the 'static' command to be run.
+#  - Changes to Python code are detected by gunicorn and should take effect
+#    on the server after a few seconds.
+#
+# Future plans:
+#  - Start systems when a command is given (for example: 'static') when the
+#    development system has not yet been started.
+#  - When 'start' is run open website in default browser without creating
+#    new terminal prompt.
 
-./csfg "$@"
+set -e
+
+ERROR='\033[0;31m'
+SUCCESS='\033[0;32m'
+CODE='\033[0;36m'
+NC='\033[0m' # No Color
+
+cmd_helps=()
+
+defhelp() {
+  local command="${1?}"
+  local text="${2?}"
+  local help_str
+  help_str="$(printf '   %-28s %s' "$command" "$text")"
+  cmd_helps+=("$help_str")
+}
+
+# Print out help information
+cmd_help() {
+  echo "Script for performing tasks related to the CS Field Guide repository."
+  echo
+  echo "Usage: ./dev [COMMAND]"
+  echo "Replace [COMMAND] with a word from the list below."
+  echo
+  echo "COMMAND list:"
+  for str in "${cmd_helps[@]}"; do
+    echo -e "$str"
+  done
+}
+defhelp help 'View all help.'
+
+# Start development environment
+cmd_start() {
+  echo "Creating systems..."
+  docker-compose -f docker-compose.local.yml up -d
+  # Alert user that system is ready
+  echo -e "\n${SUCCESS}System is up!${NC}"
+  echo -e "Run the command ${CODE}./dev update${NC} to load content."
+}
+defhelp start 'Start development environment.'
+
+# Stop development environment
+cmd_end() {
+  echo "Stopping systems..."
+  docker-compose -f docker-compose.local.yml down
+}
+defhelp end 'Stop development environment.'
+
+cmd_restart() {
+  docker-compose -f docker-compose.local.yml restart "$@"
+}
+defhelp restart 'Restart container.'
+
+# Update all content
+cmd_update() {
+  cmd_static
+  cmd_collect_static
+
+  echo ""
+  cmd_migrate
+
+  echo ""
+  cmd_update_data
+  cmd_compilemessages
+
+  echo ""
+  cmd_make_interactive_thumbnails
+  cmd_collect_static
+
+  echo -e "\n${SUCCESS}Content is loaded!${NC}"
+  echo "Open your preferred web browser to the URL 'cs-field-guide.localhost'"
+}
+defhelp update 'Run Django migrate and updatedata commands and build static files.'
+
+# Run Django makemigrations command
+cmd_makemigrations() {
+  echo "Creating database migrations..."
+  docker-compose -f docker-compose.local.yml exec django python ./manage.py makemigrations --no-input
+}
+defhelp makemigrations 'Run Django makemigrations command.'
+
+# Run Django migrate command
+cmd_migrate() {
+  echo "Applying database migrations..."
+  docker-compose -f docker-compose.local.yml exec django python ./manage.py migrate
+}
+defhelp migrate 'Run Django migrate command.'
+
+# Reboot Django Docker container
+cmd_reboot_django() {
+  echo "Rebooting Django container..."
+  docker-compose -f docker-compose.local.yml restart django
+}
+defhelp reboot_django 'Reboot Django container.'
+
+# Run Django updatedata command
+cmd_update_data() {
+  echo "Loading content..."
+  docker-compose -f docker-compose.local.yml run --rm --label traefik.enable=false django python ./manage.py updatedata
+}
+defhelp updatedata 'Load content into database.'
+
+# Build static files
+cmd_static() {
+  echo "Building static files..."
+  docker-compose -f docker-compose.local.yml run --rm node npm run generate-assets
+}
+defhelp static 'Build static files.'
+
+# Collecting static files
+cmd_collect_static() {
+  echo
+  echo "Collecting static files..."
+  docker-compose -f docker-compose.local.yml run --rm --label traefik.enable=false django python manage.py collectstatic --no-input --clear
+}
+defhelp collect_static "Collecting static files."
+
+# Update and collect static files
+cmd_update_static() {
+  cmd_static
+  echo ""
+  cmd_collect_static
+  echo ""
+  echo -e "\n${SUCCESS}Static files are updated!${NC}"
+}
+defhelp update_static 'Update static files.'
+
+# Run Django command rebuild_index
+cmd_rebuild_index() {
+  echo "Rebuilding search index..."
+  docker-compose -f docker-compose.local.yml run --rm --label traefik.enable=false django python ./manage.py rebuild_index --noinput
+}
+defhelp rebuild_index "Run Django rebuild_index command."
+
+# Run make-interactive-thumbnails.js
+cmd_make_interactive_thumbnails() {
+  echo "Creating thumbnails for interactives..."
+  docker-compose -f docker-compose.local.yml run --rm puppeteer node /make-interactive-thumbnails.js
+}
+defhelp make_interactive_thumbnails 'Run make-interactive-thumbnails.js script.'
+
+# Run Django makemessages command
+cmd_makemessages() {
+  echo "Compiling message files..."
+#   docker-compose -f docker-compose.local.yml run --rm --label traefik.enable=false django python ./manage.py makemessages --locale en
+  docker-compose -f docker-compose.local.yml run --rm --label traefik.enable=false django python ./manage.py makemessages --locale en --domain djangojs --ignore build/* --ignore gulpfile.js
+}
+defhelp makemessages 'Run Django makemessages command.'
+
+# Run Django compilemessages command
+cmd_compilemessages() {
+  echo "Compiling message files..."
+  docker-compose -f docker-compose.local.yml run --rm --label traefik.enable=false django python ./manage.py compilemessages
+  docker-compose -f docker-compose.local.yml run --rm --label traefik.enable=false django python ./manage.py compilejsi18n
+}
+defhelp compilemessages 'Run Django compilemessages command.'
+
+# Build Docker images
+cmd_build() {
+  echo "Building Docker images..."
+  docker-compose -f docker-compose.local.yml build
+}
+defhelp build 'Build or rebuild Docker images.'
+
+# Run exec
+cmd_exec() {
+  docker-compose -f docker-compose.local.yml exec "$@"
+}
+defhelp exec "Execute command in given container."
+
+# View Docker logs
+cmd_logs() {
+  echo "Building Docker images..."
+  docker-compose -f docker-compose.local.yml logs --timestamps "$@"
+}
+defhelp logs 'View logs.'
+
+# Run style checks
+cmd_style() {
+  echo "Running PEP8 style checker..."
+  docker-compose -f docker-compose.local.yml run --rm --label traefik.enable=false django flake8
+  pep8_status=$?
+  echo
+  echo "Running Python docstring checker..."
+  docker-compose -f docker-compose.local.yml run --rm --label traefik.enable=false django pydocstyle --count --explain
+  pydocstyle_status=$?
+  ! (( pep8_status || pydocstyle_status ))
+}
+defhelp style 'Run style checks.'
+
+# Run test suite
+cmd_test_suite() {
+  echo "Running test suite..."
+  docker-compose -f docker-compose.local.yml run --rm --label traefik.enable=false django coverage run --rcfile=./.coveragerc ./manage.py test --settings=config.settings.testing --pattern "test_*.py" -v 3 --nomigrations
+}
+defhelp test_suite 'Run test suite with code coverage.'
+
+# Run specific test suite
+cmd_test_specific() {
+  echo "Running specific test suite..."
+  docker-compose -f docker-compose.local.yml run --rm --label traefik.enable=false django python ./manage.py test --settings=config.settings.testing "${1}" -v 3 --nomigrations
+}
+defhelp test_specific 'Run specific test suite. Pass in parameter of Python test module.'
+
+# Display test coverage table
+cmd_test_coverage() {
+  echo "Displaying test suite coverage..."
+  docker-compose -f docker-compose.local.yml run --rm --label traefik.enable=false django coverage xml -i
+  docker-compose -f docker-compose.local.yml run --rm --label traefik.enable=false django coverage report -m --skip-covered
+}
+defhelp test_coverage 'Display code coverage report.'
+
+# Run test suite backwards for CI testing
+cmd_test_backwards() {
+  echo "Running test suite backwards..."
+  docker-compose -f docker-compose.local.yml run --rm --label traefik.enable=false django python ./manage.py test --settings=config.settings.testing --pattern "test_*.py" --reverse -v 0 --nomigrations
+}
+defhelp test_backwards 'Run test suite backwards.'
+
+# --- Testing -----------------------------------------------------------------
+# For use in GitHub Actions environment
+
+cmd_ci() {
+  docker network create uccser-development-proxy
+  cmd_start
+  docker-compose -f docker-compose.local.yml run --rm --user="root" node npm run generate-assets
+  docker-compose -f docker-compose.local.yml run --rm --user="root" django python manage.py collectstatic --no-input
+  local cmd="$1"
+  shift
+  if [ -z "$cmd" ]; then
+    echo -e "${ERROR}ERROR: ci command requires one parameter!${NC}"
+    cmd_help
+    exit 1
+  fi
+  if silent type "cmd_$cmd"; then
+    "cmd_$cmd" "$@"
+    exit $?
+  else
+    echo -e "${ERROR}ERROR: Unknown command!${NC}"
+    echo "Type './dev help' for available commands."
+    exit 1
+  fi
+}
+
+cmd_test_general() {
+  docker-compose -f docker-compose.local.yml run --rm --label traefik.enable=false django coverage run --rcfile=./.coveragerc ./manage.py test --settings=config.settings.testing --pattern "test_*.py" -v 3 --exclude-tag=resource --exclude-tag=management --nomigrations
+}
+
+cmd_test_management() {
+  docker-compose -f docker-compose.local.yml run --rm --label traefik.enable=false django coverage run --rcfile=./.coveragerc ./manage.py test --settings=config.settings.testing --pattern "test_*.py" -v 3 --tag=management --nomigrations
+}
+
+# --- Core script logic -------------------------------------------------------
+
+silent() {
+  "$@" > /dev/null 2>&1
+}
+
+# If no command given
+if [ $# -eq 0 ]; then
+  echo -e "${ERROR}ERROR: This script requires a command!${NC}"
+  cmd_help
+  exit 1
+fi
+cmd="$1"
+shift
+if silent type "cmd_$cmd"; then
+  "cmd_$cmd" "$@"
+  exit $?
+else
+  echo -e "${ERROR}ERROR: Unknown command!${NC}"
+  echo "Type './dev help' for available commands."
+  exit 1
+fi

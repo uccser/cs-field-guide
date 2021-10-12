@@ -1,10 +1,13 @@
 # Computer Science Field Guide
 
-[![Build Status](https://travis-ci.org/uccser/cs-field-guide.svg?branch=master)](https://travis-ci.org/uccser/cs-field-guide)
-
 The Computer Science Field Guide (CSFG) is an online interactive resource for high school students learning about computer science, developed at the University of Canterbury in New Zealand.
 The latest HTML release of the Computer Science Field Guide can be viewed at [www.csfieldguide.org.nz](http://www.csfieldguide.org.nz/).
 This repository aims to be the source for all data associated with the CSFG, and also allows users to suggest improvements or create their own version.
+
+[Production website](https://csfieldguide.org.nz/) | [Development website](https://cs-field-guide-dev.csse.canterbury.ac.nz/)
+:-: | :-:
+`master` branch | `develop` branch
+[![Test and deploy](https://github.com/uccser/cs-field-guide/actions/workflows/test-and-deploy.yaml/badge.svg?branch=master)](https://github.com/uccser/cs-field-guide/actions/workflows/test-and-deploy.yaml) | [![Test and deploy](https://github.com/uccser/cs-field-guide/actions/workflows/test-and-deploy.yaml/badge.svg?branch=develop)](https://github.com/uccser/cs-field-guide/actions/workflows/test-and-deploy.yaml)
 
 ## Project Philosophy
 
