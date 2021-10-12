@@ -7,36 +7,34 @@
 <div id="firewall-sorting">
 	<div id="firewall-header">
 		<div id="yourIP">
-			<h2> <span id="yourIPText"></span> </h2>
+			<span id="yourIPText"></span>
 		</div>
 	</div>
 	<div id="healthBarContainer">
-			<h2>
+		<div id="healthBarLabel">
 			{% trans 'Business Health' %}
-			</h2>
+		</div>
 		<div id="healthBar">
 		</div>
 	</div>
-	<div id="main">
+	<div id="firewall-body">
 		<div id="contentContainer">
 			<div id="portrait">
 				<img src="{% static '/interactives/firewall-sorting/img/BoxA.png' %}" id="box">
 				<div id="packageTagText">
-					<h3>
-						{% blocktrans %}
-						Source IP: <span id="sourceIP"></span> <br> <br>
-						Destination IP: <span id="destinationIP"></span> <br> <br>
-						Source Port: <span id="sourcePort"></span> <br> <br>
-						Destination Port: <span id="destinationPort"></span>
-						{% endblocktrans %}
-					</h3>
+					{% blocktrans %}
+					Source IP: <span id="sourceIP"></span> <br> 
+					Destination IP: <span id="destinationIP"></span> <br>
+					Source Port: <span id="sourcePort"></span> <br>
+					Destination Port: <span id="destinationPort"></span>
+					{% endblocktrans %}
 				</div>
 			</div>
 			<div id="buttons">
-				<button id="accept" onclick="check('allow')">
+				<button id="accept" class="firewall-button">
 					{% trans 'Accept' %}
 				</button>
-				<button id="deny" onclick="check('deny')">
+				<button id="deny" class="firewall-button">
 					{% trans 'Deny' %}
 				</button>
 				<div id="warningText">
@@ -47,12 +45,13 @@
 		</div>
 		<div id="rules">
 			<div id="rulesText">
-				<h1> {% trans 'Rules' %} </h1> <br>
-				<h2>
-					{% trans 'Only allow packets meant for us' %} <br> <br>
-					<span id="rule2"></span> <span id="allowFrom"></span> <br> <br>
-					<span id="rule3"></span> <span id="allowFromPort"></span> <br> <br>
+				<div id="rulesHeading">{% trans 'Rules' %}</div>
+				<div id="rulesContent">
+					{% trans 'Only allow packets meant for us' %} <br>
+					<span id="rule2"></span> <span id="allowFrom"></span> <br>
+					<span id="rule3"></span> <span id="allowFromPort"></span> <br>
 					<span id="rule4"></span> <span id="allowToPort"></span>
+				</div>
 				</h2>
 			</div>
 		</div>
