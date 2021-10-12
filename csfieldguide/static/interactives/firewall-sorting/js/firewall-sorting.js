@@ -283,6 +283,12 @@ function healthChange(result) {
 }
 
 function check(button) {
+  document.getElementById("accept").disabled = true;
+  document.getElementById("accept").disabled = true;
+  setTimeout(function(){
+    document.getElementById("accept").disabled = false;
+    document.getElementById("accept").disabled = false;
+  }, 800)
   if (score >= levelModifier * 3) {
     tickDownSpeed = 2;
     result = stage4check(button);
