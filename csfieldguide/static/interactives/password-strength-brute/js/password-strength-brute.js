@@ -1,3 +1,11 @@
+var urlParameters = require('../../../js/third-party/url-parameters.js');
+
+window.onload = function() {
+  if (urlParameters.getUrlParameter('hide-link') == 'true') {
+    document.getElementById("linkToDict").style.visibility = 'hidden';
+  }
+};
+
 $('#half').click(function() {
 	var power = document.getElementById("compPower").innerHTML;
 	var intPower = parseFloat(power.replace(/,/g, ''));

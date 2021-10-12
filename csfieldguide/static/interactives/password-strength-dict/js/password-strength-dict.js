@@ -1,4 +1,5 @@
 newText = [];
+var urlParameters = require('../../../js/third-party/url-parameters.js');
 
 $('#crackButton').click(function() {
 	crack();
@@ -19,6 +20,9 @@ window.onload = function() {
     }
   }
   request.send(null);
+  if (urlParameters.getUrlParameter('hide-link') == 'true') {
+    document.getElementById("linkToBrute").style.visibility = 'hidden';
+  }
 };
 
 
