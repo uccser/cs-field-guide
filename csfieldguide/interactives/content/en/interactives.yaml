@@ -52,6 +52,8 @@ confusing-error:
   name: Confusing Error
 data-bias:
   name: Data Bias
+data-drop:
+  name: Data Drop
 data-visualisation:
   name: Data Visualisation
 date-picker:
