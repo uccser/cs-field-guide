@@ -143,11 +143,11 @@ function crack() {
 	}
 	clear();
 	var timeInSeconds = combinations/intPower;
-	if (timeInSeconds > 1) {
+	if (timeInSeconds != 1) {
 		timeInSeconds = Math.floor(timeInSeconds);
 		convertToMaxTime(timeInSeconds);
 	}
 	else {
-		document.getElementById("timeToCrack").innerHTML = timeInSeconds + " seconds";
+		document.getElementById("timeToCrack").innerHTML = timeInSeconds + " second";
 	}
 }
