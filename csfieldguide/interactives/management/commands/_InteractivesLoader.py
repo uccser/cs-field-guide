@@ -45,9 +45,13 @@ class InteractivesLoader(TranslatableModelLoader):
                     translations[language_code]["template"] = template_path
 
             is_interactive = interactive_data.get("is_interactive")
+            use_large_thumbnail = interactive_data.get("use_large_thumbnail")
+            if use_large_thumbnail is None:
+                use_large_thumbnail = False
             interactive = Interactive(
                 slug=interactive_slug,
                 is_interactive=is_interactive,
+                use_large_thumbnail=use_large_thumbnail,
             )
             self.populate_translations(interactive, translations)
             self.mark_translation_availability(

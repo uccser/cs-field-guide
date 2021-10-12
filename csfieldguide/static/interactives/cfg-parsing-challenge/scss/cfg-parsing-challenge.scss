@@ -1,0 +1,98 @@
+$non-terminal: #6c757d;
+
+#txt-try {
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+#generate-button.success, #generate-dropdown.success {
+  background-color: #28a745 !important;
+  border-color: #28a745 !important;
+}
+
+// Scoped outside due to usage on many components
+.nonterminal {
+  font-weight: bold;
+  color: $non-terminal;
+}
+
+#cfg-equation {
+  font-size: 4rem;
+  overflow-x: auto;
+  white-space: nowrap;
+  .nonterminal:hover {
+    color: darken($non-terminal, 10%);
+    cursor: pointer;
+  }
+  &.success {
+    background-color: #cdffd8 !important;
+    border-radius: 2rem;
+  }
+}
+
+.list-container {
+  border-collapse: separate !important;
+  border: 1px solid #a0a0a0;
+  border-radius: 1rem;
+  border-spacing: 0;
+  background-color: #ececec;
+  padding: .5rem;
+  line-height: 1.8rem;
+
+  h2 {
+    border-bottom: 1px solid grey;
+  }
+}
+
+#production-list {
+  font-size: 1.2rem;
+}
+
+#history-list {
+  min-height: 10rem;
+  font-size: 1.2rem;
+  .history-item:not(:last-child) {
+    border-bottom: 1px solid grey;
+  }
+  .history-production {
+    font-size: .8rem;
+    opacity: .9;
+  }
+}
+
+#selection-popup {
+  display: none;
+  position: absolute;
+  background-color: #6c757d; // bootstrap secondary
+  color: white;
+  .btn {
+    text-align: start;
+  }
+  .nonterminal {
+    color: #ccc;
+    // This prevents clicking on span with no data attribute,
+    // and allows user to click parent element correctly.
+    pointer-events: none;
+  }
+}
+
+#error-notice {
+  display: none;
+  font-family: sans-serif;
+  text-align: center;
+}
+
+#cfg-example-productions {
+  font-family: monospace;
+  background-color: #ececec;
+  border-radius: 5px;
+}
+
+#cfg-grammar-input, #cfg-example-input {
+  font-family: monospace;
+  width: 100%;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}

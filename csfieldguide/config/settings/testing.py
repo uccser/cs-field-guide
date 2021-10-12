@@ -8,9 +8,16 @@ from .base import *  # noqa: F403
 # ----------------------------------------------------------------------------
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#databases
 DATABASES = {
-    'default': env.db('DATABASE_URL'),  # noqa: F405
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": env("POSTGRES_DB"),  # noqa: F405
+        "USER": env("POSTGRES_USER"),  # noqa: F405
+        "PASSWORD": env("POSTGRES_PASSWORD"),  # noqa: F405
+        "HOST": env("POSTGRES_HOST"),  # noqa: F405
+        "PORT": env("POSTGRES_PORT"),  # noqa: F405
+        "ATOMIC_REQUESTS": True,
+    }
 }
-DATABASES['default']['ATOMIC_REQUESTS'] = True
 
 # DEBUG
 # ----------------------------------------------------------------------------
@@ -46,7 +53,6 @@ CACHES = {
 # TESTING
 # ----------------------------------------------------------------------------
 TEST_RUNNER = "django.test.runner.DiscoverRunner"
-
 
 # PASSWORD HASHING
 # ----------------------------------------------------------------------------
@@ -86,9 +92,4 @@ DEFAULT_LANGUAGES = LANGUAGES
 
 # Search index location for testing
 SEARCH_INDEX_PATH = "temp/tests/search/"
-HAYSTACK_CONNECTIONS = {
-    "default": {
-        "ENGINE": "haystack.backends.whoosh_backend.WhooshEngine",
-        "PATH": SEARCH_INDEX_PATH,
-    }
-}
+HAYSTACK_CONNECTIONS["default"]["PATH"] = SEARCH_INDEX_PATH  # noqa: F405

@@ -21,6 +21,7 @@
             <div id="pixel-viewer-interactive-loader"></div>
             <canvas id="pixel-viewer-interactive-content" crossorigin="anonymous"></canvas>
             <div id="pixel-viewer-interactive-settings" class="menu-offscreen p-3">
+                <img id="pixelmania-logo" class="d-none" src="{% static 'interactives/pixel-viewer/img/pixelmania.png' %}">
                 <h3 id="pixel-viewer-interactive-title">
                     {% trans "Pixel Viewer Interactive" %}
                 </h3>
@@ -30,7 +31,7 @@
                 <p id="pixel-viewer-extra-feature-description"></p>
 
                 <span id="pixel-viewer-image-manipulator"></span>
-                <p>{% trans "This interactive works best on a desktop Chrome browser, due to the heavy performance load." %}</p>
+                <p>{% trans "This interactive works best on a desktop browser, due to the heavy performance load." %}</p>
 
                 <hr>
 
@@ -39,6 +40,25 @@
                     <input id="pixel-viewer-interactive-show-pixel-fill" type="checkbox" checked="checked">
                     {% trans "Show pixel background" %}
                 </label>
+                <div id="colour-code-radio" class="btn-group-vertical d-flex mb-1">
+                    {% trans "Colour code: " %}
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="colourCode" id="rgb-colour-code" value="rgb" checked>
+                        <label class="form-check-label" for="rgb-colour-code">{% trans "Decimal (separate RGB)" %}</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="colourCode" value="rgb-hex" id="rgb-hex-colour-code">
+                        <label class="form-check-label" for="rgb-hex-colour-code">{% trans "Hexadecimal (separate RGB)" %}</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="colourCode" value="hex" id="hex-colour-code">
+                        <label class="form-check-label" for="hex-colour-code">{% trans "Hexadecimal (web colour)" %}</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="colourCode" value="brightness" id="brightness-colour-code">
+                        <label class="form-check-label" for="brightness-colour-code">{% trans "Brightness (average)" %}</label>
+                    </div>
+                </div>
                 <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="configSelector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {% trans 'Reload with a different configuration' %}

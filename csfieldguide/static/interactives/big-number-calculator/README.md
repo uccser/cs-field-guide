@@ -1,6 +1,7 @@
 # Big Number Calculator Interactive
 
 **Author:** Jack Morgan
+**Modified by:** Courtney Bracefield
 
 This interactive allows users to perform calculations of large numbers.
 
