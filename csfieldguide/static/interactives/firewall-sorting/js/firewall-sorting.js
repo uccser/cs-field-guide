@@ -13,14 +13,45 @@ function initialise() {
   mistakes = 0;
   tickDownSpeed = 1;
   levelModifier = 5;
+  for (var i = 0; i < 32; i++) {
+    invalidIPs.push(randomIP());
+  } 
+}
+
+function restart() {
+  document.getElementById("accept").disabled = false; 
+  document.getElementById("deny").disabled = false; 
+  document.getElementById("warningTextDisplay").innerHTML = "";
+  portList = [23, 80, 443, 20, 21, 42, 111];
+  invalidIPs = [];
+  validDestinationIP = randomIP();
+  validSourceIP = randomIP();
+  validDestinationPort = get_random(portList);
+  validSourcePort = get_random(portList);
+  for (var i = 0; i < 32; i++) {
+    invalidIPs.push(randomIP());
+  } 
+  score = 0;
+  mistakes = 0;
+  tickDownSpeed = 1;
+  levelModifier = 5;
+  document.getElementById("healthBar").style.width = "100%";
+  document.getElementById("yourIPText").innerHTML = "Your IP: " + validDestinationIP;
+  document.getElementById("rule2").innerHTMl = "";
+  document.getElementById("rule3").innerHTMl = "";
+  document.getElementById("rule4").innerHTMl = "";
+  document.getElementById("allowFrom").innerHTMl = "";
+  document.getElementById("allowFromPort").innerHTMl = "";
+  document.getElementById("allowToPort").innerHTMl = "";
+  chooseIP(0, 0.5);
+  choosePort(0, 0.5);
+  tickDown();
+  document.getElementById("portrait").className = "packageEntrance";
 }
 
 window.onload = function() {
   document.getElementById("healthBar").style.width = "100%";
   document.getElementById("yourIPText").innerHTML = "Your IP: " + validDestinationIP;
-  for (var i = 0; i < 32; i++) {
-    invalidIPs.push(randomIP());
-  } 
   chooseIP(0, 0.5);
   choosePort(0, 0.5);
   tickDown();
@@ -36,9 +67,9 @@ $('#deny').click(function() {
 });
 
 function gameOver() {
-  document.getElementById("accept").disabled = true; 
+  document.getElementById("accept").disabled = true;
   document.getElementById("deny").disabled = true; 
-  document.getElementById("warningTextDisplay").innerHTML = "GAME OVER";
+  document.getElementById("warningTextDisplay").innerHTML = "GAME OVER! Score: " + score;
 }
 
 function print_points(points) {
@@ -248,7 +279,7 @@ function tickDown() {
     else {
       gameOver();
     }
-  }, 300)
+  }, 200)
 }
 
 

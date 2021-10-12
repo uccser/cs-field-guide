@@ -27,6 +27,7 @@ $('#double').click(function() {
 });
 
 $('#crackButton').click(function() {
+	event.preventDefault();
 	crack();
 });
 
