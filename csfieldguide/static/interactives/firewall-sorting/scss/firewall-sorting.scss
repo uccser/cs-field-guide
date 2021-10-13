@@ -83,8 +83,6 @@
 
 	.firewall-button {
 		position: relative;
-		width: 15%;
-		height: 20%;
 		color: white;
 		padding: 1%;
 		border: 0.5% solid #000000;
@@ -97,11 +95,20 @@
 	#accept {
 		background-color: green;
 		float: left;
+		width: 15%;
+		height: 20%;
 	}
 
 	#deny {
 		background-color: red;
 		float: right;
+		width: 15%;
+		height: 20%;
+	}
+	
+	#restart {
+		background-color: #6610f2;
+		width: 100%;
 	}
 
 	#rules {
@@ -134,7 +141,8 @@
 		padding: 1%;
 		border: 0.1vw outset black;
 		margin: 0 auto;
-		max-height: 80%;
+		height: 40%;
+		width: 36%;
 		position: absolute;
 		bottom: 35%;
 		left: 27.5%;
