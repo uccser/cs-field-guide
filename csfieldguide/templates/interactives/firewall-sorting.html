@@ -1,0 +1,77 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+<div id="firewall-sorting">
+	<div id="firewall-header">
+		<div id="yourIP">
+			<span id="yourIPText"></span>
+		</div>
+	</div>
+	<div id="healthBarContainer">
+		<div id="healthBarLabel">
+			{% trans 'Business Health' %}
+		</div>
+		<div id="healthBar">
+		</div>
+	</div>
+	<div id="firewall-body">
+		<div id="contentContainer">
+			<div id="portrait">
+				<img src="{% static '/interactives/firewall-sorting/img/BoxA.png' %}" id="box">
+				<div id="packageTagText">
+					{% blocktrans %}
+					<div id="packageSourceIP"> Source IP: <span id="sourceIP"></span> </div>
+					<div id="packageDestinationIP">Destination IP: <span id="destinationIP"></span></div>
+					<div id="packageSourcePort">Source Port: <span id="sourcePort"></span></div>
+					<div id="packageDestinationPort">Destination Port: <span id="destinationPort"></span></div>
+					<button id="restart" class="firewall-button">
+						Restart
+					</button>
+					{% endblocktrans %}
+				</div>
+			</div>
+			<div id="buttons">
+				<button id="accept" class="firewall-button">
+					{% trans 'Accept' %}
+				</button>
+				<button id="deny" class="firewall-button">
+					{% trans 'Deny' %}
+				</button>
+				<div id="warningText">
+					<span id="warningTextDisplay">
+					</span>
+				</div>
+			</div>
+		</div>
+		<div id="rules">
+			<div id="rulesText">
+				<div id="rulesHeading">{% trans 'Rules' %}</div>
+				<div id="rulesContent">
+					<div id="destinationIPRule">{% trans 'Only allow packets meant for us' %}</div>
+					<div id="sourceIPRule"><span id="rule2"></span> <span id="allowFrom"></span></div>
+					<div id="sourcePortRule"><span id="rule3"></span> <span id="allowFromPort"></span></div>
+					<div id="destinationPortRule"><span id="rule4"></span> <span id="allowToPort"></span></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock html %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'interactives/firewall-sorting/css/firewall-sorting.css' %}">
+{% endblock css %}
+
+{% block js %}
+
+<script type="text/javascript">
+    boxImgPath = "{{ STATIC_URL }}interactives/firewall-sorting/img/";
+</script>
+
+<script type="text/javascript" src="{% static 'interactives/firewall-sorting/js/firewall-sorting.js' %}"></script>
+{% endblock js %}
+
+
