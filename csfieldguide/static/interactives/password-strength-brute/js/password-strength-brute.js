@@ -1,4 +1,5 @@
 var urlParameters = require('../../../js/third-party/url-parameters.js');
+distanceFrom100k = 0;
 
 window.onload = function() {
   if (urlParameters.getUrlParameter('hide-link') == 'true') {
@@ -7,9 +8,13 @@ window.onload = function() {
 };
 
 $('#half').click(function() {
+	distanceFrom100k -= 1;
 	var power = document.getElementById("compPower").innerHTML;
 	var intPower = parseFloat(power.replace(/,/g, ''));
 	var newPower = Math.floor(intPower/2);
+		if (distanceFrom100k == 0) {
+		newPower = 100000;
+	}
 	var newPowerString = newPower.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
 	if (newPower > 0) {
 		document.getElementById("compPower").innerHTML = newPowerString;
@@ -17,9 +22,13 @@ $('#half').click(function() {
 });
 
 $('#double').click(function() {
+	distanceFrom100k += 1;
 	var power = document.getElementById("compPower").innerHTML;
 	var intPower = parseFloat(power.replace(/,/g, ''));
 	var newPower = intPower * 2
+	if (distanceFrom100k == 0) {
+		newPower = 100000;
+	}
 	var newPowerString = newPower.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
 	if (newPower > 0) {
 		document.getElementById("compPower").innerHTML = newPowerString;
@@ -121,29 +130,25 @@ function crack() {
 	var power = document.getElementById("compPower").innerHTML;
 	var intPower = parseFloat(power.replace(/,/g, ''));
 	var input = document.getElementById("psw").value;
-	var allNumbers = /^[0-9_\-]+$/;
-	var allLower = /^[a-z_\-]+$/;
-	var allUpper = /^[A-Z_\-]+$/;
-	var lowerAndNum = /^[a-z0-9_\-]+$/;
-	var upperAndNum = /^[A-Z0-9_\-]+$/;
-	var lowerAndUpperAndNum = /^[A-Za-z0-9_\-]+$/;
-	if (allNumbers.test(input)) {
-		combinations = Math.pow(10, input.length);
+	var hasNumbers = /\d/;
+	var hasLower = /[a-z]/;
+	var hasUpper = /[A-Z]/;
+	var hasSpec = /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+	if (hasNumbers.test(input)) {
+		combinations += 10;
 	}
-	else if (allLower.test(input) || allUpper.test(input)) {
-		combinations = Math.pow(26, input.length);
+	if (hasLower.test(input)) {
+		combinations += 26;
 	}
-	else if (lowerAndNum.test(input) || upperAndNum.test(input)) {
-		combinations = Math.pow(36, input.length);
+	if (hasUpper.test(input)) {
+		combinations += 26;
 	}
-	else if (lowerAndUpperAndNum.test(input)) {
-		combinations = Math.pow(62, input.length);
+	if (hasSpec.test(input)) {
+		combinations += 33;
 	}
-	else {
-		combinations = Math.pow(92, input.length);
-	}
+	totalCombinations = Math.pow(combinations, input.length);
 	clear();
-	var timeInSeconds = combinations/intPower;
+	var timeInSeconds = totalCombinations/intPower;
 	if (timeInSeconds != 1) {
 		timeInSeconds = Math.floor(timeInSeconds);
 		convertToMaxTime(timeInSeconds);
