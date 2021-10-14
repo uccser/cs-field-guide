@@ -40,7 +40,7 @@ $('#crackButton').click(function() {
 	crack();
 });
 
-$('#pswInputForm').keypress(function (e) {                                       
+$('#psw').keypress(function (e) {                                       
        if (e.which == 13) {
             e.preventDefault(); 
             crack();
@@ -137,30 +137,35 @@ function crack() {
 	var power = document.getElementById("compPower").innerHTML;
 	var intPower = parseFloat(power.replace(/,/g, ''));
 	var input = document.getElementById("psw").value;
-	var hasNumbers = /\d/;
-	var hasLower = /[a-z]/;
-	var hasUpper = /[A-Z]/;
-	var hasSpec = /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
-	if (hasNumbers.test(input)) {
-		combinations += 10;
-	}
-	if (hasLower.test(input)) {
-		combinations += 26;
-	}
-	if (hasUpper.test(input)) {
-		combinations += 26;
-	}
-	if (hasSpec.test(input)) {
-		combinations += 33;
-	}
-	totalCombinations = Math.pow(combinations, input.length);
-	clear();
-	var timeInSeconds = totalCombinations/intPower;
-	if (timeInSeconds != 1) {
-		timeInSeconds = Math.floor(timeInSeconds);
-		convertToMaxTime(timeInSeconds);
-	}
-	else {
-		document.getElementById("timeToCrack").innerHTML = timeInSeconds + " second";
+	if (input.length == 0) {
+		document.getElementById("timeToCrack").innerHTML = "Nothing Entered";
+    }
+    else {
+		var hasNumbers = /\d/;
+		var hasLower = /[a-z]/;
+		var hasUpper = /[A-Z]/;
+		var hasSpec = /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+		if (hasNumbers.test(input)) {
+			combinations += 10;
+		}
+		if (hasLower.test(input)) {
+			combinations += 26;
+		}
+		if (hasUpper.test(input)) {
+			combinations += 26;
+		}
+		if (hasSpec.test(input)) {
+			combinations += 33;
+		}
+		totalCombinations = Math.pow(combinations, input.length);
+		clear();
+		var timeInSeconds = totalCombinations/intPower;
+		if (timeInSeconds != 1) {
+			timeInSeconds = Math.floor(timeInSeconds);
+			convertToMaxTime(timeInSeconds);
+		}
+		else {
+			document.getElementById("timeToCrack").innerHTML = timeInSeconds + " second";
+		}
 	}
 }

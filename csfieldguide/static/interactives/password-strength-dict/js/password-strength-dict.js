@@ -5,7 +5,7 @@ $('#crackButton').click(function() {
 	crack();
 });
 
-$('#pswInputForm').keypress(function (e) {                                       
+$('#psw').keypress(function (e) {                                       
        if (e.which == 13) {
             e.preventDefault(); 
             crack();
@@ -35,7 +35,10 @@ window.onload = function() {
 
 function crack() {
   var input = document.getElementById("psw").value;
-  if (newText.includes(input)) {
+  if (input.length == 0) {
+	document.getElementById("timeToCrack").innerHTML = "Nothing Entered";
+  }
+  else if (newText.includes(input)) {
     document.getElementById("timeToCrack").innerHTML = "Cracked";
   }	
   else {
