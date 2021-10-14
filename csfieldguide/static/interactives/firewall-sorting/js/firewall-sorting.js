@@ -44,14 +44,16 @@ function gameOver() {
   setTimeout(function() {
     document.getElementById("portrait").className = "packageEntrance";
   }, 350);
-  document.getElementById("accept").disabled = true;
-  document.getElementById("deny").disabled = true; 
-  document.getElementById("packageSourceIP").innerHTML = "";
-  document.getElementById("packageDestinationIP").innerHTML = "";
-  document.getElementById("packageSourcePort").innerHTML = "";
-  document.getElementById("packageDestinationPort").innerHTML = "";
-  document.getElementById("warningTextDisplay").innerHTML = "GAME OVER! Score: " + score;
-  document.getElementById("restart").style.visibility = 'visible';
+  setTimeout(function() {
+    document.getElementById("accept").disabled = true;
+    document.getElementById("deny").disabled = true; 
+    document.getElementById("packageSourceIP").innerHTML = "";
+    document.getElementById("packageDestinationIP").innerHTML = "";
+    document.getElementById("packageSourcePort").innerHTML = "";
+    document.getElementById("packageDestinationPort").innerHTML = "";
+    document.getElementById("warningTextDisplay").innerHTML = "GAME OVER! Score: " + score;
+    document.getElementById("restart").style.visibility = 'visible';
+  }, 350);
 }
 
 function print_points(points) {
