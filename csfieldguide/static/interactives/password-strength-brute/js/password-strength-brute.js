@@ -40,6 +40,13 @@ $('#crackButton').click(function() {
 	crack();
 });
 
+$('#pswInputForm').keypress(function (e) {                                       
+       if (e.which == 13) {
+            e.preventDefault(); 
+            crack();
+       }
+});
+
 function clear() {
 	document.getElementById("timeToCrack").innerHTML = "";
 }

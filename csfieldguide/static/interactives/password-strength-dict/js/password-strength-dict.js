@@ -5,6 +5,13 @@ $('#crackButton').click(function() {
 	crack();
 });
 
+$('#pswInputForm').keypress(function (e) {                                       
+       if (e.which == 13) {
+            e.preventDefault(); 
+            crack();
+       }
+});
+
 window.onload = function() {
   var request = new XMLHttpRequest();
   request.open('get', words_file_location, 'false');

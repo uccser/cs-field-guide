@@ -41,6 +41,9 @@ $('#restart').click(function() {
 });
 
 function gameOver() {
+  setTimeout(function() {
+    document.getElementById("portrait").className = "packageEntrance";
+  }, 350);
   document.getElementById("accept").disabled = true;
   document.getElementById("deny").disabled = true; 
   document.getElementById("packageSourceIP").innerHTML = "";
