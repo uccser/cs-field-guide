@@ -71,6 +71,7 @@
 
 	#portrait {
 		height: 80%;
+		width: 50%;
 		position: relative;
 		overflow: hidden;
 		display: block;
@@ -141,10 +142,10 @@
 		border: 0.1vw outset black;
 		margin: 0 auto;
 		height: 40%;
-		width: 36%;
+		width: 65%;
 		position: absolute;
 		bottom: 35%;
-		left: 27.5%;
+		left: 10%;
 		font-size: 130%;
 		line-height: 150%;
 	}
@@ -189,16 +190,16 @@
 
 	@keyframes entrance {
 		0% {left: -100%;}
-		100% {left: 0%;}
+		100% {left: 25%;}
 	}
 
 	@keyframes accept {
-		0% {left: 0%;}
+		0% {left: 25%;}
 		100% {left: 100%;}
 	}
 
 	@keyframes deny {
-		0% {left: 0%;}
+		0% {left: 25%;}
 		100% {left: -100%;}
 	}
 
