@@ -415,8 +415,8 @@ Check the below panel once you think you have it.
 ```text
 w: 10111
 a: 00001
-t: 10111
-e: 10100
+t: 10100
+e: 00101
 r: 10010
 ```
 
