@@ -1,0 +1,35 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+<div class="container">
+  <div class="container vh-100 d-flex flex-column" style="max-height: 500px">
+    <div class="row flex-grow-1">
+      <div class="col-sm">1</div>
+      <div class="col-sm">2</div>
+      <div class="col-sm">3</div>
+      <div class="col-sm">4</div>
+      <div class="col-sm">5</div>
+      <div class="col-sm">6</div>
+      <div class="col-sm">7</div>
+    </div>
+  </div>
+
+  <div>
+    <p>Time: <span id="time">0</span></p>
+    <p>Distance: <span id="distance">0</span></p>
+    <p>Width: <span id="width">0</span></p>
+  </div>
+</div>
+{% endblock html %}
+
+{% block css %}
+<link rel="stylesheet"
+      href="{% static 'interactives/fitts/css/fitts.css' %}">
+{% endblock css %}
+
+{% block js %}
+<script type="text/javascript" src="{% static 'interactives/fitts/js/fitts.js' %}"></script>
+{% endblock js %}

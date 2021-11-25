@@ -70,6 +70,8 @@ dot-combinations:
   name: Dot Combinations
 firewall-sorting:
   name: Firewall Sorting
+fitts:
+  name: Fitt's Law Experiment
 flowcharts-interpreter-compiler:
   name: Flowcharts - Interpreter and Compiler
 frequency-analysis:

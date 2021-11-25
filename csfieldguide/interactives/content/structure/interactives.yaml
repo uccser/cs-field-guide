@@ -170,6 +170,10 @@ firewall-sorting:
   languages:
     en: interactives/firewall-sorting.html
   is_interactive: true
+fitts:
+  languages:
+    en: interactives/fitts.html
+  is_interactive: true
 flowcharts-interpreter-compiler:
   languages:
     en: interactives/flowcharts-interpreter-compiler.html
