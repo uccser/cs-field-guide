@@ -5,7 +5,23 @@
 
 {% block html %}
 <div class="container">
-  <div class="container vh-100 d-flex flex-column" style="max-height: 500px">
+  <h3 class="text-center mb-2">{% trans "Fitt's Law Experiment" %}</h3>
+  <a data-toggle="collapse" href="#instructions" role="button" aria-expanded="true" aria-controls="instructions">
+    Instructions (hide/show)
+  </a>
+  <div class="collapse show" id="instructions">
+    <p>
+      {% trans "Take two side-by-side pictures of an object." %}
+      {% trans "Make sure the direction of the pictures are parallel, and that the object is between the two camera positions." %}
+      {% trans "Note down the precise distance between the camera positions and the distance between the camera plane and the object plane." %}
+      {% trans "Upload the two pictures and click on the common feature of the object in both pictures." %}
+      {% trans "Enter your camera's angle-of-view and the distance between the two camera positions, and click 'Calculate distance'." %}
+      {% trans "Note that resizing the window will reset the points as this can affect the size of the pictures." %}
+      {% trans "The values are inputted into the equation below." %}
+    </p>
+  </div>
+
+  <div id="game-view" class="container vh-100 d-flex flex-column border mt-4" style="max-height: 500px">
     <div class="row flex-grow-1">
       <div class="col-sm">1</div>
       <div class="col-sm">2</div>
@@ -17,10 +33,19 @@
     </div>
   </div>
 
-  <div>
-    <p>Time: <span id="time">0</span></p>
-    <p>Distance: <span id="distance">0</span></p>
-    <p>Width: <span id="width">0</span></p>
+  <div id="results-view" class="container mt-4 hidden">
+    <table class="table">
+      <thead>
+      <tr>
+        <th scope="col">Trial</th>
+        <th scope="col">Distance</th>
+        <th scope="col">Width</th>
+        <th scope="col">Time</th>
+      </tr>
+      </thead>
+      <tbody id="results-body">
+      </tbody>
+    </table>
   </div>
 </div>
 {% endblock html %}

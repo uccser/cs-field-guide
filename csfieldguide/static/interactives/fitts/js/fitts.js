@@ -34,23 +34,21 @@ $( document ).ready(function() {
 function clickHandler(event) {
   if (this.classList.contains("bg-danger")) {
     let end = new Date().getTime();
-    let timeElement = document.getElementById("time");
-    let distanceElement = document.getElementById("distance");
-    let widthElement = document.getElementById("width");
-
     let time = end - start;
     let width = this.offsetWidth;
     let distance = Math.abs((this.offsetLeft + this.offsetWidth / 2) - lastMousePosition);
     results.push({ "trial": trialNum, "distance": distance, "time": time, "width": width });
 
-    timeElement.innerText = time.toString();
-    widthElement.innerText = width;
-    distanceElement.innerText = distance.toString();
     lastMousePosition = event.pageX;
 
     resetCols();
     if (count === MAX_COUNT) {
       currentColToWidth = getRandomItemFromList(colsToWidths);
+
+      if (currentColToWidth == null) {
+        showResults();
+      }
+
       colsToWidths.splice(colsToWidths.indexOf(currentColToWidth), 1);
       count = 0;
       trialNum++;
@@ -84,4 +82,17 @@ function resetCols() {
 
 function getRandomItemFromList(list) {
   return list[Math.floor(Math.random()*list.length)];
+}
+
+
+function showResults() {
+  let tableBody = document.getElementById("results-body");
+  for (let result of results) {
+    let row = tableBody.insertRow()
+    let [trial, distance, width, time] = [result["trial"], result["distance"], result["width"], result["time"]]
+    row.insertCell(0).innerText = trial;
+    row.insertCell(1).innerText = distance;
+    row.insertCell(2).innerText = width;
+    row.insertCell(3).innerText = time;
+  }
 }
