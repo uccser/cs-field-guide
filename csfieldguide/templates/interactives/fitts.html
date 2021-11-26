@@ -23,38 +23,45 @@
 
   <div id="game-view" class="container vh-100 d-flex flex-column border mt-4" style="max-height: 500px">
     <div class="row flex-grow-1">
-      <div class="col-sm">1</div>
-      <div class="col-sm">2</div>
-      <div class="col-sm">3</div>
-      <div class="col-sm">4</div>
-      <div class="col-sm">5</div>
-      <div class="col-sm">6</div>
-      <div class="col-sm">7</div>
+      <div class="col-sm"></div>
+      <div class="col-sm"></div>
+      <div class="col-sm"></div>
+      <div class="col-sm"></div>
+      <div class="col-sm"></div>
+      <div class="col-sm"></div>
+      <div class="col-sm"></div>
+    </div>
+
+    <div id="play-again-div" class="h-100" hidden>
+      <div class="d-flex justify-content-center h-100">
+        <button id="play-again" class="btn btn-primary justify-content-center align-self-center">Play again?</button>
+      </div>
     </div>
   </div>
 
-  <div id="results-view" class="container mt-4 hidden">
-    <table class="table">
-      <thead>
+  <div id="results-view" class="container mt-4 mb-4">
+    <table id="results-table" class="table table-striped table-hover table-responsive-sm">
+      <thead class="thead-dark">
       <tr>
         <th scope="col">Trial</th>
-        <th scope="col">Distance</th>
-        <th scope="col">Width</th>
-        <th scope="col">Time</th>
+        <th scope="col">Average Distance (pixels)</th>
+        <th scope="col">Width (pixels)</th>
+        <th scope="col">Index of Difficulty</th>
+        <th scope="col">Average Time (milliseconds)</th>
       </tr>
       </thead>
-      <tbody id="results-body">
-      </tbody>
+      <tbody id="results-table-body"></tbody>
     </table>
   </div>
 </div>
 {% endblock html %}
 
 {% block css %}
-<link rel="stylesheet"
-      href="{% static 'interactives/fitts/css/fitts.css' %}">
+<link rel="stylesheet" href="{% static 'interactives/fitts/css/fitts.css' %}">
+<link href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" rel="stylesheet">
 {% endblock css %}
 
 {% block js %}
 <script type="text/javascript" src="{% static 'interactives/fitts/js/fitts.js' %}"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 {% endblock js %}
