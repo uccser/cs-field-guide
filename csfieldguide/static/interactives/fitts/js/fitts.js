@@ -90,8 +90,8 @@ let table = null;
  * columns and play again button. Calls reset for the first time.
  */
 $(document).ready(function() {
-  numCols = $('.col-sm').length;
-  cols = $(".col-sm").map(function() { return this; }).get();
+  numCols = $('.col').length;
+  cols = $(".col").map(function() { return this; }).get();
   playAgainDiv = document.getElementById("play-again-div");
   table = $('#results-table').DataTable( {
     "paging":   false,
@@ -99,7 +99,11 @@ $(document).ready(function() {
     "searching": false,
     "oLanguage": {
       "sEmptyTable": "Complete the experiment to show statistics"
-    }
+    },
+    "dom": 'Bfrtip',
+    "buttons": [
+      'csv', 'excel'
+    ]
   });
 
   for (let col of cols) {
@@ -195,18 +199,18 @@ function setColumns(index, width) {
   }
   swap = !swap;
 
-  cols[index].classList.replace("col-sm", "col-sm-" + width);
-  cols[otherIndex].classList.replace("col-sm", "col-sm-" + width);
+  cols[index].classList.replace("col", "col-" + width);
+  cols[otherIndex].classList.replace("col", "col-" + width);
   cols[index].classList.add("bg-danger");
 }
 
 
 /**
- * Resets all the col divs by ensuring the cols only have the col-sm class.
+ * Resets all the col divs by ensuring the cols only have the col class.
  */
 function resetCols() {
   for (let col of cols) {
-    col.className = "col-sm";
+    col.className = "col";
   }
 }
 

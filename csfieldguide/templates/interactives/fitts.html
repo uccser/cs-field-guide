@@ -23,13 +23,13 @@
 
   <div id="game-view" class="container vh-100 d-flex flex-column border mt-4" style="max-height: 500px">
     <div class="row flex-grow-1">
-      <div class="col-sm"></div>
-      <div class="col-sm"></div>
-      <div class="col-sm"></div>
-      <div class="col-sm"></div>
-      <div class="col-sm"></div>
-      <div class="col-sm"></div>
-      <div class="col-sm"></div>
+      <div class="col"></div>
+      <div class="col"></div>
+      <div class="col"></div>
+      <div class="col"></div>
+      <div class="col"></div>
+      <div class="col"></div>
+      <div class="col"></div>
     </div>
 
     <div id="play-again-div" class="h-100" hidden>
@@ -59,9 +59,13 @@
 {% block css %}
 <link rel="stylesheet" href="{% static 'interactives/fitts/css/fitts.css' %}">
 <link href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="https://cdn.datatables.net/buttons/2.0.1/css/buttons.dataTables.min.css" rel="stylesheet">
 {% endblock css %}
 
 {% block js %}
 <script type="text/javascript" src="{% static 'interactives/fitts/js/fitts.js' %}"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.0.1/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.html5.min.js"></script>
 {% endblock js %}
