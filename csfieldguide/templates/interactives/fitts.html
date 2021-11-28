@@ -6,18 +6,25 @@
 {% block html %}
 <div class="container">
   <h3 class="text-center mb-2">{% trans "Fitts' Law Experiment" %}</h3>
-  <a data-toggle="collapse" href="#instructions" role="button" aria-expanded="true" aria-controls="instructions">
-    Instructions (hide/show)
-  </a>
-  <div class="collapse show" id="instructions">
+  <div>
     <p>
-      {% trans "Take two side-by-side pictures of an object." %}
-      {% trans "Make sure the direction of the pictures are parallel, and that the object is between the two camera positions." %}
-      {% trans "Note down the precise distance between the camera positions and the distance between the camera plane and the object plane." %}
-      {% trans "Upload the two pictures and click on the common feature of the object in both pictures." %}
-      {% trans "Enter your camera's angle-of-view and the distance between the two camera positions, and click 'Calculate distance'." %}
-      {% trans "Note that resizing the window will reset the points as this can affect the size of the pictures." %}
-      {% trans "The values are inputted into the equation below." %}
+      {% trans "You will conduct your own Fitts' Law experiment." %}
+      {% trans "When you are ready, click the red column target." %}
+      {% trans "Once you have clicked it, the column will jump to the opposite side." %}
+      {% trans "The column position will repeatedly swap until the trial is complete." %}
+      {% trans "After completing a trial, the column width and the distance between the swapped column positions will change randomly." %}
+      {% trans "There are nine trials, and each trial requires eleven successful clicks. " %}
+      {% trans "However, the first click of each trial does not affect the results as the travel distance would be different from the rest of the trial." %}
+      {% trans "Try to click the targets as fast as possible." %}
+      {% trans "The exercise should take around 30 seconds to one minute (but do not be worried if you need longer!)." %}
+    </p>
+
+    <p>
+      {% trans "Once you have finished, a table will show your results." %}
+      {% trans "Try sorting the table by the Index of Difficulty (by clicking the  Index of Difficulty column header)." %}
+      {% trans "You should see that generally as the Index of Difficulty increases, so does the average click time." %}
+      {% trans "You can also export the results as an Excel or CSV file and plot the Index of Difficult and Average Time columns on a chart." %}
+      {% trans "A chart will let you visualise the linear relationship between these." %}
     </p>
   </div>
 
