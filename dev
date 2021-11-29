@@ -85,7 +85,7 @@ cmd_update() {
   echo -e "\n${SUCCESS}Content is loaded!${NC}"
   echo "Open your preferred web browser to the URL 'cs-field-guide.localhost'"
 }
-defhelp update 'Run Django migrate and updatedata commands and build static files.'
+defhelp update 'Run Django migrate and update_data commands and build static files.'
 
 # Run Django makemigrations command
 cmd_makemigrations() {
@@ -108,12 +108,12 @@ cmd_reboot_django() {
 }
 defhelp reboot_django 'Reboot Django container.'
 
-# Run Django updatedata command
+# Run Django update_data command
 cmd_update_data() {
   echo "Loading content..."
   docker-compose -f docker-compose.local.yml run --rm --label traefik.enable=false django python ./manage.py updatedata
 }
-defhelp updatedata 'Load content into database.'
+defhelp update_data 'Load content into database.'
 
 # Build static files
 cmd_static() {

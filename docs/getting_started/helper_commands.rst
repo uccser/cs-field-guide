@@ -43,7 +43,7 @@ Where ``[COMMAND]`` is a word from the list below:
 - :ref:`test_suite`
 - :ref:`update`
 - :ref:`update_static`
-- :ref:`updatedata`
+- :ref:`update_data`
 - :ref:`wipe`
 
 All users of the project (content and technical developers) should become familiar with the following commands:
@@ -344,12 +344,12 @@ Running ``./csfg update_static`` updates and collects static files by running th
 
 -----------------------------------------------------------------------------
 
-.. _updatedata:
+.. _update_data:
 
-``updatedata``
+``update_data``
 ==============================================================================
 
-Running ``./csfg updatedata`` runs the custom ``updatedata`` command to load the chapters content into the database.
+Running ``./csfg update_data`` runs the custom ``updatedata`` command to load the chapters content into the database.
 
 -----------------------------------------------------------------------------
 
