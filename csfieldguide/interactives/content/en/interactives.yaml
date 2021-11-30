@@ -38,6 +38,8 @@ checksum-calculator-gtin-13:
   name: Checksum Calculator GTIN-13
 city-trip:
   name: City Trip
+clicking-with-shaking:
+  name: Clicking with Shaking
 close-window:
   name: Close Window
 cmy-mixer:
