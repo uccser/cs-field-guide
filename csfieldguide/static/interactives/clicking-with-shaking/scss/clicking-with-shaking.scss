@@ -1,26 +1,22 @@
-.btn-small {
-  padding: 10px 10px;
+%shaking-button {
   font-size: 22px;
   line-height: normal;
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
   border-radius: 8px;
+}
+
+.btn-small {
+  @extend %shaking-button;
+  padding: 10px 10px;
 }
 
 .btn-medium {
+  @extend %shaking-button;
   padding: 50px 50px;
-  font-size: 22px;
-  line-height: normal;
-  -webkit-border-radius: 8px;
-  -moz-border-radius: 8px;
-  border-radius: 8px;
 }
 
 .btn-large {
+  @extend %shaking-button;
   padding: 100px 100px;
-  font-size: 22px;
-  line-height: normal;
-  -webkit-border-radius: 8px;
-  -moz-border-radius: 8px;
-  border-radius: 8px;
 }
