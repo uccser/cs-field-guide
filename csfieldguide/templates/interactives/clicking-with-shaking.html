@@ -32,7 +32,9 @@
     <div class="row w-100 no-gutters mb-2">
       <div class="col ml-2 mr-2">
         <div class="progress">
-          <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+          <div id="game-progress" class="progress-bar bg-primary progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+            0/10
+          </div>
         </div>
       </div>
     </div>
@@ -43,11 +45,12 @@
       <thead class="thead-dark">
       <tr>
         <th scope="col">Set</th>
-        <th scope="col">Button size (width x height)</th>
-        <th scope="col">Number of misses</th>
+        <th scope="col">Button size (w x h)</th>
+        <th scope="col">No. hits</th>
+        <th scope="col">No. misses</th>
         <th scope="col">Accuracy (%)</th>
         <th scope="col">Total time (ms)</th>
-        <th scope="col">Average time per success (ms)</th>
+        <th scope="col">Average time per hit (ms)</th>
       </tr>
       </thead>
       <tbody id="results-table-body"></tbody>
