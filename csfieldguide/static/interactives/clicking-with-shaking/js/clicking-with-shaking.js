@@ -4,6 +4,7 @@ let hits = 0;
 let GOAL_NUMBER_CLICKS = 5;
 let target = null;
 let playButton = null;
+let muteButton = null;
 let startTime = null;
 let buttonSizeClasses = ["btn-small", "btn-medium", "btn-large"]
 let set = 0;
@@ -12,9 +13,14 @@ let setElement = null;
 let results = [];
 let clickArea = null;
 let timeout = null;
+let audioContext = null;
+let hitSFXBuffer = null;
+let missSFXBuffer = null;
+let mute = false;
 
 $(document).ready(function() {
   target = document.getElementById("target");
+  muteButton = document.getElementById("mute");
   playButton = document.getElementById("play");
   target.classList.add(buttonSizeClasses[set]);
   countElement = document.getElementById("count");
@@ -23,6 +29,8 @@ $(document).ready(function() {
   clickArea.addEventListener('mousedown', clickHandler, false);
 
   $(playButton).click(toggleState);
+  $(muteButton).click(toggleMute);
+  setUpAudio();
 
   table = $('#results-table').DataTable( {
     "paging":   false,
@@ -39,6 +47,49 @@ $(document).ready(function() {
 
   startTime = new Date().getTime();
 });
+
+
+function toggleMute() {
+  console.log("yay")
+  mute = !mute;
+  if (mute) {
+    $("#mute").html("Unmute");
+  } else {
+    $("#mute").html("Mute");
+  }
+}
+
+
+function setUpAudio() {
+  audioContext = new AudioContext();
+  const playButton = document.querySelector('#play');
+
+  window.fetch(hitSoundURL)
+    .then(response => response.arrayBuffer())
+    .then(arrayBuffer => audioContext.decodeAudioData(arrayBuffer))
+    .then(audioBuffer => {
+      playButton.disabled = false;
+      hitSFXBuffer = audioBuffer;
+    });
+
+  window.fetch(missSoundURL)
+    .then(response => response.arrayBuffer())
+    .then(arrayBuffer => audioContext.decodeAudioData(arrayBuffer))
+    .then(audioBuffer => {
+      playButton.disabled = false;
+      missSFXBuffer = audioBuffer;
+    });
+}
+
+
+function play(audioBuffer) {
+  if (!mute) {
+    const source = audioContext.createBufferSource();
+    source.buffer = audioBuffer;
+    source.connect(audioContext.destination);
+    source.start();
+  }
+}
 
 
 function toggleState() {
@@ -62,6 +113,7 @@ function clickHandler(event) {
   if (elementID === target.id) {
     hits += 1;
     countElement.innerText = hits;
+    play(hitSFXBuffer);
 
     if (hits === GOAL_NUMBER_CLICKS) {
       clearTimeout(timeout);
@@ -73,8 +125,9 @@ function clickHandler(event) {
         resetGame();
       }
     }
-  } else if (elementID !== playButton.id) {
+  } else if (elementID !== playButton.id && elementID !== muteButton.id && !target.hidden) {
     misses += 1;
+    play(missSFXBuffer);
   }
 }
 

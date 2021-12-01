@@ -6,9 +6,10 @@
 {% block html %}
 <div class="container">
   <div id="game-view" class="position-relative d-flex mt-4 border" style="height: 500px">
-    <div class="position-absolute mt-2 ml-2">
-      <p>Count: <span id="count">0</span>/5</p>
-      <p>Set: <span id="set">1</span>/3</p>
+    <div class="position-absolute w-100">
+      <button type="button" class="btn btn-outline-secondary float-right mt-2 mr-2" id="mute">Mute</button>
+      <p class="mt-2 ml-2">Count: <span id="count">0</span>/5</p>
+      <p class="ml-2">Set: <span id="set">1</span>/3</p>
     </div>
 
     <div class="row align-self-center w-100 no-gutters">
@@ -45,6 +46,12 @@
 
 {% block js %}
 <script src="//code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+
+<script>
+  const hitSoundURL = "{% static 'interactives/clicking-with-shaking/sfx/hit.wav' %}";
+  const missSoundURL = "{% static 'interactives/clicking-with-shaking/sfx/miss.ogg' %}";
+</script>
+
 <script type="text/javascript" src="{% static 'interactives/clicking-with-shaking/js/clicking-with-shaking.js' %}"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.0.1/js/dataTables.buttons.min.js"></script>
