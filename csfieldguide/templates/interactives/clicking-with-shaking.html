@@ -6,10 +6,21 @@
 {% block html %}
 <div class="container">
   <div id="game-view" class="position-relative d-flex mt-4 border" style="height: 500px">
-    <div class="position-absolute w-100">
-      <button type="button" class="btn btn-outline-secondary float-right mt-2 mr-2" id="mute">Mute</button>
-      <p class="mt-2 ml-2">Count: <span id="count">0</span>/5</p>
-      <p class="ml-2">Set: <span id="set">1</span>/3</p>
+    <div class="row position-absolute w-100 no-gutters mt-2">
+      <div class="col-auto ml-2 mr-5">
+        <p>Count: <span id="count">0</span>/5</p>
+        <p>Set: <span id="set">1</span>/3</p>
+      </div>
+
+      <div class="col">
+        <div class="progress">
+          <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+      </div>
+
+      <div class="col-auto ml-5 mr-2">
+        <button type="button" class="btn btn-outline-secondary float-right" id="mute">Mute</button>
+      </div>
     </div>
 
     <div class="row align-self-center w-100 no-gutters">
