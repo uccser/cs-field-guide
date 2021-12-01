@@ -44,8 +44,6 @@ $(document).ready(function() {
       'csv', 'excel'
     ]
   });
-
-  startTime = new Date().getTime();
 });
 
 
@@ -99,6 +97,7 @@ function toggleState() {
     setElement.innerText = set + 1;
     table.clear().draw();
     move();
+    startTime = new Date().getTime();
   } else {
     playButton.innerText = "Next Set";
     playButton.disabled = true;
@@ -143,7 +142,6 @@ function nextSet() {
   misses = 0;
   hits = 0;
   countElement.innerText = hits;
-  startTime = new Date().getTime();
   set++;
   target.classList.replace(buttonSizeClasses[set - 1], buttonSizeClasses[set])
 }
