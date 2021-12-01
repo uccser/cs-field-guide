@@ -7,9 +7,9 @@ let target = null;
 let playButton = null;
 let muteButton = null;
 let startTime = null;
-let buttonSizeClasses = ["btn-small", "btn-medium", "btn-large"]
+let buttonSizeClasses = ["btn-large", "btn-medium", "btn-small"]
 let set = 0;
-let countElement = null;
+let timeElement = null;
 let setElement = null;
 let results = [];
 let clickArea = null;
@@ -26,7 +26,7 @@ $(document).ready(function() {
   muteButton = document.getElementById("mute");
   playButton = document.getElementById("play");
   target.classList.add(buttonSizeClasses[set]);
-  countElement = document.getElementById("count");
+  timeElement = document.getElementById("time");
   setElement = document.getElementById("set");
   clickArea = document.getElementById("game-view");
   clickArea.addEventListener('mousedown', clickHandler, false);
@@ -123,8 +123,8 @@ function toggleState() {
   if (!target.hidden) {
     setElement.innerText = set + 1;
     table.clear().draw();
-    shake();
     startTime = new Date().getTime();
+    shake();
   } else {
     playButton.innerText = "Next Set";
     playButton.disabled = true;
@@ -139,7 +139,6 @@ function clickHandler(event) {
   if (elementID === target.id) {
     hits++;
     score++;
-    countElement.innerText = hits;
     play(hitSFXBuffer);
 
     if (score === GOAL_SCORE) {
@@ -175,7 +174,6 @@ function nextSet() {
   misses = 0;
   hits = 0;
   score = 0;
-  countElement.innerText = hits;
   set++;
   target.classList.replace(buttonSizeClasses[set - 1], buttonSizeClasses[set])
 }
@@ -209,8 +207,10 @@ function showResults() {
 async function shake() {
   let direction =  Math.random() < 0.5 ? "left" : "up" ;
   let distance = getRandomInt(50, 100)
-
   $('#target').effect("shake", {times: 1, distance: distance, direction: direction}, 200 );
+
+  const end = new Date().getTime();
+  timeElement.innerText = Math.floor((end - startTime) / 1000);
 
   if (!target.hidden) {
     shakeTimeout = setTimeout(shake, 200);

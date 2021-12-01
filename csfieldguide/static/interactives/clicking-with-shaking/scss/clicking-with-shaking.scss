@@ -8,7 +8,7 @@
 
 .btn-small {
   @extend %shaking-button;
-  padding: 10px 10px;
+  padding: 25px 25px;
 }
 
 .btn-medium {
@@ -21,7 +21,7 @@
   padding: 100px 100px;
 }
 
-.stat p {
+.stat strong {
   margin: 0;
   padding: 0;
 }
