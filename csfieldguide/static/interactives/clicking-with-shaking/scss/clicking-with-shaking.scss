@@ -20,3 +20,12 @@
   @extend %shaking-button;
   padding: 100px 100px;
 }
+
+.stat p {
+  margin: 0;
+  padding: 0;
+}
+
+#game-view-main-area {
+  height: 400px;
+}
