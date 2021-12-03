@@ -206,7 +206,13 @@ function showResults() {
 
 async function shake() {
   let direction =  Math.random() < 0.5 ? "left" : "up" ;
-  let distance = getRandomInt(50, 100)
+  let distancePercent = getRandomBetween(0.1, 0.20)
+
+  let distance = clickArea.offsetHeight * distancePercent;
+  if (direction === "left") {
+    distance = clickArea.offsetWidth * distancePercent;
+  }
+
   $('#target').effect("shake", {times: 1, distance: distance, direction: direction}, 200 );
 
   const end = new Date().getTime();
@@ -217,8 +223,6 @@ async function shake() {
   }
 }
 
-function getRandomInt(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
+function getRandomBetween(min, max) {
+  return Math.random() * (max - min) + min; //The maximum is exclusive and the minimum is inclusive
 }
