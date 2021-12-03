@@ -6,19 +6,24 @@
   border-radius: 8px;
 }
 
+$main-area-height: 450px;
+
 .btn-small {
   @extend %shaking-button;
-  padding: 25px 25px;
+  width: 15%;
+  height: $main-area-height * 0.15;
 }
 
 .btn-medium {
   @extend %shaking-button;
-  padding: 50px 50px;
+  width: 25%;
+  height: $main-area-height * 0.25;
 }
 
 .btn-large {
   @extend %shaking-button;
-  padding: 100px 100px;
+  width: 40%;
+  height: $main-area-height * 0.4;
 }
 
 .stat strong {
@@ -27,5 +32,5 @@
 }
 
 #game-view-main-area {
-  height: 450px;
+  height: $main-area-height;
 }
