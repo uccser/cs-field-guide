@@ -7,7 +7,7 @@ let target = null;
 let playButton = null;
 let muteButton = null;
 let startTime = null;
-let buttonSizeClasses = ["btn-large", "btn-medium", "btn-small"]
+let buttonSizeClasses = ["btn-large", "btn-medium", "btn-small", "btn-small-moving"]
 let set = 0;
 let timeElement = null;
 let setElement = null;
@@ -20,6 +20,7 @@ let hitSFXBuffer = null;
 let missSFXBuffer = null;
 let mute = false;
 let progressBar = null;
+let buttonIsOffset = false;
 
 $(document).ready(function() {
   target = document.getElementById("target");
@@ -205,21 +206,82 @@ function showResults() {
 }
 
 async function shake() {
-  let direction =  Math.random() < 0.5 ? "left" : "up" ;
-  let distancePercent = getRandomBetween(0.1, 0.20)
+  let direction =  Math.random() < 0.5 ? "left" : "up";
+  let distancePercent = getRandomBetween(0.1, 0.20);
 
   let distance = clickArea.offsetHeight * distancePercent;
   if (direction === "left") {
     distance = clickArea.offsetWidth * distancePercent;
   }
 
-  $('#target').effect("shake", {times: 1, distance: distance, direction: direction}, 200 );
+  // $('#target').effect("shake", {times: 1, distance: distance, direction: direction}, 200 );
 
   const end = new Date().getTime();
   timeElement.innerText = Math.floor((end - startTime) / 1000);
 
   if (!target.hidden) {
     shakeTimeout = setTimeout(shake, 200);
+  }
+
+  if (buttonSizeClasses[set] === "btn-small-moving" && !buttonIsOffset) {
+    shift();
+  }
+}
+
+async function shift() {
+  const prob = Math.random();
+  if (prob >= 0.75) {
+    buttonIsOffset = true;
+    let directionProb =  Math.random();
+    let direction;
+    if (directionProb < 0.25) {
+      direction = "left";
+    } else if (directionProb < 0.5) {
+      direction = "right";
+    } else if (directionProb < 0.75) {
+      direction = "up";
+    } else {
+      direction = "down";
+    }
+
+    let distancePercent = getRandomBetween(0.1, 0.2);
+    let distance = clickArea.offsetHeight * distancePercent;
+    if (direction === "left" || direction === "right") {
+      distance = clickArea.offsetWidth * distancePercent;
+    }
+
+    let duration = getRandomBetween(0.1, 1) * 5000;
+
+    // if (direction === "left") {
+    //   console.log("left")
+    //   $(target).animate({ left: "+=" + distance.toString() }, null, null, setTimeout(function() {
+    //     $(target).animate({ right: "+=" + distance.toString() }, null);
+    //     buttonIsOffset = false;
+    //   }, duration));
+    // } else if (direction === "right") {
+    //   console.log("right")
+    //   $(target).animate({ right: "+=" + distance.toString() }, null, null, setTimeout(function() {
+    //     $(target).animate({ left: "+=" + distance.toString() }, null);
+    //     buttonIsOffset = false;
+    //   }, duration));
+    // } else if (direction === "up") {
+    //   console.log("up")
+    //   $(target).animate({ top: "+=" + distance.toString() }, null, null, setTimeout(function() {
+    //     $(target).animate({ bottom: "+=" + distance.toString() }, null);
+    //     buttonIsOffset = false;
+    //   }, duration));
+    // } else {
+    //   console.log("down")
+    //   $(target).animate({ bottom: "+=" + distance.toString() }, null, null, setTimeout(function() {
+    //     $(target).animate({ top: "+=" + distance.toString() }, null);
+    //     buttonIsOffset = false;
+    //   }, duration));
+    // }
+
+    console.log("yay")
+
+    // Maybe because left is not defined yet in the CSS?
+    $('#target').animate({ left: "+=200" }, 1000)
   }
 }
 

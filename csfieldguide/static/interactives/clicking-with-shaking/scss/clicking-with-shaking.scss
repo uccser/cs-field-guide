@@ -8,7 +8,7 @@
 
 $main-area-height: 450px;
 
-.btn-small {
+.btn-small, .btn-small-moving {
   @extend %shaking-button;
   width: 15%;
   height: $main-area-height * 0.15;
