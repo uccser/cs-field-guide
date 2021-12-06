@@ -14,6 +14,7 @@ let setElement = null;
 let results = [];
 let clickArea = null;
 let shakeTimeout = null;
+let shiftTimeout = null;
 let progressBarTimeout = null;
 let audioContext = null;
 let hitSFXBuffer = null;
@@ -21,6 +22,7 @@ let missSFXBuffer = null;
 let mute = false;
 let progressBar = null;
 let buttonIsOffset = false;
+let forceHidePlaceholderSheet = null;
 
 $(document).ready(function() {
   target = document.getElementById("target");
@@ -36,6 +38,9 @@ $(document).ready(function() {
   $(playButton).click(toggleState);
   $(muteButton).click(toggleMute);
   setUpAudio();
+
+  forceHidePlaceholderSheet = document.createElement('style');
+  forceHidePlaceholderSheet.innerHTML = ".ui-effects-placeholder { display: none !important; }";
 
   table = $('#results-table').DataTable( {
     "paging":   false,
@@ -122,6 +127,9 @@ function toggleState() {
   target.hidden = !target.hidden;
   playButton.hidden = !playButton.hidden;
   if (!target.hidden) {
+    try {
+      document.head.removeChild(forceHidePlaceholderSheet);
+    } catch {}
     setElement.innerText = set + 1;
     table.clear().draw();
     startTime = new Date().getTime();
@@ -130,7 +138,6 @@ function toggleState() {
     playButton.innerText = "Next Set";
     playButton.disabled = true;
     setTimeout(function () { playButton.disabled = false; }, 1000);
-    nextSet();
   }
 }
 
@@ -143,9 +150,13 @@ function clickHandler(event) {
     play(hitSFXBuffer);
 
     if (score === GOAL_SCORE) {
+      document.head.appendChild(forceHidePlaceholderSheet);
+
+      toggleState();
       clearTimeout(shakeTimeout);
       addResult();
-      toggleState();
+      // clearTimeout(shiftTimeout);
+      nextSet();
 
       if (set === buttonSizeClasses.length) {
         playButton.innerText = "Play Again";
@@ -176,7 +187,7 @@ function nextSet() {
   hits = 0;
   score = 0;
   set++;
-  target.classList.replace(buttonSizeClasses[set - 1], buttonSizeClasses[set])
+  target.classList.replace(buttonSizeClasses[set - 1], buttonSizeClasses[set]);
 }
 
 function addResult() {
@@ -207,14 +218,14 @@ function showResults() {
 
 async function shake() {
   let direction =  Math.random() < 0.5 ? "left" : "up";
-  let distancePercent = getRandomBetween(0.1, 0.20);
+  let distancePercent = getRandomBetween(0.1, 0.2);
 
   let distance = clickArea.offsetHeight * distancePercent;
   if (direction === "left") {
     distance = clickArea.offsetWidth * distancePercent;
   }
 
-  // $('#target').effect("shake", {times: 1, distance: distance, direction: direction}, 200 );
+  $('#target').effect("shake", {times: 1, distance: distance, direction: direction}, 300 );
 
   const end = new Date().getTime();
   timeElement.innerText = Math.floor((end - startTime) / 1000);
@@ -223,66 +234,51 @@ async function shake() {
     shakeTimeout = setTimeout(shake, 200);
   }
 
-  if (buttonSizeClasses[set] === "btn-small-moving" && !buttonIsOffset) {
+  if (buttonSizeClasses[set] === "btn-small-moving" && !buttonIsOffset && Math.random() > 0.9) {
     shift();
   }
 }
 
 async function shift() {
-  const prob = Math.random();
-  if (prob >= 0.75) {
-    buttonIsOffset = true;
-    let directionProb =  Math.random();
-    let direction;
-    if (directionProb < 0.25) {
-      direction = "left";
-    } else if (directionProb < 0.5) {
-      direction = "right";
-    } else if (directionProb < 0.75) {
-      direction = "up";
-    } else {
-      direction = "down";
-    }
-
-    let distancePercent = getRandomBetween(0.1, 0.2);
-    let distance = clickArea.offsetHeight * distancePercent;
-    if (direction === "left" || direction === "right") {
-      distance = clickArea.offsetWidth * distancePercent;
-    }
-
-    let duration = getRandomBetween(0.1, 1) * 5000;
-
-    // if (direction === "left") {
-    //   console.log("left")
-    //   $(target).animate({ left: "+=" + distance.toString() }, null, null, setTimeout(function() {
-    //     $(target).animate({ right: "+=" + distance.toString() }, null);
-    //     buttonIsOffset = false;
-    //   }, duration));
-    // } else if (direction === "right") {
-    //   console.log("right")
-    //   $(target).animate({ right: "+=" + distance.toString() }, null, null, setTimeout(function() {
-    //     $(target).animate({ left: "+=" + distance.toString() }, null);
-    //     buttonIsOffset = false;
-    //   }, duration));
-    // } else if (direction === "up") {
-    //   console.log("up")
-    //   $(target).animate({ top: "+=" + distance.toString() }, null, null, setTimeout(function() {
-    //     $(target).animate({ bottom: "+=" + distance.toString() }, null);
-    //     buttonIsOffset = false;
-    //   }, duration));
-    // } else {
-    //   console.log("down")
-    //   $(target).animate({ bottom: "+=" + distance.toString() }, null, null, setTimeout(function() {
-    //     $(target).animate({ top: "+=" + distance.toString() }, null);
-    //     buttonIsOffset = false;
-    //   }, duration));
-    // }
-
-    console.log("yay")
-
-    // Maybe because left is not defined yet in the CSS?
-    $('#target').animate({ left: "+=200" }, 1000)
+  buttonIsOffset = true;
+  let directionProb =  Math.random();
+  let direction;
+  if (directionProb < 0.25) {
+    direction = "left";
+  } else if (directionProb < 0.5) {
+    direction = "right";
+  } else if (directionProb < 0.75) {
+    direction = "up";
+  } else {
+    direction = "down";
   }
+
+  let distancePercent = getRandomBetween(0.1, 0.3);
+  let distance = clickArea.offsetHeight * distancePercent;
+  if (direction === "left" || direction === "right") {
+    distance = clickArea.offsetWidth * distancePercent;
+  }
+
+  let duration = getRandomBetween(0.1, 1) * 5000;
+
+  if (direction === "left") {
+    $(target).animate({ "margin-left": "-=" + distance.toString() }, 200, null, () => { returnToCentre("margin-left", duration) });
+  } else if (direction === "right") {
+    $(target).animate({ "margin-left": "+=" + distance.toString() }, 200, null, () => { returnToCentre("margin-left", duration) });
+  } else if (direction === "up") {
+    $(target).animate({ "margin-top": "-=" + distance.toString() }, 200, null, () => { returnToCentre("margin-top", duration) });
+  } else {
+    $(target).animate({ "margin-top": "+=" + distance.toString() }, 200, null, () => { returnToCentre("margin-top", duration) });
+  }
+}
+
+function returnToCentre(margin, duration) {
+  shiftTimeout = setTimeout(function() {
+    let obj = {}
+    obj[margin] = "0";
+    $(target).animate(obj, 200);
+    buttonIsOffset = false;
+  }, duration)
 }
 
 function getRandomBetween(min, max) {
