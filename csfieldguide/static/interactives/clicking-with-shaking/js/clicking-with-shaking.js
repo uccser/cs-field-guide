@@ -13,8 +13,6 @@ let timeElement = null;
 let setElement = null;
 let results = [];
 let clickArea = null;
-let shakeTimeout = null;
-let shiftTimeout = null;
 let progressBarTimeout = null;
 let audioContext = null;
 let hitSFXBuffer = null;
@@ -152,10 +150,8 @@ function clickHandler(event) {
     if (score === GOAL_SCORE) {
       document.head.appendChild(forceHidePlaceholderSheet);
 
-      toggleState();
-      clearTimeout(shakeTimeout);
       addResult();
-      // clearTimeout(shiftTimeout);
+      toggleState();
       nextSet();
 
       if (set === buttonSizeClasses.length) {
@@ -225,18 +221,18 @@ async function shake() {
     distance = clickArea.offsetWidth * distancePercent;
   }
 
-  $('#target').effect("shake", {times: 1, distance: distance, direction: direction}, 300 );
-
   const end = new Date().getTime();
   timeElement.innerText = Math.floor((end - startTime) / 1000);
-
-  if (!target.hidden) {
-    shakeTimeout = setTimeout(shake, 200);
-  }
 
   if (buttonSizeClasses[set] === "btn-small-moving" && !buttonIsOffset && Math.random() > 0.9) {
     shift();
   }
+
+  $('#target').effect("shake", {times: 1, distance: distance, direction: direction}, 300, () => {
+    if (!target.hidden) {
+     shake();
+    }
+  });
 }
 
 async function shift() {
@@ -259,21 +255,25 @@ async function shift() {
     distance = clickArea.offsetWidth * distancePercent;
   }
 
-  let duration = getRandomBetween(0.1, 1) * 5000;
+  let duration = Math.round(getRandomBetween(0.1, 1) * 5000);
 
   if (direction === "left") {
-    $(target).animate({ "margin-left": "-=" + distance.toString() }, 200, null, () => { returnToCentre("margin-left", duration) });
+    $(target).animate({ "margin-left": "-=" + distance.toString() }, 200, null,
+      () => { returnToCentre("margin-left", duration) });
   } else if (direction === "right") {
-    $(target).animate({ "margin-left": "+=" + distance.toString() }, 200, null, () => { returnToCentre("margin-left", duration) });
+    $(target).animate({ "margin-left": "+=" + distance.toString() }, 200, null,
+      () => { returnToCentre("margin-left", duration) });
   } else if (direction === "up") {
-    $(target).animate({ "margin-top": "-=" + distance.toString() }, 200, null, () => { returnToCentre("margin-top", duration) });
+    $(target).animate({ "margin-top": "-=" + distance.toString() }, 200, null,
+      () => { returnToCentre("margin-top", duration) });
   } else {
-    $(target).animate({ "margin-top": "+=" + distance.toString() }, 200, null, () => { returnToCentre("margin-top", duration) });
+    $(target).animate({ "margin-top": "+=" + distance.toString() }, 200, null,
+      () => { returnToCentre("margin-top", duration) });
   }
 }
 
 function returnToCentre(margin, duration) {
-  shiftTimeout = setTimeout(function() {
+  setTimeout(function() {
     let obj = {}
     obj[margin] = "0";
     $(target).animate(obj, 200);
