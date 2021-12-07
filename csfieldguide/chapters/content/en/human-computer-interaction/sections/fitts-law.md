@@ -27,6 +27,7 @@
 - Why do we care about Fitts' Law?
   - Helps UI designers (e.g. make commonly used buttons bigger, reduce the distance between buttons that are often used together)
   - Use the Fitts' Law Experiment Interactive below.
+  - Another Fitts' Law experiment at http://simonwallner.at/ext/fitts/. 
 
 
 {image file-path="img/chapters/fitts-distance-and-width.png" alt="A diagram explaining what D and W are."}
@@ -42,3 +43,9 @@ Fitts\' Law Experiment
 ## Pointing in non-ideal environments
 
 - What about trying to point at things in a shaky environment (e.g. on a plane with turbulence?)
+
+{interactive slug="clicking-with-shaking" type="whole-page" text="true"}
+
+Clicking with Shaking
+
+{interactive end}
