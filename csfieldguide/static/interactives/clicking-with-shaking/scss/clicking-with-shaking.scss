@@ -34,3 +34,7 @@ $main-area-height: 450px;
 #game-view-main-area {
   height: $main-area-height;
 }
+
+#give-up {
+  visibility: hidden;
+}

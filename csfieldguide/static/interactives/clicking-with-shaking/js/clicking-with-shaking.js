@@ -6,6 +6,7 @@ let GOAL_SCORE = 5;
 let target = null;
 let playButton = null;
 let muteButton = null;
+let skipButton = null;
 let startTime = null;
 let buttonSizeClasses = ["btn-large", "btn-medium", "btn-small", "btn-small-moving"]
 let set = 0;
@@ -25,6 +26,7 @@ let forceHidePlaceholderSheet = null;
 $(document).ready(function() {
   target = document.getElementById("target");
   muteButton = document.getElementById("mute");
+  skipButton = document.getElementById("give-up");
   playButton = document.getElementById("play");
   target.classList.add(buttonSizeClasses[set]);
   timeElement = document.getElementById("time");
@@ -35,6 +37,7 @@ $(document).ready(function() {
 
   $(playButton).click(toggleState);
   $(muteButton).click(toggleMute);
+  $(skipButton).click(gameOver);
   setUpAudio();
 
   forceHidePlaceholderSheet = document.createElement('style');
@@ -125,6 +128,7 @@ function toggleState() {
   target.hidden = !target.hidden;
   playButton.hidden = !playButton.hidden;
   if (!target.hidden) {
+    skipButton.style.visibility = "visible";
     try {
       document.head.removeChild(forceHidePlaceholderSheet);
     } catch {}
@@ -133,6 +137,7 @@ function toggleState() {
     startTime = new Date().getTime();
     shake();
   } else {
+    skipButton.style.visibility = "hidden";
     playButton.innerText = "Next Set";
     playButton.disabled = true;
     setTimeout(function () { playButton.disabled = false; }, 1000);
@@ -148,21 +153,16 @@ function clickHandler(event) {
     play(hitSFXBuffer);
 
     if (score === GOAL_SCORE) {
-      document.head.appendChild(forceHidePlaceholderSheet);
-
       addResult();
-      toggleState();
-      nextSet();
-
-      if (set === buttonSizeClasses.length) {
-        playButton.innerText = "Play Again";
-        showResults();
-        resetGame();
+      if (set === buttonSizeClasses.length - 1) {
+        gameOver();
+      } else{
+        nextSet();
       }
+    } else {
+      updateProgress(true);
     }
-
-    updateProgress(true);
-  } else if (elementID !== playButton.id && elementID !== muteButton.id && !target.hidden) {
+  } else if (![playButton.id, muteButton.id, skipButton.id].includes(elementID) && !target.hidden) {
       misses += 1;
       score = Math.max(score - 1, 0);
       play(missSFXBuffer);
@@ -171,19 +171,30 @@ function clickHandler(event) {
 }
 
 
-function resetGame() {
+function gameOver() {
+  let oldSetNum = set;
   set = 0;
-  target.classList.replace(buttonSizeClasses[buttonSizeClasses.length], buttonSizeClasses[set]);
+  resetGame(oldSetNum, set);
+  showResults();
+  playButton.innerText = "Play Again";
   results = [];
+}
+
+function resetGame(oldSetNum, newSetNum) {
+  document.head.appendChild(forceHidePlaceholderSheet);
+  toggleState();
+  misses = 0;
+  hits = 0;
+  score = 0;
+  updateProgress(true);
+  target.classList.replace(buttonSizeClasses[oldSetNum], buttonSizeClasses[newSetNum]);
 }
 
 
 function nextSet() {
-  misses = 0;
-  hits = 0;
-  score = 0;
+  let oldSetNum = set;
   set++;
-  target.classList.replace(buttonSizeClasses[set - 1], buttonSizeClasses[set]);
+  resetGame(oldSetNum, set);
 }
 
 function addResult() {
@@ -208,6 +219,12 @@ function showResults() {
       result.accuracy,
       result.time,
       result.averageTime
+    ]).draw(false);
+  }
+
+  for (let i = results.length; i < buttonSizeClasses.length; i++) {
+    table.row.add([
+      i + 1, "-", "-", "-", "-", "-", "-"
     ]).draw(false);
   }
 }
