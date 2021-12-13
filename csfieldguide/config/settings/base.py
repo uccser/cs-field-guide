@@ -26,6 +26,8 @@ env = environ.Env()
 # APP CONFIGURATION
 # ----------------------------------------------------------------------------
 DJANGO_APPS = [
+    "corsheaders",
+
     # Default Django apps:
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -63,6 +65,7 @@ INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRD_PARTY_APPS
 # MIDDLEWARE CONFIGURATION
 # ----------------------------------------------------------------------------
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -293,3 +296,5 @@ STATICI18N_ROOT = BUILD_ROOT
 SVG_DIRS = [os.path.join(str(ROOT_DIR.path("staticfiles")), "svg")]
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 X_FRAME_OPTIONS = "SAMEORIGIN"
+
+CORS_ALLOW_ALL_ORIGINS = True

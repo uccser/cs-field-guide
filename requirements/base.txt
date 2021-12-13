@@ -36,3 +36,5 @@ uniseg==0.7.1.post2
 python-bidi==0.4.2
 django-bidi-utils==1.0
 django-statici18n==2.0.1
+
+django-cors-headers==3.10.1
