@@ -1,10 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
+{% extends interactive_mode_template %}
 
-</body>
-</html>
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+<div class="container">
+  <object id="cockpit" type="image/svg+xml" data="{% static 'interactives/helicopter-turbulence/img/helicopter-cockpit.svg' %}" class="logo">
+    Helicopter Cockpit
+  </object>
+</div>
+{% endblock html %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'interactives/helicopter-turbulence/css/helicopter-turbulence.css' %}">
+{% endblock css %}
+
+{% block js %}
+<script type="text/javascript" src="{% static 'interactives/helicopter-turbulence/js/helicopter-turbulence.js' %}">
+</script>
+{% endblock js %}
