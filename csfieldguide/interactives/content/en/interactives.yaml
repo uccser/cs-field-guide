@@ -86,6 +86,8 @@ fsa-terminology:
   name: FSA Terminology
 fsa-washing-machine:
   name: FSA Washing Machine
+helicopter-turbulence:
+  name: Helicopter Turbulence
 hex-background-colour:
   name: Hex Background Colour
 high-score-boxes:
