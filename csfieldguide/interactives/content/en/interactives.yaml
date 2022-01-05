@@ -72,7 +72,7 @@ dot-combinations:
   name: Dot Combinations
 firewall-sorting:
   name: Firewall Sorting
-fitts:
+fitts-law:
   name: Fitts' Law Experiment
 flowcharts-interpreter-compiler:
   name: Flowcharts - Interpreter and Compiler

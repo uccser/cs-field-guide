@@ -174,7 +174,7 @@ firewall-sorting:
   languages:
     en: interactives/firewall-sorting.html
   is_interactive: true
-fitts:
+fitts-law:
   languages:
     en: interactives/fitts.html
   is_interactive: true

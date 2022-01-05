@@ -89,9 +89,9 @@ let timeElement = null;
 let setElement = null;
 
 /**
- * A list of POJOs.
+ * A list of objects.
  *
- * Each POJO has the following keys: buttonSize, hits, misses, accuracy, time, averageTime. The set number can be
+ * Each object has the following keys: buttonSize, hits, misses, accuracy, time, averageTime. The set number can be
  * inferred from the index in the list.
  *
  * buttonSize: A string with the format w x h, where w is the target width and h is the height in pixels for the set.
