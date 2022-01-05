@@ -29,10 +29,14 @@ $main-area-height: 450px;
   padding: 0;
 }
 
-#game-view-main-area {
-  height: $main-area-height;
-}
-
 #give-up {
   visibility: hidden;
+}
+
+#game-view-main-area {
+  width: 100%;
+  height: $main-area-height;
+
+  /* Do this instead of Bootstrap d-flex because d-flex uses !important, which means JS can't use hidden */
+  display: flex;
 }

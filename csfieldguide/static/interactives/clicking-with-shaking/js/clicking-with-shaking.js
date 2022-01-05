@@ -164,16 +164,6 @@ let progressBar = null;
  */
 let buttonIsOffset = false;
 
-/**
- * A style element to force the placeholder button to have no display.
- *
- * The placeholder button is created during the shake effect. However, it also temporarily affects the button height of
- * the play button when the target is hidden, as the placeholder is not immediately destroyed. This style element must
- * be added to the DOM at the correct points of execution to stop the placeholder from affecting the play again button
- * height. Adding it at the wrong time will result in the target button not displaying correctly.
- * @type {null}
- */
-let forceHidePlaceholderSheet = null;
 
 /**
  * Sets up the page for the game.
@@ -197,9 +187,6 @@ $(document).ready(function() {
   $(muteButton).click(toggleMute);
   $(skipButton).click(gameOver);
   setUpAudio();
-
-  forceHidePlaceholderSheet = document.createElement('style');
-  forceHidePlaceholderSheet.innerHTML = ".ui-effects-placeholder { display: none !important; }";
 
   table = $('#results-table').DataTable( {
     "paging":   false,
@@ -312,7 +299,7 @@ function playSFX(audioBuffer) {
  *
  * Either the target or play button is visible. If the target is visible, the skip button is also visible. setElement
  * is updated, the table is cleared in case it is visible, startTime is reset, and shake is called to make the target
- * start vibrating. forceHidePlaceholderSheet is also removed to avoid the display of the target.
+ * start vibrating.
  *
  * If the play button is visible, the skip button is hidden, the play button text is updated, and the play button
  * is temporarily disabled to avoid accidental clicks when the user is spam clicking the target.
@@ -322,9 +309,7 @@ function toggleState() {
   playButton.hidden = !playButton.hidden;
   if (!target.hidden) {
     skipButton.style.visibility = "visible";
-    try {
-      document.head.removeChild(forceHidePlaceholderSheet);
-    } catch {}
+
     setElement.innerText = set + 1;
     table.clear().draw();
     startTime = new Date().getTime();
@@ -406,13 +391,12 @@ function nextSet() {
 /**
  * Resets the game in preparation for the next set or a new game.
  *
- * Adds the forceHidePlaceholderSheet so the play button height does not change. Toggles the state (which should change
- * to the between-sets state), and resets misses, hits, and score. Calls updateProgress, and updates the target class.
+ * Toggles the state (which should change to the between-sets state), and resets misses, hits, and score. Calls
+ * updateProgress, and updates the target class.
  * @param oldSetNum The previous set number.
  * @param newSetNum The new set number.
  */
 function resetGame(oldSetNum, newSetNum) {
-  document.head.appendChild(forceHidePlaceholderSheet);
   toggleState();
   misses = 0;
   hits = 0;
