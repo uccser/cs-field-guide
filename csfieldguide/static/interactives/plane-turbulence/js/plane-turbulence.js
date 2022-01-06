@@ -167,12 +167,39 @@ let instructionNum = 0;
  */
 let stages;
 
+/**
+ * The stage 2 cloud 1 SVG element.
+ */
 let stage2Cloud1;
+
+/**
+ * The stage 2 cloud 2 SVG element.
+ */
 let stage2Cloud2;
+
+/**
+ * The stage 2 cloud 3 SVG element.
+ */
 let stage2Cloud3;
+
+/**
+ * The stage 3 cloud 1 SVG element.
+ */
 let stage3Cloud1;
+
+/**
+ * The stage 3 cloud 2 SVG element.
+ */
 let stage3Cloud2;
+
+/**
+ * The stage 3 cloud 3 SVG element.
+ */
 let stage3Cloud3;
+
+/**
+ * The ice SVG element.
+ */
 let ice;
 
 
