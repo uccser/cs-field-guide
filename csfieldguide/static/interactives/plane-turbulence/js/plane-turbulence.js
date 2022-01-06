@@ -114,12 +114,6 @@ let transponderValuePos3Subtract;
 let transponderValuePos4Subtract;
 
 /**
- * Whether any ACP button is flashing or not.
- * @type {boolean}
- */
-let acpFlashing = false;
-
-/**
  * A div laid over the svg to show the red flash effect.
  */
 let overlay;
@@ -130,7 +124,7 @@ let overlay;
 let menu;
 
 /**
- * The div for showing the current instruction.
+ * The p for showing the current instruction.
  */
 let instructions;
 
@@ -162,8 +156,21 @@ let instructionNum = 0;
 /**
  * The list of stages.
  *
- * The stages are represented as a list of lists of lists. The outermost lists are the stages. Inside these lists are
- * a list
+ * The stages are represented as a list of lists of lists. The outermost list are the stages. Each stage is another
+ * list containing sets. Each set is another list containing instruction objects.
+ *
+ * This example has two stages. The first stage has two sets, each with two instructions. The second stage only has
+ * one set with two instructions.
+ * [
+ *   [
+ *     [instruction A1, instruction A2],
+ *     [instruction B1, instruction B2]
+ *   ],
+ *
+ *   [
+ *     [instruction A3, instruction A4],
+ *   ],
+ * ]
  */
 let stages;
 
@@ -203,6 +210,12 @@ let stage3Cloud3;
 let ice;
 
 
+/**
+ * Prepares the game while it is obstructed by the main menu.
+ *
+ * Assigns the global variable elements not contained within the SVG (e.g. the menu div). Calls setupSVGElements to
+ * prepare the SVG, and calls createStages to prepare the stages. Finally, sets the play button's onclick listener.
+ */
 $(document).ready(function () {
   instructions = document.getElementById("instructions-p");
   let object = document.getElementById("airplane-object");
@@ -210,32 +223,45 @@ $(document).ready(function () {
   overlay = document.getElementById("overlay");
   menu = document.getElementById("menu");
   overlay.style.height = object.offsetHeight + "px";
+
+  // Must be called before createStages, as createStages uses variables assigned by setupSVGElements.
   setupSVGElements();
-  createSets();
-  document.getElementById("play-button").onclick = setUp;
+  createStages();
+  document.getElementById("play-button").onclick = startGame;
 })
 
 
-function setUp() {
-  updateInstructions();
+/**
+ * Starts the game.
+ *
+ * Hides the menu so the game view is visible, and calls handleSatisfied to run the resultFunction of the first
+ * instruction where isSatisfied is presumed to be true.
+ */
+function startGame() {
   menu.hidden = true;
   handleSatisfied();
 }
 
 
+/**
+ * A Promise-based implementation of setTimeout.
+ *
+ * @param ms The time to wait for in milliseconds.
+ * @returns {Promise<unknown>} A Promise that can be awaited.
+ */
 function timeout(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 
-function createSets() {
+function createStages() {
   stages = [
     [
       [
         {
           relevantWidgets: [stbtButton],
           isSatisfied: function() {
-            return buttonIsOn(stbtButton);
+            return isGlowing(stbtButton);
           },
           description: "Turn on the seatbelt sign.",
         },
@@ -244,7 +270,7 @@ function createSets() {
         {
           relevantWidgets: [autoPilotOnButton],
           isSatisfied: function() {
-            return !buttonIsOn(autoPilotOnButton);
+            return !isGlowing(autoPilotOnButton);
           },
           description: "Disable the autopilot.",
           resultFunction: function() {
@@ -260,7 +286,7 @@ function createSets() {
         {
           relevantWidgets: [vhf1Button],
           isSatisfied: function() {
-            return buttonIsOn(vhf1Button);
+            return isGlowing(vhf1Button);
           },
           description: "Change to VHF1.",
           resultFunction: function() {
@@ -298,7 +324,7 @@ function createSets() {
         {
           relevantWidgets: [deIceButton],
           isSatisfied: function() {
-            return buttonIsOn(deIceButton);
+            return isGlowing(deIceButton);
           },
           description: "The engines are icing! Press de-ice.",
           resultFunction: function() {
@@ -314,7 +340,7 @@ function createSets() {
         {
           relevantWidgets: [ventButton],
           isSatisfied: function() {
-            return !buttonIsOn(ventButton);
+            return !isGlowing(ventButton);
           },
           description: "Turn off the vents.",
         }
@@ -330,19 +356,15 @@ function createSets() {
           },
           description: "",
           resultFunction: function() {
-            acpFlashing = true;
             flashACP(attButton);
           },
         },
         {
           relevantWidgets: [attButton],
           isSatisfied: function() {
-            return buttonIsOn(attButton);
+            return isGlowing(attButton);
           },
           description: "A flight attendant wants to talk to you. Push the 'ATT' button.",
-          resultFunction: function() {
-            acpFlashing = false;
-          },
         },
         {
           relevantWidgets: [transponderValuePos1Add, transponderValuePos2Add, transponderValuePos3Add,
@@ -353,9 +375,6 @@ function createSets() {
           },
           description: "The flight attendant says a passenger is having a medical emergency. We should ask for " +
             "priority landing. Set the transponder to 7700.",
-          resultFunction: function() {
-            acpFlashing = false;
-          },
         },
       ]
     ]
@@ -387,6 +406,21 @@ function createSets() {
 }
 
 
+/**
+ * A helper function to add a weather-related set containing a single instruction to the stage at index stageNum.
+ *
+ * The instruction is added to the beginning of a stage (i.e. a new set at the start of the stage containing a single
+ * instruction). As such, it needs to be called after any shuffling of sets has occurred as it should be the first set.
+ *
+ * The instruction has no conditions for satisfaction, allowing the resultFunction to be executed automatically. The
+ * description is empty. The result function will update the turbulence animation with the new turbulenceSeverity,
+ * and an icing animation if isIcing is true, and add a cloud animation for each cloud specified in cloudToTimes.
+ *
+ * @param stageNum The index of the stage to add it to.
+ * @param cloudToTimes An object mapping cloud element IDs to the time it takes to fade in (in seconds).
+ * @param turbulenceSeverity The severity of the turbulence as a number.
+ * @param isIcing A boolean of whether the plane should ice up. False by default.
+ */
 function addWeatherInstruction(stageNum, cloudToTimes, turbulenceSeverity, isIcing=false) {
   let weatherUpdate = {
     relevantWidgets: [],
@@ -415,8 +449,10 @@ function addWeatherInstruction(stageNum, cloudToTimes, turbulenceSeverity, isIci
 
 
 /**
- * From https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
- * @param array
+ * Shuffles the elements in an array randomly.
+ *
+ * Taken from https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+ * @param array The array to shuffle.
  */
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
@@ -426,21 +462,28 @@ function shuffleArray(array) {
 }
 
 
+/**
+ * Gets the current instruction object.
+ * @returns {*} The latest instruction object.
+ */
 function currentInstruction() {
   return stages[stageNum][setNum][instructionNum];
 }
 
 
+/**
+ * Updates the instructions p element with the description of the current instruction.
+ */
 function updateInstructions() {
   instructions.innerText = currentInstruction().description;
 }
 
 
-function buttonIsOn(element) {
-  return svg.getElementById(getGlowID(element)).style.display === "";
-}
-
-
+/**
+ * Assigns the global variables that are children of the svg, and assigns click handlers to these.
+ *
+ * Also turns off buttons that should be off at the start, and initialises the weather.
+ */
 function setupSVGElements() {
   deIceButton = svg.getElementById("button-de-ice-container");
   stbtButton = svg.getElementById("button-stbt-container");
@@ -456,7 +499,6 @@ function setupSVGElements() {
   autoPilotFd2Button = svg.getElementById("button-autopilot-fd2-container");
   commsSwitchButton = svg.getElementById("button-comms-switch");
   ventButton = svg.getElementById("button-vnt-container");
-  transponderNumber = svg.getElementById("transponder-number");
 
   stage2Cloud1 = svg.getElementById("stage-2-cloud-1");
   stage2Cloud2 = svg.getElementById("stage-2-cloud-2");
@@ -472,28 +514,36 @@ function setupSVGElements() {
   }
   svg.getElementById("dials").onclick = flash;
 
+  // Replaces the onclick for elements that should not flash for all clicks.
   for (let button of [deIceButton, stbtButton, vhf1Button, vhf2Button, attButton, autoPilotOnButton,
     autoPilotNavButton, autoPilotFd2Button, ventButton]) {
     button.onclick = function() { toggleButton(this) };
   }
 
   commsSwitchButton.onclick = function() {swapCommsValues(this);}
+  setUpTransponder();
+
   setUpDeactivateButtons();
   setUpWeather();
-  setUpTransponder();
 }
 
 
+/**
+ * Calls toggleGlow for all the buttons that should start as off.
+ */
 function setUpDeactivateButtons() {
-  svg.getElementById(getGlowID(deIceButton)).style.display = "None";
-  svg.getElementById(getGlowID(stbtButton)).style.display = "None";
-  svg.getElementById(getGlowID(vhf1Button)).style.display = "None";
-  svg.getElementById(getGlowID(attButton)).style.display = "None";
-  svg.getElementById(getGlowID(eng1WarningLight)).style.display = "None";
-  svg.getElementById(getGlowID(eng2WarningLight)).style.display = "None";
+  toggleGlow(deIceButton);
+  toggleGlow(stbtButton);
+  toggleGlow(vhf1Button);
+  toggleGlow(attButton);
+  toggleGlow(eng1WarningLight);
+  toggleGlow(eng2WarningLight);
 }
 
 
+/**
+ * Ensures the later stage clouds and ice are hidden by setting their opacity to zero.
+ */
 function setUpWeather() {
   stage2Cloud1.style.opacity = "0";
   stage2Cloud2.style.opacity = "0";
@@ -505,29 +555,12 @@ function setUpWeather() {
 }
 
 
-function toggleGlow(element) {
-  let glowElement = svg.getElementById(getGlowID(element));
-  glowElement.style.display = glowElement.style.display === "none" ? "" : "none";
-}
-
-
-function getGlowID(element) {
-  let id;
-  if (element.id.includes("container")) {
-    id = element.id.replace("container", "glow");
-  } else {
-    id = element.id + "-glow";
-  }
-  return id;
-}
-
-
-function getACPPendingID(container) {
-  return container.id.replace("container", "pending");
-}
-
-
+/**
+ * Assigns the global variables that are children of the svg related to the transponder, and assigns click handlers to
+ * these.
+ */
 function setUpTransponder() {
+  transponderNumber = svg.getElementById("transponder-number");
   transponderValuePos1Add = svg.getElementById("transponder-value-pos-1-add");
   transponderValuePos2Add = svg.getElementById("transponder-value-pos-2-add");
   transponderValuePos3Add = svg.getElementById("transponder-value-pos-3-add");
@@ -548,6 +581,68 @@ function setUpTransponder() {
 }
 
 
+/**
+ * Checks if the supplied button/light is glowing (i.e. display of the glow child is not none).
+ *
+ * @param element The element to check. Should either be a button container (suffixed with '-container') or a light (no
+ * suffix)
+ * @returns {boolean} True if the button is on, false otherwise.
+ */
+function isGlowing(element) {
+  return svg.getElementById(getGlowID(element)).style.display === "";
+}
+
+
+/**
+ * Toggles a button/light on or off.
+ *
+ * Obtains the glow child of the element then updates its display property.
+ *
+ * @param element The element to update the glow child of. Should either be a button container (suffixed with
+ * '-container') or a light (no suffix)
+ */
+function toggleGlow(element) {
+  let glowElement = svg.getElementById(getGlowID(element));
+  glowElement.style.display = glowElement.style.display === "none" ? "" : "none";
+}
+
+
+/**
+ * Gets the ID of the glow child of a button/light.
+ *
+ * @param element An element that should either be a button container (suffixed with '-container') or a light (no
+ * suffix)
+ * @returns {string} The ID of the glow child.
+ */
+function getGlowID(element) {
+  let id;
+  if (element.id.includes("container")) {
+    id = element.id.replace("container", "glow");
+  } else {
+    id = element.id + "-glow";
+  }
+  return id;
+}
+
+
+/**
+ * Obtains the ID of the pending child of an ACP container.
+ * @param container The ACP container element.
+ * @returns {string} The ID of the pending child.
+ */
+function getACPPendingID(container) {
+  return container.id.replace("container", "pending");
+}
+
+
+/**
+ * Checks if the supplied element is among the relevantWidgets of the current instruction.
+ *
+ * Flashes the screen if not.
+ *
+ * @param element The element to check.
+ * @returns {boolean} True if it is relevant, false otherwise.
+ */
 function elementIsRelevant(element) {
   let isRelevant = currentInstruction().relevantWidgets.includes(element);
   if (!isRelevant) {
@@ -557,6 +652,16 @@ function elementIsRelevant(element) {
 }
 
 
+/**
+ * Executes the resultFunction of the current instruction and prepares the game for the next instruction provided the
+ * current instruction isSatisfied.
+ *
+ * Firstly, checks if the current instruction isSatisfied is true, and proceeds if it is. resultFunction is run to
+ * handle the instruction's post conditions, which is awaited if it is async. Then goes through the process of
+ * updating the instructionNum, setNum, and stageNum. Calls gameOver if the final stage has been completed. Afterwards,
+ * a short timeout is set to have a gap in-between each instruction. Then the instruction is updated and calls
+ * handleSatisfied again in case the next instruction is already satisfied (such as a weather instruction).
+ */
 async function handleSatisfied() {
   if (currentInstruction().isSatisfied()) {
     let resultFunction = currentInstruction().resultFunction;
@@ -592,6 +697,9 @@ async function handleSatisfied() {
 }
 
 
+/**
+ * Handles when the game is over.
+ */
 function gameOver() {
   menu.getElementsByTagName('p')[0].innerText = "You won!";
   let button = menu.getElementsByTagName('button')[0];
@@ -601,8 +709,18 @@ function gameOver() {
 }
 
 
+/**
+ * Flashes the supplied ACP element repeatedly.
+ *
+ * Will keep flashing until the ACP button is pressed (i.e. isGlowing is true). Obtains the pending child, and sets
+ * each line to orange. After a short timeout, the lines are changed back to the original color, and another timout is
+ * set.
+ *
+ * @param element
+ * @returns {Promise<void>}
+ */
 async function flashACP(element) {
-  if (acpFlashing) {
+  while (!isGlowing(element)) {
     let pendingElement = svg.getElementById(getACPPendingID(element));
     let lines = pendingElement.getElementsByTagName("line");
     let oldStroke = lines[0].style.stroke;
@@ -618,11 +736,15 @@ async function flashACP(element) {
     }
 
     await timeout(250);
-    flashACP(element);
   }
 }
 
 
+/**
+ * Flashes the screen red to indicate a wrong click.
+ *
+ * Un-hides the overlay, and creates an animation to increase then decrease the opacity before re-hiding the overlay.
+ */
 function flash() {
   overlay.hidden = false;
   $(overlay).stop().animate({opacity: "0.5"},250,function(){
@@ -632,8 +754,26 @@ function flash() {
 
 
 /* ------------------------------ WIDGET HANDLERS ------------------------------  */
+/*
+All widget handlers must have the following format:
+
+if (elementIsRelevant(element)) {
+    // Code that changes the game state
+
+    handleSatisfied();
+}
+
+The outer if-statement ensures the element is relevant to the current instruction before taking any action.
+handleSatisfied must be called to check if the code that changed the game state has satisfied the instruction's
+requirements.
+ */
 
 
+/**
+ * Handler for a simple button toggle.
+ *
+ * @param element The element to toggle.
+ */
 function toggleButton(element) {
   if (elementIsRelevant(element)) {
     toggleGlow(element);
@@ -642,6 +782,11 @@ function toggleButton(element) {
 }
 
 
+/**
+ * Handler for swapping the communications frequency values.
+ *
+ * @param element The commsSwitchButton element.
+ */
 function swapCommsValues(element) {
   if (elementIsRelevant(element)) {
     let oldCommsValue1 = commsValue1.textContent.trim();
@@ -653,6 +798,13 @@ function swapCommsValues(element) {
 }
 
 
+/**
+ * Handler for a transponder button press to update the transponder value.
+ *
+ * @param index Which digit of the transponder value to update (where 0 is the leftmost digit).
+ * @param increase A boolean, true if the digit is incrementing or false if it is decrementing.
+ * @param element The transponder button element.
+ */
 function transponderUpdate(index, increase, element) {
   if (elementIsRelevant(element)) {
     let currentNumber = transponderNumber.textContent.trim();
