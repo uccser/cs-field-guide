@@ -144,6 +144,8 @@ pixel-grid:
   name: Pixel Grid
 pixel-viewer:
   name: Pixel Viewer
+plane-turbulence:
+    name: Plane Turbulence
 python-interpreter:
   name: Python Interpreter
 python-syntax-error:

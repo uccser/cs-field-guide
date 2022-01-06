@@ -1,6 +1,9 @@
 # Fitts' Law
 - Overview of Fitts' Law
 - Fundamental idea is that the further away a target is and the smaller the target is, the harder it is to select.
+- What about Fitts' Law in a real envrionment such as a plane (interactive below)?
+
+{interactive slug="plane-turbulence" type="whole-page" text="true"}
 
 {comment Change name once we have decided!}
 

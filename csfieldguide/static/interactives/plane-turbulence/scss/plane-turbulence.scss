@@ -1,0 +1,31 @@
+#main {
+    position: relative;
+    padding: 0 !important;
+}
+
+#overlay {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    background-color: red;
+}
+
+#instructions-div {
+    width: 20%;
+    position: absolute;
+    right: 10px;
+}
+
+#menu {
+    width: 100%;
+    height: 100%;
+    background-color: #fffdd0;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    /* Do this instead of Bootstrap d-flex because d-flex uses !important, which means JS can't use hidden */
+    display: flex;
+}

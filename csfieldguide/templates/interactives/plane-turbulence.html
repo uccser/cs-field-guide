@@ -1,0 +1,39 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+<div class="container">
+  <h3 class="text-center mb-2">{% trans "Plane Turbulence" %}</h3>
+
+  <div id="main">
+    <div id="instructions-div">
+      <h2>Instructions:</h2>
+      <p id="instructions-p"></p>
+    </div>
+
+    <div id="menu" class="align-items-center justify-content-center">
+      <div class="text-center">
+        <p>
+          Some instructions here.
+        </p>
+        <button id="play-button" class="btn btn-primary">Play</button>
+      </div>
+    </div>
+
+    <div id="overlay" hidden></div>
+    <object id="airplane-object" type="image/svg+xml" data="{% static 'interactives/plane-turbulence/img/airplane-cockpit.svg' %}" class="logo">
+      Plane Cockpit
+    </object>
+  </div>
+</div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/plane-turbulence/css/plane-turbulence.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'interactives/plane-turbulence/js/plane-turbulence.js' %}"></script>
+{% endblock js %}
