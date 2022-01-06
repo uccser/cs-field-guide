@@ -210,7 +210,7 @@ function createSets() {
           isSatisfied: function() {
             return buttonIsOn(stbtButton);
           },
-          description: "Turn on the seatbelt sign",
+          description: "Turn on the seatbelt sign.",
         },
       ],
       [
@@ -219,7 +219,7 @@ function createSets() {
           isSatisfied: function() {
             return !buttonIsOn(autoPilotOnButton);
           },
-          description: "Disable the autopilot",
+          description: "Disable the autopilot.",
           resultFunction: function() {
             toggleGlow(autoPilotNavButton);
             toggleGlow(autoPilotFd2Button);
@@ -235,7 +235,7 @@ function createSets() {
           isSatisfied: function() {
             return buttonIsOn(vhf1Button);
           },
-          description: "Change to VHF1",
+          description: "Change to VHF1.",
           resultFunction: function() {
             toggleGlow(vhf2Button);
           },
@@ -247,7 +247,7 @@ function createSets() {
           isSatisfied: function() {
             return commsValue1.textContent === this.stbyCrsInit && commsValue2.textContent === this.activeInit;
           },
-          description: "Transfer standby and active frequencies",
+          description: "Transfer standby and active frequencies.",
         },
       ],
     ],
@@ -273,7 +273,7 @@ function createSets() {
           isSatisfied: function() {
             return buttonIsOn(deIceButton);
           },
-          description: "The engines are icing! Press de-ice",
+          description: "The engines are icing! Press de-ice.",
           resultFunction: function() {
             setTimeout(function() {
               toggleGlow(eng1WarningLight);
