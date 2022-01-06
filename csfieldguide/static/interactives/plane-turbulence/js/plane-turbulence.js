@@ -171,6 +171,17 @@ let instructionNum = 0;
  *     [instruction A3, instruction A4],
  *   ],
  * ]
+ *
+ * Instruction object keys are explained as follows ('*' means the key is required):
+ * relevantWidgets* - A list of elements that are relevant to this instruction. Other elements will result in flash
+ *                    being called when clicked.
+ * isSatisfied* - A function that must return a boolean, where True means the instruction requirements have been
+ *                satisfied.
+ * description* - The description of the instruction displayed to the user.
+ * resultFunction - A function that can implement any post-conditions that should occur upon satisfaction. The function
+ *                  can be async. handleSatisfied will await the function when calling it.
+ *
+ * Some instructions may have other keys, but these are not used outside of the object.
  */
 let stages;
 
@@ -254,6 +265,12 @@ function timeout(ms) {
 }
 
 
+/**
+ * Instantiates the stages.
+ *
+ * Stages without any weather sets are created first. This is so that each stage can be shuffled to randomised the
+ * order of sets. addWeatherInstruction is called multiple times at the end to add these weather sets.
+ */
 function createStages() {
   stages = [
     [
