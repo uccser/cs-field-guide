@@ -29,3 +29,8 @@
     /* Do this instead of Bootstrap d-flex because d-flex uses !important, which means JS can't use hidden */
     display: flex;
 }
+
+.modal, .modal-backdrop {
+    position: absolute !important;
+    width: 100%;
+}

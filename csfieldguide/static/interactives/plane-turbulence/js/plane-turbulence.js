@@ -220,6 +220,11 @@ let stage3Cloud3;
  */
 let ice;
 
+/**
+ * The object element containing the svg.
+ */
+let object;
+
 
 /**
  * Prepares the game while it is obstructed by the main menu.
@@ -229,7 +234,7 @@ let ice;
  */
 $(document).ready(function () {
   instructions = document.getElementById("instructions-p");
-  let object = document.getElementById("airplane-object");
+  object = document.getElementById("airplane-object");
   svg = object.contentDocument.getElementById("airplane-svg");
   overlay = document.getElementById("overlay");
   menu = document.getElementById("menu");
@@ -273,6 +278,21 @@ function timeout(ms) {
  */
 function createStages() {
   stages = [
+    [
+      [
+        {
+          relevantWidgets: [],
+          isSatisfied: function() {
+            return true;
+          },
+          description: "",
+          resultFunction: async function() {
+            await timeout(3000);
+          },
+        }
+      ]
+    ],
+
     [
       [
         {
@@ -392,6 +412,9 @@ function createStages() {
           },
           description: "The flight attendant says a passenger is having a medical emergency. We should ask for " +
             "priority landing. Set the transponder to 7700.",
+          resultFunction: function() {
+            svg.style.setProperty('--severity', "0");
+          },
         },
       ]
     ]
@@ -400,20 +423,6 @@ function createStages() {
   for (let i = 0; i < stages.length; i++) {
     shuffleArray(stages[i]);
   }
-
-  let gap = {
-    relevantWidgets: [],
-    isSatisfied: function() {
-      return true;
-    },
-    description: "",
-    resultFunction: async function() {
-      await timeout(3000);
-    },
-  }
-
-  stages.unshift([[gap]]);
-  stages.push([[gap]]);
 
   addWeatherInstruction(0, {}, 0.25);
   addWeatherInstruction(1, {}, 1);
@@ -691,6 +700,7 @@ async function handleSatisfied() {
     }
 
     instructionNum++;
+    await timeout(500);
 
     if (instructionNum === stages[stageNum][setNum].length) {
       setNum++;
@@ -707,7 +717,6 @@ async function handleSatisfied() {
       }
     }
 
-    await timeout(500);
     updateInstructions();
     handleSatisfied();
   }
@@ -715,14 +724,22 @@ async function handleSatisfied() {
 
 
 /**
- * Handles when the game is over.
+ * Displays and prepares the modal to display within the game view.
+ *
+ * Adapted from https://webkul.com/blog/how-to-display-a-bootstrap-modal-inside-a-div/ so that the modal only appears
+ * within the main div.
  */
 function gameOver() {
-  menu.getElementsByTagName('p')[0].innerText = "You won!";
-  let button = menu.getElementsByTagName('button')[0];
-  button.innerText = "Play Again!";
-  button.onclick = function () { location.reload(); };
-  menu.hidden = false;
+  $('#game-over-modal').modal({backdrop: 'static', keyboard: false});
+
+  document.getElementsByClassName("modal-backdrop")[0].style.height = object.offsetHeight + "px";
+
+  //appending modal background inside the main div
+  $('.modal-backdrop').appendTo('#main');
+
+  //remove the padding right and modal-open class from the body tag which bootstrap adds when a modal is shown
+  $('body').removeClass("modal-open").css("padding-right","");
+  document.getElementById("game-over-button").onclick = function() { location.reload() };
 }
 
 

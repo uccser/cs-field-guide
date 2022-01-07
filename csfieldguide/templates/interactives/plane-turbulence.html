@@ -22,8 +22,27 @@
       </div>
     </div>
 
+    <div class="modal fade" id="game-over-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+         aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Well done!</h5>
+          </div>
+          <div class="modal-body">
+            You've assisted the pilot and prepared the plane for an urgent landing, while dealing with bad turbulence.
+            Maybe some modification of the cockpit interfaces would have made your job easier...
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="game-over-button" class="btn btn-primary">Play Again</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div id="overlay" hidden></div>
-    <object id="airplane-object" type="image/svg+xml" data="{% static 'interactives/plane-turbulence/img/airplane-cockpit.svg' %}" class="logo">
+    <object id="airplane-object" type="image/svg+xml"
+            data="{% static 'interactives/plane-turbulence/img/airplane-cockpit.svg' %}" class="logo">
       Plane Cockpit
     </object>
   </div>
