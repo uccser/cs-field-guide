@@ -1,6 +1,6 @@
 # Plane Turbulence Interactive
 
-**Original Author:** Jackie Qiu
+**Original Author:** Jackie Qiu and Jack Morgan (SVG)
 
 This interactive is created to introduce the Fitts' Law section.
 The user is the pilot of a plane, and is tasked with completing a series of actions.
