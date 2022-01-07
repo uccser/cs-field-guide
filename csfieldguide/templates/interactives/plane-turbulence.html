@@ -5,8 +5,6 @@
 
 {% block html %}
 <div class="container">
-  <h3 class="text-center mb-2">{% trans "Plane Turbulence" %}</h3>
-
   <div id="main">
     <div id="instructions-div">
       <h2>Instructions:</h2>
@@ -14,11 +12,18 @@
     </div>
 
     <div id="menu" class="align-items-center justify-content-center">
-      <div class="text-center">
+      <div id="menu-instructions">
+        <h4>Co-pilot Simulator</h4>
         <p>
-          Some instructions here.
+          You are the co-pilot of a small flight a scientists monitoring weather.
+          You are about to encounter some turbulence.
+          The pilot will handle flying the plane, but you will need to complete a sequence of instructions in order to assist the pilot and look after your passengers.
+
+          Click start when you are ready to begin.
         </p>
-        <button id="play-button" class="btn btn-primary">Play</button>
+        <div class="text-center">
+          <button id="play-button" class="btn btn-primary">Start</button>
+        </div>
       </div>
     </div>
 
