@@ -168,7 +168,7 @@ We aim to abide by the following style guides:
   This style is enforced by the `flake8`_ style checker.
 - **HTML** - We follow the `open source HTML style guide`_ by @mdo.
 - **CSS** - We follow the `open source CSS style guide`_ by @mdo.
-- **JavaScript** - We follow the `Google JavaScript style guide`_.
+- **JavaScript** - We follow the `Google JavaScript style guide`_ with 4 space indentation.
 
 
 .. _licence-files:
