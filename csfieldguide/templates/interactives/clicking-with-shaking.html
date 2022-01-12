@@ -6,9 +6,13 @@
 {% block html %}
 <div class="container">
   <h3 class="text-center mb-2">{% trans "Clicking With Shaking" %}</h3>
+
+  <div class="alert alert-danger text-center">
+    {% trans "WARNING: DO NOT PRESS PLAY IF YOU GET MOTION SICKNESS!" %}
+  </div>
+
   <div>
     <p>
-      {% trans "WARNING: DO NOT PRESS PLAY IF YOU GET MOTION SICKNESS!" %}
       {% trans "Before proceeding, note that this interactive has sound." %}
       {% trans "If you do not want sound, click the Mute button in the top-right of the interactive below." %}
     </p>
@@ -85,6 +89,9 @@
       </thead>
       <tbody id="results-table-body"></tbody>
     </table>
+    <button id="download-table-csv" class="btn btn-primary" hidden>
+        {% trans "Download table as CSV" %}
+    </button>
   </div>
 </div>
 {% endblock html %}
