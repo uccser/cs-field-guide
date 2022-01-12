@@ -79,6 +79,12 @@ let set = 0;
 let playAgainDiv = null;
 
 /**
+ * The div element that allows the user to download the table.
+ * @type {null}
+ */
+let downloadCSVDiv = null;
+
+/**
  * The Datatable for displaying the results.
  * @type {null}
  */
@@ -93,6 +99,7 @@ $(document).ready(function() {
   numCols = $('.col').length;
   cols = $(".col").map(function() { return this; }).get();
   playAgainDiv = document.getElementById("play-again-div");
+  downloadCSVDiv = document.getElementById("download-table-csv");
   table = $('#results-table').DataTable( {
     "paging":   false,
     "info":     false,
@@ -100,17 +107,17 @@ $(document).ready(function() {
     "oLanguage": {
       "sEmptyTable": "Complete the experiment to show statistics"
     },
-    "dom": 'Bfrtip',
+    "dom": 'frti',
     "buttons": [
-      'csv', 'excel'
+      'csv'
     ]
   });
 
   for (let col of cols) {
     $(col).click(clickHandler);
   }
-
-  $('#play-again').click(reset);
+  $(playAgainDiv).click(reset);
+  $(downloadCSVDiv).click(downloadCSV);
   reset();
 });
 
@@ -124,6 +131,7 @@ $(document).ready(function() {
  */
 function reset() {
   playAgainDiv.hidden = true;
+  downloadCSVDiv.hidden = true;
   table.clear().draw();
   results = [];
   set = 0;
@@ -237,6 +245,7 @@ function getRandomItemFromList(list) {
  */
 function showResults() {
   playAgainDiv.hidden = false;
+  downloadCSVDiv.hidden = false;
 
   for (let i = 0; i < results.length; i++) {
     let setList = results[i];
@@ -257,4 +266,12 @@ function showResults() {
       averageTime
     ]).draw( false );
   }
+}
+
+
+/**
+ * Downloads the table data as a CSV file.
+ */
+function downloadCSV() {
+    table.button(0).trigger();
 }
