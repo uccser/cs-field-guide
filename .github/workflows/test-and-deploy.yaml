@@ -40,7 +40,7 @@ jobs:
       - name: Migrate database
         run: docker-compose -f docker-compose.local.yml run --rm django python ./manage.py migrate
       - name: Load content
-        run: docker-compose -f docker-compose.local.yml run --rm django python ./manage.py updatedata
+        run: docker-compose -f docker-compose.local.yml run --rm django python ./manage.py update_data
       - name: Make interactive thumbnails
         run: docker-compose -f docker-compose.local.yml run --rm --user="root" puppeteer node /make-interactive-thumbnails.js
       - name: Collect static files

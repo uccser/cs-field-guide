@@ -43,7 +43,7 @@ Where ``[COMMAND]`` is a word from the list below:
 - :ref:`test_suite`
 - :ref:`update`
 - :ref:`update_static`
-- :ref:`updatedata`
+- :ref:`update_data`
 - :ref:`wipe`
 
 All users of the project (content and technical developers) should become familiar with the following commands:
@@ -328,7 +328,7 @@ The code coverage report can be displayed by running ``./csfg test_coverage``.
 ``update``
 ==============================================================================
 
-Running ``./csfg update`` runs the Django ``makemigratations`` and ``migrate`` commands for updating the database schema, and then runs the custom ``updatedata`` command to load the chapters content into the database.
+Running ``./csfg update`` runs the Django ``makemigratations`` and ``migrate`` commands for updating the database schema, and then runs the custom ``update_data`` command to load the chapters content into the database.
 It also runs the ``static`` command to generate static files and the ``make_interactive_thumbnails`` command which generates the thumbnails for the interactive links.
 
 If changes are made to the chapters content when the system is running, this command needs to be run to view the new changes on the website.
@@ -344,12 +344,12 @@ Running ``./csfg update_static`` updates and collects static files by running th
 
 -----------------------------------------------------------------------------
 
-.. _updatedata:
+.. _update_data:
 
-``updatedata``
+``update_data``
 ==============================================================================
 
-Running ``./csfg updatedata`` runs the custom ``updatedata`` command to load the chapters content into the database.
+Running ``./csfg update_data`` runs the custom ``update_data`` command to load the chapters content into the database.
 
 -----------------------------------------------------------------------------
 

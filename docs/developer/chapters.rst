@@ -16,4 +16,4 @@ Instead of creating and updating model objects through the website (for example:
 The content for the chapters application is stored within the ``contents/`` directory, as is run for each deployment of the system.
 Storing the content within the Git repository gives us greater control over reviewing and accepting proposed changes to content.
 
-The management command for updating the applications data is ``loadchapters`` (which is automatically called when running ``updatedata``), and can be found at ``management/commands/loadchapters.py``.
+The management command for updating the applications data is ``loadchapters`` (which is automatically called when running ``update_data``), and can be found at ``management/commands/loadchapters.py``.
