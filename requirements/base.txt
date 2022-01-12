@@ -24,7 +24,7 @@ elasticsearch==5.5.3
 django-widget-tweaks==1.4.8
 
 # XML Parsing
-lxml==4.6.3
+lxml==4.6.5
 cssselect==1.1.0
 
 # YAML Loading
