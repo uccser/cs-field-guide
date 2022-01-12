@@ -27,14 +27,14 @@
 - Why do we care about Fitts' Law?
   - Helps UI designers (e.g. make commonly used buttons bigger, reduce the distance between buttons that are often used together)
   - Use the Fitts' Law Experiment Interactive below.
-  - Another Fitts' Law experiment at http://simonwallner.at/ext/fitts/. 
+  - Another Fitts' Law experiment at http://simonwallner.at/ext/fitts/.
 
 
 {image file-path="img/chapters/fitts-distance-and-width.png" alt="A diagram explaining what D and W are."}
 
 {image file-path="img/chapters/fitts-velocity-profile.png" alt="A diagram showing the different stages of rapid aimed movement."}
 
-{interactive slug="fitts" type="whole-page" text="true"}
+{interactive slug="fitts-law" type="whole-page" text="true"}
 
 Fitts\' Law Experiment
 
