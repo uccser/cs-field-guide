@@ -197,6 +197,7 @@ TEMPLATES = [
             ],
             "libraries": {
                 "get_item": "config.templatetags.get_item",
+                "read_static_file": "config.templatetags.read_static_file",
                 "render_html_field": "config.templatetags.render_html_field",
                 "render_interactive_in_page": "config.templatetags.render_interactive_in_page",
                 "render_interactive_link": "config.templatetags.render_interactive_link",

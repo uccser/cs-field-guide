@@ -221,12 +221,6 @@ let stage3Cloud3;
 let ice;
 
 /**
- * The object element containing the svg.
- */
-let object;
-
-
-/**
  * Prepares the game while it is obstructed by the main menu.
  *
  * Assigns the global variable elements not contained within the SVG (e.g. the menu div). Calls setupSVGElements to
@@ -234,11 +228,9 @@ let object;
  */
 $(document).ready(function () {
   instructions = document.getElementById("instructions-p");
-  object = document.getElementById("airplane-object");
-  svg = object.contentDocument.getElementById("airplane-svg");
+  svg = document.getElementById("svg-wrapper").firstElementChild;
   overlay = document.getElementById("overlay");
   menu = document.getElementById("menu");
-  overlay.style.height = object.offsetHeight + "px";
 
   // Must be called before createStages, as createStages uses variables assigned by setupSVGElements.
   setupSVGElements();
@@ -254,8 +246,10 @@ $(document).ready(function () {
  * instruction where isSatisfied is presumed to be true.
  */
 function startGame() {
-  menu.hidden = true;
-  handleSatisfied();
+    $(menu).animate({ opacity: "0" }, 800, function () {
+        menu.hidden = true;
+    })
+    handleSatisfied();
 }
 
 
@@ -300,7 +294,7 @@ function createStages() {
           isSatisfied: function() {
             return isGlowing(stbtButton);
           },
-          description: "Turn on the seatbelt sign.",
+          description: "Turn on the seatbelt sign, labelled 'STBT'.",
         },
       ],
       [
@@ -309,7 +303,7 @@ function createStages() {
           isSatisfied: function() {
             return !isGlowing(autoPilotOnButton);
           },
-          description: "Disable the autopilot.",
+          description: "Turn off the autopilot.",
           resultFunction: function() {
             toggleGlow(autoPilotNavButton);
             toggleGlow(autoPilotFd2Button);
@@ -325,7 +319,7 @@ function createStages() {
           isSatisfied: function() {
             return isGlowing(vhf1Button);
           },
-          description: "Change to VHF1.",
+          description: "Change the communications to 'VHF1'.",
           resultFunction: function() {
             toggleGlow(vhf2Button);
           },
@@ -337,7 +331,7 @@ function createStages() {
           isSatisfied: function() {
             return commsValue1.textContent === this.stbyCrsInit && commsValue2.textContent === this.activeInit;
           },
-          description: "Transfer standby and active frequencies.",
+          description: "Transfer standby and active communication frequencies.",
         },
       ],
     ],
@@ -351,7 +345,7 @@ function createStages() {
           },
           description: "",
           resultFunction: async function() {
-            await timeout(3000);
+            await timeout(2000);
             toggleGlow(eng2WarningLight);
             await timeout(1000);
             toggleGlow(eng1WarningLight);
@@ -363,7 +357,7 @@ function createStages() {
           isSatisfied: function() {
             return isGlowing(deIceButton);
           },
-          description: "The engines are icing! Press de-ice.",
+          description: "The engines are icing up! Turn on 'DE-ICE'.",
           resultFunction: function() {
             setTimeout(function() {
               toggleGlow(eng1WarningLight);
@@ -379,7 +373,7 @@ function createStages() {
           isSatisfied: function() {
             return !isGlowing(ventButton);
           },
-          description: "Turn off the vents.",
+          description: "Turn off the vents, with the 'VNT' button.",
         }
       ]
     ],
@@ -413,7 +407,7 @@ function createStages() {
           description: "The flight attendant says a passenger is having a medical emergency. We should ask for " +
             "priority landing. Set the transponder to 7700.",
           resultFunction: function() {
-            svg.style.setProperty('--severity', "0");
+            svg.style.setProperty('--severity', "3");
           },
         },
       ]
@@ -511,34 +505,34 @@ function updateInstructions() {
  * Also turns off buttons that should be off at the start, and initialises the weather.
  */
 function setupSVGElements() {
-  deIceButton = svg.getElementById("button-de-ice-container");
-  stbtButton = svg.getElementById("button-stbt-container");
-  vhf1Button = svg.getElementById("button-vhf1-container");
-  vhf2Button = svg.getElementById("button-vhf2-container");
-  attButton = svg.getElementById("button-att-container");
-  eng1WarningLight = svg.getElementById("light-warn-eng-1-ice");
-  eng2WarningLight = svg.getElementById("light-warn-eng-2-ice");
-  commsValue1 = svg.getElementById("comms-value-1");
-  commsValue2 = svg.getElementById("comms-value-2");
-  autoPilotOnButton = svg.getElementById("button-autopilot-on-container");
-  autoPilotNavButton = svg.getElementById("button-autopilot-nav-container");
-  autoPilotFd2Button = svg.getElementById("button-autopilot-fd2-container");
-  commsSwitchButton = svg.getElementById("button-comms-switch");
-  ventButton = svg.getElementById("button-vnt-container");
+  deIceButton = svg.querySelector("#button-de-ice-container");
+  stbtButton = svg.querySelector("#button-stbt-container");
+  vhf1Button = svg.querySelector("#button-vhf1-container");
+  vhf2Button = svg.querySelector("#button-vhf2-container");
+  attButton = svg.querySelector("#button-att-container");
+  eng1WarningLight = svg.querySelector("#light-warn-eng-1-ice");
+  eng2WarningLight = svg.querySelector("#light-warn-eng-2-ice");
+  commsValue1 = svg.querySelector("#comms-value-1");
+  commsValue2 = svg.querySelector("#comms-value-2");
+  autoPilotOnButton = svg.querySelector("#button-autopilot-on-container");
+  autoPilotNavButton = svg.querySelector("#button-autopilot-nav-container");
+  autoPilotFd2Button = svg.querySelector("#button-autopilot-fd2-container");
+  commsSwitchButton = svg.querySelector("#button-comms-switch");
+  ventButton = svg.querySelector("#button-vnt-container");
 
-  stage2Cloud1 = svg.getElementById("stage-2-cloud-1");
-  stage2Cloud2 = svg.getElementById("stage-2-cloud-2");
-  stage2Cloud3 = svg.getElementById("stage-2-cloud-3");
-  stage3Cloud1 = svg.getElementById("stage-3-cloud-1");
-  stage3Cloud2 = svg.getElementById("stage-3-cloud-2");
-  stage3Cloud3 = svg.getElementById("stage-3-cloud-3");
-  ice = svg.getElementById("ice");
+  stage2Cloud1 = svg.querySelector("#stage-2-cloud-1");
+  stage2Cloud2 = svg.querySelector("#stage-2-cloud-2");
+  stage2Cloud3 = svg.querySelector("#stage-2-cloud-3");
+  stage3Cloud1 = svg.querySelector("#stage-3-cloud-1");
+  stage3Cloud2 = svg.querySelector("#stage-3-cloud-2");
+  stage3Cloud3 = svg.querySelector("#stage-3-cloud-3");
+  ice = svg.querySelector("#ice");
 
   let allButtons = svg.querySelectorAll('[id$="-container"]');
   for (let button of allButtons) {
     button.onclick = flash;
   }
-  svg.getElementById("dials").onclick = flash;
+  svg.querySelector("#dials").onclick = flash;
 
   // Replaces the onclick for elements that should not flash for all clicks.
   for (let button of [deIceButton, stbtButton, vhf1Button, vhf2Button, attButton, autoPilotOnButton,
@@ -586,15 +580,15 @@ function setUpWeather() {
  * these.
  */
 function setUpTransponder() {
-  transponderNumber = svg.getElementById("transponder-number");
-  transponderValuePos1Add = svg.getElementById("transponder-value-pos-1-add");
-  transponderValuePos2Add = svg.getElementById("transponder-value-pos-2-add");
-  transponderValuePos3Add = svg.getElementById("transponder-value-pos-3-add");
-  transponderValuePos4Add = svg.getElementById("transponder-value-pos-4-add");
-  transponderValuePos1Subtract = svg.getElementById("transponder-value-pos-1-subtract");
-  transponderValuePos2Subtract = svg.getElementById("transponder-value-pos-2-subtract");
-  transponderValuePos3Subtract = svg.getElementById("transponder-value-pos-3-subtract");
-  transponderValuePos4Subtract = svg.getElementById("transponder-value-pos-4-subtract");
+  transponderNumber = svg.querySelector("#transponder-number");
+  transponderValuePos1Add = svg.querySelector("#transponder-value-pos-1-add");
+  transponderValuePos2Add = svg.querySelector("#transponder-value-pos-2-add");
+  transponderValuePos3Add = svg.querySelector("#transponder-value-pos-3-add");
+  transponderValuePos4Add = svg.querySelector("#transponder-value-pos-4-add");
+  transponderValuePos1Subtract = svg.querySelector("#transponder-value-pos-1-subtract");
+  transponderValuePos2Subtract = svg.querySelector("#transponder-value-pos-2-subtract");
+  transponderValuePos3Subtract = svg.querySelector("#transponder-value-pos-3-subtract");
+  transponderValuePos4Subtract = svg.querySelector("#transponder-value-pos-4-subtract");
 
   transponderValuePos1Add.onclick = function() {transponderUpdate(0, true, this);}
   transponderValuePos2Add.onclick = function() {transponderUpdate(1, true, this);}
@@ -670,7 +664,13 @@ function getACPPendingID(container) {
  * @returns {boolean} True if it is relevant, false otherwise.
  */
 function elementIsRelevant(element) {
-  let isRelevant = currentInstruction().relevantWidgets.includes(element);
+    let isRelevant;
+  let instruction = currentInstruction();
+  if (typeof instruction !== 'undefined' && instruction.relevantWidgets.length > 0) {
+    isRelevant = instruction.relevantWidgets.includes(element);
+  } else {
+    isRelevant = false;
+  }
   if (!isRelevant) {
     flash();
   }
@@ -731,15 +731,9 @@ async function handleSatisfied() {
  */
 function gameOver() {
   $('#game-over-modal').modal({backdrop: 'static', keyboard: false});
-
-  document.getElementsByClassName("modal-backdrop")[0].style.height = object.offsetHeight + "px";
-
-  //appending modal background inside the main div
-  $('.modal-backdrop').appendTo('#main');
-
-  //remove the padding right and modal-open class from the body tag which bootstrap adds when a modal is shown
-  $('body').removeClass("modal-open").css("padding-right","");
-  document.getElementById("game-over-button").onclick = function() { location.reload() };
+  document.getElementById("game-over-button").onclick = function() {
+    location.reload()
+  };
 }
 
 
