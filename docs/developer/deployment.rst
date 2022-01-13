@@ -104,12 +104,12 @@ From the root directory, run the following command:
 **Updating database**
 
 To update the development database, we will setup a SQL proxy to the server, and then locally run the Django project that will connect to the server.
-We can then perform the ``migrate`` and ``updatedata`` commands as required.
+We can then perform the ``migrate`` and ``update_data`` commands as required.
 
 Using the `guide for Django on Google App Engine Flexible Environment`_, download and setup the SQL proxy.
 You will need to choose a port that the SQL proxy and Django will operate on, using ``5432`` should work for most developers.
 Alter the Django configuration to connect using the proxy port, and run the system.
-You should be able to then perform the ``migrate`` and ``updatedata`` commands.
+You should be able to then perform the ``migrate`` and ``update_data`` commands.
 
 .. _gcloud: https://cloud.google.com/sdk/gcloud/
 .. _guide for Django on Google App Engine Flexible Environment: https://cloud.google.com/python/django/flexible-environment

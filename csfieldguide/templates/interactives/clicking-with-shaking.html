@@ -6,9 +6,13 @@
 {% block html %}
 <div class="container">
   <h3 class="text-center mb-2">{% trans "Clicking With Shaking" %}</h3>
+
+  <div class="alert alert-danger text-center">
+    {% trans "WARNING: DO NOT PRESS PLAY IF YOU GET MOTION SICKNESS!" %}
+  </div>
+
   <div>
     <p>
-      {% trans "WARNING: DO NOT PRESS PLAY IF YOU GET MOTION SICKNESS!" %}
       {% trans "Before proceeding, note that this interactive has sound." %}
       {% trans "If you do not want sound, click the Mute button in the top-right of the interactive below." %}
     </p>
@@ -85,6 +89,9 @@
       </thead>
       <tbody id="results-table-body"></tbody>
     </table>
+    <button id="download-table-csv" class="btn btn-primary" hidden>
+        {% trans "Download table as CSV" %}
+    </button>
   </div>
 </div>
 {% endblock html %}
@@ -92,7 +99,6 @@
 {% block css %}
 <link rel="stylesheet" href="{% static 'interactives/clicking-with-shaking/css/clicking-with-shaking.css' %}">
 <link href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" rel="stylesheet">
-<link href="https://cdn.datatables.net/buttons/2.0.1/css/buttons.dataTables.min.css" rel="stylesheet">
 {% endblock css %}
 
 {% block js %}
@@ -107,6 +113,5 @@
 </script>
 <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.0.1/js/dataTables.buttons.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.html5.min.js"></script>
 {% endblock js %}

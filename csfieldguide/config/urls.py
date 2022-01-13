@@ -9,6 +9,7 @@ from django.conf.urls.i18n import i18n_patterns
 from django.http.response import HttpResponse
 from django.urls import include, path
 
+from . import views
 
 urlpatterns = i18n_patterns(
     path("", include("general.urls", namespace="general")),
@@ -21,6 +22,7 @@ urlpatterns = i18n_patterns(
 urlpatterns += [
     path("en/search/", include("search.urls", namespace="search")),
     path('healthcheck/', HttpResponse),
+    path('status/', view=views.get_release_and_commit, name="get-release-and-commit")
 ]
 
 if settings.DEBUG:  # pragma: no cover

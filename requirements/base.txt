@@ -24,7 +24,7 @@ elasticsearch==5.5.3
 django-widget-tweaks==1.4.8
 
 # XML Parsing
-lxml==4.6.3
+lxml==4.6.5
 cssselect==1.1.0
 
 # YAML Loading
@@ -36,3 +36,6 @@ uniseg==0.7.1.post2
 python-bidi==0.4.2
 django-bidi-utils==1.0
 django-statici18n==2.0.1
+
+# CORS
+django-cors-headers==3.10.1

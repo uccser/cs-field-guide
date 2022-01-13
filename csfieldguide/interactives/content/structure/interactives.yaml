@@ -176,7 +176,7 @@ firewall-sorting:
   is_interactive: true
 fitts-law:
   languages:
-    en: interactives/fitts.html
+    en: interactives/fitts-law.html
   is_interactive: true
 flowcharts-interpreter-compiler:
   languages:

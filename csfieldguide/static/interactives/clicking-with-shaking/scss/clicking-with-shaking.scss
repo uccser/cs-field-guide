@@ -1,3 +1,7 @@
+#game-view {
+  user-select: none;
+}
+
 %shaking-button {
   font-size: 22px;
   line-height: normal;
@@ -39,4 +43,8 @@ $main-area-height: 450px;
 
   /* Do this instead of Bootstrap d-flex because d-flex uses !important, which means JS can't use hidden */
   display: flex;
+}
+
+#download-table-csv {
+    margin-top: 1rem;
 }

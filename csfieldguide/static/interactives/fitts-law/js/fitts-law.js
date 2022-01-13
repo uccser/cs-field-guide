@@ -79,6 +79,12 @@ let set = 0;
 let playAgainDiv = null;
 
 /**
+ * The div element that allows the user to download the table.
+ * @type {null}
+ */
+let downloadCSVDiv = null;
+
+/**
  * The Datatable for displaying the results.
  * @type {null}
  */
@@ -90,28 +96,29 @@ let table = null;
  * columns and play again button. Calls reset for the first time.
  */
 $(document).ready(function() {
-  numCols = $('.col').length;
-  cols = $(".col").map(function() { return this; }).get();
-  playAgainDiv = document.getElementById("play-again-div");
-  table = $('#results-table').DataTable( {
-    "paging":   false,
-    "info":     false,
-    "searching": false,
-    "oLanguage": {
-      "sEmptyTable": "Complete the experiment to show statistics"
-    },
-    "dom": 'Bfrtip',
-    "buttons": [
-      'csv', 'excel'
-    ]
-  });
+    numCols = $('.col').length;
+    cols = $(".col").map(function() { return this; }).get();
+    playAgainDiv = document.getElementById("play-again-div");
+    downloadCSVDiv = document.getElementById("download-table-csv");
+    table = $('#results-table').DataTable( {
+        "paging":   false,
+        "info":     false,
+        "searching": false,
+        "oLanguage": {
+            "sEmptyTable": "Complete the experiment to show statistics"
+        },
+        "dom": 'frti',
+        "buttons": [
+            'csv'
+        ]
+    });
 
-  for (let col of cols) {
-    $(col).click(clickHandler);
-  }
-
-  $('#play-again').click(reset);
-  reset();
+    for (let col of cols) {
+        $(col).click(clickHandler);
+    }
+    $('#play-again').click(reset);
+    $(downloadCSVDiv).click(downloadCSV);
+    reset();
 });
 
 
@@ -123,23 +130,24 @@ $(document).ready(function() {
  * starts the timer.
  */
 function reset() {
-  playAgainDiv.hidden = true;
-  table.clear().draw();
-  results = [];
-  set = 0;
+    playAgainDiv.hidden = true;
+    downloadCSVDiv.hidden = true;
+    table.clear().draw();
+    results = [];
+    set = 0;
 
-  for (let col = 0; col < Math.floor(numCols / 2); col++) {
-    for (let width = 1; width <= 3; width++) {
-      colsToWidths.push({ "col": col, "width": width })
+    for (let col = 0; col < Math.floor(numCols / 2); col++) {
+        for (let width = 1; width <= 3; width++) {
+            colsToWidths.push({ "col": col, "width": width })
+        }
     }
-  }
-  for (let i = 0; i < colsToWidths.length; i++) {
-    results.push([]);
-  }
-  currentColToWidth = getRandomItemFromList(colsToWidths);
-  colsToWidths.splice(colsToWidths.indexOf(currentColToWidth), 1);
-  setColumns(currentColToWidth["col"], currentColToWidth["width"]);
-  startTime = new Date().getTime();
+    for (let i = 0; i < colsToWidths.length; i++) {
+        results.push([]);
+    }
+    currentColToWidth = getRandomItemFromList(colsToWidths);
+    colsToWidths.splice(colsToWidths.indexOf(currentColToWidth), 1);
+    setColumns(currentColToWidth["col"], currentColToWidth["width"]);
+    startTime = new Date().getTime();
 }
 
 
@@ -158,31 +166,31 @@ function reset() {
  * @param event The click event. Used to obtain the coordinates of the click.
  */
 function clickHandler(event) {
-  if (this.classList.contains("bg-danger")) {
-    let end = new Date().getTime();
-    let time = end - startTime;
-    let width = this.offsetWidth;
-    let distance = Math.abs((this.offsetLeft + this.offsetWidth / 2) - lastMousePosition);
-    results[set].push({ "distance": distance, "time": time, "width": width });
+    if (this.classList.contains("bg-danger")) {
+        let end = new Date().getTime();
+        let time = end - startTime;
+        let width = this.offsetWidth;
+        let distance = Math.abs((this.offsetLeft + this.offsetWidth / 2) - lastMousePosition);
+        results[set].push({ "distance": distance, "time": time, "width": width });
 
-    lastMousePosition = event.pageX;
+        lastMousePosition = event.pageX;
 
-    resetCols();
-    if (count === MAX_COUNT) {
-      currentColToWidth = getRandomItemFromList(colsToWidths);
+        resetCols();
+        if (count === MAX_COUNT) {
+            currentColToWidth = getRandomItemFromList(colsToWidths);
 
-      count = 0;
-      set++;
-      if (currentColToWidth == null) {
-        showResults();
-        return;
-      }
-      colsToWidths.splice(colsToWidths.indexOf(currentColToWidth), 1);
+            count = 0;
+            set++;
+            if (currentColToWidth == null) {
+                showResults();
+                return;
+            }
+            colsToWidths.splice(colsToWidths.indexOf(currentColToWidth), 1);
+        }
+        setColumns(currentColToWidth["col"], currentColToWidth["width"]);
+        count++;
+        startTime = new Date().getTime();
     }
-    setColumns(currentColToWidth["col"], currentColToWidth["width"]);
-    count++;
-    startTime = new Date().getTime();
-  }
 }
 
 
@@ -193,15 +201,15 @@ function clickHandler(event) {
  * @param width The width for the target. This is a BootStrap col width (i.e. not pixel widths).
  */
 function setColumns(index, width) {
-  let otherIndex = numCols - 1 - index;
-  if (swap) {
-    [index, otherIndex] = [otherIndex, index];
-  }
-  swap = !swap;
+    let otherIndex = numCols - 1 - index;
+    if (swap) {
+        [index, otherIndex] = [otherIndex, index];
+    }
+    swap = !swap;
 
-  cols[index].classList.replace("col", "col-" + width);
-  cols[otherIndex].classList.replace("col", "col-" + width);
-  cols[index].classList.add("bg-danger");
+    cols[index].classList.replace("col", "col-" + width);
+    cols[otherIndex].classList.replace("col", "col-" + width);
+    cols[index].classList.add("bg-danger");
 }
 
 
@@ -209,9 +217,9 @@ function setColumns(index, width) {
  * Resets all the col divs by ensuring the cols only have the col class.
  */
 function resetCols() {
-  for (let col of cols) {
-    col.className = "col";
-  }
+    for (let col of cols) {
+        col.className = "col";
+    }
 }
 
 
@@ -221,7 +229,7 @@ function resetCols() {
  * @return {*} The element from the list.
  */
 function getRandomItemFromList(list) {
-  return list[Math.floor(Math.random()*list.length)];
+    return list[Math.floor(Math.random()*list.length)];
 }
 
 
@@ -236,25 +244,34 @@ function getRandomItemFromList(list) {
  * changed, meaning this would have a significant different in the distance from the rest of the entries in the set.
  */
 function showResults() {
-  playAgainDiv.hidden = false;
+    playAgainDiv.hidden = false;
+    downloadCSVDiv.hidden = false;
 
-  for (let i = 0; i < results.length; i++) {
-    let setList = results[i];
-    setList.shift();
-    let averageDistance = Math.round(setList.reduce((partial_sum, result) => partial_sum + result["distance"], 0)
-      / setList.length * 100)  / 100;
-    let averageTime = Math.round(setList.reduce((partial_sum, result) => partial_sum + result["time"], 0)
-      / setList.length * 100) / 100;
-    let width = setList[0]["width"];
-    let set = i + 1;
-    let indexOfDifficulty = Math.round(Math.log2(averageDistance / width + 1) * 100) / 100;
+    for (let i = 0; i < results.length; i++) {
+        let setList = results[i];
+        setList.shift();
+        let averageDistance = Math.round(setList.reduce((partial_sum, result) => partial_sum + result["distance"], 0)
+        / setList.length * 100)  / 100;
+        let averageTime = Math.round(setList.reduce((partial_sum, result) => partial_sum + result["time"], 0)
+        / setList.length * 100) / 100;
+        let width = setList[0]["width"];
+        let set = i + 1;
+        let indexOfDifficulty = Math.round(Math.log2(averageDistance / width + 1) * 100) / 100;
 
-    table.row.add([
-      set,
-      averageDistance,
-      width,
-      indexOfDifficulty,
-      averageTime
-    ]).draw( false );
-  }
+        table.row.add([
+            set,
+            averageDistance,
+            width,
+            indexOfDifficulty,
+            averageTime
+        ]).draw( false );
+    }
+}
+
+
+/**
+ * Downloads the table data as a CSV file.
+ */
+function downloadCSV() {
+    table.button(0).trigger();
 }

@@ -1,0 +1,6 @@
+#game-view [class*="col"].bg-danger {
+    cursor: pointer;
+}
+#download-table-csv {
+    margin-top: 1rem;
+}

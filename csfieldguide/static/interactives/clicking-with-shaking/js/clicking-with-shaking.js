@@ -56,6 +56,12 @@ let muteButton = null;
 let skipButton = null;
 
 /**
+ * The div element that allows the user to download the table.
+ * @type {null}
+ */
+let downloadCSVDiv = null;
+
+/**
  * The datetime when the current set started to calculate how long it took the user to complete the set.
  * @type {null}
  */
@@ -180,12 +186,14 @@ $(document).ready(function() {
   setElement = document.getElementById("set");
   clickArea = document.getElementById("game-view");
   progressBar = document.getElementById("game-progress");
+  downloadCSVDiv = document.getElementById("download-table-csv");
 
   target.classList.add(buttonSizeClasses[set]);
   clickArea.addEventListener('mousedown', clickHandler, false);
   $(playButton).click(toggleState);
   $(muteButton).click(toggleMute);
   $(skipButton).click(gameOver);
+  $(downloadCSVDiv).click(downloadCSV);
   setUpAudio();
 
   table = $('#results-table').DataTable( {
@@ -195,9 +203,9 @@ $(document).ready(function() {
     "oLanguage": {
       "sEmptyTable": "Complete the experiment to show statistics"
     },
-    "dom": 'Bfrtip',
+    "dom": 'frti',
     "buttons": [
-      'csv', 'excel'
+      'csv'
     ]
   });
 });
@@ -307,6 +315,7 @@ function playSFX(audioBuffer) {
 function toggleState() {
   target.hidden = !target.hidden;
   playButton.hidden = !playButton.hidden;
+  downloadCSVDiv.hidden = true;
   if (!target.hidden) {
     skipButton.style.visibility = "visible";
 
@@ -446,6 +455,8 @@ function showResults() {
       i + 1, "-", "-", "-", "-", "-", "-"
     ]).draw(false);
   }
+
+  downloadCSVDiv.hidden = false;
 }
 
 
@@ -554,4 +565,12 @@ function returnToCentre(margin, duration) {
  */
 function getRandomBetween(min, max) {
   return Math.random() * (max - min) + min; //The maximum is exclusive and the minimum is inclusive
+}
+
+
+/**
+ * Downloads the table data as a CSV file.
+ */
+function downloadCSV() {
+    table.button(0).trigger();
 }
