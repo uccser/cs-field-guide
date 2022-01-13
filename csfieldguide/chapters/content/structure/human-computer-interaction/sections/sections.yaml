@@ -13,6 +13,9 @@ usability-heuristics:
 user-experience:
   section-number: 5
 
+#fitts-law:
+#  section-number: 6
+
 the-whole-story:
   section-number: 6
 

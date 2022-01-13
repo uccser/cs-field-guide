@@ -1,0 +1,50 @@
+#game-view {
+  user-select: none;
+}
+
+%shaking-button {
+  font-size: 22px;
+  line-height: normal;
+  border-radius: 8px;
+}
+
+$main-area-height: 450px;
+
+.btn-small, .btn-small-moving {
+  @extend %shaking-button;
+  width: 15%;
+  height: $main-area-height * 0.15;
+}
+
+.btn-medium {
+  @extend %shaking-button;
+  width: 25%;
+  height: $main-area-height * 0.25;
+}
+
+.btn-large {
+  @extend %shaking-button;
+  width: 40%;
+  height: $main-area-height * 0.4;
+}
+
+.stat strong {
+  margin: 0;
+  padding: 0;
+}
+
+#give-up {
+  visibility: hidden;
+}
+
+#game-view-main-area {
+  width: 100%;
+  height: $main-area-height;
+
+  /* Do this instead of Bootstrap d-flex because d-flex uses !important, which means JS can't use hidden */
+  display: flex;
+}
+
+#download-table-csv {
+    margin-top: 1rem;
+}

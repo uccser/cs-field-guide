@@ -1,0 +1,79 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+<div class="container">
+  <h3 class="text-center mb-2">{% trans "Fitts' Law Experiment" %}</h3>
+  <div>
+    <p>
+      {% trans "You will conduct your own Fitts' Law experiment." %}
+      {% trans "When you are ready, click the red column target." %}
+      {% trans "Once you have clicked it, the column will jump to the opposite side." %}
+      {% trans "The column position will repeatedly swap until the trial is complete." %}
+      {% trans "After completing a trial, the column width and the distance between the swapped column positions will change randomly." %}
+      {% trans "There are nine trials, and each trial requires eleven successful clicks. " %}
+      {% trans "However, the first click of each trial does not affect the results as the travel distance would be different from the rest of the trial." %}
+      {% trans "Try to click the targets as fast as possible." %}
+      {% trans "The exercise should take around 30 seconds to one minute (but do not be worried if you need longer!)." %}
+    </p>
+
+    <p>
+      {% trans "Once you have finished, a table will show your results." %}
+      {% trans "Try sorting the table by the Index of Difficulty (by clicking the  Index of Difficulty column header)." %}
+      {% trans "You should see that generally as the Index of Difficulty increases, so does the average click time." %}
+      {% trans "You can also export the results as an Excel or CSV file and plot the Index of Difficult and Average Time columns on a chart." %}
+      {% trans "A chart will let you visualise the linear relationship between these." %}
+    </p>
+  </div>
+
+  <div id="game-view" class="container vh-100 d-flex flex-column border mt-4" style="max-height: 500px">
+    <div class="row flex-grow-1">
+      <div class="col"></div>
+      <div class="col"></div>
+      <div class="col"></div>
+      <div class="col"></div>
+      <div class="col"></div>
+      <div class="col"></div>
+      <div class="col"></div>
+    </div>
+
+    <div id="play-again-div" class="h-100" hidden>
+      <div class="d-flex justify-content-center h-100">
+        <button id="play-again" class="btn btn-primary justify-content-center align-self-center">Play again?</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="results-view" class="mt-4 mb-4">
+    <table id="results-table" class="table table-striped table-hover table-responsive-sm">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col">Trial</th>
+        <th scope="col">Average Distance (pixels)</th>
+        <th scope="col">Width (pixels)</th>
+        <th scope="col">Index of Difficulty (bits)</th>
+        <th scope="col">Average Time (milliseconds)</th>
+      </tr>
+      </thead>
+      <tbody id="results-table-body"></tbody>
+    </table>
+    <button id="download-table-csv" class="btn btn-primary">
+        {% trans "Download table as CSV" %}
+    </button>
+  </div>
+</div>
+{% endblock html %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'interactives/fitts-law/css/fitts-law.css' %}">
+<link href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" rel="stylesheet">
+{% endblock css %}
+
+{% block js %}
+<script type="text/javascript" src="{% static 'interactives/fitts-law/js/fitts-law.js' %}"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.0.1/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.html5.min.js"></script>
+{% endblock js %}

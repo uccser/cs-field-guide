@@ -91,6 +91,10 @@ city-trip:
   languages:
     en: interactives/city-trip.html
   is_interactive: true
+clicking-with-shaking:
+  languages:
+    en: interactives/clicking-with-shaking.html
+  is_interactive: true
 close-window:
   languages:
     en: interactives/close-window.html
@@ -169,6 +173,10 @@ dot-combinations:
 firewall-sorting:
   languages:
     en: interactives/firewall-sorting.html
+  is_interactive: true
+fitts-law:
+  languages:
+    en: interactives/fitts-law.html
   is_interactive: true
 flowcharts-interpreter-compiler:
   languages:
