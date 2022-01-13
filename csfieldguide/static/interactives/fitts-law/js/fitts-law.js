@@ -116,7 +116,7 @@ $(document).ready(function() {
     for (let col of cols) {
         $(col).click(clickHandler);
     }
-    $(playAgainDiv).click(reset);
+    $('#play-again').click(reset);
     $(downloadCSVDiv).click(downloadCSV);
     reset();
 });
