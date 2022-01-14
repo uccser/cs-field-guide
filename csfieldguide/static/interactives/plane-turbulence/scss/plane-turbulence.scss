@@ -33,7 +33,7 @@ $instructions-padding: 0.5rem;
 
     #instructions {
         position: absolute;
-        top: 2rem;
+        top: 3rem;
         bottom: 0;
         left: $instructions-padding;
         right: $instructions-padding;
@@ -43,8 +43,6 @@ $instructions-padding: 0.5rem;
             margin-bottom: 2rem;
             &.completed {
                 text-decoration: line-through;
-            }
-            &:not(:first-child) {
                 color: #818181;
             }
         }

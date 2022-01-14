@@ -420,7 +420,7 @@ function createStages() {
                     },
                     description: "The flight attendant says a passenger is having a medical emergency.",
                     resultFunction: async function () {
-                        await timeout(1000);
+                        await timeout(3000);
                     },
                 },
                 {
@@ -447,11 +447,11 @@ function createStages() {
         shuffleArray(stages[i]);
     }
 
-    addWeatherInstruction(0, {}, 0.25);
+    addWeatherInstruction(0, {}, 0.5);
     addWeatherInstruction(1, {}, 1);
     addWeatherInstruction(2, {[stage2Cloud1.id]: 2, [stage2Cloud2.id]: 2, [stage2Cloud3.id]: 5}, 2);
     addWeatherInstruction(3, {[stage3Cloud1.id]: 2, [stage3Cloud2.id]: 2, [stage3Cloud3.id]: 5}, 3, true);
-    addWeatherInstruction(4, {}, 4);
+    addWeatherInstruction(4, {}, 3.5);
 }
 
 
