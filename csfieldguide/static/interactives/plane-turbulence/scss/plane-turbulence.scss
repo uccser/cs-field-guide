@@ -1,4 +1,4 @@
-#main {
+#plane-turblence-interactive {
     position: relative;
     padding: 0 !important;
     user-select: none;
@@ -13,12 +13,53 @@
     bottom: 0;
     opacity: 0;
     background-color: red;
+    z-index: 900;
 }
 
-#instructions-div {
-    width: 20%;
-    position: absolute;
-    right: 10px;
+$instructions-background-colour: #181818;
+$instructions-padding: 0.5rem;
+#instructions-container {
+    height: 100%;
+    background-color: $instructions-background-colour;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+
+    #instructions-header {
+        padding: $instructions-padding;
+        font-weight: bold;
+        font-size: 1.2rem;
+        text-align: center;
+    }
+
+    #instructions {
+        position: absolute;
+        top: 2rem;
+        bottom: 0;
+        left: $instructions-padding;
+        right: $instructions-padding;
+        overflow: hidden;
+
+        .instruction {
+            margin-bottom: 2rem;
+            &.completed {
+                text-decoration: line-through;
+            }
+            &:not(:first-child) {
+                color: #818181;
+            }
+        }
+    }
+
+    #instructions-fadeout {
+        position: absolute;
+        bottom: 0;
+        height: 8em;
+        background: linear-gradient(
+            rgba($instructions-background-colour, 0) 0%,
+            rgba($instructions-background-colour, 1) 100%
+        );
+        width: 100%;
+    }
 }
 
 #menu {
@@ -28,6 +69,7 @@
     position: absolute;
     top: 0;
     left: 0;
+    z-index: 1000;
 
     /* Do this instead of Bootstrap d-flex because d-flex uses !important, which means JS can't use hidden */
     display: flex;
