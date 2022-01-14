@@ -1,0 +1,144 @@
+#plane-turblence-interactive {
+    position: relative;
+    padding: 0 !important;
+    user-select: none;
+}
+
+#overlay {
+    position: absolute;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    background-color: red;
+    z-index: 900;
+}
+
+$instructions-background-colour: #181818;
+$instructions-padding: 0.5rem;
+#instructions-container {
+    height: 100%;
+    background-color: $instructions-background-colour;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+
+    #instructions-header {
+        padding: $instructions-padding;
+        font-weight: bold;
+        font-size: 1.2rem;
+        text-align: center;
+    }
+
+    #instructions {
+        position: absolute;
+        top: 3rem;
+        bottom: 0;
+        left: $instructions-padding;
+        right: $instructions-padding;
+        overflow: hidden;
+
+        .instruction {
+            margin-bottom: 2rem;
+            &.completed {
+                text-decoration: line-through;
+                color: #818181;
+            }
+        }
+    }
+
+    #instructions-fadeout {
+        position: absolute;
+        bottom: 0;
+        height: 8em;
+        background: linear-gradient(
+            rgba($instructions-background-colour, 0) 0%,
+            rgba($instructions-background-colour, 1) 100%
+        );
+        width: 100%;
+    }
+}
+
+#menu {
+    width: 100%;
+    height: 100%;
+    background-color: #a9c1c5;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+
+    /* Do this instead of Bootstrap d-flex because d-flex uses !important, which means JS can't use hidden */
+    display: flex;
+}
+
+.modal, .modal-backdrop {
+    position: absolute !important;
+    width: 100%;
+}
+
+#menu-instructions {
+  max-width: 50%;
+}
+
+#svg-wrapper {
+    :root {
+        --severity: 0;
+        /* Distant clouds shake less than the cockpit */
+        --clouds-multiplier: 0.25;
+    }
+
+    #cockpit {
+        animation: shake 1s;
+        animation-iteration-count: infinite;
+    }
+
+    #clouds {
+        animation: shake-clouds 1s;
+        animation-iteration-count: infinite;
+    }
+
+
+    @keyframes fade-in {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    @keyframes shake {
+        0% { transform: translate(calc(var(--severity) * 1px), calc(var(--severity) * 1px)) }
+        10% { transform: translate(calc(var(--severity) * -1px), calc(var(--severity) * -2px)) }
+        20% { transform: translate(calc(var(--severity) * -3px), calc(var(--severity) * 0px)) }
+        30% { transform: translate(calc(var(--severity) * 3px), calc(var(--severity) * 2px)) }
+        40% { transform: translate(calc(var(--severity) * 1px), calc(var(--severity) * -1px))}
+        50% { transform: translate(calc(var(--severity) * -1px), calc(var(--severity) * 2px))}
+        60% { transform: translate(calc(var(--severity) * -3px), calc(var(--severity) * 1px))}
+        70% { transform: translate(calc(var(--severity) * 3px), calc(var(--severity) * 1px))}
+        80% { transform: translate(calc(var(--severity) * -1px), calc(var(--severity) * -1px))}
+        90% { transform: translate(calc(var(--severity) * 1px), calc(var(--severity) * 2px))}
+        100% { transform: translate(calc(var(--severity) * 1px), calc(var(--severity) * -2px))}
+    }
+
+    @keyframes shake-clouds {
+        0% { transform: translate(calc(var(--severity) * var(--clouds-multiplier) * 1px), calc(var(--severity) * var(--clouds-multiplier) * 1px)) }
+        10% { transform: translate(calc(var(--severity) * var(--clouds-multiplier) * -1px), calc(var(--severity) * var(--clouds-multiplier) * -2px)) }
+        20% { transform: translate(calc(var(--severity) * var(--clouds-multiplier) * -3px), calc(var(--severity) * var(--clouds-multiplier) * 0px)) }
+        30% { transform: translate(calc(var(--severity) * var(--clouds-multiplier) * 3px), calc(var(--severity) * var(--clouds-multiplier) * 2px)) }
+        40% { transform: translate(calc(var(--severity) * var(--clouds-multiplier) * 1px), calc(var(--severity) * var(--clouds-multiplier) * -1px))}
+        50% { transform: translate(calc(var(--severity) * var(--clouds-multiplier) * -1px), calc(var(--severity) * var(--clouds-multiplier) * 2px))}
+        60% { transform: translate(calc(var(--severity) * var(--clouds-multiplier) * -3px), calc(var(--severity) * var(--clouds-multiplier) * 1px))}
+        70% { transform: translate(calc(var(--severity) * var(--clouds-multiplier) * 3px), calc(var(--severity) * var(--clouds-multiplier) * 1px))}
+        80% { transform: translate(calc(var(--severity) * var(--clouds-multiplier) * -1px), calc(var(--severity) * var(--clouds-multiplier) * -1px))}
+        90% { transform: translate(calc(var(--severity) * var(--clouds-multiplier) * 1px), calc(var(--severity) * var(--clouds-multiplier) * 2px))}
+        100% { transform: translate(calc(var(--severity) * var(--clouds-multiplier) * 1px), calc(var(--severity) * var(--clouds-multiplier) * -2px))}
+    }
+
+    text {
+        pointer-events: none;
+    }
+
+    #buttons > *,
+    #dials > * {
+        cursor: pointer;
+    }
+}

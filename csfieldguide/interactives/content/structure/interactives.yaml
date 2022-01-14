@@ -327,6 +327,10 @@ pixel-viewer:
   languages:
     en: interactives/pixel-viewer.html
   is_interactive: true
+plane-turbulence:
+  languages:
+    en: interactives/plane-turbulence.html
+  is_interactive: true
 python-interpreter:
   languages:
     en: interactives/python-interpreter.html
