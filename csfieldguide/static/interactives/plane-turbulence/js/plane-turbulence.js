@@ -488,8 +488,6 @@ function addWeatherInstruction(stageNum, cloudToTimes, turbulenceSeverity, isIci
                 let cloud = svg.getElementById(cloudId);
                 cloud.style.animation = `fade-in ${time}s forwards`;
             }
-
-            await timeout( Math.max(...Object.values(cloudToTimes)) * 1000);
         }
     }
 
@@ -756,7 +754,7 @@ async function handleSatisfied() {
         }
 
         instructionNum++;
-        await timeout(500);
+        await timeout(1000);
 
         if (instructionNum === stages[stageNum][setNum].length) {
             setNum++;
