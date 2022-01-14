@@ -386,7 +386,7 @@ Only, because it's called the "web," exploring is called "crawling" &ndash; like
 This section introduces free teaching software that makes it easy for students to create and experiment with FSAs.
 This software will also be useful for the next section on regular expressions, so it’s worth becoming familiar with.
 You can choose between using "Exorciser" or "JFLAP" (see later).
-The Exorciser system from [SwissEduc](http://www.swisseduc.ch/compscience/) is cleaner and simpler, but JFLAP includes some features that are useful for the sections on regular expressions and grammars.
+The Exorciser system from [SwissEduc](http://www.swisseduc.ch/informatik/) is cleaner and simpler, but JFLAP includes some features that are useful for the sections on regular expressions and grammars.
 (The Exorciser material on grammars is too advanced, and its features with regular expressions are a little more tedious to use for our purposes).
 Both of the systems have extensive features that aren't relevant to this chapter, so students will need to ignore much of what they see!
 
@@ -446,7 +446,7 @@ Get some practice doing this yourself! If you prefer, here are instructions for 
 This panel shows how to use some educational software called "Exorciser" (The next panel introduces an alternative called JFLAP which is a bit harder to use).
 Exorciser has facilities for doing advanced exercises in formal languages; but here we'll use just the simplest ones.
 
-Exorciser can be downloaded [here](http://www.swisseduc.ch/compscience/exorciser/index.html).
+Exorciser can be downloaded [here](https://www.swisseduc.ch/informatik/exorciser/exorciser_en/).
 
 When you run it, select "Constructing Finite Automata" (the first menu item); click the "Beginners" link when you want a new exercise.
 The challenge in each FSA exercise is the part after the | in the braces (i.e. curly brackets).
@@ -464,7 +464,6 @@ The notation "a|b" means that a transition will be taken on "a" or "b" (it's equ
 If your FSA doesn't solve their challenge, you'll get a hint in the form of a string that your FSA deals with incorrectly, so you can gradually fix it until it works.
 If you're stuck, click "Solve exercise".
 You can also track input as you type it: right-click to choose that option.
-See the [SwissEduc website](http://www.swisseduc.ch/compscience/) for more instructions.
 
 {image file-path="img/chapters/finite-state-automata-exorciser-error-screenshot.png" alt="The exorciser software from SwissEduc"}
 
@@ -704,17 +703,6 @@ Examples are:
   For example, a remote control for a car alarm might have two buttons, and what happens to the car depends on the order in which you press them and the current state of the car (whether it is alarmed or not).
   For devices that automatically turn on or off after a period of time, you may have to include an input such as "waited for 30 seconds".
   Other devices to consider are digital watches (with states like "showing time", "showing date", "showing stopwatch", "stopwatch is running"), the power and eject buttons on a CD player, channel selection on a TV remote (just the numbers), setting a clock, storing presets on a car radio, and burglar alarm control panels.
-
-{panel end}
-
-{panel type="activity"}
-
-# Kara the ladybug
-
-[SwissEduc](http://www.swisseduc.ch/compscience/) has a programming environment called [Kara](http://www.swisseduc.ch/compscience/karatojava/kara/) (requires Java to be installed), which is a programmable ladybug that (in its simplest version) walks around an imaginary world controlled by actions output by a finite state automaton.
-The ladybug has (simulated) detectors that sense its immediate surroundings; these serve as input to the FSA.
-
-{comment Currently there seems to be a bug in the simple Kara program, and it only loads to 88% (apparently it is to do with the version of Java). There is a version called "MultiKara" (in the same package) which has multiple ladybugs, so you can just use one ladybug and get a similar effect. http://swisseduc.ch/informatik/karatojava/download.html}
 
 {panel end}
 
