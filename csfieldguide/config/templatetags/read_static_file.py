@@ -1,7 +1,8 @@
 """Module for the custom read_file template tag."""
 
+import os.path
 from django import template
-from django.contrib.staticfiles import finders
+from django.conf import settings
 from django.utils.safestring import mark_safe
 
 register = template.Library()
@@ -21,10 +22,10 @@ def read_static_file(filepath):
     Returns:
         Contents of file.
     """
-    static_file = finders.find(filepath)
+    filepath = settings.STATIC_ROOT + filepath
 
-    if static_file:
-        with open(static_file) as file_obj:
+    if os.path.isfile(filepath):
+        with open(filepath) as file_obj:
             contents = mark_safe(file_obj.read())
     else:
         raise FileNotFoundError(f'No static file found: {filepath}')
