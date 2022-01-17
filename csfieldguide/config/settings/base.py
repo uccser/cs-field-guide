@@ -11,17 +11,22 @@ https://docs.djangoproject.com/en/dev/ref/settings/
 
 import environ
 import os.path
+import logging.config
 
 # Add custom languages not provided by Django
 import django.conf.locale
 from django.conf import global_settings
 from django.utils.translation import ugettext_lazy as _
+from django.utils.log import DEFAULT_LOGGING
 
 # cs-field-guide/csfieldguide/config/settings/base.py - 3 = csfieldguide/
 ROOT_DIR = environ.Path(__file__) - 3
 
 # Load operating system environment variables and then prepare to use them
 env = environ.Env()
+
+# Wipe default Django logging
+LOGGING_CONFIG = None
 
 # APP CONFIGURATION
 # ----------------------------------------------------------------------------
@@ -207,6 +212,45 @@ TEMPLATES = [
         },
     },
 ]
+
+
+# LOGGING
+# ------------------------------------------------------------------------------
+# Based off https://lincolnloop.com/blog/django-logging-right-way/
+
+logging.config.dictConfig({
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "console": {
+            # exact format is not important, this is the minimum information
+            "format": "%(asctime)s %(name)-12s %(levelname)-8s %(message)s",
+        },
+        "django.server": DEFAULT_LOGGING["formatters"]["django.server"],
+    },
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+            "formatter": "console",
+        },
+        "django.server": DEFAULT_LOGGING["handlers"]["django.server"],
+    },
+    "loggers": {
+        # Root logger
+        "": {
+            "level": "WARNING",
+            "handlers": ["console", ],
+        },
+        # Project specific logger
+        "cs-field-guide": {
+            "level": env("LOG_LEVEL", default="INFO"),
+            "handlers": ["console", ],
+            # Required to avoid double logging with root logger
+            "propagate": False,
+        },
+        "django.server": DEFAULT_LOGGING["loggers"]["django.server"],
+    },
+})
 
 # STATIC FILE CONFIGURATION
 # ------------------------------------------------------------------------------
