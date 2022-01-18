@@ -331,6 +331,7 @@ plane-turbulence:
   languages:
     en: interactives/plane-turbulence.html
   is_interactive: true
+  use_large_thumbnail: true
 python-interpreter:
   languages:
     en: interactives/python-interpreter.html
