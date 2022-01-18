@@ -240,7 +240,7 @@ logging.config.dictConfig({
             "propagate": False,
         },
         # Project specific logger
-        "cs-field-guide": {
+        "csfieldguide": {
             "level": env("LOG_LEVEL", default="INFO"),
             "handlers": ["console", ],
             # Required to avoid double logging with root logger
