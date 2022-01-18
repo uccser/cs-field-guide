@@ -25,9 +25,6 @@ ROOT_DIR = environ.Path(__file__) - 3
 # Load operating system environment variables and then prepare to use them
 env = environ.Env()
 
-# Wipe default Django logging
-LOGGING_CONFIG = None
-
 # APP CONFIGURATION
 # ----------------------------------------------------------------------------
 DJANGO_APPS = [
@@ -128,16 +125,16 @@ if env.bool("INCLUDE_INCONTEXT_L10N", False):
 
     EXTRA_LANG_INFO = {
         INCONTEXT_L10N_PSEUDOLANGUAGE: {
-            'bidi': False,
-            'code': INCONTEXT_L10N_PSEUDOLANGUAGE,
-            'name': "Translation mode",
-            'name_local': _("Translation mode"),
+            "bidi": False,
+            "code": INCONTEXT_L10N_PSEUDOLANGUAGE,
+            "name": "Translation mode",
+            "name_local": _("Translation mode"),
         },
         INCONTEXT_L10N_PSEUDOLANGUAGE_BIDI: {
-            'bidi': True,
-            'code': INCONTEXT_L10N_PSEUDOLANGUAGE_BIDI,
-            'name': "Translation mode (Bi-directional)",
-            'name_local': _("Translation mode (Bi-directional)"),
+            "bidi": True,
+            "code": INCONTEXT_L10N_PSEUDOLANGUAGE_BIDI,
+            "name": "Translation mode (Bi-directional)",
+            "name_local": _("Translation mode (Bi-directional)"),
         }
     }
 
@@ -145,7 +142,7 @@ if env.bool("INCLUDE_INCONTEXT_L10N", False):
     # Add new languages to the list of all django languages
     global_settings.LANGUAGES = global_settings.LANGUAGES + EXTRA_LANGUAGES
     global_settings.LANGUAGES_BIDI = (global_settings.LANGUAGES_BIDI +
-                                      [INCONTEXT_L10N_PSEUDOLANGUAGE_BIDI.split('-')[0]])
+                                      [INCONTEXT_L10N_PSEUDOLANGUAGE_BIDI.split("-")[0]])
     # Add new languages to the list of languages used for this project
     LANGUAGES += tuple(EXTRA_LANGUAGES)
     LANGUAGES_BIDI = global_settings.LANGUAGES_BIDI
@@ -223,23 +220,25 @@ logging.config.dictConfig({
     "disable_existing_loggers": False,
     "formatters": {
         "console": {
-            # exact format is not important, this is the minimum information
-            "format": "%(asctime)s %(name)-12s %(levelname)-8s %(message)s",
+            "format": "%(asctime)s %(name)-20s %(levelname)-10s %(message)s",
         },
-        "django.server": DEFAULT_LOGGING["formatters"]["django.server"],
     },
     "handlers": {
         "console": {
             "class": "logging.StreamHandler",
             "formatter": "console",
         },
-        "django.server": DEFAULT_LOGGING["handlers"]["django.server"],
     },
     "loggers": {
         # Root logger
         "": {
-            "level": "WARNING",
+            "level": env("LOG_LEVEL", default="INFO"),
             "handlers": ["console", ],
+        },
+        "django": {
+            "handlers": ["console"],
+            "level": env("LOG_LEVEL", default="INFO"),
+            "propagate": False,
         },
         # Project specific logger
         "cs-field-guide": {
@@ -248,7 +247,16 @@ logging.config.dictConfig({
             # Required to avoid double logging with root logger
             "propagate": False,
         },
-        "django.server": DEFAULT_LOGGING["loggers"]["django.server"],
+        'gunicorn.error': {
+            "level": env("LOG_LEVEL", default="INFO"),
+            'handlers': ['console'],
+            'propagate': False,
+        },
+        'gunicorn.access': {
+            "level": env("LOG_LEVEL", default="INFO"),
+            'handlers': ['console'],
+            'propagate': False,
+        },
     },
 })
 
@@ -312,9 +320,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # See: http://django-haystack.readthedocs.io/en/v2.6.0/settings.html
 HAYSTACK_CONNECTIONS = {
     "default": {
-        'ENGINE': 'haystack.backends.elasticsearch5_backend.Elasticsearch5SearchEngine',
-        'URL': 'elasticsearch:9200',
-        'INDEX_NAME': 'haystack',
+        "ENGINE": "haystack.backends.elasticsearch5_backend.Elasticsearch5SearchEngine",
+        "URL": "elasticsearch:9200",
+        "INDEX_NAME": "haystack",
     },
 }
 HAYSTACK_SEARCH_RESULTS_PER_PAGE = 10
@@ -339,7 +347,7 @@ MODELTRANSLATION_CUSTOM_FIELDS = ("JSONField",)
 CUSTOM_VERTO_TEMPLATES = os.path.join(str(ROOT_DIR.path("utils")), "custom_converter_templates", "")
 STATICI18N_ROOT = BUILD_ROOT
 SVG_DIRS = [os.path.join(str(ROOT_DIR.path("staticfiles")), "svg")]
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 X_FRAME_OPTIONS = "SAMEORIGIN"
 
 CORS_ALLOWED_ORIGINS = [
