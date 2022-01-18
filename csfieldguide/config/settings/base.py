@@ -17,7 +17,6 @@ import logging.config
 import django.conf.locale
 from django.conf import global_settings
 from django.utils.translation import ugettext_lazy as _
-from django.utils.log import DEFAULT_LOGGING
 
 # cs-field-guide/csfieldguide/config/settings/base.py - 3 = csfieldguide/
 ROOT_DIR = environ.Path(__file__) - 3
