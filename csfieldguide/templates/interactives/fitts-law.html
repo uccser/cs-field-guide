@@ -38,15 +38,14 @@
       <div class="col"></div>
     </div>
 
-    <div id="play-again-div" class="h-100" hidden>
-      <div class="d-flex justify-content-center h-100">
-        <button id="play-again" class="btn btn-primary justify-content-center align-self-center">Play again?</button>
-      </div>
-    </div>
-
     <div id="portrait-warning">
         <div id="portrait-warning-text">
             {% translate "Please rotate your device into landscape mode to use this interactive." %}
+        </div>
+    </div>
+    <div id="finish-screen" hidden>
+        <div id="finish-screen-text">
+            {% translate "Experiment complete, data is available below." %}
         </div>
     </div>
   </div>
@@ -64,9 +63,17 @@
       </thead>
       <tbody id="results-table-body"></tbody>
     </table>
-    <button id="download-table-csv" class="btn btn-primary">
-        {% trans "Download table as CSV" %}
-    </button>
+
+    <div id="end-of-game-controls-div">
+        <div class="d-flex justify-content-around">
+            <button id="download-table-csv" class="btn btn-primary">
+                {% trans "Download table as CSV" %}
+            </button>
+            <button id="play-again" class="btn btn-danger">
+                {% trans "Restart experiment (data will be reset)" %}
+            </button>
+        </div>
+    </div>
   </div>
 </div>
 {% endblock html %}
