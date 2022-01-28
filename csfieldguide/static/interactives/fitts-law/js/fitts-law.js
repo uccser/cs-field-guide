@@ -76,13 +76,13 @@ let set = 0;
  * The div element that appears when the game is over.
  * @type {null}
  */
-let playAgainDiv = null;
+let finishScreenDiv = null;
 
 /**
- * The div element that allows the user to download the table.
+ * The div element that appears when the game is over.
  * @type {null}
  */
-let downloadCSVDiv = null;
+let endOfGameControlsDiv = null;
 
 /**
  * The Datatable for displaying the results.
@@ -98,8 +98,8 @@ let table = null;
 $(document).ready(function() {
     numCols = $('.col').length;
     cols = $(".col").map(function() { return this; }).get();
-    playAgainDiv = document.getElementById("play-again-div");
-    downloadCSVDiv = document.getElementById("download-table-csv");
+    endOfGameControlsDiv = document.getElementById("end-of-game-controls-div");
+    finishScreenDiv = document.getElementById("finish-screen");
     table = $('#results-table').DataTable( {
         "paging":   false,
         "info":     false,
@@ -117,7 +117,7 @@ $(document).ready(function() {
         $(col).click(clickHandler);
     }
     $('#play-again').click(reset);
-    $(downloadCSVDiv).click(downloadCSV);
+    $('#download-table-csv').click(downloadCSV);
     reset();
 });
 
@@ -130,8 +130,8 @@ $(document).ready(function() {
  * starts the timer.
  */
 function reset() {
-    playAgainDiv.hidden = true;
-    downloadCSVDiv.hidden = true;
+    endOfGameControlsDiv.hidden = true;
+    finishScreenDiv.hidden = true;
     table.clear().draw();
     results = [];
     set = 0;
@@ -244,8 +244,8 @@ function getRandomItemFromList(list) {
  * changed, meaning this would have a significant different in the distance from the rest of the entries in the set.
  */
 function showResults() {
-    playAgainDiv.hidden = false;
-    downloadCSVDiv.hidden = false;
+    endOfGameControlsDiv.hidden = false;
+    finishScreenDiv.hidden = false;
 
     for (let i = 0; i < results.length; i++) {
         let setList = results[i];

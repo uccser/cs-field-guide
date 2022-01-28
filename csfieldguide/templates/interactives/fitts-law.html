@@ -8,23 +8,22 @@
   <h3 class="text-center mb-2">{% trans "Fitts' Law Experiment" %}</h3>
   <div>
     <p>
-      {% trans "You will conduct your own Fitts' Law experiment." %}
-      {% trans "When you are ready, click the red column target." %}
-      {% trans "Once you have clicked it, the column will jump to the opposite side." %}
-      {% trans "The column position will repeatedly swap until the trial is complete." %}
-      {% trans "After completing a trial, the column width and the distance between the swapped column positions will change randomly." %}
-      {% trans "There are nine trials, and each trial requires eleven successful clicks. " %}
-      {% trans "However, the first click of each trial does not affect the results as the travel distance would be different from the rest of the trial." %}
-      {% trans "Try to click the targets as fast as possible." %}
-      {% trans "The exercise should take around 30 seconds to one minute (but do not be worried if you need longer!)." %}
+        {% blocktranslate %}
+        You can use this interactive to conduct your own Fitts' Law experiment.
+        When you are ready, click the red column target. Once you have clicked it, the column will jump to the opposite side.
+        The column position will repeatedly swap until the trial is complete. Do this as quickly as you can until it has finished.
+        Every so often during the experiment the column width and the distance between them will change randomly.
+        There are nine trials, and each trial requires eleven successful clicks. However, the first click of each trial does not affect the results as the travel distance would be different from the rest of the trial.
+        The exercise should take around 30 seconds to one minute (but don't be worried if you need longer!)
+        {% endblocktranslate %}
     </p>
-
     <p>
-      {% trans "Once you have finished, a table will show your results." %}
-      {% trans "Try sorting the table by the Index of Difficulty (by clicking the  Index of Difficulty column header)." %}
-      {% trans "You should see that generally as the Index of Difficulty increases, so does the average click time." %}
-      {% trans "You can also export the results as an Excel or CSV file and plot the Index of Difficult and Average Time columns on a chart." %}
-      {% trans "A chart will let you visualise the linear relationship between these." %}
+        {% url 'chapters:section' 'human-comptuer-interaction' 'fitts-law' as fitts_law_section %}
+        {% blocktranslate %}
+        Once you have finished, a table below will show your results.
+        Save this data so you can analyse your experiment.
+        Instructions on what to do with the data are in the <a href="{{ fitts_law_section }}">Fitt's Law section</a>.
+        {% endblocktranslate %}
     </p>
   </div>
 
@@ -39,10 +38,15 @@
       <div class="col"></div>
     </div>
 
-    <div id="play-again-div" class="h-100" hidden>
-      <div class="d-flex justify-content-center h-100">
-        <button id="play-again" class="btn btn-primary justify-content-center align-self-center">Play again?</button>
-      </div>
+    <div id="portrait-warning">
+        <div id="portrait-warning-text">
+            {% translate "Please rotate your device into landscape mode to use this interactive." %}
+        </div>
+    </div>
+    <div id="finish-screen" hidden>
+        <div id="finish-screen-text">
+            {% translate "Experiment complete, data is available below." %}
+        </div>
     </div>
   </div>
 
@@ -59,9 +63,17 @@
       </thead>
       <tbody id="results-table-body"></tbody>
     </table>
-    <button id="download-table-csv" class="btn btn-primary">
-        {% trans "Download table as CSV" %}
-    </button>
+
+    <div id="end-of-game-controls-div">
+        <div class="d-flex justify-content-around">
+            <button id="download-table-csv" class="btn btn-primary">
+                {% trans "Download table as CSV" %}
+            </button>
+            <button id="play-again" class="btn btn-danger">
+                {% trans "Restart experiment (data will be reset)" %}
+            </button>
+        </div>
+    </div>
   </div>
 </div>
 {% endblock html %}
