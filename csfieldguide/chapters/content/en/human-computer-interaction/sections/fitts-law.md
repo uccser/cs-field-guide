@@ -5,6 +5,10 @@
 
 {interactive slug="plane-turbulence" type="whole-page" text="true"}
 
+Plane turbulence
+
+{interactive end}
+
 {comment Change name once we have decided!}
 
 ## Fitts' Law
