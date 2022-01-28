@@ -1,0 +1,34 @@
+#game-view {
+    position: relative;
+    & [class*="col"].bg-danger {
+        cursor: pointer;
+    }
+}
+#download-table-csv {
+    margin-top: 1rem;
+}
+
+#portrait-warning {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #c90a1d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    #portrait-warning-text {
+        color: #fff;
+        font-size: 1.2rem;
+        font-weight: bold;
+        padding: 1rem;
+    }
+}
+
+@media screen and (orientation: landscape) {
+    #portrait-warning {
+        display: none;
+    }
+}
