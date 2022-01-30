@@ -1,7 +1,7 @@
 # Pointing at things: Fitts' Law
 
 A lot of interfaces use pointing as input: clicking on the screen with a mouse, pointing on a phone with your finger, or tapping with a pen are common.
-Since these techniques are used so often, it's good to know how much time they will take.
+Since these techniques are used so often, it's good to know how much time they will take when designing interactive systems.
 Should you have bigger buttons on a screen so they are easier to press? Or is it better to have lots of small ones close together?
 And how is the affected if you're in a difficult environment such as bouncing around in a vehicle or helping after a natural disaster?
 
@@ -75,6 +75,30 @@ It also happens with binary data representation: if you have twice as many numbe
 In fact, the units of measurement for Fitts' ID is bits.
 
 By the way, there are a few very slightly different versions of the formula for Fitts' law, but the one we've used here is one of the more popular ones.
+{panel end}
+
+{panel type="curiosity"}
+
+# Is there a mistake in your guide?
+
+There are two things that you'll find different versions of when you're looking for information about Fitts' law: how to spell it, and the exact form of the formula.
+
+The name of the person who first came up with the law is Paul Fitts, so the apostrophe should come after the s (Fitts' law).
+Some people like to put in an extra s, so it comes out as Fitts's law.
+But sometimes you'll see "Fitt's" law. That's a mistake; his name wasn't Paul Fitt.
+
+With the formula, you may come across variants that have lightly different forms after the logarithm.
+Fitts himself used this form:
+
+\[
+  ID = \log_{2} (2D/W)
+  \]
+
+The exact form that is most relevant can depend a little on the situation, but for the broad needs of designing
+interfaces, the different formulas give similar enough results that it doesn't matter.
+In fact, most of the value of the formula is knowing that closer and bigger is faster,
+but if something has to be smaller or further away, it might not slow things down as much as you expect.
+
 {panel end}
 
 You can estimate how long pointing will take by using the data from the experiment above (or run it again using this interactive[[link to interactive slug="fitts-law"]]).
@@ -154,9 +178,13 @@ However, if you 'overshoot' when pointing to the top of the screen, the cursor s
 Based on Fitts' law, if the target is very big, it will be very fast to point at, making this some of the most valuable real estate on the screen!
 
 
+{panel type = "Further information"}
 
-#  - Another Fitts' Law experiment at http://simonwallner.at/ext/fitts/.
+- [A video with a good summary of Fitts' law](https://www.youtube.com/watch?v=M-9FbUJk6tI)
+- [Another Fitts' Law experiment](http://simonwallner.at/ext/fitts/)
+- [The Wikipedia entry on Fitts' law](https://en.wikipedia.org/wiki/Fitts's_law)
 
+{panel end}
 
 ## Pointing in non-ideal environments
 
