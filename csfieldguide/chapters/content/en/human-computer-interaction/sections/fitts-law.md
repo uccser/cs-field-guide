@@ -83,6 +83,7 @@ In fact, the units of measurement for Fitts' ID is bits, but that's a story for 
 A lot of calculators have a "log" function on them, but usually it's not base 2.
 The common ones are base 10 (that is, now many times you can multiple 10 to get the number) and base *e* (also called a natural logarithm).
 In computer science, you'll find that the base 2 logarithm is very common because computer systems tend to work with two-way decisions: the 'if' statement in programming languages splits the flow two ways, binary numbers use two symbols, binary trees are very useful, and so on.
+
 {panel end}
 
 {panel type="curiosity"}
@@ -113,10 +114,11 @@ So don't worry too much if you come across a slightly different version of the f
 
 You can estimate how long pointing will take by using the data from the experiment above, or run it again using this link:
 
+{interactive slug="fitts-law" type="whole-page" text="true"}
 
-  {interactive slug="fitts-law" type="whole-page" text="true"}
-  Fitts\' Law Experiment
-  {interactive end}
+Fitts\' Law Experiment
+
+{interactive end}
 
 Save the data to a file, or copy it to the clipboard, and then load the data into a spreadsheet.
 
@@ -183,7 +185,7 @@ reading them off the graph.
 The x variable is the ID value, so if the ID is 3.0, the estimated time is 197\*3.0 + 278, which is 869.
 That's a more accurate version of what we read off the graph earlier for ID = 3.0
 
-{comment this image is no longer used - too much detail {image file-path="img/chapters/fitts-velocity-profile.png" alt="A diagram showing the different stages of rapid aimed movement."} }
+{comment this image is no longer used - too much detail image file-path="img/chapters/fitts-velocity-profile.png" alt="A diagram showing the different stages of rapid aimed movement."}
 
 Fitts' law is used in designing all sorts of interfaces to predict how efficient they will be to use, and saves having to build the interface and have someone try it out.
 
@@ -227,6 +229,7 @@ The basic ideas from Fitts' law still apply in this situation, but things are a 
 {panel type="curiosity"}
 
 # Fitts and plane interfaces
+
 Interestingly, Paul Fitts worked on interfaces for planes, although not around pointing at interfaces.
 One of his main achievements was with B-17 bombers used in World War II.
 A number of times these planes would survive a dangerous mission, only to inexplicably crash when they were coming in to land.
