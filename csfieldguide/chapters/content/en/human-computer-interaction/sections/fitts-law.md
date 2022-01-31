@@ -10,7 +10,9 @@ The amount of time it takes to point at things on a digital device is surprising
 Try the following experiment to see how quickly you're able to point at different "targets", and think about what makes pointing slower or faster for different layouts. The experiment will collect some data that you should save in a file to analyse later. You can try it on a conventional screen using a mouse or trackpad for pointing, or on a touchscreen (including a tablet or phone) pointing with your finger or a stylus.
 
 {interactive slug="fitts-law" type="whole-page" text="true"}
+
 Fitts\' Law Experiment
+
 {interactive end}
 
 This experiment demonstrates how the amount of time it takes to point at object depends on two things:
@@ -144,6 +146,7 @@ To make predictions from this graph, you can add a trend line to it. Here's how 
 - Select "Display R-squared value on chart"
 - Change the axes to start at zero
 - Adjust the "Forecast" so that the trendline crosses the y-axis
+
 {panel end}
 
 {panel type="project"}
@@ -193,8 +196,9 @@ At first you might think it would be fairly slow because a menu is a small word 
 However, if you 'overshoot' when pointing to the top of the screen, the cursor stays at the top. This means that the size of the target is actually very big and users can be fairly careless about pointing exactly at the menu word.
 Based on Fitts' law, if the target is very big, it will be very fast to point at, making this some of the most valuable real estate on the screen!
 
+{panel type="Further information"}
 
-{panel type = "Further information"}
+# Further information
 
 - [A video with a good summary of Fitts' law](https://www.youtube.com/watch?v=M-9FbUJk6tI) from NNgroup
 - [Another Fitts' Law experiment](http://simonwallner.at/ext/fitts/) by Simon Wallner
@@ -211,12 +215,14 @@ In these situations, operating devices to find a route or get information is cri
 Try the following interactive where you'll get to experience this firsthand.
 
 {interactive slug="plane-turbulence" type="whole-page" text="true"}
+
+Place Turbulence
+
 {interactive end}
 
 {comment Change name once we have decided!}
 
 The basic ideas from Fitts' law still apply in this situation, but things are a whole lot harder.
-
 
 {panel type="curiosity"}
 
