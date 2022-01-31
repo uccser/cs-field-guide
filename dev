@@ -79,6 +79,7 @@ cmd_update() {
   cmd_compilemessages
 
   echo ""
+  cmd_collect_static
   cmd_make_interactive_thumbnails
   cmd_collect_static
 

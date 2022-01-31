@@ -46,6 +46,7 @@ services:
         image: buildkite/puppeteer:10.0.0
         volumes:
             - ./csfieldguide/make-interactive-thumbnails.js:/make-interactive-thumbnails.js:z
+            - ./csfieldguide/staticfiles:/staticfiles:z
             - ./csfieldguide/build:/build:z
         profiles:
             - static-files
