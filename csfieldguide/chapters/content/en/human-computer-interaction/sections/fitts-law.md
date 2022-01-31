@@ -10,7 +10,9 @@ The amount of time it takes to point at things on a digital device is surprising
 Try the following experiment to see how quickly you're able to point at different "targets", and think about what makes pointing slower or faster for different layouts. The experiment will collect some data that you can save in a file to analyse later.
 
 {interactive slug="fitts-law" type="whole-page" text="true"}
+
 Fitts\' Law Experiment
+
 {interactive end}
 
 This experiment demonstrates how the amount of time it takes to point at object depends on two things:
@@ -75,6 +77,7 @@ It also happens with binary data representation: if you have twice as many numbe
 In fact, the units of measurement for Fitts' ID is bits.
 
 By the way, there are a few very slightly different versions of the formula for Fitts' law, but the one we've used here is one of the more popular ones.
+
 {panel end}
 
 {panel type="curiosity"}
@@ -131,6 +134,7 @@ To make predictions from this graph, you can add a trend line to it. Here's how 
 - Select "Display R-squared value on chart"
 - Change the axes to start at zero
 - Adjust the "Forecast" so that the trendline crosses the y-axis
+
 {panel end}
 
 {panel type="project"}
@@ -150,7 +154,6 @@ You should end up with a graph like the following one:
 
 {image file-path="img/chapters/fitts-scatter-regression.png" alt="A diagram showing a scatter plot from Fitts' experiment."}
 
-
 This particular graph can be used how long it would take someone to point at a different sized object at a different position; all you need to do is work out the ID using the formula above, and then look it up on the chart.
 For example, if a new button was placed with an ID of 3.0, the graph indicates that it would take about 850 milliseconds to point at it.
 If you make it bigger, the ID would be less, but even it is huge, you can see that for this particular user, it will still probably take about 500 milliseconds (half a second).
@@ -164,7 +167,7 @@ The formula that is given (which is 197*x + 278 in the graph above) can be used 
 The x variable is the ID value, so if the ID is 3.0, the estimated time is 197*3.0 + 278, which is 869.
 That's a more accurate version of what we read off the graph for ID = 3.0
 
-#{image file-path="img/chapters/fitts-velocity-profile.png" alt="A diagram showing the different stages of rapid aimed movement."}
+{image file-path="img/chapters/fitts-velocity-profile.png" alt="A diagram showing the different stages of rapid aimed movement."}
 
 Fitts' law is used in designing all sorts of interfaces to predict how efficient they will be to use, without having to build the interface and have someone try it out.
 
@@ -177,8 +180,9 @@ At first you might think it would be fairly slow because it is a small word a lo
 However, if you 'overshoot' when pointing to the top of the screen, the cursor stays at the top. This means that the size of the target is actually very big and users can be fairly careless about pointing exactly at the menu word.
 Based on Fitts' law, if the target is very big, it will be very fast to point at, making this some of the most valuable real estate on the screen!
 
+{panel type="Further information"}
 
-{panel type = "Further information"}
+# Further information
 
 - [A video with a good summary of Fitts' law](https://www.youtube.com/watch?v=M-9FbUJk6tI)
 - [Another Fitts' Law experiment](http://simonwallner.at/ext/fitts/)
@@ -195,16 +199,19 @@ In these situations, operating devices to find a route or get information is cri
 Try the following interactive where you'll get to experience this firsthand.
 
 {interactive slug="plane-turbulence" type="whole-page" text="true"}
+
+Place Turbulence
+
 {interactive end}
 
 {comment Change name once we have decided!}
 
 The basic ideas from Fitts' law still apply in this situation, but things are a whole lot harder.
 
-
 {panel type="curiosity"}
 
 # Fitts and plane interfaces
+
 Interestingly, Paul Fitts worked on interfaces for planes, although one of his main achievements was with B-17 bombers used in World War II.
 A number of times these planes would survive a dangerous mission, only to inexplicably crash when they were coming in to land.
 For a long time these accidents were put down to "pilot error".
