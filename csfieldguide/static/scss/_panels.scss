@@ -39,6 +39,21 @@ details {
     padding: ($spacer * .5) $spacer;
     display: flex;
     align-items: center;
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+    &:before {
+      content: '⊕';
+      margin-right: 0.5rem;
+      padding-bottom: 0.15rem;
+      opacity: .6;
+    }
+    // Written here with @at-root to pair with previous rules
+    @at-root details[open] summary:before {
+      content: '⊖';
+    }
+
     .inline-image {
       margin-top: 0.2rem;
       margin-bottom: 0.2rem;
