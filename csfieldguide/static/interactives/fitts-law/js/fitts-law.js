@@ -90,6 +90,19 @@ let endOfGameControlsDiv = null;
  */
 let table = null;
 
+/**
+ * The number of successful clicks remaining in the experiment.
+ * @type {null}
+ */
+let clicksRemaining = null;
+
+/**
+ * The span element for showing the number of successful clicks
+ * remaining in the experiment.
+ * @type {null}
+ */
+let clicksRemainingSpan = null;
+
 
 /**
  * Initialises the page. Sets some of the global variables. Sets up the results datatable. Adds click events to the
@@ -100,6 +113,7 @@ $(document).ready(function() {
     cols = $(".col").map(function() { return this; }).get();
     endOfGameControlsDiv = document.getElementById("end-of-game-controls-div");
     finishScreenDiv = document.getElementById("finish-screen");
+    clicksRemainingSpan = document.getElementById("clicks-remaining");
     table = $('#results-table').DataTable( {
         "paging":   false,
         "info":     false,
@@ -144,6 +158,10 @@ function reset() {
     for (let i = 0; i < colsToWidths.length; i++) {
         results.push([]);
     }
+
+    clicksRemaining = (MAX_COUNT * colsToWidths.length) + 1;
+    clicksRemainingSpan.textContent = clicksRemaining;
+
     currentColToWidth = getRandomItemFromList(colsToWidths);
     colsToWidths.splice(colsToWidths.indexOf(currentColToWidth), 1);
     setColumns(currentColToWidth["col"], currentColToWidth["width"]);
@@ -174,7 +192,8 @@ function clickHandler(event) {
         results[set].push({ "distance": distance, "time": time, "width": width });
 
         lastMousePosition = event.pageX;
-
+        clicksRemaining--;
+        clicksRemainingSpan.textContent = clicksRemaining;
         resetCols();
         if (count === MAX_COUNT) {
             currentColToWidth = getRandomItemFromList(colsToWidths);
