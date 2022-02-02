@@ -94,6 +94,8 @@ huffman-tree:
   name: Huffman Tree
 image-bit-comparer:
   name: Image Bit Comparer
+index-of-difficulty-calculator:
+  name: Index of Difficulty Calculator
 iterative-software-development:
   name: Iterative Software Development
 udp-layers:

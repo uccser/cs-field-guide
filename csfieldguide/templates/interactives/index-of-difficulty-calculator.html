@@ -1,0 +1,60 @@
+{% extends interactive_mode_template %}
+
+{% load i18n static %}
+
+{% block html %}
+    <div id="fitts-law-calculator" class="container text-center d-none">
+        <h3 class="mb-2">{% translate "Index of Difficulty Calculator" %}</h3>
+
+        <p classs="text-muted">
+            {% translate "This is a common formula for calculating the Index of Difficulty (\(ID\)), but other formulas exist." %}
+        </p>
+
+        <div id="original-formula">$$$$</div>
+
+        <div class="d-flex justify-content-center">
+            <div id="form-container" class="text-left">
+                <div id="grid-label-distance">
+                    <label for="input-distance">
+                        $$D\text{ ({% translate "distance to target" %})}$$
+                    </label>
+                </div>
+                <div id="grid-label-width">
+                    <label for="input-width">
+                        $$W\text{ ({% translate "width of target" %})}$$
+                    </label>
+                </div>
+                <div id="grid-equals-distance">$$=$$</div>
+                <div id="grid-equals-width">$$=$$</div>
+                <div id="grid-input-distance">
+                    <input type="number" value="1" min="1" class="form-control" id="input-distance">
+                </div>
+                <div id="grid-input-width">
+                    <input type="number" value="1" min="1" class="form-control" id="input-width">
+                </div>
+            </div>
+        </div>
+
+        <button id="calculate-button" class="btn btn-primary">
+            {% translate "Calculate" %}
+        </button>
+
+        <div id="results" class="invisible">
+            {# Equations render with text in order to get correct spacing #}
+            <div id="completed-equation">$$X$$</div>
+            <div id="iod-value">$$X$$</div>
+
+            <div id="rounding-disclaimer">
+                {% translate "Value rounded to 1 decimal place." %}
+            </div>
+        </div>
+    </div>
+{% endblock html %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'interactives/index-of-difficulty-calculator/css/index-of-difficulty-calculator.css' %}">
+{% endblock css %}
+
+{% block js %}
+    <script type="text/javascript" src="{% static 'interactives/index-of-difficulty-calculator/js/index-of-difficulty-calculator.js' %}"></script>
+{% endblock js %}
