@@ -46,22 +46,16 @@ let originalFormula = `ID = \\log_{2}\\left({D \\over W}+1\\right)`;
 let originalFormulaMathJax = null;
 
 /**
- * The MathJax element for the completed formula.
+ * The MathJax element for the result.
  * @type {null}
  */
-let completedEquationMathJax = null;
+let resultMathJax = null;
 
 /**
- * The MathJax element for the Index of Difficulty value.
+ * The div element for the result.
  * @type {null}
  */
-let indexOfDifficultyValueMathJax = null;
-
-/**
- * The div element for results.
- * @type {null}
- */
-let resultsDiv = null;
+let resultDiv = null;
 
 /**
  * The div element for the rounding disclaimer.
@@ -73,14 +67,13 @@ let roundingDisclaimerDiv = null;
 $(document).ready(function () {
     distanceInput = document.getElementById("input-distance");
     widthInput = document.getElementById("input-width");
-    resultsDiv = document.getElementById("results");
+    resultDiv = document.getElementById("result-container");
     roundingDisclaimerDiv = document.getElementById("rounding-disclaimer");
 
     // Run once MathJax is ready.
     MathJax.Hub.Queue(function () {
         originalFormulaMathJax = MathJax.Hub.getAllJax("original-formula")[0];
-        completedEquationMathJax = MathJax.Hub.getAllJax("completed-equation")[0];
-        indexOfDifficultyValueMathJax = MathJax.Hub.getAllJax("iod-value")[0];
+        resultMathJax = MathJax.Hub.getAllJax("result")[0];
         MathJax.Hub.Queue(["Text", originalFormulaMathJax, originalFormula]);
 
         $("#fitts-law-calculator #calculate-button").on("click", calculateEquation);
@@ -98,7 +91,7 @@ $(document).ready(function () {
 
 
 function calculateEquation(event) {
-    resultsDiv.classList.add("invisible");
+    resultDiv.classList.add("invisible");
     distance = distanceInput.value;
     width = widthInput.value;
     indexOfDifficulty = Math.log2((distance / width) + 1);
@@ -111,14 +104,16 @@ function calculateEquation(event) {
         roundingDisclaimerDiv.classList.remove("invisible");
     }
 
-    completedFormula = `${indexOfDifficulty} = \\log_{2}\\left({${distance} \\over ${width}}+1\\right)`;
-    indexOfDifficultyValue = `ID = ${indexOfDifficulty}`;
+    // Backslashes are escaped (doubled).
+    completedFormula = `\\begin{equation}\\begin{aligned}
+    ID &= \\log_{2}\\left({${distance} \\over ${width}}+1\\right) \\\\
+    &= ${indexOfDifficulty}
+    \\end{aligned}\\end{equation}`;
 
-    MathJax.Hub.Queue(["Text", completedEquationMathJax, completedFormula]);
-    MathJax.Hub.Queue(["Text", indexOfDifficultyValueMathJax, indexOfDifficultyValue]);
+    MathJax.Hub.Queue(["Text", resultMathJax, completedFormula]);
     MathJax.Hub.Queue(
         function () {
-            resultsDiv.classList.remove("invisible");
+            resultDiv.classList.remove("invisible");
         }
     );
 
