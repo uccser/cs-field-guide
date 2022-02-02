@@ -22,7 +22,6 @@ This experiment demonstrates how the amount of time it takes to point at object 
 
 This observation can be measured mathematically using a formula known as *Fitts' law*.
 
-
 ## Fitts' Law
 
 Fitts' law gives a formula to help us estimate how long it will take someone to click or tap at something on a screen.
@@ -43,13 +42,12 @@ For example, if the target size stays the same, but it is placed twice as far aw
 To work this out, Fitts introduced the "Index of Difficulty" (ID), which is proportional to the time it should take to point at a target.
 The formula for the Index of Difficulty is as follows; you don't need to worry too much about the details because we've provided the following calculator to work it out.
 
-**** embed the ID calculator here ******
+{interactive slug="index-of-difficulty-calculator" type="in-page"}
 
 For example, if you put in a distance of 14 and a width of 2, the index of difficulty is 3.0.
 If you wanted to make the pointing take twice as long, you'd need the ID to be twice as much (6.0).
 Try experimenting with the distance in the formula above to get an ID of 6.0.
 You'll find that it needs to be more than twice as big; in fact, it needs to be 126cm - that's right, the distance needs to be a lot larger to make the pointing take twice as long.
-
 
 {panel type="curiosity"}
 
@@ -167,7 +165,6 @@ To make predictions from this graph, you can add a trend line to it. Here's how 
 You should end up with a graph like the following one:
 
 {image file-path="img/chapters/fitts-scatter-regression.png" alt="A diagram showing a scatter plot from Fitts' experiment."}
-
 
 This particular graph can be used to work out how long it would take someone to point at a different sized object at a different position; all you need to do is work out the ID using the formula above, and then look it up on the chart.
 For example, if a new button was placed with an ID of 3.0, the graph indicates that it would take about 850 milliseconds to point at it.
