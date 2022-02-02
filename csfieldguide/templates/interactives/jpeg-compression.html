@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load static %}
 
-{% block html %}
+{% block interactive_html %}
 <div class="container p-3">
   <div class="row left-align" id="images">
     <div class="col-sm-12 col-md-12 col-lg-4" id="big-image">
@@ -59,15 +59,15 @@
     </div>
   </div>
 </div>
-{% endblock html %}
+{% endblock interactive_html %}
 
-{% block css %}
+{% block interactive_css %}
   <link rel="stylesheet" href="{% static 'interactives/jpeg-compression/css/jpeg-compression.css' %}">
-{% endblock css %}
+{% endblock interactive_css %}
 
-{% block js %}
+{% block interactive_js %}
   <script type="text/javascript">
     var base_path = "{{ STATIC_URL }}";
   </script>
   <script type="text/javascript" src="{% static 'interactives/jpeg-compression/js/jpeg-compression.js' %}"></script>
-{% endblock js %}
+{% endblock interactive_js %}

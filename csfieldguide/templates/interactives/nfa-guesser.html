@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load static %}
 
-{% block html %}
+{% block interactive_html %}
   <div id="interactive-nfa-guesser" class="text-center">
     <h3>{% trans "Practice traversing a NFA" %}</h3>
     <p>{% trans "Traverse the NFA map below with the input sequence and select all the resulting states." %}</p>
@@ -26,12 +26,12 @@
       <button id="interactive-nfa-guesser-new-sequence" class="btn btn-success">{% trans "Generate new input sequence" %}</button>
     </p>
   </div>
-{% endblock html %}
+{% endblock interactive_html %}
 
-{% block css %}
+{% block interactive_css %}
   <link rel="stylesheet" href="{% static 'interactives/nfa-guesser/css/nfa-guesser.css' %}">
-{% endblock css %}
+{% endblock interactive_css %}
 
-{% block js %}
+{% block interactive_js %}
   <script type="text/javascript" src="{% static 'interactives/nfa-guesser/js/nfa-guesser.js' %}"></script>
-{% endblock js %}
+{% endblock interactive_js %}

@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load static %}
 
-{% block html %}
+{% block interactive_html %}
   <div class="container">
         <div id="dictionary-compression">
         <h3>{% trans "Compression using a Dictionary" %}</h3>
@@ -65,12 +65,12 @@
 
     </div>
   </div>
-{% endblock html %}
+{% endblock interactive_html %}
 
-{% block css %}
+{% block interactive_css %}
   <link rel="stylesheet" href="{% static 'interactives/dictionary-compression/css/dictionary-compression.css' %}">
-{% endblock css %}
+{% endblock interactive_css %}
 
-{% block js %}
+{% block interactive_js %}
   <script type="text/javascript" src="{% static 'interactives/dictionary-compression/js/dictionary-compression.js' %}"></script>
-{% endblock js %}
+{% endblock interactive_js %}

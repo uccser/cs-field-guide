@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load static %}
 
-{% block html %}
+{% block interactive_html %}
   <div class="container my-3">
     <div class="row" id="rsa-decryption">
       <div class="col s12">
@@ -102,12 +102,12 @@
       </div>
     </div>
   </div>
-{% endblock html %}
+{% endblock interactive_html %}
 
-{% block css %}
+{% block interactive_css %}
   <link rel="stylesheet" href="{% static 'interactives/rsa-decryption/css/rsa-decryption.css' %}">
-{% endblock css %}
+{% endblock interactive_css %}
 
-{% block js %}
+{% block interactive_js %}
   <script type="text/javascript" src="{% static 'interactives/rsa-decryption/js/rsa-decryption.js' %}"></script>
-{% endblock js %}
+{% endblock interactive_js %}

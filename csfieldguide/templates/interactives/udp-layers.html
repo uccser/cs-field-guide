@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load static %}
 
-{% block html %}
+{% block interactive_html %}
   <div class="row mb-3 mx-1 uninteractive">
     <h1 class="col-12 text-center heading">{% trans 'UDP Packet Layers' %}</h1>
     <div class="col-4">
@@ -92,8 +92,8 @@
     Licenced under the <a href="https://en.wikipedia.org/wiki/Creative_Commons" target="_blank">Creative Commons</a> <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.en" target="_blank">Attribution-Share Alike 3.0 Unported</a> licence
     {% endblocktrans %}
   </div>
-{% endblock html %}
+{% endblock interactive_html %}
 
-{% block css %}
+{% block interactive_css %}
   <link rel="stylesheet" href="{% static 'interactives/udp-layers/css/udp-layers.css' %}">
-{% endblock css %}
+{% endblock interactive_css %}

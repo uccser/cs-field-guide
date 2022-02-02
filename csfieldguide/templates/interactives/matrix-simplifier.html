@@ -2,7 +2,7 @@
 
 {% load i18n static svg %}
 
-{% block html %}
+{% block interactive_html %}
   <div class="container">
     <h3 class='text-center'>{% trans "Matrix Simplifier" %}</h3>
     <p class="text-center">
@@ -36,7 +36,7 @@
               \]
             </div>
           </div>
-      
+
           <div class="draggable content border rounded m-1 center-block">
             <span class="close move-eqtn" aria-label="Move">
               {% svg 'matrix-simplifier/icons8-drag-reorder' %}
@@ -156,7 +156,7 @@
               <input class="form-control text-center" id="matrix-row-0-col-1" value=0>
               <input class="form-control text-center" id="matrix-row-0-col-2" value=0>
             </div>
-    
+
             <div class="matrix-row">
               <input class="form-control text-center" id="matrix-row-1-col-0" value=0>
               <input class="form-control text-center" id="matrix-row-1-col-1" value=1>
@@ -213,12 +213,12 @@
       {% svg 'matrix-simplifier/icons8-drag-reorder' %}
     </div>
   </div>
-{% endblock html %}
+{% endblock interactive_html %}
 
-{% block css %}
+{% block interactive_css %}
   <link rel="stylesheet" href="{% static 'interactives/matrix-simplifier/css/matrix-simplifier.css' %}">
-{% endblock css %}
+{% endblock interactive_css %}
 
-{% block js %}
+{% block interactive_js %}
   <script type="text/javascript" src="{% static 'interactives/matrix-simplifier/js/matrix-simplifier.js' %}"></script>
-{% endblock js %}
+{% endblock interactive_js %}

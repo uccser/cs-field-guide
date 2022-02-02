@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load static %}
 
-{% block html %}
+{% block interactive_html %}
   <div class="row container-fluid" data-iframe-height>
     <div class="col-sm-12 col-md-4">
       <h4>{% trans "Plaintext" %}</h4>
@@ -20,12 +20,12 @@
       <button id="interactive-caesar-decrypt" type="button" class="btn btn-primary btn-expand">{% trans "Decrypt" %}</button>
     </div>
   </div>
-{% endblock html %}
+{% endblock interactive_html %}
 
-{% block css %}
+{% block interactive_css %}
   <link rel="stylesheet" href="{% static 'interactives/caesar-cipher/css/caesar-cipher.css' %}">
-{% endblock css %}
+{% endblock interactive_css %}
 
-{% block js %}
+{% block interactive_js %}
   <script type="text/javascript" src="{% static 'interactives/caesar-cipher/js/caesar.js' %}"></script>
-{% endblock js %}
+{% endblock interactive_js %}

@@ -3,17 +3,17 @@
 {% load i18n %}
 {% load static %}
 
-{% block html %}
+{% block interactive_html %}
   <div class="container my-3">
     <div class="row" id="interactive-rsa-key-generator">
       <div class="col s12">
         <h3>{% trans "RSA Key Generator" %}</h3>
 
         <div class="row text-left">
-          <div class="col-5 col-sm-3">       
+          <div class="col-5 col-sm-3">
             <h5>{% trans "Key Size" %}</h5>
           </div>
-          <div class="col-7 col-sm-5">       
+          <div class="col-7 col-sm-5">
             <h5>{% trans "Format Scheme" %}</h5>
           </div>
         </div>
@@ -45,7 +45,7 @@
         </div>
 
         <div class="row text-left">
-          <div class="col-12 col-sm-6 col-lg-8">  
+          <div class="col-12 col-sm-6 col-lg-8">
           	<h5>{% trans "Public Key:" %}</h5>
           </div>
           <div class="col-12 col-sm-6 col-lg-4 pb-1">
@@ -62,7 +62,7 @@
 
 
         <div class="row text-left">
-          <div class="col-12 col-sm-6 col-lg-8">  
+          <div class="col-12 col-sm-6 col-lg-8">
           	<h5>{% trans "Private Key:" %}</h5>
           </div>
           <div class="col-12 col-sm-6 col-lg-4 pb-1">
@@ -80,12 +80,12 @@
       </div>
     </div>
   </div>
-{% endblock html %}
+{% endblock interactive_html %}
 
-{% block css %}
+{% block interactive_css %}
   <link rel="stylesheet" href="{% static 'interactives/rsa-key-generator/css/rsa-key-generator.css' %}">
-{% endblock css %}
+{% endblock interactive_css %}
 
-{% block js %}
+{% block interactive_js %}
   <script type="text/javascript" src="{% static 'interactives/rsa-key-generator/js/rsa-key-generator.js' %}"></script>
-{% endblock js %}
+{% endblock interactive_js %}

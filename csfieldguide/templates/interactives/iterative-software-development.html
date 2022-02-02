@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load static %}
 
-{% block html %}
+{% block interactive_html %}
   <!-- NOTE: Uninteractive must be displayed in an iframe -->
   <div class="row justify-content-center iterative-software-title">
     {% trans 'Iterative Software Development' %}
@@ -65,12 +65,12 @@
       <path class="arrow grey" id="feedback"/>
     </svg>
   </div>
-{% endblock html %}
+{% endblock interactive_html %}
 
-{% block css %}
+{% block interactive_css %}
   <link rel="stylesheet" href="{% static 'interactives/iterative-software-development/css/iterative-software-development.css' %}">
-{% endblock css %}
+{% endblock interactive_css %}
 
-{% block js %}
+{% block interactive_js %}
   <script type="text/javascript" src="{% static 'interactives/iterative-software-development/js/iterative-software-development.js' %}"></script>
-{% endblock js %}
+{% endblock interactive_js %}

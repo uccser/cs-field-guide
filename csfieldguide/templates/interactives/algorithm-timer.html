@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load static %}
 
-{% block html %}
+{% block interactive_html %}
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-sm-12 col-lg-8">
@@ -107,7 +107,7 @@
           </div>
         </div>
 
-      </div>  
+      </div>
     </div>
   </form>
 
@@ -116,7 +116,7 @@
     <div class="col-sm-12 col-lg-8">
       <div class="mb-1">
         {% blocktrans %}
-        <span id='complexity-chosen'>n&sup2;</span> operations would take: 
+        <span id='complexity-chosen'>n&sup2;</span> operations would take:
         {% endblocktrans %}
       </div>
       <div class="form-group pl-0">
@@ -186,9 +186,9 @@
   </div>
 </div>
 
-{% endblock html %}
+{% endblock interactive_html %}
 
-{% block js %}
+{% block interactive_js %}
   <script>var Mathjs;</script>
   <script type="text/javascript" src="{% static 'interactives/algorithm-timer/js/algorithm-timer.js' %}"></script>
-{% endblock js %}
+{% endblock interactive_js %}

@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load static %}
 
-{% block html %}
+{% block interactive_html %}
 <div id="sorting-algorithms-interactive" class="row mt-3">
   <div class="col-12 text-center">
     <h1 id="heading">{% trans "Sorting Algorithms" %}</h1>
@@ -133,12 +133,12 @@
       <img id="number-8" class="item-weight" src="{% static 'interactives/sorting-algorithms/assets/icons8-number-8.png' %}">
     </div>
   </div>
-{% endblock html %}
+{% endblock interactive_html %}
 
-{% block css %}
+{% block interactive_css %}
   <link rel="stylesheet" href="{% static 'interactives/sorting-algorithms/css/sorting-algorithms.css' %}">
-{% endblock css %}
+{% endblock interactive_css %}
 
-{% block js %}
+{% block interactive_js %}
   <script type="text/javascript" src="{% static 'interactives/sorting-algorithms/js/sorting-algorithms.js' %}"></script>
-{% endblock js %}
+{% endblock interactive_js %}

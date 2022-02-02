@@ -3,17 +3,17 @@
 {% load i18n %}
 {% load static %}
 
-{% block html %}
+{% block interactive_html %}
   <div id="interactive-base-calculator">
     <h3 class="text-center mt-2">{% trans 'Base <span id="base-value"></span> Calculator' %}</h3>
     <div id='interactive-base-calculator-container'></div>
   </div>
-{% endblock html %}
+{% endblock interactive_html %}
 
-{% block css %}
+{% block interactive_css %}
   <link rel="stylesheet" href="{% static 'interactives/base-calculator/css/base-calculator.css' %}">
-{% endblock css %}
+{% endblock interactive_css %}
 
-{% block js %}
+{% block interactive_js %}
   <script type="text/javascript" src="{% static 'interactives/base-calculator/js/base-calculator.js' %}"></script>
-{% endblock js %}
+{% endblock interactive_js %}

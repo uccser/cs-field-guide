@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load static %}
 
-{% block html %}
+{% block interactive_html %}
   <div class="container">
     <div class="row text-center" id="interactive-sorting-algorithm-comparison">
       <div class="col-12">
@@ -25,12 +25,12 @@
       <img id="sorting-algorithm-comparison-quick-sort-animation" class="sorting-algorithm-comparison-preload" src="{% static 'interactives/sorting-algorithm-comparison/img/quick-sort.gif' %}">
     </div>
   </div>
-{% endblock html %}
+{% endblock interactive_html %}
 
-{% block css %}
+{% block interactive_css %}
   <link rel="stylesheet" href="{% static 'interactives/sorting-algorithm-comparison/css/style.css' %}">
-{% endblock css %}
+{% endblock interactive_css %}
 
-{% block js %}
+{% block interactive_js %}
   <script src="{% static 'interactives/sorting-algorithm-comparison/js/script.js' %}"></script>
-{% endblock js %}
+{% endblock interactive_js %}

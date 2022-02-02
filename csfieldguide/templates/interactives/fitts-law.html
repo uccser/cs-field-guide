@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load static %}
 
-{% block html %}
+{% block interactive_html %}
 <div class="container">
   <h3 class="text-center mb-2">{% trans "Fitts' Law Experiment" %}</h3>
   <div>
@@ -79,16 +79,16 @@
     </div>
   </div>
 </div>
-{% endblock html %}
+{% endblock interactive_html %}
 
-{% block css %}
+{% block interactive_css %}
 <link rel="stylesheet" href="{% static 'interactives/fitts-law/css/fitts-law.css' %}">
 <link href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" rel="stylesheet">
-{% endblock css %}
+{% endblock interactive_css %}
 
-{% block js %}
+{% block interactive_js %}
 <script type="text/javascript" src="{% static 'interactives/fitts-law/js/fitts-law.js' %}"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.0.1/js/dataTables.buttons.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.html5.min.js"></script>
-{% endblock js %}
+{% endblock interactive_js %}

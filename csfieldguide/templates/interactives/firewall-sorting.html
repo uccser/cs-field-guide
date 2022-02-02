@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load static %}
 
-{% block html %}
+{% block interactive_html %}
 <div id="firewall-sorting">
 	<div id="firewall-header">
 		<div id="yourIP">
@@ -59,19 +59,17 @@
 		</div>
 	</div>
 </div>
-{% endblock html %}
+{% endblock interactive_html %}
 
-{% block css %}
+{% block interactive_css %}
 <link rel="stylesheet" href="{% static 'interactives/firewall-sorting/css/firewall-sorting.css' %}">
-{% endblock css %}
+{% endblock interactive_css %}
 
-{% block js %}
+{% block interactive_js %}
 
 <script type="text/javascript">
     boxImgPath = "{{ STATIC_URL }}interactives/firewall-sorting/img/";
 </script>
 
 <script type="text/javascript" src="{% static 'interactives/firewall-sorting/js/firewall-sorting.js' %}"></script>
-{% endblock js %}
-
-
+{% endblock interactive_js %}

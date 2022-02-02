@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load static %}
 
-{% block html %}
+{% block interactive_html %}
   <div class="container my-3">
     <div id="interactive-checksum-calculator-gtin-13">
       <div class="row justify-content-center">
@@ -27,12 +27,12 @@
       </div>
     </div>
   </div>
-{% endblock html %}
+{% endblock interactive_html %}
 
-{% block css %}
+{% block interactive_css %}
   <link rel="stylesheet" href="{% static 'interactives/checksum-calculator-gtin-13/css/checksum-calculator-gtin-13.css' %}">
-{% endblock css %}
+{% endblock interactive_css %}
 
-{% block js %}
+{% block interactive_js %}
   <script type="text/javascript" src="{% static 'interactives/checksum-calculator-gtin-13/js/checksum-calculator-gtin-13.js' %}"></script>
-{% endblock js %}
+{% endblock interactive_js %}

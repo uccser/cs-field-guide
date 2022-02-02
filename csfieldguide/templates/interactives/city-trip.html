@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load static %}
 
-{% block html %}
+{% block interactive_html %}
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-sm-12 col-lg-8">
@@ -18,7 +18,7 @@
       <div class="col-sm-12 col-lg-2 mt-1">
         <label>
           {% trans "Number of cities:" %} <span id='num-cities'>3</span>
-        </label> 
+        </label>
       </div>
     </div>
 
@@ -93,12 +93,12 @@
     </p>
   </div>
 
-{% endblock html %}
+{% endblock interactive_html %}
 
-{% block css %}
+{% block interactive_css %}
   <link rel="stylesheet" href="{% static 'interactives/city-trip/css/city-trip.css' %}">
-{% endblock css %}
+{% endblock interactive_css %}
 
-{% block js %}
+{% block interactive_js %}
   <script type="text/javascript" src="{% static 'interactives/city-trip/js/city-trip.js' %}"></script>
-{% endblock js %}
+{% endblock interactive_js %}

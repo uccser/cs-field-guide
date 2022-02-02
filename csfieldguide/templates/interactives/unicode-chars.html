@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load static %}
 
-{% block html %}
+{% block interactive_html %}
   <div id="interactive-unicode-chars" class="mb-3 container-fluid">
     <div class="row justify-content-center">
       <div class="col-12">
@@ -20,12 +20,12 @@
       </div>
     </div>
   </div>
-{% endblock html %}
+{% endblock interactive_html %}
 
-{% block css %}
+{% block interactive_css %}
   <link rel="stylesheet" href="{% static 'interactives/unicode-chars/css/unicode-chars.css' %}">
-{% endblock css %}
+{% endblock interactive_css %}
 
-{% block js %}
+{% block interactive_js %}
   <script type="text/javascript" src="{% static 'interactives/unicode-chars/js/unicode-chars.js' %}"></script>
-{% endblock js %}
+{% endblock interactive_js %}

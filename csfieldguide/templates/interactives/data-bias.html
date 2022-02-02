@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load static %}
 
-{% block html %}
+{% block interactive_html %}
   <div id="data-bias-container" class="flex-grow-1 d-flex flex-column">
     <h1 class="text-center">{% trans "Data Bias" %}</h1>
     <div class="row justify-content-center">
@@ -24,12 +24,12 @@
     </div>
     <div id="circles-area" class="flex-grow-1 mb-3 align-self-center"></div>
   </div>
-{% endblock html %}
+{% endblock interactive_html %}
 
-{% block css %}
+{% block interactive_css %}
   <link rel="stylesheet" href="{% static 'interactives/data-bias/css/data-bias.css' %}">
-{% endblock css %}
+{% endblock interactive_css %}
 
-{% block js %}
+{% block interactive_js %}
   <script type="text/javascript" src="{% static 'interactives/data-bias/js/data-bias.js' %}"></script>
-{% endblock js %}
+{% endblock interactive_js %}

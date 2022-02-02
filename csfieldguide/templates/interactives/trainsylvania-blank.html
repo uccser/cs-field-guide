@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load static %}
 
-{% block html %}
+{% block interactive_html %}
   <div class="container mb-3 uninteractive trainsylvania-blank">
     <!-- Top row: Suburbopolis and North Stations -->
     <div class="row">
@@ -51,8 +51,8 @@
       </div>
     </div>
   </div>
-{% endblock html %}
+{% endblock interactive_html %}
 
-{% block css %}
+{% block interactive_css %}
   <link rel="stylesheet" href="{% static 'interactives/trainsylvania-blank/css/trainsylvania-blank.css' %}">
-{% endblock css %}
+{% endblock interactive_css %}

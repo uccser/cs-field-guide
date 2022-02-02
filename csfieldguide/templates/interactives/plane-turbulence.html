@@ -2,7 +2,7 @@
 
 {% load i18n static read_static_file %}
 
-{% block html %}
+{% block interactive_html %}
     <div id="plane-turblence-interactive" class="container p-0">
         <div id="menu" class="align-items-center justify-content-center">
             <div id="menu-instructions">
@@ -60,12 +60,12 @@
     </div>
 
 
-{% endblock html %}
+{% endblock interactive_html %}
 
-{% block css %}
+{% block interactive_css %}
     <link rel="stylesheet" href="{% static 'interactives/plane-turbulence/css/plane-turbulence.css' %}">
-{% endblock css %}
+{% endblock interactive_css %}
 
-{% block js %}
+{% block interactive_js %}
     <script type="text/javascript" src="{% static 'interactives/plane-turbulence/js/plane-turbulence.js' %}"></script>
-{% endblock js %}
+{% endblock interactive_js %}

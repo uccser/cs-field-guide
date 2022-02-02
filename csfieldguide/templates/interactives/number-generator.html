@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load static %}
 
-{% block html %}
+{% block interactive_html %}
     <div class="container">
       <div class="row justify-content-center">
         <div id="interactive-checksum-generator" class="col-10 mb-3 shadow bg-white rounded">
@@ -39,12 +39,12 @@
         </div>
       </div>
     </div>
-{% endblock html %}
+{% endblock interactive_html %}
 
-{% block css %}
+{% block interactive_css %}
   <link rel="stylesheet" href="{% static 'interactives/number-generator/css/checksum-generator.css' %}">
-{% endblock css %}
+{% endblock interactive_css %}
 
-{% block js %}
+{% block interactive_js %}
   <script type="text/javascript" src="{% static 'interactives/number-generator/js/checksum-generator.js' %}"></script>
-{% endblock js %}
+{% endblock interactive_js %}

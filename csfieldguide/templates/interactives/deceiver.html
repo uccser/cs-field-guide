@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load static %}
 
-{% block html %}
+{% block interactive_html %}
     <div id="interactive-deceiver">
         <h4 id="interactive-deceiver-heading" class="interactive-deceiver-text mb-3"></h4>
         <div id="interactive-deceiver-start-panel">
@@ -24,12 +24,12 @@
             {% trans '<span id="interactive-deceiver-seconds">15</span> seconds left' %}
         </div>
     </div>
-{% endblock html %}
+{% endblock interactive_html %}
 
-{% block css %}
+{% block interactive_css %}
     <link rel="stylesheet" href="{% static 'interactives/deceiver/css/deceiver.css' %}">
-{% endblock css %}
+{% endblock interactive_css %}
 
-{% block js %}
+{% block interactive_js %}
     <script type="text/javascript" src="{% static 'interactives/deceiver/js/deceiver.js' %}"></script>
-{% endblock js %}
+{% endblock interactive_js %}

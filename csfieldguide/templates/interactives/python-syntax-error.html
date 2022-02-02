@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load static %}
 
-{% block html %}
+{% block interactive_html %}
   <div class="container mb-3 uninteractive">
     <div class="text row justify-content-center">
       <div class="col-md-6 col-sm-12">
@@ -12,8 +12,8 @@
       </div>
     </div>
   </div>
-{% endblock html %}
+{% endblock interactive_html %}
 
-{% block css %}
+{% block interactive_css %}
   <link rel="stylesheet" href="{% static 'interactives/python-syntax-error/css/python-syntax-error.css' %}">
-{% endblock css %}
+{% endblock interactive_css %}

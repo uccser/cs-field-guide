@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load static %}
 
-{% block html %}
+{% block interactive_html %}
   <div id="interactive-trainsylvania" class="mt-3 text-center">
     <div>
       <p>{% trans "Find your way to <strong>Suburbopolis Station!</strong>" %}</p>
@@ -23,12 +23,12 @@
     </div>
     <a id="interactive-trainsylvania-image-link" href="{% static 'interactives/trainsylvania/img/' %}"></a>
   </div>
-{% endblock html %}
+{% endblock interactive_html %}
 
-{% block css %}
+{% block interactive_css %}
   <link rel="stylesheet" href="{% static 'interactives/trainsylvania/css/trainsylvania.css' %}">
-{% endblock css %}
+{% endblock interactive_css %}
 
-{% block js %}
+{% block interactive_js %}
   <script type="text/javascript" src="{% static 'interactives/trainsylvania/js/trainsylvania.js' %}"></script>
-{% endblock js %}
+{% endblock interactive_js %}

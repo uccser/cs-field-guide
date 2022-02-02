@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load static %}
 
-{% block html %}
+{% block interactive_html %}
   <div id="interactive-payment-interface" class="container-fluid mb-3">
     <div class="row justify-content-center">
       <div class="form-group">
@@ -13,12 +13,12 @@
       </div>
     </div>
   </div>
-{% endblock html %}
+{% endblock interactive_html %}
 
-{% block css %}
+{% block interactive_css %}
     <link rel="stylesheet" href="{% static 'interactives/payment-interface/css/payment-interface.css' %}">
-{% endblock css %}
+{% endblock interactive_css %}
 
-{% block js %}
+{% block interactive_js %}
     <script type="text/javascript" src="{% static 'interactives/payment-interface/js/payment-interface.js' %}"></script>
-{% endblock js %}
+{% endblock interactive_js %}

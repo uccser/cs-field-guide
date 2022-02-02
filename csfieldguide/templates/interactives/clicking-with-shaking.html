@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load static %}
 
-{% block html %}
+{% block interactive_html %}
 <div class="container">
   <h3 class="text-center mb-2">{% trans "Clicking With Shaking" %}</h3>
 
@@ -94,14 +94,14 @@
     </button>
   </div>
 </div>
-{% endblock html %}
+{% endblock interactive_html %}
 
-{% block css %}
+{% block interactive_css %}
 <link rel="stylesheet" href="{% static 'interactives/clicking-with-shaking/css/clicking-with-shaking.css' %}">
 <link href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" rel="stylesheet">
-{% endblock css %}
+{% endblock interactive_css %}
 
-{% block js %}
+{% block interactive_js %}
 <script src="//code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 
 <script>
@@ -114,4 +114,4 @@
 <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.0.1/js/dataTables.buttons.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.html5.min.js"></script>
-{% endblock js %}
+{% endblock interactive_js %}

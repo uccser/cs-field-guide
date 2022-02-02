@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load static %}
 
-{% block html %}
+{% block interactive_html %}
 <div id="angle-of-view-calculator">
   <h5>{% trans "Calculate the angle of view" %}</h5>
 
@@ -42,12 +42,12 @@
   </div>
 
 </div>
-{% endblock html %}
+{% endblock interactive_html %}
 
-{% block css %}
+{% block interactive_css %}
 <link rel="stylesheet" href="{% static 'interactives/angle-of-view-calculator/css/angle-of-view-calculator.css' %}">
-{% endblock css %}
+{% endblock interactive_css %}
 
-{% block js %}
+{% block interactive_js %}
 <script src="{% static 'interactives/angle-of-view-calculator/js/angle-of-view-calculator.js' %}"></script>
-{% endblock js %}
+{% endblock interactive_js %}

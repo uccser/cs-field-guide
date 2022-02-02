@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load static %}
 
-{% block html %}
+{% block interactive_html %}
   <div id="interactive-cmy-mixer" class="my-3 container-fluid">
     <h3>{% trans "CMY Colour Mixer - Used by Printers" %}</h3>
     <div id="interactive-cmy-mixer-container" class="row">
@@ -36,12 +36,12 @@
       </div>
     </div>
   </div>
-{% endblock html %}
+{% endblock interactive_html %}
 
-{% block css %}
+{% block interactive_css %}
   <link rel="stylesheet" href="{% static 'interactives/cmy-mixer/css/cmy-mixer.css' %}">
-{% endblock css %}
+{% endblock interactive_css %}
 
-{% block js %}
+{% block interactive_js %}
   <script type="text/javascript" src="{% static 'interactives/cmy-mixer/js/cmy-mixer.js' %}"></script>
-{% endblock js %}
+{% endblock interactive_js %}

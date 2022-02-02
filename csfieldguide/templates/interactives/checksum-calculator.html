@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load static %}
 
-{% block html %}
+{% block interactive_html %}
   <div data-iframe-height>
     <div class="row justify-content-center">
       <h4 class="col-md-6 mt-2">{% trans "Check Digit Calculator" %}</h4>
@@ -32,7 +32,7 @@
     <p id="interactive-checksum-calculator-multiply-feedback" class="interactive-checksum-calculator-feedback text-center"></p>
 
     <div id="interactive-checksum-calculator-calculation-controls">
-      
+
       <div class="row justify-content-center">
         <div class="col-sm-12 col-md-6 left-align mb-2">
           <label for="interactive-checksum-calculator-sums">{% trans "Products" %}</label>
@@ -75,12 +75,12 @@
       </div>
     </div>
   </div>
-{% endblock html %}
+{% endblock interactive_html %}
 
-{% block css %}
+{% block interactive_css %}
   <link rel="stylesheet" href="{% static 'interactives/checksum-calculator/css/checksum-calculator.css' %}">
-{% endblock css %}
+{% endblock interactive_css %}
 
-{% block js %}
+{% block interactive_js %}
   <script type="text/javascript" src="{% static 'interactives/checksum-calculator/js/checksum-calculator.js' %}"></script>
-{% endblock js %}
+{% endblock interactive_js %}

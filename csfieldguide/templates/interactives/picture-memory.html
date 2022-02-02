@@ -4,7 +4,7 @@
 {% load svg %}
 {% load static %}
 
-{% block html %}
+{% block interactive_html %}
   <div class="container">
     <div>
       <h3 class="text-center">{% trans "Short term memory picture game" %}</h3>
@@ -244,15 +244,15 @@
       <div id="restart-div" class="row justify-content-center d-none">
         <button id="restart-button" class="btn btn-danger mt-3">{% trans "Restart" %}</button>
       </div>
-      
+
     </div>
   </div>
-{% endblock html %}
+{% endblock interactive_html %}
 
-{% block css %}
+{% block interactive_css %}
   <link rel="stylesheet" href="{% static 'interactives/picture-memory/css/picture-memory.css' %}">
-{% endblock css %}
+{% endblock interactive_css %}
 
-{% block js %}
+{% block interactive_js %}
   <script type="text/javascript" src="{% static 'interactives/picture-memory/js/picture-memory.js' %}"></script>
-{% endblock js %}
+{% endblock interactive_js %}

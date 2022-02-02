@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load static %}
 
-{% block html %}
+{% block interactive_html %}
   <!-- NOTE: Uninteractive must be displayed in an iframe -->
   <!-- p-1 and similar are to overwrite _grid-framework.scss values -->
   <div class="container-fluid flowcharts-interpreter-compiler">
@@ -110,12 +110,12 @@
       <path class="arrow" id="interpreter-interpreter-result"/>
     </svg>
   </div>
-{% endblock html %}
+{% endblock interactive_html %}
 
-{% block css %}
+{% block interactive_css %}
   <link rel="stylesheet" href="{% static 'interactives/flowcharts-interpreter-compiler/css/flowcharts-interpreter-compiler.css' %}">
-{% endblock css %}
+{% endblock interactive_css %}
 
-{% block js %}
+{% block interactive_js %}
   <script type="text/javascript" src="{% static 'interactives/flowcharts-interpreter-compiler/js/flowcharts-interpreter-compiler.js' %}"></script>
-{% endblock js %}
+{% endblock interactive_js %}

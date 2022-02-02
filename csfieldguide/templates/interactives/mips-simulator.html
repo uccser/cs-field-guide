@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load static %}
 
-{% block html %}
+{% block interactive_html %}
   <div class="mb-3 container-fluid padded">
     <!-- Title Block -->
     <div id="interactive-mips-simulator" class="row justify-content-center">
@@ -117,12 +117,12 @@
 00000000
 0a000000
   </div>
-{% endblock html %}
+{% endblock interactive_html %}
 
-{% block css %}
+{% block interactive_css %}
   <link rel="stylesheet" href="{% static 'interactives/mips-simulator/css/mips-simulator.css' %}">
-{% endblock css %}
+{% endblock interactive_css %}
 
-{% block js %}
+{% block interactive_js %}
   <script type="text/javascript" src="{% static 'interactives/mips-simulator/js/mips-simulator.js' %}"></script>
-{% endblock js %}
+{% endblock interactive_js %}

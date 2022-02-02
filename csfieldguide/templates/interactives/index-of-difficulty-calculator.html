@@ -2,11 +2,11 @@
 
 {% load i18n static %}
 
-{% block html %}
+{% block interactive_html %}
     <div id="fitts-law-calculator" class="container text-center d-none">
         <h3 class="mb-2">{% translate "Index of Difficulty Calculator" %}</h3>
 
-        <p classs="text-muted">
+        <p class="text-muted">
             {% translate "This is a common formula for calculating the Index of Difficulty (\(ID\)), but other formulas exist." %}
         </p>
 
@@ -48,12 +48,12 @@
             </div>
         </div>
     </div>
-{% endblock html %}
+{% endblock interactive_html %}
 
-{% block css %}
+{% block interactive_css %}
     <link rel="stylesheet" href="{% static 'interactives/index-of-difficulty-calculator/css/index-of-difficulty-calculator.css' %}">
-{% endblock css %}
+{% endblock interactive_css %}
 
-{% block js %}
+{% block interactive_js %}
     <script type="text/javascript" src="{% static 'interactives/index-of-difficulty-calculator/js/index-of-difficulty-calculator.js' %}"></script>
-{% endblock js %}
+{% endblock interactive_js %}

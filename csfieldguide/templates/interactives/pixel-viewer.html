@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load static %}
 
-{% block html %}
+{% block interactive_html %}
     <div id="pixel-viewer-interactive" class="d-flex flex-column">
         <div id="pixel-viewer-interactive-buttons" class="flex-shrink-0">
             <button id="pixel-viewer-interactive-zoom-in" class="btn btn-primary btn-lg flex-fill zoom-button">
@@ -82,7 +82,7 @@
                 <h5>{% trans "Upload your own image" %}</h5>
                 <p>{% blocktrans %}Either drag and drop an image onto this page, or click the button below to load your own image into
                     the interactive. The image will be resized for performance.{% endblocktrans %}</p>
-                
+
                 <div class="custom-file w-auto d-block col-8 my-1">
                     <input type="file" id="pixel-viewer-upload" class="custom-file-input" name="image" onchange="loadImageDialog(this)" accept="image/*" />
                     <label class="custom-file-label" for="pixel-viewer-upload">{% trans "Choose file" %}</label>
@@ -107,13 +107,13 @@
             </div>
         </div>
     </div>
-{% endblock html %}
+{% endblock interactive_html %}
 
-{% block css %}
+{% block interactive_css %}
     <link rel="stylesheet" href="{% static 'interactives/pixel-viewer/css/pixel-viewer.css' %}">
-{% endblock css %}
+{% endblock interactive_css %}
 
-{% block js %}
+{% block interactive_js %}
     <script type="text/javascript">
         var base_static_path = "{{ STATIC_URL }}";
     </script>
@@ -121,4 +121,4 @@
     <script type="text/javascript" src="{% static 'interactives/pixel-viewer/js/third-party/Animate.js' %}"></script>
     <script type="text/javascript" src="{% static 'interactives/pixel-viewer/js/third-party/Tiling.js' %}"></script>
     <script type="text/javascript" src="{% static 'interactives/pixel-viewer/js/pixel-viewer.js' %}"></script>
-{% endblock js %}
+{% endblock interactive_js %}

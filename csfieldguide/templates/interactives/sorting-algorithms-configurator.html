@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load static %}
 
-{% block html %}
+{% block interactive_html %}
   <div id="sorting-algorithms-configurator" class="row my-3 container-fluid d-inline-block text-center justify-content-center">
     <div class="row">
       <div class="col-12">
@@ -42,11 +42,11 @@
       </div>
     </div>
   </div>
-{% endblock html %}
+{% endblock interactive_html %}
 
-{% block js %}
+{% block interactive_js %}
   <script type="text/javascript">
     var base = "{% url 'interactives:interactive' 'sorting-algorithms' %}";
   </script>
   <script type="text/javascript" src="{% static 'interactives/sorting-algorithms-configurator/js/sorting-algorithms-configurator.js' %}"></script>
-{% endblock js %}
+{% endblock interactive_js %}

@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load static %}
 
-{% block html %}
+{% block interactive_html %}
   <div class="my-3 container-fluid">
     <div class="row warning">
       {% trans 'Sorry, this interactive is only available on screens larger than 820x550px<br>If you are using a tablet, this may be achieved by holding it in landscape.' %}
@@ -24,17 +24,17 @@
       <div class="col-12" id="interactive-packet-attack"></div>
     </div>
   </div>
-{% endblock html %}
+{% endblock interactive_html %}
 
-{% block css %}
+{% block interactive_css %}
   <link rel="stylesheet" href="{% static 'interactives/packet-attack/css/packet-attack.css' %}">
   <!-- The aforementioned game font by Steve Matteson -->
   <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-{% endblock css %}
+{% endblock interactive_css %}
 
-{% block js %}
+{% block interactive_js %}
   <script type="text/javascript">
     var base = "{{ STATIC_URL }}";
   </script>
   <script type="text/javascript" src="{% static 'interactives/packet-attack/js/packet-attack.js' %}"></script>
-{% endblock js %}
+{% endblock interactive_js %}
