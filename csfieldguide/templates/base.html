@@ -26,6 +26,9 @@
     {% endif %}
     <script src="{% static 'js/vendors.js' %}"></script>
     <script src="{% static 'js/website.js' %}"></script>
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
     <script type="text/javascript" src="{% statici18n LANGUAGE_CODE %}"></script>
     {% block css %}
     {% endblock css %}
@@ -333,9 +336,6 @@
           "HTML-CSS": { linebreaks: { automatic: true } },
           SVG: { linebreaks: { automatic: true } }
         });
-      </script>
-      <script type="text/javascript" async
-        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_CHTML">
       </script>
       {% block scripts %}
       {% endblock scripts %}
