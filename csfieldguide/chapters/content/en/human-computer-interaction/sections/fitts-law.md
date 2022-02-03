@@ -40,7 +40,8 @@ For example, moving a distance of 7cm to get to a 1cm target also has D/W ratio 
 However, if the ratio doubles, the time *does not* double.
 For example, if the target size stays the same, but it is placed twice as far away, it won't take twice as long to move to it - the time taken goes up only a small amount.
 To work this out, Fitts introduced the "Index of Difficulty" (ID), which is proportional to the time it should take to point at a target.
-The formula for the Index of Difficulty is as follows; you don't need to worry too much about the details because we've provided the following calculator to work it out.
+The formula for the Index of Difficulty (ID) is shown in the following interactive.
+You don't need to worry too much about the details of the formula because we've also provided a calculator where you can enter the D and W values and it works out the ID value.
 
 {interactive slug="index-of-difficulty-calculator" type="in-page"}
 
