@@ -57,18 +57,11 @@ let resultMathJax = null;
  */
 let resultDiv = null;
 
-/**
- * The div element for the rounding disclaimer.
- * @type {null}
- */
-let roundingDisclaimerDiv = null;
-
 
 $(document).ready(function () {
     distanceInput = document.getElementById("input-distance");
     widthInput = document.getElementById("input-width");
     resultDiv = document.getElementById("result-container");
-    roundingDisclaimerDiv = document.getElementById("rounding-disclaimer");
 
     // Run once MathJax is ready.
     MathJax.Hub.Queue(function () {
@@ -95,14 +88,7 @@ function calculateEquation(event) {
     distance = distanceInput.value;
     width = widthInput.value;
     indexOfDifficulty = Math.log2((distance / width) + 1);
-
-    // If whole number or only 1 decimal place
-    if ((indexOfDifficulty * 10) % 1 == 0) {
-        roundingDisclaimerDiv.classList.add("invisible");
-    } else {
-        indexOfDifficulty = Number(indexOfDifficulty).toFixed(1);
-        roundingDisclaimerDiv.classList.remove("invisible");
-    }
+    indexOfDifficulty = Number(indexOfDifficulty).toFixed(1);
 
     // Backslashes are escaped (doubled).
     completedFormula = `\\begin{equation}\\begin{aligned}
