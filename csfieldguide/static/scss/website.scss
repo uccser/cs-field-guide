@@ -319,6 +319,10 @@ a {
   }
 }
 
+.embed-responsive {
+    margin: 1rem 0;
+}
+
 // Standard bootstrap-defined Medium devices boundary
 @include media-breakpoint-down(sm) {
   .navbar-collapse {
