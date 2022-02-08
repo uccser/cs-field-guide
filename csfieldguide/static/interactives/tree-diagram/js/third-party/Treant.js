@@ -1,6 +1,10 @@
 /*
  * Treant-js
  *
+ * Modified by UCCSER:
+ * Adds fix for showing arrows on connectors after a pseudo connector.
+ * Adds lines 423 and 918 to 924.
+ *
  * (c) 2013 Fran Peručić
  * Treant-js may be freely distributed under the MIT license.
  * For all details and documentation:
@@ -415,6 +419,7 @@
             this.id = treeId;
 
             this.CONFIG = UTIL.extend(Tree.CONFIG, jsonConfig.chart);
+            this.STYLE = this.CONFIG['connectors']['style'];
             this.drawArea = UTIL.findEl(this.CONFIG.container, true);
             if (!this.drawArea) {
                 throw new Error('Failed to find element by selector "' + this.CONFIG.container + '"');
@@ -908,6 +913,13 @@
                 }
 
                 connLine.attr(parent.connStyle.style);
+
+                if (treeNode.text) {
+                    // If text node, reset to default style.
+                    // This fixes bug where connector after a pseudo node
+                    // would not show the arrow end.
+                    connLine.attr(this.STYLE);
+                }
 
                 if (treeNode.drawLineThrough || treeNode.pseudo) {
                     treeNode.drawLineThroughMe(hidePoint);
