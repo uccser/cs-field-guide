@@ -1,0 +1,22 @@
+{% extends interactive_mode_template %}
+
+{% load i18n static %}
+
+{% block interactive_html %}
+    <div id="tree-diagram-interactive" class="container">
+        <div class="d-flex justify-content-center">
+            <div id="tree-diagram"></div>
+        </div>
+    </div>
+{% endblock interactive_html %}
+
+{% block interactive_css %}
+    <link rel="stylesheet" href="{% static 'interactives/tree-diagram/css/third-party/Treant.css' %}">
+    <link rel="stylesheet" href="{% static 'interactives/tree-diagram/css/tree-diagram.css' %}">
+{% endblock interactive_css %}
+
+{% block interactive_js %}
+    <script type="text/javascript" src="{% static 'interactives/tree-diagram/js/third-party/raphael.js' %}"></script>
+    <script type="text/javascript" src="{% static 'interactives/tree-diagram/js/third-party/Treant.js' %}"></script>
+    <script type="text/javascript" src="{% static 'interactives/tree-diagram/js/tree-diagram.js' %}"></script>
+{% endblock interactive_js %}

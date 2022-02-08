@@ -176,6 +176,7 @@ The following parse tree shows how you could use it to produce the string “aba
 It starts with S at the top, and each branch in the tree (arrow) represents a production being used to replace a non-terminal.
 For example, the top two arrows show S → SS, and the three-way branch from the right-hand S shows S → aSb (with the middle S then having its own two branches).
 
+{interactive slug="tree-diagram" type="iframe" parameters="config=basic-parse-tree"}
 
 {panel type="project"}
 

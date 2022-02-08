@@ -200,6 +200,8 @@ trainsylvania-blank:
   name: Blank Trainsylvania
 trainsylvania-complete:
   name: Complete Trainsylvania
+tree-diagram:
+  name: Tree Diagram
 trig-function-calculator:
   name: Trig Function Calculator
 unexpected-error:
