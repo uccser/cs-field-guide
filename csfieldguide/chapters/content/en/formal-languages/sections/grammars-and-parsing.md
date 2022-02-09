@@ -178,6 +178,296 @@ For example, the top two arrows show S → SS, and the three-way branch from the
 
 {interactive slug="tree-diagram" type="iframe" parameters="config=basic-parse-tree"}
 
+## Grammars for mathematical expressions
+
+A context-free grammar is useful for creating programming languages. We’re going to look at a small part of a programming language now: mathematical expressions.
+
+Expressions are used in both programming languages and spreadsheets. For example, a program might contain this statement, which adds one to the variable score:
+
+```python
+score = score + 1
+```
+
+The expression in this statement is `score + 1` - it’s just a calculation.
+
+The following expression calculates the area of a rectangle:
+
+```python
+width * height
+```
+
+And the following expression might be used in a program to calculate the cost of a purchase:
+
+```python
+cost * number_of_items * (discount/100)
+```
+
+In spreadsheets, an expression might look more like:
+
+```
+(A4 + B2) * C6
+```
+
+Expressions can have nested brackets like this:
+
+```python
+(a * b) + (c * (d + e))
+```
+
+The first pair of brackets isn’t necessary, but they’ve been put in to make it easier to read.
+
+Even the following is accepted in most programming languages, though the brackets aren’t very helpful:
+
+```python
+(((((a)))))
+```
+
+The regular languages we used in earlier sections can’t keep track of nested brackets, but context-free grammars can.
+
+We’re going to simplify things to start with by giving you a grammar that accepts simple expressions that only have single digit numbers.
+All of these expressions could be typed into a language like Python, and should perform the calculation correctly (you could also type them into a spreadsheet, with an “=” sign at the front).
+The following examples are valid expressions:
+
+```python3
+3+2
+3*(4+2)
+((3))
+```
+
+But the following will cause an error:
+```python
+3+
+3*4+2)
+(3))
+```
+
+For example, here’s what Python does with the last expression:
+
+{image file-path="img/chapters/syntax-error-python.png" alt="The image shows a syntax error message from Python code."}
+
+If you put it into a spreadsheet as `=(3))` then you get an error like this:
+
+{image file-path="img/chapters/syntax-error-spreadsheet.png" alt="The image shows a syntax error message from a spreadsheet program."}
+
+{panel type="jargon-buster"}
+
+# Jargon buster: Syntax error
+
+If the string doesn’t match the grammar, then you have a syntax error - if a programming language ever tells you that you have a syntax error, it will have come from a formal language parsing what you typed in.
+Doing these exercises is your turn to look for syntax errors in the input!
+
+{panel end}
+
+A grammar for working out these expressions can be experimented with in this interactive.
+Click the next button after completing an expression to try another one.
+
+{interactive slug="cfg-parsing-challenge" type="whole-page" text="true" parameters="productions=E%3AN%7CE%20%27%2B%27%20E%7CE%20%27*%27%20E%7C%27-%27%20E%7C%27(%27%20E%20%27)%27%3B%20N%3A%270%27%7C%271%27%7C%272%27%7C%273%27%7C%274%27%7C%275%27%7C%276%27%7C%277%27%7C%278%27%7C%279%27%3B&hide-generator=true&examples=2%2B3%7C3%2A(5%2B1)%7C(4%2B5)%2A(2-3)%7C1%2B2%2B3%7C((3)%2B2)"}
+
+CFG Parsing Challenge #4 - Mathematical Expressions
+
+{interactive end}
+
+{panel type="additional-information"}
+
+# Need help with the interactive?
+
+In this grammar the non-terminal E represents an expression, and N represents a number.
+
+{video url="http://player.vimeo.com/video/674696327"}
+
+{panel end}
+
+An example string in the interactive was “(2+3)\*(4+1)”, and its parse tree, which shows how to create the string using the grammar, would be as follows.
+At the top level, the first E uses the production E → E*E, then each of those two “E”s uses E → (E), and so on.
+
+{interactive slug="tree-diagram" type="iframe" parameters="config=mathematical-expression"}
+
+{panel type="jargon-buster"}
+
+# Non-terminals? Terminals? Context-free grammars?
+
+**Non-terminals**: The capital letters in the productions (such as S, N, and E) are called “non-terminals”, because they don’t end up in the final string.
+The letter S is often used in examples as the “starting” non-terminal, and in this case N stands for “number” and E stands for “expression”.
+In practice all sorts of notation is used for non-terminals, but these are short ones to keep things simple to start with.
+
+**Terminals**: The digits and lower case letters are “terminals” - once they are chosen, they can’t be replaced with anything further - they terminate a branch of the parse tree.
+In practice, terminals are often recognised by a regular expression (they are usually things like variable names, keywords, or numbers).
+In fact, the notation “0-9” in the productions is really a regular expression within the Context-Free Grammar.
+
+**Context-free grammar**: The kind of grammar we’re using here is called a Context-Free Grammar (CFG), because it only has one non-terminal on the left of a production i.e. the non-terminal can be replaced regardless of its context.
+There’s a more powerful system called a Context Sensitive Grammar, but they are more complicated to work with and we won’t cover them here.
+
+{panel end}
+
+{panel type="additional-information"}
+
+# Shortcut
+
+Rather than write out a non-terminal on the left on multiple lines like this:
+
+```
+E → E + E
+E → E * E
+E → (E)
+```
+
+It is often simplified using a vertical bar:
+
+```
+E → E + E  |  E * E  |  (E)
+```
+
+{panel end}
+
+{panel type="project"}
+
+# More examples to reinforce your understanding
+
+Here are a range of grammars and challenges for you to try.
+None of them do anything that a CFG is likely to be used for in practice, but they will give you a feel for how CFGs work.
+
+---
+
+This grammar generates a pattern of “a” and “b” mixed together, then a “c”, then the original pattern backwards.
+It can be strangely satisfying to solve, and it’s something you can’t check with a regular language (i.e. a regular expression or FSA).
+
+{interactive slug="cfg-parsing-challenge" type="whole-page" text="true" parameters="productions=S:%20%27a%27%20S%20%27a%27%7C%27b%27%20S%20%27b%27%20%7C%20%27c%27%20%20&examples=bacab%7Cbbacabb%7Cabbbcbbba%7Caca&hide-generator=true"}
+
+CFG Parsing Challenge - Extra Challenge #1
+
+{interactive end}
+
+---
+
+Here’s a similar grammar, but it generates some number of “a”s, followed by twice as many “b”s.
+
+{interactive slug="cfg-parsing-challenge" type="whole-page" text="true" parameters="?productions=S:%20%27a%27%20S%20%27bb%27%7C%27abb%27%20&examples=abb%7Caabbbb%7Caaabbbbbb%7Caaaabbbbbbbb&hide-generator=true"}
+
+CFG Parsing Challenge - Extra Challenge #2
+
+{interactive end}
+
+---
+
+This grammar generates strings that have a number of “a”s, followed by a number of “b”s, then a number of”‘c”s that is the sum of the number of “a”s and “b”s.
+
+{interactive slug="cfg-parsing-challenge" type="whole-page" text="true" parameters="productions=S:%20%27a%27%20S%20%27c%27%20%7C%20M;%20M:%20%27b%27%20M%20%27c%27%7C%20%27bc%27%20%20&examples=aabbcccc%7Cabbbbccccc&hide-generator=true"}
+
+CFG Parsing Challenge - Extra Challenge #3
+
+{interactive end}
+
+---
+
+This grammar generates strings of balanced brackets.
+Normally there would be other symbols involved, but we’re just worrying if every opening bracket has a matching closed bracket.
+It can get a bit hard to follow, but it’s all very logical!
+
+{interactive slug="cfg-parsing-challenge" type="whole-page" text="true" parameters="productions=S:%20S%20S%20%7C%20%27(%27%20S%20%27)%27%20%7C%20%27()%27%20%7C%20%27[%27%20S%20%27]%27%20%7C%20%27[]%27%20%7C%20%27%7B%27%20S%20%27%7D%27%20%7C%20%27%7B%7D%27%20&examples=()%7C[][]%7C()[]%7C([()%7B%7D])&hide-generator=true"}
+
+CFG Parsing Challenge - Extra Challenge #4
+
+{interactive end}
+
+---
+
+Here’s a version of the grammar for an expression that will work if you paste the examples into a spreadsheet.
+The only difference from the one above is that it puts an “=” sign at the front of the expression.
+
+{interactive slug="cfg-parsing-challenge" type="whole-page" text="true" parameters="productions=S%3A%20%27%3D%27%20E%3B%20E%3A%20N%20%7CE%20%27%2B%27%20E%7CE%20%27%2A%27%20E%7C%27-%27%20E%7C%27(%27%20E%20%27)%27%3B%20N%3A%270%27%7C%271%27%7C%272%27%7C%273%27%7C%274%27%7C%275%27%7C%276%27%7C%277%27%7C%278%27%7C%279%27%3B&examples=%3D1%2B2&hide-generator=true"}
+
+CFG Parsing Challenge - Extra Challenge #5
+
+{interactive end}
+
+---
+
+This grammar generates binary numbers that are multiples of three.
+The examples include some numbers that aren’t multiples of 3, since you can’t be sure it’s working unless it rejects incorrect strings as well as accepting correct ones.
+(As it happens, this language can also be generated using a regular expression.)
+
+{interactive slug="cfg-parsing-challenge" type="whole-page" text="true" parameters="productions=S:%20%270%27%20S%20%7C%271%27%20A%20%7C%270%27;%20A:%20%270%27%20B%20%7C%271%27%20S%20%7C%20%271%27%20;%20B:%20%271%27%20B%20%7C%20%270%27%20A%20&examples=11%7C110%7C1001%7C1100%7C10%7C111&hide-generator=true"}
+
+CFG Parsing Challenge - Extra Challenge #6
+
+{interactive end}
+
+---
+
+This grammar has a language that could have been implemented using a regular language - you can probably work out the FSA that would accept correct strings.
+
+
+{interactive slug="cfg-parsing-challenge" type="whole-page" text="true" parameters="productions=S:%20A%20B;%20A:%20%27a%27%20A%7C%27a%27;%20B:%20%27b%27%20B%7C%27b%27%20%20&examples=ab%7Caaabbbbbb%7Caaaaab%7Caabbb&hide-generator=true"}
+
+CFG Parsing Challenge - Extra Challenge #7
+
+{interactive end}
+
+---
+
+This is a silly grammar based on the English language.
+English can’t usually be represented as a formal language, but this exercise gives you an idea of how the terminology in formal languages relates to ideas in English grammar.
+
+{interactive slug="cfg-parsing-challenge" type="whole-page" text="true" parameters="productions=S:%20N%20V%20A%20N;%20N:%20%27Cats%27%7C%27Dogs%27;%20V:%20%27Chase%27%20%7C%20%27Like%27;%20A:%20A%20A%20%7C%20%27Green%27%20%7C%20%27Smelly%27%20%7C%20%27Fast%27;%20%20&examples=DogsLikeGreenCats%7CCatsChaseFastSmellyDogs&hide-generator=true"}
+
+CFG Parsing Challenge - Extra Challenge #8
+
+{interactive end}
+
+{panel end}
+
+## Grammars in practice
+
+Grammars are used to define programming languages like Python, Java, Javascript, C, C++, C# and so on, but they also define languages like HTML and XML.
+When someone wants to write a program that processes files in one of these languages, they can write the production rules for the language, and then feed them into a system that automatically creates a program to process the language.
+(An example of a system that can read in a CFG to help build a new programming language is [Bison](https://en.wikipedia.org/wiki/GNU_Bison).)
+
+Context-free grammars are particularly useful for working with languages that allow nesting.
+We’ve already seen nesting when we had brackets within brackets in the expressions above.
+Another example that comes up in most programming languages is that you can have an “if” statement inside an “if” statement, or an “if” inside a “while” which is inside an “if”!
+Here’s an example of some nested “if” statements in two languages.
+(Note that these may not be the best way to write a program, but they are accepted by the grammar of the language).
+
+{image file-path="img/chapters/conditional-comparison.png" alt="A series of conditional statements written in both Scratch and Python programming languages."}
+
+Usually there’s no limit to the nesting, even though it’s not great style to overuse it.
+
+The notation we’ve been using for CFGs above is simplified to make it easy to read, but here is a [link to the actual grammar for the Python language](https://docs.python.org/3/reference/grammar.html).
+In this notation, terminals are in quote marks. For example, the definition of an “if_stmt” (the non-terminal representing an if statement) includes:
+
+```peg
+if_stmt:
+    | 'if' named_expression ':' block elif_stmt
+    | 'if' named_expression ':' block [else_block]
+```
+
+The last line means that an “if” statement starts with the terminal “if”, then has an expression (that’s the true/false decision in an “if” statement), a colon, and a block, followed by an optional “else” block (indicated by the square brackets).
+If you search for the non-terminal “block:” in the grammar, you’ll see that it can be an indented group of statements, or a simple statement.
+If you keep following up on these, you’ll find out that a statement can (eventually) be another “if” statement.
+These two productions use the vertical line “|” as a shortcut to show that they are alternatives for an “if_stmt”.
+Grammars like this are the way that a programming language designer specifies the rules of the language.
+
+The entire grammar for Python is only about 500 lines long, which might seem like a lot, but it’s not bad considering that it specifies the syntax rules for an entire programming language, and is able to process any Python program that anyone will ever come up with!
+
+In practice, regular expressions do the simple tasks like recognising numbers and variable names, and the grammar is used for the things that the regular expression can’t do.
+
+## What next?
+
+In the previous section we used regular expressions, which could define strings from regular languages, and could be implemented using a finite state automaton.
+
+In this section we’ve used the more powerful context-free grammar, which can define strings from context-free languages.
+These can be implemented using something called a push-down automaton (PDA), which is a more powerful version of a finite state automaton (FSA).
+We won’t look at how a push-down automaton works here, but you were doing the job of a PDA when you were applying a context-free grammar in the challenges above.
+
+Context-free grammars can check languages that Regular Expressions can’t.
+In fact, **every Regular Language can be checked by a context-free grammar, but not the other way around**.
+We could just use CFGs instead of Regular Expressions, but they are a bit more unwieldy to use, so we use a Regular Expression if we can (e.g. to recognise variable names, email addresses or numbers), and bring in a CFG if the language calls for it.
+
+Context-free grammars are pretty versatile, but some slightly more powerful types of grammars are sometimes needed for some languages.
+Computer scientists have many variations - you may hear about things like “Context-sensitive grammars”, “parsing expression grammars” or “LL(k) grammars”.
+They use many of the same principles as a CFG, but are useful in particular situations.
+Computer scientists who design new languages and write software to process languages are able to use these tools to make the process much simpler and more reliable.
+
 {panel type="project"}
 
 # Grammars in art and music
@@ -211,3 +501,5 @@ Grammars have been used for music notation:
 - Analyse a simple piece of music in terms of a formal grammar.
 
 {panel end}
+
+There are even more powerful languages than those mentioned here, but they are much harder to work with, and are often used to explore the boundaries of what can be done with computation.
