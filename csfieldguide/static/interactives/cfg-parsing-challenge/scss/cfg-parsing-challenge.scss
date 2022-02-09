@@ -93,6 +93,10 @@ $non-terminal: #6c757d;
   width: 100%;
 }
 
+#cfg-grammar-link a {
+  word-break: break-all;
+}
+
 button:disabled {
   cursor: not-allowed;
 }

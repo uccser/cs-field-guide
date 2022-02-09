@@ -446,6 +446,10 @@ trig-function-calculator:
   languages:
     en: interactives/trig-function-calculator.html
   is_interactive: true
+tree-diagram:
+  languages:
+    en: interactives/tree-diagram.html
+  is_interactive: false
 unexpected-error:
   languages:
     en: interactives/unexpected-error.html

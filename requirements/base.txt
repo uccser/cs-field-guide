@@ -16,6 +16,7 @@ selenium==3.141.0
 
 # Markdown
 verto==1.0.1
+Pygments==2.11.2
 python-markdown-math==0.6
 
 # Search

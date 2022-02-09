@@ -254,7 +254,7 @@ function describeAndReduceProductions(nonterminal, replacements) {
 
 /**
  * Returns true if the given list of replacements for a nonterminal is compressable
- * 
+ *
  * The list is compressable if:
  * - There are at least 2 possible replacements
  * - All replacements are single values
@@ -303,7 +303,7 @@ function isTerminal(s) {
 }
 
 /**
-* Returns the given string with leading and trailing inverted commas removed 
+* Returns the given string with leading and trailing inverted commas removed
 */
 function trimICs(s) {
   return s.replace(/^\'+|\'+$/g, '');
@@ -724,5 +724,5 @@ function toggleExamplesWindow() {
 * Returns the given string percent-encoded
 */
 function percentEncode(string) {
-  return encodeURIComponent(string);
+    return encodeURIComponent(string).replace(/\*/g, "%2A");
 }
