@@ -1,5 +1,5 @@
 module.exports = {
-    // Created by Virendra
+    // Adapted from the following post:
     // http://www.jquerybyexample.net/2012/06/get-url-parameters-using-jquery.html
     getUrlParameter: function(sParam) {
         var sPageURL = decodeURIComponent(window.location.search.substring(1)),
@@ -8,7 +8,8 @@ module.exports = {
             i;
 
         for (i=0; i < sURLVariables.length; i++) {
-            sParameterName = sURLVariables[i].split("=");
+            // Only split on first occurrence of equals sign
+            sParameterName = sURLVariables[i].split(/=(.+)/);
 
             if (sParameterName[0] === sParam) {
                 return sParameterName[1] === undefined ? true : sParameterName[1];
