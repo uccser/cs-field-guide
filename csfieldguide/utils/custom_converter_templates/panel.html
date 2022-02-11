@@ -2,7 +2,10 @@
   <div>
   {{ "{% if teacher_mode %}" }}
 {% endif %}
-<details{% if expanded == 'true'%} open="open"{% endif %} class="panel-{{ type }}">
+<details
+{% if expanded == 'true'%} open="open"{% endif %}
+{% if expanded == 'always'%} open="open" disabled="disabled" tabindex="-1"{% endif %}
+class="panel-{{ type }}">
 <summary>
 <strong>
 {{ title }}

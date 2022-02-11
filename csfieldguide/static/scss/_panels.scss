@@ -92,6 +92,20 @@ details {
   }
 }
 
+// Rules for disabling interactions with always open panels
+details[disabled][open] summary {
+    pointer-events: none;
+    user-select: none;
+    &:before {
+      content: none;
+    }
+}
+details[disabled] summary {
+    &:before {
+      content: none;
+    }
+}
+
 /*
  The following rules are used to better display <details> elements in Internet
  Explorer and Edge, as they are currently unsupported. A JavaScript polyfill
