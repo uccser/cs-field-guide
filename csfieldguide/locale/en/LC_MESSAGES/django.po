@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-18 04:03+0000\n"
+"POT-Creation-Date: 2022-02-14 00:46+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: config/settings/base.py:126
+#: config/settings/base.py:130
 msgid "Translation mode"
 msgstr ""
 
-#: config/settings/base.py:132
+#: config/settings/base.py:136
 msgid "Translation mode (Bi-directional)"
 msgstr ""
 
@@ -45,14 +45,14 @@ msgstr ""
 msgid "Home page"
 msgstr ""
 
-#: templates/404.html:26 templates/base.html:90 templates/base.html:95
-#: templates/base.html:241
+#: templates/404.html:26 templates/base.html:93 templates/base.html:98
+#: templates/base.html:236
 msgid "Search"
 msgstr ""
 
 #: templates/appendices/about.html:6 templates/appendices/about.html:10
 #: templates/appendices/contributors.html:6 templates/appendices/index.html:17
-#: templates/appendices/sitemap.html:57 templates/base.html:186
+#: templates/appendices/sitemap.html:57 templates/base.html:189
 #: templates/general/index.html:36
 msgid "About"
 msgstr ""
@@ -124,7 +124,7 @@ msgstr ""
 
 #: templates/appendices/base.html:6 templates/appendices/index.html:6
 #: templates/appendices/index.html:10 templates/appendices/sitemap.html:54
-#: templates/base.html:83
+#: templates/base.html:86
 msgid "Appendices"
 msgstr ""
 
@@ -168,152 +168,152 @@ msgstr ""
 msgid "Interactive Development"
 msgstr ""
 
-#: templates/appendices/contributors.html:50
+#: templates/appendices/contributors.html:51
 msgid "Writers"
 msgstr ""
 
-#: templates/appendices/contributors.html:52
+#: templates/appendices/contributors.html:53
 msgid ""
 "Formal Languages, Compression, Human Computer Interaction, and Coding "
 "Introduction"
 msgstr ""
 
-#: templates/appendices/contributors.html:53
+#: templates/appendices/contributors.html:54
 msgid ""
 "NCEA Assessment Guides, Programming Languages, Data Representation, "
 "Compression, Encryption, Error Control, Artificial Intelligence, and "
 "Complexity and Tractability"
 msgstr ""
 
-#: templates/appendices/contributors.html:54
+#: templates/appendices/contributors.html:55
 msgid "Algorithms"
 msgstr ""
 
-#: templates/appendices/contributors.html:55
-#: templates/appendices/contributors.html:94
+#: templates/appendices/contributors.html:56
+#: templates/appendices/contributors.html:95
 msgid "Network Communication Protocols"
 msgstr ""
 
-#: templates/appendices/contributors.html:56
-#: templates/appendices/contributors.html:92
+#: templates/appendices/contributors.html:57
+#: templates/appendices/contributors.html:93
 msgid "Computer Vision"
 msgstr ""
 
-#: templates/appendices/contributors.html:57
+#: templates/appendices/contributors.html:58
 msgid "Computer Vision (Depth)"
 msgstr ""
 
-#: templates/appendices/contributors.html:58
-#: templates/appendices/contributors.html:61
+#: templates/appendices/contributors.html:59
+#: templates/appendices/contributors.html:62
 msgid "Computer Graphics"
 msgstr ""
 
-#: templates/appendices/contributors.html:59
 #: templates/appendices/contributors.html:60
-#: templates/appendices/contributors.html:84
+#: templates/appendices/contributors.html:61
+#: templates/appendices/contributors.html:85
 msgid "Software Engineering"
 msgstr ""
 
-#: templates/appendices/contributors.html:62
+#: templates/appendices/contributors.html:63
 msgid "Human Computer Interaction, Compression"
 msgstr ""
 
-#: templates/appendices/contributors.html:65
+#: templates/appendices/contributors.html:66
 msgid "Editors"
 msgstr ""
 
-#: templates/appendices/contributors.html:75
+#: templates/appendices/contributors.html:76
 msgid "Advisors"
 msgstr ""
 
-#: templates/appendices/contributors.html:83
+#: templates/appendices/contributors.html:84
 msgid ""
 "Artificial Intelligence, Complexity and Tractability, Data Representation, "
 "Compression, Error Control, and Encryption"
 msgstr ""
 
-#: templates/appendices/contributors.html:85
 #: templates/appendices/contributors.html:86
 #: templates/appendices/contributors.html:87
 #: templates/appendices/contributors.html:88
+#: templates/appendices/contributors.html:89
 msgid "Curriculum (NCEA)"
 msgstr ""
 
-#: templates/appendices/contributors.html:89
 #: templates/appendices/contributors.html:90
+#: templates/appendices/contributors.html:91
 msgid "Curriculum (AP-CSP)"
 msgstr ""
 
-#: templates/appendices/contributors.html:91
+#: templates/appendices/contributors.html:92
 msgid "Computer Graphics, Computer Vision"
 msgstr ""
 
-#: templates/appendices/contributors.html:93
+#: templates/appendices/contributors.html:94
 msgid "Network Communication Protocols, Encryption"
 msgstr ""
 
-#: templates/appendices/contributors.html:95
+#: templates/appendices/contributors.html:96
 msgid "Formal Languages"
 msgstr ""
 
-#: templates/appendices/contributors.html:96
+#: templates/appendices/contributors.html:97
 msgid "Programming Languages"
 msgstr ""
 
-#: templates/appendices/contributors.html:97
 #: templates/appendices/contributors.html:98
+#: templates/appendices/contributors.html:99
 msgid "Runestone Interactive"
 msgstr ""
 
-#: templates/appendices/contributors.html:107
+#: templates/appendices/contributors.html:108
 msgid "Translators"
 msgstr ""
 
-#: templates/appendices/contributors.html:109
+#: templates/appendices/contributors.html:110
 msgid ""
 "Translators are listed on our Crowdin page <a href=\"https://crowdin.com/"
 "project/cs-field-guide\">here"
 msgstr ""
 
-#: templates/appendices/contributors.html:112
+#: templates/appendices/contributors.html:113
 msgid "Other"
 msgstr ""
 
-#: templates/appendices/contributors.html:114
+#: templates/appendices/contributors.html:115
 msgid "Research"
 msgstr ""
 
-#: templates/appendices/contributors.html:116
+#: templates/appendices/contributors.html:117
 msgid "Interactive games and related material"
 msgstr ""
 
-#: templates/appendices/contributors.html:117
+#: templates/appendices/contributors.html:118
 msgid "Video production"
 msgstr ""
 
-#: templates/appendices/contributors.html:118
+#: templates/appendices/contributors.html:119
 msgid "Formal languages material"
 msgstr ""
 
-#: templates/appendices/contributors.html:119
+#: templates/appendices/contributors.html:120
 msgid "Illustrations"
 msgstr ""
 
-#: templates/appendices/contributors.html:122
+#: templates/appendices/contributors.html:123
 msgid "Community Contributors"
 msgstr ""
 
-#: templates/appendices/contributors.html:155
+#: templates/appendices/contributors.html:157
 msgid ""
 "<strong>Note:</strong> If there is an error in the list, please contact <a "
 "href=\"mailto:jack.morgan@canterbury.ac.nz\">Jack Morgan</a>"
 msgstr ""
 
-#: templates/appendices/contributors.html:157
+#: templates/appendices/contributors.html:159
 msgid "Acknowledgements"
 msgstr ""
 
-#: templates/appendices/contributors.html:159
+#: templates/appendices/contributors.html:161
 msgid ""
 "This project has grown out of a partnership for an international field guide "
 "to computing.\n"
@@ -328,7 +328,7 @@ msgid ""
 "both led by Peter Denning."
 msgstr ""
 
-#: templates/appendices/contributors.html:165
+#: templates/appendices/contributors.html:167
 msgid ""
 "Funding for this online textbook has been provided by our sponsors listed at "
 "the end of this page.\n"
@@ -344,7 +344,7 @@ msgid ""
 "University</a>, UK."
 msgstr ""
 
-#: templates/appendices/contributors.html:172
+#: templates/appendices/contributors.html:174
 msgid ""
 "Partial funding for the US field guide project was provided by the US "
 "National Science Foundation under Grant No. 0938809."
@@ -359,19 +359,19 @@ msgid "Changelog"
 msgstr ""
 
 #: templates/appendices/index.html:37 templates/appendices/sitemap.html:37
-#: templates/base.html:80 templates/base.html:201
+#: templates/base.html:83 templates/base.html:204
 #: templates/curriculum_guides/index.html:12 templates/general/index.html:66
 msgid "Curriculum Guides"
 msgstr ""
 
 #: templates/appendices/index.html:42 templates/appendices/sitemap.html:66
-#: templates/base.html:247 templates/chapters/glossary.html:7
+#: templates/base.html:242 templates/chapters/glossary.html:7
 #: templates/chapters/glossary.html:11
 msgid "Glossary"
 msgstr ""
 
 #: templates/appendices/index.html:47 templates/appendices/sitemap.html:69
-#: templates/base.html:196 templates/general/index.html:81
+#: templates/base.html:199 templates/general/index.html:81
 #: templates/interactives/index.html:8 templates/interactives/index.html:12
 msgid "Interactives"
 msgstr ""
@@ -390,8 +390,8 @@ msgstr ""
 msgid "Computer Science Field Guide"
 msgstr ""
 
-#: templates/appendices/sitemap.html:20 templates/base.html:77
-#: templates/base.html:191 templates/chapters/index.html:8
+#: templates/appendices/sitemap.html:20 templates/base.html:80
+#: templates/base.html:194 templates/chapters/index.html:8
 #: templates/chapters/index.html:12 templates/general/index.html:51
 msgid "Chapters"
 msgstr ""
@@ -402,68 +402,64 @@ msgid ""
 "computer science"
 msgstr ""
 
-#: templates/base.html:50
+#: templates/base.html:53
 msgid "Language"
 msgstr ""
 
-#: templates/base.html:65
+#: templates/base.html:68
 msgid "Beta"
 msgstr ""
 
-#: templates/base.html:163
+#: templates/base.html:166
 msgid ""
 "Looking for something for primary schools? Check out <a target=\"_blank\" "
 "rel=\"noopener noreferrer\" href=\"http://www.csunplugged.org/\">CS "
 "Unplugged</a>."
 msgstr ""
 
-#: templates/base.html:175
+#: templates/base.html:178
 msgid ""
 "The Computer Science Field Guide is an online interactive resource for high "
 "school students learning about computer science."
 msgstr ""
 
-#: templates/base.html:182
+#: templates/base.html:185
 msgid "Useful Links"
 msgstr ""
 
-#: templates/base.html:208
-msgid "Release Archive"
-msgstr ""
-
-#: templates/base.html:215
+#: templates/base.html:210
 msgid "Community"
 msgstr ""
 
-#: templates/base.html:219
+#: templates/base.html:214
 msgid "Twitter"
 msgstr ""
 
-#: templates/base.html:224
+#: templates/base.html:219
 msgid "YouTube"
 msgstr ""
 
-#: templates/base.html:229
+#: templates/base.html:224
 msgid "GitHub"
 msgstr ""
 
-#: templates/base.html:235
+#: templates/base.html:230
 msgid "Help"
 msgstr ""
 
-#: templates/base.html:252
+#: templates/base.html:247
 msgid "Feedback"
 msgstr ""
 
-#: templates/base.html:261 templates/general/index.html:101
+#: templates/base.html:256 templates/general/index.html:101
 msgid "Switch to student mode"
 msgstr ""
 
-#: templates/base.html:265 templates/general/index.html:107
+#: templates/base.html:260 templates/general/index.html:107
 msgid "Switch to teacher mode"
 msgstr ""
 
-#: templates/base.html:291
+#: templates/base.html:286
 msgid ""
 "The Computer Science Field Guide material is open source on <a target="
 "\"_blank\" rel=\"noopener noreferrer\" href=\"https://github.com/uccser/cs-"
@@ -479,12 +475,12 @@ msgid ""
 "\" href=\"https://icons8.com/\">icons8</a>."
 msgstr ""
 
-#: templates/base.html:322
+#: templates/base.html:317
 #, python-format
 msgid "This definition is not available in %(language)s, sorry!"
 msgstr ""
 
-#: templates/base.html:329 templates/interactives/cfg-parsing-challenge.html:73
+#: templates/base.html:324 templates/interactives/cfg-parsing-challenge.html:73
 #: templates/interactives/matrix-simplifier.html:172
 #: templates/interactives/matrix-simplifier.html:201
 msgid "Close"
@@ -718,7 +714,7 @@ msgstr ""
 
 #: templates/interactives/2d-shape-manipulations.html:167
 #: templates/interactives/2d-shape-manipulations.html:172
-#: templates/interactives/cfg-parsing-challenge.html:106
+#: templates/interactives/cfg-parsing-challenge.html:108
 #: templates/interactives/checksum-calculator.html:74
 #: templates/interactives/city-trip.html:32
 #: templates/interactives/hex-background-colour.html:21
@@ -827,7 +823,7 @@ msgstr ""
 #: templates/interactives/algorithm-timer.html:118
 msgid ""
 "\n"
-"        <span id='complexity-chosen'>n&sup2;</span> operations would take: \n"
+"        <span id='complexity-chosen'>n&sup2;</span> operations would take:\n"
 "        "
 msgstr ""
 
@@ -1224,7 +1220,7 @@ msgid ""
 msgstr ""
 
 #: templates/interactives/cfg-parsing-challenge.html:87
-msgid "Try to form:"
+msgid "Try to generate:"
 msgstr ""
 
 #: templates/interactives/cfg-parsing-challenge.html:91
@@ -1241,20 +1237,20 @@ msgstr ""
 msgid "Simple"
 msgstr ""
 
-#: templates/interactives/cfg-parsing-challenge.html:105
+#: templates/interactives/cfg-parsing-challenge.html:107
 msgid "Undo"
 msgstr ""
 
-#: templates/interactives/cfg-parsing-challenge.html:112
+#: templates/interactives/cfg-parsing-challenge.html:114
 msgid "Productions:"
 msgstr ""
 
-#: templates/interactives/cfg-parsing-challenge.html:118
-msgid "New productions"
+#: templates/interactives/cfg-parsing-challenge.html:120
+msgid "History:"
 msgstr ""
 
-#: templates/interactives/cfg-parsing-challenge.html:123
-msgid "History:"
+#: templates/interactives/cfg-parsing-challenge.html:128
+msgid "Customise productions"
 msgstr ""
 
 #: templates/interactives/checksum-calculator-gtin-13.html:10
@@ -1298,6 +1294,7 @@ msgid "Remainder when divided by"
 msgstr ""
 
 #: templates/interactives/checksum-calculator.html:59
+#: templates/interactives/index-of-difficulty-calculator.html:39
 #: templates/interactives/trig-function-calculator.html:17
 msgid "Calculate"
 msgstr ""
@@ -1366,6 +1363,89 @@ msgstr ""
 
 #: templates/interactives/city-trip.html:86
 msgid "Estimated time left to run: "
+msgstr ""
+
+#: templates/interactives/clicking-with-shaking.html:8
+msgid "Clicking With Shaking"
+msgstr ""
+
+#: templates/interactives/clicking-with-shaking.html:11
+msgid "WARNING: DO NOT PRESS PLAY IF YOU GET MOTION SICKNESS!"
+msgstr ""
+
+#: templates/interactives/clicking-with-shaking.html:16
+msgid "Before proceeding, note that this interactive has sound."
+msgstr ""
+
+#: templates/interactives/clicking-with-shaking.html:17
+msgid ""
+"If you do not want sound, click the Mute button in the top-right of the "
+"interactive below."
+msgstr ""
+
+#: templates/interactives/clicking-with-shaking.html:21
+msgid "In this interactive, a green button will appear, which you must click."
+msgstr ""
+
+#: templates/interactives/clicking-with-shaking.html:22
+msgid ""
+"However, the button also vibrates vertically and horizontally to simulate "
+"using an interface in a rocky environment, such as on a plane with high "
+"turbulence. "
+msgstr ""
+
+#: templates/interactives/clicking-with-shaking.html:23
+msgid ""
+"Clicking the button awards you one point, while missing it deducts a point."
+msgstr ""
+
+#: templates/interactives/clicking-with-shaking.html:24
+msgid "Your goal is to reach five points."
+msgstr ""
+
+#: templates/interactives/clicking-with-shaking.html:25
+msgid ""
+"Afterwards, you will proceed to the next set where the button will be "
+"smaller."
+msgstr ""
+
+#: templates/interactives/clicking-with-shaking.html:26
+msgid "There are four sets in total."
+msgstr ""
+
+#: templates/interactives/clicking-with-shaking.html:27
+msgid ""
+"In the fourth set, the button will move to different parts of the game area "
+"as well."
+msgstr ""
+
+#: templates/interactives/clicking-with-shaking.html:28
+msgid "Try to complete all sets as fast as you can."
+msgstr ""
+
+#: templates/interactives/clicking-with-shaking.html:29
+msgid "Once you are done, a table will appear below showing your results."
+msgstr ""
+
+#: templates/interactives/clicking-with-shaking.html:30
+msgid ""
+"Clicking the 'Give Up' button at the bottom right will skip the remaining "
+"sets."
+msgstr ""
+
+#: templates/interactives/clicking-with-shaking.html:34
+msgid "What aspects of Fitts' Law are relevant here?"
+msgstr ""
+
+#: templates/interactives/clicking-with-shaking.html:35
+msgid ""
+"How could this interface be redesigned to be easier to use in an environment "
+"that shakes?"
+msgstr ""
+
+#: templates/interactives/clicking-with-shaking.html:93
+#: templates/interactives/fitts-law.html:73
+msgid "Download table as CSV"
 msgstr ""
 
 #: templates/interactives/close-window.html:10
@@ -1882,6 +1962,93 @@ msgstr ""
 msgid "Congratulations, you found them all!"
 msgstr ""
 
+#: templates/interactives/firewall-sorting.html:15
+msgid "Business Health"
+msgstr ""
+
+#: templates/interactives/firewall-sorting.html:25
+msgid ""
+"\n"
+"\t\t\t\t\t<div id=\"packageSourceIP\"> Source IP: <span id=\"sourceIP\"></"
+"span> </div>\n"
+"\t\t\t\t\t<div id=\"packageDestinationIP\">Destination IP: <span id="
+"\"destinationIP\"></span></div>\n"
+"\t\t\t\t\t<div id=\"packageSourcePort\">Source Port: <span id=\"sourcePort"
+"\"></span></div>\n"
+"\t\t\t\t\t<div id=\"packageDestinationPort\">Destination Port: <span id="
+"\"destinationPort\"></span></div>\n"
+"\t\t\t\t\t<button id=\"restart\" class=\"firewall-button\">\n"
+"\t\t\t\t\t\tRestart\n"
+"\t\t\t\t\t</button>\n"
+"\t\t\t\t\t"
+msgstr ""
+
+#: templates/interactives/firewall-sorting.html:38
+msgid "Accept"
+msgstr ""
+
+#: templates/interactives/firewall-sorting.html:41
+msgid "Deny"
+msgstr ""
+
+#: templates/interactives/firewall-sorting.html:51
+msgid "Rules"
+msgstr ""
+
+#: templates/interactives/firewall-sorting.html:53
+msgid "Only allow packets meant for us"
+msgstr ""
+
+#: templates/interactives/fitts-law.html:8
+msgid "Fitts' Law Experiment"
+msgstr ""
+
+#: templates/interactives/fitts-law.html:11
+msgid ""
+"\n"
+"        You can use this interactive to conduct your own Fitts' Law "
+"experiment.\n"
+"        When you are ready, click the red column target. Once you have "
+"clicked it, the column will jump to the opposite side.\n"
+"        The column position will repeatedly swap until the trial is "
+"complete. Do this as quickly as you can until it has finished.\n"
+"        Every so often during the experiment the column width and the "
+"distance between them will change randomly.\n"
+"        There are nine trials, and each trial requires eleven successful "
+"clicks. However, the first click of each trial does not affect the results "
+"as the travel distance would be different from the rest of the trial.\n"
+"        The exercise should take around 30 seconds to one minute (but don't "
+"be worried if you need longer!)\n"
+"        "
+msgstr ""
+
+#: templates/interactives/fitts-law.html:22
+#, python-format
+msgid ""
+"\n"
+"        Once you have finished, a table below will show your results.\n"
+"        Save this data so you can analyse your experiment.\n"
+"        Instructions on what to do with the data are in the <a href="
+"\"%(fitts_law_section)s\">Fitt's Law section</a>.\n"
+"        "
+msgstr ""
+
+#: templates/interactives/fitts-law.html:41
+msgid "Successful clicks remaining:"
+msgstr ""
+
+#: templates/interactives/fitts-law.html:46
+msgid "Please rotate your device into landscape mode to use this interactive."
+msgstr ""
+
+#: templates/interactives/fitts-law.html:51
+msgid "Experiment complete, data is available below."
+msgstr ""
+
+#: templates/interactives/fitts-law.html:76
+msgid "Restart experiment (data will be reset)"
+msgstr ""
+
 #: templates/interactives/flowcharts-interpreter-compiler.html:15
 msgid "Compiler"
 msgstr ""
@@ -2052,6 +2219,28 @@ msgstr ""
 
 #: templates/interactives/image-bit-comparer.html:30
 msgid "Large (may take longer to load)"
+msgstr ""
+
+#: templates/interactives/index-of-difficulty-calculator.html:7
+msgid "Index of Difficulty Calculator"
+msgstr ""
+
+#: templates/interactives/index-of-difficulty-calculator.html:10
+msgid ""
+"This is a common formula for calculating the Index of Difficulty (\\(ID\\)), "
+"but other formulas exist."
+msgstr ""
+
+#: templates/interactives/index-of-difficulty-calculator.html:19
+msgid "distance to target"
+msgstr ""
+
+#: templates/interactives/index-of-difficulty-calculator.html:24
+msgid "width of target"
+msgstr ""
+
+#: templates/interactives/index-of-difficulty-calculator.html:47
+msgid "Value rounded to 1 decimal place."
 msgstr ""
 
 #: templates/interactives/index.html:30
@@ -2721,7 +2910,7 @@ msgstr ""
 #: templates/interactives/packet-attack.html:9
 msgid ""
 "Sorry, this interactive is only available on screens larger than "
-"820x650px<br>If you are using a tablet, this may be achieved by holding it "
+"820x550px<br>If you are using a tablet, this may be achieved by holding it "
 "in landscape."
 msgstr ""
 
@@ -2936,6 +3125,77 @@ msgstr ""
 msgid ""
 "These passwords are all weak compared to what you should use in practice and "
 "can be guessed relatively quickly with the aid of a computer."
+msgstr ""
+
+#: templates/interactives/password-strength-brute.html:10
+msgid "Brute Force Password Cracking Estimate"
+msgstr ""
+
+#: templates/interactives/password-strength-brute.html:13
+#: templates/interactives/password-strength-dict.html:14
+msgid "Please do not enter real passwords into this activity."
+msgstr ""
+
+#: templates/interactives/password-strength-brute.html:18
+#: templates/interactives/password-strength-dict.html:18
+msgid "Password"
+msgstr ""
+
+#: templates/interactives/password-strength-brute.html:21
+#: templates/interactives/password-strength-dict.html:21
+msgid "Get Cracking"
+msgstr ""
+
+#: templates/interactives/password-strength-brute.html:25
+msgid "Halve Power"
+msgstr ""
+
+#: templates/interactives/password-strength-brute.html:29
+msgid "Double Power"
+msgstr ""
+
+#: templates/interactives/password-strength-brute.html:32
+msgid "<b>Max Time to Crack:</b>"
+msgstr ""
+
+#: templates/interactives/password-strength-brute.html:32
+#: templates/interactives/password-strength-dict.html:25
+msgid "Nothing Entered"
+msgstr ""
+
+#: templates/interactives/password-strength-brute.html:35
+msgid ""
+"\n"
+"\t\t\t\tThis shows how long a brute force attack, trying every possible "
+"combination, would take to crack your password.\n"
+"\t\t\t\tIt estimates the time based on how long your password is, and what "
+"sort of characters are in it.\n"
+"\t\t\t\tNote that brute force attacks are not the most common password "
+"attack vector.\n"
+"\t\t\t\t"
+msgstr ""
+
+#: templates/interactives/password-strength-dict.html:10
+msgid "Dictionary Attack Password Cracking Estimate"
+msgstr ""
+
+#: templates/interactives/password-strength-dict.html:25
+msgid "<b>Status:</b>"
+msgstr ""
+
+#: templates/interactives/password-strength-dict.html:28
+msgid ""
+"This shows how long a dictionary attack would take to crack your password!"
+msgstr ""
+
+#: templates/interactives/password-strength-dict.html:31
+msgid ""
+"\n"
+"\t\t\t\tIt compares your password to a dictionary of common passwords. If "
+"there is a match, your password will be cracked!\n"
+"\t\t\t\tThe dictionary we use only contains 318,971 different passwords, so "
+"don't be too confident if what you enter doesn't get cracked.\n"
+"\t\t\t\t"
 msgstr ""
 
 #: templates/interactives/payment-interface.html:10
@@ -4258,4 +4518,40 @@ msgstr ""
 
 #: templates/interactives/waterfall-process.html:37
 msgid "Usually not<br>allowed!"
+msgstr ""
+
+#: utils/custom_converter_templates/blockquote.html:10
+msgid "Source"
+msgstr ""
+
+#: utils/custom_converter_templates/panel.html:16
+msgid "Teacher Note"
+msgstr ""
+
+#: utils/custom_converter_templates/panel.html:22
+msgid "Additional Information"
+msgstr ""
+
+#: utils/custom_converter_templates/panel.html:28
+msgid "Curiosity"
+msgstr ""
+
+#: utils/custom_converter_templates/panel.html:34
+msgid "Challenge"
+msgstr ""
+
+#: utils/custom_converter_templates/panel.html:40
+msgid "Caution"
+msgstr ""
+
+#: utils/custom_converter_templates/panel.html:46
+msgid "Jargon Buster"
+msgstr ""
+
+#: utils/custom_converter_templates/panel.html:52
+msgid "Spoiler!"
+msgstr ""
+
+#: utils/custom_converter_templates/panel.html:58
+msgid "Project"
 msgstr ""
