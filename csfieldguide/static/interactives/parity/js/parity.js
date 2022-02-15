@@ -5,7 +5,10 @@ $(document).ready(function(){
   // Create the grid on load
   Parity.grid = $('#interactive-parity-grid');
   Parity.feedback = $('#interactive-parity-feedback');
+  Parity.x_labels = document.getElementById('interactive-parity-grid-x-labels');
+  Parity.y_labels = document.getElementById('interactive-parity-grid-y-labels');
   setupGrid();
+  setupGridLabels();
 
   if (urlParameters.getUrlParameter('mode') == 'sandbox') {
     Parity.mode = 'sandbox';
@@ -106,6 +109,7 @@ $(document).ready(function(){
   // Change grid size on value change
   $('#interactive-parity-grid-size').on('change', function(){
       setupGrid();
+      setupGridLabels();
       setupMode();
   });
 });
@@ -275,6 +279,8 @@ function setupGrid(){
     $('##interactive-parity-grid-size').val(6);
   } else {
     Parity.grid.empty();
+    Parity.x_labels.innerHTML = '';
+    Parity.y_labels.innerHTML = '';
     for(row = 0; row < Parity.grid_size; row++) {
         var $gridRow = $('<div class="flex-container">');
         Parity.grid.append($gridRow);
@@ -292,6 +298,22 @@ function setupGrid(){
         Parity.grid.append('</div>');
     }
   }
+};
+
+
+// Create grid reference labels
+function setupGridLabels(){
+    for(let col = 0; col < Parity.grid_size; col++) {
+        var xLabel = document.createElement('div');
+        var xLabelText = String.fromCharCode(65 + col);
+        xLabel.appendChild(document.createTextNode(xLabelText));
+        Parity.x_labels.appendChild(xLabel);
+
+        var yLabel = document.createElement('div');
+        var yLabelText = String(col + 1);
+        yLabel.appendChild(document.createTextNode(yLabelText));
+        Parity.y_labels.appendChild(yLabel);
+    }
 };
 
 
