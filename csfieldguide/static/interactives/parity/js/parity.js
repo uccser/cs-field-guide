@@ -50,6 +50,11 @@ $(document).ready(function(){
     clearGrid();
   });
 
+  // On toggle of grid references checkbox
+  $('#grid-references-checkbox').on('change', function(){
+    showGridReferences(this.checked);
+  });
+
   // On 'Reset' button click
   $('#interactive-parity-reset').on('click', function(){
     // If set stage in set or trick mode
@@ -373,4 +378,13 @@ function setParityBits() {
       Parity.grid_values[Parity.grid_values.length-1][col] = false;
     }
   }
+};
+
+
+function showGridReferences(show) {
+    var visibility = show ? "visible" : "hidden";
+    var gridReferenceContainers = document.getElementsByClassName("interactive-parity-grid-labels");
+    for (var i = 0; i < gridReferenceContainers.length; i++) {
+        gridReferenceContainers[i].style.visibility = visibility;
+    }
 };

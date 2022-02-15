@@ -100,6 +100,7 @@ $grid-label-size: 2rem;
     font-weight: bold;
     color: #aaa;
     line-height: 0;
+    visibility: hidden;
 }
 
 #interactive-parity-grid {
@@ -127,4 +128,10 @@ $grid-label-size: 2rem;
 .interactive-parity-text,
 #interactive-parity h4 {
   text-align: left;
+}
+
+input,
+.form-check-label {
+    cursor: pointer;
+    user-select: none;
 }
