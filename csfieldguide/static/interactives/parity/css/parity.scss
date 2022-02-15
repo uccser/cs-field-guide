@@ -38,10 +38,6 @@
   background: black;
 }
 
-#interactive-parity-grid {
-  cursor: cell;
-}
-
 .parity-bit {
   border-color: #2196F3;
 }
@@ -76,17 +72,45 @@ select {
   border: 1px solid #929292;
 }
 
+$grid-label-size: 2rem;
 #interactive-parity-grid-container{
-  position: relative;
+  display: grid;
+  grid-template-columns: $grid-label-size 1fr;
+  grid-template-rows: $grid-label-size 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    ". interactive-parity-grid-x-labels"
+    "interactive-parity-grid-y-labels interactive-parity-grid";
+}
+
+#interactive-parity-grid-x-labels {
+    grid-area: interactive-parity-grid-x-labels;
+    flex-direction: row;
+}
+#interactive-parity-grid-y-labels {
+    grid-area: interactive-parity-grid-y-labels;
+    flex-direction: column;
+}
+.interactive-parity-grid-labels {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 1.5rem;
+    font-family: monospace;
+    font-weight: bold;
+    color: #aaa;
+    line-height: 0;
+    visibility: hidden;
+}
+
+#interactive-parity-grid {
+  grid-area: interactive-parity-grid;
+  cursor: cell;
 }
 
 #interactive-parity-grid-confusation {
+  grid-area: interactive-parity-grid;
   display: none;
-  position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 8px;
   align-items: center;
@@ -104,4 +128,10 @@ select {
 .interactive-parity-text,
 #interactive-parity h4 {
   text-align: left;
+}
+
+input,
+.form-check-label {
+    cursor: pointer;
+    user-select: none;
 }
