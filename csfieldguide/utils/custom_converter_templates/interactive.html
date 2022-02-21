@@ -7,9 +7,7 @@
     <p>Your browser does not support iframes.</p>
   </iframe>
 {% elif type == 'whole-page' -%}
-  <div class="row">
-    <div class="col s12 m8 l6 offset-m2 mb-3">
-      {{ "{% render_interactive_link '" }}{{ slug }}'{% if text %} text='{{ text }}'{% endif %}{% if parameters %} parameters='{{ parameters }}' {% endif %}{{ " %}" }}
-    </div>
+  <div class="mb-3">
+    {{ "{% render_interactive_link '" }}{{ slug }}'{% if text %} text='{{ text }}'{% endif %}{% if parameters %} parameters='{{ parameters }}' {% endif %}{{ " %}" }}
   </div>
 {%- endif -%}

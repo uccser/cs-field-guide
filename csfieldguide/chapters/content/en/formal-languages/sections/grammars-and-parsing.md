@@ -48,12 +48,11 @@ Watch this video for a demonstration of the system we’ll use.
 {video url="https://vimeo.com/673021979"}
 
 Now it’s your turn to experiment with a grammar!
-In the interactive you’ll see a large “S” in the middle.
+In the interactive below you’ll see a large “S” in the middle.
 Clicking on the S lets you replace it using one of the two rules (the technical name for the substitution rules is productions).
 See if you can work out the productions you need to choose to generate the text in the white box - the generated text will show a green background if you get it right.
-This “History” box will show the sequence of productions that you used.
-
-Hint: you can get different challenges by clicking on the “Next” button.
+The “History” box will show the sequence of productions that you used.
+**Hint:** you can get different challenges by clicking on the “Next” button.
 Hit the “Reset” button to start over.
 
 {interactive slug="cfg-parsing-challenge" type="whole-page" text="true" parameters="productions=S:%27a%27%20S%20%27a%27%20%7C%20%27b%27&examples=b%7Caba%7Caabaa%7Caaabaaa&hide-generator=true"}
@@ -87,6 +86,13 @@ At the same time, it’s working out the structure of the program, which it will
 
 The examples you’ve tried so far are all strings of characters that are valid in the language.
 Try solving this challenge - can you make the string “a” or “abaa” using the productions given?
+
+{interactive slug="cfg-parsing-challenge" type="whole-page" text="true" parameters="productions=S:%27a%27%20S%20%27a%27%20%7C%20%27b%27&examples=a%7Cabaa%7Caabbaa%7Cbbbabbb&hide-generator=true"}
+
+CFG Parsing Challenge #2
+
+{interactive end}
+
 If there’s no way to generate it, then the string isn’t in the language of the grammar.
 The string has a syntax error.
 You may have seen a syntax error before when you type in a program that doesn’t match the grammar of your programming language - it’s a grammar that is used to check if your text is in the language or not.
@@ -113,7 +119,7 @@ Can you give an English description of what kind of pattern the grammar above ac
 
 {panel type="spoilers"}
 
-# CFG Parsing Challenge #1 - Grammar description
+# CFG Parsing Challenge #2 - Grammar description
 
 These productions accept a “b” with an equal number of “a”s on each side of it.
 
@@ -123,7 +129,7 @@ Here’s a different grammar that you can try out:
 
 {interactive slug="cfg-parsing-challenge" type="whole-page" text="true" parameters="productions=S:%27a%27%20S%20%27b%27%7C%27ab%27&examples=ab%7Caabb%7Caaaabbbb%7Caaaaaabbbbbb&hide-generator=true"}
 
-CFG Parsing Challenge #2
+CFG Parsing Challenge #3
 
 {interactive end}
 
@@ -131,7 +137,7 @@ How would you explain the kinds of strings that this accepts?
 
 {panel type="spoilers"}
 
-# CFG Parsing Challenge #2 - Grammar description
+# CFG Parsing Challenge #3 - Grammar description
 
 The productions above accept strings that begin with some number of “a”s, followed by exactly the same number of “b”s.
 
@@ -142,7 +148,7 @@ Note that the first production produces two “S” non-terminals, and although 
 
 {interactive slug="cfg-parsing-challenge" type="whole-page" text="true" parameters="productions=S:S%20S%20%7C%20%27a%27%20S%20%27b%27%7C%27ab%27&examples=ab%7Cabab%7Caabbaabb%7Cababab%7Cababaaaabbbb%7Caaaabbbbabaaabbbab&hide-generator=true"}
 
-CFG Parsing Challenge #3
+CFG Parsing Challenge #4
 
 {interactive end}
 
@@ -251,7 +257,7 @@ If you put it into a spreadsheet as `=(3))` then you get an error like this:
 
 {panel type="jargon-buster"}
 
-# Jargon buster: Syntax error
+# Syntax error
 
 If the string doesn’t match the grammar, then you have a syntax error - if a programming language ever tells you that you have a syntax error, it will have come from a formal language parsing what you typed in.
 Doing these exercises is your turn to look for syntax errors in the input!
@@ -263,7 +269,7 @@ Click the next button after completing an expression to try another one.
 
 {interactive slug="cfg-parsing-challenge" type="whole-page" text="true" parameters="productions=E%3AN%7CE%20%27%2B%27%20E%7CE%20%27*%27%20E%7C%27-%27%20E%7C%27(%27%20E%20%27)%27%3B%20N%3A%270%27%7C%271%27%7C%272%27%7C%273%27%7C%274%27%7C%275%27%7C%276%27%7C%277%27%7C%278%27%7C%279%27%3B&hide-generator=true&examples=2%2B3%7C3%2A(5%2B1)%7C(4%2B5)%2A(2-3)%7C1%2B2%2B3%7C((3)%2B2)"}
 
-CFG Parsing Challenge #4 - Mathematical Expressions
+CFG Parsing Challenge #5 - Mathematical Expressions
 
 {interactive end}
 
@@ -299,6 +305,27 @@ There’s a more powerful system called a Context Sensitive Grammar, but they ar
 
 {panel end}
 
+{panel type="project"}
+
+# Parse tree exercises
+
+Try creating the parse trees for these expressions.
+
+- `2+1`
+- `(3)*(5+1)`
+- `((4+1)*(8+3))+2`
+- `(3+2` - *Note: This one has an error - you shouldn’t be able to find a parse tree for it!*
+
+You can also experiment with the productions to create these expression in the following interactive.
+
+{interactive slug="cfg-parsing-challenge" type="whole-page" text="true" parameters="productions=E%3AN%7CE%20%27%2B%27%20E%7CE%20%27%2A%27%20E%7C%27-%27%20E%7C%27(%27%20E%20%27)%27%3B%20N%3A%270%27%7C%271%27%7C%272%27%7C%273%27%7C%274%27%7C%275%27%7C%276%27%7C%277%27%7C%278%27%7C%279%27%3B&examples=2%2B1%7C(3)%2A(5%2B1)%7C((4%2B1)%2A(8%2B3))%2B2%7C(3%2B2&hide-generator=true"}
+
+CFG Parsing Challenge - More Mathematical Expressions
+
+{interactive end}
+
+{panel end}
+
 {panel type="additional-information"}
 
 # Shortcut
@@ -321,7 +348,7 @@ E → E + E  |  E * E  |  (E)
 
 {panel type="project"}
 
-# More examples to reinforce your understanding
+# More exercises to reinforce your understanding
 
 Here are a range of grammars and challenges for you to try.
 None of them do anything that a CFG is likely to be used for in practice, but they will give you a feel for how CFGs work.

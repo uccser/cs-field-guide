@@ -1,3 +1,3 @@
 # Parse tree
 
-The structure derived by parsing some input.
+A visual representation of the structure derived by parsing some input.
