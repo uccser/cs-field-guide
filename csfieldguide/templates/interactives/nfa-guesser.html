@@ -18,16 +18,17 @@
         {% trans 'Possible end states:' %}
     </div>
     <div id="interactive-nfa-guesser-answer-options"></div>
-
-    <p>
-      <button id="interactive-nfa-guesser-check" class="btn btn-primary btn-lg">{% trans "Check answer" %}</button>
-    </p>
+    <div>
+        <button id="interactive-nfa-guesser-check" class="btn btn-primary btn-lg">{% trans "Check answer" %}</button>
+    </div>
 
     <p id="interactive-nfa-guesser-result"></p>
-
-    <p>
-      <button id="interactive-nfa-guesser-new-sequence" class="btn btn-success">{% trans "Generate new input sequence" %}</button>
-    </p>
+    <div>
+        <button id="interactive-nfa-guesser-show-answer" class="btn btn-secondary btn-sm mb-3 hidden">{% trans "Show answer" %}</button>
+    </div>
+    <div>
+        <button id="interactive-nfa-guesser-new-sequence" class="btn btn-success mb-3">{% trans "Generate new input sequence" %}</button>
+    </div>
   </div>
 {% endblock interactive_html %}
 

@@ -40,12 +40,18 @@ nfa_guesser.config = {
         }
     }
 }
+GUESS_THRESHOLD = 3;
 
 
 $(document).ready(function() {
     nfa_guesser.check_button = document.getElementById('interactive-nfa-guesser-check');
     nfa_guesser.check_button.addEventListener('click', checkAnswer, false);
+
+    nfa_guesser.show_answer_button = document.getElementById('interactive-nfa-guesser-show-answer');
+    nfa_guesser.show_answer_button.addEventListener('click', function () {showCorrectAnswers(false);}, false);
+
     nfa_guesser.answer_options = document.getElementById('interactive-nfa-guesser-answer-options');
+
     nfa_guesser.new_sequence_button = document.getElementById('interactive-nfa-guesser-new-sequence')
     nfa_guesser.new_sequence_button.addEventListener('click', createNewInput, false);
 
@@ -68,11 +74,34 @@ function checkAnswer() {
     if (checked_states.equals(nfa_guesser.result)) {
         result_element.innerHTML = gettext('Correct');
         result_element.classList = 'valid'
-        disableQuestionControls();
+        showCorrectAnswers(true);
     } else {
         result_element.innerHTML = gettext('Incorrect');
         result_element.classList = ''
         nfa_guesser.number_of_guesses++;
+        if (nfa_guesser.number_of_guesses >= GUESS_THRESHOLD) {
+            nfa_guesser.show_answer_button.classList.remove('hidden');
+        }
+    }
+}
+
+
+function showCorrectAnswers(show_message) {
+    disableQuestionControls();
+    var result_element = document.getElementById('interactive-nfa-guesser-result');
+    if (show_message) {
+        result_element.innerHTML = gettext('Correct');
+        result_element.classList = 'valid'
+    } else {
+        result_element.innerHTML = '';
+        result_element.classList = ''
+    }
+    for (var i = 0; i < nfa_guesser.answer_options.children.length; i++) {
+        var state_element = nfa_guesser.answer_options.children[i];
+        if (nfa_guesser.result.includes(state_element.dataset.value)) {
+            state_element.classList.remove('selected');
+            state_element.classList.add('valid');
+        }
     }
 }
 
@@ -118,10 +147,11 @@ function resetInterface() {
     document.getElementById('interactive-nfa-guesser-input-sequence-value').innerHTML = nfa_guesser.input;
     document.getElementById('interactive-nfa-guesser-result').innerHTML = '';
     nfa_guesser.check_button.disabled = false;
+    nfa_guesser.show_answer_button.classList.add('hidden');
     nfa_guesser.number_of_guesses = 0;
     nfa_guesser.active = true;
     for (var i = 0; i < nfa_guesser.answer_options.children.length; i++) {
-        nfa_guesser.answer_options.children[i].classList.remove('selected');
+        nfa_guesser.answer_options.children[i].classList.remove('selected', 'valid');
     }
 }
 
