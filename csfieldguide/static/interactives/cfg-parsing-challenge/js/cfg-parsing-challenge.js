@@ -66,7 +66,8 @@ $(document).ready(function() {
   $('#undo-button').on('click', undo);
   $('#cfg-grammar-link-button').on('click', getLink);
   $('#cfg-default-link-button').on('click', resetLink);
-  $("#examples-checkbox").change(toggleExamplesWindow).prop('checked', false);
+  $("#examples-checkbox").prop('checked', examples_.length != 0);
+  $("#examples-checkbox").change(toggleExamplesWindow);
   //https://stackoverflow.com/a/3028037
   $(document).click(function (event) {
     var $target = $(event.target);
@@ -92,6 +93,7 @@ $(document).ready(function() {
     $('#cfg-target').val(randomExpression(recursionDepth_));
   }
   prefillGrammar();
+  prefillExamples();
   $("#cfg-grammar-link").html("");
 });
 
@@ -668,6 +670,15 @@ function prefillGrammar() {
 }
 
 /**
+* Fills the examples setter with any given examples in the URL
+*/
+function prefillExamples() {
+    let examples = urlParameters.getUrlParameter('examples');
+    examples = examples.replace(/\|/g, '\n');
+    $("#cfg-example-input").val(examples);
+}
+
+/**
 * Sets the link to the base url of the interactive
 */
 function resetLink() {
@@ -716,7 +727,6 @@ function toggleExamplesWindow() {
     $("#cfg-example-input-parent").removeClass('d-none');
   } else {
     $("#cfg-example-input-parent").addClass('d-none');
-    $("#cfg-example-input").val('')
   }
 }
 
@@ -724,5 +734,5 @@ function toggleExamplesWindow() {
 * Returns the given string percent-encoded
 */
 function percentEncode(string) {
-    return encodeURIComponent(string).replace(/\*/g, "%2A");
+    return encodeURIComponent(string).replace(/\*/g, "%2A").replace(/\'/g, "%27");
 }
