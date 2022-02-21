@@ -1,39 +1,56 @@
 #interactive-nfa-guesser {
   margin: 2em;
+  button {
+      display: inline-block;
+  }
 }
 #interactive-nfa-guesser-image {
   max-width: 40em;
 }
-#interactive-nfa-guesser-input-sequence {
+.interactive-nfa-guesser-header {
   font-size: 1.5em;
+  margin: 1rem 0;
 }
 #interactive-nfa-guesser-input-sequence-value {
   font-weight: bold;
 }
-div#interactive-nfa-guesser-state-checkboxes {
-  margin: 1em;
+#interactive-nfa-guesser-answer-options {
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+
+  .state-option {
+    margin: 0 1rem;
+    padding: 1rem;
+    border-radius: 50%;
+    border: 1px solid black;
+    cursor: pointer;
+    font-size: 1.5rem;
+    font-family: monospace;
+    user-select: none;
+    color: black;
+    background-color: #fff;
+    $state-size: 3rem;
+    height: $state-size;
+    width: $state-size;
+    // Center text node within circle
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+        background-color: #ddd;
+    }
+    &.selected {
+        background-color: rgb(59, 59, 255);
+        color: white;
+    }
+    &.valid {
+        background-color: #4CAF50;
+    }
+  }
 }
-div#interactive-nfa-guesser-state-checkboxes label {
-  position: inherit;
-  padding: 0;
-  margin: 0 0.5em;
-  cursor: pointer;
-  display: inline-block;
-  height: inherit;
-  line-height: inherit;
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #000;
-}
-div#interactive-nfa-guesser-state-checkboxes label input {
-  height: 1.2em;
-  width: 1.2em;
-  margin: 0.2em;
-  position: relative;
-  left: inherit;
-  top: 0.3em;
-  visibility: visible;
-}
+
 #interactive-nfa-guesser-result {
   font-size: 1.5em;
   margin: 0.5em;
@@ -42,4 +59,8 @@ div#interactive-nfa-guesser-state-checkboxes label input {
 }
 #interactive-nfa-guesser-result.valid {
   color: #4CAF50 !important;
+}
+
+.hidden {
+    display: none !important;
 }
