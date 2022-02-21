@@ -2,6 +2,8 @@ const FSA = require('./../../../js/modules/fsa/fsa.js');
 
 var nfa_guesser = {};
 nfa_guesser.result = [];
+nfa_guesser.active = true;
+nfa_guesser.number_of_guesses = 0;
 nfa_guesser.config = {
     Alphabet: ['a', 'b'],
     Start: '1',
@@ -41,44 +43,54 @@ nfa_guesser.config = {
 
 
 $(document).ready(function() {
+    nfa_guesser.check_button = document.getElementById('interactive-nfa-guesser-check');
+    nfa_guesser.check_button.addEventListener('click', checkAnswer, false);
+    nfa_guesser.answer_options = document.getElementById('interactive-nfa-guesser-answer-options');
+    nfa_guesser.new_sequence_button = document.getElementById('interactive-nfa-guesser-new-sequence')
+    nfa_guesser.new_sequence_button.addEventListener('click', createNewInput, false);
+
     nfa_guesser.model = new FSA.FSARunner(nfa_guesser.config);
-    createStateCheckboxes();
+    createAnswerOptions();
     createNewInput();
-
-    $('#interactive-nfa-guesser-check').on('click', function() {
-        checkAnswer();
-    });
-
-    $('#interactive-nfa-guesser-new-sequence').on('click', function() {
-        nfa_guesser.model.goto(nfa_guesser.model.fsa.start);
-        nfa_guesser.result = [];
-        createNewInput();
-    });
 });
 
 
 function checkAnswer() {
     var checked_states = [];
-    $("div#interactive-nfa-guesser-state-checkboxes input:checked").each(function () {
-        checked_states.push(this.id.split('-')[1]);
-    });
+    for (var i = 0; i < nfa_guesser.answer_options.children.length; i++) {
+        var state_element = nfa_guesser.answer_options.children[i];
+        if (state_element.classList.contains('selected')) {
+            checked_states.push(state_element.dataset.value);
+        }
+    }
+
     var result_element = document.getElementById('interactive-nfa-guesser-result');
     if (checked_states.equals(nfa_guesser.result)) {
         result_element.innerHTML = gettext('Correct');
         result_element.classList = 'valid'
+        disableQuestionControls();
     } else {
         result_element.innerHTML = gettext('Incorrect');
         result_element.classList = ''
+        nfa_guesser.number_of_guesses++;
     }
 }
 
 
+function disableQuestionControls() {
+    nfa_guesser.check_button.disabled = true;
+    nfa_guesser.active = false;
+}
+
+
 function createNewInput() {
+    nfa_guesser.model.goto(nfa_guesser.model.fsa.start);
+    nfa_guesser.result = [];
     while (nfa_guesser.result.length < 2) {
         generateInput();
         calculateEndStates();
     }
-    updateInterface();
+    resetInterface();
 }
 
 
@@ -102,32 +114,36 @@ function calculateEndStates() {
 }
 
 
-function updateInterface() {
-    $("div#interactive-nfa-guesser-state-checkboxes input:checked").prop('checked', false);
+function resetInterface() {
     document.getElementById('interactive-nfa-guesser-input-sequence-value').innerHTML = nfa_guesser.input;
     document.getElementById('interactive-nfa-guesser-result').innerHTML = '';
-}
-
-
-function createStateCheckboxes() {
-    var checkbox_group = document.getElementById('interactive-nfa-guesser-state-checkboxes');
-
-    for (var state in nfa_guesser.config.States) {
-        var checkbox_label = document.createElement('label');
-        var checkbox_id = 'state-' + state + '-checkbox'
-        checkbox_label.setAttribute('for', checkbox_id);
-
-        var checkbox = document.createElement('input');
-        checkbox.type = 'checkbox';
-        checkbox.id = checkbox_id;
-        checkbox_label.appendChild(checkbox);
-        var state_text = document.createTextNode(state);
-        checkbox_label.appendChild(state_text);
-
-        checkbox_group.appendChild(checkbox_label);
+    nfa_guesser.check_button.disabled = false;
+    nfa_guesser.number_of_guesses = 0;
+    nfa_guesser.active = true;
+    for (var i = 0; i < nfa_guesser.answer_options.children.length; i++) {
+        nfa_guesser.answer_options.children[i].classList.remove('selected');
     }
 }
 
+
+function createAnswerOptions() {
+    for (var state in nfa_guesser.config.States) {
+        var state_element = document.createElement('div');
+        state_element.dataset.value = state;
+        state_element.classList.add('state-option');
+        var state_text = document.createTextNode(state);
+        state_element.appendChild(state_text);
+        state_element.addEventListener('click', toggleStateOption);
+        nfa_guesser.answer_options.appendChild(state_element);
+    }
+}
+
+
+function toggleStateOption(event) {
+    if (nfa_guesser.active) {
+        event.target.classList.toggle('selected');
+    }
+}
 
 // Function source from http://stackoverflow.com/a/14853974
 // Warn if overriding existing method

@@ -10,11 +10,14 @@
 
     <object id="interactive-nfa-guesser-image" data="{% static 'interactives/nfa-guesser/img/nfa.svg' %}" type="image/svg+xml"></object>
 
-    <div id="interactive-nfa-guesser-input-sequence">
+    <div class="interactive-nfa-guesser-header">
       {% trans 'Input sequence: <span id="interactive-nfa-guesser-input-sequence-value"></span>' %}
     </div>
 
-    <div id="interactive-nfa-guesser-state-checkboxes"></div>
+    <div class="interactive-nfa-guesser-header">
+        {% trans 'Possible end states:' %}
+    </div>
+    <div id="interactive-nfa-guesser-answer-options"></div>
 
     <p>
       <button id="interactive-nfa-guesser-check" class="btn btn-primary btn-lg">{% trans "Check answer" %}</button>
