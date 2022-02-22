@@ -7,11 +7,11 @@ the-parity-magic-trick:
 check-digits-on-barcodes:
   section-number: 3
 
-the-whole-story:
+qr-codes:
   section-number: 4
 
-further-reading:
+the-whole-story:
   section-number: 5
-whats-the-big-picture:
-  section-number: 1
 
+further-reading:
+  section-number: 6

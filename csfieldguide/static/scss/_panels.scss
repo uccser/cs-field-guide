@@ -2,6 +2,9 @@
   > summary {
     background-color: hsl(hue($color), saturation($color), 65%);
     color: rgba($text-color, 0.8);
+    .panel-type-title {
+        color: rgba($text-color, 0.6);
+    }
     &:hover {
       background-color: hsl(hue($color), saturation($color), 60%);
     }
@@ -60,6 +63,11 @@ details {
       margin-#{$left}: auto;
       margin-#{$right}: 0.2rem;
     }
+    .panel-type-title {
+        margin-left: auto;
+        font-size: 0.9rem;
+        padding-left: 1.5rem;
+    }
   }
   summary:hover {
     background-color: darken($details-summary-bg, 10%);
@@ -90,6 +98,20 @@ details {
       @include detail-colour-variant($blue);
     }
   }
+}
+
+// Rules for disabling interactions with always open panels
+details[disabled][open] summary {
+    pointer-events: none;
+    user-select: none;
+    &:before {
+      content: none;
+    }
+}
+details[disabled] summary {
+    &:before {
+      content: none;
+    }
 }
 
 /*

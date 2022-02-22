@@ -5,7 +5,11 @@
 {%- endautoescape -%}
 {% if footer or source %}
 <footer class="blockquote-footer">
-{{ footer }} {% if source %}(<a href="{{ source }}">{{ '{% trans "Source" %}'}}</a>){% endif %}
+{{ footer }} {% if source %}(<a href="{{ source }}">
+{{ '
+    {% trans "Source" %}
+'}}
+</a>){% endif %}
 </footer>
 {% endif %}
 </blockquote>
