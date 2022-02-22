@@ -56,7 +56,7 @@ You can either make one online using a free QR code generator, or print out the 
 {panel end}
 
 In the previous exercise, you should have found that a small number of changes to the bits doesn’t cause a change in the message.
-What is happening here is exactly the same principle that’s at work in the parity magic trick.
+What is happening here is exactly the same principle that’s at work in the [parity magic trick]('chapters:chapter_section' 'coding-error-control' 'the-parity-magic-trick').
 When one bit is changed (either white to black, or black to white), it’s easy for the software to detect that this has happened, and it can change it back.
 However, QR codes use a stronger error control code than the parity trick; even if you change several bits, it can usually work out the original message.
 This is error *correction* at work.
@@ -203,3 +203,54 @@ For the Level 1 QR code above, change one dot at a time, scanning the QR code af
 What percentage of corruption is this code able to deal with?
 
 {panel end}
+
+## The big picture
+
+Researching these questions will give you an idea of how error detection and correction have evolved historically, and how they will have an important role in the future.
+There’s some information below that can help with getting into these ideas.
+
+- How did early tape storage systems depend on error detection?
+- When did the modern credit card first appear, and why did it use Luhn’s error detection algorithm?
+- What technology made barcode scanning possible?
+- When did barcodes start being widely used, and how did they use error detection to make them reliable?
+- When did QR codes appear, and what technology was needed before the public could use them conveniently?
+- What is RFID, how is it being used instead of barcodes, and what is the role of error correction in this situation?
+- How is error correction essential for quantum computing?
+
+The need for error control has been around for a long time.
+Early computing storage, like reels of tape, stored important information like bank balances, but they couldn’t be read reliably, so it was obvious to add a parity check to them.
+Even then, a single parity bit added to each 8 bits had a 50/50 chance of detecting multiple errors, but usually the tape would have errors across multiple bytes (perhaps it wasn’t lined up quite right), so it would become obvious that the data was unreliable, and had to be read again - this was an ARQ situation, based on error detection!
+These days, magnetic media like tapes and disks use more effective error correction codes, typically a Reed-Solomon code, so that they can reliably reconstruct data that has been read incorrectly - that is, they use Forward Error Correction (FEC).
+
+Credit cards appeared in the 1960s, and the last digit of a credit card is a check digit calculated using [Luhn’s algorithm](https://en.wikipedia.org/wiki/Luhn_algorithm), which involves multiplying every second digit by 2.
+The same algorithm is still used over half a century later for credit cards; there are more reliable checksums that could be calculated, but this form of error detection is embedded into machinery and software all around the world, so it looks like we’re stuck with it!
+
+The idea of scanning product codes using something like a barcode has been around for a long time, but it was only in the 1970s, with the availability of lasers, that it was feasible to scan product codes in a commercial situation ([see here](https://www.youtube.com/watch?v=J-AyM9mCDY4) for some interesting history of the barcode).
+Prior to that, all products needed to have a price sticker on them, which made it hard to change prices or have specials; or if they didn’t have prices, checkout operators would need to be able to figure out the price.
+With the wide range of products appearing in supermarkets at the time, this was becoming challenging, so the barcode was welcomed once it was feasible to produce scanning devices.
+A Universal Product Code (UPC) standard was developed that included a check digit to make scanning reliable, and this time an error detection checksum was used based on multiplying every second digit by 3.
+This system can always detect if a single digit is read incorrectly, but if two digits are incorrect, there’s a one in ten chance that they will cancel each other out.
+If every digit in the product code has been read in randomly (perhaps the barcode is completely messed up), there’s a one in ten chance that the check digit will be correct, and in this case, the problem would only be detected if the product isn’t in the shop’s database.
+These sorts of undetected errors are very unlikely, and we’ve come to trust barcode scanners - these days, many people don’t even check that they’ve been charged for the right products, thanks to error detection codes.
+
+Two-dimensional (or “matrix”) barcodes allow for the storage of much more data.
+There are many types of 2D barcodes in use, but the one that the public sees the most often is the “quick response” (QR) code invented in 1994.
+Because QR codes can store so much more data, it is a lot easier to add error correction bits to them, so they are capable of Forward Error Correction.
+This in turn has made them useful in places where they might be subject to wear and tear - printed on paper, stuck on notice boards, windows, and places that are exposed to the elements.
+There are even buildings with QR codes on their roof - these can be scanned from planes or satellite images!
+The widespread availability of smartphones with cameras from around 2003 meant that the public had all the equipment with them to scan a QR code, and these days the software for decoding a QR code is even built into the camera on a smartphone.
+
+Technology has been changing rapidly, but the role of error detection and correction has been crucial in keeping these systems cheap and reliable.
+Even in the future, error correction looks to be essential for RFID tags (which might replace bar codes), for high speed data transmission, and even for quantum computing, for dealing with unstable qubits.
+
+## Further reading
+
+- [QR codes are explained in some detail on Wikipedia](https://en.wikipedia.org/wiki/QR_code), including details of where the error correction information is stored in the code (in the diagrams, data is labeled D1, D2..., and error correction information is labeled E1, E2..).
+  The exact format is quite complicated, with information zig-zagging around the layout, and it isn’t necessary to understand that level of detail to be able to explain the error correction process.
+- There is a fairly gentle [explanation of Reed-Solomon coding by Russ Cox available](https://research.swtch.com/field) (with examples using the “Go” language), although this is only for those who really want to know more details.
+- This [Wikiversity page](https://en.wikiversity.org/wiki/Reed%E2%80%93Solomon_codes_for_coders) gives an explanation of “Reed–Solomon codes for coders”.
+  It uses Python code to explain the process, but you will also need to understand the mathematical concepts of polynomials and finite fields that Reed-Solomon codes rely on.
+- Computerphile covers [Reed-Solomon codes in this video](https://www.youtube.com/watch?v=fBRMaEAFLE0) (which builds on [this video](https://www.youtube.com/watch?v=bqtE6Q79PPs)).
+- Here’s [a blog with “wounded” QR codes](https://www.datagenetics.com/blog/november12013/index.html).
+- This is the [website of the company that invented QR codes](https://www.qrcode.com/), which has more details about them.
+- There’s more general information about [Error Correction on Wikipedia](https://en.wikipedia.org/wiki/QR_code#Error_correction).
