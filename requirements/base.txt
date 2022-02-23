@@ -1,6 +1,6 @@
 # Django
-django==3.2.8
-django-environ==0.7.0
+django==3.2.12
+django-environ==0.8.1
 django-bootstrap-breadcrumbs==0.9.2
 
 # Web serving
@@ -39,4 +39,4 @@ django-bidi-utils==1.0
 django-statici18n==2.0.1
 
 # CORS
-django-cors-headers==3.10.1
+django-cors-headers==3.11.0
