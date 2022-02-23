@@ -35,6 +35,7 @@ services:
         volumes:
             # https://burnedikt.com/dockerized-node-development-and-mounting-node-volumes/#exclude-node_modules-from-the-mount
             - ./csfieldguide/package.json:/app/package.json:z
+            - ./csfieldguide/package-lock.json:/app/package-lock.json:z
             - ./csfieldguide/gulpfile.js:/app/gulpfile.js:z
             - ./csfieldguide/static:/app/static:z
             - ./csfieldguide/build:/app/build:z
