@@ -53,7 +53,7 @@ details {
       opacity: .6;
     }
     // Written here with @at-root to pair with previous rules
-    @at-root details[open] summary:before {
+    @at-root details[open] > summary:before {
       content: '⊖';
     }
 
