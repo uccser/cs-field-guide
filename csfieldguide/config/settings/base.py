@@ -173,7 +173,6 @@ TEMPLATES = [
         "DIRS": [
             str(ROOT_DIR.path("templates")),
         ],
-        "APP"
         "OPTIONS": {
             # See: https://docs.djangoproject.com/en/dev/ref/settings/#template-debug
             "debug": DEBUG,
