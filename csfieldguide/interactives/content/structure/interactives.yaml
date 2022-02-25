@@ -79,6 +79,7 @@ cfg-parsing-challenge:
   languages:
     en: interactives/cfg-parsing-challenge.html
   is_interactive: true
+  use_large_thumbnail: true
 checksum-calculator:
   languages:
     en: interactives/checksum-calculator.html
