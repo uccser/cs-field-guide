@@ -338,6 +338,8 @@ Now that we've got the terminology sorted out, let’s explore some applications
 
 ## Who uses finite state automata?
 
+Finite state automata come up a lot in the development of computer software, but also in the design of electronics.
+
 Finite state automata are used a lot in the design of digital circuits (like the electronics in a hard drive) and embedded systems (such as burglar alarms or microwave ovens).
 Anything that has a few buttons on it and gets into different states when you press those buttons (such as alarm on/off, high/med/low power) is effectively a kind of FSA.
 
@@ -703,6 +705,124 @@ Examples are:
   For example, a remote control for a car alarm might have two buttons, and what happens to the car depends on the order in which you press them and the current state of the car (whether it is alarmed or not).
   For devices that automatically turn on or off after a period of time, you may have to include an input such as "waited for 30 seconds".
   Other devices to consider are digital watches (with states like "showing time", "showing date", "showing stopwatch", "stopwatch is running"), the power and eject buttons on a CD player, channel selection on a TV remote (just the numbers), setting a clock, storing presets on a car radio, and burglar alarm control panels.
+
+{panel end}
+
+## Other ways to represent finite state automata
+
+Drawing an FSA using circles and arrows is a good representation for people to use, but in computer programs it’s easier to use a lookup table.
+
+For example, for the this FSA:
+
+{image file-path="img/chapters/finite-state-automata-create-example-6.png" alt="An FSA for the following exercise."}
+
+The following table shows the transitions.
+For example, if you look up State 2 in the b column, it shows that the transition will go to state 1.
+
+$$
+\begin{array}{c|cc}
+\text{State} & \text{a} & \text{b} \\
+\hline
+1 & 1 & 2 \\
+2 & 2 & 1 \\
+\end{array}
+$$
+
+In a computer program, these tables can be stored in an array or list, and the FSA is implemented using a simple loop that looks up the current state and input symbol to work out what the current state will change to.
+
+For example, here is a quick and simple program that implements the [FSA in Scratch](https://scratch.mit.edu/projects/648957703).
+
+And here is a program for the same FSA in Python:
+
+```python
+START_STATE = 1
+transition = []
+transition.append({}) # Creates an unused state 0
+
+# Create a new state
+transition.append({})
+# Transition from state 0 on 'a' goes to state 1
+transition[1]['a'] = 1
+# Transition from state 0 on 'b' goes to state 0
+transition[1]['b'] = 2
+
+transition.append({})
+transition[2]['a'] = 2
+transition[2]['b'] = 1
+
+state = START_STATE
+while True:
+    symbol = input("Enter next symbol: ")
+    print("Going from state", state, "to...")
+    state = transition[state][symbol]
+    print("    ... ", state)
+```
+
+The above programs could be improved a lot to apply to a wider range of inputs and states, but they illustrate how simple it is to program an FSA, and therefore why they are popular for working with regular expressions.
+
+Mathematically this can be written more precisely by listing five elements:
+
+- \( Q \), the set of states. In the example above, \( Q \) would be \( \text{\{1,2\}} \).
+- \( \Sigma \), the “alphabet” of possible input characters. This would be \( \text{\{a,b\}} \) in the example.
+- \( \delta \), the transitions, which is a function that takes a state and input character, and tells you what the next state is.
+  The table above represents this function.
+- \( q_0 \), the starting state.
+  In the example above, \( q_0 = 1 \), since the starting arrow points at state 1.
+- \( F \), the set of accepting states.
+  In the example, \( F = \{1\} \), since 1 is the only accepting state.
+
+These five elements are written as a “5-tuple” in the order
+\( (Q, \Sigma, \delta, q_0, F) \).
+
+{panel type="curiosity"}
+
+# This looks like greek to me?
+
+Actually it is Greek!
+The symbol \( \Sigma \) is the Greek letter sigma.
+The symbol \( \delta \) is the Greek letter delta.
+
+{panel end}
+
+So the very precise notation for the FSA above would be
+
+$$
+\large{\text{({1,2}, {a,b}, }}
+\small{\begin{array}{c|cc}
+\text{State} & \text{a} & \text{b} \\
+\hline
+1 & 1 & 2 \\
+2 & 2 & 1 \\
+\end{array}}
+\large{\text{ , 1, {1})}}
+$$
+
+{panel type="project"}
+
+# Exercise: Creating an FSA from a 5-tuple
+
+As an exercise, see if you can draw the FSA represented by this 5-tuple:
+
+$$
+\large{\text{({1,2,3,4}, {a,b}, }}
+\small{\begin{array}{c|cc}
+\text{State} & \text{a} & \text{b} \\
+\hline
+1 & 2 & 2 \\
+2 & 3 & 3 \\
+3 & 4 & 4 \\
+4 & 4 & 4 \\
+\end{array}}
+\large{\text{ , 1, {1,2,3})}}
+$$
+
+{panel type="spoiler"}
+
+# Exercise answers
+
+{image file-path="img/chapters/finite-state-automata-two-or-less-letters.png" alt="The FSA for the exercise."}
+
+{panel end}
 
 {panel end}
 

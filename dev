@@ -174,7 +174,7 @@ defhelp compilemessages 'Run Django compilemessages command.'
 # Build Docker images
 cmd_build() {
   echo "Building Docker images..."
-  docker-compose -f docker-compose.local.yml build
+  docker-compose -f docker-compose.local.yml build "$@"
 }
 defhelp build 'Build or rebuild Docker images.'
 

@@ -3,6 +3,6 @@
     "version": "1.0.0",
     "private": true,
     "dependencies": {
-        "dragula": "3.7.2"
+        "dragula": "3.7.3"
     }
 }
