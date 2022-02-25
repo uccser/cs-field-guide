@@ -36,9 +36,9 @@ How often do imperfect codes still scan?
 # Exercise: Testing the limits by damaging a QR code
 
 Print out a couple of copies of a QR code.
-You can either make one online using a free QR code generator, or print out the PDF file below.
+You can either make one online using a free QR code generator, or print out the QR codes for testing in a PDF file given here:
 
-{button-link link="files/test-qr-codes.pdf" file="yes" text="Test QR Codes"}
+{button-link link="files/test-qr-codes.pdf" file="yes" text="QR Codes for testing"}
 
 - Scan the printed QR code to check that it works.
 - Now colour in one of the white squares with a black pen, so that you’re changing one of the binary digits (bits).
