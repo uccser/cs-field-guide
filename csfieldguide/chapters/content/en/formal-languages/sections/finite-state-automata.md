@@ -712,7 +712,7 @@ Examples are:
 
 Drawing an FSA using circles and arrows is a good representation for people to use, but in computer programs it’s easier to use a lookup table.
 
-For example, for the this FSA:
+For example, for this FSA:
 
 {image file-path="img/chapters/finite-state-automata-create-example-6.png" alt="An FSA for the following exercise."}
 
@@ -730,7 +730,9 @@ $$
 
 In a computer program, these tables can be stored in an array or list, and the FSA is implemented using a simple loop that looks up the current state and input symbol to work out what the current state will change to.
 
-For example, here is a quick and simple program that implements the [FSA in Scratch](https://scratch.mit.edu/projects/648957703).
+For example, here is a quick and simple program that implements the [FSA in Scratch](https://scratch.mit.edu/projects/648957703):
+
+{image file-path="img/chapters/scratch-simple-fsa.png" alt="A simple FSA implementation in the Scratch Programming language."}
 
 And here is a program for the same FSA in Python:
 

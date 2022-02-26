@@ -110,9 +110,6 @@ The characters “a” and “b” are called terminals because they can’t be 
 “S” is called a “non-terminal” because it is on the left hand side of a production, and will be replaced with something else.
 In most of our examples, non-terminals are written as a capital letter, and terminals are in lower case.
 
-You can type in your own challenges.
-For example, type in “aaaabaaaa” into the white box in the interactive, and see if you can form it below using the rules.
-
 The productions you are working with accept strings of characters that have a particular pattern.
 A string is accepted if there’s a way to generate it with the grammar.
 Can you give an English description of what kind of pattern the grammar above accepts?
@@ -316,7 +313,7 @@ Try creating the parse trees for these expressions.
 - `((4+1)*(8+3))+2`
 - `(3+2` - *Note: This one has an error - you shouldn’t be able to find a parse tree for it!*
 
-You can also experiment with the productions to create these expression in the following interactive.
+You can also experiment with the productions to create these expressions in the following interactive.
 
 {interactive slug="cfg-parsing-challenge" type="whole-page" text="true" parameters="productions=E%3AN%7CE%20%27%2B%27%20E%7CE%20%27%2A%27%20E%7C%27-%27%20E%7C%27(%27%20E%20%27)%27%3B%20N%3A%270%27%7C%271%27%7C%272%27%7C%273%27%7C%274%27%7C%275%27%7C%276%27%7C%277%27%7C%278%27%7C%279%27%3B&examples=2%2B1%7C(3)%2A(5%2B1)%7C((4%2B1)%2A(8%2B3))%2B2%7C(3%2B2&hide-generator=true"}
 
