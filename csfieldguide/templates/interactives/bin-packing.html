@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load static %}
 
-{% block html %}
+{% block interactive_html %}
   <div class="container">
     <!-- Modal -->
     <div class="modal fade" id="modal1" tabindex="-1" role="dialog">
@@ -48,12 +48,12 @@
 
     <h5 id="winning-message"></h5>
   </div>
-{% endblock html %}
+{% endblock interactive_html %}
 
-{% block css %}
+{% block interactive_css %}
   <link rel="stylesheet" href="{% static 'interactives/bin-packing/css/bin-packing.css' %}">
-{% endblock css %}
+{% endblock interactive_css %}
 
-{% block js %}
+{% block interactive_js %}
   <script type="text/javascript" src="{% static 'interactives/bin-packing/js/bin-packing.js' %}"></script>
-{% endblock js %}
+{% endblock interactive_js %}

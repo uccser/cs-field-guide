@@ -1,0 +1,70 @@
+{
+    "chart": {
+        "container": "#tree-diagram",
+        "connectors": {
+            "type": "straight",
+            "style": {
+                "arrow-end": "block-wide-long",
+                "stroke-width": 2
+            }
+        }
+    },
+    "nodeStructure": {
+        "text": { "name": "S" },
+        "children": [
+            {
+                "text": { "name": "S" },
+                "children": [
+                    {
+                        "pseudo": true,
+                        "children": [
+                            {
+                                "text": { "name": "a" }
+                            }
+                        ]
+                    },
+                    {
+                        "pseudo": true,
+                        "children": [
+                            {
+                                "text": { "name": "b" }
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "text": { "name": "S" },
+                "children": [
+                    {
+                        "pseudo": true,
+                        "children": [
+                            {
+                                "text": { "name": "a" }
+                            }
+                        ]
+                    },
+                    {
+                        "text": { "name": "S" },
+                        "children": [
+                            {
+                                "text": { "name": "a" }
+                            },
+                            {
+                                "text": { "name": "b" }
+                            }
+                        ]
+                    },
+                    {
+                        "pseudo": true,
+                        "children": [
+                            {
+                                "text": { "name": "b" }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

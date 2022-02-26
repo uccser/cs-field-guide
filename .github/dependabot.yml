@@ -21,3 +21,121 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
+
+  # Interactive package.jsons, that will be simplified when https://github.com/dependabot/dependabot-core/issues/2178 is completed
+  - package-ecosystem: "npm"
+    directory: "/csfieldguide/static/interactives/algorithm-timer/"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "npm"
+    directory: "/csfieldguide/static/interactives/big-number-calculator/"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "npm"
+    directory: "/csfieldguide/static/interactives/bin-packing/"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "npm"
+    directory: "/csfieldguide/static/interactives/box-rotation/"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "npm"
+    directory: "/csfieldguide/static/interactives/box-translation/"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "npm"
+    directory: "/csfieldguide/static/interactives/caesar-cipher/"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "npm"
+    directory: "/csfieldguide/static/interactives/city-trip/"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "npm"
+    directory: "/csfieldguide/static/interactives/cmy-mixer/"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "npm"
+    directory: "/csfieldguide/static/interactives/colour-matcher/"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "npm"
+    directory: "/csfieldguide/static/interactives/data-bias/"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "npm"
+    directory: "/csfieldguide/static/interactives/data-visualisation/"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "npm"
+    directory: "/csfieldguide/static/interactives/frequency-analysis/"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "npm"
+    directory: "/csfieldguide/static/interactives/jpeg-compression/"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "npm"
+    directory: "/csfieldguide/static/interactives/matrix-simplifier/"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "npm"
+    directory: "/csfieldguide/static/interactives/packet-attack/"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "npm"
+    directory: "/csfieldguide/static/interactives/password-guesser/"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "npm"
+    directory: "/csfieldguide/static/interactives/python-interpreter/"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "npm"
+    directory: "/csfieldguide/static/interactives/rgb-mixer/"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "npm"
+    directory: "/csfieldguide/static/interactives/rsa-decryption/"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "npm"
+    directory: "/csfieldguide/static/interactives/rsa-encryption/"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "npm"
+    directory: "/csfieldguide/static/interactives/rsa-key-generator/"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "npm"
+    directory: "/csfieldguide/static/interactives/scene-editor/"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "npm"
+    directory: "/csfieldguide/static/interactives/sha2/"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "npm"
+    directory: "/csfieldguide/static/interactives/sorting-algorithms/"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "npm"
+    directory: "/csfieldguide/static/interactives/training-ground/"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "npm"
+    directory: "/csfieldguide/static/interactives/unicode-binary/"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "npm"
+    directory: "/csfieldguide/static/interactives/unicode-chars/"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "npm"
+    directory: "/csfieldguide/static/interactives/viola-jones-face-detector/"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "npm"
+    directory: "/csfieldguide/static/js/modules/fsa/"
+    schedule:
+      interval: "daily"

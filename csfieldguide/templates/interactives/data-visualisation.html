@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load static %}
 
-{% block html %}
+{% block interactive_html %}
   <div class="container-fluid my-3 text-center">
     <h1 id="data-vis-title" class="col-12">{% trans 'Data Visualisation' %}</h1>
     <div id="data-vis-instructions" class="col-12">
@@ -56,12 +56,12 @@
       <canvas id="data-vis-results-chart" height="400" width="800" role="img" aria-label="Bar chart to compare your performace with different data visualisations."></canvas>
     </div>
   </div>
-{% endblock html %}
+{% endblock interactive_html %}
 
-{% block css %}
+{% block interactive_css %}
   <link rel="stylesheet" href="{% static 'interactives/data-visualisation/css/data-visualisation.css' %}">
-{% endblock css %}
+{% endblock interactive_css %}
 
-{% block js %}
+{% block interactive_js %}
   <script type="text/javascript" src="{% static 'interactives/data-visualisation/js/data-visualisation.js' %}"></script>
-{% endblock js %}
+{% endblock interactive_js %}

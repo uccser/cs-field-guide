@@ -1,0 +1,212 @@
+{
+    "chart": {
+        "container": "#tree-diagram",
+        "connectors": {
+            "type": "straight",
+            "style": {
+                "arrow-end": "block-wide-long",
+                "stroke-width": 2
+            }
+        }
+    },
+    "nodeStructure": {
+        "text": { "name": "E" },
+        "children": [
+            {
+                "text": { "name": "E" },
+                "children": [
+                    {
+                        "pseudo": true,
+                        "children": [
+                            {
+                                "pseudo": true,
+                                "children": [
+                                    {
+                                        "pseudo": true,
+                                        "children": [
+                                            {
+                                                "text": { "name": "(" }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "text": { "name": "E" },
+                        "children": [
+                            {
+                                "text": { "name": "E" },
+                                "children": [
+                                    {
+                                        "text": { "name": "N" },
+                                        "children": [
+                                            {
+                                                "text": { "name": "2" }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "pseudo": true,
+                                "children": [
+                                    {
+                                        "pseudo": true,
+                                        "children": [
+                                            {
+                                                "text": { "name": "+" }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "text": { "name": "E" },
+                                "children": [
+                                    {
+                                        "text": { "name": "N" },
+                                        "children": [
+                                            {
+                                                "text": { "name": "3" }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "pseudo": true,
+                        "children": [
+                            {
+                                "pseudo": true,
+                                "children": [
+                                    {
+                                        "pseudo": true,
+                                        "children": [
+                                            {
+                                                "text": { "name": ")" }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "pseudo": true,
+                "children": [
+                    {
+                        "pseudo": true,
+                        "children": [
+                            {
+                                "pseudo": true,
+                                "children": [
+                                    {
+                                        "pseudo": true,
+                                        "children": [
+                                            {
+                                                "text": {
+                                                    "name": "*"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "text": { "name": "E" },
+                "children": [
+                    {
+                        "pseudo": true,
+                        "children": [
+                            {
+                                "pseudo": true,
+                                "children": [
+                                    {
+                                        "pseudo": true,
+                                        "children": [
+                                            {
+                                                "text": { "name": "(" }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "text": { "name": "E" },
+                        "children": [
+                            {
+                                "text": { "name": "E" },
+                                "children": [
+                                    {
+                                        "text": { "name": "N" },
+                                        "children": [
+                                            {
+                                                "text": { "name": "4" }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "pseudo": true,
+                                "children": [
+                                    {
+                                        "pseudo": true,
+                                        "children": [
+                                            {
+                                                "text": { "name": "+" }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "text": { "name": "E" },
+                                "children": [
+                                    {
+                                        "text": { "name": "N" },
+                                        "children": [
+                                            {
+                                                "text": { "name": "1" }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "pseudo": true,
+                        "children": [
+                            {
+                                "pseudo": true,
+                                "children": [
+                                    {
+                                        "pseudo": true,
+                                        "children": [
+                                            {
+                                                "text": { "name": ")" }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

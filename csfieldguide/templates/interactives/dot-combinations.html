@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load static %}
 
-{% block html %}
+{% block interactive_html %}
   <div class="container-fluid my-3 dot-combinations text-center">
 
     <!-- Heading and Description -->
@@ -52,12 +52,12 @@
     <div id="found-combinations" class="row justify-content-left">
     </div>
   </div>
-{% endblock html %}
+{% endblock interactive_html %}
 
-{% block css %}
+{% block interactive_css %}
   <link rel="stylesheet" href="{% static 'interactives/dot-combinations/css/dot-combinations.css' %}">
-{% endblock css %}
+{% endblock interactive_css %}
 
-{% block js %}
+{% block interactive_js %}
   <script type="text/javascript" src="{% static 'interactives/dot-combinations/js/dot-combinations.js' %}"></script>
-{% endblock js %}
+{% endblock interactive_js %}

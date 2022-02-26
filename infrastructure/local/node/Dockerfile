@@ -1,4 +1,4 @@
-FROM node:14.17.0-buster
+FROM node:14.19.0-buster
 
 # Install required system dependencies
 RUN apt-get update && apt-get install --no-install-recommends -y \
@@ -21,5 +21,5 @@ RUN chown -R node:node /app
 
 USER node
 COPY --chown=node:node ./csfieldguide/ /app
-RUN npm install && npm cache clean --force
+RUN npm install
 ENV PATH ./node_modules/.bin/:$PATH

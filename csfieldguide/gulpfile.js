@@ -110,6 +110,7 @@ const js_files_skip_optimisation = [
   // But skip the following files
   '!static/interactives/huffman-tree/**/*.js',
   '!static/interactives/pixel-viewer/**/*.js',
+  '!static/interactives/**/js/third-party/*.js',
 ];
 
 ////////////////////////////////

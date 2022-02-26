@@ -3,6 +3,6 @@
     "version": "1.0.0",
     "private": true,
     "dependencies": {
-        "skulpt": "0.11.1"
+        "skulpt": "1.2.0"
     }
 }

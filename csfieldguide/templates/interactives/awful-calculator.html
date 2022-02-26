@@ -2,7 +2,7 @@
 
 {% load static %}
 
-{% block html %}
+{% block interactive_html %}
   <div class="d-flex justify-content-center" id="interactive-awful-calculator">
     <!-- Good Calculator -->
     <div class="col col-12 col-md-5 calculator" id="calculator-good">
@@ -86,12 +86,12 @@
       </div>
     </div>
   </div>
-{% endblock html %}
+{% endblock interactive_html %}
 
-{% block css %}
+{% block interactive_css %}
   <link rel="stylesheet" href="{% static 'interactives/awful-calculator/css/awful-calculator.css' %}">
-{% endblock css %}
+{% endblock interactive_css %}
 
-{% block js %}
+{% block interactive_js %}
   <script type="text/javascript" src="{% static 'interactives/awful-calculator/js/awful-calculator.js' %}"></script>
-{% endblock js %}
+{% endblock interactive_js %}

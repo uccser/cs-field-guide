@@ -2,6 +2,9 @@
   > summary {
     background-color: hsl(hue($color), saturation($color), 65%);
     color: rgba($text-color, 0.8);
+    .panel-type-title {
+        color: rgba($text-color, 0.6);
+    }
     &:hover {
       background-color: hsl(hue($color), saturation($color), 60%);
     }
@@ -39,11 +42,31 @@ details {
     padding: ($spacer * .5) $spacer;
     display: flex;
     align-items: center;
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+    &:before {
+      content: '⊕';
+      margin-right: 0.5rem;
+      padding-bottom: 0.15rem;
+      opacity: .6;
+    }
+    // Written here with @at-root to pair with previous rules
+    @at-root details[open] > summary:before {
+      content: '⊖';
+    }
+
     .inline-image {
       margin-top: 0.2rem;
       margin-bottom: 0.2rem;
       margin-#{$left}: auto;
       margin-#{$right}: 0.2rem;
+    }
+    .panel-type-title {
+        margin-left: auto;
+        font-size: 0.9rem;
+        padding-left: 1.5rem;
     }
   }
   summary:hover {
@@ -75,6 +98,20 @@ details {
       @include detail-colour-variant($blue);
     }
   }
+}
+
+// Rules for disabling interactions with always open panels
+details[disabled][open] summary {
+    pointer-events: none;
+    user-select: none;
+    &:before {
+      content: none;
+    }
+}
+details[disabled] summary {
+    &:before {
+      content: none;
+    }
 }
 
 /*

@@ -338,6 +338,8 @@ Now that we've got the terminology sorted out, let’s explore some applications
 
 ## Who uses finite state automata?
 
+Finite state automata come up a lot in the development of computer software, but also in the design of electronics.
+
 Finite state automata are used a lot in the design of digital circuits (like the electronics in a hard drive) and embedded systems (such as burglar alarms or microwave ovens).
 Anything that has a few buttons on it and gets into different states when you press those buttons (such as alarm on/off, high/med/low power) is effectively a kind of FSA.
 
@@ -386,7 +388,7 @@ Only, because it's called the "web," exploring is called "crawling" &ndash; like
 This section introduces free teaching software that makes it easy for students to create and experiment with FSAs.
 This software will also be useful for the next section on regular expressions, so it’s worth becoming familiar with.
 You can choose between using "Exorciser" or "JFLAP" (see later).
-The Exorciser system from [SwissEduc](http://www.swisseduc.ch/compscience/) is cleaner and simpler, but JFLAP includes some features that are useful for the sections on regular expressions and grammars.
+The Exorciser system from [SwissEduc](http://www.swisseduc.ch/informatik/) is cleaner and simpler, but JFLAP includes some features that are useful for the sections on regular expressions and grammars.
 (The Exorciser material on grammars is too advanced, and its features with regular expressions are a little more tedious to use for our purposes).
 Both of the systems have extensive features that aren't relevant to this chapter, so students will need to ignore much of what they see!
 
@@ -446,7 +448,7 @@ Get some practice doing this yourself! If you prefer, here are instructions for 
 This panel shows how to use some educational software called "Exorciser" (The next panel introduces an alternative called JFLAP which is a bit harder to use).
 Exorciser has facilities for doing advanced exercises in formal languages; but here we'll use just the simplest ones.
 
-Exorciser can be downloaded [here](http://www.swisseduc.ch/compscience/exorciser/index.html).
+Exorciser can be downloaded [here](https://www.swisseduc.ch/informatik/exorciser/exorciser_en/).
 
 When you run it, select "Constructing Finite Automata" (the first menu item); click the "Beginners" link when you want a new exercise.
 The challenge in each FSA exercise is the part after the | in the braces (i.e. curly brackets).
@@ -464,7 +466,6 @@ The notation "a|b" means that a transition will be taken on "a" or "b" (it's equ
 If your FSA doesn't solve their challenge, you'll get a hint in the form of a string that your FSA deals with incorrectly, so you can gradually fix it until it works.
 If you're stuck, click "Solve exercise".
 You can also track input as you type it: right-click to choose that option.
-See the [SwissEduc website](http://www.swisseduc.ch/compscience/) for more instructions.
 
 {image file-path="img/chapters/finite-state-automata-exorciser-error-screenshot.png" alt="The exorciser software from SwissEduc"}
 
@@ -707,14 +708,123 @@ Examples are:
 
 {panel end}
 
-{panel type="activity"}
+## Other ways to represent finite state automata
 
-# Kara the ladybug
+Drawing an FSA using circles and arrows is a good representation for people to use, but in computer programs it’s easier to use a lookup table.
 
-[SwissEduc](http://www.swisseduc.ch/compscience/) has a programming environment called [Kara](http://www.swisseduc.ch/compscience/karatojava/kara/) (requires Java to be installed), which is a programmable ladybug that (in its simplest version) walks around an imaginary world controlled by actions output by a finite state automaton.
-The ladybug has (simulated) detectors that sense its immediate surroundings; these serve as input to the FSA.
+For example, for this FSA:
 
-{comment Currently there seems to be a bug in the simple Kara program, and it only loads to 88% (apparently it is to do with the version of Java). There is a version called "MultiKara" (in the same package) which has multiple ladybugs, so you can just use one ladybug and get a similar effect. http://swisseduc.ch/informatik/karatojava/download.html}
+{image file-path="img/chapters/finite-state-automata-create-example-6.png" alt="An FSA for the following exercise."}
+
+The following table shows the transitions.
+For example, if you look up State 2 in the b column, it shows that the transition will go to state 1.
+
+$$
+\begin{array}{c|cc}
+\text{State} & \text{a} & \text{b} \\
+\hline
+1 & 1 & 2 \\
+2 & 2 & 1 \\
+\end{array}
+$$
+
+In a computer program, these tables can be stored in an array or list, and the FSA is implemented using a simple loop that looks up the current state and input symbol to work out what the current state will change to.
+
+For example, here is a quick and simple program that implements the [FSA in Scratch](https://scratch.mit.edu/projects/648957703):
+
+{image file-path="img/chapters/scratch-simple-fsa.png" alt="A simple FSA implementation in the Scratch Programming language."}
+
+And here is a program for the same FSA in Python:
+
+```python
+START_STATE = 1
+transition = []
+transition.append({}) # Creates an unused state 0
+
+# Create a new state
+transition.append({})
+# Transition from state 0 on 'a' goes to state 1
+transition[1]['a'] = 1
+# Transition from state 0 on 'b' goes to state 0
+transition[1]['b'] = 2
+
+transition.append({})
+transition[2]['a'] = 2
+transition[2]['b'] = 1
+
+state = START_STATE
+while True:
+    symbol = input("Enter next symbol: ")
+    print("Going from state", state, "to...")
+    state = transition[state][symbol]
+    print("    ... ", state)
+```
+
+The above programs could be improved a lot to apply to a wider range of inputs and states, but they illustrate how simple it is to program an FSA, and therefore why they are popular for working with regular expressions.
+
+Mathematically this can be written more precisely by listing five elements:
+
+- \( Q \), the set of states. In the example above, \( Q \) would be \( \text{\{1,2\}} \).
+- \( \Sigma \), the “alphabet” of possible input characters. This would be \( \text{\{a,b\}} \) in the example.
+- \( \delta \), the transitions, which is a function that takes a state and input character, and tells you what the next state is.
+  The table above represents this function.
+- \( q_0 \), the starting state.
+  In the example above, \( q_0 = 1 \), since the starting arrow points at state 1.
+- \( F \), the set of accepting states.
+  In the example, \( F = \{1\} \), since 1 is the only accepting state.
+
+These five elements are written as a “5-tuple” in the order
+\( (Q, \Sigma, \delta, q_0, F) \).
+
+{panel type="curiosity"}
+
+# This looks like greek to me?
+
+Actually it is Greek!
+The symbol \( \Sigma \) is the Greek letter sigma.
+The symbol \( \delta \) is the Greek letter delta.
+
+{panel end}
+
+So the very precise notation for the FSA above would be
+
+$$
+\large{\text{({1,2}, {a,b}, }}
+\small{\begin{array}{c|cc}
+\text{State} & \text{a} & \text{b} \\
+\hline
+1 & 1 & 2 \\
+2 & 2 & 1 \\
+\end{array}}
+\large{\text{ , 1, {1})}}
+$$
+
+{panel type="project"}
+
+# Exercise: Creating an FSA from a 5-tuple
+
+As an exercise, see if you can draw the FSA represented by this 5-tuple:
+
+$$
+\large{\text{({1,2,3,4}, {a,b}, }}
+\small{\begin{array}{c|cc}
+\text{State} & \text{a} & \text{b} \\
+\hline
+1 & 2 & 2 \\
+2 & 3 & 3 \\
+3 & 4 & 4 \\
+4 & 4 & 4 \\
+\end{array}}
+\large{\text{ , 1, {1,2,3})}}
+$$
+
+{panel type="spoiler"}
+
+# Exercise answers
+
+{image file-path="img/chapters/finite-state-automata-two-or-less-letters.png" alt="The FSA for the exercise."}
+
+{panel end}
 
 {panel end}
 

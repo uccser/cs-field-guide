@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load static %}
 
-{% block html %}
+{% block interactive_html %}
   <div class="my-3 container-fluid text-center">
     <div id="ai-warning" class="row">
       {% trans 'Sorry, this interactive is only available on screens wider than 490px, and optimised for those wider than 610px.' %}
@@ -137,15 +137,15 @@
       </div>
     </div>
   </div>
-{% endblock html %}
+{% endblock interactive_html %}
 
-{% block css %}
+{% block interactive_css %}
   <link rel="stylesheet" href="{% static 'interactives/training-ground/css/training-ground.css' %}">
-{% endblock css %}
+{% endblock interactive_css %}
 
-{% block js %}
+{% block interactive_js %}
   <script type="text/javascript">
     var base = "{{ STATIC_URL }}";
   </script>
   <script type="text/javascript" src="{% static 'interactives/training-ground/js/training-ground.js' %}"></script>
-{% endblock js %}
+{% endblock interactive_js %}

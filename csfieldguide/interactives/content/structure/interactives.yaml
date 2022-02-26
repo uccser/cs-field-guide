@@ -79,6 +79,7 @@ cfg-parsing-challenge:
   languages:
     en: interactives/cfg-parsing-challenge.html
   is_interactive: true
+  use_large_thumbnail: true
 checksum-calculator:
   languages:
     en: interactives/checksum-calculator.html
@@ -90,6 +91,10 @@ checksum-calculator-gtin-13:
 city-trip:
   languages:
     en: interactives/city-trip.html
+  is_interactive: true
+clicking-with-shaking:
+  languages:
+    en: interactives/clicking-with-shaking.html
   is_interactive: true
 close-window:
   languages:
@@ -166,6 +171,14 @@ dot-combinations:
   languages:
     en: interactives/dot-combinations.html
   is_interactive: true
+firewall-sorting:
+  languages:
+    en: interactives/firewall-sorting.html
+  is_interactive: true
+fitts-law:
+  languages:
+    en: interactives/fitts-law.html
+  is_interactive: true
 flowcharts-interpreter-compiler:
   languages:
     en: interactives/flowcharts-interpreter-compiler.html
@@ -205,6 +218,10 @@ huffman-tree:
 image-bit-comparer:
   languages:
     en: interactives/image-bit-comparer.html
+  is_interactive: true
+index-of-difficulty-calculator:
+  languages:
+    en: interactives/index-of-difficulty-calculator.html
   is_interactive: true
 iterative-software-development:
   languages:
@@ -285,6 +302,14 @@ password-guesser:
   languages:
     en: interactives/password-guesser.html
   is_interactive: true
+password-strength-brute:
+  languages:
+    en: interactives/password-strength-brute.html
+  is_interactive: true
+password-strength-dict:
+  languages:
+    en: interactives/password-strength-dict.html
+  is_interactive: true
 payment-interface:
   languages:
     en: interactives/payment-interface.html
@@ -307,6 +332,11 @@ pixel-viewer:
   languages:
     en: interactives/pixel-viewer.html
   is_interactive: true
+plane-turbulence:
+  languages:
+    en: interactives/plane-turbulence.html
+  is_interactive: true
+  use_large_thumbnail: true
 python-interpreter:
   languages:
     en: interactives/python-interpreter.html
@@ -417,6 +447,10 @@ trig-function-calculator:
   languages:
     en: interactives/trig-function-calculator.html
   is_interactive: true
+tree-diagram:
+  languages:
+    en: interactives/tree-diagram.html
+  is_interactive: false
 unexpected-error:
   languages:
     en: interactives/unexpected-error.html

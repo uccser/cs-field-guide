@@ -2,11 +2,63 @@
   <div>
   {{ "{% if teacher_mode %}" }}
 {% endif %}
-<details{% if expanded == 'true'%} open="open"{% endif %} class="panel-{{ type }}">
+<details
+{% if expanded == 'true'%} open="open"{% endif %}
+{% if expanded == 'always'%} open="open" disabled="disabled" tabindex="-1"{% endif %}
+class="panel-{{ type }}">
 <summary>
 <strong>
 {{ title }}
 {% if subtitle %}:</strong> {{ subtitle }}{% else %}</strong>{% endif %}
+{% if type == 'teacher-note'%}
+    <span class="panel-type-title">
+        {{-'
+            {% trans "Teacher Note" %}
+        '-}}
+    </span>
+{% elif type == 'additional-information'%}
+    <span class="panel-type-title">
+        {{-'
+            {% trans "Additional Information" %}
+        '-}}
+    </span>
+{% elif type == 'curiosity'%}
+    <span class="panel-type-title">
+        {{-'
+            {% trans "Curiosity" %}
+        '-}}
+    </span>
+{% elif type == 'challenge'%}
+    <span class="panel-type-title">
+        {{-'
+            {% trans "Challenge" %}
+        '-}}
+    </span>
+{% elif type == 'caution'%}
+    <span class="panel-type-title">
+        {{-'
+            {% trans "Caution" %}
+        '-}}
+    </span>
+{% elif type == 'jargon-buster'%}
+    <span class="panel-type-title">
+        {{-'
+            {% trans "Jargon Buster" %}
+        '-}}
+    </span>
+{% elif type == 'spoiler'%}
+    <span class="panel-type-title">
+        {{-'
+            {% trans "Spoiler!" %}
+        '-}}
+    </span>
+{% elif type == 'project'%}
+    <span class="panel-type-title">
+        {{-'
+            {% trans "Project" %}
+        '-}}
+    </span>
+{% endif %}
 </summary>
 <div class="boxed-text-content">
 {% autoescape false %}

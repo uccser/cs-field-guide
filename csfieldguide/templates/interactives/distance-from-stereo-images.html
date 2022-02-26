@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load static %}
 
-{% block html %}
+{% block interactive_html %}
 <div id="outer-div" class="container">
   <h3 class="text-center mb-2">{% trans "Getting Distance From Stereo Images" %}</h3>
   <a data-toggle="collapse" href="#instructions" role="button" aria-expanded="true" aria-controls="instructions">
@@ -102,14 +102,14 @@
     <p class="result-p"><span id="result"></span></p>
   </div>
 </div>
-{% endblock html %}
+{% endblock interactive_html %}
 
-{% block css %}
+{% block interactive_css %}
 <link rel="stylesheet"
       href="{% static 'interactives/distance-from-stereo-images/css/distance-from-stereo-images.css' %}">
-{% endblock css %}
+{% endblock interactive_css %}
 
-{% block js %}
+{% block interactive_js %}
 <script type="text/javascript"
         src="{% static 'interactives/distance-from-stereo-images/js/distance-from-stereo-images.js' %}"></script>
-{% endblock js %}
+{% endblock interactive_js %}

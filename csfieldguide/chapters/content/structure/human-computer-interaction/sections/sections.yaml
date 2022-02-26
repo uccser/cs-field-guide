@@ -13,8 +13,11 @@ usability-heuristics:
 user-experience:
   section-number: 5
 
+fitts-law:
+ section-number: 6
+
 the-whole-story:
-  section-number: 6
+  section-number: 7
 
 further-reading:
-  section-number: 7
+  section-number: 8

@@ -48,7 +48,7 @@
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans');
 
 body {
-  background-color: $gray-100;
+  background-color: $background-color;
 }
 
 #body-flex-container {
@@ -317,6 +317,10 @@ a {
   &:hover {
     color: #212529;
   }
+}
+
+.embed-responsive {
+    margin: 1rem 0;
 }
 
 // Standard bootstrap-defined Medium devices boundary

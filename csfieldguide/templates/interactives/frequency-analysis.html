@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load static %}
 
-{% block html %}
+{% block interactive_html %}
 <h4 class="text-center">{% trans "Frequency Analysis" %}</h4>
 <div class="row justify-content-center mb-2">
   <div class="col-sm-12 col-md-8">
@@ -19,8 +19,8 @@
     </small>
   </div>
 </div>
-{% endblock html %}
+{% endblock interactive_html %}
 
-{% block js %}
+{% block interactive_js %}
   <script type="text/javascript" src="{% static 'interactives/frequency-analysis/js/frequency-analysis.js' %}"></script>
-{% endblock js %}
+{% endblock interactive_js %}

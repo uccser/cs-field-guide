@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/dev/ref/settings/
 
 import environ
 import os.path
+import logging.config
 
 # Add custom languages not provided by Django
 import django.conf.locale
@@ -26,6 +27,8 @@ env = environ.Env()
 # APP CONFIGURATION
 # ----------------------------------------------------------------------------
 DJANGO_APPS = [
+    "corsheaders",
+
     # Default Django apps:
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -63,6 +66,7 @@ INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRD_PARTY_APPS
 # MIDDLEWARE CONFIGURATION
 # ----------------------------------------------------------------------------
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -120,16 +124,16 @@ if env.bool("INCLUDE_INCONTEXT_L10N", False):
 
     EXTRA_LANG_INFO = {
         INCONTEXT_L10N_PSEUDOLANGUAGE: {
-            'bidi': False,
-            'code': INCONTEXT_L10N_PSEUDOLANGUAGE,
-            'name': "Translation mode",
-            'name_local': _("Translation mode"),
+            "bidi": False,
+            "code": INCONTEXT_L10N_PSEUDOLANGUAGE,
+            "name": "Translation mode",
+            "name_local": _("Translation mode"),
         },
         INCONTEXT_L10N_PSEUDOLANGUAGE_BIDI: {
-            'bidi': True,
-            'code': INCONTEXT_L10N_PSEUDOLANGUAGE_BIDI,
-            'name': "Translation mode (Bi-directional)",
-            'name_local': _("Translation mode (Bi-directional)"),
+            "bidi": True,
+            "code": INCONTEXT_L10N_PSEUDOLANGUAGE_BIDI,
+            "name": "Translation mode (Bi-directional)",
+            "name_local": _("Translation mode (Bi-directional)"),
         }
     }
 
@@ -137,7 +141,7 @@ if env.bool("INCLUDE_INCONTEXT_L10N", False):
     # Add new languages to the list of all django languages
     global_settings.LANGUAGES = global_settings.LANGUAGES + EXTRA_LANGUAGES
     global_settings.LANGUAGES_BIDI = (global_settings.LANGUAGES_BIDI +
-                                      [INCONTEXT_L10N_PSEUDOLANGUAGE_BIDI.split('-')[0]])
+                                      [INCONTEXT_L10N_PSEUDOLANGUAGE_BIDI.split("-")[0]])
     # Add new languages to the list of languages used for this project
     LANGUAGES += tuple(EXTRA_LANGUAGES)
     LANGUAGES_BIDI = global_settings.LANGUAGES_BIDI
@@ -165,18 +169,13 @@ TEMPLATES = [
         # See: https://docs.djangoproject.com/en/dev/ref/settings/#std:setting-TEMPLATES-BACKEND
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         # See: https://docs.djangoproject.com/en/dev/ref/settings/#template-dirs
+        "APP_DIRS": True,
         "DIRS": [
             str(ROOT_DIR.path("templates")),
         ],
         "OPTIONS": {
             # See: https://docs.djangoproject.com/en/dev/ref/settings/#template-debug
             "debug": DEBUG,
-            # See: https://docs.djangoproject.com/en/dev/ref/settings/#template-loaders
-            # https://docs.djangoproject.com/en/dev/ref/templates/api/#loader-types
-            "loaders": [
-                "django.template.loaders.filesystem.Loader",
-                "django.template.loaders.app_directories.Loader",
-            ],
             # See: https://docs.djangoproject.com/en/dev/ref/settings/#template-context-processors
             "context_processors": [
                 "django.template.context_processors.debug",
@@ -194,6 +193,7 @@ TEMPLATES = [
             ],
             "libraries": {
                 "get_item": "config.templatetags.get_item",
+                "read_static_file": "config.templatetags.read_static_file",
                 "render_html_field": "config.templatetags.render_html_field",
                 "render_interactive_in_page": "config.templatetags.render_interactive_in_page",
                 "render_interactive_link": "config.templatetags.render_interactive_link",
@@ -203,6 +203,56 @@ TEMPLATES = [
         },
     },
 ]
+
+
+# LOGGING
+# ------------------------------------------------------------------------------
+# Based off https://lincolnloop.com/blog/django-logging-right-way/
+
+logging.config.dictConfig({
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "console": {
+            "format": "%(asctime)s %(name)-20s %(levelname)-10s %(message)s",
+        },
+    },
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+            "formatter": "console",
+        },
+    },
+    "loggers": {
+        # Root logger
+        "": {
+            "level": env("LOG_LEVEL", default="INFO"),
+            "handlers": ["console", ],
+        },
+        "django": {
+            "handlers": ["console"],
+            "level": env("LOG_LEVEL", default="INFO"),
+            "propagate": False,
+        },
+        # Project specific logger
+        "csfieldguide": {
+            "level": env("LOG_LEVEL", default="INFO"),
+            "handlers": ["console", ],
+            # Required to avoid double logging with root logger
+            "propagate": False,
+        },
+        'gunicorn.error': {
+            "level": env("LOG_LEVEL", default="INFO"),
+            'handlers': ['console'],
+            'propagate': False,
+        },
+        'gunicorn.access': {
+            "level": env("LOG_LEVEL", default="INFO"),
+            'handlers': ['console'],
+            'propagate': False,
+        },
+    },
+})
 
 # STATIC FILE CONFIGURATION
 # ------------------------------------------------------------------------------
@@ -264,9 +314,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # See: http://django-haystack.readthedocs.io/en/v2.6.0/settings.html
 HAYSTACK_CONNECTIONS = {
     "default": {
-        'ENGINE': 'haystack.backends.elasticsearch5_backend.Elasticsearch5SearchEngine',
-        'URL': 'elasticsearch:9200',
-        'INDEX_NAME': 'haystack',
+        "ENGINE": "haystack.backends.elasticsearch5_backend.Elasticsearch5SearchEngine",
+        "URL": "elasticsearch:9200",
+        "INDEX_NAME": "haystack",
     },
 }
 HAYSTACK_SEARCH_RESULTS_PER_PAGE = 10
@@ -291,5 +341,11 @@ MODELTRANSLATION_CUSTOM_FIELDS = ("JSONField",)
 CUSTOM_VERTO_TEMPLATES = os.path.join(str(ROOT_DIR.path("utils")), "custom_converter_templates", "")
 STATICI18N_ROOT = BUILD_ROOT
 SVG_DIRS = [os.path.join(str(ROOT_DIR.path("staticfiles")), "svg")]
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 X_FRAME_OPTIONS = "SAMEORIGIN"
+
+CORS_ALLOWED_ORIGINS = [
+    "http://127.0.0.1:8000",
+    "http://localhost:8000",
+    "https://canterbury.ac.nz"
+]

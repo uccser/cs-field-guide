@@ -89,7 +89,7 @@ Items of interest from this diagram:
           "<module-name>": "<module-version>"
       }
     }
-  
+
   You will need to make sure the path to this file is listed in the ``csfieldguide/package.json`` file.
   More information on npm modules can be found on the :ref:`static files` page.
 
@@ -115,23 +115,23 @@ Items of interest from this diagram:
   .. code-block:: html
 
     {% extends interactive_mode_template %}
-  
+
     {% load i18n %}
     {% load static %}
 
-    {% block html %}
+    {% block interactive_html %}
       <!-- The HTML of your interactive goes here -->
-    {% endblock html %}
+    {% endblock interactive_html %}
 
-    {% block css %}
+    {% block interactive_css %}
       <!-- The CSS of your interactive goes here. Example of how to link to css file below. -->
       <link rel="stylesheet" href="{% static 'interactives/<interactive-slug>/css/<interactive-slug>.css' %}">
-    {% endblock css %}
+    {% endblock interactive_css %}
 
-    {% block js %}
+    {% block interactive_js %}
       <!-- The JavaScript of your interactive goes here. Example of how to link to js file below. -->
       <script type="text/javascript" src="{% static 'interactives/<interactive-slug>/js/<interactive-slug>.js' %}"></script>
-    {% endblock js %}
+    {% endblock interactive_js %}
 
   The first line ``{% extends interactive_mode_template %}`` is required for all interactives.
   The second line ``{% load i18n %}`` is needed if there is translatable text in the template.
@@ -180,7 +180,7 @@ Interactive Configuration Files
 
 - **Required Fields:**
 
-  - A dictionary of all interactive data, where each key is a slug for an interactive. 
+  - A dictionary of all interactive data, where each key is a slug for an interactive.
 
   - The dictionary of interactive data must include:
 

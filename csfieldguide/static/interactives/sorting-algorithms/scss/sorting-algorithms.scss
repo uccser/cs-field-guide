@@ -1,3 +1,4 @@
+@use "sass:math";
 @import "node_modules/dragula/dist/dragula";
 @import "node_modules/bootstrap/scss/functions";
 @import "node_modules/bootstrap/scss/variables";
@@ -16,7 +17,7 @@
   max-width: $box-size;
   @each $size, $width in $container-max-widths {
     @include media-breakpoint-only($size) {
-      $box-size: $width / 10;
+      $box-size: math.div($width, 10);
       width: $box-size;
       height: $box-size;
       max-width: $box-size;

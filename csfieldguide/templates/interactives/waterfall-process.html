@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load static %}
 
-{% block html %}
+{% block interactive_html %}
   <!-- NOTE: Uninteractive must be displayed in an iframe -->
   <div class="row justify-content-center waterfall-title">
     {% trans 'The Waterfall process' %}
@@ -70,12 +70,12 @@
       <path class="arrow note" id="not-allowed-3"/>
     </svg>
   </div>
-{% endblock html %}
+{% endblock interactive_html %}
 
-{% block css %}
+{% block interactive_css %}
   <link rel="stylesheet" href="{% static 'interactives/waterfall-process/css/waterfall-process.css' %}">
-{% endblock css %}
+{% endblock interactive_css %}
 
-{% block js %}
+{% block interactive_js %}
   <script type="text/javascript" src="{% static 'interactives/waterfall-process/js/waterfall-process.js' %}"></script>
-{% endblock js %}
+{% endblock interactive_js %}

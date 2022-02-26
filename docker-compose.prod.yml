@@ -62,7 +62,7 @@ services:
     task-update-data:
         <<: *default-opts
         <<: *django-config
-        command: python ./manage.py updatedata
+        command: python ./manage.py update_data
         deploy:
             replicas: 0
             placement:

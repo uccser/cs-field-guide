@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load static %}
 
-{% block html %}
+{% block interactive_html %}
   <div class="container text-center my-5 mx-1 number-memory">
     <div id="number-memory-title" class="col-12"></div>
     <div id="number-text-container" class="row justify-content-center mb-3">
@@ -26,12 +26,12 @@
       <button id="continue-button" type="button" class="btn btn-success d-none mb-1">{% trans 'Continue' %}</button>
     </div>
   </div>
-{% endblock html %}
+{% endblock interactive_html %}
 
-{% block css %}
+{% block interactive_css %}
   <link rel="stylesheet" href="{% static 'interactives/number-memory/css/number-memory.css' %}">
-{% endblock css %}
+{% endblock interactive_css %}
 
-{% block js %}
+{% block interactive_js %}
   <script type="text/javascript" src="{% static 'interactives/number-memory/js/number-memory.js' %}"></script>
-{% endblock js %}
+{% endblock interactive_js %}

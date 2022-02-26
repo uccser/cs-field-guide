@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load static %}
 
-{% block html %}
+{% block interactive_html %}
   <div id="interactive-rgb-mixer" class="my-3 container-fluid">
     <img id="pixelmania-logo" src="{% static 'interactives/rgb-mixer/img/pixelmania-logo-half-size.png' %}" class="d-none img-fluid" crossorigin="anonymous">
     <h3>{% trans "RGB Colour Mixer - Used by Screens" %}</h3>
@@ -37,12 +37,12 @@
       </div>
     </div>
   </div>
-{% endblock html %}
+{% endblock interactive_html %}
 
-{% block css %}
+{% block interactive_css %}
   <link rel="stylesheet" href="{% static 'interactives/rgb-mixer/css/rgb-mixer.css' %}">
-{% endblock css %}
+{% endblock interactive_css %}
 
-{% block js %}
+{% block interactive_js %}
   <script type="text/javascript" src="{% static 'interactives/rgb-mixer/js/rgb-mixer.js' %}"></script>
-{% endblock js %}
+{% endblock interactive_js %}

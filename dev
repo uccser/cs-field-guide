@@ -79,13 +79,14 @@ cmd_update() {
   cmd_compilemessages
 
   echo ""
+  cmd_collect_static
   cmd_make_interactive_thumbnails
   cmd_collect_static
 
   echo -e "\n${SUCCESS}Content is loaded!${NC}"
   echo "Open your preferred web browser to the URL 'cs-field-guide.localhost'"
 }
-defhelp update 'Run Django migrate and updatedata commands and build static files.'
+defhelp update 'Run Django migrate and update_data commands and build static files.'
 
 # Run Django makemigrations command
 cmd_makemigrations() {
@@ -108,12 +109,12 @@ cmd_reboot_django() {
 }
 defhelp reboot_django 'Reboot Django container.'
 
-# Run Django updatedata command
+# Run Django update_data command
 cmd_update_data() {
   echo "Loading content..."
-  docker-compose -f docker-compose.local.yml run --rm --label traefik.enable=false django python ./manage.py updatedata
+  docker-compose -f docker-compose.local.yml run --rm --label traefik.enable=false django python ./manage.py update_data
 }
-defhelp updatedata 'Load content into database.'
+defhelp update_data 'Load content into database.'
 
 # Build static files
 cmd_static() {
@@ -157,7 +158,7 @@ defhelp make_interactive_thumbnails 'Run make-interactive-thumbnails.js script.'
 # Run Django makemessages command
 cmd_makemessages() {
   echo "Compiling message files..."
-#   docker-compose -f docker-compose.local.yml run --rm --label traefik.enable=false django python ./manage.py makemessages --locale en
+  docker-compose -f docker-compose.local.yml run --rm --label traefik.enable=false django python ./manage.py makemessages --locale en
   docker-compose -f docker-compose.local.yml run --rm --label traefik.enable=false django python ./manage.py makemessages --locale en --domain djangojs --ignore build/* --ignore gulpfile.js
 }
 defhelp makemessages 'Run Django makemessages command.'
@@ -173,7 +174,7 @@ defhelp compilemessages 'Run Django compilemessages command.'
 # Build Docker images
 cmd_build() {
   echo "Building Docker images..."
-  docker-compose -f docker-compose.local.yml build
+  docker-compose -f docker-compose.local.yml build "$@"
 }
 defhelp build 'Build or rebuild Docker images.'
 

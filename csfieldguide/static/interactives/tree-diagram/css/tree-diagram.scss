@@ -1,0 +1,11 @@
+#tree-diagram {
+    .node-name {
+        font-size: 1.2rem;
+        font-weight: bold;
+        margin: 0;
+    }
+    &.error {
+        font-weight: red;
+        font-weight: bold;
+    }
+}

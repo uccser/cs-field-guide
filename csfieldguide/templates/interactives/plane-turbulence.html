@@ -1,0 +1,71 @@
+{% extends interactive_mode_template %}
+
+{% load i18n static read_static_file %}
+
+{% block interactive_html %}
+    <div id="plane-turblence-interactive" class="container p-0">
+        <div id="menu" class="align-items-center justify-content-center">
+            <div id="menu-instructions">
+                <h4>A bumpy flight...</h4>
+                <p>
+                    You are part of a group scientists on a flight in a small plane to monitor weather.
+                    However you start to encounter some unexpected turbulence.
+                </p>
+                <p>
+                    The pilot will handle flying the plane but they have asked you to sit beside them to assist them.
+                    You will need to complete a sequence of instructions given to you from the pilot in order to assist them.
+                </p>
+                <p>
+                    Click 'Start' when you are ready to begin.
+                </p>
+                <div class="text-center">
+                    <button id="play-button" class="btn btn-primary">Start</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="game-over-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Well done!</h5>
+                    </div>
+                    <div class="modal-body">
+                        You've assisted the pilot and prepared the plane for an urgent landing, while dealing with bad turbulence.
+                        Maybe some modification of the cockpit interfaces would have made your job easier...
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="game-over-button" class="btn btn-primary">Play Again</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="overlay" hidden></div>
+
+        <div class="row p-0 m-0">
+            <div class="col-9 p-0 m-0">
+                <div id="svg-wrapper">
+                    {% read_static_file 'interactives/plane-turbulence/svg/airplane-cockpit.svg' %}
+                </div>
+            </div>
+            <div class="col-3 p-0 m-0">
+                <div id="instructions-container">
+                    <div id="instructions-header">INSTRUCTIONS</div>
+                    <div id="instructions"></div>
+                    <div id="instructions-fadeout"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock interactive_html %}
+
+{% block interactive_css %}
+    <link rel="stylesheet" href="{% static 'interactives/plane-turbulence/css/plane-turbulence.css' %}">
+{% endblock interactive_css %}
+
+{% block interactive_js %}
+    <script type="text/javascript" src="{% static 'interactives/plane-turbulence/js/plane-turbulence.js' %}"></script>
+{% endblock interactive_js %}

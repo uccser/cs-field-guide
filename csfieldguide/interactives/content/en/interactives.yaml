@@ -38,6 +38,8 @@ checksum-calculator-gtin-13:
   name: Checksum Calculator GTIN-13
 city-trip:
   name: City Trip
+clicking-with-shaking:
+  name: Clicking with Shaking
 close-window:
   name: Close Window
 cmy-mixer:
@@ -68,6 +70,10 @@ distance-from-stereo-images:
   name: Distance From Stereo Images
 dot-combinations:
   name: Dot Combinations
+firewall-sorting:
+  name: Firewall Sorting
+fitts-law:
+  name: Fitts' Law Experiment
 flowcharts-interpreter-compiler:
   name: Flowcharts - Interpreter and Compiler
 frequency-analysis:
@@ -88,6 +94,8 @@ huffman-tree:
   name: Huffman Tree
 image-bit-comparer:
   name: Image Bit Comparer
+index-of-difficulty-calculator:
+  name: Index of Difficulty Calculator
 iterative-software-development:
   name: Iterative Software Development
 udp-layers:
@@ -124,6 +132,10 @@ parity:
   name: Parity
 password-guesser:
   name: Password Guesser
+password-strength-brute:
+  name: Password Strength - Brute Force
+password-strength-dict:
+  name: Password Strength - Dictionary
 payment-interface:
   name: Payment Interface
 persona-carousel:
@@ -134,6 +146,8 @@ pixel-grid:
   name: Pixel Grid
 pixel-viewer:
   name: Pixel Viewer
+plane-turbulence:
+    name: Plane Turbulence
 python-interpreter:
   name: Python Interpreter
 python-syntax-error:
@@ -186,6 +200,8 @@ trainsylvania-blank:
   name: Blank Trainsylvania
 trainsylvania-complete:
   name: Complete Trainsylvania
+tree-diagram:
+  name: Tree Diagram
 trig-function-calculator:
   name: Trig Function Calculator
 unexpected-error:

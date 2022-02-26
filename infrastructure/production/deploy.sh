@@ -13,7 +13,7 @@ checkEnvVariableExists() {
     fi
 }
 checkEnvVariableExists CS_FIELD_GUIDE_IMAGE_TAG
-checkEnvVariableExists CS_FIELD_GUIDE_DOMAIN
+checkEnvVariableExists CS_FIELD_GUIDE_ROUTER_RULE
 
 # Update Django service
 docker stack deploy cs-field-guide -c docker-compose.prod.yml

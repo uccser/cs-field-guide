@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load static %}
 
-{% block html %}
+{% block interactive_html %}
   <div class="container" id="trig-function-calculator">
     <div class="trig-title">{% trans "Trig Function Calculator" %}</div>
     <p id="info">
@@ -34,12 +34,12 @@
       </div>
     </div>
   </div>
-{% endblock html %}
+{% endblock interactive_html %}
 
-{% block css %}
+{% block interactive_css %}
   <link rel="stylesheet" href="{% static 'interactives/trig-function-calculator/css/trig-function-calculator.css' %}">
-{% endblock css %}
+{% endblock interactive_css %}
 
-{% block js %}
+{% block interactive_js %}
   <script type="text/javascript" src="{% static 'interactives/trig-function-calculator/js/trig-function-calculator.js' %}"></script>
-{% endblock js %}
+{% endblock interactive_js %}

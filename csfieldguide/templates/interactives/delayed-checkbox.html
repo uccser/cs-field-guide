@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load static %}
 
-{% block html %}
+{% block interactive_html %}
   <div id="interactive-delayed-checkbox" class="containter-fluid text-center">
     <div class="row justify-content-center">
       <div class="col-12">
@@ -18,12 +18,12 @@
       </div>
     </div>
   </div>
-{% endblock html %}
+{% endblock interactive_html %}
 
-{% block css %}
+{% block interactive_css %}
   <link rel="stylesheet" href="{% static 'interactives/delayed-checkbox/css/delayed-checkbox.css' %}">
-{% endblock css %}
+{% endblock interactive_css %}
 
-{% block js %}
+{% block interactive_js %}
   <script type="text/javascript" src="{% static 'interactives/delayed-checkbox/js/delayed-checkbox.js' %}"></script>
-{% endblock js %}
+{% endblock interactive_js %}

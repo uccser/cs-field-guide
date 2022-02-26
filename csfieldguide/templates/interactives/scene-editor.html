@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load static %}
 
-{% block html %}
+{% block interactive_html %}
   <div class="container">
     <div class="row mt-5">
       <div id="scene" class="col-12"></div>
@@ -94,17 +94,17 @@
       </div>
     </div>
   </div>
-{% endblock html %}
+{% endblock interactive_html %}
 
-{% block css %}
+{% block interactive_css %}
   <link rel="stylesheet" href="{% static 'interactives/scene-editor/css/scene-editor.css' %}">
-{% endblock css %}
+{% endblock interactive_css %}
 
-{% block js %}
+{% block interactive_js %}
   <script type="text/javascript">
     var base_static_path = "{{ STATIC_URL }}";
   </script>
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script type="text/javascript" src="{% static 'interactives/scene-editor/js/scene-editor.js' %}"></script>
-{% endblock js %}
+{% endblock interactive_js %}

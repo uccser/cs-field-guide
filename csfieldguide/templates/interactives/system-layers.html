@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load static %}
 
-{% block html %}
+{% block interactive_html %}
 <!--
   Note that all images used (including logos) are labelled as public domain or
   licenced under CC0 as of the time they were obtained.
@@ -66,7 +66,7 @@
   <!-- Hardware -->
   <div class="row system-layer border-top-0">
     <div class="col-8">
-      
+
       <div class="row">
         <div class="col-4">
           <img class="system-image" src="{% static 'interactives/system-layers/img/cpu-dreamstime.png' %}">
@@ -84,8 +84,8 @@
     </div>
   </div>
 </div>
-{% endblock html %}
+{% endblock interactive_html %}
 
-{% block css %}
+{% block interactive_css %}
   <link rel="stylesheet" href="{% static 'interactives/system-layers/css/system-layers.css' %}">
-{% endblock css %}
+{% endblock interactive_css %}

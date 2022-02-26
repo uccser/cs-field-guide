@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load static %}
 
-{% block html %}
+{% block interactive_html %}
   <div class="container">
     <div class="row">
       <div class="col-sm-12">
@@ -60,12 +60,12 @@
       </div>
     </div>
   </div>
-{% endblock html %}
+{% endblock interactive_html %}
 
-{% block css %}
+{% block interactive_css %}
   <link rel="stylesheet" href="{% static 'interactives/run-length-encoding/css/run-length-encoding.css' %}">
-{% endblock css %}
+{% endblock interactive_css %}
 
-{% block js %}
+{% block interactive_js %}
   <script type="text/javascript" src="{% static 'interactives/run-length-encoding/js/run-length-encoding.js' %}"></script>
-{% endblock js %}
+{% endblock interactive_js %}

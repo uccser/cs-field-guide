@@ -1,0 +1,30 @@
+#fitts-law-calculator {
+    #form-container {
+        display: grid;
+        grid-template-columns: max-content max-content 7rem;
+        grid-template-rows: 1fr 1fr;
+        gap: 0.5rem 1rem;
+        grid-template-areas:
+            "grid-label-distance grid-equals-distance grid-input-distance"
+            "grid-label-width grid-equals-width grid-input-width";
+
+        & > div {
+            display: flex;
+            align-items: center;
+        }
+        label {
+            margin-bottom: 0;
+        }
+    }
+    #grid-label-distance { grid-area: grid-label-distance; }
+    #grid-label-width { grid-area: grid-label-width; }
+    #grid-input-distance { grid-area: grid-input-distance; }
+    #grid-input-width { grid-area: grid-input-width; }
+    #grid-equals-distance { grid-area: grid-equals-distance; }
+    #grid-equals-width { grid-area: grid-equals-width; }
+
+    #rounding-disclaimer {
+        font-size: small;
+        color: grey;
+    }
+}

@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load static %}
 
-{% block html %}
+{% block interactive_html %}
   <div class="row justify-content-center uninteractive" id="binary-mode-calculator">
     <div class="col col-12 col-md-5 calculator pt-1">
       <div class="text-left font-weight-bold small mb-2">
@@ -60,8 +60,8 @@
       </div>
     </div>
   </div>
-{% endblock html %}
+{% endblock interactive_html %}
 
-{% block css %}
+{% block interactive_css %}
   <link rel="stylesheet" href="{% static 'interactives/binary-mode-calculator/css/binary-mode-calculator.css' %}">
-{% endblock css %}
+{% endblock interactive_css %}

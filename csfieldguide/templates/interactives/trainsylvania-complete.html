@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load static %}
 
-{% block html %}
+{% block interactive_html %}
   <div class="container mt-3 uninteractive trainsylvania-complete">
     <!-- Top row: Suburbopolis and North Stations -->
     <div class="row justify-content-center">
@@ -117,8 +117,8 @@
       <text x="280" y="60" class="arrow-label">B</text>
     </svg>
   </div>
-{% endblock html %}
+{% endblock interactive_html %}
 
-{% block css %}
+{% block interactive_css %}
   <link rel="stylesheet" href="{% static 'interactives/trainsylvania-complete/css/trainsylvania-complete.css' %}">
-{% endblock css %}
+{% endblock interactive_css %}

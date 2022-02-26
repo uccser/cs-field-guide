@@ -3,8 +3,8 @@
     "version": "1.0.0",
     "private": true,
     "dependencies": {
-        "urijs": "1.19.1",
-        "underscore.string": "3.3.5",
+        "urijs": "1.19.8",
+        "underscore.string": "3.3.6",
         "string.fromcodepoint": "0.2.1"
     }
 }

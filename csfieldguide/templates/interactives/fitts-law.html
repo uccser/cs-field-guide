@@ -1,0 +1,94 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block interactive_html %}
+<div class="container">
+  <h3 class="text-center mb-2">{% trans "Fitts' Law Experiment" %}</h3>
+  <div>
+    <p>
+        {% blocktranslate %}
+        You can use this interactive to conduct your own Fitts' Law experiment.
+        When you are ready, click the red column target. Once you have clicked it, the column will jump to the opposite side.
+        The column position will repeatedly swap until the trial is complete. Do this as quickly as you can until it has finished.
+        Every so often during the experiment the column width and the distance between them will change randomly.
+        There are nine trials, and each trial requires eleven successful clicks. However, the first click of each trial does not affect the results as the travel distance would be different from the rest of the trial.
+        The exercise should take around 30 seconds to one minute (but don't be worried if you need longer!)
+        {% endblocktranslate %}
+    </p>
+    <p>
+        {% url 'chapters:chapter_section' 'human-computer-interaction' 'fitts-law' as fitts_law_section %}
+        {% blocktranslate %}
+        Once you have finished, a table below will show your results.
+        Save this data so you can analyse your experiment.
+        Instructions on what to do with the data are in the <a href="{{ fitts_law_section }}">Fitt's Law section</a>.
+        {% endblocktranslate %}
+    </p>
+  </div>
+
+  <div id="game-view" class="container vh-100 d-flex flex-column border mt-4" style="max-height: 500px">
+    <div class="row flex-grow-1">
+      <div class="col"></div>
+      <div class="col"></div>
+      <div class="col"></div>
+      <div class="col"></div>
+      <div class="col"></div>
+      <div class="col"></div>
+      <div class="col"></div>
+    </div>
+    <div id="clicks-remaining-container">
+        {% translate "Successful clicks remaining:"%} <span id="clicks-remaining"></span>
+    </div>
+
+    <div id="portrait-warning">
+        <div id="portrait-warning-text">
+            {% translate "Please rotate your device into landscape mode to use this interactive." %}
+        </div>
+    </div>
+    <div id="finish-screen" hidden>
+        <div id="finish-screen-text">
+            {% translate "Experiment complete, data is available below." %}
+        </div>
+    </div>
+  </div>
+
+  <div id="results-view" class="mt-4 mb-4">
+    <table id="results-table" class="table table-striped table-hover table-responsive-sm">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col">Trial</th>
+        <th scope="col">Average Distance (pixels)</th>
+        <th scope="col">Width (pixels)</th>
+        <th scope="col">Index of Difficulty (bits)</th>
+        <th scope="col">Average Time (milliseconds)</th>
+      </tr>
+      </thead>
+      <tbody id="results-table-body"></tbody>
+    </table>
+
+    <div id="end-of-game-controls-div">
+        <div class="d-flex justify-content-around">
+            <button id="download-table-csv" class="btn btn-primary">
+                {% trans "Download table as CSV" %}
+            </button>
+            <button id="play-again" class="btn btn-danger">
+                {% trans "Restart experiment (data will be reset)" %}
+            </button>
+        </div>
+    </div>
+  </div>
+</div>
+{% endblock interactive_html %}
+
+{% block interactive_css %}
+<link rel="stylesheet" href="{% static 'interactives/fitts-law/css/fitts-law.css' %}">
+<link href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" rel="stylesheet">
+{% endblock interactive_css %}
+
+{% block interactive_js %}
+<script type="text/javascript" src="{% static 'interactives/fitts-law/js/fitts-law.js' %}"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.0.1/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.html5.min.js"></script>
+{% endblock interactive_js %}

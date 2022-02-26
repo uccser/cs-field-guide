@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load static %}
 
-{% block html %}
+{% block interactive_html %}
   <div class="row my-3 container-fluid justify-content-center">
     <div class="row interactive packet-attack-creator">
       <!-- Message row -->
@@ -67,15 +67,15 @@
       </div>
     </div>
   </div>
-{% endblock html %}
+{% endblock interactive_html %}
 
-{% block css %}
+{% block interactive_css %}
   <link rel="stylesheet" href="{% static 'interactives/packet-attack-level-creator/css/packet-attack-level-creator.css' %}">
-{% endblock css %}
+{% endblock interactive_css %}
 
-{% block js %}
+{% block interactive_js %}
   <script type="text/javascript">
     var base = "{% url 'interactives:interactive' 'packet-attack' %}";
   </script>
   <script type="text/javascript" src="{% static 'interactives/packet-attack-level-creator/js/packet-attack-level-creator.js' %}"></script>
-{% endblock js %}
+{% endblock interactive_js %}

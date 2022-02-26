@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load static %}
 
-{% block html %}
+{% block interactive_html %}
     <div id="interactive-fsa-washing-machine" class="container">
 
       <div id="interactive-fsa-washing-machine-state-text" class="text-center">
@@ -29,12 +29,12 @@
         <button id="interactive-fsa-washing-machine-reset" class="btn btn-danger btn-lg">{% trans "Reset to start state" %}</button>
       </div>
     </div>
-{% endblock html %}
+{% endblock interactive_html %}
 
-{% block css %}
+{% block interactive_css %}
   <link rel="stylesheet" href="{% static 'interactives/fsa-washing-machine/css/fsa-washing-machine.css' %}">
-{% endblock css %}
+{% endblock interactive_css %}
 
-{% block js %}
+{% block interactive_js %}
   <script type="text/javascript" src="{% static 'interactives/fsa-washing-machine/js/fsa-washing-machine.js' %}"></script>
-{% endblock js %}
+{% endblock interactive_js %}

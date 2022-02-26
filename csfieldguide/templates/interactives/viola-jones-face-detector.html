@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load static %}
 
-{% block html %}
+{% block interactive_html %}
   <div class="container">
     <h3 class="text-center mb-2">{% trans "Viola-Jones Face Detection" %}</h3>
     <div class="row">
@@ -50,13 +50,13 @@
       </div>
     </div>
   </div>
-{% endblock html %}
+{% endblock interactive_html %}
 
-{% block css %}
+{% block interactive_css %}
   <link rel="stylesheet" href="{% static 'interactives/viola-jones-face-detector/css/viola-jones.css' %}">
-{% endblock css %}
+{% endblock interactive_css %}
 
-{% block js %}
+{% block interactive_js %}
   <script type="text/javascript" src="{% static 'interactives/viola-jones-face-detector/js/viola-jones.js' %}"></script>
   <script type="text/javascript" src="{% static 'interactives/viola-jones-face-detector/libs/face-min.js' %}"></script>
-{% endblock js %}
+{% endblock interactive_js %}

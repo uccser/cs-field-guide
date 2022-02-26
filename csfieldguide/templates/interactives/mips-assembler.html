@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load static %}
 
-{% block html %}
+{% block interactive_html %}
   <div class="mb-3 container-fluid padded">
     <!-- Title Block -->
     <div id="interactive-mips-assembler" class="row justify-content-center">
@@ -184,12 +184,12 @@ end_loop:
   li $v0, 0
   jr $ra
   </div>
-{% endblock html %}
+{% endblock interactive_html %}
 
-{% block css %}
+{% block interactive_css %}
   <link rel="stylesheet" href="{% static 'interactives/mips-assembler/css/mips-assembler.css' %}">
-{% endblock css %}
+{% endblock interactive_css %}
 
-{% block js %}
+{% block interactive_js %}
   <script type="text/javascript" src="{% static 'interactives/mips-assembler/js/mips-assembler.js' %}"></script>
-{% endblock js %}
+{% endblock interactive_js %}

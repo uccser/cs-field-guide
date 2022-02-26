@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load static %}
 
-{% block html %}
+{% block interactive_html %}
   <div id="interactive-date-picker">
     <h5>{% trans "Pick a date" %}</h5>
     <select name="dropdown" id="interactive-date-picker-day" size=1 class="custom-select">
@@ -59,12 +59,12 @@
       {% trans "Do you realise that's not a real date?" %}
     </div>
   </div>
-{% endblock html %}
+{% endblock interactive_html %}
 
-{% block css %}
+{% block interactive_css %}
   <link rel="stylesheet" href="{% static 'interactives/date-picker/css/date-picker.css' %}">
-{% endblock css %}
+{% endblock interactive_css %}
 
-{% block js %}
+{% block interactive_js %}
   <script src="{% static 'interactives/date-picker/js/date-picker.js' %}"></script>
-{% endblock js %}
+{% endblock interactive_js %}

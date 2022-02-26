@@ -18,6 +18,171 @@ All notable changes to this project will be documented in this file.
 We have listed major changes for each release below.
 `All downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/>`__
 
+3.9.0
+==============================================================================
+
+**Release date:** 26th February 2022
+
+**Summary of changes:**
+
+This release adds new content on grammars and parsing, QR codes, Fitts' law, and other ways to represent FSAs.
+
+**Changelog:**
+
+- Add new section in 'Formal Languages' chapter on 'Grammars and Parsing'.
+- Add new section in 'Coding - Error Control' chapter on 'QR codes'.
+- Add new section in 'Human Computer Interaction' chapter on 'Pointing at things: Fitts' Law'
+- Add new content in 'Finite State Automata' section on 'Other ways to represent finite state automata'.
+- Add seven new interactives for new and upcoming content:
+
+  - Fitts' law
+  - Clicking with shaking
+  - Index of difficulty calculator
+  - Plane turbulence
+  - Firewall sorting
+  - Password strength - Brute force variant
+  - Password strength - Dictionary attack variant
+
+- Update definition of 'Parse tree' in glossary.
+- Fix broken link to padding in cryptography Wikipedia page.
+- Update 'CFG Parsing Challenge' interactive:
+
+  - Disable the text field that allows customising the equation text, as it's prone to errors. This can be re-enabled with the URL parameter ``editable-target``.
+  - Modify 'New productions' button to 'Customise productions', and lower it's priority in the interactive. The productions menu is also prefilled with the currently loaded exercise. This can be disabled with the URL parameter ``hide-builder``.
+  - Increase average difficulty of random equations.
+  - Update terms used for user prompts.
+
+- Update 'NFA Guesser' interactive:
+
+  - Allow answer to be optionally viewed after multiple failed attempts.
+  - Change answer options to match appearance in NFA map.
+
+- Update 'Parity Trick' interactive:
+
+  - Add optional grid references.
+
+- Fix incorrect solution for representing 'water' as binary.
+- Add tracking of dependencies within interactives using Dependabot.
+- Modify command names to be consistent across UCCSER projects.
+- Remove resource links to websites that do not exist anymore.
+- Add open/close symbols and types titles (for example 'Curiosity') on panels. Panels can also be forced to be always open.
+- Pause of playing Vimeo video within a closed panel.
+- Add URL for website status information.
+- Open button links in a new tab.
+- Fix bug where translation files were not generated.
+- Allow build helper command to pass parameters.
+- Allow translations of words within custom Verto templates.
+- Update interactive template block names to avoid overriding.
+- Add notes to documentation on writing custom Verto templates.
+- Change recommended JavaScript indentation to 4 spaces from 2 spaces. Existing code has not be updated.
+- Modify URL parameter decoder to accept equal signs within a parameter.
+- Enable CORS headers for providing version information across domains.
+- Add templatetag for reading file to template.
+- Add syntax highlighting within code blocks.
+- Change environment variable to allow wider Traefik router variations.
+- Update SCSS division symbol away from deprecated '/' symbol.
+- Update logging configuration.
+- Add package-lock.json file.
+
+- Core dependency changes:
+
+  - Add django-cors-headers 3.11.0.
+  - Add Pygments 2.11.2.
+  - Update bootstrap from 4.6.0 to 4.6.1.
+  - Update codemirror from 5.63.1 to 5.65.0.
+  - Update coverage from 5.5 to 6.2.
+  - Update crowdin/github-action from 1.4.0 to 1.4.7.
+  - Update django from 3.2.8 to 3.2.12.
+  - Update django-debug-toolbar from 3.2.2 to 3.2.4.
+  - Update django-environ from 0.7.0 to 0.8.1.
+  - Update django-statici18n from 2.0.1 to 2.2.0.
+  - Update docker/build-push-action from 2.7.0 to 2.9.0.
+  - Update docker/login-action from 1.10.0 to 1.13.0.
+  - Update lxml from 4.6.3 to 4.8.0.
+  - Update MathJax from 2.7.5 to 2.7.9.
+  - Update Node 14.17.0 to 14.19.0.
+  - Update postcss from 8.3.9 to 8.4.5.
+  - Update psycopg2 from 2.9.1 to 2.9.3.
+  - Update sass from 1.42.1 to 1.49.8.
+  - Update selenium omfr 3.141.0 to 4.1.1.
+  - Update sphinx from 4.2.0 to 4.4.0.
+  - Update whitenoise from 5.3.0 to 6.0.0.
+  - Update yargs from 17.2.1 to 17.3.1.
+
+- Interactive bin-packing dependency changes:
+
+  - Update interactjs from 1.4.0-alpha.17 to 1.10.11.
+
+- Interactive box-rotation dependency changes:
+
+  - Update three from 0.101.1 to 0.138.0.
+
+- Interactive box-translation dependency changes:
+
+  - Update three from 0.101.1 to 0.138.0.
+
+- Interactive city-trip dependency changes:
+
+  - Update cytoscape from 3.4.2 to 3.21.0.
+  - Update cytoscape-automove from 1.10.1 to 1.10.3.
+
+- Interactive colour-matcher dependency changes:
+
+  - Update wnumb from 1.1.0 to 1.2.0.
+
+- Interactive frequency-analysis dependency changes:
+
+  - Update es5-shim from 4.5.12 to 4.6.5.
+  - Update es6-shim from 0.35.4 to 0.35.6.
+
+- Interactive jpeg-compression dependency changes:
+
+  - Update dct from 0.0.3 to 0.1.0.
+  - Update interactjs from 1.4.0-alpha.17 to 1.10.111.
+
+- Interactive matrix-simplifier dependency changes:
+
+  - Update dragula from 3.7.2 to 3.7.3.
+
+- Interactive packet-attack dependency changes:
+
+  - Update phaser from 3.16.2 to 3.55.2.
+
+- Interactive python-interpreter dependency changes:
+
+  - Update skulpt from 0.11.1 to 1.2.0.
+
+- Interactive rsa-decryption dependency changes:
+
+  - Update big-integer from 1.6.44 to 1.6.51.
+  - Update node-rsa from 1.0.5 to 1.1.1.
+
+- Interactive rsa-encryption dependency changes:
+
+  - Update big-integer from 1.6.44 to 1.6.51.
+  - Update node-rsa from 1.0.5 to 1.1.1.
+
+- Interactive rsa-key-generator dependency changes:
+
+  - Update node-rsa from 1.0.5 to 1.1.1.
+
+- Interactive scene-editor dependency changes:
+
+  - Update three from 0.108.0 to 0.138.0.
+
+- Interactive sorting-algorithms dependency changes:
+
+  - Update dragula from 3.7.2 to 3.7.3.
+
+- Interactive unicode-binary dependency changes:
+
+  - Update urijs from 1.19.1 to 1.19.8.
+  - Update underscore.string from 3.3.5 to 3.3.6.
+
+- Interactive viola-jones-face-detector dependency changes:
+
+  - Update interactjs from 1.4.0 to 1.10.11.
+
 3.8.5
 ==============================================================================
 
