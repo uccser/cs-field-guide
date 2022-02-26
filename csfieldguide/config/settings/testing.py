@@ -61,16 +61,6 @@ PASSWORD_HASHERS = [
     "django.contrib.auth.hashers.MD5PasswordHasher",
 ]
 
-# TEMPLATE LOADERS
-# ----------------------------------------------------------------------------
-# Keep templates in memory so tests run faster
-TEMPLATES[0]["OPTIONS"]["loaders"] = [  # noqa: F405
-    ["django.template.loaders.cached.Loader", [
-        "django.template.loaders.filesystem.Loader",
-        "django.template.loaders.app_directories.Loader",
-    ], ],
-]
-
 # Your local stuff: Below this line define 3rd party library settings
 # ----------------------------------------------------------------------------
 INSTALLED_APPS += [  # noqa: F405
