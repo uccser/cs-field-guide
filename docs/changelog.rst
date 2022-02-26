@@ -21,7 +21,7 @@ We have listed major changes for each release below.
 3.9.0
 ==============================================================================
 
-**Release date:** 24th February 2022
+**Release date:** 26th February 2022
 
 **Summary of changes:**
 
