@@ -41,11 +41,11 @@ $(document).ready(function() {
 
   // Setup events
   $('#generate-button').on('click', function(event) {
-    let newTarget = generateTarget(event.target);
+    let newTarget = getTarget(event.target);
     let t=0;
     // Avoid (but don't prevent) the new target expression being the same as the old one
     while (newTarget == $('#cfg-target').val() && t<RECURSIONDEPTH_MAX) {
-      newTarget = generateTarget(event.target);
+      newTarget = getTarget(event.target);
       t++;
     }
     $('#cfg-target').val(newTarget);
@@ -328,8 +328,9 @@ function setGenerator(type) {
 
 /**
 * Returns a (string) new equation for the user to try to build depending on the selected generator.
+* Target is either randomly generated, or next in a list of predefined examples.
 */
-function generateTarget($button) {
+function getTarget($button) {
   if ($button.getAttribute('g-type') == 'random') {
     return randomExpression(recursionDepth_);
   } else if ($button.getAttribute('g-type') == 'random-simple') {
