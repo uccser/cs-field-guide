@@ -86,6 +86,7 @@ $(document).ready(function() {
   $('#cfg-target').change(testMatchingEquations);
 
   if (examples_.length) {
+    updateExamplePositionText();
     $('#cfg-target').val(examples_[0]);
   } else if (hideGenerator_) {
     $('#cfg-target').val('');
@@ -337,8 +338,22 @@ function getTarget($button) {
     return randomExpression(RECURSIONDEPTH_SIMPLE);
   } else {
     nextExample_ = (nextExample_ + 1) % examples_.length;
+    updateExamplePositionText();
     return examples_[nextExample_];
   }
+}
+
+/**
+ * Update example position text element.
+ */
+function updateExamplePositionText() {
+    var data = {
+        currentExample: nextExample_ + 1,
+        totalExamples: examples_.length,
+    };
+    var format = gettext('Example %(currentExample)s of %(totalExamples)s');
+    var string = interpolate(format, data, true);
+    document.getElementById('example-counter').textContent = string;
 }
 
 /**

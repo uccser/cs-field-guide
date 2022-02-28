@@ -100,3 +100,13 @@ $non-terminal: #6c757d;
 button:disabled {
   cursor: not-allowed;
 }
+
+#example-counter {
+  font-size: 0.9rem;
+  color: #565656;
+  font-style: italic;
+}
+
+.flex-side-element {
+  flex: 1;
+}
