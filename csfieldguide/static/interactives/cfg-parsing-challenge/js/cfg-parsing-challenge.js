@@ -156,7 +156,7 @@ function parseUrlParameters() {
     }
   }
   if (hideGenerator_) {
-    if (examples) {
+    if (examples.length > 1) {
       setGenerator('from-preset');
       $('#set-g-random').hide();
       $('#set-g-random-simple').hide();
