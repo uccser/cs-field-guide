@@ -97,6 +97,9 @@ details {
     &project {
       @include detail-colour-variant($blue);
     }
+    &exercise {
+      @include detail-colour-variant($blue);
+    }
   }
 }
 
@@ -112,6 +115,14 @@ details[disabled] summary {
     &:before {
       content: none;
     }
+}
+
+/*
+ Fix for aligning panels within a nested list.
+*/
+
+ul > li > ul + details {
+    margin-left: 2.5rem;
 }
 
 /*
