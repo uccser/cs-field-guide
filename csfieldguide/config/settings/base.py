@@ -311,10 +311,10 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # SEARCH CONFIGURATION
 # ------------------------------------------------------------------------------
-# See: http://django-haystack.readthedocs.io/en/v2.6.0/settings.html
+# See: https://django-haystack.readthedocs.io/en/latest/settings.html
 HAYSTACK_CONNECTIONS = {
     "default": {
-        "ENGINE": "haystack.backends.elasticsearch5_backend.Elasticsearch5SearchEngine",
+        "ENGINE": "haystack.backends.elasticsearch7_backend.Elasticsearch7SearchEngine",
         "URL": "elasticsearch:9200",
         "INDEX_NAME": "haystack",
     },

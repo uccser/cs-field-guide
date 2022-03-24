@@ -109,7 +109,10 @@ services:
 
     elasticsearch:
         <<: *default-opts
-        image: elasticsearch:5
+        image: elasticsearch:7.17.1
+        environment:
+          - discovery.type=single-node
+          - "ES_JAVA_OPTS=-Xms2g -Xmx2g"
         deploy:
             replicas: 1
             placement:
