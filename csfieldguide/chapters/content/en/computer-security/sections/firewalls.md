@@ -32,5 +32,3 @@ For this reason, employees sometimes see their workplace as a very unfriendly en
 A key role of a firewall is to separate an organisation’s own network from the publicly accessible internet.
 Other forms of separating networks include having a “Virtual Local Area Network” (VLAN), where the same physical network equipment is used in an organisation for different purposes (such as accessing databases and making VOIP phone calls), but the traffic on the network is separated by tagging the data and treating differently tagged data as if it is on a separate network.
 Another way that internal and external access can be separated is having some services available in a “demilitarized zone” (DMZ), which is an isolated part of an organisation’s network that contains key services that need to be accessed externally (such as email and web pages), but isn’t part of the sensitive internal network that can access all of the organisation's information.
-
-{panel type="exercise"}
