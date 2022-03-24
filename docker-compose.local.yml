@@ -68,7 +68,11 @@ services:
             - backend
 
     elasticsearch:
-        image: elasticsearch:5
+        # See: https://www.elastic.co/guide/en/elastic-stack-get-started/7.17/get-started-docker.html#run-stack-docker
+        image: elasticsearch:7.17.1
+        environment:
+          - discovery.type=single-node
+          - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
         restart: always
         networks:
             - backend

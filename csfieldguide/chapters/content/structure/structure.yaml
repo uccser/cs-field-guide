@@ -17,21 +17,23 @@ chapters:
     chapter-number: 8
   coding-error-control:
     chapter-number: 9
-  artificial-intelligence:
+  computer-security:
     chapter-number: 10
-  complexity-and-tractability:
+  artificial-intelligence:
     chapter-number: 11
-  computer-graphics:
+  complexity-and-tractability:
     chapter-number: 12
-  computer-vision:
+  computer-graphics:
     chapter-number: 13
-  formal-languages:
+  computer-vision:
     chapter-number: 14
-  network-communication-protocols:
+  formal-languages:
     chapter-number: 15
-  software-engineering:
+  network-communication-protocols:
     chapter-number: 16
-  big-data:
+  software-engineering:
     chapter-number: 17
+  big-data:
+    chapter-number: 18
 
 glossary-folder: glossary
