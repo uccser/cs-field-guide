@@ -29,7 +29,6 @@ Where ``[COMMAND]`` is a word from the list below:
 - :ref:`makemigrations`
 - :ref:`migrate`
 - :ref:`reboot_django`
-- :ref:`rebuild_index`
 - :ref:`restart`
 - :ref:`restart_build`
 - :ref:`shell`
@@ -182,15 +181,6 @@ Running ``./csfg migrate`` runs the Django ``migrate`` command to apply migratio
 ==============================================================================
 
 Running ``./csfg reboot_django`` will rebuild the Django Docker container.
-
------------------------------------------------------------------------------
-
-.. _rebuild_index:
-
-``rebuild_index``
-==============================================================================
-
-Running ``./csfg rebuild_index`` will run the Django command ``rebuild_index`` which rebuilds the search index.
 
 -----------------------------------------------------------------------------
 
