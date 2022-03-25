@@ -1,6 +1,0 @@
-{{ object.name }}
-{{ object.introduction }}
-
-{% for section in object.chapter_sections.all %}
-  {{ section.content }}
-{% endfor %}

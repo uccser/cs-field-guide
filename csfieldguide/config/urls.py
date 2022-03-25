@@ -20,7 +20,6 @@ urlpatterns = i18n_patterns(
 )
 
 urlpatterns += [
-    path("en/search/", include("search.urls", namespace="search")),
     path('healthcheck/', HttpResponse),
     path('status/', view=views.get_release_and_commit, name="get-release-and-commit")
 ]

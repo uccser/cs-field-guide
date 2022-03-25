@@ -19,11 +19,6 @@ verto==1.0.1
 Pygments==2.11.2
 python-markdown-math==0.6
 
-# Search
-django-haystack[elasticsearch]==3.2.dev0
-elasticsearch==7.17.1
-django-widget-tweaks==1.4.8
-
 # XML Parsing
 lxml==4.8.0
 cssselect==1.1.0

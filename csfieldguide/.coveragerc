@@ -5,7 +5,6 @@ source =
     config
     general
     interactives
-    search
     static
     templates
     utils
