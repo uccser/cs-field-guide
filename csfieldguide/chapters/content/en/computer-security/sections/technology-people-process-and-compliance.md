@@ -49,7 +49,9 @@ Examples of what might come up under each of these elements are:
 
     # Use a password strength testing site
 
-    On a password strength testing site, try the password “applebananacabbag” compared with “applebananacabbage” - it’s possible that the shorter one is stronger - why would that be? And while “people” is a bad password, substituting numbers for some letters, like “p30pl3” isn’t much better - why is that? There is some good practical advice on choosing strong passwords in this cartoon (but you definitely should’t use correcthorsebatterystaple as your password!)
+    On a password strength testing site, try the password “applebananacabbag” compared with “applebananacabbage” - it’s possible that the shorter one is stronger - why would that be?
+    And while “people” is a bad password, substituting numbers for some letters, like “p30pl3” isn’t much better - why is that?
+    There is some [good practical advice on choosing strong passwords in this cartoon](https://xkcd.com/936/) (but you definitely should’t use correcthorsebatterystaple as your password!)
 
     {panel end}
 

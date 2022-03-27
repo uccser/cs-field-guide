@@ -1,6 +1,6 @@
 # Computer Security
 
-The goal of computer security is to ensure that online systems can be accessed easily - but only those who should be using them!
+The goal of computer security is to ensure that online systems can be accessed easily - but only by those who should be using them!
 The online systems could range from banks to social network sites, school networks to home computers, and online shopping to corporate intranets.
 This provides the interesting challenge of putting barriers in place for access to computer systems, at the same time trying to avoid getting in the way of legitimate users.
 

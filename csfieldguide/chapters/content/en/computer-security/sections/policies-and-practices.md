@@ -21,7 +21,7 @@ Here are some ways that you can find out aspects of a policy on a local system:
   Is there a policy that prevents this?
 - On a takeaway site, try ordering a negative number of an expensive item that balances the cost of another item - can you get your order for free?
   For example, for a while there was a [loophole in the McDonalds discounts that allowed customers to get free burgers](https://www.usatoday.com/story/tech/2019/04/08/11-free-burgers-these-friends-reportedly-hacked-mcdonalds-kiosk/3398623002/).
-- Explore a company’s website to see if they publish a security policy (e.g. [Xero](https://www.xero.com/nz/about/security/).
+- Explore a company’s website to see if they publish a security policy (e.g. [Xero](https://www.xero.com/nz/about/security/)).
   If the company’s security is important to its clients then they will probably publish a security policy; this will reassure users that they won’t accidentally leak the user’s private information, and it also helps users to understand why there are some inconveniences (like requiring complicated passwords, two-factor authentication, and not supporting old browsers).
 - If you have trouble finding a security policy, try a company’s privacy policy. It’s not the same as a security policy, but it will explain what data the company collects; this in turn can tell you how important security is for the website.
 

@@ -11,7 +11,7 @@ Here are some examples of weaknesses being patched by updates:
 
 - SolarWinds Orion in 2020:
 
-    - September 2019: SolarWinds Orion, which is a tool used by organisations to monitor their environment and networks, is infected with malware that allows attackers to steal data about the networks they monitor.
+    - September 2019: SolarWinds Orion, which is a tool used by many organisations to monitor their environment and networks, is infected with malware that allows attackers to steal data about the networks they monitor.
     - December 2020: A Security Research company (FireEye) found the weakness as part of some internal investigations of their own systems.
     - December 12 2020: FireEye told SolarWinds about the problem, and SolarWinds tried to fix it (this communication was kept private).
     - December 13 2020: The news became public because the US government was informed and released a public advisory. However, no fix was available.
@@ -20,7 +20,7 @@ Here are some examples of weaknesses being patched by updates:
 - The Meltdown and Spectre vulnerabilities affected a very wide range of computers in January 2018.
   Google independently discovered the Meltdown and Spectre vulnerabilities in some microprocessors, but needed to make sure it was fixed in the relevant operating systems without the issue becoming widely known.
   The Google incident management team worked for months with Intel/ARM/AMD to develop patches. Here is an [article about this](https://www.theverge.com/2018/1/11/16878670/meltdown-spectre-disclosure-embargo-google-microsoft-linux).
-- Another example is when Shadow Brokers were releasing information about the NSA online - the National Security Agency of the United States of America gave Microsoft a quiet heads up about some vulnerabilities they had been secretly using.
+- Another example is when Shadow Brokers were releasing information about the NSA online - the National Security Agency of the United States of America gave Microsoft a quiet heads-up about some vulnerabilities they had been secretly using.
   They suspected the vulnerabilities would be leaked by Shadow Brokers, and [sure enough they were](https://www.zdnet.com/article/microsoft-quietly-patched-latest-shadow-brokers-hacks/).
   These same vulnerabilities were used by the Wannacry malware, and NotPetya not long after.
   These were both devastating attacks (costing an estimated $4 billion and $10 billion USD in damages respectively) because organisations had not applied Microsoft's updates.

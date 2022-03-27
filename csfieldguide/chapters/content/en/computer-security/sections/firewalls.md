@@ -1,4 +1,4 @@
-# Firewall
+# Firewalls
 
 A firewall is another important defensive measure that has been used in network security for over 25 years.
 A firewall establishes a barrier between secured and controlled internal networks that can be trusted, and untrusted outside networks, such as the Internet.
