@@ -8,11 +8,11 @@ The firewall decides whether to allow or block specific traffic based on a defin
 The firewall could be as simple as software running on one computer, to an array of specialised computers protecting a large organisation.
 The firewall needs to respond very quickly, detecting and rejecting suspicious looking data traffic, but still passing through the large amounts of normal traffic.
 
-Corporate firewalls can easily be receiving 24% of traffic that is from bad bots (scripts that are written to try and break into a system); making a decision to block this traffic can easily accidently impact the 13% of traffic from good bots (like those that index the internet for search engines), or 63% of traffic from real humans (these numbers are from [imperva.com](https://www.imperva.com/blog/bad-bot-report-2020-bad-bots-strike-back/)).
+Corporate firewalls have reported that as much as 24% of their traffic is from bad bots (scripts that are written to try and break into a system); making a decision to block this traffic can easily accidently impact the 13% of traffic from good bots (like those that index the internet for search engines), or 63% of traffic from real humans (these numbers are from [imperva.com](https://www.imperva.com/blog/bad-bot-report-2020-bad-bots-strike-back/)).
 One form of “denial of service” (DOS) attack is to send so many requests to a firewall that it can’t keep up, which means that even legitimate users wanting to view a company web page or access their own data get their requests blocked because the firewall is too busy.
 Sometimes companies have accidentally started what looks like a DOS attack by advertising something that gets many more people than usual looking at their website; the net effect is that the potential new customers see the website as being very slow, or not working at all, and the advertising campaign backfires.
 
-In terms of the CIA triad, the challenge of a firewall is to avoid blocking legitimate users, but also to avoid letting in those with bad intentions.
+In terms of the CIA triad (Confidentiality, Integrity, Availability), the challenge of a firewall is to avoid blocking legitimate users, but also to avoid letting in those with bad intentions.
 This needs to be done for all data coming into the system.
 A firewall can check where the data is coming from (and to), but if a hacker has taken over people’s home computers, then the bad traffic could be coming from previously trusted sources.
 So the firewall needs to check what is being requested, and see if there are patterns in the requests that match common forms of attack.

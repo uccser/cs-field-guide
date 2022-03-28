@@ -2,8 +2,8 @@
 
 Like many team sports, looking after security involves both defensive and offensive tactics.
 For example, protecting authentication is one of the harder and most important jobs you can have when defending a system.
-To defend it, you might log all the requests and where they come from, alert yourself and systems administrators when there have been a lot of failed attempts, and provide users the options to use more 2-factor authentication (such as giving and password and entering a code sent to another device that they own) to prove who they are.
-You can offensively protect users by encouraging users to use a different password if the one they are trying to use is easy to guess or has come up before in other system breaches, or you might hunt down websites that are hosting a login page that looks like yours (a phishing page) so you can actively take it down.
+To defend it, you might log all the requests and where they come from, alert yourself and systems administrators when there have been a lot of failed attempts, and provide users the options to use more 2-factor authentication (such as giving a password and entering a code sent to another device that they own) to prove who they are.
+You can protect users by encouraging them to use a different password if the one they are trying to use is easy to guess or has come up before in other system breaches, or you might hunt down websites that are hosting a login page that looks like yours (a phishing page) so you can actively take it down.
 
 A lot of the security measures that you’ll come across are defensive: setting up firewalls, making sure users have strong passwords and use multi-factor authentication, placing limits on the resources that someone online can tie up and so on.
 But offensive security is also important.
@@ -26,11 +26,11 @@ One simple idea is to set up what is called a “honeypot”, which could be som
 This serves to distract the attacker from the rest of your system, and can help to gather data about attackers, which could be used to block them from other parts of the system, or even be used to track them down.
 
 In general, offensive security uses “annoyance, attribution and attack”.
-The annoyance is done by setting up honeypots or other decoys in the system that lures an attacker, hopefully wasting their time.
+The annoyance is done by setting up honeypots or other decoys in the system to lure an attacker, hopefully wasting their time.
 Since attacks are often done by running programs that try to find weaknesses, keeping the attacker’s programs busy following false leads is a good way to frustrate their work.
 Attribution is trying to identify the attacker by having them engage with your system in a way that reveals where they are located or what their goals are.
 With sufficient information gathered (including possibly tricking them into uploading data that triggers their own systems to send information to you), it may even be possible to attack them in return!
-However, as in the physical world, you aren’t allowed to break the law in order to attack a criminal, and bear in mind that it’s possible that the apparent criminal is just a customer or employee who has a mistake!
+However, as in the physical world, you aren’t allowed to break the law in order to attack a criminal, and bear in mind that it’s possible that the apparent criminal is just a customer or employee who has made a mistake!
 
 Generally security analysts don’t try to track down attackers, but focus on learning what attackers are trying to do, and defending from their attacks.
 Attribution of the source of an attack is very hard, and in most cases it is not necessary - the balance between offensive and defensive strongly favors offensive.
@@ -65,13 +65,13 @@ The different types of threat actors could be:
 
 **Internal:**
 
-> This could be users who intentionally or unintentionally make mistakes or breach policies; or administrators who take advantage of their higher level of authorisation.
+This could be users who intentionally or unintentionally make mistakes or breach policies; or administrators who take advantage of their higher level of authorisation.
 
 **External:**
 
-> Advanced external attacks include organized crimes, terrorists, state-sponsored attacks, “Advanced Persistent Threat” groups that infiltrate a system and remain undetected for a long time, or other government or politically motivated attackers.
->
-> Less resourced attacks can be initiated by activists or “hacktivists” who are trying to fight for something or against something their target is associated with in the belief that it is a good cause, such as removing blocks to internet access, or protesting organisations or laws that they see as unfair.
-> Less skilled external attacks include “Script kiddies” (people who copy and paste code or techniques from others without fully understanding what they are doing).
+Advanced external attacks include organized crimes, terrorists, state-sponsored attacks, “Advanced Persistent Threat” groups that infiltrate a system and remain undetected for a long time, or other government or politically motivated attackers.
+
+Less resourced attacks can be initiated by activists or “hacktivists” who are trying to fight for something or against something their target is associated with in the belief that it is a good cause, such as removing blocks to internet access, or protesting organisations or laws that they see as unfair.
+Less skilled external attacks include “Script kiddies” (people who copy and paste code or techniques from others without fully understanding what they are doing).
 
 {panel end}

@@ -8,7 +8,7 @@ For example, most digital systems can be broken down into:
 - Process - how the system should be used by the people, and
 - Compliance - how you make sure that everyone follows the rules.
 
-Using this view, security experts can implement a layered *defence* approach to cybersecurity (for further reading, see [Security Tactics for People, Processes, and Technology](https://www.csoonline.com/article/3326301/a-layered-approach-to-cybersecurity-people-processes-and-technology.html)).
+Using this view, security experts can implement a layered *defence* approach to cybersecurity (for further reading, see [A Layered Approach to Cybersecurity: People, Processes, and Technology](https://www.csoonline.com/article/3326301/a-layered-approach-to-cybersecurity-people-processes-and-technology.html)).
 Examples of what might come up under each of these elements are:
 
 - **Technology**: often the same software is used on many computers, so if a weakness is found in a system, it could be used to attack all sorts of organisations.

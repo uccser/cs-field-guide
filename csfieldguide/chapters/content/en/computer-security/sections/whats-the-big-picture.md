@@ -29,12 +29,12 @@ Examples could include:
 - Fake emails saying your account has had strange activity, and to login via a link they have given you.
 - “Only paying for shipping” when winning free, expensive items like an iPhone or Laptop.
 - Getting a phone call from a brand you trust, like Microsoft, saying your computer is infected and they can help if you give them access.
-- Pop up ads that encourage you to download software to make your computer operate “better.”
+- Pop up ads that encourage you to download software to make your computer operate "better".
 - A scam that says you can win more if you share the post or link with friends online.
 - Targeted emails from people pretending to be friends, family, or bosses - asking you to send them money to help them out of a sticky situation.
 - Social media friend requests pretending to be people you know, to try and gain your trust and get you to do things for them.
 - Emails from someone you work with asking to pay their last invoice to a new bank account.
-- Using free WiFi that overlays scam ads on user’s browsers, to encourage them to click through and download bad software
+- Using free WiFi that overlays scam ads on user’s browsers, to encourage them to click through and download bad software.
 
 Most of the above examples are based on phishing attacks where the attacker sends emails to a large number of email addresses, in the hope that at least some of those people will fall for the request.
 
@@ -60,6 +60,6 @@ Examples include  passwords, PINs, codes sent via text or mobile app, hardware k
 # Extra information
 
 The following [Crash Course video](https://www.youtube.com/watch?v=bPVaOlJ6ln0) about security covers a lot of the ideas - and surprises - that you’ll encounter when thinking about computer security.
-There’s more information about the [CIA triad on logsign.com](https://www.logsign.com/blog/what-is-the-cia-triad-and-why-is-it-important-for-cybersecurity/)
+Here’s more information about the [CIA triad on logsign.com](https://www.logsign.com/blog/what-is-the-cia-triad-and-why-is-it-important-for-cybersecurity/)
 
 {panel end}
