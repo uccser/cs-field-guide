@@ -18,6 +18,37 @@ All notable changes to this project will be documented in this file.
 We have listed major changes for each release below.
 `All downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/>`__
 
+3.10.0
+==============================================================================
+
+**Release date:** 31st March 2022
+
+**Changelog:**
+
+- Add new chapter 'Computer Security'.
+
+  - The chapter only contains text currently, images and interactives will be added at a later time.
+
+- Minor text changes (e.g. grammar corrections) in 'Grammars and Parsing' section.
+- Add glossary definitions for:
+
+  - Terminal
+  - Non-terminal
+  - Production
+
+- Add new panel type 'Exercise'.
+- Fix alignment of panels within a nested list.
+- Show chapter section name in browser title.
+- Increase size of context-free grammar parsing challenge working box.
+- Improve interface when context-free grammar parsing challenge has examples.
+- Change relative links within chapter and chapter section text to open in a new tab.
+- Remove search functionality, due to high costs and no user usage.
+- Dependency changes:
+
+  - Remove django-haystack[elasticsearch] 3.1.1.
+  - Remove elasticsearch 5.5.3.
+  - Remove django-widget-tweaks 1.4.8.
+
 3.9.0
 ==============================================================================
 

@@ -141,13 +141,6 @@ cmd_update_static() {
 }
 defhelp update_static 'Update static files.'
 
-# Run Django command rebuild_index
-cmd_rebuild_index() {
-  echo "Rebuilding search index..."
-  docker-compose -f docker-compose.local.yml run --rm --label traefik.enable=false django python ./manage.py rebuild_index --noinput
-}
-defhelp rebuild_index "Run Django rebuild_index command."
-
 # Run make-interactive-thumbnails.js
 cmd_make_interactive_thumbnails() {
   echo "Creating thumbnails for interactives..."

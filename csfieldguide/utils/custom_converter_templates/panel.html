@@ -58,6 +58,12 @@ class="panel-{{ type }}">
             {% trans "Project" %}
         '-}}
     </span>
+{% elif type == 'exercise'%}
+    <span class="panel-type-title">
+        {{-'
+            {% trans "Exercise" %}
+        '-}}
+    </span>
 {% endif %}
 </summary>
 <div class="boxed-text-content">

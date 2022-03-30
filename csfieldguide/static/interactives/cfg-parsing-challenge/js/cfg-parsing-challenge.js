@@ -41,11 +41,11 @@ $(document).ready(function() {
 
   // Setup events
   $('#generate-button').on('click', function(event) {
-    let newTarget = generateTarget(event.target);
+    let newTarget = getTarget(event.target);
     let t=0;
     // Avoid (but don't prevent) the new target expression being the same as the old one
     while (newTarget == $('#cfg-target').val() && t<RECURSIONDEPTH_MAX) {
-      newTarget = generateTarget(event.target);
+      newTarget = getTarget(event.target);
       t++;
     }
     $('#cfg-target').val(newTarget);
@@ -86,6 +86,7 @@ $(document).ready(function() {
   $('#cfg-target').change(testMatchingEquations);
 
   if (examples_.length) {
+    updateExamplePositionText();
     $('#cfg-target').val(examples_[0]);
   } else if (hideGenerator_) {
     $('#cfg-target').val('');
@@ -155,7 +156,7 @@ function parseUrlParameters() {
     }
   }
   if (hideGenerator_) {
-    if (examples) {
+    if (examples.length > 1) {
       setGenerator('from-preset');
       $('#set-g-random').hide();
       $('#set-g-random-simple').hide();
@@ -328,16 +329,31 @@ function setGenerator(type) {
 
 /**
 * Returns a (string) new equation for the user to try to build depending on the selected generator.
+* Target is either randomly generated, or next in a list of predefined examples.
 */
-function generateTarget($button) {
+function getTarget($button) {
   if ($button.getAttribute('g-type') == 'random') {
     return randomExpression(recursionDepth_);
   } else if ($button.getAttribute('g-type') == 'random-simple') {
     return randomExpression(RECURSIONDEPTH_SIMPLE);
   } else {
     nextExample_ = (nextExample_ + 1) % examples_.length;
+    updateExamplePositionText();
     return examples_[nextExample_];
   }
+}
+
+/**
+ * Update example position text element.
+ */
+function updateExamplePositionText() {
+    var data = {
+        currentExample: nextExample_ + 1,
+        totalExamples: examples_.length,
+    };
+    var format = gettext('Example %(currentExample)s of %(totalExamples)s');
+    var string = interpolate(format, data, true);
+    document.getElementById('example-counter').textContent = string;
 }
 
 /**

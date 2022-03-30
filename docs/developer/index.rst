@@ -15,7 +15,6 @@ The following pages are for those wanting to develop the CS Field Guide system.
     chapters
     curriculum_guides
     interactives
-    search
     static_files
     deployment
     test_suite

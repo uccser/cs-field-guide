@@ -67,12 +67,6 @@ services:
         networks:
             - backend
 
-    elasticsearch:
-        image: elasticsearch:5
-        restart: always
-        networks:
-            - backend
-
     docs:
         image: ghcr.io/uccser/local-docs-image:latest
         volumes:

@@ -79,7 +79,3 @@ LANGUAGES = (
     ("fr", "French"),
 )
 DEFAULT_LANGUAGES = LANGUAGES
-
-# Search index location for testing
-SEARCH_INDEX_PATH = "temp/tests/search/"
-HAYSTACK_CONNECTIONS["default"]["PATH"] = SEARCH_INDEX_PATH  # noqa: F405

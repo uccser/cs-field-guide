@@ -42,8 +42,6 @@ DJANGO_APPS = [
 ]
 
 THIRD_PARTY_APPS = [
-    "haystack",
-    "widget_tweaks",
     "modeltranslation",
     "bidiutils",
     "svg",
@@ -57,7 +55,6 @@ LOCAL_APPS = [
     "curriculum_guides.apps.CurriculumGuidesConfig",
     "appendices.apps.AppendicesConfig",
     "interactives.apps.InteractivesConfig",
-    "search.apps.SearchConfig",
 ]
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -308,18 +305,6 @@ AUTH_PASSWORD_VALIDATORS = [
         "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
-
-# SEARCH CONFIGURATION
-# ------------------------------------------------------------------------------
-# See: http://django-haystack.readthedocs.io/en/v2.6.0/settings.html
-HAYSTACK_CONNECTIONS = {
-    "default": {
-        "ENGINE": "haystack.backends.elasticsearch5_backend.Elasticsearch5SearchEngine",
-        "URL": "elasticsearch:9200",
-        "INDEX_NAME": "haystack",
-    },
-}
-HAYSTACK_SEARCH_RESULTS_PER_PAGE = 10
 
 # OTHER SETTINGS
 # ------------------------------------------------------------------------------

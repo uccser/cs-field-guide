@@ -83,12 +83,6 @@ The project currently contains the following applications:
   - This application contains minor appendices such as the `about` and `contributors` pages.
     It also provides links to other important applications, like Interactives and the Glossary, but does not host any of them.
 
-- ``search/``
-
-  - This application contains the search functionality, including the search results page.
-    This is currently only available in English.
-    
-
 Details on how to modify an application can be found within their relavent author and developer documentation pages.
 
 The following directories are also required by the Django system:

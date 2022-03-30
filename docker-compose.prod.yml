@@ -107,22 +107,6 @@ services:
             - postgres-data:/var/lib/postgresql/data:Z
             - postgres-data-backups:/backups:z
 
-    elasticsearch:
-        <<: *default-opts
-        image: elasticsearch:5
-        deploy:
-            replicas: 1
-            placement:
-                constraints:
-                    - node.role==worker
-                    - node.labels.role==data
-            restart_policy:
-                condition: on-failure
-        networks:
-            - backend
-        volumes:
-            - search-index:/usr/share/elasticsearch/data:Z
-
 configs:
     cs-field-guide_deployment_environment:
         external: true
@@ -147,4 +131,3 @@ networks:
 volumes:
     postgres-data: {}
     postgres-data-backups: {}
-    search-index: {}
