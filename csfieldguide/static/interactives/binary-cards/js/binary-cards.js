@@ -1,138 +1,166 @@
-var urlParameters = require('../../../js/third-party/url-parameters.js')
+var urlParameters = require("../../../js/third-party/url-parameters.js")
 "use strict";
-var MAX_NUM_CARDS = 16;
-DEFAULT_NUM_CARDS_TO_SHOW = 8;
+const MAX_NUM_CARDS = 333;
+const MIN_NUM_CARDS = 1;
+const DEFAULT_NUM_CARDS_TO_SHOW = 8;
+const EXPONENTIAL_THRESHOLD = 11;
+var numberOfCards = DEFAULT_NUM_CARDS_TO_SHOW;
+var currentCards = 0;
+var allCardsContainerElement;
+var cardsInputElement;
+var cardSideValues = [];
+var binaryCardsSettings = {};
 
 $(document).ready(function () {
+    // Load values from URL parameters
+    binaryCardsSettings.BASE = Number(urlParameters.getUrlParameter("base")) || 2;
+    binaryCardsSettings.OFFSET = Number(urlParameters.getUrlParameter("offset")) || 0;
+    binaryCardsSettings.INPUT = urlParameters.getUrlParameter("input") || true;
+    binaryCardsSettings.TOTAL_COUNT = urlParameters.getUrlParameter("total") || true;
+    console.log(binaryCardsSettings.TOTAL_COUNT);
+    var parameterNumberOfCards = Number(urlParameters.getUrlParameter("cards") || urlParameters.getUrlParameter("digits"));
+    var startingSides = urlParameters.getUrlParameter("start") || "";
 
-    var url_cards = Number(urlParameters.getUrlParameter('cards') || urlParameters.getUrlParameter('digits'));
-    if (url_cards) {
-        MAX_NUM_CARDS = Math.max(MAX_NUM_CARDS, url_cards);
+    // Set data and interactive
+    allCardsContainerElement = document.getElementById("interactive-binary-cards-container");
+    cardsInputElement = document.getElementById("cards-to-show");
+    setCardsValue(parameterNumberOfCards);
+    cardsInputElement.setAttribute("min", MIN_NUM_CARDS);
+    cardsInputElement.setAttribute("max", MAX_NUM_CARDS);
+
+    // Load face values array, including any defined in start parameter
+    // Trim start of parameter if too long
+    if (startingSides.length > MAX_NUM_CARDS) {
+        startingSides = startingSides.substring(MAX_NUM_CARDS - startingSides.length)
+    }
+    var paddingAmount = MAX_NUM_CARDS - startingSides.length;
+    cardSideValues = Array.from("W".repeat(paddingAmount) + startingSides)
+
+    // Hide elements if required
+    // Checks for string version of false so invalid values stay are default.
+    if (binaryCardsSettings.INPUT == "false") {
+        $("#cards-input").addClass("d-none");
+    }
+    if (binaryCardsSettings.TOTAL_COUNT == "false") {
+        $("#cards-total").addClass("d-none");
+        $("#dot-decimal-count").addClass("d-none");
     }
 
-    $('#cards-to-show').prop("max", MAX_NUM_CARDS).val(8);
-    // Settings for interactive
-    // Since users can possibly choose the num of cards from an input box,
-    // we first load the max possible num of cards so it is easy to hide and re display cards.
-    // URL parameter for cards is checked after initial MAX_NUM_CARDS cards have loaded.
-    var binaryValueSettings = {
-        BASE: Number(urlParameters.getUrlParameter('base')) || 2,
-        CARDS: MAX_NUM_CARDS,
-        OFFSET: Number(urlParameters.getUrlParameter('offset')) || 0,
-        INPUT: urlParameters.getUrlParameter('input') || 'true',
-    }
-
-    var showInputBox = (binaryValueSettings.INPUT == 'true');
-    // Don't display the input box
-    if (!showInputBox) {
-        $("#cards-input").addClass('d-none');
-    }
-
-    $('#interactive-binary-cards').on('click', '.binary-card', function() {
-        $(this).toggleClass('flipped');
+    $("#interactive-binary-cards").on("click", ".binary-card", function() {
+        $(this).toggleClass("flipped");
         updateDotCount();
     });
 
     // Flip all cards to black
-    $('#interactive-binary-cards button#flip-to-black').on('click', function() {
-        $('#interactive-binary-cards-container > div.binary-card-container > div.binary-card').addClass('flipped');
+    $("#interactive-binary-cards button#flip-to-black").on("click", function() {
+        $("#interactive-binary-cards-container > div.binary-card-container > div.binary-card").addClass("flipped");
         updateDotCount();
     });
 
     // Flip all cards to white
-    $('#interactive-binary-cards button#flip-to-white').on('click', function(){
-        $('#interactive-binary-cards-container > div.binary-card-container > div.binary-card').removeClass('flipped');
+    $("#interactive-binary-cards button#flip-to-white").on("click", function(){
+        $("#interactive-binary-cards-container > div.binary-card-container > div.binary-card").removeClass("flipped");
         updateDotCount();
     });
 
-    // Update number of cards shown based on input
-    $('input').change(function() {
-        binaryValueSettings.CARDS = $('input')[1].value;
-        putCardsWithinLimits(binaryValueSettings.CARDS, showInputBox, binaryValueSettings);
-        updateCards(binaryValueSettings.CARDS);
+    // Set event handler for input box
+    cardsInputElement.addEventListener('input', function () {
+        setCardsValue(parseInt(this.value));
+        updateCards();
         updateDotCount();
+    });
+
+    // Set event handler for total checkbox
+    document.getElementById("card-total-show").addEventListener('change', function () {
+        if (this.checked) {
+            document.getElementById("dot-decimal-count").classList.remove("d-none");
+        } else {
+            document.getElementById("dot-decimal-count").classList.add("d-none");
+        }
     });
 
     // Create cards within container and update count
-    createCards(binaryValueSettings);
-    // Check if digit URL parameter was given and hide appropriate cards if so
-    if (url_cards) {
-        putCardsWithinLimits(url_cards, showInputBox, binaryValueSettings);
-        updateCards(binaryValueSettings.CARDS);
-    } else {
-        // Show default number of cards
-        binaryValueSettings.CARDS = DEFAULT_NUM_CARDS_TO_SHOW;
-        updateCards(binaryValueSettings.CARDS);
-    }
+    updateCards();
     updateDotCount();
 });
 
 
-// Ensure cards value is between 1 and MAX_NUM_CARDS
-function putCardsWithinLimits(cards, showInputBox, binaryValueSettings) {
-    if (cards > MAX_NUM_CARDS) {
-        binaryValueSettings.CARDS = MAX_NUM_CARDS;
-    } else if (cards < 1) {
-        binaryValueSettings.CARDS = 1;
+// Ensure cards value is between MIN_NUM_CARDS and MAX_NUM_CARDS
+function setCardsValue(cardsValue) {
+    if (Number.isInteger(cardsValue) && cardsValue >= MIN_NUM_CARDS && cardsValue <= MAX_NUM_CARDS) {
+        binaryCardsSettings.CARDS = cardsValue;
+    } else if (currentCards != 0) {
+        binaryCardsSettings.CARDS = currentCards;
     } else {
-        binaryValueSettings.CARDS = cards;
+        binaryCardsSettings.CARDS = DEFAULT_NUM_CARDS_TO_SHOW;
     }
-    if (showInputBox) {
-        $('input')[1].value = binaryValueSettings.CARDS;
-    }
+    cardsInputElement.value = binaryCardsSettings.CARDS;
 }
 
 
-// Sets up the cards for the interactive
-function createCards(settings) {
-    var cardContainer = $('#interactive-binary-cards-container');
+// Sets the correct number of cards for the interactive
+function updateCards() {
 
-    var value = Math.pow(settings.BASE, settings.CARDS + settings.OFFSET - 1);
-    var starting_sides = urlParameters.getUrlParameter('start') || "";
-    // Since we always load max num of cards to begin with we should pad the `start` URL parameter
-    // if it contains less than max num values.
-    if (starting_sides != "" && starting_sides.length < MAX_NUM_CARDS) {
-        var padding_length = MAX_NUM_CARDS - starting_sides.length;
-        starting_sides = "W".repeat(padding_length) + starting_sides;
+    var cardDifference = binaryCardsSettings.CARDS - currentCards;
+    if (cardDifference > 0) {
+        // Cards need to be added
+        for (var cardPlace = currentCards + 1; cardPlace <= binaryCardsSettings.CARDS; cardPlace++) {
+            createCard(cardPlace);
+        }
+    } else if (cardDifference < 0) {
+        // Cards need to be deleted
+        for (var cardPlace = currentCards; cardPlace > binaryCardsSettings.CARDS; cardPlace--) {
+            var card = allCardsContainerElement.firstChild;
+            // Get card face
+            var cardFaceValue = card.firstChild.classList.contains("flipped") ? "B" : "W";
+            // Set card face in array
+            setPlaceFace(cardPlace, cardFaceValue);
+            // Delete element
+            allCardsContainerElement.removeChild(card);
+        }
     }
-
-    // Iterate through card values
-    for (var digit = 0; digit < settings.CARDS; digit++) {
-        cardContainer.append(createCard(value, starting_sides[digit] == 'B'));
-        value /= settings.BASE;
-    }
+    currentCards = binaryCardsSettings.CARDS;
 };
 
 
 // Returns the HTML for a card for a given value
-function createCard(value, is_black) {
-    var cardContainer = $("<div class='binary-card-container visible'></div>");
-    var card = $("<div class='binary-card'></div>");
+function createCard(place) {
+
+    var cardValue = getPlaceValue(place);
+
+    var cardContainer = document.createElement("div");
+    cardContainer.classList.add("binary-card-container", "visible");
+    var card = document.createElement("div");
+    card.classList.add('binary-card');
     cardContainer.append(card);
-    var front = $("<div class='binary-card-side binary-card-front'></div>");
-    front.append(createDots(value));
-    var label = $("<div class='binary-card-number'></div>");
-    label.html(createCardLabel(value))
-    if (value > 9999999) {
-      label.addClass('small-text');
-    }
-    front.append(label);
+
+    var front = document.createElement("div");
+    front.classList.add("binary-card-side", "binary-card-front");
+    front.append(getDots(cardValue), getCardLabel(cardValue));
     card.append(front);
-    card.append($("<div class='binary-card-side binary-card-back'></div>"));
-    card.data("value", value);
-    if (is_black == true) {
-        card.addClass('flipped');
+
+    var back = document.createElement("div");
+    back.classList.add("binary-card-side", "binary-card-back");
+    card.append(back);
+
+    card.dataset.value = cardValue;
+    card.dataset.place = place;
+
+    if (getPlaceFace(place) == "B") {
+        card.classList.add("flipped");
     }
-    return cardContainer;
+
+    // Add to start of all cards as cards are ordered in reverse
+    allCardsContainerElement.prepend(cardContainer);
 };
 
 
 // Returns a canvas object with the given number of dots drawn on it
-function createDots(dots) {
-    var canvas = document.createElement('canvas');
+function getDots(dots) {
+    var canvas = document.createElement("canvas");
     canvas.width = 120;
     canvas.height = 120;
-    var context = canvas.getContext('2d');
+    var context = canvas.getContext("2d");
     context.imageSmoothingEnabled = true;
 
     if (dots < 5000) {
@@ -176,14 +204,36 @@ function createDots(dots) {
 
 // Returns the HTML for the card label to represent a given
 // value. Decimals are represented as fractions.
-function createCardLabel(value) {
-    var label;
+function getCardLabel(value) {
+    var label = document.createElement("div");
     if (value < 1) {
-        label = '<sup>1</sup>&frasl;<sub>' + (1 / value).toLocaleString() + '</sub>';
+        var fractionTop = document.createElement("span");
+        fractionTop.append(document.createTextNode(1));
+        var fractionBottom = document.createElement("span")
+        fractionBottom.append(document.createTextNode(formatCardDotsNumber(1 / value)));
+        label.append(fractionTop, fractionBottom);
+        label.classList.add("fraction");
     } else {
-        label = value.toLocaleString();
+        label.append(document.createTextNode(formatCardDotsNumber(value)));
     }
+
+    label.classList.add("binary-card-number");
+    if (value.toString().length > EXPONENTIAL_THRESHOLD) {
+        label.classList.add("exponential-text");
+    } else if (value.toString().length > 7) {
+        label.classList.add("small-text");
+    }
+
     return label
+}
+
+
+function formatCardDotsNumber(number){
+    if (number.toString().length > EXPONENTIAL_THRESHOLD) {
+        return Number.parseFloat(number).toExponential();
+    } else {
+        return number.toLocaleString();
+    }
 }
 
 
@@ -220,43 +270,30 @@ function calculateDotGridSize(dots) {
 // Counts the number of dots on the cards
 function updateDotCount() {
     var dotCount = 0;
-    $('#interactive-binary-cards-container').children().each(function(cardPosition, card) {
+    $("#interactive-binary-cards-container").children().each(function(cardPosition, card) {
         var card = $(card.children[0]);
-        if (!card.hasClass('flipped') && !card.parent().hasClass('d-none')) {
+        if (!card.hasClass("flipped") && !card.parent().hasClass("d-none")) {
             dotCount += card.data("value");
         }
     });
-
-    var dotText = $('#dot-decimal-count');
-    var format = ngettext('1 dot is visible', '%(dot_count)s dots are visible', dotCount);
+    var dotText = $("#dot-decimal-count");
+    var format = ngettext("1 dot is visible", "%(dot_count)s dots are visible", dotCount);
     var dotCountText = interpolate(format, {"dot_count": dotCount}, true);
     dotText.html(dotCountText);
 };
 
 
-// Change the number of cards shown
-function updateCards(num_cards_to_show) {
-    // mapping of card to child number in DOM tree
-    // 16th card (2^15) is the first child, 15th card (2^14) is the second and so on..
-    var card_num_to_child_num = {};
-    for (var z=0; z < MAX_NUM_CARDS; z++) {
-        card_num_to_child_num[z+1] = MAX_NUM_CARDS - z;
-    }
-    num_current_cards_shown = $('#interactive-binary-cards-container div.visible').length;
-    difference = Math.abs(num_current_cards_shown - num_cards_to_show);
-    if (num_current_cards_shown > num_cards_to_show) {
-        // hide cards
-        for (i=0; i<difference; i++) {
-            child_num = card_num_to_child_num[num_current_cards_shown - i]
-            element = $('#interactive-binary-cards-container > div:nth-child(' + child_num + ')');
-            element.removeClass('visible').addClass('d-none');
-        }
-    } else if (num_current_cards_shown < num_cards_to_show) {
-        // show more cards
-        for (i=1; i<=difference; i++) {
-            child_num = card_num_to_child_num[num_current_cards_shown + i]
-            element = $('#interactive-binary-cards-container > div:nth-child(' + child_num + ')');
-            element.removeClass('d-none').addClass('visible');
-        }
-    }
+function getPlaceValue(place) {
+    return Math.pow(binaryCardsSettings.BASE, place + binaryCardsSettings.OFFSET - 1)
+}
+
+
+function getPlaceFace(place) {
+    // Gets the face value from the place array
+    return cardSideValues[cardSideValues.length - place];
+}
+
+
+function setPlaceFace(place, face) {
+    return cardSideValues[cardSideValues.length - place] = face;
 }

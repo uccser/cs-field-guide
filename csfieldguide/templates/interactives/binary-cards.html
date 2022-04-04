@@ -11,16 +11,21 @@
           <h3 class="text-center mt-2">{% trans "Binary Cards" %}</h3>
 
           <div id="interactive-binary-cards-container" class="my-2"></div>
-          <h5 id="dot-decimal-count"></h5>
-
-          <div class="mb-2">
-            <p class="d-inline mr-2">{% trans "Flip all card sides to:" %}</p>
-            <button id="flip-to-black" class="btn btn-dark">{% trans "Black" %}</button>
-            <button id="flip-to-white" class="btn btn-light">{% trans "White" %}</button>
-          </div>
-          <div id="cards-input" class="form-group form-inline">
-            <label for="cards-to-show" class="mr-2">{% trans "Cards to show:" %}</label>
-            <input id="cards-to-show" class="form-control col-md-1 col-4" type="number" min="1" value="8"/>
+          <div id="dot-decimal-count"></div>
+          <div id="interactive-options">
+            <div class="mb-2">
+                <p class="d-inline mr-2">{% trans "Flip all card sides to:" %}</p>
+                <button id="flip-to-black" class="btn btn-dark">{% trans "Black" %}</button>
+                <button id="flip-to-white" class="btn btn-light">{% trans "White" %}</button>
+            </div>
+            <div id="cards-input" class="form-group form-inline">
+                <label for="cards-to-show" class="mr-2">{% trans "Cards to show:" %}</label>
+                <input id="cards-to-show" class="form-control col-md-1 col-4" type="number" step="1">
+            </div>
+            <div id="cards-total" class="form-group form-inline">
+                <label for="cards-total-show" class="mr-2">{% trans "Show card total:" %}</label>
+                <input id="card-total-show" type="checkbox" class="form-check-input" checked="checked">
+            </div>
           </div>
         </div>
       </div>

@@ -55,6 +55,9 @@
 #interactive-binary-cards-container div.small-text {
   font-size: 1rem;
 }
+#interactive-binary-cards-container div.exponential-text {
+  font-size: .5rem;
+}
 #interactive-binary-cards-container div.binary-card-back {
   background: black;
   transform: rotateY(180deg) perspective(25rem);
@@ -73,11 +76,24 @@
 h3, h5, p {
   text-align: left;
 }
-// Hide arrows in input box on some browsers as it's jumpy
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    margin: 0;
+#dot-decimal-count {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #888;
+}
+#interactive-options {
+  margin-top: 3rem;
+}
+.fraction {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: -0.5rem;
+
+    span {
+        font-size: 1rem;
+    }
+    span:last-child {
+        border-top: 1px solid black;
+    }
 }

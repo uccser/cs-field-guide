@@ -14,6 +14,7 @@ The interactive shows the cards with dots from **128** to **1** by default (128,
 - `offset=value` - Where `value` is the amount to offset the displayed cards (default is 0). Using a positive number will show the placings from the `cards` + `offset` value, for the number of given cards. For example, using a base of `10`, cards as `3`, and offset as `2` will show the 100,000, 10,000, 1,000, and 100 placings. Using a negative number for the `value` will display floating point numbers.
 - `start=sides` - Where `sides` is a sequence of `W` and `B` characters, to state the sides that should be displayed when the interactive starts. The first letter states whether the first card (on the left) should be white (`W`) or black (`B`), the second letter stands for the second card. Therefore the number of letters should match the number of cards used.
 - `input=value` - Where `value` is `true` or `false` (default is true). Indicates whether or not to display the input box that lets users choose how many cards are displayed.
+- `total=value` - Where `value` is `true` or `false` (default is true). Indicates whether or not to display the total number of dots visible. Setting the value to `false` disables the ability to turn the total on.
 
 ### Input box drawback
 
