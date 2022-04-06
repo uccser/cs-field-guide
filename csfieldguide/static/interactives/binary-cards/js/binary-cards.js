@@ -8,6 +8,7 @@ var numberOfCards = DEFAULT_NUM_CARDS_TO_SHOW;
 var currentCards = 0;
 var allCardsContainerElement;
 var cardsInputElement;
+var cardsHelpElement;
 var cardSideValues = [];
 var binaryCardsSettings = {};
 
@@ -17,13 +18,13 @@ $(document).ready(function () {
     binaryCardsSettings.OFFSET = Number(urlParameters.getUrlParameter("offset")) || 0;
     binaryCardsSettings.INPUT = urlParameters.getUrlParameter("input") || true;
     binaryCardsSettings.TOTAL_COUNT = urlParameters.getUrlParameter("total") || true;
-    console.log(binaryCardsSettings.TOTAL_COUNT);
     var parameterNumberOfCards = Number(urlParameters.getUrlParameter("cards") || urlParameters.getUrlParameter("digits"));
     var startingSides = urlParameters.getUrlParameter("start") || "";
 
     // Set data and interactive
     allCardsContainerElement = document.getElementById("interactive-binary-cards-container");
     cardsInputElement = document.getElementById("cards-to-show");
+    cardsHelpElement = document.getElementById("cards-to-show-help");
     setCardsValue(parameterNumberOfCards);
     cardsInputElement.setAttribute("min", MIN_NUM_CARDS);
     cardsInputElement.setAttribute("max", MAX_NUM_CARDS);
@@ -64,10 +65,13 @@ $(document).ready(function () {
     });
 
     // Set event handler for input box
+    // Does nothing if input ends up blank (allowing backspace)
     cardsInputElement.addEventListener('input', function () {
-        setCardsValue(parseInt(this.value));
-        updateCards();
-        updateDotCount();
+        if (this.value) {
+            setCardsValue(parseInt(this.value));
+            updateCards();
+            updateDotCount();
+        }
     });
 
     // Set event handler for total checkbox
@@ -90,6 +94,7 @@ function setCardsValue(cardsValue) {
     if (Number.isInteger(cardsValue) && cardsValue >= MIN_NUM_CARDS && cardsValue <= MAX_NUM_CARDS) {
         binaryCardsSettings.CARDS = cardsValue;
     } else if (currentCards != 0) {
+        cardsHelpElement.classList.remove('d-none');
         binaryCardsSettings.CARDS = currentCards;
     } else {
         binaryCardsSettings.CARDS = DEFAULT_NUM_CARDS_TO_SHOW;
