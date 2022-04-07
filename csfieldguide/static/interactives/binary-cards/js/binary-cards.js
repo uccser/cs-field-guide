@@ -163,8 +163,8 @@ function createCard(place) {
 // Returns a canvas object with the given number of dots drawn on it
 function getDots(dots) {
     var canvas = document.createElement("canvas");
-    canvas.width = 120;
-    canvas.height = 120;
+    canvas.width = 240;
+    canvas.height = 240;
     var context = canvas.getContext("2d");
     context.imageSmoothingEnabled = true;
 
@@ -177,6 +177,9 @@ function getDots(dots) {
       var dotSize = Math.min(gridRowWidth, gridColWidth) * 0.4;
       var dotStartAngle = Math.PI * 0.5;
       var dotFinishAngle = Math.min(Math.PI * 2, Math.PI * 2 * dots) + dotStartAngle;
+      if (dots > 2000) {
+          context.fillStyle = "#444";
+      }
       for (var row = 1; row < gridRows; row++) {
           for (var col = 1; col < gridCols; col++) {
               context.beginPath();
@@ -199,9 +202,10 @@ function getDots(dots) {
           10
       );
       gradient.addColorStop(0, "white");
-      gradient.addColorStop(1, "black");
+      gradient.addColorStop(1, "#777");
       context.fillStyle = gradient;
-      context.fillRect(1, 1, canvas.width - 4, canvas.height - 4);
+      var gap = 4;
+      context.fillRect(gap, gap, canvas.width - (gap * 2), canvas.height - (gap * 2));
     }
     return canvas;
 };

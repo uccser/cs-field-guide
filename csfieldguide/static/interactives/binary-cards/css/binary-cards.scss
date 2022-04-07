@@ -33,6 +33,8 @@
 #interactive-binary-cards-container div.binary-card canvas {
   margin: 0;
   padding: 0;
+  width: 118px;
+  height: 118px;
 }
 #interactive-binary-cards-container div.binary-card.flipped {
   transform: rotateY(180deg);
