@@ -3,6 +3,6 @@
     "version": "1.0.0",
     "private": true,
     "dependencies": {
-        "nouislider": "13.1.5"
+        "nouislider": "15.6.0"
     }
 }
