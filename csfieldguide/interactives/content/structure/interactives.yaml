@@ -131,6 +131,10 @@ data-bias:
   languages:
     en: interactives/data-bias.html
   is_interactive: true
+data-size:
+  languages:
+    en: interactives/data-size.html
+  is_interactive: true
 data-visualisation:
   languages:
     en: interactives/data-visualisation.html

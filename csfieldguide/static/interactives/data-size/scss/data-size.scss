@@ -1,0 +1,119 @@
+@import "node_modules/dragula/dist/dragula";
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+@import "node_modules/bootstrap/scss/mixins";
+
+.dashed-box {
+  background-color: #ffffff;
+  border: 2px dashed #777777;
+}
+
+.square {
+  margin: 0.2em;
+  $box-size: 30px;
+  width: $box-size;
+  height: $box-size;
+  max-width: $box-size;
+  @each $size, $width in $container-max-widths {
+    @include media-breakpoint-only($size) {
+      $box-size: $width / 10;
+      width: $box-size;
+      height: $box-size;
+      max-width: $box-size;
+    }
+    @include media-breakpoint-down(xs) {
+      $box-size: 2rem;
+      width: $box-size !important;
+      height: $box-size !important;
+      max-width: $box-size !important;
+    }
+  }
+}
+
+.size-box {
+  touch-action: none;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  display: none;
+  position: relative;
+  &:last-child {
+    display: block;
+  }
+  cursor: grab;
+  &.gu-mirror {
+    cursor: grabbing;
+  }
+}
+
+.box-image {
+  height: 100%;
+  width: 100%;
+  padding: 2px;
+  overflow: hidden;
+  user-select: none;
+  position: absolute;
+  z-index: 1;
+}
+
+.box-text {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  user-select: none;
+  position: absolute;
+  z-index: 2;
+}
+
+.unit {
+  padding: 0px;
+  font-size: 3rem;
+  @each $size, $width in $container-max-widths {
+    @include media-breakpoint-only($size) {
+      font-size: $width / 20;
+    }
+    @include media-breakpoint-down(xs) {
+      text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white; // For clarity
+      font-size: 1rem !important;
+    }
+  }
+}
+
+.name {
+  position: absolute;
+  bottom: 4px;
+  padding: 0px;
+  @include media-breakpoint-down(md) {
+    font-size: 0.7rem;
+  }
+  @include media-breakpoint-down(sm) {
+    display: none;
+  }
+}
+
+.txt-red {
+  color: red;
+}
+
+.txt-grn {
+  color: green;
+}
+
+.example-item {
+  background-color: rgba(0, 0, 0, 0.25);
+  padding-left: 5px;
+  padding-right: 5px;
+  text-align: center;
+}
+
+.example-container {
+  background-color: rgba(97, 2, 2, 0.25);
+  &.source {
+    min-height: 3rem;
+
+  }
+  &.dest {
+    min-height: 1.5rem;
+    min-width: 10%;
+  }
+}
