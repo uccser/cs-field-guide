@@ -1,4 +1,10 @@
-"""Module for search views."""
+"""Module for search views.
+
+Uses elements from the following:
+- https://docs.djangoproject.com/en/dev/ref/contrib/postgres/search/
+- https://simonwillison.net/2017/Oct/5/django-postgresql-faceted-search/
+- https://testdriven.io/blog/django-search/
+"""
 
 from itertools import chain
 from django.views import generic
