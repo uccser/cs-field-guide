@@ -16,6 +16,18 @@
   }
 }
 
+#search-navbar {
+  margin: 5px;
+  width: inherit !important;
+
+  input,
+  button {
+    line-height: 1.4 !important;
+    padding-left: 0.4rem !important;
+    padding-right: 0.4rem !important;
+  }
+}
+
 #navbarLanguageSelector {
   padding: 4px 7.25px;
   font-size: 1.25rem;

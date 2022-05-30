@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+
+{% load static query_replace %}
+
+{% block title %}
+  Search
+{% endblock title %}
+
+{% block page_heading %}
+  Search
+{% endblock page_heading %}
+
+{% block content %}
+    <div id="content-container" class="container">
+        <div class="row">
+            <div class="col-12 mb-3">
+                <form method="get" action="." id="search-form">
+                    <div class="form-group row">
+                        <div class="col-sm-12">
+                            <input type="search" id="id_q" name="q" class="form-control form-control-lg" placeholder="What are you searching for?"
+                            aria-describedby="searchHelpText" {% if query %}value="{{ query|stringformat:'s' }}"{% endif %}>
+                            <small id="searchHelpText" class="form-text text-muted pl-3">
+                                Leave blank to search all items.
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-md-4 col-lg-3 col-form-label">Filter by type</label>
+                        <div class="col-md-8 col-lg-9">
+                            <select id="models-filter" name="models" multiple="multiple">
+                                {% for model in models %}
+                                    <option value="{{ model.value }}"{% if model.selected %} selected="selected"{% endif %}>
+                                        {{ model.name }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                    <button type="button" id="clear-form" class="btn btn-outline-danger mb-3">Clear form</button>
+                    <button type="submit" class="btn btn-success mb-3 float-right" name="page" value="1">Search</button>
+                </form>
+            </div>
+
+            <div class="col-12">
+                {% if search %}
+                    <h3 id="results-heading">Result{{ results_count|pluralize }}</h3>
+
+                    <p class="text-center">
+                        <em>
+                            Showing {% if is_paginated %}results {{ page_obj.start_index }} to {{ page_obj.end_index }} of {% endif %}{{ results_count }} result{{ results_count|pluralize }}
+                        </em>
+                    </p>
+
+                    <div id="results">
+                        {% for result in results %}
+                            <div class="row">
+                                <div class="col-12 col-sm-3 text-sm-right">
+                                    {{ result.object_type_name|capfirst }}
+                                </div>
+                                <div class="col-12 col-sm-9">
+                                    {% if not DEPLOYED and result.rank %}
+                                        <small class="text-muted float-right">
+                                            (Search rank: {{ result.rank|floatformat:3 }})
+                                        </small>
+                                    {% endif %}
+                                    {{ result.result_preview|safe }}
+                                </div>
+                            </div>
+                        {% empty %}
+                            <p>No results found.</p>
+                        {% endfor %}
+                    </div>
+
+
+                    {% comment %} {% if paginator.num_pages > 1 %}
+                    <div class="text-center">
+                            {% if page_obj.has_previous %}
+                                <a class="btn btn-link"
+                                    href="{% url 'search:index' %}?{% query_replace page=page_obj.previous_page_number %}">&laquo; Previous page</a>
+                            {% endif %}
+                            {% if page_obj.has_next %}
+                                <a class="btn btn-link" href="{% url 'search:index' %}?{% query_replace page=page_obj.next_page_number %}">Next page
+                                    &raquo;</a>
+                            {% endif %}
+                        </div>
+                        <div id="result-page-links" class="text-center">
+                            <span>Jump to page:</span>
+                            {% for page in paginator.page_range %}
+                                {% if page_obj.number == page %}
+                                    <a class="btn btn-link disabled" aria-disabled="true">{{ page }}</a>
+                                {% else %}
+                                    <a class="btn btn-link" href="{% url 'resources:search' %}?{% query_replace page=page %}">{{ page }}</a>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    {% endif %} {% endcomment %}
+                {% else %}
+                    {# Show some example queries to run, maybe query syntax, something else? #}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+
+{% block scripts %}
+    <script type="text/javascript" src="{% static 'js/website-search.js' %}"></script>
+{% endblock scripts %}
+
+{% block css %}
+    <link href="{% static 'css/search.css' %}" type="text/css" media="screen" rel="stylesheet" />
+{% endblock css %}

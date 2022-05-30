@@ -1,0 +1,15 @@
+{% load i18n %}
+
+<p class="mb-0">
+  <a href="{{ result.get_absolute_url }}">
+    {{ result.name }}
+  </a>
+</p>
+<p class="mb-0">
+  <small class="text-muted">
+    {% trans "Within chapter" %}
+    <a href="{{ result.chapter.get_absolute_url }}" class="text-muted">
+      {{ result.chapter.name }}
+    </a>
+  </small>
+</p>

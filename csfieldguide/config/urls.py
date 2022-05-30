@@ -17,6 +17,7 @@ urlpatterns = i18n_patterns(
     path("chapters/", include("chapters.urls", namespace="chapters")),
     path("curriculum-guides/", include("curriculum_guides.urls", namespace="curriculum_guides")),
     path("appendices/", include("appendices.urls", namespace="appendices")),
+    path("search/", include("search.urls", namespace="search")),
 )
 
 urlpatterns += [
