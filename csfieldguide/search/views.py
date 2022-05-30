@@ -6,7 +6,6 @@ Uses elements from the following:
 - https://testdriven.io/blog/django-search/
 """
 
-from itertools import chain
 from django.views import generic
 from django.db.models import F
 from django.contrib.postgres.search import (

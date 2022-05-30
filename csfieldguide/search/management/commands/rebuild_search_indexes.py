@@ -15,7 +15,6 @@ from search.utils import get_search_model_id
 from utils.language_utils import get_available_languages
 
 
-
 class Command(management.base.BaseCommand):
     """Required command class for the custom Django rebuild_search_indexes command."""
 
@@ -56,7 +55,7 @@ class Command(management.base.BaseCommand):
             if hasattr(instance, 'index_contents') and callable(getattr(instance, 'index_contents')):
                 contents = instance.index_contents()
             else:
-                raise Exception(f'{instance.__class__} does not have method .index_contents(), which is required for indexing.')
+                raise Exception(f'{instance.__class__} is missing required method .index_contents().')
 
             search_vector_list = []
             for weight, text in contents.items():

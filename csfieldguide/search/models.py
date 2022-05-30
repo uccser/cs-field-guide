@@ -1,3 +1,5 @@
+"""Models for the search application."""
+
 from django.db import models
 from django.contrib.postgres.search import SearchVectorField
 from django.contrib.postgres.indexes import GinIndex
