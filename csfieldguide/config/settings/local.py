@@ -89,3 +89,10 @@ SVG_DIRS.append(os.path.join(str(ROOT_DIR.path("build")), "svg"))  # noqa: F405
 # TESTING
 # ----------------------------------------------------------------------------
 TEST_RUNNER = "django.test.runner.DiscoverRunner"
+
+# LOGGING
+# ------------------------------------------------------------------------------
+# Based off https://lincolnloop.com/blog/django-logging-right-way/
+# Suppress these loggers in local development for less noise in logs
+logging.getLogger('gunicorn.access').handlers = []  # noqa F405
+logging.getLogger('gunicorn.error').handlers = []  # noqa F405

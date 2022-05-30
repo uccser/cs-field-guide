@@ -55,6 +55,7 @@ LOCAL_APPS = [
     "curriculum_guides.apps.CurriculumGuidesConfig",
     "appendices.apps.AppendicesConfig",
     "interactives.apps.InteractivesConfig",
+    "search.apps.SearchConfig",
 ]
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -194,6 +195,7 @@ TEMPLATES = [
                 "render_html_field": "config.templatetags.render_html_field",
                 "render_interactive_in_page": "config.templatetags.render_interactive_in_page",
                 "render_interactive_link": "config.templatetags.render_interactive_link",
+                "get_interactive_thumbnail": "config.templatetags.render_interactive_link",
                 "translate_url": "config.templatetags.translate_url",
                 "query_replace": "config.templatetags.query_replace",
             },
@@ -322,6 +324,7 @@ CURRICULUM_GUIDES_CONTENT_BASE_PATH = os.path.join(str(ROOT_DIR.path("curriculum
 INTERACTIVES_CONTENT_BASE_PATH = os.path.join(str(ROOT_DIR.path("interactives")), "content")
 INTERACTIVES_BASE_TEMPLATES_PATH = os.path.join("interactives", "base")
 INTERACTIVES_LINK_TEMPLATE = "interactives/utils/interactive-link.html"
+INTERACTIVES_THUMBNAIL_PATH = "img/interactives/thumbnails/{}/{}.png"
 MODELTRANSLATION_CUSTOM_FIELDS = ("JSONField",)
 CUSTOM_VERTO_TEMPLATES = os.path.join(str(ROOT_DIR.path("utils")), "custom_converter_templates", "")
 STATICI18N_ROOT = BUILD_ROOT
