@@ -54,6 +54,8 @@ jobs:
         uses: actions/checkout@v2
       - name: Run general tests
         run: ./dev ci test_general
+      - name: Create coverage file
+        run: docker-compose -f docker-compose.local.yml run --rm --user="root" django coverage xml -i
       - name: Upload coverage file
         uses: codecov/codecov-action@v3
         with:
@@ -68,6 +70,8 @@ jobs:
         uses: actions/checkout@v2
       - name: Run management tests
         run: ./dev ci test_management
+      - name: Create coverage file
+        run: docker-compose -f docker-compose.local.yml run --rm --user="root" django coverage xml -i
       - name: Upload coverage file
         uses: codecov/codecov-action@v3
         with:
