@@ -250,7 +250,9 @@ cmd_ci() {
   fi
   if silent type "cmd_$cmd"; then
     "cmd_$cmd" "$@"
-    exit $?
+    local status=$?
+    cmd_test_coverage
+    exit status
   else
     echo -e "${ERROR}ERROR: Unknown command!${NC}"
     echo "Type './dev help' for available commands."
