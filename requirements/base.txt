@@ -1,5 +1,5 @@
 # Django
-django==3.2.12
+django==3.2.13
 django-environ==0.8.1
 django-bootstrap-breadcrumbs==0.9.2
 
@@ -20,7 +20,7 @@ Pygments==2.11.2
 python-markdown-math==0.6
 
 # XML Parsing
-lxml==4.8.0
+lxml==4.9.0
 cssselect==1.1.0
 
 # YAML Loading
@@ -34,4 +34,4 @@ django-bidi-utils==1.0
 django-statici18n==2.2.0
 
 # CORS
-django-cors-headers==3.11.0
+django-cors-headers==3.13.0
