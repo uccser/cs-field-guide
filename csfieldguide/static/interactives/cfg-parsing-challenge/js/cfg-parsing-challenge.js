@@ -156,7 +156,7 @@ function parseUrlParameters() {
     }
   }
   if (hideGenerator_) {
-    if (examples.length > 1) {
+    if (examples_.length > 1) {
       setGenerator('from-preset');
       $('#set-g-random').hide();
       $('#set-g-random-simple').hide();
@@ -166,7 +166,7 @@ function parseUrlParameters() {
     }
   } else if (recursionDepth) {
     $('#set-g-random-simple').hide();
-    if (!examples) {
+    if (!examples_) {
       $('#set-g-from-preset').hide();
     }
   }
@@ -689,9 +689,7 @@ function prefillGrammar() {
 * Fills the examples setter with any given examples in the URL
 */
 function prefillExamples() {
-    let examples = urlParameters.getUrlParameter('examples');
-    examples = examples.replace(/\|/g, '\n');
-    $("#cfg-example-input").val(examples);
+    $("#cfg-example-input").val(examples_.join('\n'));
 }
 
 /**
