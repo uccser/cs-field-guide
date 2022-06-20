@@ -15,7 +15,7 @@
         "cssnano": "5.1.12",
         "details-element-polyfill": "2.4.0",
         "fancy-log": "2.0.0",
-        "got": "11.8.2",
+        "got": "12.1.0",
         "gulp": "4.0.2",
         "gulp-concat": "2.6.1",
         "gulp-error-handle": "1.0.1",
