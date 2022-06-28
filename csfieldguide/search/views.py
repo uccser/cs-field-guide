@@ -40,7 +40,6 @@ class SearchView(generic.TemplateView):
         # Get request query parmaters
         query_text = self.request.GET.get('q')
         selected_models = self.request.GET.getlist('models')
-        # selected_curriculum_areas = self.request.GET.getlist('curriculum_areas')
         get_request = bool(self.request.GET)
 
         if get_request:

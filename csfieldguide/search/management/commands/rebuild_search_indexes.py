@@ -36,49 +36,64 @@ class Command(management.base.BaseCommand):
                 model_instances = model.objects.all()
 
             for instance in model_instances:
-                self.index_instance(instance, item_number)
+                index_instance(instance, item_number)
                 item_number += 1
 
-    def index_instance(self, instance, item_number):
-        """Create search item for instance for searching.
 
-        Args:
-            instance (object): Object to be indexed.
-        """
-        object_type = get_search_model_id(instance)
-        class_data = SEARCH_MODEL_TYPES[object_type]
+def index_instance(instance, item_number):
+    """Create search item for instance for searching.
 
-        # Create index/result for each language
-        for language in get_available_languages():
+    Args:
+        instance (object): Object to be indexed.
+    """
+    object_type = get_search_model_id(instance)
+    class_data = SEARCH_MODEL_TYPES[object_type]
 
-            # Get index contents
-            if hasattr(instance, 'index_contents') and callable(getattr(instance, 'index_contents')):
-                contents = instance.index_contents()
-            else:
-                raise Exception(f'{instance.__class__} is missing required method .index_contents().')
+    # Create index/result for each language
+    for language in get_available_languages():
 
-            search_vector_list = []
-            for weight, text in contents.items():
-                search_vector_list.append(
-                    SearchVector(Value(text), weight=weight)
-                )
-            search_vectors = search_vector_list[0]
-            for search_vector in search_vector_list[1:]:
-                search_vectors += search_vector
+        # Get index contents
+        contents = get_instance_index_contents(instance)
 
-            # Render result preview
-            context = {'result': instance}
-            template = join(SEARCH_RESULT_TEMPLATE_DIRECTORY, object_type + '.html')
-            result_preview = render_to_string(template, context)
-
-            SearchItem.objects.create(
-                object_type=object_type,
-                object_type_name=instance._meta.verbose_name,
-                language=language,
-                boost=class_data['boost'],
-                result_preview=result_preview,
-                order=item_number,
-                search_vector=search_vectors,
+        search_vector_list = []
+        for weight, text in contents.items():
+            search_vector_list.append(
+                SearchVector(Value(text), weight=weight)
             )
+        search_vectors = search_vector_list[0]
+        for search_vector in search_vector_list[1:]:
+            search_vectors += search_vector
 
-        print(f'Indexed {instance} for languages {get_available_languages()}.')
+        # Render result preview
+        context = {'result': instance}
+        template = join(SEARCH_RESULT_TEMPLATE_DIRECTORY, object_type + '.html')
+        result_preview = render_to_string(template, context)
+
+        SearchItem.objects.create(
+            object_type=object_type,
+            object_type_name=instance._meta.verbose_name,
+            language=language,
+            boost=class_data['boost'],
+            result_preview=result_preview,
+            order=item_number,
+            search_vector=search_vectors,
+        )
+
+    print(f'Indexed {instance} for languages {get_available_languages()}.')
+
+
+def get_instance_index_contents(instance):
+    """Return index contents of instance.
+
+    Args:
+        instance (object): Instance to get index contents from.
+
+    Returns:
+        Dictionary of index contents of instance.
+        If method is not found, an exception is raised.
+    """
+    if hasattr(instance, 'index_contents') and callable(getattr(instance, 'index_contents')):
+        contents = instance.index_contents()
+    else:
+        raise Exception(f'{instance.__class__} is missing required method .index_contents().')
+    return contents

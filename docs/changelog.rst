@@ -18,6 +18,114 @@ All notable changes to this project will be documented in this file.
 We have listed major changes for each release below.
 `All downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/>`__
 
+3.10.1
+==============================================================================
+
+**Release date:** 28th June 2022
+
+**Changelog:**
+
+- Add search functionality for English language.
+- Updates to binary cards interactive:
+
+    - Only creates card elements as required.
+    - Fixes bug with defining number of cards.
+    - Allows card total to be toggled or hidden.
+
+- Remove broken link in the Images and Colours section witin the Data Representation chapter.
+- Update glossary definition of Algorithm.
+- Allow centered interactives to be embedded anywhere (this will likely change in the future to be restricted only to UCCSER domains).
+- Add permalinks to glossary page entries.
+- Fix bug where interactive thumbnails were missing assets during creation. `#1745 <https://github.com/uccser/cs-field-guide/issues/1745>`__
+- Fix bug where CFG Parser examples weren't loaded. `#1789 <https://github.com/uccser/cs-field-guide/issues/1789>`__
+- Update test coverage to codecov.
+- Suppress gunicorn access and error logs during local development.
+- Auto-merge minor dependency updates (this includes minor and patch updates).
+- Allow all dependency update pull requests to be created (remove open limit on Dependabot).
+- Ignore updates to non-LTS Django packages.
+
+- Core dependency changes:
+
+    - Update actions/checkout from v2 to v3.
+    - Update actions/download-artifact from v2 to v3.
+    - Update actions/setup-python from v2 to v4.
+    - Update actions/upload-artifact from v2 to v3.
+    - Update ansi-colours from 4.1.1 to 4.1.3.
+    - Update autoprefixer from 10.3.7 to 10.4.7.
+    - Update browser-sync from 2.27.5 to 2.27.10.
+    - Update codemirror from 5.65.0 to 5.65.6.
+    - Update coverage from 6.2 to 6.4.1.
+    - Update crowdin/github-action from 1.4.7 to 1.4.9.
+    - Update cssnano from 5.0.8 to 5.1.12.
+    - Update django from 3.2.12 to 3.2.13.
+    - Update django-cors-headers from 3.11.0 to 3.13.0.
+    - Update django-debug-toolbar from 3.2.4 to 3.4.0.
+    - Update django-environ from 0.8.1 to 0.9.0.
+    - Update django-modeltranslation from 0.17.3 to 0.18.2.
+    - Update docker/build-push-action from v2.9.0 to v3.0.0.
+    - Update docker/build-push-action from v2.9.0 to v3.0.0.
+    - Update docker/login-action from v1.13.0 to v2.0.0.
+    - Update docker/metadata-action from v3 to v4.
+    - Update fancy-log from 1.3.3 to 2.0.0.
+    - Update flake8 from 3.9.2 to 4.0.1.
+    - Update gulp-sass from 5.0.0 to 5.1.0.
+    - Update lxml from 4.8.0 to 4.9.0.
+    - Update postcss 8.4.5 to 8.4.14.
+    - Update Pygments from 2.11.2 to 2.12.0.
+    - Update sass from 1.49.8 to 1.53.0.
+    - Update selenium from 4.1.1 to 4.3.0.
+    - Update sphinx from 4.4.0 to 5.0.2.
+    - Update whitenoise from 6.0.0 to 6.2.0.
+    - Update yargs from 10.3.1 to 10.5.1.
+    - Remove intro.js 4.2.2.
+
+- Interactive big-number-calculator dependency changes:
+
+    - Update big.js from 5.1.2 to 6.2.0.
+
+- Interactive bin-packing dependency changes:
+
+    - Update interactjs from 1.10.11 to 1.10.14.
+
+- Interactive box-rotation dependency changes:
+
+    - Update three from 0.138.0 to 0.141.0.
+    - Update @tweenjs/tween.js from 17.3.0 to 18.6.4.
+
+- Interactive box-translation dependency changes:
+
+    - Update three from 0.138.0 to 0.141.0.
+    - Update @tweenjs/tween.js from 17.3.0 to 18.6.4.
+
+- Interactive city-trip dependency changes:
+
+    - Update cytoscape from 3.21.0 to 3.21.2.
+
+- Interactive frequency-analysis dependency changes:
+
+    - Update es5-shim from 4.6.5 to 4.6.7.
+
+- Interactive jpeg-compression dependency changes:
+
+    - Update interactjs from 1.10.11 to 1.10.14.
+
+- Interactive scene-editor dependency changes:
+
+    - Update three from 0.138.0 to 0.141.0.
+
+- Interactive unicode-binary dependency changes:
+
+    - Update urijs from 1.19.8 to 1.19.11.
+    - Update string.fromcodepoint from 0.2.1 to 1.0.0.
+
+- Interactive unicode-chars dependency changes:
+
+    - Update string.fromcodepoint from 0.2.1 to 1.0.0.
+
+- Interactive viola-jones-face-detector dependency changes:
+
+    - Update interactjs from 1.10.11 to 1.10.14.
+
 3.10.0
 ==============================================================================
 
