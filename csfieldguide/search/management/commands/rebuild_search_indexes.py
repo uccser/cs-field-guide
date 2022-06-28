@@ -53,10 +53,7 @@ def index_instance(instance, item_number):
     for language in get_available_languages():
 
         # Get index contents
-        if hasattr(instance, 'index_contents') and callable(getattr(instance, 'index_contents')):
-            contents = instance.index_contents()
-        else:
-            raise Exception(f'{instance.__class__} is missing required method .index_contents().')
+        contents = get_instance_index_contents(instance)
 
         search_vector_list = []
         for weight, text in contents.items():
