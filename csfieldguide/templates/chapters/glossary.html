@@ -1,7 +1,6 @@
 {% extends "appendices/base.html" %}
 
-{% load i18n %}
-{% load render_html_field %}
+{% load i18n static render_html_field %}
 
 {% block title %}
   {% trans 'Glossary' %}
@@ -13,7 +12,12 @@
 
 {% block content %}
   {% for glossary_term in glossary_terms %}
-    <h3>{{ glossary_term.term }}</h3>
+    <h3 id="{{ glossary_term.slug }}">
+        <a class="heading-permalink" href="#{{ glossary_term.slug }}">
+            {{ glossary_term.term }}
+            <img src="{% static 'img/third-party/icons8-link-26.png' %}" class="permalink-icon">
+        </a>
+    </h3>
     {% render_html_field glossary_term.definition %}
   {% endfor %}
 {% endblock content %}

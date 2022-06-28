@@ -34,8 +34,21 @@ def render_interactive_link(context, interactive, *args, **kwargs):
 
     context = {
         "interactive": interactive,
-        "interactive_thumbnail": "img/interactives/thumbnails/{}/{}.png".format(get_language(), interactive.slug),
+        "interactive_thumbnail": get_interactive_thumbnail(interactive),
         "parameters": parameters,
         "text": text,
     }
     return render_to_string(settings.INTERACTIVES_LINK_TEMPLATE, context, request=context.get("request"))
+
+
+@register.simple_tag
+def get_interactive_thumbnail(interactive):
+    """Return path of interactive thumbnail.
+
+    Args:
+        interactive (Interactive): Instance of interactive.
+
+    Returns:
+        String of thumbnail path.
+    """
+    return settings.INTERACTIVES_THUMBNAIL_PATH.format(get_language(), interactive.slug)

@@ -94,14 +94,6 @@ You can pick a pixel and put the values on the slider above &ndash; it should co
 
 {interactive slug="pixel-viewer" type="whole-page" text="Pixel Viewer interactive"}
 
-{panel type="curiosity"}
-
-# Alternative material on bits and colour
-
-Another exercise to see the relationship between bit patterns and colour images is [provided here](https://sites.google.com/a/bxs.org.uk/mrkershaw/ict/bitmapgraphics).
-
-{panel end}
-
 ## Representing a colour with bits
 
 The next thing we need to look at is how bits are used to represent each colour in a high quality image.

@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Create Docker network
         run: docker network create uccser-development-proxy
       - name: Start systems
@@ -28,7 +28,7 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Create Docker network
         run: docker network create uccser-development-proxy
       - name: Start systems
@@ -51,25 +51,39 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Run general tests
         run: ./dev ci test_general
+      - name: Create coverage file
+        run: docker-compose -f docker-compose.local.yml run --rm --user="root" django coverage xml -i
+      - name: Upload coverage file
+        uses: codecov/codecov-action@v3
+        with:
+          files: ./csfieldguide/coverage.xml
+          verbose: true
 
   test-management:
     name: Tests - Management
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Run management tests
         run: ./dev ci test_management
+      - name: Create coverage file
+        run: docker-compose -f docker-compose.local.yml run --rm --user="root" django coverage xml -i
+      - name: Upload coverage file
+        uses: codecov/codecov-action@v3
+        with:
+          files: ./csfieldguide/coverage.xml
+          verbose: true
 
   test-style:
     name: Tests - Style
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Run style tests
         run: ./dev ci style
 
@@ -78,9 +92,9 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Setup Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: '3.x'
       - name: Install dependencies
@@ -106,7 +120,7 @@ jobs:
     ]
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Create Docker network
         run: docker network create uccser-development-proxy
@@ -124,7 +138,7 @@ jobs:
         run: tar czf static-files.tar.gz --directory csfieldguide/staticfiles/ .
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: static-files
           path: static-files.tar.gz
@@ -154,7 +168,7 @@ jobs:
     ]
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Create Docker network
         run: docker network create uccser-development-proxy
@@ -164,6 +178,9 @@ jobs:
 
       - name: Create static files
         run: docker-compose -f docker-compose.local.yml run --rm --user="root" node npm run generate-assets
+
+      - name: Collect staticfiles
+        run: docker-compose -f docker-compose.local.yml run --rm --user="root" django python manage.py collectstatic --no-input
 
       - name: Migrate database
         run: docker-compose -f docker-compose.local.yml run --rm django python ./manage.py migrate
@@ -178,7 +195,7 @@ jobs:
         run: tar czf interactive-thumbnails.tar.gz --directory csfieldguide/build/img/interactives/thumbnails/ .
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: interactive-thumbnails-${{ matrix.language }}
           path: interactive-thumbnails.tar.gz
@@ -194,10 +211,10 @@ jobs:
     ]
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Download all workflow run artifacts
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           path: artifacts/
 
@@ -212,14 +229,14 @@ jobs:
           ls artifacts/interactive-thumbnails-*/interactive-thumbnails.tar.gz | xargs -n1 tar -xz --directory csfieldguide/staticfiles/img/interactives/thumbnails --file
 
       - name: Log in to ${{ env.REGISTRY }}
-        uses: docker/login-action@v1.13.0
+        uses: docker/login-action@v2.0.0
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and push Docker image
-        uses: docker/build-push-action@v2.9.0
+        uses: docker/build-push-action@v3.0.0
         with:
           file: ./infrastructure/production/django/Dockerfile
           context: .
@@ -237,10 +254,10 @@ jobs:
     ]
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Download all workflow run artifacts
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           path: artifacts/
 
@@ -255,7 +272,7 @@ jobs:
           ls artifacts/interactive-thumbnails-*/interactive-thumbnails.tar.gz | xargs -n1 tar -xz --directory csfieldguide/staticfiles/img/interactives/thumbnails --file
 
       - name: Log in to ${{ env.REGISTRY }}
-        uses: docker/login-action@v1.13.0
+        uses: docker/login-action@v2.0.0
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
@@ -263,14 +280,14 @@ jobs:
 
       - name: Setup Docker metadata
         id: meta
-        uses: docker/metadata-action@v3
+        uses: docker/metadata-action@v4
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
             type=ref,event=tag,enable=true
 
       - name: Build and push Docker image
-        uses: docker/build-push-action@v2.9.0
+        uses: docker/build-push-action@v3.0.0
         with:
           file: ./infrastructure/production/django/Dockerfile
           context: .

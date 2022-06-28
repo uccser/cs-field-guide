@@ -3,8 +3,10 @@
 from django.db import models
 from interactives.models import Interactive
 from django.core.exceptions import ValidationError
+from django.utils.translation import gettext_lazy as _
 from utils.TranslatableModel import TranslatableModel
 from django.urls import reverse
+from search.utils import concat_field_values
 
 
 class GlossaryTerm(TranslatableModel):
@@ -23,10 +25,29 @@ class GlossaryTerm(TranslatableModel):
         """
         return self.term
 
+    def get_absolute_url(self):
+        """Get absolute URL of Chapter object."""
+        return reverse('chapters:glossary') + f'#{self.slug}'
+
+    def index_contents(self):
+        """Return dictionary for search indexing.
+
+        Returns:
+            Dictionary of content for search indexing. The dictionary keys
+            are the weightings of content, and the dictionary values
+            are strings of content to index.
+        """
+        return {
+            'A': self.term,
+            'B': self.definition,
+        }
+
     class Meta:
         """Set consistent ordering of Glossary Terms."""
 
         ordering = ["term"]
+        verbose_name = _("glossary term")
+        verbose_name_plural = _("glossary terms")
 
 
 class Chapter(TranslatableModel):
@@ -52,16 +73,36 @@ class Chapter(TranslatableModel):
         """
         return self.name
 
+    def get_absolute_url(self):
+        """Get absolute URL of Chapter object."""
+        return reverse('chapters:chapter', args=[self.slug])
+
+    def index_contents(self):
+        """Return dictionary for search indexing.
+
+        Returns:
+            Dictionary of content for search indexing. The dictionary keys
+            are the weightings of content, and the dictionary values
+            are strings of content to index.
+        """
+        return {
+            'A': self.name,
+            'B': self.introduction,
+            'C': concat_field_values(
+                self.chapter_sections.values_list('name'),
+            ),
+            'D': concat_field_values(
+                self.interactives.values_list('name'),
+                self.chapter_sections.values_list('content'),
+            ),
+        }
+
     class Meta:
         """Set consistent ordering of chapters."""
 
         ordering = ["number"]
-        verbose_name = "Chapter"
-        verbose_name_plural = "Chapters"
-
-    def get_absolute_url(self):
-        """Get absolute URL of Chapter object."""
-        return reverse('chapters:chapter', args=[self.slug])
+        verbose_name = _("chapter")
+        verbose_name_plural = _("chapters")
 
 
 class ChapterSection(TranslatableModel):
@@ -108,9 +149,9 @@ class ChapterSection(TranslatableModel):
     class Meta:
         """Set consistent ordering of chapter sections."""
 
-        ordering = ["number"]
-        verbose_name = "Chapter section"
-        verbose_name_plural = "Chapter sections"
+        ordering = ["chapter__number", "number"]
+        verbose_name = _("chapter section")
+        verbose_name_plural = _("chapter sections")
 
     def get_absolute_url(self):
         """Get absolute URL of ChapterSection object."""
@@ -121,6 +162,20 @@ class ChapterSection(TranslatableModel):
                 'chapter_section_slug': self.slug
             }
         )
+
+    def index_contents(self):
+        """Return dictionary for search indexing.
+
+        Returns:
+            Dictionary of content for search indexing. The dictionary keys
+            are the weightings of content, and the dictionary values
+            are strings of content to index.
+        """
+        return {
+            'A': self.name,
+            'B': self.content,
+            'D': self.chapter.name,
+        }
 
 
 class ChapterSectionHeading(models.Model):

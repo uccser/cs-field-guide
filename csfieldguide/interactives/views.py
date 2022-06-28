@@ -5,6 +5,7 @@ from django.http import HttpResponse, JsonResponse
 from django.urls import reverse
 from django.conf import settings
 from django.utils import translation
+from django.views.decorators.clickjacking import xframe_options_exempt
 from interactives.models import Interactive
 from chapters.models import Chapter
 from config.templatetags.render_interactive_in_page import render_interactive_html
@@ -49,6 +50,7 @@ def interactive_whole_page_view(request, interactive_slug):
     return HttpResponse(render_interactive_html(interactive_slug, "whole-page", request))
 
 
+@xframe_options_exempt
 def interactive_iframe_view(request, interactive_slug):
     """View for a interactive in iframe mode.
 

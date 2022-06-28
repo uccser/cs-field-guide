@@ -1,0 +1,10 @@
+{% load svg %}
+
+<p class="mb-0">
+  <a class="no-text-decoration" href="{{ result.get_absolute_url }}">
+    <span class="chapter-icon mr-4">{% svg result.icon %}</span>
+  </a>
+  <a href="{{ result.get_absolute_url }}">
+    {{ result.name }}
+  </a>
+</p>

@@ -1,0 +1,9 @@
+{% load static get_interactive_thumbnail %}
+{% get_interactive_thumbnail result as thumbnail_url %}
+
+<a class="no-text-decoration" href="{% url 'interactives:interactive' result.slug %}">
+    <img class="search-thumbnail border rounded" src="{% static thumbnail_url %}" alt="Thumbnail of {{ result.name }} interactive">
+</a>
+<a href="{% url 'interactives:interactive' result.slug %}">
+    {{ result.name }}
+</a>
