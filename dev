@@ -222,7 +222,7 @@ defhelp test_specific 'Run specific test suite. Pass in parameter of Python test
 cmd_test_coverage() {
   echo "Displaying test suite coverage..."
   docker-compose -f docker-compose.local.yml run --rm --label traefik.enable=false django coverage xml -i
-  docker-compose -f docker-compose.local.yml run --rm --label traefik.enable=false django coverage report -m --skip-covered
+  docker-compose -f docker-compose.local.yml run --rm --label traefik.enable=false django coverage report --show-missing --skip-covered
 }
 defhelp test_coverage 'Display code coverage report.'
 
