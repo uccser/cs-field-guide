@@ -1,6 +1,5 @@
 from django.test import override_settings
 from django.template.loader import render_to_string
-from urllib.parse import parse_qs
 from tests.BaseTest import BaseTest
 from tests.helpers import template_settings_for_test
 
