@@ -9,7 +9,7 @@ static_root = "tests/config/templatetags/assets/static/"
 
 
 @override_settings(TEMPLATES=templates, STATIC_ROOT=static_root)
-class QueryReplaceTest(BaseTest):
+class ReadStaticFileTest(BaseTest):
 
     def test_read_static_file_single(self):
         html = render_to_string("read-static-file-single.html")
