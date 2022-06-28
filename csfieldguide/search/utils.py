@@ -1,10 +1,6 @@
 """Search utility functions."""
 
 import copy
-from lxml.html import fromstring
-from lxml.cssselect import CSSSelector
-from django.template.loader import render_to_string
-from django.template.exceptions import TemplateSyntaxError
 
 CONTENT_NOT_FOUND_ERROR_MESSAGE = ("General page requires content wrapped in "
                                    "an element with ID 'general-page-content'")
@@ -25,25 +21,6 @@ def concat_field_values(*args):
             for field in instance:
                 field_names.append(str(field))
     return ' '.join(field_names)
-
-
-def get_template_text(template):
-    """Return text for indexing.
-
-    Args:
-        template (string): Path to template to get text from.
-
-    Returns:
-        String for indexing.
-    """
-    rendered = render_to_string(template, {"LANGUAGE_CODE": "en"})
-    html = fromstring(rendered)
-    selector = CSSSelector("#general-page-content")
-    try:
-        contents = selector(html)[0].text_content()
-    except IndexError:
-        raise TemplateSyntaxError(CONTENT_NOT_FOUND_ERROR_MESSAGE)
-    return contents
 
 
 def get_search_model_types(search_model_types_list):
