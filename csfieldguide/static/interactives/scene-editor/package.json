@@ -4,7 +4,7 @@
     "private": true,
     "dependencies": {
         "mathjs": "6.0.3",
-        "three": "0.141.0",
+        "three": "0.142.0",
         "three-orbit-controls": "82.1.0"
     }
 }
