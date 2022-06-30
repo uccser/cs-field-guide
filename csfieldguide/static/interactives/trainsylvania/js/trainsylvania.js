@@ -1,33 +1,33 @@
-var img_extension = '-station.svg';
+var img_extension = '.svg';
 
 var Trainsylvania = {
   'slide_time': 800
 };
 
 Trainsylvania.stations = {
-  'central' : gettext('Central Station'),
-  'airport' : gettext('Airport Station'),
-  'east'    : gettext('East Station'),
-  'factory' : gettext('Factory Station'),
-  'midway'  : gettext('Midway Station'),
-  'north'   : gettext('North Station'),
-  'south'   : gettext('South Station'),
-  'harbour' : gettext('Harbour Station'),
-  'west'    : gettext('West Station')
+    'station-1': gettext('Station 1: Airport'),
+    'station-2': gettext('Station 2: West'),
+    'station-3': gettext('Station 3: South'),
+    'station-4': gettext('Station 4: Central'),
+    'station-5': gettext('Station 5: Harbour'),
+    'station-6': gettext('Station 6: Factory'),
+    'station-7': gettext('Station 7: Midway'),
+    'station-8': gettext('Station 8: North'),
+    'station-9': gettext('Station 9: East'),
 };
 Trainsylvania.station_destinations = {
-  'central' : {'A': 'airport' ,'B': 'midway'},
-  'airport' : {'A': 'west'    ,'B': 'south'},
-  'east'    : {'A': 'west'    ,'B': 'factory'},
-  'factory' : {'A': 'airport' ,'B': 'east'},
-  'midway'  : {'A': 'north'   ,'B': 'factory'},
-  'north'   : {'A': 'central' ,'B': 'harbour'},
-  'south'   : {'A': 'airport' ,'B': 'factory'},
-  'harbour' : {'A': 'west'    ,'B': 'central'},
-  'west'    : {'A': 'east'    ,'B': 'central'}
+    'station-1': {'A': 'station-2', 'B': 'station-3'},
+    'station-2': {'A': 'station-9', 'B': 'station-4'},
+    'station-3': {'A': 'station-1', 'B': 'station-6'},
+    'station-4': {'A': 'station-1', 'B': 'station-7'},
+    'station-5': {'A': 'station-2', 'B': 'station-4'},
+    'station-6': {'A': 'station-1', 'B': 'station-9'},
+    'station-7': {'A': 'station-8', 'B': 'station-6'},
+    'station-8': {'A': 'station-4', 'B': 'station-5'},
+    'station-9': {'A': 'station-2', 'B': 'station-6'},
 };
-Trainsylvania.station_start = 'airport';
-Trainsylvania.station_finish = 'harbour';
+Trainsylvania.station_start = 'station-1';
+Trainsylvania.station_finish = 'station-5';
 
 $(document).ready(function() {
   // Add images on load to preload for animations
