@@ -435,13 +435,9 @@ trainsylvania-planner:
   languages:
     en: interactives/trainsylvania-planner.html
   is_interactive: true
-trainsylvania-blank:
+trainsylvania-map:
   languages:
-    en: interactives/trainsylvania-blank.html
-  is_interactive: false
-trainsylvania-complete:
-  languages:
-    en: interactives/trainsylvania-complete.html
+    en: interactives/trainsylvania-map.html
   is_interactive: false
 trig-function-calculator:
   languages:

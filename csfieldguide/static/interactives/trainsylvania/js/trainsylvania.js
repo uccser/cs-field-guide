@@ -1,4 +1,4 @@
-var img_extension = '.png';
+var img_extension = '-station.svg';
 
 var Trainsylvania = {
   'slide_time': 800
@@ -6,28 +6,28 @@ var Trainsylvania = {
 
 Trainsylvania.stations = {
   'central' : gettext('Central Station'),
-  'city'    : gettext('City Mall Station'),
+  'airport' : gettext('Airport Station'),
   'east'    : gettext('East Station'),
-  'railington'   : gettext('Railington Station'),
+  'factory' : gettext('Factory Station'),
   'midway'  : gettext('Midway Station'),
   'north'   : gettext('North Station'),
   'south'   : gettext('South Station'),
-  'suburb'  : gettext('Suburbopolis Station'),
+  'harbour' : gettext('Harbour Station'),
   'west'    : gettext('West Station')
 };
 Trainsylvania.station_destinations = {
-  'central' : {'a': 'city'    ,'b': 'midway'},
-  'city'    : {'a': 'west'    ,'b': 'south'},
-  'east'    : {'a': 'west'    ,'b': 'railington'},
-  'railington'   : {'a': 'city'    ,'b': 'east'},
-  'midway'  : {'a': 'north'   ,'b': 'railington'},
-  'north'   : {'a': 'central' ,'b': 'suburb'},
-  'south'   : {'a': 'city'    ,'b': 'railington'},
-  'suburb'  : {'a': 'west'    ,'b': 'central'},
-  'west'    : {'a': 'east'    ,'b': 'central'}
+  'central' : {'A': 'airport' ,'B': 'midway'},
+  'airport' : {'A': 'west'    ,'B': 'south'},
+  'east'    : {'A': 'west'    ,'B': 'factory'},
+  'factory' : {'A': 'airport' ,'B': 'east'},
+  'midway'  : {'A': 'north'   ,'B': 'factory'},
+  'north'   : {'A': 'central' ,'B': 'harbour'},
+  'south'   : {'A': 'airport' ,'B': 'factory'},
+  'harbour' : {'A': 'west'    ,'B': 'central'},
+  'west'    : {'A': 'east'    ,'B': 'central'}
 };
-Trainsylvania.station_start = 'city';
-Trainsylvania.station_finish = 'suburb';
+Trainsylvania.station_start = 'airport';
+Trainsylvania.station_finish = 'harbour';
 
 $(document).ready(function() {
   // Add images on load to preload for animations
@@ -64,7 +64,7 @@ function travel_on_train(train) {
     var destination = Trainsylvania.station_start;
   } else {
     // Find destination
-    var destination = Trainsylvania.station_destinations[Trainsylvania.station_current][train];
+   var destination = Trainsylvania.station_destinations[Trainsylvania.station_current][train.toUpperCase()];
   }
 
   // Slide stations

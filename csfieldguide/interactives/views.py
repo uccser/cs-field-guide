@@ -3,6 +3,7 @@
 from django.views import generic
 from django.http import HttpResponse, JsonResponse
 from django.urls import reverse
+from django.shortcuts import redirect
 from django.conf import settings
 from django.utils import translation
 from django.views.decorators.clickjacking import xframe_options_exempt
@@ -110,3 +111,45 @@ def thumbnail_json(request, **kwargs):
                     ]
                 )
     return JsonResponse(data, safe=False)
+
+
+def redirect_to_cfg_parsing_challenge(request):
+    """Redirect request to renamed interactive.
+
+    Returns a 301 permanent redirect HTTP response.
+    """
+    return redirect(
+        reverse(
+            "interactives:interactive",
+            kwargs={'interactive_slug': 'cfg-parsing-challenge'},
+        ) + f"?{request.GET.urlencode()}",
+        permanent=True,
+    )
+
+
+def redirect_to_trainsylvania_map_blank(request):
+    """Redirect request to renamed interactive.
+
+    Returns a 301 permanent redirect HTTP response.
+    """
+    return redirect(
+        reverse(
+            "interactives:interactive",
+            kwargs={'interactive_slug': 'trainsylvania-map'},
+        ),
+        permanent=True,
+    )
+
+
+def redirect_to_trainsylvania_map_complete(request):
+    """Redirect request to renamed interactive.
+
+    Returns a 301 permanent redirect HTTP response.
+    """
+    return redirect(
+        reverse(
+            "interactives:interactive",
+            kwargs={'interactive_slug': 'trainsylvania-map'},
+        )+"?complete",
+        permanent=True,
+    )

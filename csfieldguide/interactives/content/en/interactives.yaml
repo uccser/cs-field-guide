@@ -196,10 +196,8 @@ trainsylvania:
   name: Trainsylvania
 trainsylvania-planner:
   name: Trainsylvania Planner
-trainsylvania-blank:
-  name: Blank Trainsylvania
-trainsylvania-complete:
-  name: Complete Trainsylvania
+trainsylvania-map:
+  name: Trainsylvania Map
 tree-diagram:
   name: Tree Diagram
 trig-function-calculator:

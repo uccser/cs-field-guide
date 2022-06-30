@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-14 00:46+0000\n"
+"POT-Creation-Date: 2022-06-29 22:33+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,16 +17,48 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: config/settings/base.py:130
+#: chapters/models.py:49
+msgid "glossary term"
+msgstr ""
+
+#: chapters/models.py:50
+msgid "glossary terms"
+msgstr ""
+
+#: chapters/models.py:104
+msgid "chapter"
+msgstr ""
+
+#: chapters/models.py:105
+msgid "chapters"
+msgstr ""
+
+#: chapters/models.py:153
+msgid "chapter section"
+msgstr ""
+
+#: chapters/models.py:154
+msgid "chapter sections"
+msgstr ""
+
+#: config/settings/base.py:128
 msgid "Translation mode"
 msgstr ""
 
-#: config/settings/base.py:136
+#: config/settings/base.py:134
 msgid "Translation mode (Bi-directional)"
 msgstr ""
 
-#: interactives/models.py:11
+#: interactives/models.py:13
 msgid "Interactive"
+msgstr ""
+
+#: interactives/models.py:56
+msgid "interactive"
+msgstr ""
+
+#: interactives/models.py:57
+msgid "interactives"
 msgstr ""
 
 #: templates/404.html:6 templates/404.html:13
@@ -45,8 +77,8 @@ msgstr ""
 msgid "Home page"
 msgstr ""
 
-#: templates/404.html:26 templates/base.html:93 templates/base.html:98
-#: templates/base.html:236
+#: templates/404.html:24 templates/base.html:93 templates/base.html:98
+#: templates/base.html:234
 msgid "Search"
 msgstr ""
 
@@ -365,8 +397,8 @@ msgid "Curriculum Guides"
 msgstr ""
 
 #: templates/appendices/index.html:42 templates/appendices/sitemap.html:66
-#: templates/base.html:242 templates/chapters/glossary.html:7
-#: templates/chapters/glossary.html:11
+#: templates/base.html:239 templates/chapters/glossary.html:6
+#: templates/chapters/glossary.html:10
 msgid "Glossary"
 msgstr ""
 
@@ -447,19 +479,19 @@ msgstr ""
 msgid "Help"
 msgstr ""
 
-#: templates/base.html:247
+#: templates/base.html:244
 msgid "Feedback"
 msgstr ""
 
-#: templates/base.html:256 templates/general/index.html:101
+#: templates/base.html:253 templates/general/index.html:101
 msgid "Switch to student mode"
 msgstr ""
 
-#: templates/base.html:260 templates/general/index.html:107
+#: templates/base.html:257 templates/general/index.html:107
 msgid "Switch to teacher mode"
 msgstr ""
 
-#: templates/base.html:286
+#: templates/base.html:283
 msgid ""
 "The Computer Science Field Guide material is open source on <a target="
 "\"_blank\" rel=\"noopener noreferrer\" href=\"https://github.com/uccser/cs-"
@@ -475,12 +507,12 @@ msgid ""
 "\" href=\"https://icons8.com/\">icons8</a>."
 msgstr ""
 
-#: templates/base.html:317
+#: templates/base.html:314
 #, python-format
 msgid "This definition is not available in %(language)s, sorry!"
 msgstr ""
 
-#: templates/base.html:324 templates/interactives/cfg-parsing-challenge.html:73
+#: templates/base.html:321 templates/interactives/cfg-parsing-challenge.html:83
 #: templates/interactives/matrix-simplifier.html:172
 #: templates/interactives/matrix-simplifier.html:201
 msgid "Close"
@@ -714,7 +746,7 @@ msgstr ""
 
 #: templates/interactives/2d-shape-manipulations.html:167
 #: templates/interactives/2d-shape-manipulations.html:172
-#: templates/interactives/cfg-parsing-challenge.html:108
+#: templates/interactives/cfg-parsing-challenge.html:122
 #: templates/interactives/checksum-calculator.html:74
 #: templates/interactives/city-trip.html:32
 #: templates/interactives/hex-background-colour.html:21
@@ -1021,6 +1053,10 @@ msgstr ""
 msgid "Cards to show:"
 msgstr ""
 
+#: templates/interactives/binary-cards.html:27
+msgid "Show total number of dots:"
+msgstr ""
+
 #: templates/interactives/binary-mode-calculator.html:10
 #: templates/interactives/picture-memory.html:138
 msgid "Calculator"
@@ -1089,7 +1125,7 @@ msgid "Previous"
 msgstr ""
 
 #: templates/interactives/braille-alphabet.html:33
-#: templates/interactives/cfg-parsing-challenge.html:98
+#: templates/interactives/cfg-parsing-challenge.html:110
 #: templates/interactives/persona-carousel.html:30
 msgid "Next"
 msgstr ""
@@ -1126,130 +1162,130 @@ msgid ""
 "productions."
 msgstr ""
 
-#: templates/interactives/cfg-parsing-challenge.html:21
+#: templates/interactives/cfg-parsing-challenge.html:20
 msgid "Toggle instructions"
 msgstr ""
 
-#: templates/interactives/cfg-parsing-challenge.html:24
+#: templates/interactives/cfg-parsing-challenge.html:23
 msgid "Toggle example"
 msgstr ""
 
-#: templates/interactives/cfg-parsing-challenge.html:30
+#: templates/interactives/cfg-parsing-challenge.html:29
 msgid "The syntax is a simplified YACC syntax:"
 msgstr ""
 
-#: templates/interactives/cfg-parsing-challenge.html:31
+#: templates/interactives/cfg-parsing-challenge.html:30
 msgid ""
 "Begin each line with a non-terminal and colon (:), and end it with a "
 "semicolon (;)."
 msgstr ""
 
-#: templates/interactives/cfg-parsing-challenge.html:32
+#: templates/interactives/cfg-parsing-challenge.html:31
 msgid ""
 "Between the colon and semicolon, list replacements for the non-terminal "
 "separated by vertical bars (|)."
 msgstr ""
 
-#: templates/interactives/cfg-parsing-challenge.html:33
+#: templates/interactives/cfg-parsing-challenge.html:32
 msgid "Enclose terminals with inverted commas (')."
 msgstr ""
 
-#: templates/interactives/cfg-parsing-challenge.html:34
+#: templates/interactives/cfg-parsing-challenge.html:33
 msgid ""
 "Separate non-terminals from each other, and terminals from non-terminals, "
 "with spaces."
 msgstr ""
 
-#: templates/interactives/cfg-parsing-challenge.html:35
+#: templates/interactives/cfg-parsing-challenge.html:34
 msgid ""
 "Spaces, colons, semicolons, vertical bars and inverted commas are all "
 "reserved for defining the productions and should not be used in the "
 "productions themselves."
 msgstr ""
 
-#: templates/interactives/cfg-parsing-challenge.html:36
+#: templates/interactives/cfg-parsing-challenge.html:35
 msgid ""
 "Ampersands (&) and equals (=) are reserved for interpreting the url and "
 "should not be used either."
 msgstr ""
 
-#: templates/interactives/cfg-parsing-challenge.html:41
+#: templates/interactives/cfg-parsing-challenge.html:40
 msgid "The default grammar productions can be obtained from:"
 msgstr ""
 
-#: templates/interactives/cfg-parsing-challenge.html:50
+#: templates/interactives/cfg-parsing-challenge.html:49
 msgid "Enter your productions here."
 msgstr ""
 
-#: templates/interactives/cfg-parsing-challenge.html:54
+#: templates/interactives/cfg-parsing-challenge.html:55
 msgid "Custom examples"
 msgstr ""
 
-#: templates/interactives/cfg-parsing-challenge.html:55
+#: templates/interactives/cfg-parsing-challenge.html:59
 msgid "Provide your own examples that a user can try to match."
 msgstr ""
 
-#: templates/interactives/cfg-parsing-challenge.html:58
+#: templates/interactives/cfg-parsing-challenge.html:63
 msgid "Type each example on a new line."
 msgstr ""
 
-#: templates/interactives/cfg-parsing-challenge.html:62
+#: templates/interactives/cfg-parsing-challenge.html:69
 msgid "Random examples"
 msgstr ""
 
-#: templates/interactives/cfg-parsing-challenge.html:63
+#: templates/interactives/cfg-parsing-challenge.html:73
 msgid "Generate new examples by following your productions at random."
 msgstr ""
 
-#: templates/interactives/cfg-parsing-challenge.html:66
+#: templates/interactives/cfg-parsing-challenge.html:77
 msgid "Get link"
 msgstr ""
 
-#: templates/interactives/cfg-parsing-challenge.html:67
+#: templates/interactives/cfg-parsing-challenge.html:78
 msgid "Get link to default"
 msgstr ""
 
-#: templates/interactives/cfg-parsing-challenge.html:79
+#: templates/interactives/cfg-parsing-challenge.html:89
 msgid "Context-free Grammar Parsing Challenge"
 msgstr ""
 
-#: templates/interactives/cfg-parsing-challenge.html:83
+#: templates/interactives/cfg-parsing-challenge.html:93
 msgid ""
 "Use the available productions to build an equation.<br>Click the non-"
 "terminal below to replace it."
 msgstr ""
 
-#: templates/interactives/cfg-parsing-challenge.html:87
+#: templates/interactives/cfg-parsing-challenge.html:96
 msgid "Try to generate:"
 msgstr ""
 
-#: templates/interactives/cfg-parsing-challenge.html:91
-#: templates/interactives/cfg-parsing-challenge.html:96
+#: templates/interactives/cfg-parsing-challenge.html:103
+#: templates/interactives/cfg-parsing-challenge.html:108
 #: templates/interactives/sorting-algorithms-configurator.html:18
 msgid "Random"
 msgstr ""
 
-#: templates/interactives/cfg-parsing-challenge.html:93
+#: templates/interactives/cfg-parsing-challenge.html:105
 msgid "Toggle Dropdown"
 msgstr ""
 
-#: templates/interactives/cfg-parsing-challenge.html:97
+#: templates/interactives/cfg-parsing-challenge.html:109
 msgid "Simple"
 msgstr ""
 
-#: templates/interactives/cfg-parsing-challenge.html:107
+#: templates/interactives/cfg-parsing-challenge.html:121
 msgid "Undo"
 msgstr ""
 
-#: templates/interactives/cfg-parsing-challenge.html:114
+#: templates/interactives/cfg-parsing-challenge.html:128
 msgid "Productions:"
 msgstr ""
 
-#: templates/interactives/cfg-parsing-challenge.html:120
+#: templates/interactives/cfg-parsing-challenge.html:134
 msgid "History:"
 msgstr ""
 
-#: templates/interactives/cfg-parsing-challenge.html:128
+#: templates/interactives/cfg-parsing-challenge.html:142
 msgid "Customise productions"
 msgstr ""
 
@@ -2759,11 +2795,19 @@ msgid ""
 "span>"
 msgstr ""
 
-#: templates/interactives/nfa-guesser.html:20
+#: templates/interactives/nfa-guesser.html:18
+msgid "Possible end states:"
+msgstr ""
+
+#: templates/interactives/nfa-guesser.html:22
 msgid "Check answer"
 msgstr ""
 
-#: templates/interactives/nfa-guesser.html:26
+#: templates/interactives/nfa-guesser.html:27
+msgid "Show answer"
+msgstr ""
+
+#: templates/interactives/nfa-guesser.html:30
 msgid "Generate new input sequence"
 msgstr ""
 
@@ -2949,46 +2993,42 @@ msgid ""
 msgstr ""
 
 #: templates/interactives/parity.html:19
+#: templates/interactives/run-length-encoding.html:14
+msgid "Grid Size:"
+msgstr ""
+
+#: templates/interactives/parity.html:47
 msgid ""
 "Click the parity bits in the last row and column to set them correctly. "
 "Click the 'Flip a bit' button when you are done."
 msgstr ""
 
-#: templates/interactives/parity.html:21
+#: templates/interactives/parity.html:49
 msgid "Flip a bit"
 msgstr ""
 
-#: templates/interactives/parity.html:25
+#: templates/interactives/parity.html:53
 msgid "A bit has changed! Click on the single bit that has changed."
 msgstr ""
 
-#: templates/interactives/parity.html:30
+#: templates/interactives/parity.html:58
 msgid "Check parity"
 msgstr ""
 
-#: templates/interactives/parity.html:34
-#: templates/interactives/run-length-encoding.html:14
-msgid "Grid Size:"
-msgstr ""
-
-#: templates/interactives/parity.html:59
+#: templates/interactives/parity.html:63
 msgid "Add random data"
 msgstr ""
 
-#: templates/interactives/parity.html:62
+#: templates/interactives/parity.html:66
 msgid "Clear all"
 msgstr ""
 
-#: templates/interactives/parity.html:66
+#: templates/interactives/parity.html:71
 msgid "Start Over"
 msgstr ""
 
-#: templates/interactives/parity.html:75
+#: templates/interactives/parity.html:81
 msgid "<strong>Confusation</strong><br>Please wait"
-msgstr ""
-
-#: templates/interactives/parity.html:82
-msgid "Created by Jack Morgan"
 msgstr ""
 
 #: templates/interactives/password-guesser.html:11
@@ -4308,7 +4348,7 @@ msgid "Enter sequence of A's and B's here"
 msgstr ""
 
 #: templates/interactives/trainsylvania.html:9
-msgid "Find your way to <strong>Suburbopolis Station!</strong>"
+msgid "Find your way to <strong>Harbour Station!</strong>"
 msgstr ""
 
 #: templates/interactives/trainsylvania.html:10
@@ -4520,6 +4560,10 @@ msgstr ""
 msgid "Usually not<br>allowed!"
 msgstr ""
 
+#: templates/search/results/chapters.chaptersection.html:10
+msgid "Within chapter"
+msgstr ""
+
 #: utils/custom_converter_templates/blockquote.html:10
 msgid "Source"
 msgstr ""
@@ -4554,4 +4598,8 @@ msgstr ""
 
 #: utils/custom_converter_templates/panel.html:58
 msgid "Project"
+msgstr ""
+
+#: utils/custom_converter_templates/panel.html:64
+msgid "Exercise"
 msgstr ""

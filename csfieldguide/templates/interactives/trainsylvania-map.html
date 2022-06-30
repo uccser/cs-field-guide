@@ -1,0 +1,19 @@
+{% extends interactive_mode_template %}
+
+{% load i18n static read_static_file %}
+
+{% block interactive_html %}
+    <div class="uninteractive container">
+        <div id="trainsylvania-map" style="display:none;">
+            {% read_static_file 'interactives/trainsylvania-map/svg/trainsylvania-map.svg' %}
+        </div>
+    </div>
+{% endblock interactive_html %}
+
+{% block interactive_css %}
+    <link rel="stylesheet" href="{% static 'interactives/trainsylvania-map/css/trainsylvania-map.css' %}">
+{% endblock interactive_css %}
+
+{% block interactive_js %}
+  <script type="text/javascript" src="{% static 'interactives/trainsylvania-map/js/trainsylvania-map.js' %}" defer></script>
+{% endblock interactive_js %}
