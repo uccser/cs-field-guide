@@ -20,6 +20,8 @@ $(document).ready(function () {
     binaryCardsSettings.TOTAL_COUNT = urlParameters.getUrlParameter("total") || true;
     var parameterNumberOfCards = Number(urlParameters.getUrlParameter("cards") || urlParameters.getUrlParameter("digits"));
     var startingSides = urlParameters.getUrlParameter("start") || "";
+    const hide_ui = urlParameters.getUrlParameter("hide-ui") || true;
+    const rtl = urlParameters.getUrlParameter("rtl") || false;
 
     // Set data and interactive
     allCardsContainerElement = document.getElementById("interactive-binary-cards-container");
@@ -45,6 +47,14 @@ $(document).ready(function () {
     if (binaryCardsSettings.TOTAL_COUNT == "false") {
         $("#cards-total").addClass("d-none");
         $("#dot-decimal-count").addClass("d-none");
+    }
+    if (rtl == "true") {
+        allCardsContainerElement.style.justifyContent = "flex-end";
+        document.getElementById("dot-decimal-count").style.textAlign = "right";
+    }
+    if (hide_ui == "true") {
+        document.getElementById("interactive-binary-cards-title").style.display = "none";
+        document.getElementById("interactive-options").style.display = "none";
     }
 
     $("#interactive-binary-cards").on("click", ".binary-card", function() {
