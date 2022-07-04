@@ -3,7 +3,7 @@
 ////////////////////////////////
 
 // Gulp and package
-const { src, dest, parallel, series, watch } = require('gulp')
+const { src, dest, parallel, series, watch, lastRun } = require('gulp')
 const pjson = require('./package.json')
 
 // Plugins
@@ -154,7 +154,7 @@ function js() {
     return src([
             `${paths.js_source}/**/*.js`,
             `!${paths.js_source}/**/modules/**/*.js`
-        ])
+        ], {since: lastRun(js)})
         .pipe(js_filter)
         .pipe(errorHandler(catchError))
         .pipe(sourcemaps.init())
@@ -208,10 +208,10 @@ function files() {
 
 // Watch
 function watchPaths() {
-    watch([`${paths.js_source}/**/*.js`], js).on("change", reload)
-    watch([`${paths.css_source}/**/*.css`], css).on("change", reload)
-    watch([`${paths.scss_source}/**/*.scss`], scss).on("change", reload)
-    watch([`${paths.images_source}/**/*`], img).on("change", reload)
+    watch([`${paths.js_source}**/*.js`], js).on("change", reload)
+    watch([`${paths.css_source}/*/*.css`], css).on("change", reload)
+    watch([`${paths.scss_source}**/*.scss`], scss).on("change", reload)
+    watch([`${paths.images_source}**/*`], img).on("change", reload)
 }
 
 // Generate all assets
