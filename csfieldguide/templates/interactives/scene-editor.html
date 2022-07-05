@@ -5,8 +5,8 @@
 
 {% block interactive_html %}
   <div class="container">
-    <div class="row mt-5">
-      <div id="scene" class="col-12"></div>
+    <div id="scene-parent" class="mt-5">
+      <div id="scene"></div>
     </div>
 
     <div class="row my-3">
@@ -104,7 +104,7 @@
   <script type="text/javascript">
     var base_static_path = "{{ STATIC_URL }}";
   </script>
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML,Safe.js"></script>
   <script type="text/javascript" src="{% static 'interactives/scene-editor/js/scene-editor.js' %}"></script>
 {% endblock interactive_js %}

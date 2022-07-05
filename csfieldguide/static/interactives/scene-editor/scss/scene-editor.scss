@@ -1,6 +1,12 @@
+#scene-parent {
+    display: flex;
+    justify-content: center;
+}
+
 canvas {
   width: 100% !important;
   height: 100% !important;
+  border: 1px solid black;
 }
 
 .object {
