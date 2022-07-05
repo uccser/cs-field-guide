@@ -15,6 +15,11 @@ The interactive shows the cards with dots from **128** to **1** by default (128,
 - `start=sides` - Where `sides` is a sequence of `W` and `B` characters, to state the sides that should be displayed when the interactive starts. The first letter states whether the first card (on the left) should be white (`W`) or black (`B`), the second letter stands for the second card. Therefore the number of letters should match the number of cards used.
 - `input=value` - Where `value` is `true` or `false` (default is true). Indicates whether or not to display the input box that lets users choose how many cards are displayed.
 - `total=value` - Where `value` is `true` or `false` (default is true). Indicates whether or not to display the total number of dots visible. Setting the value to `false` disables the ability to turn the total on.
+- `hide-ui=value` - Where `value` is `true` or `false` (default is false).
+  Indicates whether to hide UI elements, like the title and flip all cards buttons., Setting to true will only show the cards and the dot total (which can be hidden with the `total` parameter, see above).
+- `rtl=value` - Where `value` is `true` or `false` (default is false).
+  Indicates whether or not to display the cards from right to left.
+  This is only intended for use when the screen size is fixed, as it only works for a small number of cards.
 
 ### Input box drawback
 

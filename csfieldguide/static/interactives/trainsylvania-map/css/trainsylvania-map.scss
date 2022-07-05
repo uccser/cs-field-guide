@@ -1,0 +1,14 @@
+#trainsylvania-map {
+    svg {
+        g#fsa,
+        g#a-arrows,
+        g#a-arrow-labels,
+        g#b-arrows,
+        g#b-arrow-labels {
+            display: none;
+        }
+    }
+}
+@page {
+    size: auto;
+}

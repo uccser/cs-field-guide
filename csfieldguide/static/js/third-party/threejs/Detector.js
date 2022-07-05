@@ -4,7 +4,7 @@
  * third-party-licences/threejs.txt
  * By inspection, this is specifically from:
  * https://github.com/alteredq/three.js/blob/master/examples/js/Detector.js
- * 
+ *
  * Browserify support modification by Alasdair Smith
  * ---------------------------------------------
  * @author alteredq / http://alteredqualia.com/
@@ -13,68 +13,55 @@
 
 var Detector = {
 
-	canvas: !! window.CanvasRenderingContext2D,
-	webgl: ( function () {
+    canvas: !!window.CanvasRenderingContext2D,
+    webgl: (function () { try { return !!window.WebGLRenderingContext && !!document.createElement('canvas').getContext('experimental-webgl'); } catch (e) { return false; } })(),
+    workers: !!window.Worker,
+    fileapi: window.File && window.FileReader && window.FileList && window.Blob,
 
-		try {
+    getWebGLErrorMessage: function () {
 
-			var canvas = document.createElement( 'canvas' ); return !! ( window.WebGLRenderingContext && ( canvas.getContext( 'webgl' ) || canvas.getContext( 'experimental-webgl' ) ) );
+        var domElement = document.createElement('div');
 
-		} catch ( e ) {
+        domElement.style.fontFamily = 'monospace';
+        domElement.style.fontSize = '13px';
+        domElement.style.textAlign = 'center';
+        domElement.style.background = '#eee';
+        domElement.style.color = '#000';
+        domElement.style.padding = '1em';
+        domElement.style.width = '475px';
+        domElement.style.margin = '5em auto 0';
 
-			return false;
+        if (!this.webgl) {
 
-		}
+            domElement.innerHTML = window.WebGLRenderingContext ? [
+                'Your graphics card does not seem to support <a href="http://khronos.org/webgl/wiki/Getting_a_WebGL_Implementation">WebGL</a>.<br />',
+                'Find out how to get it <a href="http://get.webgl.org/">here</a>.'
+            ].join('\n') : [
+                'Your browser does not seem to support <a href="http://khronos.org/webgl/wiki/Getting_a_WebGL_Implementation">WebGL</a>.<br/>',
+                'Find out how to get it <a href="http://get.webgl.org/">here</a>.'
+            ].join('\n');
 
-	} )(),
-	workers: !! window.Worker,
-	fileapi: window.File && window.FileReader && window.FileList && window.Blob,
+        }
 
-	getWebGLErrorMessage: function () {
+        return domElement;
 
-		var element = document.createElement( 'div' );
-		element.id = 'webgl-error-message';
-		element.style.fontFamily = 'monospace';
-		element.style.fontSize = '13px';
-		element.style.fontWeight = 'normal';
-		element.style.textAlign = 'center';
-		element.style.background = '#fff';
-		element.style.color = '#000';
-		element.style.padding = '1.5em';
-		element.style.width = '400px';
-		element.style.margin = '5em auto 0';
+    },
 
-		if ( ! this.webgl ) {
+    addGetWebGLMessage: function (parameters) {
 
-			element.innerHTML = window.WebGLRenderingContext ? [
-				'Your graphics card does not seem to support <a href="http://khronos.org/webgl/wiki/Getting_a_WebGL_Implementation" style="color:#000">WebGL</a>.<br />',
-				'Find out how to get it <a href="http://get.webgl.org/" style="color:#000">here</a>.'
-			].join( '\n' ) : [
-				'Your browser does not seem to support <a href="http://khronos.org/webgl/wiki/Getting_a_WebGL_Implementation" style="color:#000">WebGL</a>.<br/>',
-				'Find out how to get it <a href="http://get.webgl.org/" style="color:#000">here</a>.'
-			].join( '\n' );
+        var parent, id, domElement;
 
-		}
+        parameters = parameters || {};
 
-		return element;
+        parent = parameters.parent !== undefined ? parameters.parent : document.body;
+        id = parameters.id !== undefined ? parameters.id : 'oldie';
 
-	},
+        domElement = Detector.getWebGLErrorMessage();
+        domElement.id = id;
 
-	addGetWebGLMessage: function ( parameters ) {
+        parent.appendChild(domElement);
 
-		var parent, id, element;
-
-		parameters = parameters || {};
-
-		parent = parameters.parent !== undefined ? parameters.parent : document.body;
-		id = parameters.id !== undefined ? parameters.id : 'oldie';
-
-		element = Detector.getWebGLErrorMessage();
-		element.id = id;
-
-		parent.appendChild( element );
-
-	}
+    }
 
 };
 

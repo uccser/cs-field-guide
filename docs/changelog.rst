@@ -18,6 +18,41 @@ All notable changes to this project will be documented in this file.
 We have listed major changes for each release below.
 `All downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/>`__
 
+3.10.2
+==============================================================================
+
+**Release date:** 6th July 2022
+
+**Changelog:**
+
+- Update Trainsylvania interactives imagery and station names.
+- Combine trainsylvania-blank and trainsylvania-complete into trainsylvania-map interactive.
+- Remove trainsylvania blank map file in favor of trainsylvania-map interactive.
+- Add options to binary-cards interactive for hiding UI elements and displaying right to left.
+- Fix bug where scene-editor interactive wasn't working. `#1837 <https://github.com/uccser/cs-field-guide/issues/1837>`__
+- Fix indentation within Dependabot configuration file.
+- Fix Gulp watch task to watch correct files.
+- Add attribution to texture used in scene-editor interactive.
+- Update Gulp JS task to only update files changed since last run.
+
+- Core dependency changes:
+
+    - Update dependabot/fetch-metadata from v1.3.1 to v1.3.3.
+    - Update django from 3.2.13 to 3.2.14.
+    - Update lxml from 4.9.0 to 4.9.1.
+
+- Interactive box-rotation dependency changes:
+
+    - Update three from 0.141.0 to 0.142.0.
+
+- Interactive box-translation dependency changes:
+
+    - Update three from 0.141.0 to 0.142.0.
+
+- Interactive scene-editor dependency changes:
+
+    - Update three from 0.141.0 to 0.142.0.
+
 3.10.1
 ==============================================================================
 

@@ -24,15 +24,13 @@ Here's a map of a commuter train system for the town of Trainsylvania.
 The trouble is, it doesn't show where the trains go &ndash; all you know is that there are two trains from each station, the A-train and the B-train.
 The inhabitants of Trainsylvania don't seem to mind this &ndash; it's quite fun choosing trains at each station, and after a while you usually find yourself arriving where you intended.
 
-{interactive slug="trainsylvania-blank" type="in-page"}
+{interactive slug="trainsylvania-map" type="in-page"}
 
 You can travel around Trainsylvania yourself using the following interactive.
 You're starting at the City Mall station, and you need to find your way to Suburbopolis.
 At each station you can choose either the A-train or the B-train &ndash; press the button to find out where it will take you.
 But, like the residents of Trainsylvania, you'll probably want to start drawing a map of the railway, because later you might be asked to find your way somewhere else.
-If you want a template to draw on, you can print one using the button below.
-
-{button-link link="files/trainsylvania-blank.pdf" file="yes" text="Trainsylvania template"}
+If you want a template to draw on, you can [print one using this link]('interactives:centered_interactive' 'trainsylvania-map').
 
 {interactive slug="trainsylvania" type="in-page"}
 
@@ -44,7 +42,7 @@ You should let students devise their own notation for this.
 They will soon learn (possibly the hard way) that they should record all routes with an arrow (since trains don't necessarily return by the same route), and label their arrows with A or B.
 The full map for the activity is here, but don't spoil the students' fun by providing it &ndash; at least, not yet.
 
-{interactive slug="trainsylvania-complete" type="in-page"}
+{interactive slug="trainsylvania-map" type="in-page" parameters="complete"}
 
 {panel end}
 
