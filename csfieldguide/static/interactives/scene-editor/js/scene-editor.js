@@ -17,6 +17,7 @@ const MATRIX_TEMPLATE = "\\begin{bmatrix} %s \\\\ %s \\\\ %s \\end{bmatrix}";
 
 const SCENE_SIZE = 10000;
 const AXIS_LINE_THICKNESS = 4;
+const CAMERA_FACTOR_FROM_NEW_OBJECT = 1.4;
 const COLOUR_AXIS_X = 0xFF0000;
 const COLOUR_AXIS_Y = 0x00FF00;
 const COLOUR_AXIS_Z = 0x0000FF;
@@ -441,31 +442,31 @@ function addObject(type, material, name) {
     screenObjectTransforms[object.name] = [null, null];
 
     $("#selectable-objects").append("<option id='" + screenObjectIds[object.name] + "'>" + object.name + "</option>");
-    applyRandomTranslation(object);
+
+    if (!isStartingShape) {
+        applyRandomTranslation(object);
+    } else {
+        isStartingShape = false;
+    }
     setSuspect(object);
 }
 
 /**
-* The initial shape is left alone.
-* Any subsequent shape is randomly shifted by a translation matrix
+
+* Shape is randomly shifted by a translation matrix.
 */
 function applyRandomTranslation(object) {
-    if (!isStartingShape) {
-        // Not the starting shape, so do move
-        resetObject(object);
-        var max = 30;
-        var matrix4 = new THREE.Matrix4();
+    resetObject(object);
+    var max = 10;
+    var matrix4 = new THREE.Matrix4();
 
-        var x = Math.floor(Math.random() * Math.floor(max)) * posOrNegative();
-        var y = Math.floor(Math.random() * Math.floor(max)) * posOrNegative();
-        var z = Math.floor(Math.random() * Math.floor(max)) * posOrNegative();
+    var x = Math.floor(Math.random() * max) * posOrNegative();
+    var y = Math.floor(Math.random() * max) * posOrNegative();
+    var z = Math.floor(Math.random() * max) * posOrNegative();
 
-        matrix4.makeTranslation(x * SCALE, y * SCALE, z * SCALE);
-        object.applyMatrix4(matrix4);
-        screenObjectTransforms[object.name] = [null, [x, y, z]];
-    } else {
-        isStartingShape = false;
-    }
+    matrix4.makeTranslation(x * SCALE, y * SCALE, z * SCALE);
+    object.applyMatrix4(matrix4);
+    screenObjectTransforms[object.name] = [null, [x, y, z]];
 }
 
 /**
