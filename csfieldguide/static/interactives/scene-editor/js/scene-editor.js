@@ -364,6 +364,7 @@ function newObject() {
     var material = new THREE.MeshLambertMaterial( {color: colour} );
     addObject(objectType, material, name);
     $("#name-input").val('');
+    updateTargetButtons();
 };
 
 /**
@@ -570,7 +571,22 @@ function deleteSuspect() {
     } else {
         suspect = null;
     }
+    updateTargetButtons();
 }
+
+/**
+ * Update availability of apply and delete buttons.
+ */
+function updateTargetButtons() {
+    if (suspect === null) {
+        $('#apply-transformation').prop('disabled', true);
+        $('#delete-button').prop('disabled', true);
+    } else {
+        $('#apply-transformation').prop('disabled', false);
+        $('#delete-button').prop('disabled', false);
+    }
+}
+
 
 /**
 * Called when the user selects an object to focus on.

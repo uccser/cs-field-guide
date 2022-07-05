@@ -70,3 +70,7 @@ li:hover {
   font-size: 2.2rem;
   vertical-align: middle;
 }
+
+button:disabled {
+    cursor: not-allowed;
+}
