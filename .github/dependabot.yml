@@ -22,8 +22,8 @@ updates:
     open-pull-requests-limit: 999
     ignore:
     # Ignore updates to Django package until LTS version
-    - dependency-name: "django"
-      versions: ["4.0.X", "4.1.X", "5.0.X", "5.1.X", "6.0.X", "6.1.X", "7.0.X", "7.1.X"]
+      - dependency-name: "django"
+        versions: ["4.0.X", "4.1.X", "5.0.X", "5.1.X", "6.0.X", "6.1.X", "7.0.X", "7.1.X"]
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
