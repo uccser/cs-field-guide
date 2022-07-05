@@ -160,7 +160,7 @@ $(document).ready(function () {
 function init() {
     // Cameras
     camera = new THREE.PerspectiveCamera( 70, 16 / 9, 1, SCENE_SIZE * 10 );
-    camera.position.set( 1000, 500, 1000 );
+    camera.position.set( 1500, 1000, 1500 );
     camera.lookAt( new THREE.Vector3(0, 0, 0) );
 
     // Scene
