@@ -19,12 +19,12 @@ jobs:
       uses: actions/checkout@v3
 
     - name: Upload or update source files to Crowdin
-      uses: crowdin/github-action@1.4.9
+      uses: crowdin/github-action@1.4.10
       with:
         upload_sources: true
 
     - name: Download German translations
-      uses: crowdin/github-action@1.4.9
+      uses: crowdin/github-action@1.4.10
       with:
         upload_sources: false
         download_translations: true
@@ -42,7 +42,7 @@ jobs:
         config: crowdin.yaml
 
     - name: Download Spanish translations
-      uses: crowdin/github-action@1.4.9
+      uses: crowdin/github-action@1.4.10
       with:
         upload_sources: false
         download_translations: true
