@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "private": true,
     "dependencies": {
-        "mathjs": "6.0.3",
+        "mathjs": "10.6.4",
         "three": "0.142.0",
         "three-orbit-controls": "82.1.0"
     }
