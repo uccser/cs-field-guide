@@ -312,9 +312,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # ------------------------------------------------------------------------------
 DEPLOYED = env.bool("DEPLOYED")
 GIT_SHA = env("GIT_SHA", default=None)
-if GIT_SHA:
-    GIT_SHA = GIT_SHA[:8]
-else:
+if not GIT_SHA:
     GIT_SHA = "local development"
 PRODUCTION_ENVIRONMENT = False
 STAGING_ENVIRONMENT = False
