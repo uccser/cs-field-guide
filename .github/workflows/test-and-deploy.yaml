@@ -236,7 +236,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and push Docker image
-        uses: docker/build-push-action@v3.0.0
+        uses: docker/build-push-action@v3.1.0
         with:
           file: ./infrastructure/production/django/Dockerfile
           context: .
@@ -287,7 +287,7 @@ jobs:
             type=ref,event=tag,enable=true
 
       - name: Build and push Docker image
-        uses: docker/build-push-action@v3.0.0
+        uses: docker/build-push-action@v3.1.0
         with:
           file: ./infrastructure/production/django/Dockerfile
           context: .
