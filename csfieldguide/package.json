@@ -12,7 +12,7 @@
         "browserify": "17.0.0",
         "child_process": "1.0.2",
         "codemirror": "5.65.6",
-        "cssnano": "5.1.12",
+        "cssnano": "5.1.13",
         "details-element-polyfill": "2.4.0",
         "fancy-log": "2.0.0",
         "got": "11.8.2",
