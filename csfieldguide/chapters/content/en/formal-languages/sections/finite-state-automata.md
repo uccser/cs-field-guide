@@ -27,7 +27,7 @@ The inhabitants of Trainsylvania don't seem to mind this &ndash; it's quite fun 
 {interactive slug="trainsylvania-map" type="in-page"}
 
 You can travel around Trainsylvania yourself using the following interactive.
-You're starting at the City Mall station, and you need to find your way to Suburbopolis.
+You're starting at the Airport station, and you need to find your way to Harbour station.
 At each station you can choose either the A-train or the B-train &ndash; press the button to find out where it will take you.
 But, like the residents of Trainsylvania, you'll probably want to start drawing a map of the railway, because later you might be asked to find your way somewhere else.
 If you want a template to draw on, you can [print one using this link]('interactives:centered_interactive' 'trainsylvania-map').
@@ -46,12 +46,12 @@ The full map for the activity is here, but don't spoil the students' fun by prov
 
 {panel end}
 
-Did you find a sequence of trains to get from City Mall to Suburbopolis? You can test it by typing the sequence of trains in the following interactive.
+Did you find a sequence of trains to get from the Airport to the Harbour? You can test it by typing the sequence of trains in the following interactive.
 For example, if you took the A-train, then the B-train, then the A-train, type in ABA.
 
 {interactive slug="trainsylvania-planner" type="in-page"}
 
-Can you find a sequence that takes you from City Mall to Suburbopolis?
+Can you find a sequence that takes you from the Airport to the Harbour?
 Can you find another sequence, perhaps a longer one?
 Suppose you wanted to take a really long route... can you find a sequence of 12 hops that would get you there?
 20 hops?
