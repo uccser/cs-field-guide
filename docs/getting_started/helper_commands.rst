@@ -130,7 +130,7 @@ More details for each command can be found on this page.
 Running ``./csfg logs`` will display the logs for the running systems.
 The output is for all logs until the time the command was run, therefore successive calls may display new logs.
 
-To follow logs as they output, enter ``docker-compose logs --follow``.
+To follow logs as they output, enter ``docker compose logs --follow``.
 
 -----------------------------------------------------------------------------
 
@@ -220,7 +220,7 @@ More details for each command can be found on this page.
 
 Running ``./csfg shell`` opens a bash terminal within the Django container (this requires the CS Field Guide system to be running).
 
-This is the equivalent to entering ``docker-compose run django bash``.
+This is the equivalent to entering ``docker compose run django bash``.
 
 -----------------------------------------------------------------------------
 
