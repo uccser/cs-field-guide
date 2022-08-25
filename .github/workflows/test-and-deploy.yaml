@@ -19,9 +19,9 @@ jobs:
       - name: Create Docker network
         run: docker network create uccser-development-stack
       - name: Start systems
-        run: docker-compose -f docker-compose.local.yml up -d
+        run: docker compose -f docker-compose.local.yml up -d
       - name: Run Django system check
-        run: docker-compose -f docker-compose.local.yml run --rm django python ./manage.py check --fail-level WARNING
+        run: docker compose -f docker-compose.local.yml run --rm django python ./manage.py check --fail-level WARNING
 
   test-content:
     name: Tests - Content
@@ -32,19 +32,19 @@ jobs:
       - name: Create Docker network
         run: docker network create uccser-development-stack
       - name: Start systems
-        run: docker-compose -f docker-compose.local.yml up -d
+        run: docker compose -f docker-compose.local.yml up -d
       - name: Create static files
-        run: docker-compose -f docker-compose.local.yml run --rm --user="root" node npm run generate-assets
+        run: docker compose -f docker-compose.local.yml run --rm --user="root" node npm run generate-assets
       - name: Collect static files
-        run: docker-compose -f docker-compose.local.yml run --rm --user="root" django python ./manage.py collectstatic --no-input
+        run: docker compose -f docker-compose.local.yml run --rm --user="root" django python ./manage.py collectstatic --no-input
       - name: Migrate database
-        run: docker-compose -f docker-compose.local.yml run --rm django python ./manage.py migrate
+        run: docker compose -f docker-compose.local.yml run --rm django python ./manage.py migrate
       - name: Load content
-        run: docker-compose -f docker-compose.local.yml run --rm django python ./manage.py update_data
+        run: docker compose -f docker-compose.local.yml run --rm django python ./manage.py update_data
       - name: Make interactive thumbnails
-        run: docker-compose -f docker-compose.local.yml run --rm --user="root" puppeteer node /make-interactive-thumbnails.js
+        run: docker compose -f docker-compose.local.yml run --rm --user="root" puppeteer node /make-interactive-thumbnails.js
       - name: Collect static files
-        run: docker-compose -f docker-compose.local.yml run --rm --user="root" django python ./manage.py collectstatic --no-input
+        run: docker compose -f docker-compose.local.yml run --rm --user="root" django python ./manage.py collectstatic --no-input
 
   test-general:
     name: Tests - General
@@ -55,7 +55,7 @@ jobs:
       - name: Run general tests
         run: ./dev ci test_general
       - name: Create coverage file
-        run: docker-compose -f docker-compose.local.yml run --rm --user="root" django coverage xml -i
+        run: docker compose -f docker-compose.local.yml run --rm --user="root" django coverage xml -i
       - name: Upload coverage file
         uses: codecov/codecov-action@v3
         with:
@@ -71,7 +71,7 @@ jobs:
       - name: Run management tests
         run: ./dev ci test_management
       - name: Create coverage file
-        run: docker-compose -f docker-compose.local.yml run --rm --user="root" django coverage xml -i
+        run: docker compose -f docker-compose.local.yml run --rm --user="root" django coverage xml -i
       - name: Upload coverage file
         uses: codecov/codecov-action@v3
         with:
@@ -126,13 +126,13 @@ jobs:
         run: docker network create uccser-development-stack
 
       - name: Start system
-        run: docker-compose -f docker-compose.local.yml up -d
+        run: docker compose -f docker-compose.local.yml up -d
 
       - name: Create production static files
-        run: docker-compose -f docker-compose.local.yml run --rm --user="root" node npm run build
+        run: docker compose -f docker-compose.local.yml run --rm --user="root" node npm run build
 
       - name: Collect staticfiles
-        run: docker-compose -f docker-compose.local.yml run --rm --user="root" django python manage.py collectstatic --no-input
+        run: docker compose -f docker-compose.local.yml run --rm --user="root" django python manage.py collectstatic --no-input
 
       - name: Archive static files
         run: tar czf static-files.tar.gz --directory csfieldguide/staticfiles/ .
@@ -174,22 +174,22 @@ jobs:
         run: docker network create uccser-development-stack
 
       - name: Start system
-        run: docker-compose -f docker-compose.local.yml up -d
+        run: docker compose -f docker-compose.local.yml up -d
 
       - name: Create static files
-        run: docker-compose -f docker-compose.local.yml run --rm --user="root" node npm run generate-assets
+        run: docker compose -f docker-compose.local.yml run --rm --user="root" node npm run generate-assets
 
       - name: Collect staticfiles
-        run: docker-compose -f docker-compose.local.yml run --rm --user="root" django python manage.py collectstatic --no-input
+        run: docker compose -f docker-compose.local.yml run --rm --user="root" django python manage.py collectstatic --no-input
 
       - name: Migrate database
-        run: docker-compose -f docker-compose.local.yml run --rm django python ./manage.py migrate
+        run: docker compose -f docker-compose.local.yml run --rm django python ./manage.py migrate
 
       - name: Load interactives
-        run: docker-compose -f docker-compose.local.yml run --rm django python ./manage.py loadinteractives
+        run: docker compose -f docker-compose.local.yml run --rm django python ./manage.py loadinteractives
 
       - name: Make interactive thumbnails
-        run: docker-compose -f docker-compose.local.yml run --rm --user="root" puppeteer node /make-interactive-thumbnails.js --language ${{ matrix.language }}
+        run: docker compose -f docker-compose.local.yml run --rm --user="root" puppeteer node /make-interactive-thumbnails.js --language ${{ matrix.language }}
 
       - name: Archive static files
         run: tar czf interactive-thumbnails.tar.gz --directory csfieldguide/build/img/interactives/thumbnails/ .
