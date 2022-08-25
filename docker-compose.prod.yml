@@ -76,7 +76,7 @@ services:
 
     postgres:
         <<: *default-opts
-        image: postgres:13.3
+        image: postgres:13.8
         # TODO: Write test script that reads secret files
         # to get correct username
         # healthcheck:
