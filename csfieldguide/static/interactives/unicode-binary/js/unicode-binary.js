@@ -2,18 +2,16 @@
 let left;
 require('string.fromcodepoint');
 const s = require('underscore.string');
-const URI = require('urijs');
 
 const validModes = ['utf8', 'utf16', 'utf32'];
 
-const { query } = URI.parse(decodeURIComponent(window.location.href));
-const MODE = ((left = URI.parseQuery(query).mode) != null ? left : 'utf8').toLowerCase();
-
-if (!Array.from(validModes).includes(MODE)) {
-    // Ensure the mode is an actualy encoding
-    alert('Mode must be in #{validModes}');
-} else if (MODE !== 'utf8') {
-  $("#interactive-unicode-binary-mode").text(MODE.substr(-2));
+var mode = validModes[0];
+var search_param = new URL(window.location.href).searchParams.get('mode');
+if (validModes.includes(search_param)) {
+    mode = search_param;
+}
+if (mode !== validModes[0]) {
+    $("#interactive-unicode-binary-mode").text(mode.substr(-2));
 }
 
 const byteify = function(binaryString) {
