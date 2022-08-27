@@ -6,4 +6,3 @@ Other Documentation
     :caption: Contents
 
     faq
-    setup_virtual_machine
