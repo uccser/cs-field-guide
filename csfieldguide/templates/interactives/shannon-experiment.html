@@ -1,0 +1,23 @@
+{% extends interactive_mode_template %}
+
+{% load static i18n %}
+
+{% block interactive_html %}
+    <div class="container">
+        <h4 class="text-center">
+            {% trans "Shannon Experiment" %}
+        </h4>
+
+        <div id="character-buttons"></div>
+
+        <div id=""
+    </div>
+{% endblock interactive_html %}
+
+{% block interactive_css %}
+    <link rel="stylesheet" href="{% static 'interactives/shannon-experiment/css/shannon-experiment.css' %}">
+{% endblock interactive_css %}
+
+{% block interactive_js %}
+    <script type="text/javascript" src="{% static 'interactives/shannon-experiment/js/shannon-experiment.js' %}"></script>
+{% endblock interactive_js %}
