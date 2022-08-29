@@ -46,6 +46,8 @@ var nextCharacter;
 var language;
 var elementAlphabetButtonsContainer;
 var elementSentenceContainer;
+var elementCurrentSentenceCharacter;
+var elementCurrentSentenceCharacterGuesses;
 var characterPosition = 0;
 var characterGuesses = 0;
 
@@ -70,6 +72,7 @@ function setup() {
     alphabet = alphabet.concat(extraSentenceCharacters);
 
     createAlphabetButtons(alphabet);
+    createSentenceElement();
 }
 
 function createAlphabetButtons(alphabet) {
@@ -124,6 +127,34 @@ function foundNextCharacter() {
     setNextCharacter();
     characterGuesses = 0;
 }
+
+function createSentenceElement() {
+    // Character
+    let elementSentenceCharacter = document.createElement('div');
+    let elementSentenceCharacterText = document.createTextNode('?');
+    elementSentenceCharacter.appendChild(elementSentenceCharacterText);
+    elementSentenceCharacter.classList.add('sentence-character');
+
+    // Character guesses
+    let elementSentenceCharacterGuesses = document.createElement('div');
+    let elementSentenceCharacterGuessesText = document.createTextNode('0');
+    elementSentenceCharacterGuesses.appendChild(elementSentenceCharacterGuessesText);
+    elementSentenceCharacterGuesses.classList.add('sentence-character-guesses');
+
+    // Combine elements
+    let elementSentenceCharacterContainer = document.createElement('div');
+    elementSentenceCharacterContainer.classList.add('sentence-character-container');
+    elementSentenceCharacterContainer.appendChild(elementSentenceCharacter);
+    elementSentenceCharacterContainer.appendChild(elementSentenceCharacterGuesses);
+
+    // Save into global variables
+    elementCurrentSentenceCharacter = elementSentenceCharacter;
+    elementCurrentSentenceCharacterGuesses = elementSentenceCharacterGuesses;
+
+    // Add into DOM
+    elementSentenceContainer.appendChild(elementSentenceCharacterContainer);
+}
+
 
 // Used under CC BY-SA 4.0
 // https://stackoverflow.com/a/2450976/10345299
