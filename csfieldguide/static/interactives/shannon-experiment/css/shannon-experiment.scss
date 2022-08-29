@@ -1,0 +1,24 @@
+#alphabet-buttons-container {
+    margin-bottom: 1rem;
+
+    .alphabet-button {
+        font-family: monospace;
+        font-weight: bold;
+        font-size: 1.3rem;
+        margin-right: 0.3rem;
+        margin-bottom: 0.3rem;
+        border: 1px solid #757575;
+        border-radius: 5px;
+
+        &:last-child {
+            margin-right: 0;
+        }
+        &:hover {
+            background-color: #aecbec;
+        }
+        &:disabled {
+            background-color: #d86464;
+            cursor: not-allowed;
+        }
+    }
+}

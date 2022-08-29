@@ -129,7 +129,7 @@ function css() {
 }
 
 function scss() {
-    return src(`${paths.scss_source}/**/*.scss`)
+    return src(`${paths.scss_source}/**/*.scss`, { since: lastRun(scss) })
         .pipe(errorHandler(catchError))
         .pipe(sourcemaps.init())
         .pipe(sass({
