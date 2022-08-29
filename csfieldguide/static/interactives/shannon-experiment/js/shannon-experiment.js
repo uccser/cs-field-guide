@@ -73,6 +73,7 @@ function setup() {
 
     createAlphabetButtons(alphabet);
     createSentenceElement();
+    setNextCharacter();
 }
 
 function createAlphabetButtons(alphabet) {
@@ -99,11 +100,15 @@ function createAlphabetButton(character) {
 function alphabetButtonClicked(event) {
     let elementButton = event.target;
     let character = elementButton.dataset.character;
+    elementCurrentSentenceCharacter.textContent = character;
+    characterGuesses++;
+    elementCurrentSentenceCharacterGuesses.textContent = characterGuesses;
     if (character == nextCharacter) {
+        elementCurrentSentenceCharacter.classList.remove('incorrect');
         foundNextCharacter();
     } else {
         elementButton.setAttribute('disabled', '');
-        characterGuesses++;
+        elementCurrentSentenceCharacter.classList.add('incorrect');
     }
 }
 
@@ -114,18 +119,29 @@ function resetAlphabetButtons() {
     }
 }
 
+function disableAlphabetButtons() {
+    let buttons = elementAlphabetButtonsContainer.children;
+    for (let i = 0; i < buttons.length; i++) {
+        buttons[i].setAttribute('disabled', '');
+    }
+}
+
 function setNextCharacter() {
     nextCharacter = sentence[characterPosition];
 }
 
 function foundNextCharacter() {
-    // Display correct letter
-
-    // Reset interface for next character
     characterPosition++;
-    resetAlphabetButtons();
-    setNextCharacter();
-    characterGuesses = 0;
+    if (characterPosition == sentence.length) {
+        // Disable buttons interface
+        disableAlphabetButtons();
+    } else {
+        // Reset interface for next character
+        resetAlphabetButtons();
+        setNextCharacter();
+        characterGuesses = 0;
+        createSentenceElement();
+    }
 }
 
 function createSentenceElement() {
@@ -177,5 +193,11 @@ function shuffle(array) {
 }
 // End of CC BY-SA 4.0 snippet
 
-setup();
-setNextCharacter();
+function ready(fn) {
+    if (document.readyState != 'loading') {
+        setup();
+    } else {
+        document.addEventListener('DOMContentLoaded', setup);
+    }
+}
+ready();
