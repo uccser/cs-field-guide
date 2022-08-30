@@ -27,6 +27,7 @@
     font-family: monospace;
     display: flex;
     flex-direction: row;
+    margin-bottom: 2rem;
 
     .sentence-character-container {
         display: flex;
@@ -48,4 +49,8 @@
             color: #444;
         }
     }
+}
+
+#statistics-container {
+    display: none;
 }

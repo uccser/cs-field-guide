@@ -50,6 +50,7 @@ var elementCurrentSentenceCharacter;
 var elementCurrentSentenceCharacterGuesses;
 var characterPosition = 0;
 var characterGuesses = 0;
+var totalCharacterGuesses = 0;
 
 function setup() {
     language = document.documentElement.lang;
@@ -102,6 +103,7 @@ function alphabetButtonClicked(event) {
     let character = elementButton.dataset.character;
     elementCurrentSentenceCharacter.textContent = character;
     characterGuesses++;
+    totalCharacterGuesses++;
     elementCurrentSentenceCharacterGuesses.textContent = characterGuesses;
     if (character == nextCharacter) {
         elementCurrentSentenceCharacter.classList.remove('incorrect');
@@ -135,6 +137,7 @@ function foundNextCharacter() {
     if (characterPosition == sentence.length) {
         // Disable buttons interface
         disableAlphabetButtons();
+        showStatistics();
     } else {
         // Reset interface for next character
         resetAlphabetButtons();
@@ -171,6 +174,14 @@ function createSentenceElement() {
     elementSentenceContainer.appendChild(elementSentenceCharacterContainer);
 }
 
+function showStatistics() {
+    // Total guesses
+    let elementTotalGuessesText = document.getElementById('statistic-total-guesses');
+    elementTotalGuessesText.textContent = totalCharacterGuesses;
+
+    // Show statistics
+    document.getElementById('statistics-container').style.display = 'block';
+}
 
 // Used under CC BY-SA 4.0
 // https://stackoverflow.com/a/2450976/10345299
