@@ -26,6 +26,11 @@
     padding-left: 0.4rem !important;
     padding-right: 0.4rem !important;
   }
+  @include media-breakpoint-down(md) {
+    input {
+    width: 10rem;
+    }
+  }
 }
 
 #navbarLanguageSelector {
