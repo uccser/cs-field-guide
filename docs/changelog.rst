@@ -18,6 +18,81 @@ All notable changes to this project will be documented in this file.
 We have listed major changes for each release below.
 `All downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/>`__
 
+3.11.0
+==============================================================================
+
+**Release date:** 30th August 2022
+
+**Changelog:**
+
+- Add Shannon Experiment interactive prototype.
+- Update Computer Security URLs and typo. `#1913 <https://github.com/uccser/cs-field-guide/issues/1913>`__
+- Fix outdated references to interactive. `#1902 <https://github.com/uccser/cs-field-guide/issues/1902>`__
+- Fix issue where items on the top navigation bar couldn't fit on one line on small screens.
+- Update project to use uccser-development-stack v3.
+- Show full Git SHA on development website.
+- Add OCI labels to Django Docker image.
+- Update Traefik middleware to use a unique name in production deployment.
+- Fix bug preventing translation pipeline from completing.
+
+- Core dependency changes:
+
+    - Add gulp-dependents 1.2.5.
+    - Update autoprefixer from 10.4.7 to 10.4.8.
+    - Update bootstrap from 4.6.1 to 4.6.2.
+    - Update coverage from 6.4.1 to 6.4.4.
+    - Update crowdin/github-action from 1.4.9 to 1.4.12.
+    - Update cssnano from 5.1.12 to 5.1.13.
+    - Update django from 3.2.14 to 3.2.15.
+    - Update django-debug-toolbar from 3.4.0 to 3.6.0.
+    - Update django-modeltranslation from 0.18.2 to 0.18.4.
+    - Update django-statici18n from 2.2.0 to 2.3.1.
+    - Update docker/build-push-action from v3.0.0 to v3.1.1.
+    - Update jquery from 3.6.0 to 3.6.1.
+    - Update postcss from 8.4.14 to 8.4.16.
+    - Update postgres from 13.3 tp 13.8.
+    - Update Pygments from 2.12.0 to 2.13.0.
+    - Update sass from 1.53.0 to 1.54.5.
+    - Update selenium from 4.3.0 to 4.4.0.
+    - Update sphinx from 5.0.2 to 5.1.1.
+    - Remove urijs.
+
+- Interactive big-number-calculator dependency changes:
+
+    - Update big.js from 6.2.0 to 6.2.1.
+
+- Interactive bin-packing dependency changes:
+
+    - Update interactjs from 1.10.14 to 1.10.17.
+
+- Interactive box-rotation dependency changes:
+
+    - Update three from 0.142.0 to 0.143.0.
+
+- Interactive box-translation dependency changes:
+
+    - Update three from 0.142.0 to 0.143.0.
+
+- Interactive city-trip dependency changes:
+
+    - Update cytoscape from 3.21.2 to 3.22.1.
+
+- Interactive jpeg-compression dependency changes:
+
+    - Update interactjs from 1.10.14 to 1.10.17.
+
+- Interactive scene-editor dependency changes:
+
+    - Update three from 0.142.0 to 0.143.0.
+
+- Interactive unicode-binary dependency changes:
+
+    - Remove urijs.
+
+- Interactive viola-jones-face-detector dependency changes:
+
+    - Update interactjs from 1.10.14 to 1.10.17.
+
 3.10.2
 ==============================================================================
 

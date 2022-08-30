@@ -25,6 +25,16 @@ ARG GIT_SHA
 ARG BUILD_ENVIRONMENT=production
 ARG APP_HOME=/app
 
+LABEL org.opencontainers.image.title='Computer Science Field Guide'
+LABEL org.opencontainers.image.description='A free online interactive resource/textbook for high school students learning about computer science.'
+LABEL org.opencontainers.image.authors='University of Canterbury Computer Science Education Research Group (UCCSER) https://github.com/uccser'
+LABEL org.opencontainers.image.url='https://www.csfieldguide.org.nz/'
+LABEL org.opencontainers.image.documentation='https://cs-field-guide.readthedocs.io/'
+LABEL org.opencontainers.image.source='https://github.com/uccser/cs-field-guide'
+LABEL org.opencontainers.image.vendor='University of Canterbury Computer Science Education Research Group (UCCSER)'
+LABEL org.opencontainers.image.licenses='MIT AND CC-BY-SA-4.0'
+LABEL org.opencontainers.image.revision=${GIT_SHA}
+
 # Set environment variables
 ENV LANG C.UTF-8
 ENV DEPLOYED=True

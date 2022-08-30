@@ -178,6 +178,8 @@ searching-algorithms:
   name: Searching Algorithms
 sha2:
   name: SHA2
+shannon-experiment:
+  name: Shannon Experiment
 sorting-algorithm-comparison:
   name: Sorting Algorithm Comparison
 sorting-algorithms:

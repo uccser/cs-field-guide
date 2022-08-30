@@ -17,6 +17,7 @@ import logging.config
 import django.conf.locale
 from django.conf import global_settings
 from django.utils.translation import ugettext_lazy as _
+from utils.get_git_sha import get_git_sha
 
 # cs-field-guide/csfieldguide/config/settings/base.py - 3 = csfieldguide/
 ROOT_DIR = environ.Path(__file__) - 3
@@ -311,11 +312,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # OTHER SETTINGS
 # ------------------------------------------------------------------------------
 DEPLOYED = env.bool("DEPLOYED")
-GIT_SHA = env("GIT_SHA", default=None)
-if GIT_SHA:
-    GIT_SHA = GIT_SHA[:8]
-else:
-    GIT_SHA = "local development"
+GIT_SHA = get_git_sha()
 PRODUCTION_ENVIRONMENT = False
 STAGING_ENVIRONMENT = False
 APPENDICES_CONTENT_BASE_PATH = os.path.join(str(ROOT_DIR.path("appendices")), "content")

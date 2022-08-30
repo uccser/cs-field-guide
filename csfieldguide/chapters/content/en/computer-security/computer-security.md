@@ -12,9 +12,9 @@ But a security person can’t only be concerned with keeping people out, because
 And this isn’t simple, since computer systems are usually online all the time, can be accessed from anywhere in the world, and are expected to be easy for legitimate customers and staff to access.
 Is security really a big deal?
 The internet is a hostile environment.
-For example, 2% of internet traffic is immediately recongnisable as an attack and gets blocked right away.
+For example, 2% of internet traffic is immediately recognisable as an attack and gets blocked right away.
 What about the other 98%?
-Well, about 50,000,000 requests a day could be attacks trying to find a weakness that they can use to break in (some current statistics are available [here](https://www.akamai.com/visualizations/state-of-the-internet-report/web-attack-visualization), [here](https://www.akamai.com/us/en/products/security/enterprise-threat-protector.jsp) and [here](https://blogs.akamai.com/2019/11/enterprise-threat-protector-as-a-security-enabler-in-2020.html)).
+Well, about 50,000,000 requests a day could be attacks trying to find a weakness that they can use to break in (some current statistics are available [here](https://www.akamai.com/internet-station/cyber-attacks/state-of-the-internet-report/web-attack-visualization), [here](https://www.imperva.com/cyber-threat-index/), and [here](https://cybermap.kaspersky.com/stats)).
 With millions of attacks happening every day, a good defence is crucial.
 There are a lot of reasons that people want to break into computers - it might be to extract valuable information such as user names, bank accounts and passwords; or it might be to stop a site working either as industrial espionage, or to claim a ransom; or to make money by either selling information, access, or using resources to mine cryptocurrency; or to test their knowledge and capabilities by seeing what they can find; or simply out of curiosity, to find out some personal information about someone.
 There are many motivations why these attacks might happen.

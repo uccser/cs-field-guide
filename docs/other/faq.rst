@@ -46,17 +46,4 @@ Django contains 'applications' which are Python packages that provide some set o
 Each large part/chunk of the CS Field Guide is a separate application.
 Read :ref:`this section in our project structure guide <django-applications>` for details of the applications used in the CS Field Guide system.
 
-.. _what-is-a-virtual-environment:
-
-What is a Virtual Environment?
-==============================================================================
-
-A Virtual Environment is a tool to keep the dependencies required by different projects in separate places, by creating virtual Python environments for them.
-It solves the “Project X depends on version 1.x but Project Y needs 4.x” dilemma, and keeps your global site-packages directory clean and manageable.
-
-See also:
-
-- `Guide on Virtual Environments`_
-
 .. _Definition of URL slug on Wikipedia: https://en.wikipedia.org/wiki/Semantic_URL#Slug
-.. _Guide on Virtual Environments: http://docs.python-guide.org/en/latest/dev/virtualenvs/

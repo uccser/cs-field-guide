@@ -47,7 +47,7 @@ defhelp help 'View all help.'
 # Start development environment
 cmd_start() {
   echo "Creating systems..."
-  docker-compose -f docker-compose.local.yml up -d
+  docker compose -f docker-compose.local.yml up -d
   # Alert user that system is ready
   echo -e "\n${SUCCESS}System is up!${NC}"
   echo -e "Run the command ${CODE}./dev update${NC} to load content."
@@ -57,12 +57,12 @@ defhelp start 'Start development environment.'
 # Stop development environment
 cmd_end() {
   echo "Stopping systems..."
-  docker-compose -f docker-compose.local.yml down
+  docker compose -f docker-compose.local.yml down
 }
 defhelp end 'Stop development environment.'
 
 cmd_restart() {
-  docker-compose -f docker-compose.local.yml restart "$@"
+  docker compose -f docker-compose.local.yml restart "$@"
 }
 defhelp restart 'Restart container.'
 
@@ -91,35 +91,35 @@ defhelp update 'Run Django migrate and update_data commands and build static fil
 # Run Django makemigrations command
 cmd_makemigrations() {
   echo "Creating database migrations..."
-  docker-compose -f docker-compose.local.yml exec django python ./manage.py makemigrations --no-input
+  docker compose -f docker-compose.local.yml exec django python ./manage.py makemigrations --no-input
 }
 defhelp makemigrations 'Run Django makemigrations command.'
 
 # Run Django migrate command
 cmd_migrate() {
   echo "Applying database migrations..."
-  docker-compose -f docker-compose.local.yml exec django python ./manage.py migrate
+  docker compose -f docker-compose.local.yml exec django python ./manage.py migrate
 }
 defhelp migrate 'Run Django migrate command.'
 
 # Reboot Django Docker container
 cmd_reboot_django() {
   echo "Rebooting Django container..."
-  docker-compose -f docker-compose.local.yml restart django
+  docker compose -f docker-compose.local.yml restart django
 }
 defhelp reboot_django 'Reboot Django container.'
 
 # Run Django update_data command
 cmd_update_data() {
   echo "Loading content..."
-  docker-compose -f docker-compose.local.yml run --rm --label traefik.enable=false django python ./manage.py update_data
+  docker compose -f docker-compose.local.yml run --rm --label traefik.enable=false django python ./manage.py update_data
 }
 defhelp update_data 'Load content into database.'
 
 # Build static files
 cmd_static() {
   echo "Building static files..."
-  docker-compose -f docker-compose.local.yml run --rm node npm run generate-assets
+  docker compose -f docker-compose.local.yml run --rm node npm run generate-assets
 }
 defhelp static 'Build static files.'
 
@@ -127,7 +127,7 @@ defhelp static 'Build static files.'
 cmd_collect_static() {
   echo
   echo "Collecting static files..."
-  docker-compose -f docker-compose.local.yml run --rm --label traefik.enable=false django python manage.py collectstatic --no-input --clear
+  docker compose -f docker-compose.local.yml run --rm --label traefik.enable=false django python manage.py collectstatic --no-input --clear
 }
 defhelp collect_static "Collecting static files."
 
@@ -144,61 +144,61 @@ defhelp update_static 'Update static files.'
 # Run Django command rebuild_index
 cmd_rebuild_search_indexes() {
   echo "Rebuilding search index..."
-  docker-compose -f docker-compose.local.yml run --rm --label traefik.enable=false django python ./manage.py rebuild_search_indexes
+  docker compose -f docker-compose.local.yml run --rm --label traefik.enable=false django python ./manage.py rebuild_search_indexes
 }
 defhelp rebuild_index "Run Django rebuild_search_indexes command."
 
 # Run make-interactive-thumbnails.js
 cmd_make_interactive_thumbnails() {
   echo "Creating thumbnails for interactives..."
-  docker-compose -f docker-compose.local.yml run --rm puppeteer node /make-interactive-thumbnails.js
+  docker compose -f docker-compose.local.yml run --rm puppeteer node /make-interactive-thumbnails.js
 }
 defhelp make_interactive_thumbnails 'Run make-interactive-thumbnails.js script.'
 
 # Run Django makemessages command
 cmd_makemessages() {
   echo "Compiling message files..."
-  docker-compose -f docker-compose.local.yml run --rm --label traefik.enable=false django python ./manage.py makemessages --locale en
-  docker-compose -f docker-compose.local.yml run --rm --label traefik.enable=false django python ./manage.py makemessages --locale en --domain djangojs --ignore build/* --ignore gulpfile.js
+  docker compose -f docker-compose.local.yml run --rm --label traefik.enable=false django python ./manage.py makemessages --locale en
+  docker compose -f docker-compose.local.yml run --rm --label traefik.enable=false django python ./manage.py makemessages --locale en --domain djangojs --ignore build/* --ignore gulpfile.js
 }
 defhelp makemessages 'Run Django makemessages command.'
 
 # Run Django compilemessages command
 cmd_compilemessages() {
   echo "Compiling message files..."
-  docker-compose -f docker-compose.local.yml run --rm --label traefik.enable=false django python ./manage.py compilemessages
-  docker-compose -f docker-compose.local.yml run --rm --label traefik.enable=false django python ./manage.py compilejsi18n
+  docker compose -f docker-compose.local.yml run --rm --label traefik.enable=false django python ./manage.py compilemessages
+  docker compose -f docker-compose.local.yml run --rm --label traefik.enable=false django python ./manage.py compilejsi18n
 }
 defhelp compilemessages 'Run Django compilemessages command.'
 
 # Build Docker images
 cmd_build() {
   echo "Building Docker images..."
-  docker-compose -f docker-compose.local.yml build "$@"
+  docker compose -f docker-compose.local.yml build "$@"
 }
 defhelp build 'Build or rebuild Docker images.'
 
 # Run exec
 cmd_exec() {
-  docker-compose -f docker-compose.local.yml exec "$@"
+  docker compose -f docker-compose.local.yml exec "$@"
 }
 defhelp exec "Execute command in given container."
 
 # View Docker logs
 cmd_logs() {
   echo "Building Docker images..."
-  docker-compose -f docker-compose.local.yml logs --timestamps "$@"
+  docker compose -f docker-compose.local.yml logs --timestamps "$@"
 }
 defhelp logs 'View logs.'
 
 # Run style checks
 cmd_style() {
   echo "Running PEP8 style checker..."
-  docker-compose -f docker-compose.local.yml run --rm --label traefik.enable=false django flake8
+  docker compose -f docker-compose.local.yml run --rm --label traefik.enable=false django flake8
   pep8_status=$?
   echo
   echo "Running Python docstring checker..."
-  docker-compose -f docker-compose.local.yml run --rm --label traefik.enable=false django pydocstyle --count --explain
+  docker compose -f docker-compose.local.yml run --rm --label traefik.enable=false django pydocstyle --count --explain
   pydocstyle_status=$?
   ! (( pep8_status || pydocstyle_status ))
 }
@@ -207,29 +207,29 @@ defhelp style 'Run style checks.'
 # Run test suite
 cmd_test_suite() {
   echo "Running test suite..."
-  docker-compose -f docker-compose.local.yml run --rm --label traefik.enable=false django coverage run --rcfile=./.coveragerc ./manage.py test --settings=config.settings.testing --pattern "test_*.py" -v 3 --nomigrations
+  docker compose -f docker-compose.local.yml run --rm --label traefik.enable=false django coverage run --rcfile=./.coveragerc ./manage.py test --settings=config.settings.testing --pattern "test_*.py" -v 3 --nomigrations
 }
 defhelp test_suite 'Run test suite with code coverage.'
 
 # Run specific test suite
 cmd_test_specific() {
   echo "Running specific test suite..."
-  docker-compose -f docker-compose.local.yml run --rm --label traefik.enable=false django python ./manage.py test --settings=config.settings.testing "${1}" -v 3 --nomigrations
+  docker compose -f docker-compose.local.yml run --rm --label traefik.enable=false django python ./manage.py test --settings=config.settings.testing "${1}" -v 3 --nomigrations
 }
 defhelp test_specific 'Run specific test suite. Pass in parameter of Python test module.'
 
 # Display test coverage table
 cmd_test_coverage() {
   echo "Displaying test suite coverage..."
-  docker-compose -f docker-compose.local.yml run --rm --label traefik.enable=false django coverage xml -i
-  docker-compose -f docker-compose.local.yml run --rm --label traefik.enable=false django coverage report --show-missing --skip-covered
+  docker compose -f docker-compose.local.yml run --rm --label traefik.enable=false django coverage xml -i
+  docker compose -f docker-compose.local.yml run --rm --label traefik.enable=false django coverage report --show-missing --skip-covered
 }
 defhelp test_coverage 'Display code coverage report.'
 
 # Run test suite backwards for CI testing
 cmd_test_backwards() {
   echo "Running test suite backwards..."
-  docker-compose -f docker-compose.local.yml run --rm --label traefik.enable=false django python ./manage.py test --settings=config.settings.testing --pattern "test_*.py" --reverse -v 0 --nomigrations
+  docker compose -f docker-compose.local.yml run --rm --label traefik.enable=false django python ./manage.py test --settings=config.settings.testing --pattern "test_*.py" --reverse -v 0 --nomigrations
 }
 defhelp test_backwards 'Run test suite backwards.'
 
@@ -237,10 +237,10 @@ defhelp test_backwards 'Run test suite backwards.'
 # For use in GitHub Actions environment
 
 cmd_ci() {
-  docker network create uccser-development-proxy
+  docker network create uccser-development-stack
   cmd_start
-  docker-compose -f docker-compose.local.yml run --rm --user="root" node npm run generate-assets
-  docker-compose -f docker-compose.local.yml run --rm --user="root" django python manage.py collectstatic --no-input
+  docker compose -f docker-compose.local.yml run --rm --user="root" node npm run generate-assets
+  docker compose -f docker-compose.local.yml run --rm --user="root" django python manage.py collectstatic --no-input
   local cmd="$1"
   shift
   if [ -z "$cmd" ]; then
@@ -259,11 +259,11 @@ cmd_ci() {
 }
 
 cmd_test_general() {
-  docker-compose -f docker-compose.local.yml run --rm --label traefik.enable=false django coverage run --rcfile=./.coveragerc ./manage.py test --settings=config.settings.testing --pattern "test_*.py" -v 3 --exclude-tag=resource --exclude-tag=management --nomigrations
+  docker compose -f docker-compose.local.yml run --rm --label traefik.enable=false django coverage run --rcfile=./.coveragerc ./manage.py test --settings=config.settings.testing --pattern "test_*.py" -v 3 --exclude-tag=resource --exclude-tag=management --nomigrations
 }
 
 cmd_test_management() {
-  docker-compose -f docker-compose.local.yml run --rm --label traefik.enable=false django coverage run --rcfile=./.coveragerc ./manage.py test --settings=config.settings.testing --pattern "test_*.py" -v 3 --tag=management --nomigrations
+  docker compose -f docker-compose.local.yml run --rm --label traefik.enable=false django coverage run --rcfile=./.coveragerc ./manage.py test --settings=config.settings.testing --pattern "test_*.py" -v 3 --tag=management --nomigrations
 }
 
 # --- Core script logic -------------------------------------------------------
