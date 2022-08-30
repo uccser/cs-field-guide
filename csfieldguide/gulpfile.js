@@ -14,6 +14,7 @@ const buffer = require('vinyl-buffer');
 const c = require('ansi-colors')
 const concat = require('gulp-concat')
 const cssnano = require('cssnano')
+const dependents = require('gulp-dependents')
 const errorHandler = require('gulp-error-handle')
 const filter = require('gulp-filter')
 const gulpif = require('gulp-if');
@@ -131,6 +132,7 @@ function css() {
 function scss() {
     return src(`${paths.scss_source}/**/*.scss`, { since: lastRun(scss) })
         .pipe(errorHandler(catchError))
+        .pipe(dependents())
         .pipe(sourcemaps.init())
         .pipe(sass({
             includePaths: [

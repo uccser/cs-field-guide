@@ -18,6 +18,7 @@
         "got": "11.8.2",
         "gulp": "4.0.2",
         "gulp-concat": "2.6.1",
+        "gulp-dependents": "1.2.5",
         "gulp-error-handle": "1.0.1",
         "gulp-filter": "7.0.0",
         "gulp-if": "3.0.0",
