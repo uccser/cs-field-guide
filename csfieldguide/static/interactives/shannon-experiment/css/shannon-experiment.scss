@@ -1,3 +1,15 @@
+#new-sentence-button {
+    background-color: #5dc5ee;
+    border: 1px solid #31a2cf;
+    border-radius: 5px;
+    margin-bottom: 1em;
+
+    &:hover {
+        background-color: #31a2cf;
+    }
+}
+
+
 #alphabet-buttons-container {
     margin-bottom: 2rem;
 

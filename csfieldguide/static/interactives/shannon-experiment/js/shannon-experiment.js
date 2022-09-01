@@ -85,6 +85,7 @@ var characterGuesses;
 var multiLetterCharacters;
 var totalCharacterGuesses;
 var elementLanguageSelect;
+var elementNewSentenceButton;
 var elementLanguageDescription;
 var elementAlphabetButtonsContainer;
 var elementSentenceContainer;
@@ -97,11 +98,17 @@ function setup() {
     elementSentenceContainer = document.getElementById('sentence-container');
     elementLanguageSelect = document.getElementById('shannon-language-select');
     elementLanguageDescription = document.getElementById('shannon-language-description');
+    elementNewSentenceButton = document.getElementById('new-sentence-button');
 
-    elementLanguageSelect.addEventListener('change', updateLanguage);
+    elementLanguageSelect.addEventListener('change', function (event) {
+        updateLanguage(event);
+        resetExperiment();
+    });
+    elementNewSentenceButton.addEventListener('click', resetExperiment);
 
     setupLanguagePicker();
     updateLanguage();
+    resetExperiment();
 }
 
 function setupLanguagePicker() {
@@ -134,7 +141,16 @@ function updateLanguage(event) {
     }
 
     elementLanguageDescription.textContent = allLanguageData[language].description || '';
+}
 
+function setDefaultAlphabet() {
+    alphabet = allLanguageData[language]['alphabet'];
+    // Get any alphabet characters longer than 1 character.
+    // This occurs in Te Reo Māori with 'NG' and 'WH'.
+    multiLetterCharacters = alphabet.filter(character => character.length > 1);
+}
+
+function resetExperiment() {
     // Clear existing sentence and alphabet buttons
     elementAlphabetButtonsContainer.replaceChildren();
     elementSentenceContainer.replaceChildren();
@@ -142,11 +158,7 @@ function updateLanguage(event) {
     characterGuesses = 0;
     totalCharacterGuesses = 0;
 
-    alphabet = allLanguageData[language]['alphabet'];
-    // Get any alphabet characters longer than 1 character.
-    // This occurs in Te Reo Māori with 'NG' and 'WH'.
-    multiLetterCharacters = alphabet.filter(character => character.length > 1);
-
+    setDefaultAlphabet();
     setSentence();
     alphabet = updateAlphabet(alphabet);
     createAlphabetButtons(alphabet);
