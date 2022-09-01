@@ -118,6 +118,7 @@ function getLanguage() {
     if (searchParameters.has('language')) {
         let providedLanguage = searchParameters.get('language').toLowerCase();
         if (providedLanguage in allLanguageData) {
+            document.getElementById('shannon-language-picker').style.display = 'none';
             return providedLanguage;
         }
     }
