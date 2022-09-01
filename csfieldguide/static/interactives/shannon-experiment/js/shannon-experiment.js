@@ -85,6 +85,7 @@ var characterGuesses;
 var multiLetterCharacters;
 var totalCharacterGuesses;
 var elementLanguageSelect;
+var elementLanguageDescription;
 var elementAlphabetButtonsContainer;
 var elementSentenceContainer;
 var elementCurrentSentenceCharacter;
@@ -95,6 +96,7 @@ function setup() {
     elementAlphabetButtonsContainer = document.getElementById('alphabet-buttons-container');
     elementSentenceContainer = document.getElementById('sentence-container');
     elementLanguageSelect = document.getElementById('shannon-language-select');
+    elementLanguageDescription = document.getElementById('shannon-language-description');
 
     elementLanguageSelect.addEventListener('change', updateLanguage);
 
@@ -130,7 +132,9 @@ function updateLanguage(event) {
         language = elementLanguageSelect.value;
     }
 
-    // Clear existing sentence and alphabet buttons/
+    elementLanguageDescription.textContent = allLanguageData[language].description || '';
+
+    // Clear existing sentence and alphabet buttons
     elementAlphabetButtonsContainer.replaceChildren();
     elementSentenceContainer.replaceChildren();
     characterPosition = 0;
