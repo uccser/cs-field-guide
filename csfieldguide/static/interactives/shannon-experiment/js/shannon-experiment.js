@@ -77,7 +77,6 @@ var allLanguageData = {
 var searchParameters;
 var alphabet;
 var sentence;
-var providedSentence;
 var nextCharacter;
 var language;
 var characterPosition;
@@ -169,11 +168,10 @@ function resetExperiment() {
 function setSentence() {
     let selectedSentence;
     if (searchParameters.has('sentence')) {
-        providedSentence = true;
+        document.getElementById('new-sentence-button').style.display = 'none';
         selectedSentence = searchParameters.get('sentence').toUpperCase();
     } else {
         // Get random sentence
-        providedSentence = false;
         let languageSentences = allLanguageData[language]['sentences'];
         selectedSentence = languageSentences[Math.floor(Math.random() * languageSentences.length)];
     }
