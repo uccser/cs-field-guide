@@ -1,81 +1,192 @@
-
-var alphabet = []
-
-const LANGUAGE_DEFAULTS = {
-    'de': {
-        'alphabet': [
-            'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I',
-            'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R',
-            'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'Ä',
-            'Ö', 'Ü', 'ẞ',
-        ],
-        // TODO: Create German default sentence.
-        'sentence': ''
-    },
+// This is not a constant as we remove sentences once they are completed.
+var allLanguageData = {
+    // 'de': {
+    //     'title': 'Deutsch',
+    //     'alphabet': [
+    //         'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I',
+    //         'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R',
+    //         'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'Ä',
+    //         'Ö', 'Ü', 'ẞ',
+    //     ],
+    //     // TODO: Create German default sentence.
+    //     'sentences': [],
+    // },
     'en': {
+        'title': 'English',
         'alphabet': [
             'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I',
             'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R',
             'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
         ],
-        'sentence': 'THERE IS NO REVERSE GEAR ON A MOTORCYCLE.'
-    },
-    'fr': {
-        'alphabet': [
-            'A', 'B', 'Ç', 'D', 'E', 'F', 'G', 'H', 'I',
-            'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R',
-            'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'Œ',
-            'Æ', 'Â', 'Ê', 'Î', 'Ô', 'Û',
+        'sentences': [
+            'PLEASE WAIT OUTSIDE THE DOOR',
+            'HE ALWAYS WORE HIS SUNGLASSES AT NIGHT',
+            "IT MUST BE FIVE O'CLOCK SOMEWHERE",
+            'HIS GET RICH QUICK SCHEME WAS TO GROW A CACTUS FARM',
+            'BLUE PARROTS ARE IN THE SKY',
+            'THE CLOUDS FORMED BEAUTIFUL ANIMALS IN THE SKY',
+            'SHE WAS TOO SHORT TO SEE OVER THE FENCE',
+            'A GLITTERING GEM IS NOT ENOUGH',
+            'THE TREE FELL UNEXPECTEDLY SHORT',
+            'THE PAINTBRUSH WAS ANGRY AT THE COLOR THE ARTIST CHOSE TO USE',
         ],
-        // TODO: Create French default sentence.
-        'sentence': ''
     },
+    'en-1951-paper': {
+        'title': 'English (1951 paper)',
+        'description': "English language with sentences from Shannon Claude's original research paper from 1951.",
+        'alphabet': [
+            'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I',
+            'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R',
+            'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
+        ],
+        'sentences': [
+            // Found in https://www.princeton.edu/~wbialek/rome/refs/shannon_51.pdf
+            'THERE IS NO REVERSE ON A MOTORCYCLE. A FRIEND OF MINE FOUND THIS OUT RATHER DRAMACTICALLY THE OTHER DAY.',
+            'THE ROOM WAS NOT VERY LIGHT. A SMALL OBLONG READING LAMP ON THE DESK SHED GLOW ON POLISHED WOOD BUT LESS ON THE SHABBY RED CARPET.',
+        ],
+    },
+    // 'fr': {
+    //     'title': 'Français',
+    //     'alphabet': [
+    //         'A', 'B', 'Ç', 'D', 'E', 'F', 'G', 'H', 'I',
+    //         'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R',
+    //         'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'Œ',
+    //         'Æ', 'Â', 'Ê', 'Î', 'Ô', 'Û',
+    //     ],
+    //     // TODO: Create French default sentence.
+    //     'sentences': [],
+    // },
     'mi': {
+        'title': 'Te Reo Māori',
         'alphabet': [
             'A', 'Ā', 'E', 'Ē', 'H', 'I', 'Ī', 'K', 'M',
             'N', 'NG', 'O', 'Ō', 'P', 'R', 'T', 'U', 'Ū',
             'W', 'WH',
         ],
         // TODO: Create Māori default sentence.
-        'sentence': ''
-    }
-}
+        'sentences': [
+            'KA HOKI MAI IA',
+            'I RUNGA TE PENE I TE TĒPU',
+            'KEI ROTO NGĀ RĀKAU I TE WAO',
+            'KEI TĀTAHI TE WAKA',
+        ],
+    },
+};
+
 // Get language
+var searchParameters;
+var alphabet;
 var sentence;
+var providedSentence;
 var nextCharacter;
 var language;
+var characterPosition;
+var characterGuesses;
+var multiLetterCharacters;
+var totalCharacterGuesses;
+var elementLanguageSelect;
 var elementAlphabetButtonsContainer;
 var elementSentenceContainer;
 var elementCurrentSentenceCharacter;
 var elementCurrentSentenceCharacterGuesses;
-var characterPosition = 0;
-var characterGuesses = 0;
-var totalCharacterGuesses = 0;
 
 function setup() {
-    language = document.documentElement.lang;
+    searchParameters = new URL(window.location.href).searchParams;
     elementAlphabetButtonsContainer = document.getElementById('alphabet-buttons-container');
     elementSentenceContainer = document.getElementById('sentence-container');
+    elementLanguageSelect = document.getElementById('shannon-language-select');
 
-    let alphabet = LANGUAGE_DEFAULTS[language]['alphabet'];
+    elementLanguageSelect.addEventListener('change', updateLanguage);
 
-    var searchParameters = new URL(window.location.href).searchParams;
-    if (searchParameters.has('sentence')) {
-        sentence = searchParameters.get('sentence').toUpperCase()
+    setupLanguagePicker();
+    updateLanguage();
+}
+
+function setupLanguagePicker() {
+    for (const [languageSlug, languageData] of Object.entries(allLanguageData)) {
+        let elementOption = document.createElement('option');
+        elementOption.value = languageSlug;
+        elementOption.textContent = languageData.title;
+        elementLanguageSelect.appendChild(elementOption);
+    }
+}
+
+function getLanguage() {
+    // Set langauge on load based on parameter or body.
+    if (searchParameters.has('language')) {
+        let providedLanguage = searchParameters.get('language').toLowerCase();
+        if (providedLanguage in allLanguageData) {
+            return providedLanguage;
+        }
+    }
+    return document.documentElement.lang;
+}
+
+function updateLanguage(event) {
+    if (!event) {
+        language = getLanguage();
+        elementLanguageSelect.value = language;
     } else {
-        sentence = LANGUAGE_DEFAULTS[language]['sentence'];
+        language = elementLanguageSelect.value;
     }
 
-    // Get extra characters from sentence and add to alphabet.
-    const uniqueSentenceCharacters = new Set(sentence.split(''));
-    let extraSentenceCharacters = new Set([...uniqueSentenceCharacters].filter(x => !new Set(alphabet).has(x)));
-    extraSentenceCharacters = shuffle(Array.from(extraSentenceCharacters));
-    alphabet = alphabet.concat(extraSentenceCharacters);
+    // Clear existing sentence and alphabet buttons/
+    elementAlphabetButtonsContainer.replaceChildren();
+    elementSentenceContainer.replaceChildren();
+    characterPosition = 0;
+    characterGuesses = 0;
+    totalCharacterGuesses = 0;
 
+    alphabet = allLanguageData[language]['alphabet'];
+    // Get any alphabet characters longer than 1 character.
+    // This occurs in Te Reo Māori with 'NG' and 'WH'.
+    multiLetterCharacters = alphabet.filter(character => character.length > 1);
+
+    setSentence();
+    alphabet = updateAlphabet(alphabet);
     createAlphabetButtons(alphabet);
     createSentenceElement();
     setNextCharacter();
 }
+
+function setSentence() {
+    let selectedSentence;
+    if (searchParameters.has('sentence')) {
+        providedSentence = true;
+        selectedSentence = searchParameters.get('sentence').toUpperCase();
+    } else {
+        // Get random sentence
+        providedSentence = false;
+        let languageSentences = allLanguageData[language]['sentences'];
+        selectedSentence = languageSentences[Math.floor(Math.random() * languageSentences.length)];
+    }
+
+    // Break sentence into array of characters.
+    sentence = [];
+    while (selectedSentence.length > 0) {
+        let characterLength;
+        let foundMultiLetterCharacter = multiLetterCharacters.find(character => selectedSentence.startsWith(character));
+        if (foundMultiLetterCharacter) {
+            characterLength = foundMultiLetterCharacter.length;
+        } else {
+            characterLength = 1;
+        }
+        sentence.push(selectedSentence.substring(0, characterLength));
+        selectedSentence = selectedSentence.substring(characterLength);
+    }
+}
+
+function updateAlphabet(alphabet) {
+    // Get any extra unique characters from sentence
+    let extraSentenceCharacters = new Set(sentence.filter(x => !new Set(alphabet).has(x)));
+    extraSentenceCharacters = shuffle(Array.from(extraSentenceCharacters));
+    return alphabet.concat(extraSentenceCharacters);
+}
+
+// function removeCompletedSentence() {
+//     if
+// }
+
 
 function createAlphabetButtons(alphabet) {
     alphabet.forEach(createAlphabetButton);
@@ -107,7 +218,7 @@ function alphabetButtonClicked(event) {
     elementCurrentSentenceCharacterGuesses.textContent = characterGuesses;
     if (character == nextCharacter) {
         elementCurrentSentenceCharacter.classList.remove('incorrect');
-        foundNextCharacter();
+        foundNextCharacter(character);
     } else {
         elementButton.setAttribute('disabled', '');
         elementCurrentSentenceCharacter.classList.add('incorrect');
@@ -132,10 +243,10 @@ function setNextCharacter() {
     nextCharacter = sentence[characterPosition];
 }
 
-function foundNextCharacter() {
+function foundNextCharacter(foundCharacter) {
     characterPosition++;
     if (characterPosition == sentence.length) {
-        // Disable buttons interface
+        // removeCompletedSentence();
         disableAlphabetButtons();
         showStatistics();
     } else {

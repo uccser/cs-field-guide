@@ -179,7 +179,7 @@ searching-algorithms:
 sha2:
   name: SHA2
 shannon-experiment:
-  name: Shannon's Prediction and Entropy of Printed English experiment
+  name: Shannon's prediction and entropy of printed text experiment
 sorting-algorithm-comparison:
   name: Sorting Algorithm Comparison
 sorting-algorithms:
