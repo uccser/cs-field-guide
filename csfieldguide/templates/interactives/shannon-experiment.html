@@ -5,8 +5,13 @@
 {% block interactive_html %}
     <div class="container">
         <h1 class="text-center">
-            {% trans "Shannon's Prediction and Entropy of Printed English experiment" %}
+            {% trans "Shannon's prediction and entropy of printed text experiment" %}
         </h1>
+
+        <p></p>
+
+        <label for="shannon-language-select">Text language:</label>
+        <select name="shannon-language" id="shannon-language-select"></select>
 
         <h2>Available alphabet</h2>
         <div id="alphabet-buttons-container"></div>
