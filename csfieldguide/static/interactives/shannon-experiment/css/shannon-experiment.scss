@@ -33,7 +33,7 @@
         display: flex;
         flex-direction: column;
         text-align: center;
-        width: 1.5rem;
+        min-width: 1.5rem;
         margin-right: 0.5rem;
 
         .sentence-character {
@@ -53,4 +53,8 @@
 
 #statistics-container {
     display: none;
+}
+
+label {
+    font-weight: bold;
 }
