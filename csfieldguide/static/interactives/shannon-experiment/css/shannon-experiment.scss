@@ -39,6 +39,7 @@
     font-family: monospace;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     margin-bottom: 2rem;
 
     .sentence-character-container {

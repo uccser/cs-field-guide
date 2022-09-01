@@ -107,6 +107,7 @@ function setup() {
 
     setupLanguagePicker();
     updateLanguage();
+    checkProvidedSentences();
     resetExperiment();
 }
 
@@ -165,16 +166,23 @@ function resetExperiment() {
     setNextCharacter();
 }
 
-function setSentence() {
-    let selectedSentence;
+function checkProvidedSentences() {
     if (searchParameters.has('sentence')) {
-        document.getElementById('new-sentence-button').style.display = 'none';
-        selectedSentence = searchParameters.get('sentence').toUpperCase();
-    } else {
-        // Get random sentence
-        let languageSentences = allLanguageData[language]['sentences'];
-        selectedSentence = languageSentences[Math.floor(Math.random() * languageSentences.length)];
+        // Hide language picker since sentences are specific to a language
+        document.getElementById('shannon-language-picker').style.display = 'none';
+        // Override sentences for language
+        providedSentences = searchParameters.getAll('sentence');
+        allLanguageData[language]['sentences'] = providedSentences.map(sentence => sentence.toUpperCase());
     }
+}
+
+function setSentence() {
+    let languageSentences = allLanguageData[language]['sentences'];
+    // If this is the last sentence, hide new sentence button
+    if (languageSentences.length <= 1) {
+        document.getElementById('new-sentence-button').style.display = 'none';
+    }
+    let selectedSentence = languageSentences[Math.floor(Math.random() * languageSentences.length)];
 
     // Break sentence into array of characters.
     sentence = [];
@@ -198,9 +206,11 @@ function updateAlphabet(alphabet) {
     return alphabet.concat(extraSentenceCharacters);
 }
 
-// function removeCompletedSentence() {
-//     if
-// }
+function removeCompletedSentence() {
+    let languageSentences = allLanguageData[language]['sentences'];
+    let sentenceString = sentence.join('');
+    languageSentences.splice(languageSentences.indexOf(sentenceString), 1);
+}
 
 
 function createAlphabetButtons(alphabet) {
@@ -261,7 +271,7 @@ function setNextCharacter() {
 function foundNextCharacter(foundCharacter) {
     characterPosition++;
     if (characterPosition == sentence.length) {
-        // removeCompletedSentence();
+        removeCompletedSentence();
         disableAlphabetButtons();
         showStatistics();
     } else {
