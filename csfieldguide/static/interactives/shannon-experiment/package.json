@@ -1,0 +1,8 @@
+{
+    "name": "csfg-interactive-shannon-experiment",
+    "version": "1.0.0",
+    "private": true,
+    "dependencies": {
+        "chart.js": "3.9.1"
+    }
+}

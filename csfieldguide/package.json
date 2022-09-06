@@ -64,6 +64,7 @@
         "csfg-interactive-rsa-key-generator": "file:./static/interactives/rsa-key-generator/",
         "csfg-interactive-scene-editor": "file:./static/interactives/scene-editor/",
         "csfg-interactive-sha2": "file:./static/interactives/sha2/",
+        "csfg-interactive-shannon-experiment": "file:./static/interactives/shannon-experiment/",
         "csfg-interactive-sorting-algorithms": "file:./static/interactives/sorting-algorithms/",
         "csfg-interactive-training-ground": "file:./static/interactives/training-ground/",
         "csfg-interactive-unicode-binary": "file:./static/interactives/unicode-binary/",
