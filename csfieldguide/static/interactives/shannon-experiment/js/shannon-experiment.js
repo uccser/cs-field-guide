@@ -1,3 +1,5 @@
+const chartjs = require('chart.js');
+
 // This is not a constant as we remove sentences once they are completed.
 var allLanguageData = {
     // 'de': {
@@ -72,7 +74,6 @@ var allLanguageData = {
             'ANEI HE KĒKĒ HEI KAI MĀ KOUTOU.', // HERE IS A CAKE FOR YOU ALL TO EAT.
             'KEI TE HAERE RĀTOU KI TĀTAHI.', // THEY ARE GOING TO THE BEACH.
             'KUA PIKI AKE RĀTOU I A AORAKI.', // THEY CLIMBED AORAKI.
-            'I PATUA TE MANU E TE NGERU.', // THE BIRD WAS KILLED BY THE CAT.
             'I RERE TE MANU KI TE NGĀHERE.', // THE BIRD FLEW TO THE BUSH.
             'I KITE IA I TE TĪWAIWAKA.', // SHE SAW THE FANTAIL.
             'I TŪ TE KERERŪ KI RUNGA I TE TEKOTEKO.', // THE KERERŪ STOOD ON THE GABLE OF THE MEETING HOUSE.
@@ -83,11 +84,13 @@ var allLanguageData = {
         ],
     },
 };
+const SHOW_STATISTICS_ATTRIBUTE = 'show-statistics';
 
 // Get language
 var searchParameters;
 var alphabet;
 var sentence;
+var statistics;
 var nextCharacter;
 var language;
 var characterPosition;
@@ -96,26 +99,32 @@ var multiLetterCharacters;
 var totalCharacterGuesses;
 var elementLanguageSelect;
 var elementNewSentenceButton;
+var elementStatisticsContainer;
+var elementToggleStatisticsButton;
 var elementLanguageDescription;
 var elementAlphabetButtonsContainer;
 var elementSentenceContainer;
 var elementCurrentSentenceCharacter;
 var elementCurrentSentenceCharacterGuesses;
+var elementTotalGuessesText;
 
 function setup() {
     searchParameters = new URL(window.location.href).searchParams;
-    elementAlphabetButtonsContainer = document.getElementById('alphabet-buttons-container');
-    elementSentenceContainer = document.getElementById('sentence-container');
-    elementLanguageSelect = document.getElementById('shannon-language-select');
-    elementLanguageDescription = document.getElementById('shannon-language-description');
-    elementNewSentenceButton = document.getElementById('new-sentence-button');
+    elementAlphabetButtonsContainer = document.querySelector('#shannon-experiment #alphabet-buttons-container');
+    elementSentenceContainer = document.querySelector('#shannon-experiment #sentence-container');
+    elementLanguageSelect = document.querySelector('#shannon-experiment #shannon-language-select');
+    elementLanguageDescription = document.querySelector('#shannon-experiment #shannon-language-description');
+    elementNewSentenceButton = document.querySelector('#shannon-experiment #new-sentence-button');
+    elementStatisticsContainer = document.querySelector('#shannon-experiment #statistics-container');
+    elementToggleStatisticsButton = document.querySelector('#shannon-experiment #toggle-statistics-button');
+    elementTotalGuessesText = document.querySelector('#shannon-experiment #statistic-total-guesses');
 
     elementLanguageSelect.addEventListener('change', function (event) {
         updateLanguage(event);
         resetExperiment();
     });
     elementNewSentenceButton.addEventListener('click', resetExperiment);
-
+    elementToggleStatisticsButton.addEventListener('click', function() { toggleStatistics()});
     setupLanguagePicker();
     updateLanguage();
     checkProvidedSentences();
@@ -136,7 +145,7 @@ function getLanguage() {
     if (searchParameters.has('language')) {
         let providedLanguage = searchParameters.get('language').toLowerCase();
         if (providedLanguage in allLanguageData) {
-            document.getElementById('shannon-language-picker').style.display = 'none';
+            document.querySelector('#shannon-experiment #shannon-language-picker').style.display = 'none';
             return providedLanguage;
         }
     }
@@ -168,6 +177,7 @@ function resetExperiment() {
     characterPosition = 0;
     characterGuesses = 0;
     totalCharacterGuesses = 0;
+    statistics = [];
 
     setDefaultAlphabet();
     setSentence();
@@ -175,12 +185,13 @@ function resetExperiment() {
     createAlphabetButtons(alphabet);
     createSentenceElement();
     setNextCharacter();
+    updateStatistics();
 }
 
 function checkProvidedSentences() {
     if (searchParameters.has('sentence')) {
         // Hide language picker since sentences are specific to a language
-        document.getElementById('shannon-language-picker').style.display = 'none';
+        document.querySelector('#shannon-experiment #shannon-language-picker').style.display = 'none';
         // Override sentences for language
         providedSentences = searchParameters.getAll('sentence');
         allLanguageData[language]['sentences'] = providedSentences.map(sentence => sentence.toUpperCase());
@@ -191,7 +202,7 @@ function setSentence() {
     let languageSentences = allLanguageData[language]['sentences'];
     // If this is the last sentence, hide new sentence button
     if (languageSentences.length <= 1) {
-        document.getElementById('new-sentence-button').style.display = 'none';
+        document.querySelector('#shannon-experiment #new-sentence-button').style.display = 'none';
     }
     let selectedSentence = languageSentences[Math.floor(Math.random() * languageSentences.length)];
 
@@ -252,6 +263,7 @@ function alphabetButtonClicked(event) {
     characterGuesses++;
     totalCharacterGuesses++;
     elementCurrentSentenceCharacterGuesses.textContent = characterGuesses;
+    updateStatistics();
     if (character == nextCharacter) {
         elementCurrentSentenceCharacter.classList.remove('incorrect');
         foundNextCharacter(character);
@@ -284,7 +296,8 @@ function foundNextCharacter(foundCharacter) {
     if (characterPosition == sentence.length) {
         removeCompletedSentence();
         disableAlphabetButtons();
-        showStatistics();
+        // Force showing statistics
+        toggleStatistics(true);
     } else {
         // Reset interface for next character
         resetAlphabetButtons();
@@ -292,6 +305,13 @@ function foundNextCharacter(foundCharacter) {
         characterGuesses = 0;
         createSentenceElement();
     }
+}
+
+function updateStatistics() {
+    guessCounts = [0] * alphabet.length;
+
+    // Update interface
+    elementTotalGuessesText.textContent = totalCharacterGuesses;
 }
 
 function createSentenceElement() {
@@ -321,13 +341,16 @@ function createSentenceElement() {
     elementSentenceContainer.appendChild(elementSentenceCharacterContainer);
 }
 
-function showStatistics() {
-    // Total guesses
-    let elementTotalGuessesText = document.getElementById('statistic-total-guesses');
-    elementTotalGuessesText.textContent = totalCharacterGuesses;
+function toggleStatistics(force) {
+    elementToggleStatisticsButton.toggleAttribute(SHOW_STATISTICS_ATTRIBUTE, force);
 
-    // Show statistics
-    document.getElementById('statistics-container').style.display = 'block';
+    if (elementToggleStatisticsButton.hasAttribute(SHOW_STATISTICS_ATTRIBUTE)) {
+        elementStatisticsContainer.style.display = 'block';
+        elementToggleStatisticsButton.textContent = gettext('Hide statistics');
+    } else {
+        elementStatisticsContainer.style.display = 'none';
+        elementToggleStatisticsButton.textContent = gettext('Show statistics');
+    }
 }
 
 // Used under CC BY-SA 4.0
