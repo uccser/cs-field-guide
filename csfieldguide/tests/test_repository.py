@@ -29,25 +29,23 @@ class RepositoryTests(SimpleTestCase):
             docker_compose_config = yaml.safe_load(f.read())
         node_volumes = docker_compose_config['services']['node']['volumes']
 
-
-
         for filepath in glob.iglob("static/**/package.json", recursive=True):
-                directory = os.path.dirname(filepath)
+            directory = os.path.dirname(filepath)
 
-                # Check in Dockerfile
-                self.assertIn(
-                    DOCKERFILE_ENTRY.format(directory),
-                    dockerfile_contents,
-                    msg="'{}' could not be found referenced in Dockerfile".format(
-                        filepath,
-                    )
+            # Check in Dockerfile
+            self.assertIn(
+                DOCKERFILE_ENTRY.format(directory),
+                dockerfile_contents,
+                msg="'{}' could not be found referenced in Dockerfile".format(
+                    filepath,
                 )
+            )
 
-                # Check in docker-compose.local.yaml
-                self.assertIn(
-                    DOCKER_COMPOSE_ENTRY.format(directory),
-                    node_volumes,
-                    msg="'{}' could not be found referenced in Dockerfile".format(
-                        filepath,
-                    )
+            # Check in docker-compose.local.yaml
+            self.assertIn(
+                DOCKER_COMPOSE_ENTRY.format(directory),
+                node_volumes,
+                msg="'{}' could not be found referenced in Dockerfile".format(
+                    filepath,
                 )
+            )
