@@ -8,6 +8,8 @@ services:
         image: cs_field_guide_local_django
         volumes:
             - ./csfieldguide/:/app/:z
+            - ./infrastructure/local/node/Dockerfile:/test_files/Dockerfile:z
+            - ./docker-compose.local.yml:/test_files/docker-compose.local.yml:z
         env_file:
             - ./infrastructure/local/django/.envs
             - ./infrastructure/local/postgres/.envs
@@ -39,35 +41,35 @@ services:
             - ./csfieldguide/gulpfile.js:/app/gulpfile.js:z
             - ./csfieldguide/static:/app/static:z
             - ./csfieldguide/build:/app/build:z
-            - /app/static/js/modules/fsa
-            - /app/static/interactives/algorithm-timer
-            - /app/static/interactives/big-number-calculator
-            - /app/static/interactives/bin-packing
-            - /app/static/js/translation-rotation-interactives
-            - /app/static/interactives/caesar-cipher
-            - /app/static/interactives/city-trip
-            - /app/static/interactives/cmy-mixer
-            - /app/static/interactives/colour-matcher
-            - /app/static/interactives/data-bias
-            - /app/static/interactives/data-visualisation
-            - /app/static/interactives/frequency-analysis
-            - /app/static/interactives/jpeg-compression
-            - /app/static/interactives/matrix-simplifier
-            - /app/static/interactives/packet-attack
-            - /app/static/interactives/password-guesser
-            - /app/static/interactives/python-interpreter
-            - /app/static/interactives/rgb-mixer
-            - /app/static/interactives/rsa-decryption
-            - /app/static/interactives/rsa-encryption
-            - /app/static/interactives/rsa-key-generator
-            - /app/static/interactives/scene-editor
-            - /app/static/interactives/sha2
-            - /app/static/interactives/shannon-experiment
-            - /app/static/interactives/sorting-algorithms
-            - /app/static/interactives/training-ground
-            - /app/static/interactives/unicode-binary
-            - /app/static/interactives/unicode-chars
-            - /app/static/interactives/viola-jones-face-detector
+            - /app/static/js/modules/fsa/node_modules/
+            - /app/static/interactives/algorithm-timer/node_modules/
+            - /app/static/interactives/big-number-calculator/node_modules/
+            - /app/static/interactives/bin-packing/node_modules/
+            - /app/static/js/translation-rotation-interactives/node_modules/
+            - /app/static/interactives/caesar-cipher/node_modules/
+            - /app/static/interactives/city-trip/node_modules/
+            - /app/static/interactives/cmy-mixer/node_modules/
+            - /app/static/interactives/colour-matcher/node_modules/
+            - /app/static/interactives/data-bias/node_modules/
+            - /app/static/interactives/data-visualisation/node_modules/
+            - /app/static/interactives/frequency-analysis/node_modules/
+            - /app/static/interactives/jpeg-compression/node_modules/
+            - /app/static/interactives/matrix-simplifier/node_modules/
+            - /app/static/interactives/packet-attack/node_modules/
+            - /app/static/interactives/password-guesser/node_modules/
+            - /app/static/interactives/python-interpreter/node_modules/
+            - /app/static/interactives/rgb-mixer/node_modules/
+            - /app/static/interactives/rsa-decryption/node_modules/
+            - /app/static/interactives/rsa-encryption/node_modules/
+            - /app/static/interactives/rsa-key-generator/node_modules/
+            - /app/static/interactives/scene-editor/node_modules/
+            - /app/static/interactives/sha2/node_modules/
+            - /app/static/interactives/shannon-experiment/node_modules/
+            - /app/static/interactives/sorting-algorithms/node_modules/
+            - /app/static/interactives/training-ground/node_modules/
+            - /app/static/interactives/unicode-binary/node_modules/
+            - /app/static/interactives/unicode-chars/node_modules/
+            - /app/static/interactives/viola-jones-face-detector/node_modules/
 
         command: npm run dev
         networks:
