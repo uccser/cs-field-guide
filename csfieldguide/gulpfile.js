@@ -202,7 +202,7 @@ function svg() {
 function interactives() {
     return src([
             `${paths.interactives_source}/**/*`,
-            `!${paths.interactives_source}/**/node_modules/*`,
+            `!${paths.interactives_source}/**/node_modules/**/*`,
             `!${paths.interactives_source}/**/*.scss`,
             `!${paths.interactives_source}/**/*.js`
         ])
