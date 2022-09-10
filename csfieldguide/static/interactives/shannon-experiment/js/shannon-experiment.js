@@ -332,16 +332,25 @@ function updateStatistics() {
     var guessCounts = Array(alphabet.length).fill(0);
     for (let i = 0; i < allCharacterGuesses.length; i++) {
         let guesses = allCharacterGuesses[i];
-        guessCounts[guesses - 1] = guessCounts[guesses - 1] + 1;
+        guessCounts[guesses - 1] += 1;
     }
     updateGuessesChart(guessCounts);
 
     let bitsUpperBound = 0;
     let bitsLowerBound = 0;
 
+    for (let r = 0; r < guessCounts.length; r++) {
+        let p_r = guessCounts[r] / allCharacterGuesses.length;
+        let p_r_plus_one = guessCounts[r + 1] / allCharacterGuesses.length;
+        bitsLowerBound += (r + 1) * (p_r - p_r_plus_one) * Math.log2(r);
+        if (p_r > 0) {
+            bitsUpperBound += p_r * Math.log2(1 / p_r);
+        }
+    }
+
     // Update interface
-    elementBitsUpperBoundText.textContent = bitsUpperBound;
-    elementBitsLowerBoundText.textContent = bitsLowerBound;
+    // elementBitsUpperBoundText.textContent = bitsUpperBound;
+    // elementBitsLowerBoundText.textContent = bitsLowerBound;
     elementTotalGuessesText.textContent = totalCharacterGuesses;
 }
 
