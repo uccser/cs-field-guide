@@ -1,4 +1,4 @@
-const chartjs = require('chart.js');
+const Chart = require('chart.js');
 
 // This is not a constant as we remove sentences once they are completed.
 var allLanguageData = {
@@ -90,13 +90,13 @@ const SHOW_STATISTICS_ATTRIBUTE = 'show-statistics';
 var searchParameters;
 var alphabet;
 var sentence;
-var statistics;
 var nextCharacter;
 var language;
 var characterPosition;
 var characterGuesses;
-var multiLetterCharacters;
+var allCharacterGuesses;
 var totalCharacterGuesses;
+var multiLetterCharacters;
 var elementLanguageSelect;
 var elementNewSentenceButton;
 var elementStatisticsContainer;
@@ -107,6 +107,9 @@ var elementSentenceContainer;
 var elementCurrentSentenceCharacter;
 var elementCurrentSentenceCharacterGuesses;
 var elementTotalGuessesText;
+var elementBitsUpperBoundText;
+var elementBitsLowerBoundText;
+var chartGuessBarChart;
 
 function setup() {
     searchParameters = new URL(window.location.href).searchParams;
@@ -118,16 +121,22 @@ function setup() {
     elementStatisticsContainer = document.querySelector('#shannon-experiment #statistics-container');
     elementToggleStatisticsButton = document.querySelector('#shannon-experiment #toggle-statistics-button');
     elementTotalGuessesText = document.querySelector('#shannon-experiment #statistic-total-guesses');
+    elementBitsUpperBoundText = document.querySelector('#shannon-experiment #statistic-bits-upper-bound');
+    elementBitsLowerBoundText = document.querySelector('#shannon-experiment #statistic-bits-lower-bound');
 
     elementLanguageSelect.addEventListener('change', function (event) {
         updateLanguage(event);
         resetExperiment();
     });
     elementNewSentenceButton.addEventListener('click', resetExperiment);
-    elementToggleStatisticsButton.addEventListener('click', function() { toggleStatistics()});
+    elementToggleStatisticsButton.addEventListener('click', function () { toggleStatistics() });
     setupLanguagePicker();
+
+    // Check URL parameters
     updateLanguage();
     checkProvidedSentences();
+    checkStatisticsDefaultVisibility();
+
     resetExperiment();
 }
 
@@ -176,8 +185,8 @@ function resetExperiment() {
     elementSentenceContainer.replaceChildren();
     characterPosition = 0;
     characterGuesses = 0;
+    allCharacterGuesses = [];
     totalCharacterGuesses = 0;
-    statistics = [];
 
     setDefaultAlphabet();
     setSentence();
@@ -185,6 +194,7 @@ function resetExperiment() {
     createAlphabetButtons(alphabet);
     createSentenceElement();
     setNextCharacter();
+    createGuessesChart();
     updateStatistics();
 }
 
@@ -195,6 +205,12 @@ function checkProvidedSentences() {
         // Override sentences for language
         providedSentences = searchParameters.getAll('sentence');
         allLanguageData[language]['sentences'] = providedSentences.map(sentence => sentence.toUpperCase());
+    }
+}
+
+function checkStatisticsDefaultVisibility() {
+    if (searchParameters.has('show-statistics')) {
+        toggleStatistics(true);
     }
 }
 
@@ -261,6 +277,7 @@ function alphabetButtonClicked(event) {
     let character = elementButton.dataset.character;
     elementCurrentSentenceCharacter.textContent = character;
     characterGuesses++;
+    allCharacterGuesses[characterPosition] = characterGuesses;
     totalCharacterGuesses++;
     elementCurrentSentenceCharacterGuesses.textContent = characterGuesses;
     updateStatistics();
@@ -308,10 +325,83 @@ function foundNextCharacter(foundCharacter) {
 }
 
 function updateStatistics() {
-    guessCounts = [0] * alphabet.length;
+    console.log(sentence);
+
+    // allCharacterGuesses is the number of guesses required for each character.
+    // guessCounts is the number of times it took X (array index) times to guess a character.
+    var guessCounts = Array(alphabet.length).fill(0);
+    for (let i = 0; i < allCharacterGuesses.length; i++) {
+        let guesses = allCharacterGuesses[i];
+        guessCounts[guesses - 1] = guessCounts[guesses - 1] + 1;
+    }
+    updateGuessesChart(guessCounts);
+
+    let bitsUpperBound = 0;
+    let bitsLowerBound = 0;
 
     // Update interface
+    elementBitsUpperBoundText.textContent = bitsUpperBound;
+    elementBitsLowerBoundText.textContent = bitsLowerBound;
     elementTotalGuessesText.textContent = totalCharacterGuesses;
+}
+
+function createGuessesChart() {
+    // Delete chart if it already exists
+    if (chartGuessBarChart) {
+        chartGuessBarChart.destroy();
+    }
+
+    let elementGuessChart = document.querySelector('#shannon-experiment #statistics-guess-chart');
+    let context = elementGuessChart.getContext('2d');
+    let initialData = Array(alphabet.length).fill(0);
+    let dataLabels = []
+    for (let i = 1; i < alphabet.length + 1; i++) {
+        dataLabels.push(i);
+    }
+    Chart.defaults.font.size = 16;
+    Chart.defaults.font.family = '"Noto Sans", sans-serif';
+    chartGuessBarChart = new Chart(context, {
+        type: 'bar',
+        data: {
+            labels: dataLabels,
+            datasets: [{
+                data: initialData,
+                backgroundColor: '#5dc5ee',
+                borderColor: '#31a2cf',
+            }],
+        },
+        options: {
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Number of guesses until a character was guessed correctly',
+                    }
+                },
+                y: {
+                    beginAtZero: true,
+                    suggestedMax: 5,
+                    ticks: {
+                        stepSize: 1,
+                    },
+                    title: {
+                        display: true,
+                        text: 'Number of characters correctly guessed for X guesses',
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false,
+                }
+            },
+        }
+    });
+}
+
+function updateGuessesChart(guessCounts) {
+    chartGuessBarChart.data.datasets[0].data = guessCounts;
+    chartGuessBarChart.update();
 }
 
 function createSentenceElement() {
