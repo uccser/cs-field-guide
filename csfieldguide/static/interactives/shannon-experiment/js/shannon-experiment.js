@@ -288,8 +288,8 @@ function alphabetButtonClicked(event) {
     elementCurrentSentenceCharacterGuesses.textContent = characterGuesses;
     if (character == nextCharacter) {
         elementCurrentSentenceCharacter.classList.remove('incorrect');
-        updateStatistics();
         foundNextCharacter(character);
+        updateStatistics();
     } else {
         elementButton.setAttribute('disabled', '');
         elementCurrentSentenceCharacter.classList.add('incorrect');
@@ -333,7 +333,6 @@ function foundNextCharacter(foundCharacter) {
 function updateStatistics() {
     // allCharacterGuesses is the number of guesses required for each character.
     // guessCounts is the number of times it took X (array index) times to guess a character.
-    // TODO: Don't include current character as it may not be 'correct' yet.
     var guessCounts = Array(alphabet.length).fill(0);
     for (let i = 0; i < allCharacterGuesses.length; i++) {
         let guesses = allCharacterGuesses[i];
@@ -346,7 +345,7 @@ function updateStatistics() {
     let bitsLowerBound = 0;
 
     guessCounts.push(0);
-    for (let r = 0; r < guessCounts.length; r++) {
+    for (let r = 0; r < guessCounts.length - 1; r++) {
         let p_r = guessCounts[r] / allCharacterGuesses.length;
         let p_r_plus_one = guessCounts[r + 1] / allCharacterGuesses.length;
         bitsLowerBound += (r + 1) * (p_r - p_r_plus_one) * Math.log2(r + 1);
@@ -482,10 +481,10 @@ function createGuessPerCharacterBarChart() {
 
 function updateGuessPerCharacterBarChart() {
     chartGuessPerCharacterBarChart.data.datasets[0].data = allCharacterGuesses;
-    let sentenceLabels = sentence.slice(0, characterPosition + 1);
-    // if (character != nextCharacter) {
-    sentenceLabels[sentenceLabels.length - 1] = '?'
-    // }
+    let sentenceLabels = sentence.slice(0, characterPosition);
+    if (sentenceLabels = []) {
+        sentenceLabels = [' '];
+    }
     chartGuessPerCharacterBarChart.data.labels = sentenceLabels;
     chartGuessPerCharacterBarChart.update();
 }
