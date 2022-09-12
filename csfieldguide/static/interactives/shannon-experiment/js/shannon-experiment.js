@@ -484,7 +484,7 @@ function createGuessPerCharacterBarChart() {
 function updateGuessPerCharacterBarChart() {
     chartGuessPerCharacterBarChart.data.datasets[0].data = allCharacterGuesses;
     let sentenceLabels = sentence.slice(0, characterPosition);
-    if (sentenceLabels = []) {
+    if (sentenceLabels.length == 0) {
         sentenceLabels = [' '];
     }
     chartGuessPerCharacterBarChart.data.labels = sentenceLabels;
