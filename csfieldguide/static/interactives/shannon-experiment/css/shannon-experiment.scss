@@ -1,4 +1,9 @@
 #shannon-experiment {
+
+    &.container {
+        max-width: 1920px;
+    }
+
     button {
         background-color: #5dc5ee;
         border: 1px solid #31a2cf;
@@ -78,5 +83,10 @@
         span {
             font-family: monospace;
         }
+    }
+
+    h3 {
+        margin-top: 2rem;
+        margin-bottom: 0;
     }
 }
