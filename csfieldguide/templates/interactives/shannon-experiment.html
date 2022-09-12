@@ -4,45 +4,54 @@
 
 {% block interactive_html %}
     <div id="shannon-experiment" class="container">
-        <h1 class="text-center">
+        <h1 class="h2">
             {% trans "Shannon's prediction and entropy of printed text experiment" %}
         </h1>
-
-        <p></p>
 
         <div id="shannon-language-picker">
             <label for="shannon-language-select">Text language:</label>
             <select name="shannon-language" id="shannon-language-select"></select>
+            <button id="new-sentence-button">New sentence</button>
         </div>
         <p id="shannon-language-description"></p>
 
-        <div id="shannon-controls">
-        </div>
-        <button id="new-sentence-button">New sentence</button>
-
-        <h2>Available alphabet</h2>
+        <h2 class="h3">Available alphabet</h2>
+        <p>Click the character you expect to be next in the sentence.</p>
         <div id="alphabet-buttons-container"></div>
 
-        <h2>Sentence</h2>
+        <h2 class="h3">Sentence</h2>
         <div id="sentence-container"></div>
 
         <button id="toggle-statistics-button">Show statistics</button>
         <div id="statistics-container">
-            <h2>Statistics</h2>
+            <h2 class="h3">Statistics</h2>
+            <p><em>Statistics are updated after each correctly guessed character.</em></p>
             <div id="statistics-plaintext">
-                <p>
-                    <strong>Total guesses:</strong>
-                    <span id="statistic-total-guesses">0</span>
-                </p>
-                {% comment %} <p>
-                    <strong>Upper bound of bits per character:</strong>
-                    <span id="statistic-bits-upper-bound">0</span>
-                    <br>
-                    <strong>Lower bound of bits per character:</strong>
-                    <span id="statistic-bits-lower-bound">0</span>
-                </p> {% endcomment %}
+                <strong>Total guesses:</strong>
+                <span id="statistic-total-guesses">?</span>
+                <br>
+                <strong>Lower bound of bits per character:</strong>
+                <span id="statistic-bits-lower-bound">?</span>
+                <br>
+                <strong>Upper bound of bits per character:</strong>
+                <span id="statistic-bits-upper-bound">?</span>
             </div>
-            <canvas id="statistics-guess-chart" width="600" height="300"></canvas>
+
+            <div class="row">
+                <div class="col-12 col-xl-6">
+                    <h3 class="text-center">Guesses for each character</h3>
+                    <canvas id="statistics-guess-per-character-chart" width="500" height="200"></canvas>
+                </div>
+                <div class="col-12 col-xl-6">
+                    <h3 class="text-center">Guess totals</h3>
+                    <canvas id="statistics-guess-counts-chart" width="500" height="200"></canvas>
+                    <p class="text-center my-3">
+                        For example: You have guessed
+                        <span id="statistics-guess-counts-chart-example-value">0 characters</span>
+                        on the 1st time.
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock interactive_html %}

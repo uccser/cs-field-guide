@@ -1,4 +1,6 @@
 const Chart = require('chart.js');
+Chart.defaults.font.size = 14;
+Chart.defaults.font.family = '"Noto Sans", sans-serif';
 
 // This is not a constant as we remove sentences once they are completed.
 var allLanguageData = {
@@ -21,16 +23,16 @@ var allLanguageData = {
             'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
         ],
         'sentences': [
-            'PLEASE WAIT OUTSIDE THE DOOR',
-            'HE ALWAYS WORE HIS SUNGLASSES AT NIGHT',
-            "IT MUST BE FIVE O'CLOCK SOMEWHERE",
-            'HIS GET RICH QUICK SCHEME WAS TO GROW A CACTUS FARM',
-            'BLUE PARROTS ARE IN THE SKY',
-            'THE CLOUDS FORMED BEAUTIFUL ANIMALS IN THE SKY',
-            'SHE WAS TOO SHORT TO SEE OVER THE FENCE',
-            'A GLITTERING GEM IS NOT ENOUGH',
-            'THE TREE FELL UNEXPECTEDLY SHORT',
-            'THE PAINTBRUSH WAS ANGRY AT THE COLOR THE ARTIST CHOSE TO USE',
+            'PLEASE WAIT OUTSIDE THE DOOR.',
+            'HE ALWAYS WORE HIS SUNGLASSES AT NIGHT.',
+            "IT MUST BE FIVE O'CLOCK SOMEWHERE.",
+            'HIS GET RICH QUICK SCHEME WAS TO GROW A CACTUS FARM.',
+            'BLUE PARROTS ARE IN THE SKY.',
+            'THE CLOUDS FORMED BEAUTIFUL ANIMALS IN THE SKY.',
+            'SHE WAS TOO SHORT TO SEE OVER THE FENCE.',
+            'A GLITTERING GEM IS NOT ENOUGH.',
+            'THE TREE FELL UNEXPECTEDLY SHORT.',
+            'THE PAINTBRUSH WAS ANGRY AT THE COLOR THE ARTIST CHOSE TO USE.',
         ],
     },
     'en-1951-paper': {
@@ -109,7 +111,9 @@ var elementCurrentSentenceCharacterGuesses;
 var elementTotalGuessesText;
 var elementBitsUpperBoundText;
 var elementBitsLowerBoundText;
-var chartGuessBarChart;
+var elementGuessPerCharacterBarChartExampleValue;
+var chartGuessCountsBarChart;
+var chartGuessPerCharacterBarChart;
 
 function setup() {
     searchParameters = new URL(window.location.href).searchParams;
@@ -123,6 +127,7 @@ function setup() {
     elementTotalGuessesText = document.querySelector('#shannon-experiment #statistic-total-guesses');
     elementBitsUpperBoundText = document.querySelector('#shannon-experiment #statistic-bits-upper-bound');
     elementBitsLowerBoundText = document.querySelector('#shannon-experiment #statistic-bits-lower-bound');
+    elementGuessPerCharacterBarChartExampleValue = document.querySelector('#shannon-experiment #statistics-guess-counts-chart-example-value');
 
     elementLanguageSelect.addEventListener('change', function (event) {
         updateLanguage(event);
@@ -194,7 +199,8 @@ function resetExperiment() {
     createAlphabetButtons(alphabet);
     createSentenceElement();
     setNextCharacter();
-    createGuessesChart();
+    createGuessCountsBarChart();
+    createGuessPerCharacterBarChart();
     updateStatistics();
 }
 
@@ -213,6 +219,7 @@ function checkStatisticsDefaultVisibility() {
         toggleStatistics(true);
     }
 }
+
 
 function setSentence() {
     let languageSentences = allLanguageData[language]['sentences'];
@@ -284,6 +291,7 @@ function alphabetButtonClicked(event) {
     if (character == nextCharacter) {
         elementCurrentSentenceCharacter.classList.remove('incorrect');
         foundNextCharacter(character);
+        updateStatistics();
     } else {
         elementButton.setAttribute('disabled', '');
         elementCurrentSentenceCharacter.classList.add('incorrect');
@@ -325,8 +333,6 @@ function foundNextCharacter(foundCharacter) {
 }
 
 function updateStatistics() {
-    console.log(sentence);
-
     // allCharacterGuesses is the number of guesses required for each character.
     // guessCounts is the number of times it took X (array index) times to guess a character.
     var guessCounts = Array(alphabet.length).fill(0);
@@ -334,42 +340,42 @@ function updateStatistics() {
         let guesses = allCharacterGuesses[i];
         guessCounts[guesses - 1] += 1;
     }
-    updateGuessesChart(guessCounts);
+    updateGuessCountsBarChart(guessCounts);
+    updateGuessPerCharacterBarChart();
 
     let bitsUpperBound = 0;
     let bitsLowerBound = 0;
 
-    for (let r = 0; r < guessCounts.length; r++) {
+    guessCounts.push(0);
+    for (let r = 0; r < guessCounts.length - 1; r++) {
         let p_r = guessCounts[r] / allCharacterGuesses.length;
         let p_r_plus_one = guessCounts[r + 1] / allCharacterGuesses.length;
-        bitsLowerBound += (r + 1) * (p_r - p_r_plus_one) * Math.log2(r);
+        bitsLowerBound += (r + 1) * (p_r - p_r_plus_one) * Math.log2(r + 1);
         if (p_r > 0) {
             bitsUpperBound += p_r * Math.log2(1 / p_r);
         }
     }
 
     // Update interface
-    // elementBitsUpperBoundText.textContent = bitsUpperBound;
-    // elementBitsLowerBoundText.textContent = bitsLowerBound;
+    elementBitsUpperBoundText.textContent = bitsUpperBound;
+    elementBitsLowerBoundText.textContent = bitsLowerBound;
     elementTotalGuessesText.textContent = totalCharacterGuesses;
 }
 
-function createGuessesChart() {
+function createGuessCountsBarChart() {
     // Delete chart if it already exists
-    if (chartGuessBarChart) {
-        chartGuessBarChart.destroy();
+    if (chartGuessCountsBarChart) {
+        chartGuessCountsBarChart.destroy();
     }
 
-    let elementGuessChart = document.querySelector('#shannon-experiment #statistics-guess-chart');
+    let elementGuessChart = document.querySelector('#shannon-experiment #statistics-guess-counts-chart');
     let context = elementGuessChart.getContext('2d');
     let initialData = Array(alphabet.length).fill(0);
     let dataLabels = []
     for (let i = 1; i < alphabet.length + 1; i++) {
         dataLabels.push(i);
     }
-    Chart.defaults.font.size = 16;
-    Chart.defaults.font.family = '"Noto Sans", sans-serif';
-    chartGuessBarChart = new Chart(context, {
+    chartGuessCountsBarChart = new Chart(context, {
         type: 'bar',
         data: {
             labels: dataLabels,
@@ -385,6 +391,10 @@ function createGuessesChart() {
                     title: {
                         display: true,
                         text: 'Number of guesses until a character was guessed correctly',
+                    },
+                    ticks: {
+                        autoSkip: false,
+                        maxRotation: 0,
                     }
                 },
                 y: {
@@ -395,7 +405,7 @@ function createGuessesChart() {
                     },
                     title: {
                         display: true,
-                        text: 'Number of characters correctly guessed for X guesses',
+                        text: 'Number of characters',
                     }
                 }
             },
@@ -408,9 +418,77 @@ function createGuessesChart() {
     });
 }
 
-function updateGuessesChart(guessCounts) {
-    chartGuessBarChart.data.datasets[0].data = guessCounts;
-    chartGuessBarChart.update();
+function updateGuessCountsBarChart(guessCounts) {
+    chartGuessCountsBarChart.data.datasets[0].data = guessCounts;
+    chartGuessCountsBarChart.update();
+    if (guessCounts[0] == 1) {
+        elementGuessPerCharacterBarChartExampleValue.textContent = '1 character';
+    } else {
+        elementGuessPerCharacterBarChartExampleValue.textContent = `${guessCounts[0]} characters`;
+    }
+}
+
+function createGuessPerCharacterBarChart() {
+    // Delete chart if it already exists
+    if (chartGuessPerCharacterBarChart) {
+        chartGuessPerCharacterBarChart.destroy();
+    }
+
+    let elementGuessChart = document.querySelector('#shannon-experiment #statistics-guess-per-character-chart');
+    let context = elementGuessChart.getContext('2d');
+    let initialData = [0];
+    let dataLabels = ['?']
+    chartGuessPerCharacterBarChart = new Chart(context, {
+        type: 'bar',
+        data: {
+            labels: dataLabels,
+            datasets: [{
+                data: initialData,
+                backgroundColor: '#5dc5ee',
+                borderColor: '#31a2cf',
+            }],
+        },
+        options: {
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Character in sentence',
+                    },
+                    ticks: {
+                        autoSkip: false,
+                        maxRotation: 0,
+                    }
+                },
+                y: {
+                    beginAtZero: true,
+                    suggestedMax: 5,
+                    ticks: {
+                        stepSize: 1,
+                    },
+                    title: {
+                        display: true,
+                        text: 'Number of guesses',
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false,
+                }
+            },
+        }
+    });
+}
+
+function updateGuessPerCharacterBarChart() {
+    chartGuessPerCharacterBarChart.data.datasets[0].data = allCharacterGuesses;
+    let sentenceLabels = sentence.slice(0, characterPosition);
+    if (sentenceLabels = []) {
+        sentenceLabels = [' '];
+    }
+    chartGuessPerCharacterBarChart.data.labels = sentenceLabels;
+    chartGuessPerCharacterBarChart.update();
 }
 
 function createSentenceElement() {
