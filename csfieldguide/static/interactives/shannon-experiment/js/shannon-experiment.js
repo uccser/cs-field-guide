@@ -253,13 +253,18 @@ function checkStatisticsDefaultVisibility() {
 
 
 function setSentence() {
-    let languageSentences = allLanguageData[language]['sentences'];
-    // If this is the last sentence, hide new sentence button
+    let languageSentences = allLanguageData[language]['sentences'].slice();
     if (languageSentences.length <= 1) {
+        // If this is the last sentence, hide new sentence button
         elementNewSentenceButton.style.display = 'none';
+    } else if (sentence && sentence.length != 0) {
+        // Remove current sentence from options to avoid getting same sentence again
+        var currentSentence = sentence.join('');
+        let index = languageSentences.indexOf(currentSentence);
+        languageSentences.splice(index, 1);
     }
-    let selectedSentence = languageSentences[Math.floor(Math.random() * languageSentences.length)];
 
+    let selectedSentence = languageSentences[Math.floor(Math.random() * languageSentences.length)];
     // Break sentence into array of characters.
     sentence = [];
     while (selectedSentence.length > 0) {
@@ -287,7 +292,6 @@ function removeCompletedSentence() {
     let sentenceString = sentence.join('');
     languageSentences.splice(languageSentences.indexOf(sentenceString), 1);
 }
-
 
 function createAlphabetButtons(alphabet) {
     alphabet.forEach(createAlphabetButton);
