@@ -109,8 +109,7 @@ var elementSentenceContainer;
 var elementCurrentSentenceCharacter;
 var elementCurrentSentenceCharacterGuesses;
 var elementTotalGuessesText;
-var elementBitsUpperBoundText;
-var elementBitsLowerBoundText;
+var elementBitsBoundsText;
 var elementGuessPerCharacterBarChartExampleValue;
 var chartGuessCountsBarChart;
 var chartGuessPerCharacterBarChart;
@@ -125,8 +124,7 @@ function setup() {
     elementStatisticsContainer = document.querySelector('#shannon-experiment #statistics-container');
     elementToggleStatisticsButton = document.querySelector('#shannon-experiment #toggle-statistics-button');
     elementTotalGuessesText = document.querySelector('#shannon-experiment #statistic-total-guesses');
-    elementBitsUpperBoundText = document.querySelector('#shannon-experiment #statistic-bits-upper-bound');
-    elementBitsLowerBoundText = document.querySelector('#shannon-experiment #statistic-bits-lower-bound');
+    elementBitsBoundsText = document.querySelector('#shannon-experiment #statistic-bit-bounds');
     elementGuessPerCharacterBarChartExampleValue = document.querySelector('#shannon-experiment #statistics-guess-counts-chart-example-value');
 
     elementLanguageSelect.addEventListener('change', function (event) {
@@ -287,7 +285,6 @@ function alphabetButtonClicked(event) {
     allCharacterGuesses[characterPosition] = characterGuesses;
     totalCharacterGuesses++;
     elementCurrentSentenceCharacterGuesses.textContent = characterGuesses;
-    updateStatistics();
     if (character == nextCharacter) {
         elementCurrentSentenceCharacter.classList.remove('incorrect');
         foundNextCharacter(character);
@@ -346,7 +343,8 @@ function updateStatistics() {
     let bitsUpperBound = 0;
     let bitsLowerBound = 0;
 
-    guessCounts.push(0);
+    // http://socsci.uci.edu/~rfutrell/teaching/itl-davis/readings/shannon1951prediction.pdf
+    guessCounts.push(0);  // Allows for r + 1 references
     for (let r = 0; r < guessCounts.length - 1; r++) {
         let p_r = guessCounts[r] / allCharacterGuesses.length;
         let p_r_plus_one = guessCounts[r + 1] / allCharacterGuesses.length;
@@ -357,8 +355,7 @@ function updateStatistics() {
     }
 
     // Update interface
-    elementBitsUpperBoundText.textContent = bitsUpperBound;
-    elementBitsLowerBoundText.textContent = bitsLowerBound;
+    elementBitsBoundsText.textContent = `${bitsLowerBound.toFixed(4)} - ${bitsUpperBound.toFixed(4)}`;
     elementTotalGuessesText.textContent = totalCharacterGuesses;
 }
 
