@@ -15,6 +15,9 @@
         }
     }
 
+    #shannon-language-picker {
+        display: inline-block;
+    }
 
     #alphabet-buttons-container {
         margin-bottom: 2rem;
@@ -88,5 +91,26 @@
     h3 {
         margin-top: 2rem;
         margin-bottom: 0;
+    }
+}
+
+#shannon-builder {
+    label {
+        font-weight: bold;
+        cursor: pointer;
+        user-select: none;
+    }
+    #builder-custom-sentences {
+        text-transform: uppercase;
+    }
+    .modal-footer {
+        justify-content: start;
+
+        #builder-generated-link {
+            cursor: pointer;
+            font-family: monospace;
+            word-break: break-all;
+            font-size: 0.9rem;
+        }
     }
 }

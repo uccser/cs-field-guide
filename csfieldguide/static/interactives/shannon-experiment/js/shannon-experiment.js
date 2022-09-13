@@ -86,7 +86,10 @@ var allLanguageData = {
         ],
     },
 };
+
 const SHOW_STATISTICS_ATTRIBUTE = 'show-statistics';
+const HIDE_BUILDER_ATTRIBUTE = 'hide-builder';
+const ENCODED_SENTENCE_SEPARATOR = '|';
 
 // Get language
 var searchParameters;
@@ -103,6 +106,7 @@ var elementLanguageSelect;
 var elementNewSentenceButton;
 var elementStatisticsContainer;
 var elementToggleStatisticsButton;
+var elementBuilderButton;
 var elementLanguageDescription;
 var elementAlphabetButtonsContainer;
 var elementSentenceContainer;
@@ -113,6 +117,11 @@ var elementBitsBoundsText;
 var elementGuessPerCharacterBarChartExampleValue;
 var chartGuessCountsBarChart;
 var chartGuessPerCharacterBarChart;
+var elementBuilderSentences;
+var elementBuilderLanguageSelect;
+var elementBuilderShowStatisticsCheckbox;
+var elementBuilderHideBuilderCheckbox;
+var elementBuilderGeneratedLink;
 
 function setup() {
     searchParameters = new URL(window.location.href).searchParams;
@@ -121,11 +130,17 @@ function setup() {
     elementLanguageSelect = document.querySelector('#shannon-experiment #shannon-language-select');
     elementLanguageDescription = document.querySelector('#shannon-experiment #shannon-language-description');
     elementNewSentenceButton = document.querySelector('#shannon-experiment #new-sentence-button');
+    elementBuilderButton = document.querySelector('#shannon-experiment #shannon-builder-button');
     elementStatisticsContainer = document.querySelector('#shannon-experiment #statistics-container');
     elementToggleStatisticsButton = document.querySelector('#shannon-experiment #toggle-statistics-button');
     elementTotalGuessesText = document.querySelector('#shannon-experiment #statistic-total-guesses');
     elementBitsBoundsText = document.querySelector('#shannon-experiment #statistic-bit-bounds');
     elementGuessPerCharacterBarChartExampleValue = document.querySelector('#shannon-experiment #statistics-guess-counts-chart-example-value');
+    elementBuilderSentences = document.querySelector('#shannon-builder #builder-custom-sentences');
+    elementBuilderLanguageSelect = document.querySelector('#shannon-builder #builder-custom-language');
+    elementBuilderShowStatisticsCheckbox = document.querySelector('#shannon-builder #builder-show-statistics');
+    elementBuilderHideBuilderCheckbox = document.querySelector('#shannon-builder #builder-hide-builder');
+    elementBuilderGeneratedLink = document.querySelector('#shannon-builder #builder-generated-link');
 
     elementLanguageSelect.addEventListener('change', function (event) {
         updateLanguage(event);
@@ -133,9 +148,17 @@ function setup() {
     });
     elementNewSentenceButton.addEventListener('click', resetExperiment);
     elementToggleStatisticsButton.addEventListener('click', function () { toggleStatistics() });
-    setupLanguagePicker();
+    setupLanguagePickers();
+
+    elementBuilderSentences.addEventListener('input', getExperimentLink)
+    elementBuilderLanguageSelect.addEventListener('change', getExperimentLink)
+    elementBuilderShowStatisticsCheckbox.addEventListener('change', getExperimentLink);
+    elementBuilderHideBuilderCheckbox.addEventListener('change', getExperimentLink);
 
     // Check URL parameters
+    if (searchParameters.has(HIDE_BUILDER_ATTRIBUTE)) {
+        elementBuilderButton.style.display = 'none';
+    }
     updateLanguage();
     checkProvidedSentences();
     checkStatisticsDefaultVisibility();
@@ -143,12 +166,13 @@ function setup() {
     resetExperiment();
 }
 
-function setupLanguagePicker() {
+function setupLanguagePickers() {
     for (const [languageSlug, languageData] of Object.entries(allLanguageData)) {
         let elementOption = document.createElement('option');
         elementOption.value = languageSlug;
         elementOption.textContent = languageData.title;
         elementLanguageSelect.appendChild(elementOption);
+        elementBuilderLanguageSelect.appendChild(elementOption.cloneNode(true));
     }
 }
 
@@ -171,7 +195,7 @@ function updateLanguage(event) {
     } else {
         language = elementLanguageSelect.value;
     }
-
+    elementBuilderLanguageSelect.value = language;
     elementLanguageDescription.textContent = allLanguageData[language].description || '';
 }
 
@@ -204,16 +228,25 @@ function resetExperiment() {
 
 function checkProvidedSentences() {
     if (searchParameters.has('sentence')) {
+        const decoder = new TextDecoder();
         // Hide language picker since sentences are specific to a language
         document.querySelector('#shannon-experiment #shannon-language-picker').style.display = 'none';
         // Override sentences for language
+        allLanguageData[language]['sentences'] = [];
         providedSentences = searchParameters.getAll('sentence');
-        allLanguageData[language]['sentences'] = providedSentences.map(sentence => sentence.toUpperCase());
+        for (let i = 0; i < providedSentences.length; i++) {
+            let encodedSentence = providedSentences[i];
+            encodedSentence = encodedSentence.split(ENCODED_SENTENCE_SEPARATOR);
+            let u8Array = new Uint8Array(encodedSentence);
+            let rawSentence = decoder.decode(u8Array);
+            let sentence = rawSentence.toUpperCase();
+            allLanguageData[language]['sentences'].push(sentence);
+        }
     }
 }
 
 function checkStatisticsDefaultVisibility() {
-    if (searchParameters.has('show-statistics')) {
+    if (searchParameters.has(SHOW_STATISTICS_ATTRIBUTE)) {
         toggleStatistics(true);
     }
 }
@@ -223,7 +256,7 @@ function setSentence() {
     let languageSentences = allLanguageData[language]['sentences'];
     // If this is the last sentence, hide new sentence button
     if (languageSentences.length <= 1) {
-        document.querySelector('#shannon-experiment #new-sentence-button').style.display = 'none';
+        elementNewSentenceButton.style.display = 'none';
     }
     let selectedSentence = languageSentences[Math.floor(Math.random() * languageSentences.length)];
 
@@ -525,6 +558,39 @@ function toggleStatistics(force) {
         elementStatisticsContainer.style.display = 'none';
         elementToggleStatisticsButton.textContent = gettext('Show statistics');
     }
+}
+
+function getExperimentLink() {
+    let customExperimentParams = new URLSearchParams();
+
+    // Sentences
+    const encoder = new TextEncoder();
+    let customSentences = elementBuilderSentences.value.split(/\r?\n/);
+    for (let i = 0; i < customSentences.length; i++) {
+        let sentence = customSentences[i];
+        if (sentence != '') {
+            let encodedSentence = encoder.encode(sentence);
+            customExperimentParams.append('sentence', encodedSentence.join(ENCODED_SENTENCE_SEPARATOR));
+        }
+    }
+
+    // Language
+    customExperimentParams.append('language', elementBuilderLanguageSelect.value);
+
+    // Show statistics
+    if (elementBuilderShowStatisticsCheckbox.checked) {
+        customExperimentParams.append(SHOW_STATISTICS_ATTRIBUTE, 'true');
+    }
+
+    // Hide builder
+    if (elementBuilderHideBuilderCheckbox.checked) {
+        customExperimentParams.append(HIDE_BUILDER_ATTRIBUTE, 'true');
+    }
+
+    // Render to modal
+    let customUrl = `${location.origin}${location.pathname}?${customExperimentParams.toString()}`;
+    elementBuilderGeneratedLink.textContent = customUrl;
+    elementBuilderGeneratedLink.href = customUrl;
 }
 
 // Used under CC BY-SA 4.0

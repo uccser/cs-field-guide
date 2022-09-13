@@ -3,6 +3,65 @@
 {% load static i18n %}
 
 {% block interactive_html %}
+    <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-hidden="true" id="shannon-builder">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">{% trans "Create your own experiment" %}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>{% trans "Use this window to create a link to your own experiment." %}</p>
+
+                    <div class="form-group">
+                        <label for="builder-custom-sentences">Sentences</label>
+                        <textarea class="form-control" id="builder-custom-sentences" rows="4"></textarea>
+                        <small class="form-text text-muted">
+                            {% trans "Enter each sentence on a new line." %}
+                        </small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="builder-custom-language">Default sentence language</label>
+                        <select class="form-control" id="builder-custom-language"></select>
+                        <small class="form-text text-muted">
+                            {% trans "The interactive automatically adds any extra required characters." %}
+                        </small>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="builder-show-statistics">
+                            <label class="form-check-label" for="builder-show-statistics">
+                                {% trans "Show statistics" %}
+                            </label>
+                            <small class="form-text text-muted">
+                                {% trans "Open the statistics panel when loading the page." %}
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="builder-hide-builder">
+                            <label class="form-check-label" for="builder-hide-builder">
+                                {% trans "Hide builder" %}
+                            </label>
+                            <small class="form-text text-muted">
+                                {% trans "Hide the button for this builder window." %}
+                            </small>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a class="mt-2" target="_blank" id="builder-generated-link"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div id="shannon-experiment" class="container">
         <h1 class="h2">
             {% trans "Shannon's prediction and entropy of printed text experiment" %}
@@ -11,8 +70,8 @@
         <div id="shannon-language-picker">
             <label for="shannon-language-select">Text language:</label>
             <select name="shannon-language" id="shannon-language-select"></select>
-            <button id="new-sentence-button">New sentence</button>
         </div>
+        <button id="new-sentence-button">New sentence</button>
         <p id="shannon-language-description"></p>
 
         <h2 class="h3">Available alphabet</h2>
@@ -22,7 +81,12 @@
         <h2 class="h3">Sentence</h2>
         <div id="sentence-container"></div>
 
-        <button id="toggle-statistics-button">Show statistics</button>
+        <button id="shannon-builder-button" type="button" data-toggle="modal" data-target="#shannon-builder">
+            {% trans "Create your own experiment" %}
+        </button>
+        <button id="toggle-statistics-button">
+            {% trans "Show statistics" %}
+        </button>
         <div id="statistics-container">
             <h2 class="h3">Statistics</h2>
             <p><em>Statistics are updated after each correctly guessed character.</em></p>
