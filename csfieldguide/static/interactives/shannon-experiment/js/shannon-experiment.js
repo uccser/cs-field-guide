@@ -122,6 +122,7 @@ var elementBuilderLanguageSelect;
 var elementBuilderShowStatisticsCheckbox;
 var elementBuilderHideBuilderCheckbox;
 var elementBuilderGeneratedLink;
+var elementBuilderGeneratedLinkContainer;
 
 function setup() {
     searchParameters = new URL(window.location.href).searchParams;
@@ -141,6 +142,7 @@ function setup() {
     elementBuilderShowStatisticsCheckbox = document.querySelector('#shannon-builder #builder-show-statistics');
     elementBuilderHideBuilderCheckbox = document.querySelector('#shannon-builder #builder-hide-builder');
     elementBuilderGeneratedLink = document.querySelector('#shannon-builder #builder-generated-link');
+    elementBuilderGeneratedLinkContainer = document.querySelector('#shannon-builder #builder-generated-link-container');
 
     elementLanguageSelect.addEventListener('change', function (event) {
         updateLanguage(event);
@@ -565,6 +567,7 @@ function toggleStatistics(force) {
 }
 
 function getExperimentLink() {
+    elementBuilderGeneratedLinkContainer.style.display = 'block';
     let customExperimentParams = new URLSearchParams();
 
     // Sentences

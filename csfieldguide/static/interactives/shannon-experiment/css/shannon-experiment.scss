@@ -103,7 +103,8 @@
     #builder-custom-sentences {
         text-transform: uppercase;
     }
-    .modal-footer {
+    #builder-generated-link-container {
+        display: none;
         justify-content: start;
 
         #builder-generated-link {
