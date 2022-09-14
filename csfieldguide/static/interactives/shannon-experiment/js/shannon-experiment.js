@@ -319,7 +319,11 @@ function createAlphabetButton(character) {
 function alphabetButtonClicked(event) {
     let elementButton = event.target;
     let character = elementButton.dataset.character;
-    elementCurrentSentenceCharacter.textContent = character;
+    if (character == ' ') {
+        elementCurrentSentenceCharacter.textContent = '?';
+    } else {
+        elementCurrentSentenceCharacter.textContent = character;
+    }
     characterGuesses++;
     allCharacterGuesses[characterPosition] = characterGuesses;
     totalCharacterGuesses++;

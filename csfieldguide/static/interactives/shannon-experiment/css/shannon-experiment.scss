@@ -1,3 +1,5 @@
+$incorrect-colour: #dd0000;
+
 #shannon-experiment {
 
     &.container {
@@ -65,12 +67,18 @@
                 border-bottom: 2px solid #000;
 
                 &.incorrect {
-                    color: #c20f0f;
+                    color: $incorrect-colour;
+                    border-color: $incorrect-colour;
+
+                    & + .sentence-character-guesses {
+                        color: $incorrect-colour;
+                    }
                 }
             }
             .sentence-character-guesses {
                 color: #444;
             }
+
         }
     }
 
