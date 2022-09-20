@@ -86,7 +86,10 @@ var allLanguageData = {
         ],
     },
 };
+
 const SHOW_STATISTICS_ATTRIBUTE = 'show-statistics';
+const HIDE_BUILDER_ATTRIBUTE = 'hide-builder';
+const ENCODED_SENTENCE_SEPARATOR = '|';
 
 // Get language
 var searchParameters;
@@ -103,17 +106,23 @@ var elementLanguageSelect;
 var elementNewSentenceButton;
 var elementStatisticsContainer;
 var elementToggleStatisticsButton;
+var elementBuilderButton;
 var elementLanguageDescription;
 var elementAlphabetButtonsContainer;
 var elementSentenceContainer;
 var elementCurrentSentenceCharacter;
 var elementCurrentSentenceCharacterGuesses;
 var elementTotalGuessesText;
-var elementBitsUpperBoundText;
-var elementBitsLowerBoundText;
+var elementBitsBoundsText;
 var elementGuessPerCharacterBarChartExampleValue;
 var chartGuessCountsBarChart;
 var chartGuessPerCharacterBarChart;
+var elementBuilderSentences;
+var elementBuilderLanguageSelect;
+var elementBuilderShowStatisticsCheckbox;
+var elementBuilderHideBuilderCheckbox;
+var elementBuilderGeneratedLink;
+var elementBuilderGeneratedLinkContainer;
 
 function setup() {
     searchParameters = new URL(window.location.href).searchParams;
@@ -122,12 +131,18 @@ function setup() {
     elementLanguageSelect = document.querySelector('#shannon-experiment #shannon-language-select');
     elementLanguageDescription = document.querySelector('#shannon-experiment #shannon-language-description');
     elementNewSentenceButton = document.querySelector('#shannon-experiment #new-sentence-button');
+    elementBuilderButton = document.querySelector('#shannon-experiment #shannon-builder-button');
     elementStatisticsContainer = document.querySelector('#shannon-experiment #statistics-container');
     elementToggleStatisticsButton = document.querySelector('#shannon-experiment #toggle-statistics-button');
     elementTotalGuessesText = document.querySelector('#shannon-experiment #statistic-total-guesses');
-    elementBitsUpperBoundText = document.querySelector('#shannon-experiment #statistic-bits-upper-bound');
-    elementBitsLowerBoundText = document.querySelector('#shannon-experiment #statistic-bits-lower-bound');
+    elementBitsBoundsText = document.querySelector('#shannon-experiment #statistic-bit-bounds');
     elementGuessPerCharacterBarChartExampleValue = document.querySelector('#shannon-experiment #statistics-guess-counts-chart-example-value');
+    elementBuilderSentences = document.querySelector('#shannon-builder #builder-custom-sentences');
+    elementBuilderLanguageSelect = document.querySelector('#shannon-builder #builder-custom-language');
+    elementBuilderShowStatisticsCheckbox = document.querySelector('#shannon-builder #builder-show-statistics');
+    elementBuilderHideBuilderCheckbox = document.querySelector('#shannon-builder #builder-hide-builder');
+    elementBuilderGeneratedLink = document.querySelector('#shannon-builder #builder-generated-link');
+    elementBuilderGeneratedLinkContainer = document.querySelector('#shannon-builder #builder-generated-link-container');
 
     elementLanguageSelect.addEventListener('change', function (event) {
         updateLanguage(event);
@@ -135,9 +150,17 @@ function setup() {
     });
     elementNewSentenceButton.addEventListener('click', resetExperiment);
     elementToggleStatisticsButton.addEventListener('click', function () { toggleStatistics() });
-    setupLanguagePicker();
+    setupLanguagePickers();
+
+    elementBuilderSentences.addEventListener('input', getExperimentLink)
+    elementBuilderLanguageSelect.addEventListener('change', getExperimentLink)
+    elementBuilderShowStatisticsCheckbox.addEventListener('change', getExperimentLink);
+    elementBuilderHideBuilderCheckbox.addEventListener('change', getExperimentLink);
 
     // Check URL parameters
+    if (searchParameters.has(HIDE_BUILDER_ATTRIBUTE)) {
+        elementBuilderButton.style.display = 'none';
+    }
     updateLanguage();
     checkProvidedSentences();
     checkStatisticsDefaultVisibility();
@@ -145,12 +168,13 @@ function setup() {
     resetExperiment();
 }
 
-function setupLanguagePicker() {
+function setupLanguagePickers() {
     for (const [languageSlug, languageData] of Object.entries(allLanguageData)) {
         let elementOption = document.createElement('option');
         elementOption.value = languageSlug;
         elementOption.textContent = languageData.title;
         elementLanguageSelect.appendChild(elementOption);
+        elementBuilderLanguageSelect.appendChild(elementOption.cloneNode(true));
     }
 }
 
@@ -173,7 +197,7 @@ function updateLanguage(event) {
     } else {
         language = elementLanguageSelect.value;
     }
-
+    elementBuilderLanguageSelect.value = language;
     elementLanguageDescription.textContent = allLanguageData[language].description || '';
 }
 
@@ -206,28 +230,43 @@ function resetExperiment() {
 
 function checkProvidedSentences() {
     if (searchParameters.has('sentence')) {
+        const decoder = new TextDecoder();
         // Hide language picker since sentences are specific to a language
         document.querySelector('#shannon-experiment #shannon-language-picker').style.display = 'none';
         // Override sentences for language
+        allLanguageData[language]['sentences'] = [];
         providedSentences = searchParameters.getAll('sentence');
-        allLanguageData[language]['sentences'] = providedSentences.map(sentence => sentence.toUpperCase());
+        for (let i = 0; i < providedSentences.length; i++) {
+            let encodedSentence = providedSentences[i];
+            encodedSentence = encodedSentence.split(ENCODED_SENTENCE_SEPARATOR);
+            let u8Array = new Uint8Array(encodedSentence);
+            let rawSentence = decoder.decode(u8Array);
+            let sentence = rawSentence.toUpperCase();
+            allLanguageData[language]['sentences'].push(sentence);
+        }
     }
 }
 
 function checkStatisticsDefaultVisibility() {
-    if (searchParameters.has('show-statistics')) {
+    if (searchParameters.has(SHOW_STATISTICS_ATTRIBUTE)) {
         toggleStatistics(true);
     }
 }
 
-function setSentence() {
-    let languageSentences = allLanguageData[language]['sentences'];
-    // If this is the last sentence, hide new sentence button
-    if (languageSentences.length <= 1) {
-        document.querySelector('#shannon-experiment #new-sentence-button').style.display = 'none';
-    }
-    let selectedSentence = languageSentences[Math.floor(Math.random() * languageSentences.length)];
 
+function setSentence() {
+    let languageSentences = allLanguageData[language]['sentences'].slice();
+    if (languageSentences.length <= 1) {
+        // If this is the last sentence, hide new sentence button
+        elementNewSentenceButton.style.display = 'none';
+    } else if (sentence && sentence.length != 0) {
+        // Remove current sentence from options to avoid getting same sentence again
+        var currentSentence = sentence.join('');
+        let index = languageSentences.indexOf(currentSentence);
+        languageSentences.splice(index, 1);
+    }
+
+    let selectedSentence = languageSentences[Math.floor(Math.random() * languageSentences.length)];
     // Break sentence into array of characters.
     sentence = [];
     while (selectedSentence.length > 0) {
@@ -256,7 +295,6 @@ function removeCompletedSentence() {
     languageSentences.splice(languageSentences.indexOf(sentenceString), 1);
 }
 
-
 function createAlphabetButtons(alphabet) {
     alphabet.forEach(createAlphabetButton);
 }
@@ -281,7 +319,11 @@ function createAlphabetButton(character) {
 function alphabetButtonClicked(event) {
     let elementButton = event.target;
     let character = elementButton.dataset.character;
-    elementCurrentSentenceCharacter.textContent = character;
+    if (character == ' ') {
+        elementCurrentSentenceCharacter.textContent = '?';
+    } else {
+        elementCurrentSentenceCharacter.textContent = character;
+    }
     characterGuesses++;
     allCharacterGuesses[characterPosition] = characterGuesses;
     totalCharacterGuesses++;
@@ -344,7 +386,8 @@ function updateStatistics() {
     let bitsUpperBound = 0;
     let bitsLowerBound = 0;
 
-    guessCounts.push(0);
+    // http://socsci.uci.edu/~rfutrell/teaching/itl-davis/readings/shannon1951prediction.pdf
+    guessCounts.push(0);  // Allows for r + 1 references
     for (let r = 0; r < guessCounts.length - 1; r++) {
         let p_r = guessCounts[r] / allCharacterGuesses.length;
         let p_r_plus_one = guessCounts[r + 1] / allCharacterGuesses.length;
@@ -355,8 +398,7 @@ function updateStatistics() {
     }
 
     // Update interface
-    elementBitsUpperBoundText.textContent = bitsUpperBound;
-    elementBitsLowerBoundText.textContent = bitsLowerBound;
+    elementBitsBoundsText.textContent = `${bitsLowerBound.toFixed(4)} - ${bitsUpperBound.toFixed(4)}`;
     elementTotalGuessesText.textContent = totalCharacterGuesses;
 }
 
@@ -482,7 +524,7 @@ function createGuessPerCharacterBarChart() {
 function updateGuessPerCharacterBarChart() {
     chartGuessPerCharacterBarChart.data.datasets[0].data = allCharacterGuesses;
     let sentenceLabels = sentence.slice(0, characterPosition);
-    if (sentenceLabels = []) {
+    if (sentenceLabels.length == 0) {
         sentenceLabels = [' '];
     }
     chartGuessPerCharacterBarChart.data.labels = sentenceLabels;
@@ -526,6 +568,40 @@ function toggleStatistics(force) {
         elementStatisticsContainer.style.display = 'none';
         elementToggleStatisticsButton.textContent = gettext('Show statistics');
     }
+}
+
+function getExperimentLink() {
+    elementBuilderGeneratedLinkContainer.style.display = 'block';
+    let customExperimentParams = new URLSearchParams();
+
+    // Sentences
+    const encoder = new TextEncoder();
+    let customSentences = elementBuilderSentences.value.split(/\r?\n/);
+    for (let i = 0; i < customSentences.length; i++) {
+        let sentence = customSentences[i];
+        if (sentence != '') {
+            let encodedSentence = encoder.encode(sentence);
+            customExperimentParams.append('sentence', encodedSentence.join(ENCODED_SENTENCE_SEPARATOR));
+        }
+    }
+
+    // Language
+    customExperimentParams.append('language', elementBuilderLanguageSelect.value);
+
+    // Show statistics
+    if (elementBuilderShowStatisticsCheckbox.checked) {
+        customExperimentParams.append(SHOW_STATISTICS_ATTRIBUTE, 'true');
+    }
+
+    // Hide builder
+    if (elementBuilderHideBuilderCheckbox.checked) {
+        customExperimentParams.append(HIDE_BUILDER_ATTRIBUTE, 'true');
+    }
+
+    // Render to modal
+    let customUrl = `${location.origin}${location.pathname}?${customExperimentParams.toString()}`;
+    elementBuilderGeneratedLink.textContent = customUrl;
+    elementBuilderGeneratedLink.href = customUrl;
 }
 
 // Used under CC BY-SA 4.0
