@@ -90,6 +90,7 @@ var allLanguageData = {
 const SHOW_STATISTICS_ATTRIBUTE = 'show-statistics';
 const HIDE_BUILDER_ATTRIBUTE = 'hide-builder';
 const ENCODED_SENTENCE_SEPARATOR = '|';
+const SPACE_CHARACTER = '\u{2423}';
 
 // Get language
 var searchParameters;
@@ -163,9 +164,18 @@ function setup() {
     }
     updateLanguage();
     checkProvidedSentences();
+    replaceAllSpaces();
     checkStatisticsDefaultVisibility();
 
     resetExperiment();
+}
+
+function replaceAllSpaces() {
+    for (const languageData of Object.values(allLanguageData)) {
+        for (let i = 0; i < languageData.sentences.length; i++) {
+            languageData.sentences[i] = languageData.sentences[i].replaceAll(' ', SPACE_CHARACTER);
+        }
+    }
 }
 
 function setupLanguagePickers() {
@@ -301,13 +311,7 @@ function createAlphabetButtons(alphabet) {
 
 function createAlphabetButton(character) {
     let elementButton = document.createElement('button');
-    var text;
-    if (character == ' ') {
-        // TODO: Translate
-        text = 'Space';
-    } else {
-        text = character;
-    }
+    var text = character;
     let elementText = document.createTextNode(text);
     elementButton.appendChild(elementText);
     elementButton.classList.add('alphabet-button');
@@ -319,11 +323,7 @@ function createAlphabetButton(character) {
 function alphabetButtonClicked(event) {
     let elementButton = event.target;
     let character = elementButton.dataset.character;
-    if (character == ' ') {
-        elementCurrentSentenceCharacter.textContent = '?';
-    } else {
-        elementCurrentSentenceCharacter.textContent = character;
-    }
+    elementCurrentSentenceCharacter.textContent = character;
     characterGuesses++;
     allCharacterGuesses[characterPosition] = characterGuesses;
     totalCharacterGuesses++;

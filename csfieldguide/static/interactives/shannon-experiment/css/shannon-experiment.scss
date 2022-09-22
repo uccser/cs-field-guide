@@ -27,12 +27,13 @@ $incorrect-colour: #dd0000;
         .alphabet-button {
             font-family: monospace;
             font-weight: bold;
-            font-size: 1.3rem;
+            font-size: 1.5rem;
             margin-right: 0.3rem;
             margin-bottom: 0.3rem;
             border: 1px solid #757575;
             border-radius: 5px;
             background-color: #ebebeb;
+            min-width: 1.8rem;
 
             &:last-child {
                 margin-right: 0;
@@ -99,6 +100,21 @@ $incorrect-colour: #dd0000;
     h3 {
         margin-top: 2rem;
         margin-bottom: 0;
+    }
+
+    .instruction-tip {
+        background-color: #ffffe7;
+        border: 1px solid #efefa0;
+        border-radius: 0.8rem;
+        padding: 0.5rem;
+        display: inline-block;
+    }
+
+    .space-character {
+        font-family: monospace;
+        font-size: 2rem;
+        vertical-align: 0.3rem;
+        line-height: 0;
     }
 }
 
