@@ -345,6 +345,10 @@ python-syntax-error:
   languages:
     en: interactives/python-syntax-error.html
   is_interactive: false
+qr-code-generator:
+  languages:
+    en: interactives/qr-code-generator.html
+  is_interactive: true
 regular-expression-filter:
   languages:
     en: interactives/regular-expression-filter.html
