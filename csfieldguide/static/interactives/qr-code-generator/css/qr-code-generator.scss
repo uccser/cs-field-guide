@@ -1,18 +1,53 @@
 #qr-code-interactive {
-    #qr-code-table {
+    #qr-code-container {
         background-color: white;
         padding: 2rem;
         margin-bottom: 1rem;
         border-radius: 0.5rem;
+        text-align: center;
 
-        table {
-            margin: auto !important;
-            width: max-content;
+        div {
+            padding: 0;
+            margin: 0;
+            border-width: 0;
+            border-style: none;
+            border-collapse: collapse;
+            line-height: 0;
+            white-space: nowrap;
+        }
+
+        .qr-code-cell {
+            cursor: pointer;
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+
+            &.qr-code-cell-black {
+                background-color: black;
+                &.inverted {
+                    background-color: white;
+                }
+            }
+            &.qr-code-cell-white {
+                background-color: white;
+                &.inverted {
+                    background-color: black;
+                }
+            }
+        }
+        &.show-changed .qr-code-cell.inverted {
+            background-color: red !important;
+        }
+    }
+    #statistics {
+        span {
+            font-family: monospace;
         }
     }
     #copyright {
         text-align: center;
         font-size: 0.6rem;
         color: grey;
+        margin: 1rem 0;
     }
 }
