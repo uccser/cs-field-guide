@@ -14,7 +14,23 @@ function setup() {
     textContentInput.addEventListener('input', createQRCode);
     correctionLevelSelect.addEventListener('change', createQRCode);
 
+    processURLParameters();
     createQRCode();
+}
+
+
+function processURLParameters() {
+    let searchParameters = new URL(window.location.href).searchParams;
+    if (searchParameters.has('text')) {
+        textContentInput.value = searchParameters.get('text');
+    }
+    if (searchParameters.has('level')) {
+        let providedLevel = searchParameters.get('level');
+        let validLevels = [...correctionLevelSelect.options].map(option => option.value)
+        if (validLevels.includes(providedLevel)) {
+            correctionLevelSelect.value = providedLevel;
+        }
+    }
 }
 
 
