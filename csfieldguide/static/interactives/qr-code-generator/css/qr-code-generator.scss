@@ -1,0 +1,18 @@
+#qr-code-interactive {
+    #qr-code-table {
+        background-color: white;
+        padding: 2rem;
+        margin-bottom: 1rem;
+        border-radius: 0.5rem;
+
+        table {
+            margin: auto !important;
+            width: max-content;
+        }
+    }
+    #copyright {
+        text-align: center;
+        font-size: 0.6rem;
+        color: grey;
+    }
+}

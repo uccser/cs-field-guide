@@ -57,6 +57,8 @@ WORKDIR /app/static/interactives/password-guesser/
 RUN npm install
 WORKDIR /app/static/interactives/python-interpreter/
 RUN npm install
+WORKDIR /app/static/interactives/qr-code-generator/
+RUN npm install
 WORKDIR /app/static/interactives/rgb-mixer/
 RUN npm install
 WORKDIR /app/static/interactives/rsa-decryption/

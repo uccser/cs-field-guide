@@ -1,0 +1,49 @@
+{% extends interactive_mode_template %}
+
+{% load static i18n %}
+
+{% block interactive_html %}
+    <div id="qr-code-interactive" class="container">
+        <h1 class="text-center">QR Code Generator</h1>
+
+        <form>
+            <div class="form-row">
+                <div class="form-group col-12 col-sm-6">
+                    <label for="qr-code-text-content">Text content</label>
+                    <input type="text" class="form-control" id="qr-code-text-content" value="Hello world!" maxlength="100">
+                </div>
+                <div class="form-group col-12 col-sm-6">
+                    <label for="qr-code-correction-level">Error correction level</label>
+                    <select class="form-control" id="qr-code-correction-level">
+                        <option value="L">
+                            Level L (Low)  <!-- 7% of data bytes can be restored -->
+                        </option>
+                        <option value="M">
+                            Level M (Medium)  <!-- 15% of data bytes can be restored -->
+                        </option>
+                        <option value="Q">
+                            Level Q (Quartile)  <!-- 25% of data bytes can be restored -->
+                        </option>
+                        <option value="H">
+                            Level H (High)  <!-- 30% of data bytes can be restored -->
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </form>
+
+        <div id="qr-code-table"></div>
+
+        <div id="copyright">
+            QR Code is a registered trademark of DENSO WAVE INCORPORATED in Japan and in other countries.
+        </div>
+    </div>
+{% endblock interactive_html %}
+
+{% block interactive_css %}
+    <link rel="stylesheet" href="{% static 'interactives/qr-code-generator/css/qr-code-generator.css' %}">
+{% endblock interactive_css %}
+
+{% block interactive_js %}
+    <script type="text/javascript" src="{% static 'interactives/qr-code-generator/js/qr-code-generator.js' %}"></script>
+{% endblock interactive_js %}

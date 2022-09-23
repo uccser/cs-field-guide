@@ -152,6 +152,8 @@ python-interpreter:
   name: Python Interpreter
 python-syntax-error:
   name: Python Syntax Error
+qr-code-generator:
+  name: QR Code Generator
 regular-expression-filter:
   name: Regular Expression Filter
 regular-expression-search:

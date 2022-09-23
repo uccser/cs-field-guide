@@ -58,6 +58,7 @@ services:
             - /app/static/interactives/packet-attack/node_modules/
             - /app/static/interactives/password-guesser/node_modules/
             - /app/static/interactives/python-interpreter/node_modules/
+            - /app/static/interactives/qr-code-generator/node_modules/
             - /app/static/interactives/rgb-mixer/node_modules/
             - /app/static/interactives/rsa-decryption/node_modules/
             - /app/static/interactives/rsa-encryption/node_modules/
