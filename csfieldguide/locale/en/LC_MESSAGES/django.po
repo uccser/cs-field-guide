@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-29 22:33+0000\n"
+"POT-Creation-Date: 2022-09-29 03:26+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -41,11 +41,11 @@ msgstr ""
 msgid "chapter sections"
 msgstr ""
 
-#: config/settings/base.py:128
+#: config/settings/base.py:129
 msgid "Translation mode"
 msgstr ""
 
-#: config/settings/base.py:134
+#: config/settings/base.py:135
 msgid "Translation mode (Bi-directional)"
 msgstr ""
 
@@ -1369,7 +1369,6 @@ msgstr ""
 #: templates/interactives/number-memory.html:17
 #: templates/interactives/training-ground.html:28
 #: templates/interactives/training-ground.html:132
-#: templates/interactives/trainsylvania-complete.html:63
 msgid "Start"
 msgstr ""
 
@@ -1520,14 +1519,14 @@ msgid ""
 msgstr ""
 
 #: templates/interactives/cmy-mixer.html:31
-#: templates/interactives/rgb-mixer.html:32
+#: templates/interactives/rgb-mixer.html:38
 #: templates/interactives/unicode-binary.html:17
 #: templates/interactives/unicode-chars.html:13
 msgid "Decimal"
 msgstr ""
 
 #: templates/interactives/cmy-mixer.html:35
-#: templates/interactives/rgb-mixer.html:36
+#: templates/interactives/rgb-mixer.html:42
 msgid "Hexadecimal"
 msgstr ""
 
@@ -1545,21 +1544,33 @@ msgid "24 bit"
 msgstr ""
 
 #: templates/interactives/colour-matcher.html:19
-msgid ""
-"<strong>Red</strong> - 8 bits for red set to <span class='representation-"
-"text'></span>"
+#: templates/interactives/colour-matcher.html:80
+#: templates/interactives/rgb-mixer.html:17
+msgid "Red"
+msgstr ""
+
+#: templates/interactives/colour-matcher.html:19
+msgid "8 bits for red set to"
 msgstr ""
 
 #: templates/interactives/colour-matcher.html:25
-msgid ""
-"<strong>Green</strong> - 8 bits for green set to <span class='representation-"
-"text'></span>"
+#: templates/interactives/colour-matcher.html:86
+#: templates/interactives/rgb-mixer.html:23
+msgid "Green"
+msgstr ""
+
+#: templates/interactives/colour-matcher.html:25
+msgid "8 bits for green set to"
 msgstr ""
 
 #: templates/interactives/colour-matcher.html:31
-msgid ""
-"<strong>Blue</strong> - 8 bits for blue set to <span class='representation-"
-"text'></span>"
+#: templates/interactives/colour-matcher.html:92
+#: templates/interactives/rgb-mixer.html:29
+msgid "Blue"
+msgstr ""
+
+#: templates/interactives/colour-matcher.html:31
+msgid "8 bits for blue set to"
 msgstr ""
 
 #: templates/interactives/colour-matcher.html:38
@@ -1567,18 +1578,23 @@ msgid "24 bit colour"
 msgstr ""
 
 #: templates/interactives/colour-matcher.html:42
-#: templates/interactives/colour-matcher.html:97
+#: templates/interactives/colour-matcher.html:103
 msgid "Goal colour"
 msgstr ""
 
 #: templates/interactives/colour-matcher.html:49
-#: templates/interactives/colour-matcher.html:104
-msgid "<strong>Bit representation</strong> - Click a bit to toggle its value"
+#: templates/interactives/colour-matcher.html:110
+msgid "Bit representation"
+msgstr ""
+
+#: templates/interactives/colour-matcher.html:49
+#: templates/interactives/colour-matcher.html:110
+msgid "Click a bit to toggle its value"
 msgstr ""
 
 #: templates/interactives/colour-matcher.html:56
-#: templates/interactives/colour-matcher.html:110
-msgid "<strong>Hexadecimal representation</strong>"
+#: templates/interactives/colour-matcher.html:116
+msgid "Hexadecimal representation"
 msgstr ""
 
 #: templates/interactives/colour-matcher.html:62
@@ -1597,29 +1613,23 @@ msgstr ""
 msgid "8 bit"
 msgstr ""
 
-#: templates/interactives/colour-matcher.html:79
-msgid ""
-"<strong>Red</strong> - 3 bits for red set to <span class='representation-"
-"text'></span>"
+#: templates/interactives/colour-matcher.html:80
+msgid "3 bits for red set to"
 msgstr ""
 
-#: templates/interactives/colour-matcher.html:83
-msgid ""
-"<strong>Green</strong> - 3 bits for green set to <span class='representation-"
-"text'></span>"
+#: templates/interactives/colour-matcher.html:86
+msgid "3 bits for green set to"
 msgstr ""
 
-#: templates/interactives/colour-matcher.html:87
-msgid ""
-"<strong>Blue</strong> - 2 bits for blue set to <span class='representation-"
-"text'></span>"
+#: templates/interactives/colour-matcher.html:92
+msgid "2 bits for blue set to"
 msgstr ""
 
-#: templates/interactives/colour-matcher.html:93
+#: templates/interactives/colour-matcher.html:99
 msgid "8 bit colour"
 msgstr ""
 
-#: templates/interactives/colour-matcher.html:115
+#: templates/interactives/colour-matcher.html:121
 msgid "Try another colour"
 msgstr ""
 
@@ -3350,7 +3360,7 @@ msgid "Sock"
 msgstr ""
 
 #: templates/interactives/picture-memory.html:222
-#: templates/interactives/scene-editor.html:71
+#: templates/interactives/scene-editor.html:76
 msgid "Teapot"
 msgstr ""
 
@@ -3677,22 +3687,10 @@ msgstr ""
 msgid "RGB Colour Mixer - Used by Screens"
 msgstr ""
 
-#: templates/interactives/rgb-mixer.html:16
-msgid ""
-"<strong>Red</strong> - Currently set to <input id=\"interactive-rgb-mixer-"
-"red-value\" value=127 class=\"form-control w-auto d-inline\" size=\"3\">"
-msgstr ""
-
-#: templates/interactives/rgb-mixer.html:20
-msgid ""
-"<strong>Green</strong> - Currently set to <input id=\"interactive-rgb-mixer-"
-"green-value\" value=127 class=\"form-control w-auto d-inline\" size=\"3\">"
-msgstr ""
-
-#: templates/interactives/rgb-mixer.html:24
-msgid ""
-"<strong>Blue</strong> - Currently set to <input id=\"interactive-rgb-mixer-"
-"blue-value\" value=127 class=\"form-control w-auto d-inline\" size=\"3\">"
+#: templates/interactives/rgb-mixer.html:17
+#: templates/interactives/rgb-mixer.html:23
+#: templates/interactives/rgb-mixer.html:29
+msgid "Currently set to"
 msgstr ""
 
 #: templates/interactives/rsa-decryption.html:10
@@ -3876,55 +3874,55 @@ msgstr ""
 msgid "Created by Hannah Taylor - Adapted by Jack Morgan & Alasdair Smith"
 msgstr ""
 
-#: templates/interactives/scene-editor.html:16
+#: templates/interactives/scene-editor.html:21
 msgid "Target:"
 msgstr ""
 
-#: templates/interactives/scene-editor.html:52
+#: templates/interactives/scene-editor.html:57
 msgid "You can paste your code from Matrix Simplifier into any box!"
 msgstr ""
 
-#: templates/interactives/scene-editor.html:56
+#: templates/interactives/scene-editor.html:61
 msgid "Apply"
 msgstr ""
 
-#: templates/interactives/scene-editor.html:57
+#: templates/interactives/scene-editor.html:62
 msgid "Delete"
 msgstr ""
 
-#: templates/interactives/scene-editor.html:64
+#: templates/interactives/scene-editor.html:69
 msgid "New object:"
 msgstr ""
 
-#: templates/interactives/scene-editor.html:68
+#: templates/interactives/scene-editor.html:73
 msgid "Sphere"
 msgstr ""
 
-#: templates/interactives/scene-editor.html:69
+#: templates/interactives/scene-editor.html:74
 msgid "Cube"
 msgstr ""
 
-#: templates/interactives/scene-editor.html:70
+#: templates/interactives/scene-editor.html:75
 msgid "Cone"
 msgstr ""
 
-#: templates/interactives/scene-editor.html:75
+#: templates/interactives/scene-editor.html:80
 msgid "Name (optional)"
 msgstr ""
 
-#: templates/interactives/scene-editor.html:82
+#: templates/interactives/scene-editor.html:87
 msgid "Colour (Hexadecimal)"
 msgstr ""
 
-#: templates/interactives/scene-editor.html:84
+#: templates/interactives/scene-editor.html:89
 msgid "Leave blank for a random colour"
 msgstr ""
 
-#: templates/interactives/scene-editor.html:86
+#: templates/interactives/scene-editor.html:91
 msgid "Add object"
 msgstr ""
 
-#: templates/interactives/scene-editor.html:92
+#: templates/interactives/scene-editor.html:97
 msgid "Applied matrices:"
 msgstr ""
 
@@ -3972,6 +3970,44 @@ msgstr ""
 
 #: templates/interactives/sha2.html:17
 msgid "Hashed message will be shown here"
+msgstr ""
+
+#: templates/interactives/shannon-experiment.html:10
+#: templates/interactives/shannon-experiment.html:87
+msgid "Create your own experiment"
+msgstr ""
+
+#: templates/interactives/shannon-experiment.html:16
+msgid "Use this window to create a link to your own experiment."
+msgstr ""
+
+#: templates/interactives/shannon-experiment.html:22
+msgid "Enter each sentence on a new line."
+msgstr ""
+
+#: templates/interactives/shannon-experiment.html:30
+msgid "The interactive automatically adds any extra required characters."
+msgstr ""
+
+#: templates/interactives/shannon-experiment.html:38
+#: templates/interactives/shannon-experiment.html:90
+msgid "Show statistics"
+msgstr ""
+
+#: templates/interactives/shannon-experiment.html:41
+msgid "Open the statistics panel when loading the page."
+msgstr ""
+
+#: templates/interactives/shannon-experiment.html:50
+msgid "Hide builder"
+msgstr ""
+
+#: templates/interactives/shannon-experiment.html:53
+msgid "Hide the button for this builder window."
+msgstr ""
+
+#: templates/interactives/shannon-experiment.html:68
+msgid "Shannon's prediction and entropy of printed text experiment"
 msgstr ""
 
 #: templates/interactives/sorting-algorithm-comparison.html:10
@@ -4288,51 +4324,6 @@ msgstr ""
 
 #: templates/interactives/training-ground.html:133
 msgid "Hide game parameters"
-msgstr ""
-
-#: templates/interactives/trainsylvania-blank.html:12
-#: templates/interactives/trainsylvania-complete.html:12
-msgid "Suburbopolis<br>Station"
-msgstr ""
-
-#: templates/interactives/trainsylvania-blank.html:16
-#: templates/interactives/trainsylvania-complete.html:16
-msgid "North<br>Station"
-msgstr ""
-
-#: templates/interactives/trainsylvania-blank.html:23
-#: templates/interactives/trainsylvania-complete.html:23
-msgid "West<br>Station"
-msgstr ""
-
-#: templates/interactives/trainsylvania-blank.html:27
-#: templates/interactives/trainsylvania-complete.html:27
-msgid "Central<br>Station"
-msgstr ""
-
-#: templates/interactives/trainsylvania-blank.html:31
-#: templates/interactives/trainsylvania-complete.html:31
-msgid "Midway<br>Station"
-msgstr ""
-
-#: templates/interactives/trainsylvania-blank.html:35
-#: templates/interactives/trainsylvania-complete.html:35
-msgid "East<br>Station"
-msgstr ""
-
-#: templates/interactives/trainsylvania-blank.html:42
-#: templates/interactives/trainsylvania-complete.html:42
-msgid "City Mall<br>Station"
-msgstr ""
-
-#: templates/interactives/trainsylvania-blank.html:46
-#: templates/interactives/trainsylvania-complete.html:46
-msgid "South<br>Station"
-msgstr ""
-
-#: templates/interactives/trainsylvania-blank.html:50
-#: templates/interactives/trainsylvania-complete.html:50
-msgid "Railington<br>Station"
 msgstr ""
 
 #: templates/interactives/trainsylvania-planner.html:8
