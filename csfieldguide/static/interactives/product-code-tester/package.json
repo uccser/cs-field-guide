@@ -1,0 +1,9 @@
+{
+    "name": "csfg-interactive-product-code-tester",
+    "version": "1.0.0",
+    "private": true,
+    "dependencies": {
+        "leader-line": "1.0.7",
+        "jsbarcode": "3.11.5"
+    }
+}

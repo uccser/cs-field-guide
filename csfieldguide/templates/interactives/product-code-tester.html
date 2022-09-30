@@ -1,0 +1,29 @@
+{% extends interactive_mode_template %}
+
+{% load static i18n %}
+
+{% block interactive_html %}
+    <div id="product-code-tester-interactive" class="container">
+        <h1 class="text-center">{% trans "Product Code Tester" %}</h1>
+
+        <p class="text-center">
+            {% trans "Select the type of product code you are checking:" %}
+        </p>
+
+        <div id="product-code-tester-interactive-container"></div>
+
+        <div class="text-center">
+            <button id="restart-button" class="btn btn-sm btn-danger">
+                {% trans "Restart" %}
+            </button>
+        </div>
+    </div>
+{% endblock interactive_html %}
+
+{% block interactive_css %}
+    <link rel="stylesheet" href="{% static 'interactives/product-code-tester/css/product-code-tester.css' %}">
+{% endblock interactive_css %}
+
+{% block interactive_js %}
+    <script type="text/javascript" src="{% static 'interactives/product-code-tester/js/product-code-tester.js' %}"></script>
+{% endblock interactive_js %}

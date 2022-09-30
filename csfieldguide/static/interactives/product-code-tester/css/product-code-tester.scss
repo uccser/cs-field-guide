@@ -1,0 +1,56 @@
+#product-code-tester-interactive {
+
+    #button-container {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: center;
+        margin: 1rem 0;
+
+        button {
+            margin: 0 1rem;
+
+            &.selected {
+                background-color: #28a745;
+                border-color: #28a745;
+                opacity: 1;
+            }
+        }
+    }
+
+    #checker-grid {
+        // Testing
+        border: 1px solid cyan;
+        min-height: 10rem;
+        // End of testing*
+
+        display: grid;
+        grid-template-columns: 90% 10%;
+        grid-template-rows: 1fr 1fr;
+        gap: 0px 0px;
+        margin: 1rem 0;
+
+        #barcode-image-container {
+            grid-area: 1 / 1 / 2 / 2;
+            display: flex;
+            justify-content: center;
+
+            & > div {
+                position: relative;
+                max-width: min-content;
+
+                #barcode-image-hider {
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    background-color: rgba(255, 0, 0, 0.384);
+                }
+            }
+        }
+    }
+
+    #restart-button {
+        margin: 1rem;
+    }
+}
