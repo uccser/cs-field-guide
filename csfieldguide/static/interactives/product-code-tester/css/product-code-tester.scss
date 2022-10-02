@@ -17,6 +17,11 @@
         }
     }
 
+    .product-code-digit {
+        font-family: monospace;
+        font-size: 2rem;
+    }
+
     #checker-grid {
         // Testing
         border: 1px solid cyan;
@@ -24,28 +29,34 @@
         // End of testing*
 
         display: grid;
-        grid-template-columns: 90% 10%;
         grid-template-rows: 1fr 1fr;
         gap: 0px 0px;
         margin: 1rem 0;
 
-        #barcode-image-container {
-            grid-area: 1 / 1 / 2 / 2;
-            display: flex;
-            justify-content: center;
+        input {
+            width: 100%;
+            text-align: center;
+        }
+        div.input-space-after {
+            margin-right: 1.5rem;
+        }
+    }
 
-            & > div {
-                position: relative;
-                max-width: min-content;
+    #barcode-image-container {
+        display: flex;
+        justify-content: center;
 
-                #barcode-image-hider {
-                    position: absolute;
-                    top: 0;
-                    bottom: 0;
-                    left: 0;
-                    right: 0;
-                    background-color: rgba(255, 0, 0, 0.384);
-                }
+        & > div {
+            position: relative;
+            max-width: min-content;
+
+            #barcode-image-hider {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background-color: #f8f9fa;
             }
         }
     }

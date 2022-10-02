@@ -2,12 +2,45 @@ const JsBarcode = require('jsbarcode');
 
 const productCodeData = {
     'UPC': {
-        digits: 12,
         name: '12 digits (UPC)',
+        digits: 12,
+        digitSpacings: new Set([1, 6, 11]),
+        imagePositionPixelValues: [
+            '8px',
+            '20px',
+            '34px',
+            '48px',
+            '62px',
+            '76px',
+            '98px',
+            '114px',
+            '128px',
+            '142px',
+            '156px',
+            '170px',
+            '190px',
+        ],
     },
     'EAN13': {
-        digits: 13,
         name: '13 digits (EAN-13)',
+        digits: 13,
+        digitSpacings: new Set([1, 7]),
+        imagePositionPixelValues: [
+            '6px', // First value isn't encoded as bars
+            '6px',
+            '20px',
+            '34px',
+            '48px',
+            '62px',
+            '76px',
+            '98px',
+            '114px',
+            '128px',
+            '142px',
+            '156px',
+            '170px',
+            '190px',
+        ],
     },
 };
 // Order to show buttons for product code versions
@@ -22,8 +55,12 @@ var elementBarcodeImageHider;
 // Other variables
 var productCode;
 var productCodeSlug;
+var productCodeLength;
+var productCodeInputElements;
+var highestRevealedDigit;
 
 const buttonContainerID = 'button-container';
+const digitInputClass = 'input-digit';
 
 function setup() {
     // Save elements to variables
@@ -78,22 +115,19 @@ function setupStepTwo(event) {
     event.target.classList.add('selected');
 
     productCodeSlug = event.target.value;
-    productCode = '0'.repeat(productCodeData[productCodeSlug].digits);
-
-    // Create grid
-    let elementGrid = document.createElement('div');
-    elementGrid.id = 'checker-grid';
-    elementContainer.appendChild(elementGrid);
+    productCodeLength = productCodeData[productCodeSlug].digits;
+    let productCodeDigitSpacings = productCodeData[productCodeSlug].digitSpacings;
 
     // Create image with hider
+    highestRevealedDigit = 0;
     let elementBarcodeImageGridElement = document.createElement('div');
     elementBarcodeImageGridElement.id = 'barcode-image-container';
-    elementGrid.appendChild(elementBarcodeImageGridElement);
+    elementContainer.appendChild(elementBarcodeImageGridElement);
 
     let elementBarcodeImageContainer = document.createElement('div');
     elementBarcodeImageGridElement.appendChild(elementBarcodeImageContainer);
 
-    elementBarcodeImage = document.createElement('img');
+    elementBarcodeImage = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     elementBarcodeImage.id = 'barcode-image';
     elementBarcodeImageContainer.appendChild(elementBarcodeImage);
 
@@ -101,14 +135,112 @@ function setupStepTwo(event) {
     elementBarcodeImageHider.id = 'barcode-image-hider';
     elementBarcodeImageContainer.appendChild(elementBarcodeImageHider);
 
-    createBarcodeImage();
+    // Create input grid
+    let elementGrid = document.createElement('div');
+    elementGrid.id = 'checker-grid';
+    elementContainer.appendChild(elementGrid);
 
+    // Create top row inputs
+    productCodeInputElements = [];
+    for (let i = 1; i <= productCodeLength; i++) {
+        let element = document.createElement('div');
+        element.style.gridArea = `1 / ${i} / 2 / ${i+1}`;
+        if (productCodeDigitSpacings.has(i)) {
+            element.classList.add('input-space-after');
+        }
+        elementGrid.appendChild(element);
+
+        let inputElement = document.createElement('input');
+        inputElement.type = 'text';
+        inputElement.maxLength = '1';
+        inputElement.classList.add('product-code-digit');
+        if (i != 1) {
+            inputElement.disabled = true;
+        }
+        if (i == productCodeLength) {
+            inputElement.value = "?";
+        } else {
+            inputElement.classList.add(digitInputClass);
+            inputElement.dataset.position = i;
+            inputElement.addEventListener('input', processInputDigit);
+            inputElement.addEventListener('keydown', processInputKeyDown);
+            inputElement.addEventListener('focus', function () { this.select(); });
+            inputElement.addEventListener('blur', function () {
+                if (this.value == '') {
+                    this.value = this.dataset.lastInput || '';
+                }
+            });
+        }
+        element.appendChild(inputElement);
+        productCodeInputElements.push(inputElement);
+    }
+
+
+    updateProductCode();
+    updateBarcodeImage();
 }
 
-function createBarcodeImage() {
+
+function processInputDigit(event) {
+    let inputElement = event.target;
+    if (inputElement.value.match(/\d{1}/)) {
+        inputElement.dataset.lastInput = inputElement.value;
+
+        let currentPosition = parseInt(inputElement.dataset.position);
+
+        // Move hider image
+        if (currentPosition > highestRevealedDigit) {
+            highestRevealedDigit = currentPosition;
+        }
+        updateProductCode();
+
+        // Move to next box (if possible)
+        if (currentPosition < (productCodeLength - 1)) {
+            // Don't add 1 to index as it's zero indexed (offset by 1)
+            let newElement = productCodeInputElements[currentPosition];
+            newElement.disabled = false;
+            newElement.focus();
+        }
+    } else {
+        inputElement.value = '';
+    }
+}
+
+
+function processInputKeyDown(event) {
+    // If backspace, move to previous box (if possible)
+    let inputElement = event.target;
+    if (event.key === "Backspace" && inputElement.value == '') {
+        let currentPosition = parseInt(inputElement.dataset.position);
+        if (currentPosition > 1) {
+            let newElement = productCodeInputElements[currentPosition - 2];
+            newElement.focus();
+        }
+    }
+}
+
+
+function updateProductCode() {
+    productCode = '';
+    for (let i = 0; i < (productCodeInputElements.length - 1); i++) {
+        let inputElement = productCodeInputElements[i];
+        if (inputElement.value.match(/\d{1}/)) {
+            productCode += inputElement.value;
+        } else {
+            productCode += "-";
+        }
+    }
+    updateBarcodeImage();
+}
+
+
+function updateBarcodeImage() {
+    let hiderPosition = productCodeData[productCodeSlug].imagePositionPixelValues[highestRevealedDigit];
+    elementBarcodeImageHider.style.left = hiderPosition;
+
     JsBarcode(
         elementBarcodeImage,
-        productCode,
+        productCode.replaceAll('-', '0'),
         {
             format: productCodeSlug,
             background: '#f8f9fa',
