@@ -39,7 +39,7 @@
         "postcss-flexbugs-fixes": "5.0.2",
         "sass": "1.55.0",
         "vinyl-buffer": "1.0.1",
-        "yargs": "17.5.1"
+        "yargs": "17.6.0"
     },
     "engines": {
         "node": ">=8"
