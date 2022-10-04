@@ -60,22 +60,15 @@ $incorrect-colour: #e74c3c;
             }
 
         }
-        & > div.bottom-row {
+        & > div.third-row,
+        & > div.fifth-row {
             display: flex;
             flex-direction: row;
             flex-wrap: nowrap;
 
-            .bottom-row-symbol {
+            .equation-symbol {
                 flex-grow: 1;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-size: 1.8rem;
-                font-family: monospace;
-                height: 100%;
-                visibility: hidden;
             }
-
         }
         #multiplication-sum {
             width: 100%;
@@ -85,12 +78,22 @@ $incorrect-colour: #e74c3c;
         &.show-modulo .modulo-label {
             visibility: visible !important;
         }
-        &.step-four .bottom-row-symbol {
+        &.step-four .equation-symbol {
             visibility: visible !important;
         }
 
         #subtraction-equation {
             text-align: right;
+        }
+        .equation-symbol {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 1.8rem;
+            font-family: monospace;
+            height: 100%;
+            visibility: hidden;
         }
 
         input {

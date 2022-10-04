@@ -55,9 +55,10 @@ var elementBarcodeImage;
 var elementBarcodeImageHider;
 var elementMultiplicationGrid;
 var productCodeTopRowInputElements;
-var productCodeBottomRowInputElements;
-var productCodeBottomRowSumElement;
+var productCodeThirdRowInputElements;
+var productCodeThirdRowSumElement;
 var subtractionElement;
+var subtractionResultElement;
 
 // Other variables
 var productCode;
@@ -107,8 +108,8 @@ function resetTester() {
     elementBarcodeImageHider = undefined;
     elementMultiplicationGrid = undefined;
     productCodeTopRowInputElements = undefined;
-    productCodeBottomRowInputElements = undefined;
-    productCodeBottomRowSumElement = undefined;
+    productCodeThirdRowInputElements = undefined;
+    productCodeThirdRowSumElement = undefined;
     setupStepOne();
 }
 
@@ -172,7 +173,7 @@ function setupStepTwo(event) {
             columnLayout += '1fr ';
         }
     }
-    columnLayout += '1ch 1fr';
+    columnLayout += '1fr';
     elementMultiplicationGrid.style.gridTemplateColumns = columnLayout;
     elementContainer.appendChild(elementMultiplicationGrid);
 
@@ -217,7 +218,7 @@ function setupStepTwo(event) {
 
 function setupStepThree() {
     stepNumber = 3;
-    productCodeBottomRowInputElements = [];
+    productCodeThirdRowInputElements = [];
     productCodeWeightings = productCodeData[productCodeSlug].weightings;
     let productCodeDigitSpacings = productCodeData[productCodeSlug].digitSpacings;
 
@@ -244,33 +245,33 @@ function setupStepThree() {
         middleRowLabelModuloElement.textContent = 'mod 10';
         middleRowLabelElement.appendChild(middleRowLabelModuloElement);
 
-        let bottomRowElement = document.createElement('div');
-        bottomRowElement.classList.add('bottom-row')
-        bottomRowElement.style.gridArea = `3 / ${i} / 4 / ${i + 1}`;
-        elementMultiplicationGrid.appendChild(bottomRowElement);
+        let thirdRowElement = document.createElement('div');
+        thirdRowElement.classList.add('third-row')
+        thirdRowElement.style.gridArea = `3 / ${i} / 4 / ${i + 1}`;
+        elementMultiplicationGrid.appendChild(thirdRowElement);
 
-        // Bottom row - Multipled value
+        // Third row - Multipled value
         let inputElement = document.createElement('input');
         inputElement.type = 'text';
         inputElement.maxLength = '2';
         inputElement.classList.add('product-code-digit');
         inputElement.dataset.position = i;
-        inputElement.addEventListener('input', checkBottomRowInputs);
-        inputElement.addEventListener('keydown', processBottomRowInputKeyDown);
-        // inputElement.addEventListener('keyup', processBottomRowInputKeyUp);
-        bottomRowElement.appendChild(inputElement);
+        inputElement.addEventListener('input', checkThirdRowInputs);
+        inputElement.addEventListener('keydown', processThirdRowInputKeyDown);
+        // inputElement.addEventListener('keyup', processThirdRowInputKeyUp);
+        thirdRowElement.appendChild(inputElement);
 
         // Symbol for step 4
-        let bottomRowSymbolElement = document.createElement('div');
-        bottomRowSymbolElement.classList.add('bottom-row-symbol');
+        let thirdRowSymbolElement = document.createElement('div');
+        thirdRowSymbolElement.classList.add('equation-symbol');
         if (i < (productCodeLength - 1)) {
-            bottomRowSymbolElement.textContent = '+';
+            thirdRowSymbolElement.textContent = '+';
         } else {
-            bottomRowSymbolElement.textContent = '=';
+            thirdRowSymbolElement.textContent = '=';
         }
-        bottomRowElement.appendChild(bottomRowSymbolElement)
+        thirdRowElement.appendChild(thirdRowSymbolElement)
 
-        productCodeBottomRowInputElements.push(inputElement);
+        productCodeThirdRowInputElements.push(inputElement);
     }
 }
 
@@ -280,18 +281,18 @@ function setupStepFour() {
     elementMultiplicationGrid.classList.add('step-four');
 
     let i = productCodeLength;
-    let bottomRowElement = document.createElement('div');
-    bottomRowElement.style.gridArea = `3 / ${i} / 4 / ${i + 1}`;
-    elementMultiplicationGrid.appendChild(bottomRowElement);
+    let thirdRowElement = document.createElement('div');
+    thirdRowElement.style.gridArea = `3 / ${i} / 4 / ${i + 1}`;
+    elementMultiplicationGrid.appendChild(thirdRowElement);
 
-    // Bottom row - Multipled sum
-    productCodeBottomRowSumElement = document.createElement('input');
-    productCodeBottomRowSumElement.id = 'multiplication-sum';
-    productCodeBottomRowSumElement.type = 'text';
-    productCodeBottomRowSumElement.maxLength = '3';
-    productCodeBottomRowSumElement.classList.add('product-code-digit');
-    productCodeBottomRowSumElement.addEventListener('input', checkMultiplicationSumInput);
-    bottomRowElement.appendChild(productCodeBottomRowSumElement)
+    // Third row - Multipled sum
+    productCodeThirdRowSumElement = document.createElement('input');
+    productCodeThirdRowSumElement.id = 'multiplication-sum';
+    productCodeThirdRowSumElement.type = 'text';
+    productCodeThirdRowSumElement.maxLength = '3';
+    productCodeThirdRowSumElement.classList.add('product-code-digit');
+    productCodeThirdRowSumElement.addEventListener('input', checkMultiplicationSumInput);
+    thirdRowElement.appendChild(productCodeThirdRowSumElement)
 }
 
 
@@ -308,16 +309,35 @@ function setupStepFive() {
     subtractionElement.style.gridArea = `4 / 1 / 5 / ${i + 1}`;
     elementMultiplicationGrid.appendChild(subtractionElement);
     updateSubtractionEquation();
+
+    // Fifth row - Subtraction result
+    subtractionResultContainerElement = document.createElement('div');
+    subtractionResultContainerElement.classList.add('fifth-row');
+    subtractionResultContainerElement.style.gridArea = `4 / ${i + 1} / 5 / ${i + 2}`;
+    elementMultiplicationGrid.appendChild(subtractionResultContainerElement);
+
+    let equalsElement = document.createElement('div');
+    equalsElement.classList.add('equation-symbol');
+    equalsElement.textContent = '=';
+    subtractionResultContainerElement.appendChild(equalsElement);
+
+    subtractionResultElement = document.createElement('input');
+    subtractionResultElement.id = 'subtraction-result';
+    subtractionResultElement.type = 'text';
+    subtractionResultElement.maxLength = '1';
+    subtractionResultElement.classList.add('product-code-digit');
+    // subtractionResultElement.addEventListener('input', checkMultiplicationSumInput);
+    subtractionResultContainerElement.appendChild(subtractionResultElement)
 }
 
 function updateSubtractionEquation() {
-    let subtractValue = productCodeBottomRowSumElement.value % 10;
+    let subtractValue = productCodeThirdRowSumElement.value % 10;
     subtractionElement.textContent = `10 \u2212 ${subtractValue}`;
 }
 
 
 
-function processBottomRowInputKeyDown(event) {
+function processThirdRowInputKeyDown(event) {
     let inputElement = event.target;
     let inputCursorPosition = inputElement.selectionStart;
     let inputLength = inputElement.value.length;
@@ -328,7 +348,7 @@ function processBottomRowInputKeyDown(event) {
         let currentPosition = parseInt(inputElement.dataset.position);
         if (currentPosition < (productCodeLength - 1)) {
             // Don't add one as it's zero indexed array (offset by 1)
-            let newElement = productCodeBottomRowInputElements[currentPosition];
+            let newElement = productCodeThirdRowInputElements[currentPosition];
             newElement.focus();
         }
     } else if (event.key === "ArrowLeft" && inputCursorPosition == 0) {
@@ -337,7 +357,7 @@ function processBottomRowInputKeyDown(event) {
         let currentPosition = parseInt(inputElement.dataset.position);
         if (currentPosition > 1) {
             // Minus two as it's zero indexed array (offset by 1)
-            let newElement = productCodeBottomRowInputElements[currentPosition - 2];
+            let newElement = productCodeThirdRowInputElements[currentPosition - 2];
             newElement.focus();
         }
     } else if (!(event.key.match(/\d/) || validEditingKeys.has(event.key))) {
@@ -345,7 +365,7 @@ function processBottomRowInputKeyDown(event) {
     }
 }
 
-function processBottomRowInputKeyUp(event) {
+function processThirdRowInputKeyUp(event) {
     let inputElement = event.target;
     if (event.key.match(/\d/) && inputElement.value.match(/\d{2}/)) {
         // Move to next box (if possible)
@@ -353,7 +373,7 @@ function processBottomRowInputKeyUp(event) {
         let currentPosition = parseInt(inputElement.dataset.position);
         if (currentPosition < (productCodeLength - 1)) {
             // Don't add one as it's zero indexed array (offset by 1)
-            let newElement = productCodeBottomRowInputElements[currentPosition];
+            let newElement = productCodeThirdRowInputElements[currentPosition];
             newElement.focus();
         }
     }
@@ -362,43 +382,43 @@ function processBottomRowInputKeyUp(event) {
 
 function checkMultiplicationSumInput() {
     let correctSum = 0;
-    for (let i = 0; i < (productCodeBottomRowInputElements.length); i++) {
-        let bottomInputElement = productCodeBottomRowInputElements[i];
-        correctSum += parseInt(bottomInputElement.value);
+    for (let i = 0; i < (productCodeThirdRowInputElements.length); i++) {
+        let thirdInputElement = productCodeThirdRowInputElements[i];
+        correctSum += parseInt(thirdInputElement.value);
     }
-    let givenSum = productCodeBottomRowSumElement.value;
-    if (productCodeBottomRowSumElement.value == '') {
-        productCodeBottomRowSumElement.classList.remove('correct', 'incorrect');
+    let givenSum = productCodeThirdRowSumElement.value;
+    if (productCodeThirdRowSumElement.value == '') {
+        productCodeThirdRowSumElement.classList.remove('correct', 'incorrect');
     } else if (givenSum == correctSum) {
-        productCodeBottomRowSumElement.classList.add('correct');
-        productCodeBottomRowSumElement.classList.remove('incorrect');
+        productCodeThirdRowSumElement.classList.add('correct');
+        productCodeThirdRowSumElement.classList.remove('incorrect');
         if (stepNumber < 5) {
             setupStepFive();
         }
     } else {
-        productCodeBottomRowSumElement.classList.add('incorrect');
-        productCodeBottomRowSumElement.classList.remove('correct');
+        productCodeThirdRowSumElement.classList.add('incorrect');
+        productCodeThirdRowSumElement.classList.remove('correct');
     }
     if (stepNumber >= 5) {
         updateSubtractionEquation();
     }
 }
 
-function checkBottomRowInputs() {
+function checkThirdRowInputs() {
     let correctValues = 0;
     for (let i = 0; i < (productCodeTopRowInputElements.length - 1); i++) {
         let topInputElement = productCodeTopRowInputElements[i];
-        let bottomInputElement = productCodeBottomRowInputElements[i];
+        let thirdInputElement = productCodeThirdRowInputElements[i];
         let expectedValue = topInputElement.value * productCodeWeightings[i];
-        if (bottomInputElement.value == '') {
-            bottomInputElement.classList.remove('correct', 'incorrect');
-        } else if (bottomInputElement.value == expectedValue) {
-            bottomInputElement.classList.add('correct');
-            bottomInputElement.classList.remove('incorrect');
+        if (thirdInputElement.value == '') {
+            thirdInputElement.classList.remove('correct', 'incorrect');
+        } else if (thirdInputElement.value == expectedValue) {
+            thirdInputElement.classList.add('correct');
+            thirdInputElement.classList.remove('incorrect');
             correctValues++;
         } else {
-            bottomInputElement.classList.add('incorrect');
-            bottomInputElement.classList.remove('correct');
+            thirdInputElement.classList.add('incorrect');
+            thirdInputElement.classList.remove('correct');
         }
     }
     if (correctValues == productCodeTopRowInputElements.length - 1) {
@@ -437,7 +457,7 @@ function processTopRowInputDigit(event) {
         inputElement.value = '';
     }
     if (stepNumber >= 3) {
-        checkBottomRowInputs();
+        checkThirdRowInputs();
     }
 }
 
@@ -472,7 +492,7 @@ function updateProductCode() {
         if (stepNumber < 3) {
             setupStepThree();
         }
-        checkBottomRowInputs();
+        checkThirdRowInputs();
     }
 }
 
