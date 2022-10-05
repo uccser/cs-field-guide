@@ -261,7 +261,7 @@ function setupStepThree() {
 
         // Label
         let secondRowLabelElement = document.createElement('div');
-        secondRowLabelElement.classList.add('second-row-label');
+        secondRowLabelElement.classList.add('second-row-label', 'modulo-label-parent');
         secondRowLabelElement.textContent = `\u00D7${productCodeWeightings[i - 1]}`;
         secondRowElement.appendChild(secondRowLabelElement);
         // Modulo label
@@ -293,6 +293,12 @@ function setupStepThree() {
             thirdRowSymbolElement.textContent = '+';
         } else {
             thirdRowSymbolElement.textContent = '=';
+            thirdRowSymbolElement.classList.add('modulo-label-parent');
+            // Modulo label
+            let moduloElement = document.createElement('div');
+            moduloElement.classList.add('modulo-label');
+            moduloElement.textContent = 'mod 10';
+            thirdRowSymbolElement.appendChild(moduloElement);
         }
         thirdRowElement.appendChild(thirdRowSymbolElement)
         productCodeThirdRowInputElements.push(inputElement);
@@ -374,6 +380,12 @@ function setupStepFive() {
     let equalsElement = document.createElement('div');
     equalsElement.classList.add('equation-symbol');
     equalsElement.textContent = '=';
+    equalsElement.classList.add('modulo-label-parent');
+    // Modulo label
+    let moduloElement = document.createElement('div');
+    moduloElement.classList.add('modulo-label');
+    moduloElement.textContent = 'mod 10';
+    equalsElement.appendChild(moduloElement);
     secondCellElement.appendChild(equalsElement);
 
     // Fifth row - Third cell
@@ -470,15 +482,18 @@ function processInputKeyDown(event) {
 
 
 function checkMultiplicationSumInput(allCorrect) {
-    let correctSum = 0;
+    let expectedSum = 0;
     for (let i = 0; i < (productCodeThirdRowInputElements.length); i++) {
         let thirdInputElement = productCodeThirdRowInputElements[i];
-        correctSum += parseInt(thirdInputElement.value);
+        expectedSum += parseInt(thirdInputElement.value);
+    }
+    if (useModulo) {
+        expectedSum = expectedSum % 10;
     }
     let givenSum = productCodeThirdRowSumElement.value;
     if (productCodeThirdRowSumElement.value == '') {
         productCodeThirdRowSumElement.classList.remove('correct', 'incorrect');
-    } else if (givenSum == correctSum) {
+    } else if (givenSum == expectedSum) {
         productCodeThirdRowSumElement.classList.add('correct');
         productCodeThirdRowSumElement.classList.remove('incorrect');
         if (stepNumber < 5) {
@@ -490,7 +505,7 @@ function checkMultiplicationSumInput(allCorrect) {
     }
     if (stepNumber >= 5) {
         updateSubtractionEquation();
-        if (givenSum == correctSum) {
+        if (givenSum == expectedSum) {
             subtractionResultElement.focus();
         }
     }
@@ -498,6 +513,9 @@ function checkMultiplicationSumInput(allCorrect) {
 
 function checkSubtractionInput() {
     let correctSum = 10 - parseInt(subtractionValueElement.textContent);
+    if (useModulo) {
+        correctSum = correctSum % 10;
+    }
     let givenSum = parseInt(subtractionResultElement.value);
     if (subtractionResultElement.value == '') {
         subtractionResultElement.classList.remove('correct', 'incorrect');

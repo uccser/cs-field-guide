@@ -53,22 +53,11 @@ $incorrect-colour: #e74c3c;
 
             .second-row-label {
                 font-size: 1rem;
-                line-height: 0.7rem;
                 // Positioning to parent
                 position: absolute;
                 left: 3ch;
                 bottom: 1.7ch;
                 top: 0.5ch;
-
-                // Positioning of childre
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: flex-start;
-
-                .modulo-label {
-                    font-size: 0.7rem;
-                }
             }
         }
         & > div.fourth-row {
@@ -161,6 +150,19 @@ $incorrect-colour: #e74c3c;
         &.incorrect {
             border: 1px solid $incorrect-colour;
             background-color: lighten($incorrect-colour, 20%);
+        }
+    }
+
+    .modulo-label-parent {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        line-height: 0.9rem;
+
+        .modulo-label {
+            font-family: "Noto Sans", sans-serif;
+            font-size: 0.7rem;
         }
     }
 
