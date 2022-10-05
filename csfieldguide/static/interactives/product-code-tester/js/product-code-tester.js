@@ -240,6 +240,9 @@ function setupStepTwo(event) {
     updateProductCode();
     updateBarcodeImage();
     checkWindowSize();
+
+    let firstElement = productCodeTopRowInputElements[0];
+    firstElement.focus();
 }
 
 
