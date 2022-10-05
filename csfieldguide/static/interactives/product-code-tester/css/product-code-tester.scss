@@ -24,66 +24,82 @@ $incorrect-colour: #e74c3c;
         font-family: monospace;
         font-size: 2rem;
         color: black;
+
+        &.fifth-row-digit {
+            text-align: center;
+            width: 2.5ch;
+            line-height: 2ch;
+        }
     }
 
-    #multiplication-grid {
+    #calculation-grid {
         display: grid;
         grid-auto-rows: 1fr;
         gap: 0px 0px;
-        margin: 1rem 0;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        margin-right: 2rem;
 
-        & > div.middle-row {
-            display: flex;
-            flex-direction: row;
-            flex-wrap: nowrap;
-            justify-content: flex-start;
-            align-items: center;
+        & > div.second-row {
+            position: relative;
 
-            .middle-row-arrow {
-                font-size: 3rem;
-                line-height: 1rem;
-                width: 0.6ch;
-                margin-left: 0.2ch;
-            }
-            .middle-row-label {
+            .second-row-label {
                 font-size: 1rem;
+                line-height: 0.7rem;
+                // Positioning to parent
+                position: absolute;
+                left: 3ch;
+                bottom: 1.7ch;
+                top: 0.5ch;
+
+                // Positioning of childre
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
                 align-items: flex-start;
 
                 .modulo-label {
-                    visibility: hidden;
-                    white-space: nowrap;
                     font-size: 0.7rem;
                 }
             }
-
+        }
+        & > div.fourth-row {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: flex-end;
+            align-items: center;
         }
         & > div.third-row,
         & > div.fifth-row {
             display: flex;
             flex-direction: row;
             flex-wrap: nowrap;
+            align-items: center;
 
             .equation-symbol {
                 flex-grow: 1;
             }
         }
-        #multiplication-sum {
+        #multiplication-sum,
+        #subtraction-result {
             width: 100%;
             text-align: right;
             padding-right: 0.2ch;
         }
+        .modulo-label {
+            display: none;
+            white-space: nowrap;
+        }
         &.show-modulo .modulo-label {
-            visibility: visible !important;
+            display: block;
         }
         &.step-four .equation-symbol {
             visibility: visible !important;
         }
-
-        #subtraction-equation {
-            text-align: right;
+        .fourth-row .arrow-symbol {
+            margin-right: 0.25ch;
+            margin-bottom: 0.1ch;
         }
         .equation-symbol {
             display: flex;
@@ -94,6 +110,12 @@ $incorrect-colour: #e74c3c;
             font-family: monospace;
             height: 100%;
             visibility: hidden;
+        }
+        .arrow-symbol {
+            font-size: 3rem;
+            line-height: 1rem;
+            width: 0.6ch;
+            margin-left: 0.2ch;
         }
 
         input {
@@ -147,10 +169,24 @@ $incorrect-colour: #e74c3c;
     #instructions {
         text-align: center;
     }
-    #restart-button {
-        margin: 1rem;
+    #options {
+        margin: 2rem;
+        label {
+            user-select: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
     }
     [disabled] {
         cursor: not-allowed;
     }
+}
+// Arrows
+.product-code-tester-arrow {
+    pointer-events: none;
+}
+.product-code-tester-arrow__path {
+    stroke: #000;
+    stroke-width: 2px;
+    fill: transparent;
 }
