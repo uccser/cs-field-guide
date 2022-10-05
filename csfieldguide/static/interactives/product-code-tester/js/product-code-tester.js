@@ -1,4 +1,8 @@
 const JsBarcode = require('jsbarcode');
+const arrowSVG = require('arrows-svg');
+const arrowCreate = arrowSVG.default;
+const arrowDirections = arrowSVG.DIRECTION;
+const arrowHeads = arrowSVG.HEAD;
 
 const productCodeData = {
     'UPC': {
@@ -51,14 +55,16 @@ const productCodeOrder = ["UPC", "EAN13"];
 // Elements
 var elementContainer;
 var elementRestartButton;
+var elementModuloCheckbox;
 var elementBarcodeImage;
 var elementBarcodeImageHider;
-var elementMultiplicationGrid;
+var elementCalculationGrid;
 var productCodeTopRowInputElements;
 var productCodeThirdRowInputElements;
 var productCodeThirdRowSumElement;
-var subtractionElement;
+var subtractionValueElement;
 var subtractionResultElement;
+var arrowElements = [];
 
 // Other variables
 var productCode;
@@ -67,10 +73,9 @@ var productCodeLength;
 var productCodeWeightings;
 var highestRevealedDigit;
 var stepNumber;
+var useModulo = false;
 
 const buttonContainerID = 'button-container';
-const multiplicationSymbol = '\u00D7';
-const arrowSymbol = '🠃';
 const validEditingKeys = new Set([
     'Backspace',
     'Clear',
@@ -84,15 +89,21 @@ function setup() {
     // Save elements to variables
     elementContainer = document.getElementById('product-code-tester-interactive-container');
     elementRestartButton = document.getElementById('restart-button');
+    elementModuloCheckbox = document.getElementById('use-modulo');
 
     // Add event listeners
     elementRestartButton.addEventListener('click', resetTester);
+    elementModuloCheckbox.addEventListener('input', function () { toggleModulo(); });
+
+    // Check for URL parameters
+    let searchParameters = new URL(window.location.href).searchParams;
+    if (searchParameters.has('use-modulo')) {
+        useModulo = true;
+    }
 
     // Start interactive
     resetTester();
 
-    // Check for URL parameter
-    let searchParameters = new URL(window.location.href).searchParams;
     if (searchParameters.has('type')) {
         let providedProductCodeType = searchParameters.get('type');
         if (providedProductCodeType in productCodeData) {
@@ -106,10 +117,13 @@ function resetTester() {
     elementContainer.innerHTML = '';
     elementBarcodeImage = undefined;
     elementBarcodeImageHider = undefined;
-    elementMultiplicationGrid = undefined;
+    elementCalculationGrid = undefined;
     productCodeTopRowInputElements = undefined;
     productCodeThirdRowInputElements = undefined;
     productCodeThirdRowSumElement = undefined;
+    while (arrowElements.length > 0) {
+        arrowElements.pop().clear();
+    }
     setupStepOne();
 }
 
@@ -163,8 +177,11 @@ function setupStepTwo(event) {
     elementBarcodeImageContainer.appendChild(elementBarcodeImageHider);
 
     // Create input grid
-    elementMultiplicationGrid = document.createElement('div');
-    elementMultiplicationGrid.id = 'multiplication-grid';
+    elementCalculationGrid = document.createElement('div');
+    elementCalculationGrid.id = 'calculation-grid';
+    if (useModulo) {
+        elementCalculationGrid.classList.add('show-modulo');
+    }
     let columnLayout = '';
     for (let i = 1; i <= productCodeLength; i++) {
         if (productCodeDigitSpacings.has(i)) {
@@ -173,9 +190,8 @@ function setupStepTwo(event) {
             columnLayout += '1fr ';
         }
     }
-    columnLayout += '1fr';
-    elementMultiplicationGrid.style.gridTemplateColumns = columnLayout;
-    elementContainer.appendChild(elementMultiplicationGrid);
+    elementCalculationGrid.style.gridTemplateColumns = columnLayout;
+    elementContainer.appendChild(elementCalculationGrid);
 
     // Create top row inputs
     productCodeTopRowInputElements = [];
@@ -185,7 +201,7 @@ function setupStepTwo(event) {
         // if (productCodeDigitSpacings.has(i)) {
         //     element.classList.add('input-space-after');
         // }
-        elementMultiplicationGrid.appendChild(element);
+        elementCalculationGrid.appendChild(element);
 
         let inputElement = document.createElement('input');
         inputElement.type = 'text';
@@ -224,31 +240,27 @@ function setupStepThree() {
 
     // For each digit except checksum
     for (let i = 1; i < productCodeLength; i++) {
-        // Middle row
-        let middleRowElement = document.createElement('div');
-        middleRowElement.style.gridArea = `2 / ${i} / 3 / ${i + 1}`;
-        middleRowElement.classList.add('middle-row');
-        elementMultiplicationGrid.appendChild(middleRowElement);
-        // Arrow
-        let middleRowArrowElement = document.createElement('div');
-        middleRowArrowElement.classList.add('middle-row-arrow');
-        middleRowArrowElement.textContent = arrowSymbol;
-        middleRowElement.appendChild(middleRowArrowElement);
+        // Second row
+        let secondRowElement = document.createElement('div');
+        secondRowElement.style.gridArea = `2 / ${i} / 3 / ${i + 1}`;
+        secondRowElement.classList.add('second-row');
+        elementCalculationGrid.appendChild(secondRowElement);
+
         // Label
-        let middleRowLabelElement = document.createElement('div');
-        middleRowLabelElement.classList.add('middle-row-label');
-        middleRowLabelElement.textContent = `${multiplicationSymbol}${productCodeWeightings[i - 1]}`;
-        middleRowElement.appendChild(middleRowLabelElement);
+        let secondRowLabelElement = document.createElement('div');
+        secondRowLabelElement.classList.add('second-row-label');
+        secondRowLabelElement.textContent = `\u00D7${productCodeWeightings[i - 1]}`;
+        secondRowElement.appendChild(secondRowLabelElement);
         // Modulo label
-        let middleRowLabelModuloElement = document.createElement('div');
-        middleRowLabelModuloElement.classList.add('modulo-label');
-        middleRowLabelModuloElement.textContent = 'mod 10';
-        middleRowLabelElement.appendChild(middleRowLabelModuloElement);
+        let secondRowLabelModuloElement = document.createElement('div');
+        secondRowLabelModuloElement.classList.add('modulo-label');
+        secondRowLabelModuloElement.textContent = 'mod 10';
+        secondRowLabelElement.appendChild(secondRowLabelModuloElement);
 
         let thirdRowElement = document.createElement('div');
         thirdRowElement.classList.add('third-row')
         thirdRowElement.style.gridArea = `3 / ${i} / 4 / ${i + 1}`;
-        elementMultiplicationGrid.appendChild(thirdRowElement);
+        elementCalculationGrid.appendChild(thirdRowElement);
 
         // Third row - Multipled value
         let inputElement = document.createElement('input');
@@ -270,20 +282,29 @@ function setupStepThree() {
             thirdRowSymbolElement.textContent = '=';
         }
         thirdRowElement.appendChild(thirdRowSymbolElement)
-
         productCodeThirdRowInputElements.push(inputElement);
+
+        let arrow = arrowCreate({
+            from: productCodeTopRowInputElements[i - 1],
+            to: productCodeThirdRowInputElements[i - 1],
+            className: 'product-code-tester-arrow',
+            head: arrowHeads.NORMAL,
+            updateDelay: 25,
+        });
+        document.body.appendChild(arrow.node);
+        arrowElements.push(arrow);
     }
 }
 
 
 function setupStepFour() {
     stepNumber = 4;
-    elementMultiplicationGrid.classList.add('step-four');
+    elementCalculationGrid.classList.add('step-four');
 
     let i = productCodeLength;
     let thirdRowElement = document.createElement('div');
     thirdRowElement.style.gridArea = `3 / ${i} / 4 / ${i + 1}`;
-    elementMultiplicationGrid.appendChild(thirdRowElement);
+    elementCalculationGrid.appendChild(thirdRowElement);
 
     // Third row - Multipled sum
     productCodeThirdRowSumElement = document.createElement('input');
@@ -299,40 +320,104 @@ function setupStepFour() {
 function setupStepFive() {
     // Minus step
     stepNumber = 5;
-    elementMultiplicationGrid.classList.add('step-five');
+    elementCalculationGrid.classList.add('step-five');
 
-    let i = productCodeLength;
+    // Fifth row - First cell
+    let firstCellElement = document.createElement('div');
+    firstCellElement.style.gridArea = `5 / ${productCodeLength - 2} / 6 / ${productCodeLength - 1}`;
+    firstCellElement.classList.add('fifth-row');
+    elementCalculationGrid.appendChild(firstCellElement);
 
-    subtractionElement = document.createElement('div');
-    subtractionElement.id = 'subtraction-equation';
-    subtractionElement.classList.add('product-code-digit');
-    subtractionElement.style.gridArea = `4 / 1 / 5 / ${i + 1}`;
-    elementMultiplicationGrid.appendChild(subtractionElement);
-    updateSubtractionEquation();
+    let tenElement = document.createElement('div');
+    tenElement.classList.add('product-code-digit', 'fifth-row-digit');
+    tenElement.textContent = '10';
+    firstCellElement.appendChild(tenElement);
 
-    // Fifth row - Subtraction result
-    subtractionResultContainerElement = document.createElement('div');
-    subtractionResultContainerElement.classList.add('fifth-row');
-    subtractionResultContainerElement.style.gridArea = `4 / ${i + 1} / 5 / ${i + 2}`;
-    elementMultiplicationGrid.appendChild(subtractionResultContainerElement);
+    let minusSymbolElement = document.createElement('div');
+    minusSymbolElement.classList.add('equation-symbol');
+    minusSymbolElement.textContent = '\u2212';
+    firstCellElement.appendChild(minusSymbolElement)
+
+    // Fifth row - Second cell
+    let secondCellElement = document.createElement('div');
+    secondCellElement.style.gridArea = `5 / ${productCodeLength - 1} / 6 / ${productCodeLength}`;
+    secondCellElement.classList.add('fifth-row');
+    elementCalculationGrid.appendChild(secondCellElement);
+
+    subtractionValueElement = document.createElement('div');
+    subtractionValueElement.classList.add('product-code-digit', 'fifth-row-digit');
+    secondCellElement.appendChild(subtractionValueElement);
 
     let equalsElement = document.createElement('div');
     equalsElement.classList.add('equation-symbol');
     equalsElement.textContent = '=';
-    subtractionResultContainerElement.appendChild(equalsElement);
+    secondCellElement.appendChild(equalsElement);
+
+    // Fifth row - Third cell
+    let thirdCellElement = document.createElement('div');
+    thirdCellElement.style.gridArea = `5 / ${productCodeLength} / 6 / ${productCodeLength + 1}`;
+    thirdCellElement.classList.add('fifth-row');
+    elementCalculationGrid.appendChild(thirdCellElement);
 
     subtractionResultElement = document.createElement('input');
     subtractionResultElement.id = 'subtraction-result';
     subtractionResultElement.type = 'text';
     subtractionResultElement.maxLength = '1';
     subtractionResultElement.classList.add('product-code-digit');
-    // subtractionResultElement.addEventListener('input', checkMultiplicationSumInput);
-    subtractionResultContainerElement.appendChild(subtractionResultElement)
+    // subtractionResultElement.addEventListener('input', checkSubtractionInput);
+    thirdCellElement.appendChild(subtractionResultElement)
+
+    // Arrow
+    let arrow = arrowCreate({
+        from: {
+            node: productCodeThirdRowSumElement,
+            direction: arrowDirections.BOTTOM,
+            translation: [0, 0.8],
+        },
+        to: {
+            node: subtractionValueElement,
+            direction: arrowDirections.TOP,
+            translation: [0, -1],
+        },
+        className: 'product-code-tester-arrow',
+        head: [
+            {
+                func: arrowHeads.NORMAL,
+                width: 10,
+            },
+            {
+                func: ({width}) => {
+                    let node = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+                    let path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                    let tailPath = 'm 0 -10 h -6 v 2 h 4 v 16 h -4 v 2 h 6 z';
+                    path.setAttributeNS('http://www.w3.org/2000/svg', 'd', tailPath);
+                    node.appendChild(path);
+                    return {
+                        node: node,
+                        width: width,
+                        height: width,
+                    }
+                },
+                width: 5,
+                distance: 0.001,
+            },
+        ],
+        updateDelay: 25,
+    });
+    document.body.appendChild(arrow.node);
+    arrowElements.push(arrow);
+
+    updateSubtractionEquation();
 }
 
+
+function setupStepSix() {
+
+}
+
+
 function updateSubtractionEquation() {
-    let subtractValue = productCodeThirdRowSumElement.value % 10;
-    subtractionElement.textContent = `10 \u2212 ${subtractValue}`;
+    subtractionValueElement.textContent = productCodeThirdRowSumElement.value % 10;
 }
 
 
@@ -404,12 +489,35 @@ function checkMultiplicationSumInput() {
     }
 }
 
+function checkSubtractionInput() {
+    let correctSum = 10 - parseInt(subtractionValueElement.textContent);
+    let givenSum = subtractionResultElement.value;
+    if (subtractionResultElement.value == '') {
+        subtractionResultElement.classList.remove('correct', 'incorrect');
+    } else if (givenSum == correctSum) {
+        subtractionResultElement.classList.add('correct');
+        subtractionResultElement.classList.remove('incorrect');
+        if (stepNumber < 6) {
+            setupStepSix();
+        }
+    } else {
+        subtractionResultElement.classList.add('incorrect');
+        subtractionResultElement.classList.remove('correct');
+    }
+    if (stepNumber >= 6) {
+        updateCheckDigit();
+    }
+}
+
 function checkThirdRowInputs() {
     let correctValues = 0;
     for (let i = 0; i < (productCodeTopRowInputElements.length - 1); i++) {
         let topInputElement = productCodeTopRowInputElements[i];
         let thirdInputElement = productCodeThirdRowInputElements[i];
         let expectedValue = topInputElement.value * productCodeWeightings[i];
+        if (useModulo) {
+            expectedValue = expectedValue % 10;
+        }
         if (thirdInputElement.value == '') {
             thirdInputElement.classList.remove('correct', 'incorrect');
         } else if (thirdInputElement.value == expectedValue) {
@@ -512,6 +620,26 @@ function updateBarcodeImage() {
             margin: 0,
         }
     );
+}
+
+
+function toggleModulo(force) {
+    if (force) {
+        useModulo = force;
+    } else {
+        useModulo = !useModulo;
+    }
+    updateModuloInterface();
+}
+
+
+function updateModuloInterface() {
+    if (elementCalculationGrid) {
+        elementCalculationGrid.classList.toggle('show-modulo', useModulo);
+    }
+    if (stepNumber >= 3) {
+        checkThirdRowInputs();
+    }
 }
 
 

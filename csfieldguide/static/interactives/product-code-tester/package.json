@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "private": true,
     "dependencies": {
-        "leader-line": "1.0.7",
+        "arrows-svg": "1.5.6",
         "jsbarcode": "3.11.5"
     }
 }
