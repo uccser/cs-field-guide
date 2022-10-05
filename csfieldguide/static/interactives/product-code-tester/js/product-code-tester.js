@@ -53,17 +53,18 @@ const productCodeData = {
 const productCodeOrder = ["UPC", "EAN13"];
 
 // Elements
-var elementContainer;
-var elementRestartButton;
-var elementModuloCheckbox;
-var elementBarcodeImage;
-var elementBarcodeImageHider;
-var elementCalculationGrid;
+var containerElement;
+var restartButtonElement;
+var moduloCheckboxElement;
+var barcodeImageElement;
+var barcodeImageHiderElement;
+var calculationGridElement;
 var productCodeTopRowInputElements;
 var productCodeThirdRowInputElements;
 var productCodeThirdRowSumElement;
 var subtractionValueElement;
 var subtractionResultElement;
+var checkDigitElement;
 var arrowTailPositionerElement;
 var arrowElements = [];
 
@@ -88,13 +89,13 @@ const validEditingKeys = new Set([
 
 function setup() {
     // Save elements to variables
-    elementContainer = document.getElementById('product-code-tester-interactive-container');
-    elementRestartButton = document.getElementById('restart-button');
-    elementModuloCheckbox = document.getElementById('use-modulo');
+    containerElement = document.getElementById('product-code-tester-interactive-container');
+    restartButtonElement = document.getElementById('restart-button');
+    moduloCheckboxElement = document.getElementById('use-modulo');
 
     // Add event listeners
-    elementRestartButton.addEventListener('click', resetTester);
-    elementModuloCheckbox.addEventListener('input', function () { toggleModulo(); });
+    restartButtonElement.addEventListener('click', resetTester);
+    moduloCheckboxElement.addEventListener('input', function () { toggleModulo(); });
 
     // Check for URL parameters
     let searchParameters = new URL(window.location.href).searchParams;
@@ -115,13 +116,7 @@ function setup() {
 
 
 function resetTester() {
-    elementContainer.innerHTML = '';
-    elementBarcodeImage = undefined;
-    elementBarcodeImageHider = undefined;
-    elementCalculationGrid = undefined;
-    productCodeTopRowInputElements = undefined;
-    productCodeThirdRowInputElements = undefined;
-    productCodeThirdRowSumElement = undefined;
+    containerElement.innerHTML = '';
     while (arrowElements.length > 0) {
         arrowElements.pop().clear();
     }
@@ -141,7 +136,7 @@ function setupStepOne() {
         elementButton.addEventListener('click', setupStepTwo);
         elementButtonContainer.appendChild(elementButton);
     })
-    elementContainer.appendChild(elementButtonContainer);
+    containerElement.appendChild(elementButtonContainer);
 }
 
 function setupStepTwo(event) {
@@ -161,27 +156,27 @@ function setupStepTwo(event) {
 
     // Create image with hider
     highestRevealedDigit = 0;
-    let elementBarcodeImageGridElement = document.createElement('div');
-    elementBarcodeImageGridElement.id = 'barcode-image-container';
-    elementContainer.appendChild(elementBarcodeImageGridElement);
+    let barcodeImageElementGridElement = document.createElement('div');
+    barcodeImageElementGridElement.id = 'barcode-image-container';
+    containerElement.appendChild(barcodeImageElementGridElement);
 
-    let elementBarcodeImageContainer = document.createElement('div');
-    elementBarcodeImageGridElement.appendChild(elementBarcodeImageContainer);
+    let barcodeImageElementContainer = document.createElement('div');
+    barcodeImageElementGridElement.appendChild(barcodeImageElementContainer);
 
-    elementBarcodeImage = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-    elementBarcodeImage.id = 'barcode-image';
-    elementBarcodeImageContainer.appendChild(elementBarcodeImage);
+    barcodeImageElement = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    barcodeImageElement.id = 'barcode-image';
+    barcodeImageElementContainer.appendChild(barcodeImageElement);
 
-    elementBarcodeImageHider = document.createElement('div');
-    elementBarcodeImageHider.id = 'barcode-image-hider';
-    elementBarcodeImageHider.textContent = '?';
-    elementBarcodeImageContainer.appendChild(elementBarcodeImageHider);
+    barcodeImageHiderElement = document.createElement('div');
+    barcodeImageHiderElement.id = 'barcode-image-hider';
+    barcodeImageHiderElement.textContent = '?';
+    barcodeImageElementContainer.appendChild(barcodeImageHiderElement);
 
     // Create input grid
-    elementCalculationGrid = document.createElement('div');
-    elementCalculationGrid.id = 'calculation-grid';
+    calculationGridElement = document.createElement('div');
+    calculationGridElement.id = 'calculation-grid';
     if (useModulo) {
-        elementCalculationGrid.classList.add('show-modulo');
+        calculationGridElement.classList.add('show-modulo');
     }
     let columnLayout = '';
     for (let i = 1; i <= productCodeLength; i++) {
@@ -191,8 +186,8 @@ function setupStepTwo(event) {
             columnLayout += '1fr ';
         }
     }
-    elementCalculationGrid.style.gridTemplateColumns = columnLayout;
-    elementContainer.appendChild(elementCalculationGrid);
+    calculationGridElement.style.gridTemplateColumns = columnLayout;
+    containerElement.appendChild(calculationGridElement);
 
     // Create top row inputs
     productCodeTopRowInputElements = [];
@@ -202,7 +197,7 @@ function setupStepTwo(event) {
         // if (productCodeDigitSpacings.has(i)) {
         //     element.classList.add('input-space-after');
         // }
-        elementCalculationGrid.appendChild(element);
+        calculationGridElement.appendChild(element);
 
         let inputElement = document.createElement('input');
         inputElement.type = 'text';
@@ -210,6 +205,7 @@ function setupStepTwo(event) {
         inputElement.classList.add('product-code-digit');
         if (i != 1) {
             inputElement.disabled = true;
+            checkDigitElement = inputElement;
         }
         if (i == productCodeLength) {
             inputElement.value = "?";
@@ -245,7 +241,7 @@ function setupStepThree() {
         let secondRowElement = document.createElement('div');
         secondRowElement.style.gridArea = `2 / ${i} / 3 / ${i + 1}`;
         secondRowElement.classList.add('second-row');
-        elementCalculationGrid.appendChild(secondRowElement);
+        calculationGridElement.appendChild(secondRowElement);
 
         // Label
         let secondRowLabelElement = document.createElement('div');
@@ -261,7 +257,7 @@ function setupStepThree() {
         let thirdRowElement = document.createElement('div');
         thirdRowElement.classList.add('third-row')
         thirdRowElement.style.gridArea = `3 / ${i} / 4 / ${i + 1}`;
-        elementCalculationGrid.appendChild(thirdRowElement);
+        calculationGridElement.appendChild(thirdRowElement);
 
         // Third row - Multipled value
         let inputElement = document.createElement('input');
@@ -300,13 +296,13 @@ function setupStepThree() {
 
 function setupStepFour() {
     stepNumber = 4;
-    elementCalculationGrid.classList.add('step-four');
+    calculationGridElement.classList.add('step-four');
 
     let i = productCodeLength;
     let thirdRowElement = document.createElement('div');
     thirdRowElement.id = 'multiplication-sum-container';
     thirdRowElement.style.gridArea = `3 / ${i} / 4 / ${i + 1}`;
-    elementCalculationGrid.appendChild(thirdRowElement);
+    calculationGridElement.appendChild(thirdRowElement);
 
     // Third row - Multipled sum
     productCodeThirdRowSumElement = document.createElement('input');
@@ -327,13 +323,13 @@ function setupStepFour() {
 function setupStepFive() {
     // Minus step
     stepNumber = 5;
-    elementCalculationGrid.classList.add('step-five');
+    calculationGridElement.classList.add('step-five');
 
     // Fifth row - First cell
     let firstCellElement = document.createElement('div');
     firstCellElement.style.gridArea = `5 / ${productCodeLength - 2} / 6 / ${productCodeLength - 1}`;
     firstCellElement.classList.add('fifth-row');
-    elementCalculationGrid.appendChild(firstCellElement);
+    calculationGridElement.appendChild(firstCellElement);
 
     let tenElement = document.createElement('div');
     tenElement.classList.add('product-code-digit', 'fifth-row-digit');
@@ -349,7 +345,7 @@ function setupStepFive() {
     let secondCellElement = document.createElement('div');
     secondCellElement.style.gridArea = `5 / ${productCodeLength - 1} / 6 / ${productCodeLength}`;
     secondCellElement.classList.add('fifth-row');
-    elementCalculationGrid.appendChild(secondCellElement);
+    calculationGridElement.appendChild(secondCellElement);
 
     subtractionValueElement = document.createElement('div');
     subtractionValueElement.classList.add('product-code-digit', 'fifth-row-digit');
@@ -364,7 +360,7 @@ function setupStepFive() {
     let thirdCellElement = document.createElement('div');
     thirdCellElement.style.gridArea = `5 / ${productCodeLength} / 6 / ${productCodeLength + 1}`;
     thirdCellElement.classList.add('fifth-row');
-    elementCalculationGrid.appendChild(thirdCellElement);
+    calculationGridElement.appendChild(thirdCellElement);
 
     subtractionResultElement = document.createElement('input');
     subtractionResultElement.id = 'subtraction-result';
@@ -417,7 +413,15 @@ function setupStepFive() {
 
 
 function setupStepSix() {
-
+    let arrow = arrowCreate({
+        from: productCodeTopRowInputElements[i - 1],
+        to: productCodeThirdRowInputElements[i - 1],
+        className: 'product-code-tester-arrow',
+        head: arrowHeads.NORMAL,
+        updateDelay: 25,
+    });
+    document.body.appendChild(arrow.node);
+    arrowElements.push(arrow);
 }
 
 
@@ -613,10 +617,10 @@ function updateProductCode() {
 
 function updateBarcodeImage() {
     let hiderPosition = productCodeData[productCodeSlug].imagePositionPixelValues[highestRevealedDigit];
-    elementBarcodeImageHider.style.left = hiderPosition;
+    barcodeImageHiderElement.style.left = hiderPosition;
 
     JsBarcode(
-        elementBarcodeImage,
+        barcodeImageElement,
         productCode.replaceAll('-', '0'),
         {
             format: productCodeSlug,
@@ -640,8 +644,8 @@ function toggleModulo(force) {
 
 
 function updateModuloInterface() {
-    if (elementCalculationGrid) {
-        elementCalculationGrid.classList.toggle('show-modulo', useModulo);
+    if (calculationGridElement) {
+        calculationGridElement.classList.toggle('show-modulo', useModulo);
     }
     if (stepNumber >= 3) {
         checkThirdRowInputs();
