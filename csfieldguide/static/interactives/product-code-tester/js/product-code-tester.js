@@ -73,6 +73,7 @@ var productCode;
 var productCodeSlug;
 var productCodeLength;
 var productCodeWeightings;
+var productCodeCheckDigit;
 var highestRevealedDigit;
 var stepNumber;
 var useModulo = false;
@@ -219,9 +220,9 @@ function setupStepTwo(event) {
                     this.value = this.dataset.lastInput || '';
                 }
             });
+            productCodeTopRowInputElements.push(inputElement);
         }
         element.appendChild(inputElement);
-        productCodeTopRowInputElements.push(inputElement);
     }
 
     updateProductCode();
@@ -392,6 +393,7 @@ function setupStepFive() {
                 func: ({width}) => {
                     let node = document.createElementNS('http://www.w3.org/2000/svg', 'g');
                     let path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                    // https://yqnn.github.io/svg-path-editor/#P=m_0_-10_h_-6_v_2_h_4_v_16_h_-4_v_2_h_6_z
                     let tailPath = 'm 0 -10 h -6 v 2 h 4 v 16 h -4 v 2 h 6 z';
                     path.setAttributeNS('http://www.w3.org/2000/svg', 'd', tailPath);
                     node.appendChild(path);
@@ -413,9 +415,18 @@ function setupStepFive() {
 
 
 function setupStepSix() {
+    stepNumber = 6;
     let arrow = arrowCreate({
-        from: productCodeTopRowInputElements[i - 1],
-        to: productCodeThirdRowInputElements[i - 1],
+        from: {
+            node: subtractionResultElement,
+            direction: arrowDirections.RIGHT,
+            translation: [1, 0],
+        },
+        to: {
+            node: checkDigitElement,
+            direction: arrowDirections.RIGHT,
+            translation: [2, 0],
+        },
         className: 'product-code-tester-arrow',
         head: arrowHeads.NORMAL,
         updateDelay: 25,
@@ -429,7 +440,6 @@ function updateSubtractionEquation() {
     subtractionValueElement.textContent = productCodeThirdRowSumElement.value % 10;
     checkSubtractionInput();
 }
-
 
 
 function processThirdRowInputKeyDown(event) {
@@ -500,8 +510,9 @@ function checkMultiplicationSumInput() {
 }
 
 function checkSubtractionInput() {
+    console.log(1);
     let correctSum = 10 - parseInt(subtractionValueElement.textContent);
-    let givenSum = subtractionResultElement.value;
+    let givenSum = parseInt(subtractionResultElement.value);
     if (subtractionResultElement.value == '') {
         subtractionResultElement.classList.remove('correct', 'incorrect');
     } else if (givenSum == correctSum) {
@@ -515,13 +526,42 @@ function checkSubtractionInput() {
         subtractionResultElement.classList.remove('correct');
     }
     if (stepNumber >= 6) {
-        updateCheckDigit();
+        checkCheckDigit();
     }
 }
 
+
+function checkCheckDigit() {
+    let givenDigit = subtractionResultElement.value;
+    checkDigitElement.value = givenDigit;
+
+    if (givenDigit == productCodeCheckDigit) {
+        checkDigitElement.classList.add('correct');
+        checkDigitElement.classList.remove('incorrect');
+        highestRevealedDigit = productCodeLength;
+    } else {
+        checkDigitElement.classList.add('incorrect');
+        checkDigitElement.classList.remove('correct');
+        highestRevealedDigit = productCodeLength - 1;
+    }
+    updateBarcodeImage();
+}
+
+
+function calculateCheckDigit() {
+    let total = 0;
+    for (let i = 0; i < (productCodeTopRowInputElements.length); i++) {
+        let digit = parseInt(productCodeTopRowInputElements[i].value);
+        let weighting = productCodeWeightings[i];
+        total += digit * weighting;
+    }
+    productCodeCheckDigit = 10 - (total % 10);
+}
+
+
 function checkThirdRowInputs() {
     let correctValues = 0;
-    for (let i = 0; i < (productCodeTopRowInputElements.length - 1); i++) {
+    for (let i = 0; i < (productCodeTopRowInputElements.length); i++) {
         let topInputElement = productCodeTopRowInputElements[i];
         let thirdInputElement = productCodeThirdRowInputElements[i];
         let expectedValue = topInputElement.value * productCodeWeightings[i];
@@ -539,7 +579,7 @@ function checkThirdRowInputs() {
             thirdInputElement.classList.remove('correct');
         }
     }
-    if (correctValues == productCodeTopRowInputElements.length - 1) {
+    if (correctValues == productCodeTopRowInputElements.length) {
         if (stepNumber < 4) {
             setupStepFour();
         }
@@ -596,7 +636,7 @@ function processTopRowInputKeyDown(event) {
 function updateProductCode() {
     productCode = '';
     let allInputsFilled = true;
-    for (let i = 0; i < (productCodeTopRowInputElements.length - 1); i++) {
+    for (let i = 0; i < (productCodeTopRowInputElements.length); i++) {
         let inputElement = productCodeTopRowInputElements[i];
         if (inputElement.value.match(/\d{1}/)) {
             productCode += inputElement.value;
@@ -610,7 +650,7 @@ function updateProductCode() {
         if (stepNumber < 3) {
             setupStepThree();
         }
-        checkThirdRowInputs();
+        calculateCheckDigit();
     }
 }
 
