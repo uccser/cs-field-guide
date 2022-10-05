@@ -64,6 +64,7 @@ var productCodeThirdRowInputElements;
 var productCodeThirdRowSumElement;
 var subtractionValueElement;
 var subtractionResultElement;
+var arrowTailPositionerElement;
 var arrowElements = [];
 
 // Other variables
@@ -303,6 +304,7 @@ function setupStepFour() {
 
     let i = productCodeLength;
     let thirdRowElement = document.createElement('div');
+    thirdRowElement.id = 'multiplication-sum-container';
     thirdRowElement.style.gridArea = `3 / ${i} / 4 / ${i + 1}`;
     elementCalculationGrid.appendChild(thirdRowElement);
 
@@ -314,6 +316,11 @@ function setupStepFour() {
     productCodeThirdRowSumElement.classList.add('product-code-digit');
     productCodeThirdRowSumElement.addEventListener('input', checkMultiplicationSumInput);
     thirdRowElement.appendChild(productCodeThirdRowSumElement)
+
+    // Third row - Character position element (used for arrow in step five)
+    arrowTailPositionerElement = document.createElement('div');
+    arrowTailPositionerElement.id = 'arrow-tail-positioner';
+    thirdRowElement.appendChild(arrowTailPositionerElement);
 }
 
 
@@ -364,15 +371,18 @@ function setupStepFive() {
     subtractionResultElement.type = 'text';
     subtractionResultElement.maxLength = '1';
     subtractionResultElement.classList.add('product-code-digit');
-    // subtractionResultElement.addEventListener('input', checkSubtractionInput);
+    subtractionResultElement.addEventListener('input', checkSubtractionInput);
     thirdCellElement.appendChild(subtractionResultElement)
+
+    // Fill value before rendering arrow so points to top of element
+    updateSubtractionEquation();
 
     // Arrow
     let arrow = arrowCreate({
         from: {
-            node: productCodeThirdRowSumElement,
+            node: arrowTailPositionerElement,
             direction: arrowDirections.BOTTOM,
-            translation: [0, 0.8],
+            translation: [0, 1],
         },
         to: {
             node: subtractionValueElement,
@@ -381,10 +391,7 @@ function setupStepFive() {
         },
         className: 'product-code-tester-arrow',
         head: [
-            {
-                func: arrowHeads.NORMAL,
-                width: 10,
-            },
+            arrowHeads.NORMAL,
             {
                 func: ({width}) => {
                     let node = document.createElementNS('http://www.w3.org/2000/svg', 'g');
@@ -406,8 +413,6 @@ function setupStepFive() {
     });
     document.body.appendChild(arrow.node);
     arrowElements.push(arrow);
-
-    updateSubtractionEquation();
 }
 
 
@@ -418,6 +423,7 @@ function setupStepSix() {
 
 function updateSubtractionEquation() {
     subtractionValueElement.textContent = productCodeThirdRowSumElement.value % 10;
+    checkSubtractionInput();
 }
 
 

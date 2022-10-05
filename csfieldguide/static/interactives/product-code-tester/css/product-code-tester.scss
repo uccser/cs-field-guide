@@ -81,6 +81,19 @@ $incorrect-colour: #e74c3c;
                 flex-grow: 1;
             }
         }
+        #multiplication-sum-container {
+            position: relative;
+
+            #arrow-tail-positioner {
+                position: absolute;
+                width: 2ch;
+                top: 0;
+                right: 0.5ch;
+                bottom: 15%;
+                user-select: none;
+                visibility: hidden;
+            }
+        }
         #multiplication-sum,
         #subtraction-result {
             width: 100%;
