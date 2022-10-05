@@ -70,6 +70,7 @@ $incorrect-colour: #e74c3c;
             justify-content: flex-end;
             align-items: center;
         }
+        & > div.first-row,
         & > div.third-row,
         & > div.fifth-row {
             display: flex;
@@ -107,7 +108,8 @@ $incorrect-colour: #e74c3c;
         &.show-modulo .modulo-label {
             display: block;
         }
-        &.step-four .equation-symbol {
+        &.step-four .third-row .equation-symbol,
+        &.step-four .fifth-row .equation-symbol {
             visibility: visible !important;
         }
         .fourth-row .arrow-symbol {
@@ -192,6 +194,9 @@ $incorrect-colour: #e74c3c;
     }
     [disabled] {
         cursor: not-allowed;
+    }
+    .hidden {
+        visibility: hidden !important;
     }
 }
 // Arrows

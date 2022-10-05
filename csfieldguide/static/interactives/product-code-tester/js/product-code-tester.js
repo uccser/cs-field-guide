@@ -195,9 +195,7 @@ function setupStepTwo(event) {
     for (let i = 1; i <= productCodeLength; i++) {
         let element = document.createElement('div');
         element.style.gridArea = `1 / ${i} / 2 / ${i+1}`;
-        // if (productCodeDigitSpacings.has(i)) {
-        //     element.classList.add('input-space-after');
-        // }
+        element.classList.add('first-row');
         calculationGridElement.appendChild(element);
 
         let inputElement = document.createElement('input');
@@ -223,6 +221,12 @@ function setupStepTwo(event) {
             productCodeTopRowInputElements.push(inputElement);
         }
         element.appendChild(inputElement);
+
+        // Hidden symbol for spacing
+        let symbolElement = document.createElement('div');
+        symbolElement.classList.add('equation-symbol', 'hidden');
+        symbolElement.textContent = '+';
+        element.appendChild(symbolElement)
     }
 
     updateProductCode();
@@ -510,7 +514,6 @@ function checkMultiplicationSumInput() {
 }
 
 function checkSubtractionInput() {
-    console.log(1);
     let correctSum = 10 - parseInt(subtractionValueElement.textContent);
     let givenSum = parseInt(subtractionResultElement.value);
     if (subtractionResultElement.value == '') {
