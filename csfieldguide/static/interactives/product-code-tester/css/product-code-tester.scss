@@ -3,6 +3,14 @@ $correct-colour: #28a745;
 $incorrect-colour: #e74c3c;
 
 #product-code-tester-interactive {
+    #window-size-alert {
+        display: none;
+        justify-content: center;
+        &.show {
+            display: flex;
+        }
+    }
+
     #button-container {
         display: flex;
         flex-wrap: nowrap;
@@ -195,7 +203,7 @@ $incorrect-colour: #e74c3c;
     [disabled] {
         cursor: not-allowed;
     }
-    .hidden {
+    .invisible {
         visibility: hidden !important;
     }
 }

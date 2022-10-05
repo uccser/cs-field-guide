@@ -56,6 +56,8 @@ const productCodeOrder = ["UPC", "EAN13"];
 var containerElement;
 var restartButtonElement;
 var moduloCheckboxElement;
+var windowSizeAlertElement;
+var topRightGridElement;
 var barcodeImageElement;
 var barcodeImageHiderElement;
 var calculationGridElement;
@@ -93,10 +95,12 @@ function setup() {
     containerElement = document.getElementById('product-code-tester-interactive-container');
     restartButtonElement = document.getElementById('restart-button');
     moduloCheckboxElement = document.getElementById('use-modulo');
+    windowSizeAlertElement = document.getElementById('window-size-alert');
 
     // Add event listeners
     restartButtonElement.addEventListener('click', resetTester);
     moduloCheckboxElement.addEventListener('input', function () { toggleModulo(); });
+    window.addEventListener('resize', checkWindowSize, true);
 
     // Check for URL parameters
     let searchParameters = new URL(window.location.href).searchParams;
@@ -121,6 +125,7 @@ function resetTester() {
     while (arrowElements.length > 0) {
         arrowElements.pop().clear();
     }
+    checkWindowSize();
     setupStepOne();
 }
 
@@ -224,13 +229,17 @@ function setupStepTwo(event) {
 
         // Hidden symbol for spacing
         let symbolElement = document.createElement('div');
-        symbolElement.classList.add('equation-symbol', 'hidden');
+        symbolElement.classList.add('equation-symbol', 'invisible');
         symbolElement.textContent = '+';
         element.appendChild(symbolElement)
+        if (i == productCodeLength) {
+            topRightGridElement = symbolElement;
+        }
     }
 
     updateProductCode();
     updateBarcodeImage();
+    checkWindowSize();
 }
 
 
@@ -714,6 +723,18 @@ function updateModuloInterface() {
     if (stepNumber >= 3) {
         checkThirdRowInputs();
     }
+}
+
+
+function checkWindowSize() {
+    // Check if any elements are outside their bounds, and display message
+    let showAlert = false;
+    if (calculationGridElement && topRightGridElement) {
+        let calculationGridElementPosition = calculationGridElement.getBoundingClientRect().right;
+        let topRightGridElementPosition = topRightGridElement.getBoundingClientRect().right;
+        showAlert = topRightGridElementPosition != calculationGridElementPosition;
+    }
+    windowSizeAlertElement.classList.toggle('show', showAlert);
 }
 
 
