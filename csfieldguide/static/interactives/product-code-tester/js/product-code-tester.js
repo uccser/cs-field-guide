@@ -67,8 +67,11 @@ var productCodeThirdRowSumElement;
 var subtractionValueElement;
 var subtractionResultElement;
 var checkDigitElement;
-var arrowTailPositionerElement;
-var arrowElements = [];
+var multiplicationArrowElements = [];
+var multiplicationSumArrowTailPositionerElement;
+var multiplicationSumArrow;
+var subractionResultArrowTailPositionerElement;
+var subractionResultArrow;
 
 // Other variables
 var productCode;
@@ -89,6 +92,24 @@ const validEditingKeys = new Set([
     'ArrowRight',
     'Tab',
 ]);
+const arrowTailDigitSelector = {
+    func: ({ width }) => {
+        let node = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+        let path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        // https://yqnn.github.io/svg-path-editor/#P=m_0_-10_h_-6_v_2_h_4_v_16_h_-4_v_2_h_6_z
+        let tailPath = 'm 0 -10 h -6 v 2 h 4 v 16 h -4 v 2 h 6 z';
+        path.setAttributeNS('http://www.w3.org/2000/svg', 'd', tailPath);
+        node.appendChild(path);
+        return {
+            node: node,
+            width: width,
+            height: width,
+        }
+    },
+    width: 5,
+    distance: 0.001,
+}
+
 
 function setup() {
     // Save elements to variables
@@ -122,12 +143,19 @@ function setup() {
 
 function resetTester() {
     containerElement.innerHTML = '';
-    while (arrowElements.length > 0) {
-        arrowElements.pop().clear();
+    while (multiplicationArrowElements.length > 0) {
+        multiplicationArrowElements.pop().clear();
+    }
+    if (multiplicationSumArrow) {
+        multiplicationSumArrow.clear();
+    }
+    if (subractionResultArrow) {
+        subractionResultArrow.clear();
     }
     checkWindowSize();
     setupStepOne();
 }
+
 
 function setupStepOne() {
     stepNumber = 1;
@@ -144,6 +172,7 @@ function setupStepOne() {
     })
     containerElement.appendChild(elementButtonContainer);
 }
+
 
 function setupStepTwo(event) {
     stepNumber = 2;
@@ -311,7 +340,7 @@ function setupStepThree() {
             updateDelay: 25,
         });
         document.body.appendChild(arrow.node);
-        arrowElements.push(arrow);
+        multiplicationArrowElements.push(arrow);
     }
 
     let firstElement = productCodeThirdRowInputElements[0];
@@ -340,9 +369,9 @@ function setupStepFour() {
     thirdRowElement.appendChild(productCodeThirdRowSumElement)
 
     // Third row - Character position element (used for arrow in step five)
-    arrowTailPositionerElement = document.createElement('div');
-    arrowTailPositionerElement.id = 'arrow-tail-positioner';
-    thirdRowElement.appendChild(arrowTailPositionerElement);
+    multiplicationSumArrowTailPositionerElement = document.createElement('div');
+    multiplicationSumArrowTailPositionerElement.classList.add('arrow-tail-positioner');
+    thirdRowElement.appendChild(multiplicationSumArrowTailPositionerElement);
 }
 
 
@@ -403,73 +432,29 @@ function setupStepFive() {
     subtractionResultElement.addEventListener('keydown', processInputKeyDown);
     thirdCellElement.appendChild(subtractionResultElement)
 
+    // Fifth row - Character position element (used for arrow in step six)
+    subractionResultArrowTailPositionerElement = document.createElement('div');
+    subractionResultArrowTailPositionerElement.classList.add('arrow-tail-positioner');
+    thirdCellElement.appendChild(subractionResultArrowTailPositionerElement);
+
     // Fill value before rendering arrow so points to top of element
     updateSubtractionEquation();
-
-    // Arrow
-    let arrow = arrowCreate({
-        from: {
-            node: arrowTailPositionerElement,
-            direction: arrowDirections.BOTTOM,
-            translation: [0, 1],
-        },
-        to: {
-            node: subtractionValueElement,
-            direction: arrowDirections.TOP,
-            translation: [0, -1],
-        },
-        className: 'product-code-tester-arrow',
-        head: [
-            arrowHeads.NORMAL,
-            {
-                func: ({width}) => {
-                    let node = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-                    let path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-                    // https://yqnn.github.io/svg-path-editor/#P=m_0_-10_h_-6_v_2_h_4_v_16_h_-4_v_2_h_6_z
-                    let tailPath = 'm 0 -10 h -6 v 2 h 4 v 16 h -4 v 2 h 6 z';
-                    path.setAttributeNS('http://www.w3.org/2000/svg', 'd', tailPath);
-                    node.appendChild(path);
-                    return {
-                        node: node,
-                        width: width,
-                        height: width,
-                    }
-                },
-                width: 5,
-                distance: 0.001,
-            },
-        ],
-        updateDelay: 25,
-    });
-    document.body.appendChild(arrow.node);
-    arrowElements.push(arrow);
+    updateMultiplicationSumArrow();
 }
 
 
 function setupStepSix() {
     stepNumber = 6;
-    let arrow = arrowCreate({
-        from: {
-            node: subtractionResultElement,
-            direction: arrowDirections.RIGHT,
-            translation: [1, 0],
-        },
-        to: {
-            node: checkDigitElement,
-            direction: arrowDirections.RIGHT,
-            translation: [2, 0],
-        },
-        className: 'product-code-tester-arrow',
-        head: arrowHeads.NORMAL,
-        updateDelay: 25,
-    });
-    document.body.appendChild(arrow.node);
-    arrowElements.push(arrow);
+    updateSubractionResultArrow();
 }
 
 
 function updateSubtractionEquation() {
-    subtractionValueElement.textContent = productCodeThirdRowSumElement.value % 10;
+    if (useModulo) {
+        subtractionValueElement.textContent = productCodeThirdRowSumElement.value;
+    } else {
+        subtractionValueElement.textContent = productCodeThirdRowSumElement.value % 10;
+    }
     checkSubtractionInput();
 }
 
@@ -510,6 +495,7 @@ function checkMultiplicationSumInput(allCorrect) {
         }
     }
 }
+
 
 function checkSubtractionInput() {
     let correctSum = 10 - parseInt(subtractionValueElement.textContent);
@@ -692,6 +678,80 @@ function updateBarcodeImage() {
 }
 
 
+function updateMultiplicationSumArrow() {
+    // Clear any existing arrow
+    if (multiplicationSumArrow) {
+        multiplicationSumArrow.clear();
+    }
+
+    let heads = [arrowHeads.NORMAL];
+    let fromElement = productCodeThirdRowSumElement;
+    if (!useModulo) {
+        heads.push(arrowTailDigitSelector);
+        fromElement = multiplicationSumArrowTailPositionerElement;
+    }
+
+    // Arrow
+    multiplicationSumArrow = arrowCreate({
+        from: {
+            node: fromElement,
+            direction: arrowDirections.BOTTOM,
+            translation: [0, 1],
+        },
+        to: {
+            node: subtractionValueElement,
+            direction: arrowDirections.TOP,
+            translation: [0, -1],
+        },
+        className: 'product-code-tester-arrow',
+        head: heads,
+        updateDelay: 25,
+    });
+    document.body.appendChild(multiplicationSumArrow.node);
+}
+
+
+function updateSubractionResultArrow() {
+    // Clear any existing arrow
+    if (subractionResultArrow) {
+        subractionResultArrow.clear();
+    }
+
+    let heads, fromElement, fromDirection, fromTranslation, toTranslation;
+    if (useModulo) {
+        heads = [arrowHeads.NORMAL];
+        fromElement = subtractionResultElement;
+        fromDirection = arrowDirections.RIGHT;
+        fromTranslation = [1.5, 0];
+        toTranslation = [2.5, 0];
+    } else {
+        heads = [arrowHeads.NORMAL, arrowTailDigitSelector];
+        fromElement = subractionResultArrowTailPositionerElement;
+        fromDirection = arrowDirections.BOTTOM;
+        fromTranslation = [0, 0.6];
+        toTranslation = [6, 0];
+    }
+
+    // Arrow
+    subractionResultArrow = arrowCreate({
+        from: {
+            node: fromElement,
+            direction: fromDirection,
+            translation: fromTranslation,
+        },
+        to: {
+            node: checkDigitElement,
+            direction: arrowDirections.RIGHT,
+            translation: toTranslation,
+        },
+        className: 'product-code-tester-arrow',
+        head: heads,
+        updateDelay: 25,
+    });
+    document.body.appendChild(subractionResultArrow.node);
+}
+
+
 function toggleModulo(force) {
     if (force) {
         useModulo = force;
@@ -708,6 +768,8 @@ function updateModuloInterface() {
     }
     if (stepNumber >= 3) {
         checkThirdRowInputs();
+        updateMultiplicationSumArrow();
+        updateSubractionResultArrow();
     }
 }
 

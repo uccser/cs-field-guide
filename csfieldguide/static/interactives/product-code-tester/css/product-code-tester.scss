@@ -48,17 +48,16 @@ $incorrect-colour: #e74c3c;
         margin-bottom: 1rem;
         margin-right: 3rem;
 
-        & > div.second-row {
+        & > div {
             position: relative;
-
-            .second-row-label {
-                font-size: 1rem;
-                // Positioning to parent
-                position: absolute;
-                left: 3ch;
-                bottom: 1.7ch;
-                top: 0.5ch;
-            }
+        }
+        .second-row-label {
+            font-size: 1rem;
+            // Positioning to parent
+            position: absolute;
+            left: 3ch;
+            bottom: 1.7ch;
+            top: 0.5ch;
         }
         & > div.fourth-row {
             display: flex;
@@ -79,18 +78,14 @@ $incorrect-colour: #e74c3c;
                 flex-grow: 1;
             }
         }
-        #multiplication-sum-container {
-            position: relative;
-
-            #arrow-tail-positioner {
-                position: absolute;
-                width: 2ch;
-                top: 0;
-                right: 0.4ch;
-                bottom: 15%;
-                user-select: none;
-                visibility: hidden;
-            }
+        .arrow-tail-positioner {
+            position: absolute;
+            width: 2ch;
+            top: 0;
+            right: 0.4ch;
+            bottom: 15%;
+            user-select: none;
+            visibility: hidden;
         }
         #multiplication-sum,
         #subtraction-result {
@@ -212,9 +207,14 @@ $incorrect-colour: #e74c3c;
 // Arrows
 .product-code-tester-arrow {
     pointer-events: none;
+    z-index: 90;
 }
 .product-code-tester-arrow__path {
     stroke: #000;
     stroke-width: 2px;
     fill: transparent;
+}
+body {
+    // Prevents arrows from growing body size
+    overflow-x: hidden;
 }
