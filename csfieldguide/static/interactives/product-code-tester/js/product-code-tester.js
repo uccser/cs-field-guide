@@ -282,8 +282,7 @@ function setupStepThree() {
         inputElement.classList.add('product-code-digit');
         inputElement.dataset.position = i;
         inputElement.addEventListener('input', checkThirdRowInputs);
-        inputElement.addEventListener('keydown', processThirdRowInputKeyDown);
-        // inputElement.addEventListener('keyup', processThirdRowInputKeyUp);
+        inputElement.addEventListener('keydown', processInputKeyDown);
         inputElement.addEventListener('focus', function () { this.select(); });
         thirdRowElement.appendChild(inputElement);
 
@@ -331,6 +330,7 @@ function setupStepFour() {
     productCodeThirdRowSumElement.maxLength = '3';
     productCodeThirdRowSumElement.classList.add('product-code-digit');
     productCodeThirdRowSumElement.addEventListener('input', checkMultiplicationSumInput);
+    productCodeThirdRowSumElement.addEventListener('keydown', processInputKeyDown);
     thirdRowElement.appendChild(productCodeThirdRowSumElement)
 
     // Third row - Character position element (used for arrow in step five)
@@ -385,9 +385,10 @@ function setupStepFive() {
     subtractionResultElement = document.createElement('input');
     subtractionResultElement.id = 'subtraction-result';
     subtractionResultElement.type = 'text';
-    subtractionResultElement.maxLength = '1';
+    subtractionResultElement.maxLength = '2';
     subtractionResultElement.classList.add('product-code-digit');
     subtractionResultElement.addEventListener('input', checkSubtractionInput);
+    subtractionResultElement.addEventListener('keydown', processInputKeyDown);
     thirdCellElement.appendChild(subtractionResultElement)
 
     // Fill value before rendering arrow so points to top of element
@@ -461,47 +462,11 @@ function updateSubtractionEquation() {
 }
 
 
-function processThirdRowInputKeyDown(event) {
-    let inputElement = event.target;
-    let inputCursorPosition = inputElement.selectionStart;
-    let inputLength = inputElement.value.length;
-
-    if (event.key === "ArrowRight" && inputCursorPosition == inputLength) {
-        // Move to next box (if possible)
-        // TODO: Currently cursor position is not implemented
-        let currentPosition = parseInt(inputElement.dataset.position);
-        if (currentPosition < (productCodeLength - 1)) {
-            // Don't add one as it's zero indexed array (offset by 1)
-            let newElement = productCodeThirdRowInputElements[currentPosition];
-            newElement.focus();
-        }
-    } else if (event.key === "ArrowLeft" && inputCursorPosition == 0) {
-        // Move to previous box (if possible)
-        // TODO: Currently cursor position is not implemented
-        let currentPosition = parseInt(inputElement.dataset.position);
-        if (currentPosition > 1) {
-            // Minus two as it's zero indexed array (offset by 1)
-            let newElement = productCodeThirdRowInputElements[currentPosition - 2];
-            newElement.focus();
-        }
-    } else if (!(event.key.match(/\d/) || validEditingKeys.has(event.key))) {
+function processInputKeyDown(event) {
+    if (!(event.key.match(/\d/) || validEditingKeys.has(event.key))) {
         event.preventDefault();
     }
 }
-
-// function processThirdRowInputKeyUp(event) {
-//     let inputElement = event.target;
-//     if (event.key.match(/\d/) && inputElement.value.match(/\d{2}/)) {
-//         // Move to next box (if possible)
-//         // TODO: Currently cursor position is not implemented
-//         let currentPosition = parseInt(inputElement.dataset.position);
-//         if (currentPosition < (productCodeLength - 1)) {
-//             // Don't add one as it's zero indexed array (offset by 1)
-//             let newElement = productCodeThirdRowInputElements[currentPosition];
-//             newElement.focus();
-//         }
-//     }
-// }
 
 
 function checkMultiplicationSumInput(allCorrect) {
