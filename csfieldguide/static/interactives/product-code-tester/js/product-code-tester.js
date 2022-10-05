@@ -273,6 +273,7 @@ function setupStepThree() {
         inputElement.addEventListener('input', checkThirdRowInputs);
         inputElement.addEventListener('keydown', processThirdRowInputKeyDown);
         // inputElement.addEventListener('keyup', processThirdRowInputKeyUp);
+        inputElement.addEventListener('focus', function () { this.select(); });
         thirdRowElement.appendChild(inputElement);
 
         // Symbol for step 4
@@ -469,27 +470,31 @@ function processThirdRowInputKeyDown(event) {
             let newElement = productCodeThirdRowInputElements[currentPosition - 2];
             newElement.focus();
         }
+    } else if (event.key === "ArrowUp") {
+        let currentPosition = parseInt(inputElement.dataset.position);
+        let newElement = productCodeTopRowInputElements[currentPosition - 1];
+        newElement.focus();
     } else if (!(event.key.match(/\d/) || validEditingKeys.has(event.key))) {
         event.preventDefault();
     }
 }
 
-function processThirdRowInputKeyUp(event) {
-    let inputElement = event.target;
-    if (event.key.match(/\d/) && inputElement.value.match(/\d{2}/)) {
-        // Move to next box (if possible)
-        // TODO: Currently cursor position is not implemented
-        let currentPosition = parseInt(inputElement.dataset.position);
-        if (currentPosition < (productCodeLength - 1)) {
-            // Don't add one as it's zero indexed array (offset by 1)
-            let newElement = productCodeThirdRowInputElements[currentPosition];
-            newElement.focus();
-        }
-    }
-}
+// function processThirdRowInputKeyUp(event) {
+//     let inputElement = event.target;
+//     if (event.key.match(/\d/) && inputElement.value.match(/\d{2}/)) {
+//         // Move to next box (if possible)
+//         // TODO: Currently cursor position is not implemented
+//         let currentPosition = parseInt(inputElement.dataset.position);
+//         if (currentPosition < (productCodeLength - 1)) {
+//             // Don't add one as it's zero indexed array (offset by 1)
+//             let newElement = productCodeThirdRowInputElements[currentPosition];
+//             newElement.focus();
+//         }
+//     }
+// }
 
 
-function checkMultiplicationSumInput() {
+function checkMultiplicationSumInput(allCorrect) {
     let correctSum = 0;
     for (let i = 0; i < (productCodeThirdRowInputElements.length); i++) {
         let thirdInputElement = productCodeThirdRowInputElements[i];
@@ -571,7 +576,10 @@ function checkThirdRowInputs() {
         if (useModulo) {
             expectedValue = expectedValue % 10;
         }
-        if (thirdInputElement.value == '') {
+        if (thirdInputElement.value != '') {
+            thirdInputElement.dataset.edited = true;
+        }
+        if (thirdInputElement.value == '' && !thirdInputElement.dataset.edited) {
             thirdInputElement.classList.remove('correct', 'incorrect');
         } else if (thirdInputElement.value == expectedValue) {
             thirdInputElement.classList.add('correct');
@@ -582,13 +590,14 @@ function checkThirdRowInputs() {
             thirdInputElement.classList.remove('correct');
         }
     }
-    if (correctValues == productCodeTopRowInputElements.length) {
+    let allCorrect = correctValues == productCodeTopRowInputElements.length;
+    if (allCorrect) {
         if (stepNumber < 4) {
             setupStepFour();
         }
     }
     if (stepNumber >= 4) {
-        checkMultiplicationSumInput();
+        checkMultiplicationSumInput(allCorrect);
     }
 
 }
