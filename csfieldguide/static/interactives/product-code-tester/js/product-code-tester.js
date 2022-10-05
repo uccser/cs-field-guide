@@ -238,7 +238,6 @@ function setupStepThree() {
     stepNumber = 3;
     productCodeThirdRowInputElements = [];
     productCodeWeightings = productCodeData[productCodeSlug].weightings;
-    let productCodeDigitSpacings = productCodeData[productCodeSlug].digitSpacings;
 
     // For each digit except checksum
     for (let i = 1; i < productCodeLength; i++) {
@@ -297,6 +296,9 @@ function setupStepThree() {
         document.body.appendChild(arrow.node);
         arrowElements.push(arrow);
     }
+
+    let firstElement = productCodeThirdRowInputElements[0];
+    firstElement.focus();
 }
 
 
@@ -470,10 +472,6 @@ function processThirdRowInputKeyDown(event) {
             let newElement = productCodeThirdRowInputElements[currentPosition - 2];
             newElement.focus();
         }
-    } else if (event.key === "ArrowUp") {
-        let currentPosition = parseInt(inputElement.dataset.position);
-        let newElement = productCodeTopRowInputElements[currentPosition - 1];
-        newElement.focus();
     } else if (!(event.key.match(/\d/) || validEditingKeys.has(event.key))) {
         event.preventDefault();
     }
@@ -515,6 +513,9 @@ function checkMultiplicationSumInput(allCorrect) {
     }
     if (stepNumber >= 5) {
         updateSubtractionEquation();
+        if (givenSum == correctSum) {
+            subtractionResultElement.focus();
+        }
     }
 }
 
@@ -567,7 +568,8 @@ function calculateCheckDigit() {
 }
 
 
-function checkThirdRowInputs() {
+function checkThirdRowInputs(event) {
+
     let correctValues = 0;
     for (let i = 0; i < (productCodeTopRowInputElements.length); i++) {
         let topInputElement = productCodeTopRowInputElements[i];
@@ -585,6 +587,15 @@ function checkThirdRowInputs() {
             thirdInputElement.classList.add('correct');
             thirdInputElement.classList.remove('incorrect');
             correctValues++;
+
+            if (event) {
+                let inputElement = event.target;
+                // If currently focused input is correct, move to next box (if possible)
+                if (thirdInputElement == inputElement && i < (productCodeThirdRowInputElements.length - 1)) {
+                    let newElement = productCodeThirdRowInputElements[i + 1];
+                    newElement.focus();
+                }
+            }
         } else {
             thirdInputElement.classList.add('incorrect');
             thirdInputElement.classList.remove('correct');
@@ -595,6 +606,7 @@ function checkThirdRowInputs() {
         if (stepNumber < 4) {
             setupStepFour();
         }
+        productCodeThirdRowSumElement.focus();
     }
     if (stepNumber >= 4) {
         checkMultiplicationSumInput(allCorrect);
