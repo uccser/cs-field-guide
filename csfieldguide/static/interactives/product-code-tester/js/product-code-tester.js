@@ -366,6 +366,7 @@ function setupStepFour() {
     productCodeThirdRowSumElement.classList.add('product-code-digit');
     productCodeThirdRowSumElement.addEventListener('input', checkMultiplicationSumInput);
     productCodeThirdRowSumElement.addEventListener('keydown', processInputKeyDown);
+    productCodeThirdRowSumElement.addEventListener('focus', function () { this.select(); });
     thirdRowElement.appendChild(productCodeThirdRowSumElement)
 
     // Third row - Character position element (used for arrow in step five)
@@ -430,6 +431,7 @@ function setupStepFive() {
     subtractionResultElement.classList.add('product-code-digit');
     subtractionResultElement.addEventListener('input', checkSubtractionInput);
     subtractionResultElement.addEventListener('keydown', processInputKeyDown);
+    subtractionResultElement.addEventListener('focus', function () { this.select(); });
     thirdCellElement.appendChild(subtractionResultElement)
 
     // Fifth row - Character position element (used for arrow in step six)
