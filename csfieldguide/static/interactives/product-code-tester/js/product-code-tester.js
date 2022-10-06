@@ -125,8 +125,9 @@ function setup() {
 
     // Check for URL parameters
     let searchParameters = new URL(window.location.href).searchParams;
-    if (searchParameters.has('use-modulo')) {
+    if (searchParameters.has('modulo')) {
         useModulo = true;
+        moduloCheckboxElement.checked = true;
     }
 
     // Start interactive
