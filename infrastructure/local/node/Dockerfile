@@ -55,7 +55,7 @@ WORKDIR /app/static/interactives/packet-attack/
 RUN npm install
 WORKDIR /app/static/interactives/password-guesser/
 RUN npm install
-WORKDIR /app/static/interactives/product-code-tester/
+WORKDIR /app/static/interactives/product-code-check-digit-calculation/
 RUN npm install
 WORKDIR /app/static/interactives/python-interpreter/
 RUN npm install

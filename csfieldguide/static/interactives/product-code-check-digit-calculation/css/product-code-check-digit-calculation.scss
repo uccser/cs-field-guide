@@ -2,7 +2,7 @@
 $correct-colour: #28a745;
 $incorrect-colour: #e74c3c;
 
-#product-code-tester-interactive {
+#product-code-check-digit-calculation-interactive {
     #window-size-alert {
         display: none;
         justify-content: center;
@@ -93,13 +93,6 @@ $incorrect-colour: #e74c3c;
             text-align: right;
             padding-right: 0.2ch;
         }
-        .modulo-label {
-            display: none;
-            white-space: nowrap;
-        }
-        &.show-modulo .modulo-label {
-            display: block;
-        }
         &.step-four .third-row .equation-symbol,
         &.step-four .fifth-row .equation-symbol {
             visibility: visible !important;
@@ -158,6 +151,13 @@ $incorrect-colour: #e74c3c;
         .modulo-label {
             font-family: "Noto Sans", sans-serif;
             font-size: 0.7rem;
+            display: none;
+            white-space: nowrap;
+            padding: 0 0.1rem;
+        }
+
+        &.show-modulo .modulo-label {
+            display: block;
         }
     }
 
@@ -205,11 +205,11 @@ $incorrect-colour: #e74c3c;
     }
 }
 // Arrows
-.product-code-tester-arrow {
+.product-code-check-digit-calculation-arrow {
     pointer-events: none;
     z-index: 90;
 }
-.product-code-tester-arrow__path {
+.product-code-check-digit-calculation-arrow__path {
     stroke: #000;
     stroke-width: 2px;
     fill: transparent;

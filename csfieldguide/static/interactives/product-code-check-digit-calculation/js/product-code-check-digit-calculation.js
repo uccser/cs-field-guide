@@ -113,7 +113,7 @@ const arrowTailDigitSelector = {
 
 function setup() {
     // Save elements to variables
-    containerElement = document.getElementById('product-code-tester-interactive-container');
+    containerElement = document.getElementById('product-code-check-digit-calculation-interactive-container');
     restartButtonElement = document.getElementById('restart-button');
     moduloCheckboxElement = document.getElementById('use-modulo');
     windowSizeAlertElement = document.getElementById('window-size-alert');
@@ -136,7 +136,7 @@ function setup() {
     if (searchParameters.has('type')) {
         let providedProductCodeType = searchParameters.get('type');
         if (providedProductCodeType in productCodeData) {
-            document.querySelector(`#product-code-tester-interactive-container button[value=${providedProductCodeType}]`).click();
+            document.querySelector(`#product-code-check-digit-calculation-interactive-container button[value=${providedProductCodeType}]`).click();
         }
     }
 }
@@ -336,7 +336,7 @@ function setupStepThree() {
         let arrow = arrowCreate({
             from: productCodeTopRowInputElements[i - 1],
             to: productCodeThirdRowInputElements[i - 1],
-            className: 'product-code-tester-arrow',
+            className: 'product-code-check-digit-calculation-arrow',
             head: arrowHeads.NORMAL,
             updateDelay: 25,
         });
@@ -706,7 +706,7 @@ function updateMultiplicationSumArrow() {
             direction: arrowDirections.TOP,
             translation: [0, -1],
         },
-        className: 'product-code-tester-arrow',
+        className: 'product-code-check-digit-calculation-arrow',
         head: heads,
         updateDelay: 25,
     });
@@ -747,7 +747,7 @@ function updateSubractionResultArrow() {
             direction: arrowDirections.RIGHT,
             translation: toTranslation,
         },
-        className: 'product-code-tester-arrow',
+        className: 'product-code-check-digit-calculation-arrow',
         head: heads,
         updateDelay: 25,
     });

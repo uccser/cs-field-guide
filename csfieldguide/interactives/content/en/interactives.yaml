@@ -148,8 +148,8 @@ pixel-viewer:
   name: Pixel Viewer
 plane-turbulence:
     name: Plane Turbulence
-product-code-tester:
-  name: Product Code Tester
+product-code-check-digit-calculation:
+  name: Product Code Check Digit Calculation
 python-interpreter:
   name: Python Interpreter
 python-syntax-error:

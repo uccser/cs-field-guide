@@ -1,5 +1,5 @@
 {
-    "name": "csfg-interactive-product-code-tester",
+    "name": "csfg-interactive-product-code-check-digit-calculation",
     "version": "1.0.0",
     "private": true,
     "dependencies": {

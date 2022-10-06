@@ -3,8 +3,8 @@
 {% load static i18n %}
 
 {% block interactive_html %}
-    <div id="product-code-tester-interactive" class="container">
-        <h1 class="text-center">{% trans "Product Code Tester" %}</h1>
+    <div id="product-code-check-digit-calculation-interactive" class="container">
+        <h1 class="text-center">{% trans "Product Code Check Digit Calculation" %}</h1>
 
         <div id="window-size-alert">
             <div class="alert alert-warning" role="alert">
@@ -13,10 +13,10 @@
         </div>
 
         <p id="instructions">
-            {% trans "Select the type of product code you are checking:" %}
+            {% trans "Select the type of product code you are calculating the check digit for:" %}
         </p>
 
-        <div id="product-code-tester-interactive-container"></div>
+        <div id="product-code-check-digit-calculation-interactive-container"></div>
 
         <div id="options" class="text-center">
             <div>
@@ -31,9 +31,9 @@
 {% endblock interactive_html %}
 
 {% block interactive_css %}
-    <link rel="stylesheet" href="{% static 'interactives/product-code-tester/css/product-code-tester.css' %}">
+    <link rel="stylesheet" href="{% static 'interactives/product-code-check-digit-calculation/css/product-code-check-digit-calculation.css' %}">
 {% endblock interactive_css %}
 
 {% block interactive_js %}
-    <script type="text/javascript" src="{% static 'interactives/product-code-tester/js/product-code-tester.js' %}"></script>
+    <script type="text/javascript" src="{% static 'interactives/product-code-check-digit-calculation/js/product-code-check-digit-calculation.js' %}"></script>
 {% endblock interactive_js %}

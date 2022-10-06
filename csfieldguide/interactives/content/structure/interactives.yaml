@@ -39,9 +39,9 @@ base-calculator:
   languages:
     en: interactives/base-calculator.html
   is_interactive: true
-product-code-tester:
+product-code-check-digit-calculation:
   languages:
-    en: interactives/product-code-tester.html
+    en: interactives/product-code-check-digit-calculation.html
   is_interactive: true
 big-number-calculator:
   languages:
