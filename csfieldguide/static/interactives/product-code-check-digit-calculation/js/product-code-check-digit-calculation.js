@@ -525,7 +525,7 @@ function checkSubtractionInput() {
 
 
 function checkCheckDigit() {
-    let givenDigit = subtractionResultElement.value;
+    let givenDigit = subtractionResultElement.value % 10;
     checkDigitElement.value = givenDigit;
 
     if (givenDigit == productCodeCheckDigit) {
