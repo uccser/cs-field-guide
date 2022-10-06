@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-29 03:26+0000\n"
+"POT-Creation-Date: 2022-10-06 01:24+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1081,6 +1081,7 @@ msgstr ""
 #: templates/interactives/box-translation.html:52
 #: templates/interactives/high-score-boxes.html:26
 #: templates/interactives/picture-memory.html:245
+#: templates/interactives/product-code-check-digit-calculation.html:27
 msgid "Restart"
 msgstr ""
 
@@ -3474,6 +3475,21 @@ msgstr ""
 
 #: templates/interactives/pixel-viewer.html:105
 msgid "Copyright information"
+msgstr ""
+
+#: templates/interactives/product-code-check-digit-calculation.html:7
+msgid "Product Code Check Digit Calculation"
+msgstr ""
+
+#: templates/interactives/product-code-check-digit-calculation.html:11
+msgid ""
+"This interactive may not fit on your screen, we recommend using it on a "
+"large screen or device."
+msgstr ""
+
+#: templates/interactives/product-code-check-digit-calculation.html:16
+msgid ""
+"Select the type of product code you are calculating the check digit for:"
 msgstr ""
 
 #: templates/interactives/python-interpreter.html:12

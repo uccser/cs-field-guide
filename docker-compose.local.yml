@@ -57,6 +57,7 @@ services:
             - /app/static/interactives/matrix-simplifier/node_modules/
             - /app/static/interactives/packet-attack/node_modules/
             - /app/static/interactives/password-guesser/node_modules/
+            - /app/static/interactives/product-code-check-digit-calculation/node_modules/
             - /app/static/interactives/python-interpreter/node_modules/
             - /app/static/interactives/qr-code-generator/node_modules/
             - /app/static/interactives/rgb-mixer/node_modules/
@@ -71,7 +72,6 @@ services:
             - /app/static/interactives/unicode-binary/node_modules/
             - /app/static/interactives/unicode-chars/node_modules/
             - /app/static/interactives/viola-jones-face-detector/node_modules/
-
         command: npm run dev
         networks:
             - backend

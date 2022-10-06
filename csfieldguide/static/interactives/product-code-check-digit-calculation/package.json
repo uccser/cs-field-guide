@@ -1,0 +1,9 @@
+{
+    "name": "csfg-interactive-product-code-check-digit-calculation",
+    "version": "1.0.0",
+    "private": true,
+    "dependencies": {
+        "arrows-svg": "1.5.6",
+        "jsbarcode": "3.11.5"
+    }
+}

@@ -1,0 +1,220 @@
+// Settings
+$correct-colour: #28a745;
+$incorrect-colour: #e74c3c;
+
+#product-code-check-digit-calculation-interactive {
+    #window-size-alert {
+        display: none;
+        justify-content: center;
+        &.show {
+            display: flex;
+        }
+    }
+
+    #button-container {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: center;
+        margin: 1rem 0;
+
+        button {
+            margin: 0 1rem;
+
+            &.selected {
+                background-color: $correct-colour;
+                border-color: $correct-colour;
+                opacity: 1;
+            }
+        }
+    }
+
+    .product-code-digit {
+        font-family: monospace;
+        font-size: 2rem;
+        color: black;
+
+        &.fifth-row-digit {
+            text-align: center;
+            width: 2.5ch;
+            line-height: 2ch;
+        }
+    }
+
+    #calculation-grid {
+        display: grid;
+        grid-auto-rows: 1fr;
+        gap: 0px 0px;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        margin-right: 3rem;
+
+        & > div {
+            position: relative;
+        }
+        .second-row-label {
+            font-size: 1rem;
+            // Positioning to parent
+            position: absolute;
+            left: 3ch;
+            bottom: 1.7ch;
+            top: 0.5ch;
+        }
+        & > div.fourth-row {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: flex-end;
+            align-items: center;
+        }
+        & > div.first-row,
+        & > div.third-row,
+        & > div.fifth-row {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            align-items: center;
+
+            .equation-symbol {
+                flex-grow: 1;
+            }
+        }
+        .arrow-tail-positioner {
+            position: absolute;
+            width: 2ch;
+            top: 0;
+            right: 0.4ch;
+            bottom: 15%;
+            user-select: none;
+            visibility: hidden;
+        }
+        #multiplication-sum,
+        #subtraction-result {
+            width: 100%;
+            text-align: right;
+            padding-right: 0.2ch;
+        }
+        &.step-four .third-row .equation-symbol,
+        &.step-four .fifth-row .equation-symbol {
+            visibility: visible !important;
+        }
+        .fourth-row .arrow-symbol {
+            margin-right: 0.25ch;
+            margin-bottom: 0.1ch;
+        }
+        .equation-symbol {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 1.8rem;
+            font-family: monospace;
+            height: 100%;
+            visibility: hidden;
+        }
+        .arrow-symbol {
+            font-size: 3rem;
+            line-height: 1rem;
+            width: 0.6ch;
+            margin-left: 0.2ch;
+        }
+
+        input {
+            text-align: center;
+        }
+    }
+
+    input {
+        z-index: 80;
+        padding: 0;
+        width: 2.5ch;
+        border-width: 1px;
+        border-radius: 3px;
+        border-style: inset;
+
+        &.correct {
+            border: 1px solid $correct-colour;
+            background-color: lighten($correct-colour, 50%);
+        }
+        &.incorrect {
+            border: 1px solid $incorrect-colour;
+            background-color: lighten($incorrect-colour, 20%);
+        }
+    }
+
+    .modulo-label-parent {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        line-height: 0.9rem;
+
+        .modulo-label {
+            font-family: "Noto Sans", sans-serif;
+            font-size: 0.7rem;
+            display: none;
+            white-space: nowrap;
+            padding: 0 0.1rem;
+        }
+
+        &.show-modulo .modulo-label {
+            display: block;
+        }
+    }
+
+    #barcode-image-container {
+        display: flex;
+        justify-content: center;
+
+        & > div {
+            position: relative;
+            max-width: min-content;
+
+            #barcode-image-hider {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                font-size: 3rem;
+                color: #ccc;
+                background-color: #f8f9fa;
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                overflow: hidden;
+            }
+        }
+    }
+
+    #instructions {
+        text-align: center;
+    }
+    #options {
+        margin: 2rem;
+        label {
+            user-select: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+    }
+    [disabled] {
+        cursor: not-allowed;
+    }
+    .invisible {
+        visibility: hidden !important;
+    }
+}
+// Arrows
+.product-code-check-digit-calculation-arrow {
+    pointer-events: none;
+    z-index: 90;
+}
+.product-code-check-digit-calculation-arrow__path {
+    stroke: #000;
+    stroke-width: 2px;
+    fill: transparent;
+}
+body {
+    // Prevents arrows from growing body size
+    overflow-x: hidden;
+}
