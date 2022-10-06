@@ -548,7 +548,7 @@ function calculateCheckDigit() {
         let weighting = productCodeWeightings[i];
         total += digit * weighting;
     }
-    productCodeCheckDigit = 10 - (total % 10);
+    productCodeCheckDigit = (10 - (total % 10)) % 10;
 }
 
 
