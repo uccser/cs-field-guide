@@ -23,8 +23,6 @@ USER node
 COPY --chown=node:node ./csfieldguide/ /app
 RUN npm install
 
-WORKDIR /app/static/js/modules/fsa/
-RUN npm install
 WORKDIR /app/static/interactives/algorithm-timer/
 RUN npm install
 WORKDIR /app/static/interactives/big-number-calculator/

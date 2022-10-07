@@ -41,7 +41,6 @@ services:
             - ./csfieldguide/gulpfile.js:/app/gulpfile.js:z
             - ./csfieldguide/static:/app/static:z
             - ./csfieldguide/build:/app/build:z
-            - /app/static/js/modules/fsa/node_modules/
             - /app/static/interactives/algorithm-timer/node_modules/
             - /app/static/interactives/big-number-calculator/node_modules/
             - /app/static/interactives/bin-packing/node_modules/
