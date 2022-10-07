@@ -112,8 +112,9 @@ function disableQuestionControls() {
 
 function createNewInput() {
     nfa_guesser.result = new Set();
-    generateInput();
-    while (nfa_guesser.result.size < 2) {
+    let previousInput = nfa_guesser.input;
+    while (previousInput == nfa_guesser.input && nfa_guesser.result.size < 2) {
+        generateInput();
         calculateEndStates();
     }
     resetInterface();
