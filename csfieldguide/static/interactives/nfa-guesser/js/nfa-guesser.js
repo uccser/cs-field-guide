@@ -1,41 +1,39 @@
-const FSA = require('./../../../js/modules/fsa/fsa.js');
-
 var nfa_guesser = {};
 nfa_guesser.result = [];
 nfa_guesser.active = true;
 nfa_guesser.number_of_guesses = 0;
 nfa_guesser.config = {
-    Alphabet: ['a', 'b'],
-    Start: '1',
-    States: {
+    alphabet: ['a', 'b'],
+    start: '1',
+    states: {
         '1': {
             transitions: {
                 'a': ['1', '2'],
-                'b': '3'
+                'b': ['3']
             }
         },
         '2': {
             transitions: {
-                'a': '5',
+                'a': ['5'],
                 'b': ['2', '4']
             }
         },
         '3': {
             transitions: {
-                'a': '2',
+                'a': ['2'],
                 'b': ['2', '5']
             }
         },
         '4': {
             transitions: {
                 'a': ['2', '5'],
-                'b': '4'
+                'b': ['4']
             }
         },
         '5': {
             transitions: {
-                'a': '3',
-                'b': '5'
+                'a': ['3'],
+                'b': ['5']
             }
         }
     }
@@ -55,7 +53,6 @@ $(document).ready(function() {
     nfa_guesser.new_sequence_button = document.getElementById('interactive-nfa-guesser-new-sequence')
     nfa_guesser.new_sequence_button.addEventListener('click', createNewInput, false);
 
-    nfa_guesser.model = new FSA.FSARunner(nfa_guesser.config);
     createAnswerOptions();
     createNewInput();
 });
@@ -71,7 +68,7 @@ function checkAnswer() {
     }
 
     var result_element = document.getElementById('interactive-nfa-guesser-result');
-    if (checked_states.equals(nfa_guesser.result)) {
+    if (checkSetsAreEqual(checked_states, nfa_guesser.result)) {
         result_element.innerHTML = gettext('Correct');
         result_element.classList = 'valid'
         showCorrectAnswers(true);
@@ -98,7 +95,7 @@ function showCorrectAnswers(show_message) {
     }
     for (var i = 0; i < nfa_guesser.answer_options.children.length; i++) {
         var state_element = nfa_guesser.answer_options.children[i];
-        if (nfa_guesser.result.includes(state_element.dataset.value)) {
+        if (nfa_guesser.result.has(state_element.dataset.value)) {
             state_element.classList.remove('selected');
             state_element.classList.add('valid');
         }
@@ -113,10 +110,9 @@ function disableQuestionControls() {
 
 
 function createNewInput() {
-    nfa_guesser.model.goto(nfa_guesser.model.fsa.start);
-    nfa_guesser.result = [];
-    while (nfa_guesser.result.length < 2) {
-        generateInput();
+    nfa_guesser.result = new Set();
+    generateInput();
+    while (nfa_guesser.result.size < 2) {
         calculateEndStates();
     }
     resetInterface();
@@ -124,10 +120,11 @@ function createNewInput() {
 
 
 function generateInput() {
+    // TODO: Don't create the same input twice in a row
     var sequence = '';
     nfa_guesser.input_length = Math.floor(Math.random() * 3) + 3;
     for (var i = 0; i < nfa_guesser.input_length; i++) {
-        if (Math.floor(Math.random() * 2) + 1 == 1) {
+        if (Math.floor(Math.random() * 2) == 0) {
             sequence += 'a';
         } else {
             sequence += 'b';
@@ -138,8 +135,23 @@ function generateInput() {
 
 
 function calculateEndStates() {
-    nfa_guesser.model.feed(nfa_guesser.input.split(''));
-    nfa_guesser.result = nfa_guesser.model.state();
+    processInput(nfa_guesser.config.start, nfa_guesser.config.states, nfa_guesser.input);
+}
+
+
+function processInput(state, states, inputString) {
+    let inputCharacter = inputString.charAt(0);
+    let remainingInputCharacters = inputString.slice(1);
+    if (inputCharacter) {
+        let possibleTransitions = states[state].transitions[inputCharacter];
+        for (let i = 0; i < possibleTransitions.length; i++) {
+            let newState = possibleTransitions[i];
+            processInput(newState, states, remainingInputCharacters)
+
+        }
+    } else {
+        nfa_guesser.result.add(state);
+    }
 }
 
 
@@ -157,7 +169,7 @@ function resetInterface() {
 
 
 function createAnswerOptions() {
-    for (var state in nfa_guesser.config.States) {
+    for (var state in nfa_guesser.config.states) {
         var state_element = document.createElement('div');
         state_element.dataset.value = state;
         state_element.classList.add('state-option');
@@ -175,33 +187,16 @@ function toggleStateOption(event) {
     }
 }
 
-// Function source from http://stackoverflow.com/a/14853974
-// Warn if overriding existing method
-if(Array.prototype.equals)
-    console.warn("Overriding existing Array.prototype.equals. Possible causes: New API defines the method, there's a framework conflict or you've got double inclusions in your code.");
-// attach the .equals method to Array's prototype to call it on any array
-Array.prototype.equals = function (array) {
-    // if the other array is a falsy value, return
-    if (!array)
-        return false;
 
-    // compare lengths - can save a lot of time
-    if (this.length != array.length)
+// Common approach to check if two sets are equal.
+// Check they are the same size, then check all of the first
+// set's values are in the second set.
+function checkSetsAreEqual(setA, setB) {
+    if (setA.size !== setB.size) {
         return false;
-
-    for (var i = 0, l=this.length; i < l; i++) {
-        // Check if we have nested arrays
-        if (this[i] instanceof Array && array[i] instanceof Array) {
-            // recurse into the nested arrays
-            if (!this[i].equals(array[i]))
-                return false;
-        }
-        else if (this[i] != array[i]) {
-            // Warning - two different object instances will never be equal: {x:20} != {x:20}
-            return false;
-        }
+    } else {
+        return Array.from(setA).every(value => {
+            return setB.has(value);
+        });
     }
-    return true;
 }
-// Hide method from for-in loops
-Object.defineProperty(Array.prototype, "equals", {enumerable: false});

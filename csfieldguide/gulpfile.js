@@ -160,7 +160,6 @@ function js() {
     const js_filter = filter(js_files_skip_optimisation, { restore: true })
     return src([
             `${paths.js_source}/**/*.js`,
-            `!${paths.js_source}/**/modules/**/*.js`,
             `!${paths.js_source}/**/node_modules/**/*.js`
         ], {since: lastRun(js)})
         .pipe(js_filter)

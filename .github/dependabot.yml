@@ -171,8 +171,3 @@ updates:
     schedule:
       interval: "daily"
     open-pull-requests-limit: 999
-  - package-ecosystem: "npm"
-    directory: "/csfieldguide/static/js/modules/fsa/"
-    schedule:
-      interval: "daily"
-    open-pull-requests-limit: 999
