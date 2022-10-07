@@ -1,5 +1,6 @@
 var nfa_guesser = {};
 nfa_guesser.result = [];
+nfa_guesser.input = '';
 nfa_guesser.active = true;
 nfa_guesser.number_of_guesses = 0;
 nfa_guesser.config = {
@@ -59,11 +60,11 @@ $(document).ready(function() {
 
 
 function checkAnswer() {
-    var checked_states = [];
+    var checked_states = new Set();
     for (var i = 0; i < nfa_guesser.answer_options.children.length; i++) {
         var state_element = nfa_guesser.answer_options.children[i];
         if (state_element.classList.contains('selected')) {
-            checked_states.push(state_element.dataset.value);
+            checked_states.add(state_element.dataset.value);
         }
     }
 
