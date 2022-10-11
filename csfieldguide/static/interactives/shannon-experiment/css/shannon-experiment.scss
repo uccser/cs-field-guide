@@ -1,56 +1,142 @@
-#alphabet-buttons-container {
-    margin-bottom: 2rem;
+$incorrect-colour: #dd0000;
 
-    .alphabet-button {
-        font-family: monospace;
-        font-weight: bold;
-        font-size: 1.3rem;
-        margin-right: 0.3rem;
-        margin-bottom: 0.3rem;
-        border: 1px solid #757575;
+#shannon-experiment {
+
+    &.container {
+        max-width: 1920px;
+    }
+
+    button {
+        background-color: #5dc5ee;
+        border: 1px solid #31a2cf;
         border-radius: 5px;
+        margin-bottom: 1em;
 
-        &:last-child {
-            margin-right: 0;
-        }
         &:hover {
-            background-color: #aecbec;
-        }
-        &:disabled {
-            background-color: #8d8d8d;
-            cursor: not-allowed;
+            background-color: #31a2cf;
         }
     }
-}
 
-#sentence-container {
-    font-family: monospace;
-    display: flex;
-    flex-direction: row;
-    margin-bottom: 2rem;
+    #shannon-language-picker {
+        display: inline-block;
+    }
 
-    .sentence-character-container {
-        display: flex;
-        flex-direction: column;
-        text-align: center;
-        width: 1.5rem;
-        margin-right: 0.5rem;
+    #alphabet-buttons-container {
+        margin-bottom: 2rem;
 
-        .sentence-character {
-            font-size: 2rem;
-            height: 3rem;
-            border-bottom: 2px solid #000;
+        .alphabet-button {
+            font-family: monospace;
+            font-weight: bold;
+            font-size: 1.5rem;
+            margin-right: 0.3rem;
+            margin-bottom: 0.3rem;
+            border: 1px solid #757575;
+            border-radius: 5px;
+            background-color: #ebebeb;
+            min-width: 1.8rem;
 
-            &.incorrect {
-                color: #c20f0f;
+            &:last-child {
+                margin-right: 0;
+            }
+            &:hover {
+                background-color: #aecbec;
+            }
+            &:disabled {
+                background-color: #8d8d8d;
+                cursor: not-allowed;
             }
         }
-        .sentence-character-guesses {
-            color: #444;
+    }
+
+    #sentence-container {
+        font-family: monospace;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin-bottom: 2rem;
+
+        .sentence-character-container {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            min-width: 1.5rem;
+            margin-right: 0.5rem;
+
+            .sentence-character {
+                font-size: 2rem;
+                height: 3rem;
+                border-bottom: 2px solid #000;
+
+                &.incorrect {
+                    color: $incorrect-colour;
+                    border-color: $incorrect-colour;
+
+                    & + .sentence-character-guesses {
+                        color: $incorrect-colour;
+                    }
+                }
+            }
+            .sentence-character-guesses {
+                color: #444;
+            }
+
         }
+    }
+
+    #statistics-container {
+        display: none;
+    }
+
+    label {
+        font-weight: bold;
+    }
+
+    #statistics-plaintext {
+        span {
+            font-family: monospace;
+        }
+        margin-bottom: 3rem;
+    }
+
+    h3 {
+        margin-top: 2rem;
+        margin-bottom: 0;
+    }
+
+    .instruction-tip {
+        background-color: #ffffe7;
+        border: 1px solid #efefa0;
+        border-radius: 0.8rem;
+        padding: 0.5rem;
+        display: inline-block;
+    }
+
+    .space-character {
+        font-family: monospace;
+        font-size: 2rem;
+        vertical-align: 0.3rem;
+        line-height: 0;
     }
 }
 
-#statistics-container {
-    display: none;
+#shannon-builder {
+    label {
+        font-weight: bold;
+        cursor: pointer;
+        user-select: none;
+    }
+    #builder-custom-sentences {
+        text-transform: uppercase;
+    }
+    #builder-generated-link-container {
+        display: none;
+        justify-content: start;
+
+        #builder-generated-link {
+            cursor: pointer;
+            font-family: monospace;
+            word-break: break-all;
+            font-size: 0.9rem;
+        }
+    }
 }

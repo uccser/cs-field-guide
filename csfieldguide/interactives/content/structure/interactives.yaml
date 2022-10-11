@@ -39,6 +39,10 @@ base-calculator:
   languages:
     en: interactives/base-calculator.html
   is_interactive: true
+product-code-check-digit-calculation:
+  languages:
+    en: interactives/product-code-check-digit-calculation.html
+  is_interactive: true
 big-number-calculator:
   languages:
     en: interactives/big-number-calculator.html
@@ -345,6 +349,10 @@ python-syntax-error:
   languages:
     en: interactives/python-syntax-error.html
   is_interactive: false
+qr-code-generator:
+  languages:
+    en: interactives/qr-code-generator.html
+  is_interactive: true
 regular-expression-filter:
   languages:
     en: interactives/regular-expression-filter.html

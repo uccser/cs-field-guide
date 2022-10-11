@@ -1,80 +1,308 @@
+const Chart = require('chart.js');
+Chart.defaults.font.size = 14;
+Chart.defaults.font.family = '"Noto Sans", sans-serif';
 
-var alphabet = []
-
-const LANGUAGE_DEFAULTS = {
-    'de': {
-        'alphabet': [
-            'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I',
-            'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R',
-            'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'Ä',
-            'Ö', 'Ü', 'ẞ',
-        ],
-        // TODO: Create German default sentence.
-        'sentence': ''
-    },
+// This is not a constant as we remove sentences once they are completed.
+var allLanguageData = {
+    // 'de': {
+    //     'title': 'Deutsch',
+    //     'alphabet': [
+    //         'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I',
+    //         'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R',
+    //         'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'Ä',
+    //         'Ö', 'Ü', 'ẞ',
+    //     ],
+    //     // TODO: Create German default sentence.
+    //     'sentences': [],
+    // },
     'en': {
+        'title': 'English',
         'alphabet': [
             'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I',
             'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R',
             'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
         ],
-        'sentence': 'THERE IS NO REVERSE GEAR ON A MOTORCYCLE.'
-    },
-    'fr': {
-        'alphabet': [
-            'A', 'B', 'Ç', 'D', 'E', 'F', 'G', 'H', 'I',
-            'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R',
-            'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'Œ',
-            'Æ', 'Â', 'Ê', 'Î', 'Ô', 'Û',
+        'sentences': [
+            'PLEASE WAIT OUTSIDE THE DOOR.',
+            'HE ALWAYS WORE HIS SUNGLASSES AT NIGHT.',
+            "IT MUST BE FIVE O'CLOCK SOMEWHERE.",
+            'HIS GET RICH QUICK SCHEME WAS TO GROW A CACTUS FARM.',
+            'BLUE PARROTS ARE IN THE SKY.',
+            'THE CLOUDS FORMED BEAUTIFUL ANIMALS IN THE SKY.',
+            'SHE WAS TOO SHORT TO SEE OVER THE FENCE.',
+            'A GLITTERING GEM IS NOT ENOUGH.',
+            'THE TREE FELL UNEXPECTEDLY SHORT.',
+            'THE PAINTBRUSH WAS ANGRY AT THE COLOR THE ARTIST CHOSE TO USE.',
         ],
-        // TODO: Create French default sentence.
-        'sentence': ''
     },
+    'en-1951-paper': {
+        'title': 'English (1951 paper)',
+        'description': "English language with sentences from Shannon Claude's original research paper from 1951.",
+        'alphabet': [
+            'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I',
+            'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R',
+            'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
+        ],
+        'sentences': [
+            // Found in https://www.princeton.edu/~wbialek/rome/refs/shannon_51.pdf
+            'THERE IS NO REVERSE ON A MOTORCYCLE. A FRIEND OF MINE FOUND THIS OUT RATHER DRAMACTICALLY THE OTHER DAY.',
+            'THE ROOM WAS NOT VERY LIGHT. A SMALL OBLONG READING LAMP ON THE DESK SHED GLOW ON POLISHED WOOD BUT LESS ON THE SHABBY RED CARPET.',
+        ],
+    },
+    // 'fr': {
+    //     'title': 'Français',
+    //     'alphabet': [
+    //         'A', 'B', 'Ç', 'D', 'E', 'F', 'G', 'H', 'I',
+    //         'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R',
+    //         'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'Œ',
+    //         'Æ', 'Â', 'Ê', 'Î', 'Ô', 'Û',
+    //     ],
+    //     // TODO: Create French default sentence.
+    //     'sentences': [],
+    // },
     'mi': {
+        'title': 'Te Reo Māori',
         'alphabet': [
             'A', 'Ā', 'E', 'Ē', 'H', 'I', 'Ī', 'K', 'M',
             'N', 'NG', 'O', 'Ō', 'P', 'R', 'T', 'U', 'Ū',
             'W', 'WH',
         ],
-        // TODO: Create Māori default sentence.
-        'sentence': ''
-    }
-}
+        'sentences': [
+            'KAREKAU HE MEA E HAERE WHAKAMURI I TE MOTOPAIKA.', // THERE IS NO SUCH THING AS REVERSE ON A MOTORBIKE.
+            'I MAU IA TĀNA MŌWHITI RĀ IA RĀ, IA PŌ.', // HE ALWAYS WORE HIS SUNGLASSES AT NIGHT.
+            'I MAU TE TANGATA WHAKAHANGAREKA HE TARAU KŌWHAI.', // THE CLOWN WORE YELLOW PANTS.
+            'I KAI TE KEA I NGĀ KAMUPŪTU.', // THE KEA ATE THE GUMBOOTS.
+            'KORE RAWA TE MOA E ORA ANA.', // THE MOA IS DEFINITELY NOT ALIVE.
+            'ANEI HE KĒKĒ HEI KAI MĀ KOUTOU.', // HERE IS A CAKE FOR YOU ALL TO EAT.
+            'KEI TE HAERE RĀTOU KI TĀTAHI.', // THEY ARE GOING TO THE BEACH.
+            'KUA PIKI AKE RĀTOU I A AORAKI.', // THEY CLIMBED AORAKI.
+            'I RERE TE MANU KI TE NGĀHERE.', // THE BIRD FLEW TO THE BUSH.
+            'I KITE IA I TE TĪWAIWAKA.', // SHE SAW THE FANTAIL.
+            'I TŪ TE KERERŪ KI RUNGA I TE TEKOTEKO.', // THE KERERŪ STOOD ON THE GABLE OF THE MEETING HOUSE.
+            'I HĪKOI RĀTOU KI TE WHANGANUI-A-TARA KI TE KŌRERO KI TE PIRIMIA.', // THEY WALKED TO WELLINGTON TO TALK TO THE PRIME MINISTER.
+            'I HAERE MĀTOU KATOA KI KAIKOURA KI TE KITE NGĀ TOHORĀ ME NGĀ KEKENO.', // WE ALL WENT TO KAIKOURA TO SEE THE WHALES AND SEALS.
+            'HE REKA TE KŌHUA KAI A KORO AHAKOA TE MAHA O TE KĀPITI.', // THE BOIL UP KORO COOKED WAS DELICIOUS DESPITE THE LARGE AMOUNT OF CABBAGE IN IT.
+            'EHARA RAWA I TE MEA HE TĀWARA KINO TŌ TE KŌURA.', // THERE IS NO SUCH THING AS A BAD TASTING CRAYFISH.
+        ],
+    },
+};
+
+const SHOW_STATISTICS_ATTRIBUTE = 'show-statistics';
+const HIDE_BUILDER_ATTRIBUTE = 'hide-builder';
+const ENCODED_SENTENCE_SEPARATOR = '|';
+const SPACE_CHARACTER = '\u{2423}';
+
 // Get language
+var searchParameters;
+var alphabet;
 var sentence;
 var nextCharacter;
 var language;
+var characterPosition;
+var characterGuesses;
+var allCharacterGuesses;
+var totalCharacterGuesses;
+var multiLetterCharacters;
+var elementLanguageSelect;
+var elementNewSentenceButton;
+var elementStatisticsContainer;
+var elementToggleStatisticsButton;
+var elementBuilderButton;
+var elementLanguageDescription;
 var elementAlphabetButtonsContainer;
 var elementSentenceContainer;
 var elementCurrentSentenceCharacter;
 var elementCurrentSentenceCharacterGuesses;
-var characterPosition = 0;
-var characterGuesses = 0;
-var totalCharacterGuesses = 0;
+var elementTotalGuessesText;
+var elementBitsBoundsText;
+var elementGuessPerCharacterBarChartExampleValue;
+var chartGuessCountsBarChart;
+var chartGuessPerCharacterBarChart;
+var elementBuilderSentences;
+var elementBuilderLanguageSelect;
+var elementBuilderShowStatisticsCheckbox;
+var elementBuilderHideBuilderCheckbox;
+var elementBuilderGeneratedLink;
+var elementBuilderGeneratedLinkContainer;
 
 function setup() {
-    language = document.documentElement.lang;
-    elementAlphabetButtonsContainer = document.getElementById('alphabet-buttons-container');
-    elementSentenceContainer = document.getElementById('sentence-container');
+    searchParameters = new URL(window.location.href).searchParams;
+    elementAlphabetButtonsContainer = document.querySelector('#shannon-experiment #alphabet-buttons-container');
+    elementSentenceContainer = document.querySelector('#shannon-experiment #sentence-container');
+    elementLanguageSelect = document.querySelector('#shannon-experiment #shannon-language-select');
+    elementLanguageDescription = document.querySelector('#shannon-experiment #shannon-language-description');
+    elementNewSentenceButton = document.querySelector('#shannon-experiment #new-sentence-button');
+    elementBuilderButton = document.querySelector('#shannon-experiment #shannon-builder-button');
+    elementStatisticsContainer = document.querySelector('#shannon-experiment #statistics-container');
+    elementToggleStatisticsButton = document.querySelector('#shannon-experiment #toggle-statistics-button');
+    elementTotalGuessesText = document.querySelector('#shannon-experiment #statistic-total-guesses');
+    elementBitsBoundsText = document.querySelector('#shannon-experiment #statistic-bit-bounds');
+    elementGuessPerCharacterBarChartExampleValue = document.querySelector('#shannon-experiment #statistics-guess-counts-chart-example-value');
+    elementBuilderSentences = document.querySelector('#shannon-builder #builder-custom-sentences');
+    elementBuilderLanguageSelect = document.querySelector('#shannon-builder #builder-custom-language');
+    elementBuilderShowStatisticsCheckbox = document.querySelector('#shannon-builder #builder-show-statistics');
+    elementBuilderHideBuilderCheckbox = document.querySelector('#shannon-builder #builder-hide-builder');
+    elementBuilderGeneratedLink = document.querySelector('#shannon-builder #builder-generated-link');
+    elementBuilderGeneratedLinkContainer = document.querySelector('#shannon-builder #builder-generated-link-container');
 
-    let alphabet = LANGUAGE_DEFAULTS[language]['alphabet'];
+    elementLanguageSelect.addEventListener('change', function (event) {
+        updateLanguage(event);
+        resetExperiment();
+    });
+    elementNewSentenceButton.addEventListener('click', resetExperiment);
+    elementToggleStatisticsButton.addEventListener('click', function () { toggleStatistics() });
+    setupLanguagePickers();
 
-    var searchParameters = new URL(window.location.href).searchParams;
-    if (searchParameters.has('sentence')) {
-        sentence = searchParameters.get('sentence').toUpperCase()
-    } else {
-        sentence = LANGUAGE_DEFAULTS[language]['sentence'];
+    elementBuilderSentences.addEventListener('input', getExperimentLink)
+    elementBuilderLanguageSelect.addEventListener('change', getExperimentLink)
+    elementBuilderShowStatisticsCheckbox.addEventListener('change', getExperimentLink);
+    elementBuilderHideBuilderCheckbox.addEventListener('change', getExperimentLink);
+
+    // Check URL parameters
+    if (searchParameters.has(HIDE_BUILDER_ATTRIBUTE)) {
+        elementBuilderButton.style.display = 'none';
     }
+    updateLanguage();
+    checkProvidedSentences();
+    replaceAllSpaces();
+    checkStatisticsDefaultVisibility();
 
-    // Get extra characters from sentence and add to alphabet.
-    const uniqueSentenceCharacters = new Set(sentence.split(''));
-    let extraSentenceCharacters = new Set([...uniqueSentenceCharacters].filter(x => !new Set(alphabet).has(x)));
-    extraSentenceCharacters = shuffle(Array.from(extraSentenceCharacters));
-    alphabet = alphabet.concat(extraSentenceCharacters);
+    resetExperiment();
+}
 
+function replaceAllSpaces() {
+    for (const languageData of Object.values(allLanguageData)) {
+        for (let i = 0; i < languageData.sentences.length; i++) {
+            languageData.sentences[i] = languageData.sentences[i].replaceAll(' ', SPACE_CHARACTER);
+        }
+    }
+}
+
+function setupLanguagePickers() {
+    for (const [languageSlug, languageData] of Object.entries(allLanguageData)) {
+        let elementOption = document.createElement('option');
+        elementOption.value = languageSlug;
+        elementOption.textContent = languageData.title;
+        elementLanguageSelect.appendChild(elementOption);
+        elementBuilderLanguageSelect.appendChild(elementOption.cloneNode(true));
+    }
+}
+
+function getLanguage() {
+    // Set langauge on load based on parameter or body.
+    if (searchParameters.has('language')) {
+        let providedLanguage = searchParameters.get('language').toLowerCase();
+        if (providedLanguage in allLanguageData) {
+            document.querySelector('#shannon-experiment #shannon-language-picker').style.display = 'none';
+            return providedLanguage;
+        }
+    }
+    return document.documentElement.lang;
+}
+
+function updateLanguage(event) {
+    if (!event) {
+        language = getLanguage();
+        elementLanguageSelect.value = language;
+    } else {
+        language = elementLanguageSelect.value;
+    }
+    elementBuilderLanguageSelect.value = language;
+    elementLanguageDescription.textContent = allLanguageData[language].description || '';
+}
+
+function setDefaultAlphabet() {
+    alphabet = allLanguageData[language]['alphabet'];
+    // Get any alphabet characters longer than 1 character.
+    // This occurs in Te Reo Māori with 'NG' and 'WH'.
+    multiLetterCharacters = alphabet.filter(character => character.length > 1);
+}
+
+function resetExperiment() {
+    // Clear existing sentence and alphabet buttons
+    elementAlphabetButtonsContainer.replaceChildren();
+    elementSentenceContainer.replaceChildren();
+    characterPosition = 0;
+    characterGuesses = 0;
+    allCharacterGuesses = [];
+    totalCharacterGuesses = 0;
+
+    setDefaultAlphabet();
+    setSentence();
+    alphabet = updateAlphabet(alphabet);
     createAlphabetButtons(alphabet);
     createSentenceElement();
     setNextCharacter();
+    createGuessCountsBarChart();
+    createGuessPerCharacterBarChart();
+    updateStatistics();
+}
+
+function checkProvidedSentences() {
+    if (searchParameters.has('sentence')) {
+        const decoder = new TextDecoder();
+        // Hide language picker since sentences are specific to a language
+        document.querySelector('#shannon-experiment #shannon-language-picker').style.display = 'none';
+        // Override sentences for language
+        allLanguageData[language]['sentences'] = [];
+        providedSentences = searchParameters.getAll('sentence');
+        for (let i = 0; i < providedSentences.length; i++) {
+            let encodedSentence = providedSentences[i];
+            encodedSentence = encodedSentence.split(ENCODED_SENTENCE_SEPARATOR);
+            let u8Array = new Uint8Array(encodedSentence);
+            let rawSentence = decoder.decode(u8Array);
+            let sentence = rawSentence.toUpperCase();
+            allLanguageData[language]['sentences'].push(sentence);
+        }
+    }
+}
+
+function checkStatisticsDefaultVisibility() {
+    if (searchParameters.has(SHOW_STATISTICS_ATTRIBUTE)) {
+        toggleStatistics(true);
+    }
+}
+
+
+function setSentence() {
+    let languageSentences = allLanguageData[language]['sentences'].slice();
+    if (languageSentences.length <= 1) {
+        // If this is the last sentence, hide new sentence button
+        elementNewSentenceButton.style.display = 'none';
+    } else if (sentence && sentence.length != 0) {
+        // Remove current sentence from options to avoid getting same sentence again
+        var currentSentence = sentence.join('');
+        let index = languageSentences.indexOf(currentSentence);
+        languageSentences.splice(index, 1);
+    }
+
+    let selectedSentence = languageSentences[Math.floor(Math.random() * languageSentences.length)];
+    // Break sentence into array of characters.
+    sentence = [];
+    while (selectedSentence.length > 0) {
+        let characterLength;
+        let foundMultiLetterCharacter = multiLetterCharacters.find(character => selectedSentence.startsWith(character));
+        if (foundMultiLetterCharacter) {
+            characterLength = foundMultiLetterCharacter.length;
+        } else {
+            characterLength = 1;
+        }
+        sentence.push(selectedSentence.substring(0, characterLength));
+        selectedSentence = selectedSentence.substring(characterLength);
+    }
+}
+
+function updateAlphabet(alphabet) {
+    // Get any extra unique characters from sentence
+    let extraSentenceCharacters = new Set(sentence.filter(x => !new Set(alphabet).has(x)));
+    extraSentenceCharacters = shuffle(Array.from(extraSentenceCharacters));
+    return alphabet.concat(extraSentenceCharacters);
+}
+
+function removeCompletedSentence() {
+    let languageSentences = allLanguageData[language]['sentences'];
+    let sentenceString = sentence.join('');
+    languageSentences.splice(languageSentences.indexOf(sentenceString), 1);
 }
 
 function createAlphabetButtons(alphabet) {
@@ -83,13 +311,7 @@ function createAlphabetButtons(alphabet) {
 
 function createAlphabetButton(character) {
     let elementButton = document.createElement('button');
-    var text;
-    if (character == ' ') {
-        // TODO: Translate
-        text = 'Space';
-    } else {
-        text = character;
-    }
+    var text = character;
     let elementText = document.createTextNode(text);
     elementButton.appendChild(elementText);
     elementButton.classList.add('alphabet-button');
@@ -103,11 +325,13 @@ function alphabetButtonClicked(event) {
     let character = elementButton.dataset.character;
     elementCurrentSentenceCharacter.textContent = character;
     characterGuesses++;
+    allCharacterGuesses[characterPosition] = characterGuesses;
     totalCharacterGuesses++;
     elementCurrentSentenceCharacterGuesses.textContent = characterGuesses;
     if (character == nextCharacter) {
         elementCurrentSentenceCharacter.classList.remove('incorrect');
-        foundNextCharacter();
+        foundNextCharacter(character);
+        updateStatistics();
     } else {
         elementButton.setAttribute('disabled', '');
         elementCurrentSentenceCharacter.classList.add('incorrect');
@@ -132,12 +356,13 @@ function setNextCharacter() {
     nextCharacter = sentence[characterPosition];
 }
 
-function foundNextCharacter() {
+function foundNextCharacter(foundCharacter) {
     characterPosition++;
     if (characterPosition == sentence.length) {
-        // Disable buttons interface
+        removeCompletedSentence();
         disableAlphabetButtons();
-        showStatistics();
+        // Force showing statistics
+        toggleStatistics(true);
     } else {
         // Reset interface for next character
         resetAlphabetButtons();
@@ -145,6 +370,165 @@ function foundNextCharacter() {
         characterGuesses = 0;
         createSentenceElement();
     }
+}
+
+function updateStatistics() {
+    // allCharacterGuesses is the number of guesses required for each character.
+    // guessCounts is the number of times it took X (array index) times to guess a character.
+    var guessCounts = Array(alphabet.length).fill(0);
+    for (let i = 0; i < allCharacterGuesses.length; i++) {
+        let guesses = allCharacterGuesses[i];
+        guessCounts[guesses - 1] += 1;
+    }
+    updateGuessCountsBarChart(guessCounts);
+    updateGuessPerCharacterBarChart();
+
+    let bitsUpperBound = 0;
+    let bitsLowerBound = 0;
+
+    // http://socsci.uci.edu/~rfutrell/teaching/itl-davis/readings/shannon1951prediction.pdf
+    guessCounts.push(0);  // Allows for r + 1 references
+    for (let r = 0; r < guessCounts.length - 1; r++) {
+        let p_r = guessCounts[r] / allCharacterGuesses.length;
+        let p_r_plus_one = guessCounts[r + 1] / allCharacterGuesses.length;
+        bitsLowerBound += (r + 1) * (p_r - p_r_plus_one) * Math.log2(r + 1);
+        if (p_r > 0) {
+            bitsUpperBound += p_r * Math.log2(1 / p_r);
+        }
+    }
+
+    // Update interface
+    elementBitsBoundsText.textContent = `${bitsLowerBound.toFixed(4)} - ${bitsUpperBound.toFixed(4)}`;
+    elementTotalGuessesText.textContent = totalCharacterGuesses;
+}
+
+function createGuessCountsBarChart() {
+    // Delete chart if it already exists
+    if (chartGuessCountsBarChart) {
+        chartGuessCountsBarChart.destroy();
+    }
+
+    let elementGuessChart = document.querySelector('#shannon-experiment #statistics-guess-counts-chart');
+    let context = elementGuessChart.getContext('2d');
+    let initialData = Array(alphabet.length).fill(0);
+    let dataLabels = []
+    for (let i = 1; i < alphabet.length + 1; i++) {
+        dataLabels.push(i);
+    }
+    chartGuessCountsBarChart = new Chart(context, {
+        type: 'bar',
+        data: {
+            labels: dataLabels,
+            datasets: [{
+                data: initialData,
+                backgroundColor: '#5dc5ee',
+                borderColor: '#31a2cf',
+            }],
+        },
+        options: {
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Number of guesses until a character was guessed correctly',
+                    },
+                    ticks: {
+                        autoSkip: false,
+                        maxRotation: 0,
+                    }
+                },
+                y: {
+                    beginAtZero: true,
+                    suggestedMax: 5,
+                    ticks: {
+                        stepSize: 1,
+                    },
+                    title: {
+                        display: true,
+                        text: 'Number of characters',
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false,
+                }
+            },
+        }
+    });
+}
+
+function updateGuessCountsBarChart(guessCounts) {
+    chartGuessCountsBarChart.data.datasets[0].data = guessCounts;
+    chartGuessCountsBarChart.update();
+    if (guessCounts[0] == 1) {
+        elementGuessPerCharacterBarChartExampleValue.textContent = '1 character';
+    } else {
+        elementGuessPerCharacterBarChartExampleValue.textContent = `${guessCounts[0]} characters`;
+    }
+}
+
+function createGuessPerCharacterBarChart() {
+    // Delete chart if it already exists
+    if (chartGuessPerCharacterBarChart) {
+        chartGuessPerCharacterBarChart.destroy();
+    }
+
+    let elementGuessChart = document.querySelector('#shannon-experiment #statistics-guess-per-character-chart');
+    let context = elementGuessChart.getContext('2d');
+    let initialData = [0];
+    let dataLabels = ['?']
+    chartGuessPerCharacterBarChart = new Chart(context, {
+        type: 'bar',
+        data: {
+            labels: dataLabels,
+            datasets: [{
+                data: initialData,
+                backgroundColor: '#5dc5ee',
+                borderColor: '#31a2cf',
+            }],
+        },
+        options: {
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Character in sentence',
+                    },
+                    ticks: {
+                        autoSkip: false,
+                        maxRotation: 0,
+                    }
+                },
+                y: {
+                    beginAtZero: true,
+                    suggestedMax: 5,
+                    ticks: {
+                        stepSize: 1,
+                    },
+                    title: {
+                        display: true,
+                        text: 'Number of guesses',
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false,
+                }
+            },
+        }
+    });
+}
+
+function updateGuessPerCharacterBarChart() {
+    chartGuessPerCharacterBarChart.data.datasets[0].data = allCharacterGuesses;
+    let sentenceLabels = sentence.slice(0, characterPosition);
+    if (sentenceLabels.length == 0) {
+        sentenceLabels = [' '];
+    }
+    chartGuessPerCharacterBarChart.data.labels = sentenceLabels;
+    chartGuessPerCharacterBarChart.update();
 }
 
 function createSentenceElement() {
@@ -174,13 +558,50 @@ function createSentenceElement() {
     elementSentenceContainer.appendChild(elementSentenceCharacterContainer);
 }
 
-function showStatistics() {
-    // Total guesses
-    let elementTotalGuessesText = document.getElementById('statistic-total-guesses');
-    elementTotalGuessesText.textContent = totalCharacterGuesses;
+function toggleStatistics(force) {
+    elementToggleStatisticsButton.toggleAttribute(SHOW_STATISTICS_ATTRIBUTE, force);
+
+    if (elementToggleStatisticsButton.hasAttribute(SHOW_STATISTICS_ATTRIBUTE)) {
+        elementStatisticsContainer.style.display = 'block';
+        elementToggleStatisticsButton.textContent = gettext('Hide statistics');
+    } else {
+        elementStatisticsContainer.style.display = 'none';
+        elementToggleStatisticsButton.textContent = gettext('Show statistics');
+    }
+}
+
+function getExperimentLink() {
+    elementBuilderGeneratedLinkContainer.style.display = 'block';
+    let customExperimentParams = new URLSearchParams();
+
+    // Sentences
+    const encoder = new TextEncoder();
+    let customSentences = elementBuilderSentences.value.split(/\r?\n/);
+    for (let i = 0; i < customSentences.length; i++) {
+        let sentence = customSentences[i];
+        if (sentence != '') {
+            let encodedSentence = encoder.encode(sentence);
+            customExperimentParams.append('sentence', encodedSentence.join(ENCODED_SENTENCE_SEPARATOR));
+        }
+    }
+
+    // Language
+    customExperimentParams.append('language', elementBuilderLanguageSelect.value);
 
     // Show statistics
-    document.getElementById('statistics-container').style.display = 'block';
+    if (elementBuilderShowStatisticsCheckbox.checked) {
+        customExperimentParams.append(SHOW_STATISTICS_ATTRIBUTE, 'true');
+    }
+
+    // Hide builder
+    if (elementBuilderHideBuilderCheckbox.checked) {
+        customExperimentParams.append(HIDE_BUILDER_ATTRIBUTE, 'true');
+    }
+
+    // Render to modal
+    let customUrl = `${location.origin}${location.pathname}?${customExperimentParams.toString()}`;
+    elementBuilderGeneratedLink.textContent = customUrl;
+    elementBuilderGeneratedLink.href = customUrl;
 }
 
 // Used under CC BY-SA 4.0

@@ -18,6 +18,56 @@ All notable changes to this project will be documented in this file.
 We have listed major changes for each release below.
 `All downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/>`__
 
+3.12.0
+==============================================================================
+
+**Release date:** 11th October 2022
+
+**Changelog:**
+
+- Add Product Code Check Digit Calculation interactive.
+- Add QR Code Generator interactive.
+- Rename Shannan Experiment interactive to Shannon's prediction and entropy of printed text experiment.
+- Fix bug where interactive NPM dependecies were being overriden by base NPM dependencies. Interactive dependencies have been updated accordingly.
+- Remove FSA dependency with simplified JavaScript solution.
+- Core dependency changes:
+
+    - Update autoprefixer from 10.4.8 to 10.4.12.
+    - Update coverage from 6.4.4 to 6.5.0.
+    - Update crowdin/github-action from 1.4.12 to 1.4.14.
+    - Update dependabot/fetch-metadata from v1.3.3 to v1.3.4.
+    - Update django-debug-toolbar from 3.6.0 to 3.7.0.
+    - Update node from 14.19.0-buster to 14.20.0-buster.
+    - Update postcss from 8.4.16 to 8.4.17.
+    - Update psycopg2 from 2.9.3 to 2.9.4.
+    - Update sass from 1.54.5 to 1.55.0.
+    - Update selenium from 4.4.0 to 4.5.0.
+    - Update sphinx 5.1.1 to 5.2.3.
+    - Update uniseg from 0.7.1.post2 to 0.7.2.
+    - Update yargs from 17.5.1 to 17.6.0.
+
+- Interactive city-trip dependency changes:
+
+    - Update cytoscape from 3.22.1 to 3.23.0.
+
+- Interactive product-code-check-digit-calculation dependency changes:
+
+    - Add arrows-svg 1.5.6.
+    - Add jsbarcode 3.11.5.
+
+- Interactive qr-code-generator dependency changes:
+
+    - Add qrcode-generator 1.4.4.
+
+- Interactive scene-editor dependency changes:
+
+    - Update three from 0.143.0 to 0.145.0.
+    - Add sprintf-js 1.1.2 (to be independent from base package.json file).
+
+- Interactive shannon-experiment dependency changes:
+
+    - Add chart.js 3.9.1.
+
 3.11.0
 ==============================================================================
 

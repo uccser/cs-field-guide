@@ -1,5 +1,5 @@
 {
-    "name": "csfg-interactive-box-translation",
+    "name": "csfg-translation-rotation-interactives",
     "version": "1.0.0",
     "private": true,
     "dependencies": {

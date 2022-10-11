@@ -120,7 +120,10 @@ const js_files_skip_optimisation = [
 
 // Styles autoprefixing and minification
 function css() {
-    return src(`${paths.css_source}/**/*.css`)
+    return src([
+            `${paths.css_source}/**/*.css`,
+            `!${paths.css_source}/**/node_modules/**/*.css`,
+        ])
         .pipe(errorHandler(catchError))
         .pipe(sourcemaps.init())
         .pipe(postcss(processCss))
@@ -130,14 +133,16 @@ function css() {
 }
 
 function scss() {
-    return src(`${paths.scss_source}/**/*.scss`, { since: lastRun(scss) })
+    return src([
+            `${paths.scss_source}/**/*.scss`,
+            `!${paths.scss_source}/**/node_modules/**/*.scss`,
+        ], { since: lastRun(scss) })
         .pipe(errorHandler(catchError))
         .pipe(dependents())
         .pipe(sourcemaps.init())
         .pipe(sass({
             includePaths: [
-                paths.bootstrap_source,
-                paths.scss_source
+                paths.bootstrap_source
             ],
             sourceComments: !PRODUCTION,
         }).on('error', sass.logError))
@@ -155,7 +160,7 @@ function js() {
     const js_filter = filter(js_files_skip_optimisation, { restore: true })
     return src([
             `${paths.js_source}/**/*.js`,
-            `!${paths.js_source}/**/modules/**/*.js`
+            `!${paths.js_source}/**/node_modules/**/*.js`
         ], {since: lastRun(js)})
         .pipe(js_filter)
         .pipe(errorHandler(catchError))
@@ -196,6 +201,7 @@ function svg() {
 function interactives() {
     return src([
             `${paths.interactives_source}/**/*`,
+            `!${paths.interactives_source}/**/node_modules/**/*`,
             `!${paths.interactives_source}/**/*.scss`,
             `!${paths.interactives_source}/**/*.js`
         ])
