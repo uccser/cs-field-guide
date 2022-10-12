@@ -229,7 +229,7 @@ jobs:
           ls artifacts/interactive-thumbnails-*/interactive-thumbnails.tar.gz | xargs -n1 tar -xz --directory csfieldguide/staticfiles/img/interactives/thumbnails --file
 
       - name: Log in to ${{ env.REGISTRY }}
-        uses: docker/login-action@v2.0.0
+        uses: docker/login-action@v2.1.0
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
@@ -272,7 +272,7 @@ jobs:
           ls artifacts/interactive-thumbnails-*/interactive-thumbnails.tar.gz | xargs -n1 tar -xz --directory csfieldguide/staticfiles/img/interactives/thumbnails --file
 
       - name: Log in to ${{ env.REGISTRY }}
-        uses: docker/login-action@v2.0.0
+        uses: docker/login-action@v2.1.0
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
