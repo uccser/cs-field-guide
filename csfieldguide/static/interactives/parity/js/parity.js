@@ -16,6 +16,9 @@ $(document).ready(function(){
       selectElement.value = value;
     }
   }
+  if (searchParameters.has('initial-bits')) {
+    Parity.initial_bits = searchParameters.get('initial-bits');
+  }
 
   if (searchParameters.get('mode') == 'sandbox') {
     Parity.mode = 'sandbox';
@@ -221,10 +224,20 @@ function flipBit() {
 function setRandomBits() {
   for (var row = 0; row < Parity.grid_values.length - 1; row++) {
     for (var col = 0; col < Parity.grid_values.length - 1; col++) {
-      if (Math.random() >= 0.5) {
-        Parity.grid_values[row][col] = true;
+      if (Parity.initial_bits) {
+        let char_position = row * (Parity.grid_values.length - 1) + col;
+        let initial_bit = Parity.initial_bits.charAt(char_position);
+        if (initial_bit == 'W') {
+          Parity.grid_values[row][col] = true;
+        } else {
+          Parity.grid_values[row][col] = false;
+        }
       } else {
-        Parity.grid_values[row][col] = false;
+        if (Math.random() >= 0.5) {
+          Parity.grid_values[row][col] = true;
+        } else {
+          Parity.grid_values[row][col] = false;
+        }
       }
     }
   }
