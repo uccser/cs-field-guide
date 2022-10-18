@@ -50,4 +50,9 @@
         color: grey;
         margin: 1rem 0;
     }
+    &.hide-controls {
+        .interactive-controls {
+            display: none;
+        }
+    }
 }

@@ -1,4 +1,3 @@
-var urlParameters = require('../../../js/third-party/url-parameters.js');
 var Parity = {};
 
 $(document).ready(function(){
@@ -7,22 +6,41 @@ $(document).ready(function(){
   Parity.feedback = $('#interactive-parity-feedback');
   Parity.x_labels = document.getElementById('interactive-parity-grid-x-labels');
   Parity.y_labels = document.getElementById('interactive-parity-grid-y-labels');
-  setupGrid();
-  setupGridLabels();
 
-  if (urlParameters.getUrlParameter('mode') == 'sandbox') {
+  let searchParameters = new URL(window.location.href).searchParams;
+
+  if (searchParameters.has('grid-size')) {
+    let selectElement = document.getElementById('interactive-parity-grid-size');
+    let value = searchParameters.get('grid-size');
+    if (!isNaN(value)) {
+      selectElement.value = value;
+    }
+  }
+  if (searchParameters.has('show-grid-references')) {
+    document.getElementById('grid-references-checkbox').checked = true;
+    showGridReferences(true);
+  }
+  if (searchParameters.has('initial-bits')) {
+    Parity.initial_bits = searchParameters.get('initial-bits');
+  }
+  Parity.hide_size_controls = searchParameters.has('hide-size-controls');
+
+  if (searchParameters.get('mode') == 'sandbox') {
     Parity.mode = 'sandbox';
     Parity.current_mode = 'sandbox';
-  } else if (urlParameters.getUrlParameter('mode') == 'set') {
+  } else if (searchParameters.get('mode') == 'set') {
     Parity.mode = 'set';
     Parity.current_mode = 'set';
-  } else if (urlParameters.getUrlParameter('mode') == 'detect') {
+  } else if (searchParameters.get('mode') == 'detect') {
     Parity.mode = 'detect';
     Parity.current_mode = 'detect';
   } else {
     Parity.mode = 'trick';
     Parity.current_mode = 'set';
   }
+
+  setupGrid();
+  setupGridLabels();
   setupMode();
 
   // On 'Check parity' button click
@@ -148,7 +166,9 @@ function setupMode() {
   if (Parity.current_mode == 'sandbox') {
      header.text("Sandbox Mode");
      $('.interactive-parity-sandbox-controls').show();
-     $('.interactive-parity-size-controls').show();
+     if (!Parity.hide_size_controls) {
+      $('.interactive-parity-size-controls').show();
+     }
      $('.interactive-parity-check-controls').show();
      Parity.flipping = 'all';
      setRandomBits();
@@ -156,7 +176,9 @@ function setupMode() {
   } else if (Parity.current_mode == 'set') {
     header.text(gettext("Setting Parity"));
     Parity.flipping = 'parity';
-    $('.interactive-parity-size-controls').show();
+    if (!Parity.hide_size_controls) {
+      $('.interactive-parity-size-controls').show();
+    }
     if (Parity.mode == 'trick') {
       $('.interactive-parity-trick-controls').show();
     } else {
@@ -172,7 +194,9 @@ function setupMode() {
     $('.interactive-parity-reset-controls').show();
     // If detect only mode (not trick mode)
     if (Parity.mode == 'detect') {
-      $('.interactive-parity-size-controls').show();
+      if (!Parity.hide_size_controls) {
+        $('.interactive-parity-size-controls').show();
+      }
       setRandomBits();
       setParityBits();
       flipBit();
@@ -211,10 +235,20 @@ function flipBit() {
 function setRandomBits() {
   for (var row = 0; row < Parity.grid_values.length - 1; row++) {
     for (var col = 0; col < Parity.grid_values.length - 1; col++) {
-      if (Math.random() >= 0.5) {
-        Parity.grid_values[row][col] = true;
+      if (Parity.initial_bits) {
+        let char_position = row * (Parity.grid_values.length - 1) + col;
+        let initial_bit = Parity.initial_bits.charAt(char_position);
+        if (initial_bit == 'W') {
+          Parity.grid_values[row][col] = true;
+        } else {
+          Parity.grid_values[row][col] = false;
+        }
       } else {
-        Parity.grid_values[row][col] = false;
+        if (Math.random() >= 0.5) {
+          Parity.grid_values[row][col] = true;
+        } else {
+          Parity.grid_values[row][col] = false;
+        }
       }
     }
   }
@@ -281,7 +315,7 @@ function setupGrid(){
     // Error message
     alert(gettext("Please enter a value between 1 and 20"));
     // Reset grid
-    $('##interactive-parity-grid-size').val(6);
+    $('#interactive-parity-grid-size').val(6);
   } else {
     Parity.grid.empty();
     Parity.x_labels.innerHTML = '';

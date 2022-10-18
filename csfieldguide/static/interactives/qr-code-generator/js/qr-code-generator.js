@@ -38,6 +38,10 @@ function setup() {
 
 function processURLParameters() {
     let searchParameters = new URL(window.location.href).searchParams;
+    if (searchParameters.has('hide-controls')) {
+        let element = document.getElementById('qr-code-interactive');
+        element.classList.add('hide-controls');
+    }
     if (searchParameters.has('text')) {
         elementTextContentInput.value = searchParameters.get('text');
     }
