@@ -18,6 +18,25 @@ All notable changes to this project will be documented in this file.
 We have listed major changes for each release below.
 `All downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/>`__
 
+3.12.1
+==============================================================================
+
+**Release date:** 19th October 2022
+
+**Changelog:**
+
+- Allow QR Code Generator interactive controls to be hidden via URL parameter.
+- Allow Parity interactive settings be changed via URL parameter, including setting grid size, presetting intial bit values, hiding controls, and showing grid references.
+
+- Core dependency changes:
+
+    - Update crowdin/github-action from 1.4.14 to 1.4.15.
+    - Update django-modeltranslation from 0.18.4 to 0.18.5.
+    - Update docker/build-push-action from 3.1.1 to 3.2.0.
+    - Update docker/login-action from 2.0.0 to 2.1.0.
+    - Update postcss from 8.4.17 to 8.4.18.
+    - Update sphinx from 5.2.3 to 5.3.0.
+
 3.12.0
 ==============================================================================
 
