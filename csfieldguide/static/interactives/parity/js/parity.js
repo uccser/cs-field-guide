@@ -16,6 +16,10 @@ $(document).ready(function(){
       selectElement.value = value;
     }
   }
+  if (searchParameters.has('show-grid-references')) {
+    document.getElementById('grid-references-checkbox').checked = true;
+    showGridReferences(true);
+  }
   if (searchParameters.has('initial-bits')) {
     Parity.initial_bits = searchParameters.get('initial-bits');
   }
