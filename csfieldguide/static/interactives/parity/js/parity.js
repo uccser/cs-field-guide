@@ -1,4 +1,3 @@
-var urlParameters = require('../../../js/third-party/url-parameters.js');
 var Parity = {};
 
 $(document).ready(function(){
@@ -7,22 +6,33 @@ $(document).ready(function(){
   Parity.feedback = $('#interactive-parity-feedback');
   Parity.x_labels = document.getElementById('interactive-parity-grid-x-labels');
   Parity.y_labels = document.getElementById('interactive-parity-grid-y-labels');
-  setupGrid();
-  setupGridLabels();
 
-  if (urlParameters.getUrlParameter('mode') == 'sandbox') {
+  let searchParameters = new URL(window.location.href).searchParams;
+
+  if (searchParameters.has('grid-size')) {
+    let selectElement = document.getElementById('interactive-parity-grid-size');
+    let value = searchParameters.get('grid-size');
+    if (!isNaN(value)) {
+      selectElement.value = value;
+    }
+  }
+
+  if (searchParameters.get('mode') == 'sandbox') {
     Parity.mode = 'sandbox';
     Parity.current_mode = 'sandbox';
-  } else if (urlParameters.getUrlParameter('mode') == 'set') {
+  } else if (searchParameters.get('mode') == 'set') {
     Parity.mode = 'set';
     Parity.current_mode = 'set';
-  } else if (urlParameters.getUrlParameter('mode') == 'detect') {
+  } else if (searchParameters.get('mode') == 'detect') {
     Parity.mode = 'detect';
     Parity.current_mode = 'detect';
   } else {
     Parity.mode = 'trick';
     Parity.current_mode = 'set';
   }
+
+  setupGrid();
+  setupGridLabels();
   setupMode();
 
   // On 'Check parity' button click
@@ -281,7 +291,7 @@ function setupGrid(){
     // Error message
     alert(gettext("Please enter a value between 1 and 20"));
     // Reset grid
-    $('##interactive-parity-grid-size').val(6);
+    $('#interactive-parity-grid-size').val(6);
   } else {
     Parity.grid.empty();
     Parity.x_labels.innerHTML = '';
