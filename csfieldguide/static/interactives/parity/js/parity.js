@@ -23,6 +23,7 @@ $(document).ready(function(){
   if (searchParameters.has('initial-bits')) {
     Parity.initial_bits = searchParameters.get('initial-bits');
   }
+  Parity.hide_size_controls = searchParameters.has('hide-size-controls');
 
   if (searchParameters.get('mode') == 'sandbox') {
     Parity.mode = 'sandbox';
@@ -165,7 +166,9 @@ function setupMode() {
   if (Parity.current_mode == 'sandbox') {
      header.text("Sandbox Mode");
      $('.interactive-parity-sandbox-controls').show();
-     $('.interactive-parity-size-controls').show();
+     if (!Parity.hide_size_controls) {
+      $('.interactive-parity-size-controls').show();
+     }
      $('.interactive-parity-check-controls').show();
      Parity.flipping = 'all';
      setRandomBits();
@@ -173,7 +176,9 @@ function setupMode() {
   } else if (Parity.current_mode == 'set') {
     header.text(gettext("Setting Parity"));
     Parity.flipping = 'parity';
-    $('.interactive-parity-size-controls').show();
+    if (!Parity.hide_size_controls) {
+      $('.interactive-parity-size-controls').show();
+    }
     if (Parity.mode == 'trick') {
       $('.interactive-parity-trick-controls').show();
     } else {
@@ -189,7 +194,9 @@ function setupMode() {
     $('.interactive-parity-reset-controls').show();
     // If detect only mode (not trick mode)
     if (Parity.mode == 'detect') {
-      $('.interactive-parity-size-controls').show();
+      if (!Parity.hide_size_controls) {
+        $('.interactive-parity-size-controls').show();
+      }
       setRandomBits();
       setParityBits();
       flipBit();
