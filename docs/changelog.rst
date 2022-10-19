@@ -18,6 +18,17 @@ All notable changes to this project will be documented in this file.
 We have listed major changes for each release below.
 `All downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/>`__
 
+3.12.2
+==============================================================================
+
+**Release date:** 20th October 2022
+
+**Changelog:**
+
+- Add ability to hide mode headings and initial text in Parity interactive.
+- Fix bug where edges of barcode where visible in the Product Code Check Digit Calculation interactive when embedded.  `#1965 <https://github.com/uccser/cs-field-guide/issues/1965>`__
+- Modify Docker deployment workflow to be in line with UCCSER repositories.  `#1971 <https://github.com/uccser/cs-field-guide/issues/1971>`__
+
 3.12.1
 ==============================================================================
 
