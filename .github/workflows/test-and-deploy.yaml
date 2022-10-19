@@ -1,6 +1,7 @@
 name: Test and deploy
 
 on:
+  workflow_dispatch:
   push:
   release:
     types: [published]
@@ -201,52 +202,12 @@ jobs:
           path: interactive-thumbnails.tar.gz
           retention-days: 3
 
-  publish-dev-docker-image:
-    name: Create and publish dev image
-    if: github.ref == 'refs/heads/develop'
-    runs-on: ubuntu-20.04
-    needs: [
-      create-static-files,
-      create-interactive-thumbnails,
-    ]
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Download all workflow run artifacts
-        uses: actions/download-artifact@v3
-        with:
-          path: artifacts/
-
-      - name: Show file tree of artifacts directory
-        run: ls -R -l artifacts/
-
-      - name: Unpack all artifacts
-        run: |
-          mkdir -p csfieldguide/staticfiles
-          tar -xz --file artifacts/static-files/static-files.tar.gz --directory csfieldguide/staticfiles
-          mkdir -p csfieldguide/staticfiles/img/interactives/thumbnails
-          ls artifacts/interactive-thumbnails-*/interactive-thumbnails.tar.gz | xargs -n1 tar -xz --directory csfieldguide/staticfiles/img/interactives/thumbnails --file
-
-      - name: Log in to ${{ env.REGISTRY }}
-        uses: docker/login-action@v2.1.0
-        with:
-          registry: ${{ env.REGISTRY }}
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Build and push Docker image
-        uses: docker/build-push-action@v3.2.0
-        with:
-          file: ./infrastructure/production/django/Dockerfile
-          context: .
-          push: true
-          tags: ghcr.io/uccser/cs-field-guide:develop
-          build-args: GIT_SHA=${{ github.sha }}
-
-  publish-prod-docker-image:
-    name: Create and publish prod image
-    if: github.event_name == 'release'
+  publish-docker-image:
+    name: Create and publish Docker image
+    if: |
+      (github.ref == 'refs/heads/develop')
+      || startsWith(github.ref, 'refs/heads/research-study-')
+      || github.event_name == 'release'
     runs-on: ubuntu-20.04
     needs: [
       create-static-files,
@@ -284,7 +245,8 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
-            type=ref,event=tag,enable=true
+            type=ref,event=tag,priority=1
+            type=ref,event=branch,priority=2
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v3.2.0
@@ -293,4 +255,5 @@ jobs:
           context: .
           push: true
           tags: ${{ steps.meta.outputs.tags }}
-          build-args: GIT_SHA=${{ github.sha }}
+          build-args: |
+            GIT_SHA=${{ github.sha }}
