@@ -20,6 +20,9 @@ $(document).ready(function(){
     document.getElementById('grid-references-checkbox').checked = true;
     showGridReferences(true);
   }
+  if (searchParameters.has('hide-text')) {
+    document.getElementById('interactive-parity').classList.add('hide-text');
+  }
   if (searchParameters.has('initial-bits')) {
     Parity.initial_bits = searchParameters.get('initial-bits');
   }

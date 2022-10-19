@@ -20,6 +20,7 @@ To access a different mode, the parameter `mode` must be passed with the value l
 The following URL parameters can be added to configure how the interactive is loaded:
 
 - `grid-size=X` can preset the grid size where `X` is an integer between 2 and 20.
+- `hide-text` will hide the mode heading and initial instructions.
 - `hide-size-controls` will hide the grid size option.
 - `show-grid-references` will show the grid references on load.
 - `initial-bits=VALUES` can preset the initial bits (not including parity bits), where `VALUES` is a string of `W`s and `B`s to signify white and black squares respectively, left to right, top to bottom.

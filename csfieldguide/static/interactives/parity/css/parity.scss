@@ -126,3 +126,10 @@ input,
     cursor: pointer;
     user-select: none;
 }
+
+#interactive-parity.hide-text {
+    h4,
+    .interactive-parity-text {
+        display: none;
+    }
+}
