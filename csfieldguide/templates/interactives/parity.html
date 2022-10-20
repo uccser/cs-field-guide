@@ -43,10 +43,10 @@
                     </div>
                 </div>
                 <div class="interactive-parity-controls interactive-parity-trick-controls">
-                  <p>
+                  <p class="interactive-parity-text">
                     {% trans "Click the parity bits in the last row and column to set them correctly. Click the 'Flip a bit' button when you are done." %}
                   </p>
-                  <button id="interactive-parity-flip-bit" class="btn btn-primary btn-lg mb-2">{% trans "Flip a bit" %}</button>
+                  <button id="interactive-parity-flip-bit" class="btn btn-primary btn-lg my-4">{% trans "Flip a bit" %}</button>
                 </div>
                 <div class="interactive-parity-controls interactive-parity-detect-controls">
                   <p>
@@ -73,6 +73,7 @@
               </div>
               <div class="col-sm-12 col-md-8">
                 <div id="interactive-parity-grid-container">
+                  <div id="interactive-parity-grid-axis-intersection"></div>
                   <div id="interactive-parity-grid-x-labels" class="interactive-parity-grid-labels"></div>
                   <div id="interactive-parity-grid-y-labels" class="interactive-parity-grid-labels"></div>
                   <div id="interactive-parity-grid"></div>

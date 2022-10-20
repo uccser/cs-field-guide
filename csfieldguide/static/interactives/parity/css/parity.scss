@@ -70,10 +70,12 @@ $grid-label-size: 2rem;
   grid-template-rows: $grid-label-size 1fr;
   gap: 0px 0px;
   grid-template-areas:
-    ". interactive-parity-grid-x-labels"
+    "interactive-parity-grid-axis-intersection interactive-parity-grid-x-labels"
     "interactive-parity-grid-y-labels interactive-parity-grid";
 }
-
+#interactive-parity-grid-axis-intersection {
+    grid-area: interactive-parity-grid-axis-intersection;
+}
 #interactive-parity-grid-x-labels {
     grid-area: interactive-parity-grid-x-labels;
     flex-direction: row;
@@ -84,19 +86,44 @@ $grid-label-size: 2rem;
 }
 .interactive-parity-grid-labels {
     display: flex;
-    justify-content: space-around;
-    align-items: center;
-    font-size: 1.5rem;
-    font-family: monospace;
-    font-weight: bold;
-    color: #aaa;
-    line-height: 0;
-    visibility: hidden;
+
+    & > div {
+        cursor: pointer;
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    div.interactive-parity-grid-labels-text {
+        font-size: 1.5rem;
+        font-family: monospace;
+        font-weight: bold;
+        color: #aaa;
+        line-height: 0;
+        visibility: hidden;
+        user-select: none;
+    }
+    &.text-visible div.interactive-parity-grid-labels-text {
+        visibility: visible;
+    }
 }
+
 
 #interactive-parity-grid {
   grid-area: interactive-parity-grid;
   cursor: cell;
+  position: relative;
+  z-index: 60;
+
+  .circler {
+    position: absolute;
+    margin: -3px;
+    border: 6px solid red;
+    border-radius: 6px;
+    pointer-events: none;
+    visibility: hidden;
+    z-index: 80;
+  }
 }
 
 #interactive-parity-grid-confusation {
@@ -106,6 +133,7 @@ $grid-label-size: 2rem;
   border-radius: 8px;
   align-items: center;
   justify-content: center;
+  z-index: 100;
 }
 
 #interactive-parity-grid-confusation-text {
@@ -125,4 +153,11 @@ input,
 .form-check-label {
     cursor: pointer;
     user-select: none;
+}
+
+#interactive-parity.hide-text {
+    h4,
+    .interactive-parity-text {
+        display: none;
+    }
 }
