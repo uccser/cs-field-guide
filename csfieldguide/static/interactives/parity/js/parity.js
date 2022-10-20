@@ -98,10 +98,14 @@ $(document).ready(function(){
     $('#interactive-parity-grid .parity-card').removeClass('correct-bit');
     Parity.feedback.removeClass('error');
     Parity.feedback.text("");
+    updateCircler('x', -1);
+    updateCircler('y', -1);
   });
 
   // When the user click on the 'Flip a bit' button
   $('#interactive-parity-flip-bit').on('click', function(){
+    updateCircler('x', -1);
+    updateCircler('y', -1);
     $('.interactive-parity-size-controls').hide();
     $('.interactive-parity-trick-controls').hide();
     $('.interactive-parity-reset-controls').hide();
@@ -260,7 +264,7 @@ function setRandomBits() {
 
 // Set random data values (except parity bits)
 function updateGrid() {
-  Parity.grid.children().each(function( row_index, row ) {
+  Parity.grid.children(':not(.circler)').each(function( row_index, row ) {
     $(row).children().each(function( col_index, col ) {
       $col = $(col);
       if (Parity.grid_values[row_index][col_index]) {
@@ -286,7 +290,7 @@ function clearGrid() {
 
 // Random change bits during confusation
 function randomlyToggleBits() {
-  Parity.grid.children().each(function( row_index, row ) {
+  Parity.grid.children(':not(.circler)').each(function( row_index, row ) {
     $(row).children().each(function( col_index, col ) {
       if (Math.random() >= 0.5) {
         if ($(col).hasClass("black")) {
@@ -321,6 +325,21 @@ function setupGrid(){
     $('#interactive-parity-grid-size').val(6);
   } else {
     Parity.grid.empty();
+
+    // Add circlers
+    let rowCircler = document.createElement('div');
+    rowCircler.id = 'interactive-parity-grid-row-circler';
+    rowCircler.classList.add('circler');
+    Parity.grid.append(rowCircler);
+    Parity.rowCircler = rowCircler;
+    Parity.rowCirclerIndex = -1;
+    let columnCircler = document.createElement('div');
+    columnCircler.id = 'interactive-parity-grid-column-circler';
+    columnCircler.classList.add('circler');
+    Parity.grid.append(columnCircler);
+    Parity.columnCircler = columnCircler;
+    Parity.columnCirclerIndex = -1;
+
     Parity.x_labels.innerHTML = '';
     Parity.y_labels.innerHTML = '';
     for(row = 0; row < Parity.grid_size; row++) {
@@ -345,15 +364,27 @@ function setupGrid(){
 
 // Create grid reference labels
 function setupGridLabels(){
-    for(let col = 0; col < Parity.grid_size; col++) {
+    for (let i = 0; i < Parity.grid_size; i++) {
         var xLabel = document.createElement('div');
-        var xLabelText = String.fromCharCode(65 + col);
-        xLabel.appendChild(document.createTextNode(xLabelText));
+        xLabel.addEventListener('click', function () {
+            updateCircler('y', i);
+        });
+        let xLabelTextElement = document.createElement('div');
+        xLabelTextElement.classList.add('interactive-parity-grid-labels-text')
+        let xLabelText = String.fromCharCode(65 + i);
+        xLabelTextElement.appendChild(document.createTextNode(xLabelText));
+        xLabel.appendChild(xLabelTextElement);
         Parity.x_labels.appendChild(xLabel);
 
         var yLabel = document.createElement('div');
-        var yLabelText = String(col + 1);
-        yLabel.appendChild(document.createTextNode(yLabelText));
+        yLabel.addEventListener('click', function () {
+            updateCircler('x', i);
+        });
+        let yLabelTextElement = document.createElement('div');
+        yLabelTextElement.classList.add('interactive-parity-grid-labels-text')
+        let yLabelText = String(i + 1);
+        yLabelTextElement.appendChild(document.createTextNode(yLabelText));
+        yLabel.appendChild(yLabelTextElement);
         Parity.y_labels.appendChild(yLabel);
     }
 };
@@ -419,9 +450,43 @@ function setParityBits() {
 
 
 function showGridReferences(show) {
-    var visibility = show ? "visible" : "hidden";
     var gridReferenceContainers = document.getElementsByClassName("interactive-parity-grid-labels");
     for (var i = 0; i < gridReferenceContainers.length; i++) {
-        gridReferenceContainers[i].style.visibility = visibility;
+        gridReferenceContainers[i].classList.toggle(`text-visible`, show);
     }
 };
+
+function updateCircler(axis, index) {
+    var circler, top, left, bottom, right;
+    var gridUnitPercentage = 100 / Parity.grid_size;
+    if (axis == 'x') {
+        circler = Parity.rowCircler;
+        if (index != Parity.rowCirclerIndex && index != -1) {
+            left = -1;
+            right = -1;
+            top = gridUnitPercentage * index;
+            bottom = gridUnitPercentage * (Parity.grid_size - index - 1);
+            Parity.rowCirclerIndex = index;
+        } else {
+            Parity.rowCirclerIndex = -1;
+        }
+    } else {
+        circler = Parity.columnCircler;
+        if (index != Parity.columnCirclerIndex && index != -1) {
+            left = gridUnitPercentage * index;
+            right = gridUnitPercentage * (Parity.grid_size - index - 1);
+            top = -1;
+            bottom = -1;
+            Parity.columnCirclerIndex = index;
+        } else {
+            Parity.columnCirclerIndex = -1;
+        }
+    }
+    // Check a property has been set
+    if (top || left) {
+        circler.style.inset = `${top}% ${right}% ${bottom}% ${left}%`;
+        circler.style.visibility = 'visible';
+    } else {
+        circler.removeAttribute('style');
+    }
+}
