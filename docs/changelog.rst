@@ -26,6 +26,7 @@ We have listed major changes for each release below.
 **Changelog:**
 
 - Add ability to hide mode headings and initial text in Parity interactive.
+- Add ability to circle a row and column in Parity interactive by clicking on a grid reference label (or where they would be if they're hidden).
 - Fix bug where edges of barcode where visible in the Product Code Check Digit Calculation interactive when embedded.  `#1965 <https://github.com/uccser/cs-field-guide/issues/1965>`__
 - Modify Docker deployment workflow to be in line with UCCSER repositories.  `#1971 <https://github.com/uccser/cs-field-guide/issues/1971>`__
 
