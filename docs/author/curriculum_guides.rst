@@ -1,7 +1,7 @@
 Curriculum Guides
 ##############################################################################
 
-The curriculum guides application (see :ref:`what-is-an-application`) contains teacher guides for incorporating Field Guide material into lessons for particular curricula.
+The curriculum guides application contains teacher guides for incorporating Field Guide material into lessons for particular curricula.
 The infrastructure is near-identical to that of the :doc:`./chapters` application, so this page will mostly cover what is different.
 
 .. contents:: Contents
