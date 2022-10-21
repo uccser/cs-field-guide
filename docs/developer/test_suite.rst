@@ -8,47 +8,13 @@ Test Suite
 Running the Test Suite
 ==============================================================================
 
-``./csfg test_suite`` will run the entire test suite.
-For running specific tests, viewing code coverage, and more testing commands, see :doc:`../getting_started/helper_commands`.
+``./dev test_suite`` will run the entire test suite.
 
+``./dev test_specific <module>`` will run a specific module of tests, for example, ``./dev test_specific tests.appendices.views`` will run all the views test for appendices.
 
-Structure
-==============================================================================
+All tests are in the ``csfieldguide/tests/`` directory, which mirrors the structure of the ``csfieldguide/`` directory with directories matching the installed Django applications.
 
-All tests are in the ``tests/`` directory, which in the ``csfieldguide/`` directory (at the same level as the apps).
-It is structured as follows:
-
-.. code-block:: none
-
-  └── tests/
-      ├── appendices/
-      │   ├── urls/
-      │   └── views/
-      ├── chapters/
-      │   ├── loaders/
-      │   ├── management/
-      │   ├── models/
-      │   ├── urls/
-      │   ├── views/
-      │   └── ChaptersTestDataGenerator.py
-      ├── general/
-      │   ├── management/
-      │   ├── urls/
-      │   └── views/
-      ├── interactives/
-      │   ├── loaders/
-      │   │   └── assets/
-      │   ├── management/
-      │   ├── models/
-      │   ├── urls/
-      │   ├── utils/
-      │   ├── views/
-      │   └── InteractivesTestDataGenerator.py
-      ├── utils
-      │   └── errors/
-      └── BaseTestWithDB.py
-
-Note that each app being tested has it's own folder, and this is then broken down further into the component being tested (i.e. views, urls, models, etc).
+Note that each application being tested has it's own folder, and this is then broken down further into the component being tested (i.e. views, urls, models, etc).
 
 Items of interest from this diagram:
 
@@ -72,13 +38,12 @@ Items of interest from this diagram:
 Adding Tests
 ==============================================================================
 
-When writing a new test function, it is important that the method name is as descriptive as possible. 
+When writing a new test function, it is important that the method name is as descriptive as possible.
 The method name should also be prefixed with ``test_`` as the test suite will only execute methods with this prefix.
 
 .. note::
 
   We use `Codecov`_ to check the coverage of our tests.
-  Every Pull Request should cover 100% of the difference (therefore increasing coverage), Travis will fail if this is not the case.
-
+  Ideally each pull request should cover 100% of the changes (therefore increasing the total project coverage).
 
 .. _Codecov: https://codecov.io/

@@ -1,7 +1,7 @@
 Writing Guide
 ##############################################################################
 
-The CS Field Guide is developed in English and then translated into other languages.
+The Computer Science Field Guide is developed in English and then translated into other languages.
 You can find more information about this on the :ref:`translations` page.
 
 The majority of our text content is written in Markdown, and we also developed
@@ -217,7 +217,7 @@ The general syntax for links is ``[link text](link url)`` where ``link text`` is
 Internal links
 ------------------------------------------------------------------------------
 
-These are links to pages within the CS Field Guide website.
+These are links to pages within the Computer Science Field Guide website.
 These links will not work when viewed in a Markdown renderer, however these will function properly when converted to HTML and viewed on the website.
 
 Link to Page Within Website (relative link - Verto feature)
@@ -283,7 +283,7 @@ Some examples:
 Link to a Page Outside of Website (external link)
 ------------------------------------------------------------------------------
 
-These are links to websites that are not a part of the CS Field Guide project.
+These are links to websites that are not a part of the Computer Science Field Guide project.
 The URL should include the ``https://`` or ``http://`` as required.
 
 .. code-block:: none

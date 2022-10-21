@@ -1,7 +1,7 @@
 Chapters Application
 ##############################################################################
 
-The chapters application is the main focus of the CS Field Guide website, as it contains the majority of educational material for the project.
+The chapters application is the main focus of the Computer Science Field Guide website, as it contains the majority of educational material for the project.
 
 .. note::
 

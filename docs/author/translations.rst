@@ -6,21 +6,16 @@ Translations
 Getting Started
 ==============================================================================
 
-It's really easy to start contributing translations using the CS Field Guide
+It's really easy to start contributing translations using the Computer Science Field Guide
 
 1. Read this documentation page, especially the `Translation Notes`_ section.
 2. Create an account on `Crowdin <https://crowdin.com/join>`__.
-3. Visit the `CS Field Guide Crowdin page <https://crowdin.com/project/cs-field-guide>`__.
+3. Visit the `Computer Science Field Guide Crowdin page <https://crowdin.com/project/cs-field-guide>`__.
 4. Start translating!
-
-.. note::
-
-  The in-context translation has been removed temporarily as translation infrastructure is being updated.
-  We aim to `re-add this feature in a future update <https://github.com/uccser/arnold/issues/4>`__.
 
 Crowdin Overview
 ==============================================================================
-We use a localisation management platform called `Crowdin <https://crowdin.com/project/cs-field-guide>`__ for translation of the CS Field Guide.
+We use a localisation management platform called `Crowdin <https://crowdin.com/project/cs-field-guide>`__ for translation of the Computer Science Field Guide.
 Our project is public, meaning that anyone can create an account and contribute translations.
 
 Crowdin has excellent documentation for translators, and all translators should read the following documents:
@@ -30,7 +25,7 @@ Crowdin has excellent documentation for translators, and all translators should 
 
 Translation Phases
 ==============================================================================
-There are 3 translation phases used to ensure high quality translation of CS Field Guide content:
+There are 3 translation phases used to ensure high quality translation of Computer Science Field Guide content:
 
 1. Translation
 2. Proofread
@@ -45,7 +40,7 @@ To request to become a proofreader, please `contact <https://support.crowdin.com
   While not enforced by Crowdin, proofreaders should not approve their own translations.
   Instead, they should be reviewed by a different proofreader.
 
-Finally, a technical review will be performed by a member of the CS Field Guide technical team.
+Finally, a technical review will be performed by a member of the Computer Science Field Guide technical team.
 In this review, technical components such as Verto tags and document structure will be checked.
 
 Translation notes
@@ -53,7 +48,7 @@ Translation notes
 
 .. note::
 
-  On Crowdin, Markdown files are translated on a per-sentence basis. 
+  On Crowdin, Markdown files are translated on a per-sentence basis.
   There may be some cases where this is not desirable, and some paragraph level restructuring is required to convey a concept in a given language.
 
   In these cases, it could be possible to work around this with tricks such as

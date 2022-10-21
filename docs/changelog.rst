@@ -972,7 +972,7 @@ A configuration tool for the sorting boxes interactive has been added, allowing 
 
 **Changelog:**
 
-- Rebuild the CS Field Guide website to use an open source Django system based off CS Unplugged (`see the GitHub milestone <https://github.com/uccser/cs-field-guide/milestone/17>`__). Major features include:
+- Rebuild the Computer Science Field Guide website to use an open source Django system based off CS Unplugged (`see the GitHub milestone <https://github.com/uccser/cs-field-guide/milestone/17>`__). Major features include:
 
   - Greatly improved translation features.
   - Allowing student and teacher pages to use the same URLs (switch between modes available in page footer).

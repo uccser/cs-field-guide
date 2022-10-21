@@ -29,7 +29,7 @@ The following image shows the relationships between models across all applicatio
 .. image:: ../_static/img/database_overview_diagram.png
   :alt: A diagram detailing the general structure of the database
 
-The rest of the :doc:`index` will inform you of how to develop the applications and other components of the CS Field Guide project.
+The rest of the :doc:`index` will inform you of how to develop the applications and other components of the Computer Science Field Guide project.
 
 Loaders
 ==============================================================================
