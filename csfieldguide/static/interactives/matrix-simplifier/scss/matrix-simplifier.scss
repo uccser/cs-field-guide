@@ -81,19 +81,13 @@
   }
 }
 
-#output-container {
-  > div {
-    > span {
-      display: inline !important;
-    }
-  }
-}
+#output-container > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-
-#matrix-output,
-#vector-output {
-  > span {
-    display: inline !important;
+  .MathJax_Display {
+    width: min-content;
   }
 }
 
