@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 651.20851 414.65549"
+   version="1.1"
+   id="svg34"
+   sodipodi:docname="csfg-icon-with-text-white.svg"
+   inkscape:version="1.2 (dc2aedaf03, 2022-05-15)"
+   width="651.2085"
+   height="414.65549"
+   inkscape:export-filename="csfg-icon-with-text-white.png"
+   inkscape:export-xdpi="300"
+   inkscape:export-ydpi="300"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <sodipodi:namedview
+     id="namedview36"
+     pagecolor="#505050"
+     bordercolor="#ffffff"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="true"
+     inkscape:deskcolor="#505050"
+     showgrid="false"
+     showborder="true"
+     inkscape:zoom="0.87818617"
+     inkscape:cx="354.13903"
+     inkscape:cy="278.41477"
+     inkscape:window-width="1278"
+     inkscape:window-height="1378"
+     inkscape:window-x="1273"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg34" />
+  <defs
+     id="defs4">
+    <style
+       id="style2">.cls-1{fill:#2a3da0;stroke:none;}</style>
+  </defs>
+  <title
+     id="title6">CSFG icon with title - white</title>
+  <g
+     id="Layer_2"
+     data-name="Layer 2"
+     transform="translate(153.37337,0.01893327)"
+     style="fill:#ffffff;fill-opacity:1">
+    <g
+       id="Content"
+       style="fill:#ffffff;fill-opacity:1">
+      <g
+         id="Icon"
+         style="fill:#ffffff;fill-opacity:1">
+        <path
+           class="cls-1"
+           d="M 344.27,36.23 C 342.91,17.75 332,0.61 311.06,0 c -24.61,-0.7 -42.4,18.1 -50.24,41.49 -6.57,19.62 -3.38,43.31 14.28,56 16.7,12 36.94,5.74 50.34,-7.9 13.71,-13.91 20.26,-33.97 18.83,-53.36 z M 310,86.07 c -16.72,11.57 -35.54,-0.66 -39.91,-19.23 -5.3,-22.76 17.99,-66.66 48.32,-53.35 8.8,3.86 12.08,14.58 12.85,23.33 1.59,18.1 -6.03,38.74 -21.26,49.25 z"
+           id="path8"
+           style="fill:#ffffff;fill-opacity:1" />
+        <path
+           id="path3272"
+           class="cls-1"
+           d="m 298.33,105.7 c 1.12,10.1 -0.6,20.62 -1.08,30.73 -0.48,10.11 -0.89,20.2 -0.9,30.31 0,19.89 0.95,39.87 0.35,59.75 -0.11,4 0,6.89 -4.64,7.62 -5.47,0.84 -6.17,-2 -6.68,-6.34 -1.12,-9.67 -1.17,-19.37 -1.23,-29.08 -0.13,-21 -0.28,-42.1 1.42,-63.08 0.87,-10.69 1.94,-21.37 4.65,-31.81 0.58,-2.22 1,-6.48 4.68,-5.92 3.34,0.51 3.6,5.59 3.43,7.82 z"
+           style="fill:#ffffff;fill-opacity:1" />
+        <path
+           class="cls-1"
+           d="m 331.12,155.79 c -1.22,-8.23 -13.22,-15.88 -19.08,-21 -4.63,-4 -9.34,-8.72 -14.64,-11.89 -7,-4.22 -7.94,4.43 -4.38,9.08 5.1,6.64 11.85,12.25 18,17.94 2.36,2.2 8.1,5.8 9.14,8.86 1.04,3.06 -2.38,11.82 -3,15 -1.07,5.18 -6.31,19.88 -0.95,23.66 6.75,4.74 8.59,-7.4 9.53,-11.43 1.05,-4.53 2,-9.08 3,-13.64 0.83,-4.78 3.11,-11.65 2.38,-16.58 z"
+           id="path11"
+           style="fill:#ffffff;fill-opacity:1" />
+        <path
+           class="cls-1"
+           d="m 288,121.49 c -8.34,8.42 -26.46,42.74 -26.48,42.78 -1,-0.89 -18.19,-15.74 -19.1,-16.38 -7.42,-5.15 -13.38,1.78 -8.53,6.19 3,2.69 24.36,21.49 26.56,23.56 2.44,2.29 6.45,0.7 8.2,-3.08 8.43,-18.25 21.53,-40.78 22.79,-43.54 0.22,-0.58 -3.26,-9.76 -3.44,-9.53 z"
+           id="path13"
+           style="fill:#ffffff;fill-opacity:1" />
+        <path
+           id="path3531"
+           class="cls-1"
+           d="m 140.14,142.12 c 2.28,0.33 -0.15,9.52 -1.46,15.93 -0.62,3 -1.54,12.28 -3.65,15 -0.93,1.19 -2,0.52 -2.11,-1 -0.28,-6.25 2.35,-15.25 3.51,-21.12 0.29,-1.56 1.79,-9.1 3.71,-8.81 z"
+           style="fill:#ffffff;fill-opacity:1" />
+        <path
+           id="path3533"
+           class="cls-1"
+           d="m 153.14,141.17 c 2.45,-0.19 1.37,14.9 1.1,22 -0.11,2.78 0,9.3 -1.9,9.29 -3.05,0 -1.59,-13.8 -1.5,-19.16 0.05,-2.52 0.01,-11.95 2.3,-12.13 z"
+           style="fill:#ffffff;fill-opacity:1" />
+        <path
+           id="path3535"
+           class="cls-1"
+           d="m 170.87,152.59 c 0.14,4 -0.26,18.62 -2.24,19 -2.38,0.43 -1.4,-10.46 -1.24,-15.67 0.08,-2.65 -1.11,-15.32 1.24,-15.76 2.09,-0.42 2.06,7.63 2.24,12.43 z"
+           style="fill:#ffffff;fill-opacity:1" />
+        <path
+           id="path3537"
+           class="cls-1"
+           d="m 186.69,153.28 c 0.32,1.91 2.31,18.58 0,18.68 -3.62,0.16 -3.29,-14.37 -3.62,-18.46 -0.2,-2.53 -2.63,-12.76 -0.39,-13.37 1.52,-0.4 3.01,6.46 4.01,13.15 z"
+           style="fill:#ffffff;fill-opacity:1" />
+        <path
+           id="path3539"
+           class="cls-1"
+           d="m 198.5,140.63 c 2.19,-0.08 6.13,31.19 3.4,31.33 -1.82,0.1 -3.14,-14.69 -3.71,-19.4 -0.32,-2.65 -1.52,-11.87 0.31,-11.93 z"
+           style="fill:#ffffff;fill-opacity:1" />
+        <path
+           id="path3545"
+           class="cls-1"
+           d="m 131.6,146.05 c 15.78,-1.16 31.88,-0.29 47.7,-0.43 6.35,-0.06 12.67,-0.06 19,0.16 2,0.07 9.67,0 9.94,2.07 0.27,2.07 -11.72,1.15 -14.83,1.15 -8.38,-0.06 -18.57,0 -24.85,0.05 -5.92,0 -19.05,0.28 -24.12,0.21 -2.83,0 -10.63,0.53 -13,-0.28 -1.44,-0.5 -2.44,-2.44 0.16,-2.93 z"
+           style="fill:#ffffff;fill-opacity:1" />
+        <path
+           id="path3547"
+           class="cls-1"
+           d="m 129,155.38 c 0.64,-1.46 31.46,-1 46.62,-1.43 7.18,-0.21 16.18,-0.18 21.54,-0.71 2.78,-0.27 11.12,-0.85 11.12,1 0,3.2 -27.79,3.2 -39.12,3.18 -6.32,0 -25.4,0.3 -33.83,0.17 -2.88,-0.06 -7.16,-0.43 -6.33,-2.21 z"
+           style="fill:#ffffff;fill-opacity:1" />
+        <path
+           id="path3549"
+           class="cls-1"
+           d="m 126.64,166.28 c 0,-2 33.73,-2.18 44.26,-2.64 7.32,-0.31 21.9,-0.82 25.44,-0.93 3.75,-0.11 14.31,-1.67 14.11,0.69 -0.28,3.18 -70.15,3.9 -73,4.27 -2.28,0.33 -10.79,0.82 -10.81,-1.39 z"
+           style="fill:#ffffff;fill-opacity:1" />
+        <path
+           class="cls-1"
+           d="m 228,36.52 c -4.5,-2.71 -41.5,-3.53 -54.56,-3 -16.36,0.71 -53,-0.09 -58.7,3.14 -6.29,3.56 -5.36,13.82 -5.62,20.38 C 108.48,73.22 107,89.81 108,106 c 1,14.84 7.77,12.73 20.85,12.65 6.46,-0.05 19.85,-0.72 28.52,-0.63 -0.78,2.54 -3.71,13.07 -3.94,15 -0.13,0 -14.27,0.28 -18.06,0.53 -2.17,0.14 -6.34,0.32 -8.15,1.81 -1.81,1.49 -2.56,5.36 -3.32,7.46 -3.42,9.45 -5.76,19.44 -8.12,29.2 -0.77,3.21 -5,11.08 11.6,10 15.83,-1 74.16,-0.13 84.13,-1 6.53,-0.57 9,-1.15 8.67,-7.5 -0.3,-5.53 -5.28,-32.23 -6.36,-38.1 -1,-5.23 -9,-4.13 -12.89,-4 -5,0.16 -13.22,0.25 -18.19,0.33 0,-0.15 -3.41,-14.81 -3.43,-14.9 10.5,-1.18 36.12,-1.63 41.25,-1.75 11.5,-0.25 9.95,-8 10.36,-13.75 0.96,-13.01 2.15,-61.78 -2.92,-64.83 z m -19.17,103.82 c 0.63,5.28 3.42,22 4.16,29.16 0.3,2.87 -0.71,3.8 -2.13,3.82 -9.49,0.12 -71.15,0.86 -85.51,1.32 a 1.61,1.61 0 0 1 -1.62,-2 c 2,-7.64 4.16,-15.34 5.45,-23.11 0.22,-1.29 0.76,-6.46 1.74,-7.45 0.98,-0.99 4.14,-1 5.05,-1 5,-0.35 10,-0.67 15,-0.9 11,-0.5 21.91,-0.73 32.86,-0.84 4.42,0 18.23,-0.46 23.06,-0.61 a 1.85,1.85 0 0 1 1.94,1.61 z m -32.34,-8.47 c -5.54,0.16 -11.88,0.12 -17.41,0.5 0.54,-2.68 2.89,-11.46 3.45,-14.73 4,-0.27 7.74,-0.5 11.92,-0.5 0,0.14 1.61,12.25 2.04,14.73 z m 44,-35.69 c 0.2,7.83 0.8,9.69 -9.63,9.81 -14.56,0.17 -58.63,2 -73.17,2.8 -3,0.17 -13.92,0.63 -17.73,-1.68 -4,-2.46 -2.94,-42.24 -0.55,-56.17 0.47,-2.74 3.86,-5.27 6.55,-5.51 17.49,-1.63 73.88,-2.7 89.51,-0.55 3.56,0.49 4.42,2 4.55,4.69 0.62,11.68 0.5,45.95 0.52,46.61 z"
+           id="path23"
+           style="fill:#ffffff;fill-opacity:1" />
+        <path
+           class="cls-1"
+           d="M 91.62,59.11 C 89.8,38.82 80.5,15.33 61.34,5.48 52.55,1 42,0.94 32.68,4.12 A 40.58,40.58 0 0 0 11,20.92 C -0.18,39.79 -4.08,66.16 5.17,86.57 a 45.68,45.68 0 0 0 51,25.55 C 81.56,106.66 92.34,83 91.62,59.11 Z M 74.34,85.24 C 62.47,102.87 36.53,107.05 21.16,90.8 6.67,75.49 9.67,49.24 16.35,31.14 c 1.6,-4.33 9.44,-16.34 17.82,-18.3 10,-2.36 20.27,1.33 27.95,8.3 16.12,14.63 23.35,44.75 12.22,64.1 z"
+           id="path25"
+           style="fill:#ffffff;fill-opacity:1" />
+        <path
+           id="path3268"
+           class="cls-1"
+           d="m 54.77,111.23 a 93.64,93.64 0 0 1 1.93,14.56 c 0.46,7 0.81,33.88 1,40.25 0.13,4.23 4.25,48.33 5.64,63.06 a 5.36,5.36 0 0 1 -4.24,5.74 v 0 a 5.36,5.36 0 0 1 -6.44,-4.79 c -1.37,-16 -5,-58.83 -5.09,-63.32 -0.16,-6.37 -0.35,-49.41 0,-54 -0.7,-8.06 6.48,-9.62 7.18,-1.56 z"
+           style="fill:#ffffff;fill-opacity:1" />
+        <path
+           class="cls-1"
+           d="m 114,133.45 c -5.24,-4.11 -19.17,17 -28.81,29.82 -4.56,-7.69 -10.08,-14.71 -15.43,-21.86 -3,-4 -7.92,-13.16 -12.56,-15.48 -16.54,-8.28 6,23.82 8.66,27.54 7.46,10.29 15.81,34.31 28,16.34 4.58,-6.78 9,-13.37 13.85,-20 5.51,-7.62 11.13,-12.59 6.29,-16.36 z"
+           id="path28"
+           style="fill:#ffffff;fill-opacity:1" />
+        <path
+           id="path4588"
+           class="cls-1"
+           d="m 30.33,152.62 c -1.48,5.09 -1.71,34.59 -1.57,40.72 0.06,3.12 -0.47,6.56 3.13,7.78 3.15,1.06 5.42,-3.47 6,-6.46 1.23,-6 0.24,-11.31 0.33,-17.16 0.1,-6 -0.5,-12.78 0.62,-18.71 1.12,-5.93 5.09,-10 8.72,-14.59 2.76,-3.51 11.36,-13.59 9.16,-18.14 -1,-2.13 -5.56,-3 -7.53,-1.33 0.04,0 -17.19,22.27 -18.86,27.89 z"
+           style="fill:#ffffff;fill-opacity:1" />
+      </g>
+    </g>
+  </g>
+  <metadata
+     id="metadata265">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:title>CSFG icon with title - white</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <text
+     xml:space="preserve"
+     style="font-size:972.583px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';fill:#ffffff;fill-opacity:1;stroke-width:2.02182;stroke-linejoin:round"
+     x="-4.6991577"
+     y="313.34564"
+     id="text368"><tspan
+       sodipodi:role="line"
+       x="-4.6991577"
+       y="313.34564"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:80.8729px;font-family:Roboto;-inkscape-font-specification:'Roboto, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;stroke-width:2.02182"
+       id="tspan420">Computer Science</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:972.583px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';fill:#ffffff;fill-opacity:1;stroke-width:2.02182;stroke-linejoin:round"
+     x="123.63915"
+     y="413.86572"
+     id="text368-3"><tspan
+       sodipodi:role="line"
+       x="123.63915"
+       y="413.86572"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:80.8729px;font-family:Roboto;-inkscape-font-specification:'Roboto, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;stroke-width:2.02182"
+       id="tspan420-6">Field Guide</tspan></text>
+</svg>

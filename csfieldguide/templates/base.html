@@ -32,7 +32,8 @@
     <script type="text/javascript" src="{% statici18n LANGUAGE_CODE %}"></script>
     {% block css %}
     {% endblock css %}
-    <link rel="shortcut icon" href="{% static 'img/guide-favicon.png' %}">
+    <link rel="icon" href="{% static 'img/guide-favicon.png' %}" media="(prefers-color-scheme: light)" />
+    <link rel="icon" href="{% static 'img/guide-favicon-white.png' %}" media="(prefers-color-scheme: dark)" />
   </head>
   <body style="text-align: {{LANGUAGE_START}};">
     {% block body %}
