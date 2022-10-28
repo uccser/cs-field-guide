@@ -21,7 +21,7 @@ python-markdown-math==0.6
 
 # XML Parsing
 lxml==4.9.1
-cssselect==1.1.0
+cssselect==1.2.0
 
 # YAML Loading
 PyYAML==5.4.1
