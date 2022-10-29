@@ -71,6 +71,8 @@ services:
                     - node.labels.role==apps
             restart_policy:
                 condition: none
+        healthcheck:
+            disable: true
         networks:
             - backend
 
