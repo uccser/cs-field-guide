@@ -18,6 +18,33 @@ All notable changes to this project will be documented in this file.
 We have listed major changes for each release below.
 `All downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/>`__
 
+3.12.3
+==============================================================================
+
+**Release date:** 29th October 2022
+
+**Changelog:**
+
+- Add abiltiy to hide pixel colour codes in pixel-viewer interactive via URL parameter.
+- Fix bug where imported package CSS files were not imported.
+- Fix bug where pixel-viewer interactive isn't sized correctly when embedded via iframe.
+- Replaced deprecation method in matrix-simplifier interactive.
+- Update analytics to Plausible.
+- Rewrite documentation to project specific content, and linking to general UCCSER documentation where required.
+- Display white favicon when browser dark theme is used.  `#1957 <https://github.com/uccser/cs-field-guide/issues/1957>`__
+- Add project logo variants with text.
+- Core dependency changes:
+
+    - Update autoprefixer from 10.4.12 to 10.4.13.
+    - Update crowdin/github-action from 1.4.15 to 1.4.16.
+    - Update cssselect from 1.1.0 to 1.2.0.
+    - Update django from 3.2.15 to 3.2.16.
+    - Update psycopg2 from 2.9.4 to 2.9.5.
+
+- Interactive scene-editor dependency changes:
+
+    - Update three from 0.145.0 to 0.146.0.
+
 3.12.2
 ==============================================================================
 
