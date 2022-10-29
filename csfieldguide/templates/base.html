@@ -34,9 +34,9 @@
     {% endblock css %}
     <link rel="icon" href="{% static 'img/guide-favicon.png' %}" media="(prefers-color-scheme: light)" />
     <link rel="icon" href="{% static 'img/guide-favicon-white.png' %}" media="(prefers-color-scheme: dark)" />
-    {% if DEPLOYED %}
+    {% if PRODUCTION_ENVIRONMENT %}
         <!-- Analytics -->
-        <script defer data-domain="cs-field-guide-dev.csse.canterbury.ac.nz" src="https://uccser-analytics-dev.csse.canterbury.ac.nz/js/plausible.js"></script>
+        <script defer data-domain="csfieldguide.org.nz" src="https://plausible.io/js/plausible.js"></script>
     {% endif %}
   </head>
   <body style="text-align: {{LANGUAGE_START}};">
