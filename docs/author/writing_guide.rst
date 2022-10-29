@@ -262,9 +262,9 @@ Examples:
   Check out [interface usability]('chapters:chapter-section' 'human-computer-interaction' 'interface-usability').
   [Regular Expression Searcher]('interactives:interactive' 'regular-expression-search')
 
-Keys are defined in configuration files.
+Slugs are defined in configuration files.
 
-Some pages will not require keys, such as appendix pages or the homepage.
+Some pages will not require slugs, such as appendix pages or the homepage.
 
 .. code-block:: none
 
