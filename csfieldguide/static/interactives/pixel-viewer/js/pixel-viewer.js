@@ -1,8 +1,9 @@
 // Settings and intialize layout
 this.MAX_HEIGHT = 133;
 this.CELL_SIZE = 50;
-
 this.MAX_NOISE = 15;
+
+var searchParameters = new URL(window.location.href).searchParams;
 
 this.container = document.getElementById("pixel-viewer-interactive-container");
 this.content = document.getElementById("pixel-viewer-interactive-content");
@@ -15,8 +16,8 @@ this.contentHeight = 6650;
 this.cell_line_height = 15;
 this.cell_text = 'R \nG \nB ';
 this.text_opacity = 0;
-
 this.mode = 'datarep';
+var showColourCode = true;
 this.picturePicker = false;
 
 this.filter = null;
@@ -73,15 +74,15 @@ var colour_code_rep = 'rgb';
 $( document ).ready(function() {
   init_cache(300, MAX_HEIGHT);
 
-  if (getUrlParameter('image')){
-    image_filename = getUrlParameter('image');
+  if (searchParameters.has('image')){
+    image_filename = searchParameters.get('image');
   }
 
   var image_filepath = image_base_path + image_filename;
   $('#pixel-viewer-interactive-original-image').attr('crossorigin', 'anonymous').attr('src', image_filepath);
   load_resize_image(image_filepath, false);
 
-  switch(getUrlParameter('mode')) {
+  switch (searchParameters.get('mode')) {
     case 'threshold':
       mode = 'threshold'; break;
     case 'thresholdgreyscale':
@@ -94,24 +95,28 @@ $( document ).ready(function() {
       mode = 'brightness'; break;
   }
 
-  if (getUrlParameter('picturepicker')){
+  if (searchParameters.has('picturepicker')){
     // Whether or not to allow student to pick from set pictures
     picturePicker = true;
   }
 
-  if (getUrlParameter('hide-menu')) {
+  if (searchParameters.has('hide-menu')) {
     $('#pixel-viewer-interactive-menu-toggle').remove();
   }
 
-  if (getUrlParameter('pixelmania')){
+  if (searchParameters.has('hide-colour-codes')) {
+    showColourCode = false;
+  }
+
+  if (searchParameters.has('pixelmania')){
     $('#pixelmania-logo').removeClass('d-none');
   }
 
-  if (getUrlParameter('hide-colour-code-picker')) {
+  if (searchParameters.has('hide-colour-code-picker')) {
     $("#colour-code-radio").addClass('d-none').removeClass('d-flex');
   }
 
-  if (getUrlParameter('hide-config-selector')) {
+  if (searchParameters.has('hide-config-selector')) {
     $("#configSelector").addClass('d-none');
   }
 
@@ -120,7 +125,7 @@ $( document ).ready(function() {
    createPicturePicker();
   }
 
-  colour_code_rep = getUrlParameter('colour-code');
+  colour_code_rep = searchParameters.get('colour-code');
   if (colour_code_rep == 'rgb-hex') {
     $("input[id='rgb-hex-colour-code']").prop('checked', true);
   } else if (colour_code_rep == 'hex') {
@@ -149,7 +154,7 @@ $( document ).ready(function() {
     scroller_position_left = image_position_left;
     reflow();
 
-  if (getUrlParameter('no-pixel-fill')){
+  if (searchParameters.has('no-pixel-fill')){
     $('#pixel-viewer-interactive-show-pixel-fill').prop('checked', false);
     $("#pixel-viewer-interactive-loader").hide();
     $("#pixel-viewer-interactive-buttons").css({opacity: 1});
@@ -1066,7 +1071,7 @@ var paint = function(row, col, left, top, width, height, zoom) {
   }
 
   // If text opacity is greater than 0, then display RGB values
-if (text_opacity > 0) {
+  if (showColourCode && text_opacity > 0) {
     if (!show_pixel_fill) {
       context.fillStyle = "rgba(0, 0, 0, " + text_opacity + ")";
     } else if ((((pixelData[0] / 255) + (pixelData[1] / 255) + (pixelData[2] / 255)) / 3) < 0.85) {
@@ -1126,7 +1131,7 @@ var reflow = function() {
 };
 
 // Set zoom to see numbers if no colour fill
-if (getUrlParameter('no-pixel-fill')) {
+if (searchParameters.has('no-pixel-fill')) {
   this.scroller.zoomTo(1.5);
 }
 
@@ -1239,19 +1244,3 @@ function sum(array){
     return prev + curr;
   });
 }
-
-// From jquerybyexample.net/2012/06/get-url-parameters-using-jquery.html
-function getUrlParameter(sParam) {
-  var sPageURL = decodeURIComponent(window.location.search.substring(1)),
-      sURLVariables = sPageURL.split('&'),
-      sParameterName,
-      i;
-
-  for (i = 0; i < sURLVariables.length; i++) {
-    sParameterName = sURLVariables[i].split('=');
-
-    if (sParameterName[0] === sParam) {
-      return sParameterName[1] === undefined ? true : sParameterName[1];
-    }
-  }
-};

@@ -1,13 +1,13 @@
 Developer Philosophy
 ##############################################################################
 
-We follow the following philosophy for developing the CS Field Guide project:
+We follow the following philosophy for developing the Computer Science Field Guide project:
 
-  We aim to create software that enables authors to easily create, modify, and share education material for the CS Field Guide project.
+  We aim to create software that enables authors to easily create, modify, and share education material for the Computer Science Field Guide project.
 
 In short: *Think of the author*.
 
-This page explains design decisions we made throughout developing the CS Field Guide system.
+This page explains design decisions we made throughout developing the Computer Science Field Guide system.
 
 Configuration Files
 ==============================================================================

@@ -1,7 +1,7 @@
 Chapters
 ##############################################################################
 
-The chapters application (see :ref:`what-is-an-application`) is the main focus of the CS Field Guide website, as it contains the majority of educational material for the project.
+The chapters application is the main focus of the Computer Science Field Guide website, as it contains the majority of educational material for the project.
 
 .. contents:: Contents
   :local:
@@ -19,7 +19,7 @@ Chapters Content Directory
 
 The ``content`` directory for the chapters application contains
 
-- a directory for each language in which content exists, named using the Django locale code. 
+- a directory for each language in which content exists, named using the Django locale code.
   This directory contains content Markdown files.
 
 - a special ``structure`` directory which contains all configuration YAML files
@@ -29,7 +29,7 @@ The ``content`` directory for the chapters application contains
 Content Files
 ==============================================================================
 
-There are 2 different types of files used for adding content to the CS Field Guide:
+There are 2 different types of files used for adding content to the Computer Science Field Guide:
 
 - Content Markdown files
 - YAML configuration files
@@ -61,9 +61,9 @@ In the following sections, each configuration file is explained in more detail.
 
 .. note::
 
-  - Some of the keys (:ref:`what-is-a-key`) have angle brackets around them, ``<like so>``. 
+  - Some of the slugs have angle brackets around them, ``<like so>``.
     This means that they are variables and you can call them whatever you like in your configuration file (without the angle brackets).
-    Key names should be consistent, i.e every instance of <chapter-key> should be replaced with the exact same key.
+    Key names should be consistent, i.e every instance of <chapter-slug> should be replaced with the exact same slug.
 
 .. _application-structure-file:
 
@@ -78,11 +78,11 @@ Application Structure Configuration File
 
 - **Required Fields:**
 
-  - ``chapters:`` A dictionary of chapters, where each key is a chapter.
+  - ``chapters:`` A dictionary of chapters, where each slug is a chapter.
 
     - **Required Fields:**
 
-      - ``<chapter-key>:`` The key for a chapter.
+      - ``<chapter-slug>:`` The slug for a chapter.
 
         - **Required Fields:**
 
@@ -107,9 +107,9 @@ A complete chapter application structure file with multiple chapters may look li
 Chapter Configuration File
 ------------------------------------------------------------------------------
 
-- **File Name:** ``<chapter-key>.yaml``
+- **File Name:** ``<chapter-slug>.yaml``
 
-- **Location:** ``chapters/content/structure/<chapter-key>/``
+- **Location:** ``chapters/content/structure/<chapter-slug>/``
 
 - **Referenced in:** ``chapters/content/structure/structure.yaml``
 
@@ -138,15 +138,15 @@ Chapter Sections Configuration File
 
 - **File Name:** ``sections.yaml``
 
-- **Location:** ``chapters/content/structure/<chapter-key>/sections/``
+- **Location:** ``chapters/content/structure/<chapter-slug>/sections/``
 
-- **Referenced in:** ``chapters/content/structure/<chapter-key>/<chapter-key>.yaml``
+- **Referenced in:** ``chapters/content/structure/<chapter-slug>/<chapter-slug>.yaml``
 
 - **Purpose:** Specifiy sections for a chapter and their relative order.
 
 - **Required Fields:**
 
-  - ``<section-key>:`` Key for the section.
+  - ``<section-slug>:`` Key for the section.
 
     - **Required Fields:**
 

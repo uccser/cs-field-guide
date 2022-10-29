@@ -1,7 +1,7 @@
 Website Design (HTML templates/CSS)
 ##############################################################################
 
-This page covers the HTML templates and CSS styling used for the CS Field Guide website.
+This page covers the HTML templates and CSS styling used for the Computer Science Field Guide website.
 
 In summary:
 

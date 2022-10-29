@@ -1,27 +1,32 @@
-Welcome to the CS Field Guide
+Computer Science Field Guide Documentation
 ##############################################################################
 
-Welcome to the documentation for the CS Field Guide project.
+Welcome to the documentation for the Computer Science Field Guide project.
+This project's documentation expands on the `general UCCSER documentation <https://uccser.github.io/>`_, which contains our contributing guide, installation guides, technical stack explanations, style guides, and much more.
+
+This documentation contains information specific to the Computer Science Field Guide project.
+
+
+
 The documentation is split into the following sections:
 
 ------------------------------------------------------------------------------
 
-:doc:`Getting Started Documentation <getting_started/index>`
+`Getting Started Documentation <https://uccser.github.io/>`_
 ==============================================================================
 
 This documentation contains:
 
 - Our expectations of your contributions to the project
-- Steps to install the project on your system
+- Steps to install the project on your system for local development
 - Explainations on how the project is setup
-- Details on basic commands to use the system
 
 ------------------------------------------------------------------------------
 
 :doc:`Author Documentation <author/index>`
 ==============================================================================
 
-This documentation is for those who want to help write content for the CS Field Guide project, specifically text content.
+This documentation is for those who want to help write content for the Computer Science Field Guide project, specifically text content.
 This is the documentation to read if you want to do any of the following (or similar):
 
 - Add a new chapter or chapter section
@@ -32,7 +37,7 @@ This is the documentation to read if you want to do any of the following (or sim
 :doc:`Developer Documentation <developer/index>`
 ==============================================================================
 
-This documentation is for those who want to contribute to developing the Django system for delivering the CS Field Guide content.
+This documentation is for those who want to contribute to developing the Django system for delivering the Computer Science Field Guide content.
 This is the documentation to read if you want to do any of the following (or similar):
 
 - Edit HTML templates used to render webpages
@@ -48,9 +53,8 @@ This is the documentation to read if you want to do any of the following (or sim
     :maxdepth: 4
     :caption: Table of Contents
 
-    getting_started/index
+    Getting Started Documentation <https://uccser.github.io/>
     author/index
     developer/index
-    other/index
     troubleshooting
     changelog

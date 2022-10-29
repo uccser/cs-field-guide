@@ -1,7 +1,7 @@
 Author Documentation
 ##############################################################################
 
-The following pages are for those wanting to write or edit CS Field Guide content.
+The following pages are for those wanting to write or edit Computer Science Field Guide content.
 
 .. toctree::
     :maxdepth: 1

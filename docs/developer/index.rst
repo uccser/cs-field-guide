@@ -1,7 +1,7 @@
 Developer Documentation
 ##############################################################################
 
-The following pages are for those wanting to develop the CS Field Guide system.
+The following pages are for those wanting to develop the Computer Science Field Guide system.
 
 .. toctree::
     :maxdepth: 1
@@ -16,7 +16,4 @@ The following pages are for those wanting to develop the CS Field Guide system.
     curriculum_guides
     interactives
     static_files
-    deployment
     test_suite
-    translation
-    translation_infrastructure

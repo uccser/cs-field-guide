@@ -1,5 +1,5 @@
 const dragula = require('dragula');
-const mathjs = require('mathjs');
+const mathjs_import = require('mathjs');
 const sprintf = require('sprintf-js').sprintf;
 const vsprintf = require('sprintf-js').vsprintf;
 
@@ -18,7 +18,7 @@ const MATRIX_CHILD_INDEX = 3; // Index for which child of the draggable element/
  * Below is adapted from https://mathjs.org/examples/browser/angle_configuration.html.html
  * This is used to configure mathjs to accept degrees as input for trig functions.
  */
-
+const mathjs = mathjs_import.create(mathjs_import.all);
 let replacements = {};
 
 // the trigonometric functions that we are configuring to handle inputs of degrees instead of radians
@@ -90,7 +90,7 @@ var resultEqtn;
 
 // only show equations once they are rendered
 // URL for mathjax script loaded from CDN
-var mjaxURL  = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML,Safe.js';
+var mjaxURL  = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML,Safe.js';
 // load mathjax script
 $.getScript(mjaxURL, function() {
     // mathjax successfully loaded, let it render
@@ -595,11 +595,11 @@ function populateModalForEditing() {
     $('#matrix-row-0-col-0').val(matrix[0][0]);
     $('#matrix-row-0-col-1').val(matrix[0][1]);
     $('#matrix-row-0-col-2').val(matrix[0][2]);
-  
+
     $('#matrix-row-1-col-0').val(matrix[1][0]);
     $('#matrix-row-1-col-1').val(matrix[1][1]);
     $('#matrix-row-1-col-2').val(matrix[1][2]);
-  
+
     $('#matrix-row-2-col-0').val(matrix[2][0]);
     $('#matrix-row-2-col-1').val(matrix[2][1]);
     $('#matrix-row-2-col-2').val(matrix[2][2]);

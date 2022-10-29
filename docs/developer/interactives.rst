@@ -147,7 +147,7 @@ A completed interactive requires the following to be included into the repositor
 
 - A ``README.md`` file explaining the interactive, linking to any documentation or websites that future developers may find useful.
   Uninteractives generally don't have a ``README.md`` file unless future developers may find it useful.
-- Extra libraries/scripts that have been used have been used and attributed correctly, see :ref:`licence-files`.
+- Extra libraries/scripts that have been used have been used and attributed correctly.
 - Be easily accessible on desktop and mobile, or show a disclaimer that it is suited for desktop use only.
 - Abides by the repository contribution style guidelines.
 - Must work in browsers updated within the last year.

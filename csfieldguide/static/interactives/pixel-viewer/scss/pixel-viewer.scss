@@ -6,6 +6,8 @@
   user-select: none !important;
   background-color: #3f51b5;
   flex-grow: 1;
+  height: 100vh;
+  overflow: hidden;
 
   #pixel-viewer-interactive-source-canvas {
     height: 133px;

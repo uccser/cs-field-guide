@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# CS Field Guide documentation build configuration file, created by
+# Computer Science Field Guide documentation build configuration file, created by
 # sphinx-quickstart on Sat Jun 10 13:51:35 2017.
 #
 # This file is execfile()d with the current directory set to its
@@ -48,7 +48,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = 'CS Field Guide'
+project = 'Computer Science Field Guide'
 copyright = '2017 University of Canterbury Computer Science Education Research Group'
 author = 'University of Canterbury Computer Science Education Research Group'
 
@@ -130,39 +130,6 @@ latex_elements = {
     #
     # 'figure_align': 'htbp',
 }
-
-# Grouping the document tree into LaTeX files. List of tuples
-# (source start file, target name, title,
-#  author, documentclass [howto, manual, or own class]).
-latex_documents = [
-    (master_doc, 'CSFieldGuide.tex', 'CS Field Guide Documentation',
-     'Jack Morgan, Hayley van Waas', 'manual'),
-]
-
-
-# -- Options for manual page output ---------------------------------------
-
-# One entry per manual page. List of tuples
-# (source start file, name, description, authors, manual section).
-man_pages = [
-    (master_doc, 'csfieldguide', 'CS Field Guide Documentation',
-     [author], 1)
-]
-
-
-# -- Options for Texinfo output -------------------------------------------
-
-# Grouping the document tree into Texinfo files. List of tuples
-# (source start file, target name, title, author,
-#  dir menu entry, description, category)
-texinfo_documents = [
-    (master_doc, 'CSFieldGuide', 'CS Field Guide Documentation',
-     author, 'CSFieldGuide', 'One line description of project.',
-     'Miscellaneous'),
-]
-
-
-
 
 # Example configuration for intersphinx: refer to the Python standard library.
 intersphinx_mapping = {'https://docs.python.org/': None}

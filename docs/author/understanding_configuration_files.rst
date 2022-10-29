@@ -1,11 +1,11 @@
 Understanding Configuration Files
 ##############################################################################
 
-There is a lot of content within the CS Field Guide project.
+There is a lot of content within the Computer Science Field Guide project.
 We split this content across many files and configuration files are the things that bring everything together.
 These files are used for configuring the content data when stored in the system database, so it's important to understand how to read and write these configuration files for working on this project.
 
-Here is an example configuration file used to define the order of sections in a chapter in the CS Field Guide project:
+Here is an example configuration file used to define the order of sections in a chapter in the Computer Science Field Guide project:
 
 .. code-block:: yaml
 
