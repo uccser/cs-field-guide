@@ -1,6 +1,6 @@
 # Pixel Viewer Interactive
 
-**Author:** Jack Morgan  
+**Author:** Jack Morgan
 **Modified by:** Andy Bell, Courtney Bracefield, Alasdair Smith, Jack Morgan
 
 This interactive is created to allow users to see the values of each pixel of an image.
@@ -29,6 +29,7 @@ The interactive has the following optional parameters to configure the interacti
 - `image` - Filename of image to use (for example `arnold.jpg`).
 - `picturepicker` - Displays a set of pictures available for using.
 - `hide-menu` - Hides the menu.
+- `hide-colour-codes` - Hides the colour codes within pixels.
 - `hide-colour-code-picker` - Hides the option to change between colour code formats.
 - `hide-config-selector` - Hides the option to change between modes.
 - `no-pixel-fill` - Displays pixels without background fill from start (also doesn't show initial image with transition).
