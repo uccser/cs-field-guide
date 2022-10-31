@@ -18,6 +18,17 @@ All notable changes to this project will be documented in this file.
 We have listed major changes for each release below.
 `All downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/>`__
 
+3.12.4
+==============================================================================
+
+**Release date:** 31st October 2022
+
+**Changelog:**
+
+- Add abiltiy to set initial zoom level in pixel-viewer interactive via URL parameter.
+- Remove broken documentation link.
+- Disable healthcheck on Docker task service to prevent deletion while running.
+
 3.12.3
 ==============================================================================
 
