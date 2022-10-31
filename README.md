@@ -25,9 +25,7 @@ and can also be built from the documentation source within the `docs/` directory
 ## Contributing
 
 We would love your help to make this guide the best it can be!
-Please read our
-[contribution guide](http://cs-field-guide.readthedocs.io/en/latest/getting_started/contributing_guide.html)
-to get started.
+Please read the [documentation](http://cs-field-guide.readthedocs.io/en/latest/) to get started.
 
 ## License
 
