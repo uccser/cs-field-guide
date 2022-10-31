@@ -137,7 +137,7 @@ $( document ).ready(function() {
     $("input[id='rgb-colour-code']").prop('checked', true);
   }
 
-  // Check if custom zoom parameters are given, otherwise default to 0,0.
+  // Check if custom zoom position parameters are given, otherwise default to 0,0.
     try {
       image_position_top = images[image_filename]["image_position"]["top"];
     } catch (e) {
@@ -156,6 +156,10 @@ $( document ).ready(function() {
 
   if (searchParameters.has('no-pixel-fill')){
     $('#pixel-viewer-interactive-show-pixel-fill').prop('checked', false);
+    $("#pixel-viewer-interactive-loader").hide();
+    $("#pixel-viewer-interactive-buttons").css({opacity: 1});
+  } else if (searchParameters.has('preset-zoom')){
+    scroller.zoomTo(searchParameters.get('preset-zoom'));
     $("#pixel-viewer-interactive-loader").hide();
     $("#pixel-viewer-interactive-buttons").css({opacity: 1});
   } else {
