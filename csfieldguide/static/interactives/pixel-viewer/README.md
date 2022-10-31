@@ -33,6 +33,7 @@ The interactive has the following optional parameters to configure the interacti
 - `hide-colour-code-picker` - Hides the option to change between colour code formats.
 - `hide-config-selector` - Hides the option to change between modes.
 - `no-pixel-fill` - Displays pixels without background fill from start (also doesn't show initial image with transition).
+- `preset-zoom` - Sets the initial zoom of the interactive, skipping the establishing zoom animation. Must be a value between 0.01 and 4.
 - `pixelmania` - (for Pixelmania 2020) Shows a small Pixelmania logo above the title in the menu.
 
 ## Required files
