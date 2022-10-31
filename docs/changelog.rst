@@ -18,6 +18,18 @@ All notable changes to this project will be documented in this file.
 We have listed major changes for each release below.
 `All downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/>`__
 
+3.12.5
+==============================================================================
+
+**Release date:** 31st October 2022
+
+**Changelog:**
+
+- Fix bug where rgb-mixer interactive couldn't load required CSS file.
+- Dependency updates:
+
+    - Update cssnano from 5.1.13 to 5.1.14.
+
 3.12.4
 ==============================================================================
 
