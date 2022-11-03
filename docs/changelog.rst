@@ -18,6 +18,19 @@ All notable changes to this project will be documented in this file.
 We have listed major changes for each release below.
 `All downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/>`__
 
+3.12.6
+==============================================================================
+
+**Release date:** 3rd November 2022
+
+**Changelog:**
+
+- Update content rather than recreating it when `update_data` script is run.
+- Dependency updates:
+
+    - Update crowdin/github-action from 1.4.16 to 1.5.0.
+    - Update sphinx-rtd-theme from 1.0.0 to 1.1.0.
+
 3.12.5
 ==============================================================================
 
