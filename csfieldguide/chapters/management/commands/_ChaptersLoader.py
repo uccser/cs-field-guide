@@ -67,7 +67,7 @@ class ChaptersLoader(TranslatableModelLoader):
         if video != "" and "vimeo" not in video:
             raise ValueError("Video must be a Vimeo video.")
 
-        # Create or uppate chapter object and save to the db
+        # Create or update chapter object and save to the db
         chapter, created = Chapter.objects.update_or_create(
             slug=self.chapter_slug,
             defaults={
