@@ -68,10 +68,12 @@ class ChapterSectionsLoader(TranslatableModelLoader):
                 chapter_section_translations[language]["content"] = content.html_string
                 chapter_section_translations[language]["name"] = content.title
 
-            chapter_section = self.chapter.chapter_sections.create(
+            chapter_section, created = self.chapter.chapter_sections.update_or_create(
                 slug=section_slug,
-                number=section_number,
-                languages=list(content_translations.keys()),
+                defaults={
+                    'number': section_number,
+                    'languages': list(content_translations.keys()),
+                }
             )
 
             self.populate_translations(chapter_section, chapter_section_translations)
@@ -79,7 +81,11 @@ class ChapterSectionsLoader(TranslatableModelLoader):
 
             chapter_section.save()
 
-            self.log("Added chapter section: {}".format(chapter_section.name), 1)
+            if created:
+                term = 'Created'
+            else:
+                term = 'Updated'
+            self.log(f'{term} chapter section: {chapter_section.name}', 1)
 
             check_interactives(
                 content_translations[get_default_language()].required_files["interactives"],
