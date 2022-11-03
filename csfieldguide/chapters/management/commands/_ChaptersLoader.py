@@ -67,19 +67,25 @@ class ChaptersLoader(TranslatableModelLoader):
         if video != "" and "vimeo" not in video:
             raise ValueError("Video must be a Vimeo video.")
 
-        # Create chapter object and save to the db
-        chapter = Chapter(
+        # Create or uppate chapter object and save to the db
+        chapter, created = Chapter.objects.update_or_create(
             slug=self.chapter_slug,
-            number=self.chapter_number,
-            icon=chapter_icon,
-            video=video
+            defaults={
+                'number': self.chapter_number,
+                'icon': chapter_icon,
+                'video': video
+            }
         )
 
         self.populate_translations(chapter, chapter_translations)
         self.mark_translation_availability(chapter, required_fields=["name", "introduction"])
         chapter.save()
 
-        self.log("Added chapter: {}".format(chapter.name))
+        if created:
+            term = 'Created'
+        else:
+            term = 'Updated'
+        self.log(f'{term} chapter: {chapter.name}')
 
         check_interactives(
             introduction_translations[get_default_language()].required_files["interactives"],

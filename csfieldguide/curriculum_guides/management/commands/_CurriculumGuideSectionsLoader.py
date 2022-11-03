@@ -68,10 +68,12 @@ class CurriculumGuideSectionsLoader(TranslatableModelLoader):
                 curriculum_guide_section_translations[language]["content"] = content.html_string
                 curriculum_guide_section_translations[language]["name"] = content.title
 
-            curriculum_guide_section = self.curriculum_guide.curriculum_guide_sections.create(
+            curriculum_guide_section, created = self.curriculum_guide.curriculum_guide_sections.update_or_create(
                 slug=section_slug,
-                number=section_number,
-                languages=list(content_translations.keys()),
+                defaults={
+                    'number': section_number,
+                    'languages': list(content_translations.keys()),
+                }
             )
 
             self.populate_translations(curriculum_guide_section, curriculum_guide_section_translations)
@@ -79,7 +81,11 @@ class CurriculumGuideSectionsLoader(TranslatableModelLoader):
 
             curriculum_guide_section.save()
 
-            self.log("Added curriculum guide section: {}".format(curriculum_guide_section.name), 1)
+            if created:
+                term = 'Created'
+            else:
+                term = 'Updated'
+            self.log(f'{term} curriculum guide section: {curriculum_guide_section.name}', 1)
 
             check_interactives(
                 content_translations[get_default_language()].required_files["interactives"],

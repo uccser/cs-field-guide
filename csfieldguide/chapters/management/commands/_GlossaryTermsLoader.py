@@ -32,13 +32,17 @@ class GlossaryTermsLoader(TranslatableModelLoader):
                 term_translations[language]["definition"] = content.html_string
                 term_translations[language]["term"] = content.title
 
-            glossary_term = GlossaryTerm(
+            glossary_term, created = GlossaryTerm.objects.update_or_create(
                 slug=glossary_slug,
             )
             self.populate_translations(glossary_term, term_translations)
             self.mark_translation_availability(glossary_term, required_fields=["term", "definition"])
             glossary_term.save()
 
-            self.log("Added glossary term: {}".format(glossary_term.__str__()))
+            if created:
+                term = 'Created'
+            else:
+                term = 'Updated'
+            self.log(f'{term} glossary term: {glossary_term.__str__()}')
 
         self.log("{} glossary terms loaded!\n".format(len(glossary_slugs)))

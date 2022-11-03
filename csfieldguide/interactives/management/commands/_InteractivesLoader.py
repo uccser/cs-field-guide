@@ -48,10 +48,12 @@ class InteractivesLoader(TranslatableModelLoader):
             use_large_thumbnail = interactive_data.get("use_large_thumbnail")
             if use_large_thumbnail is None:
                 use_large_thumbnail = False
-            interactive = Interactive(
+            interactive, created = Interactive.objects.update_or_create(
                 slug=interactive_slug,
-                is_interactive=is_interactive,
-                use_large_thumbnail=use_large_thumbnail,
+                defaults={
+                    'is_interactive': is_interactive,
+                    'use_large_thumbnail': use_large_thumbnail,
+                }
             )
             self.populate_translations(interactive, translations)
             self.mark_translation_availability(
@@ -60,4 +62,8 @@ class InteractivesLoader(TranslatableModelLoader):
             )
             interactive.save()
 
-            self.log("Added interactive: {}".format(interactive.__str__()))
+            if created:
+                term = 'Created'
+            else:
+                term = 'Updated'
+            self.log(f'{term} interactive: {interactive.__str__()}')
