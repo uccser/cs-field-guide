@@ -27,7 +27,7 @@ cssselect==1.2.0
 PyYAML==5.4.1
 
 # I18n
-django-modeltranslation==0.18.6
+django-modeltranslation==0.18.7
 uniseg==0.7.2
 python-bidi==0.4.2
 django-bidi-utils==1.0
