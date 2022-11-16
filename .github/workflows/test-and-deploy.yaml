@@ -32,6 +32,8 @@ jobs:
         uses: actions/checkout@v3
       - name: Create Docker network
         run: docker network create uccser-development-stack
+      - name: Set DOCKER_UID variable
+        run: echo "DOCKER_UID=$(echo $UID)" >> $GITHUB_ENV
       - name: Start systems
         run: docker compose -f docker-compose.local.yml up -d
       - name: Create static files
