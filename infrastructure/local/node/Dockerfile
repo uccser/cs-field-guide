@@ -1,5 +1,8 @@
 FROM node:14.20.0-buster
 
+ARG DOCKER_UID=1000
+RUN usermod -u $DOCKER_UID node
+
 # Install required system dependencies
 RUN apt-get update && apt-get install --no-install-recommends -y \
     build-essential \

@@ -15,6 +15,8 @@
 
 set -e
 
+export DOCKER_UID=$UID
+
 ERROR='\033[0;31m'
 SUCCESS='\033[0;32m'
 CODE='\033[0;36m'

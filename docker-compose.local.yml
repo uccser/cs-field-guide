@@ -33,6 +33,8 @@ services:
         build:
             context: .
             dockerfile: ./infrastructure/local/node/Dockerfile
+            args:
+                DOCKER_UID: ${DOCKER_UID}
         image: cs_field_guide_local_node
         volumes:
             # https://burnedikt.com/dockerized-node-development-and-mounting-node-volumes/#exclude-node_modules-from-the-mount
