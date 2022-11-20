@@ -388,6 +388,25 @@ Panel (Verto feature)
 
 `Click here to read the documentation on how to create a panel`_.
 
+Supported panel types
+---------------------
+
+These are the panel types that have built in styling for CSFG.
+Have a play around with them to see how they look!
+
+
+- additional-information
+- caution
+- curiosity
+- challenge
+- exercise
+- jargon-buster
+- project
+- spoiler
+- teacher-note
+
+  - NOTE: These will only be visible if Teacher Mode is enabled
+
 ------------------------------------------------------------------------------
 
 Scratch (Verto feature)
