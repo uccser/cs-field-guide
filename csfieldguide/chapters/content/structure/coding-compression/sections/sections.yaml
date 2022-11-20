@@ -19,8 +19,11 @@ general-purpose:
 audio-compression:
   section-number: 7
 
-the-whole-story:
+shannons-experiment:
   section-number: 8
 
-further-reading:
+the-whole-story:
   section-number: 9
+
+further-reading:
+  section-number: 10
