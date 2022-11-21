@@ -12,7 +12,7 @@ The documentation is split into the following sections:
 
 ------------------------------------------------------------------------------
 
-`Getting Started Documentation <https://uccser.github.io/>`_
+:doc:`Getting Started Documentation <getting_started/index>`
 ==============================================================================
 
 This documentation contains:
@@ -20,6 +20,7 @@ This documentation contains:
 - Our expectations of your contributions to the project
 - Steps to install the project on your system for local development
 - Explainations on how the project is setup
+- Quick Starts on how to write and develop for the project
 
 ------------------------------------------------------------------------------
 
@@ -53,7 +54,7 @@ This is the documentation to read if you want to do any of the following (or sim
     :maxdepth: 4
     :caption: Table of Contents
 
-    Getting Started Documentation <https://uccser.github.io/>
+    getting_started/index
     author/index
     developer/index
     troubleshooting
