@@ -405,7 +405,7 @@ Have a play around with them to see how they look!
 - spoiler
 - teacher-note
 
-  - NOTE: These will only be visible if Teacher Mode is enabled
+  - NOTE: Teacher Notes will only be visible if Teacher Mode is enabled
 
 ------------------------------------------------------------------------------
 
