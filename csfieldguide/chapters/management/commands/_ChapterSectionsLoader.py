@@ -1,6 +1,7 @@
 """Custom loader for loading a chapter section."""
 
 from django.db import transaction
+from chapters.models import ChapterSection
 from utils.TranslatableModelLoader import TranslatableModelLoader
 from utils.errors.MissingRequiredFieldError import MissingRequiredFieldError
 from utils.errors.InvalidYAMLValueError import InvalidYAMLValueError
@@ -69,9 +70,9 @@ class ChapterSectionsLoader(TranslatableModelLoader):
                 chapter_section_translations[language]["name"] = content.title
 
             chapter_section, created = self.chapter.chapter_sections.update_or_create(
-                slug=section_slug,
+                number=section_number,
                 defaults={
-                    'number': section_number,
+                    'slug': section_slug,
                     'languages': list(content_translations.keys()),
                 }
             )
@@ -109,3 +110,5 @@ class ChapterSectionsLoader(TranslatableModelLoader):
                     "section-number - value '{}' is invalid".format(section_number),
                     "section-numbers must be in sequential order. The next expected number was '{}'.".format(counter)
                 )
+
+        self.chapter.chapter_sections.filter(number__gt=max(section_numbers)).delete()
