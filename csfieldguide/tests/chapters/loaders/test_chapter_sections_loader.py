@@ -232,3 +232,82 @@ class ChapterSectionsLoaderTest(BaseTestWithDB):
                 "<ChapterSection: This is the added section heading>"
             ]
         );
+
+    def test_chapters_chapter_section_loader_insert_middle_section(self):
+        test_slug = "multiple-sections"
+        chapter = self.test_data.create_chapter("1")
+        factory = mock.Mock()
+        chapter_section_loader = ChapterSectionsLoader(
+            factory,
+            chapter,
+            base_path=self.base_path,
+            content_path=test_slug,
+            structure_filename="{}.yaml".format(test_slug),
+        )
+        chapter_section_loader.load()
+        self.assertQuerysetEqual(
+            ChapterSection.objects.all(),
+            [
+                "<ChapterSection: This is the first section>",
+                "<ChapterSection: This is the second section>"
+            ]
+        )
+
+        # Now add the section to the middle now that the previous
+        # ones are in the database
+        test_slug = "middle-section"
+        chapter_section_loader = ChapterSectionsLoader(
+            factory,
+            chapter,
+            base_path=self.base_path,
+            content_path=test_slug,
+            structure_filename="{}.yaml".format(test_slug),
+        )
+        chapter_section_loader.load()
+        self.assertQuerysetEqual(
+            ChapterSection.objects.all(),
+            [
+                "<ChapterSection: This is the first section>",
+                "<ChapterSection: This is the middle section heading>",
+                "<ChapterSection: This is the second section>"
+            ]
+        );
+
+    def test_chapters_chapter_section_loader_delete_middle_section(self):
+        test_slug = "middle-section"
+        chapter = self.test_data.create_chapter("1")
+        factory = mock.Mock()
+        chapter_section_loader = ChapterSectionsLoader(
+            factory,
+            chapter,
+            base_path=self.base_path,
+            content_path=test_slug,
+            structure_filename="{}.yaml".format(test_slug),
+        )
+        chapter_section_loader.load()
+        self.assertQuerysetEqual(
+            ChapterSection.objects.all(),
+            [
+                "<ChapterSection: This is the first section>",
+                "<ChapterSection: This is the middle section heading>",
+                "<ChapterSection: This is the second section>"
+            ]
+        );
+
+        # Delete the middle section from the database
+        test_slug = "multiple-sections"
+        chapter_section_loader = ChapterSectionsLoader(
+            factory,
+            chapter,
+            base_path=self.base_path,
+            content_path=test_slug,
+            structure_filename="{}.yaml".format(test_slug),
+        )
+        chapter_section_loader.load()
+        self.assertQuerysetEqual(
+            ChapterSection.objects.all(),
+            [
+                "<ChapterSection: This is the first section>",
+                "<ChapterSection: This is the second section>"
+            ]
+        )
