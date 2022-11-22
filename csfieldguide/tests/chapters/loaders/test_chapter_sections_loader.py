@@ -197,7 +197,7 @@ class ChapterSectionsLoaderTest(BaseTestWithDB):
             InvalidYAMLValueError,
             chapter_section_loader.load
         )
-    
+
     def test_chapters_chapter_section_loader_added_section(self):
         test_slug = "single-section"
         chapter = self.test_data.create_chapter("1")
@@ -213,7 +213,7 @@ class ChapterSectionsLoaderTest(BaseTestWithDB):
         self.assertQuerysetEqual(
             ChapterSection.objects.all(),
             ["<ChapterSection: This is the section heading>"]
-        );
+        )
 
         # Now add the section once the previous one is in the database
         test_slug = "added-section"
@@ -231,7 +231,7 @@ class ChapterSectionsLoaderTest(BaseTestWithDB):
                 "<ChapterSection: This is the section heading>",
                 "<ChapterSection: This is the added section heading>"
             ]
-        );
+        )
 
     def test_chapters_chapter_section_loader_insert_middle_section(self):
         test_slug = "multiple-sections"
@@ -271,7 +271,7 @@ class ChapterSectionsLoaderTest(BaseTestWithDB):
                 "<ChapterSection: This is the middle section heading>",
                 "<ChapterSection: This is the second section>"
             ]
-        );
+        )
 
     def test_chapters_chapter_section_loader_delete_middle_section(self):
         test_slug = "middle-section"
@@ -292,7 +292,7 @@ class ChapterSectionsLoaderTest(BaseTestWithDB):
                 "<ChapterSection: This is the middle section heading>",
                 "<ChapterSection: This is the second section>"
             ]
-        );
+        )
 
         # Delete the middle section from the database
         test_slug = "multiple-sections"
