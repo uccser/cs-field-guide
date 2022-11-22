@@ -128,24 +128,6 @@ class ChapterSection(TranslatableModel):
         """
         return self.name
 
-    def clean(self):
-        """Use to check for unique section numbers.
-
-        Raises:
-            ValidationError: when the section being added uses
-                an existing section number for this chapter.
-        """
-        # get all sections with same section number and chapter as new section being added
-        sections = ChapterSection.objects.filter(number=self.number, chapter=self.chapter)
-        # if already exists section with same number in same chapter, then throw error!
-        if len(sections) > 1:
-            raise ValidationError(('Section number must be unique per chapter.'))
-
-    def save(self, *args, **kwargs):
-        """Override save method to validate unique section numbers."""
-        super(ChapterSection, self).save(*args, **kwargs)
-        self.clean()
-
     class Meta:
         """Set consistent ordering of chapter sections."""
 

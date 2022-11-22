@@ -34,10 +34,9 @@ class ChapterSectionsLoader(TranslatableModelLoader):
                 field.
         """
         chapter_sections_structure = self.load_yaml_file(self.structure_file_path)
-        section_numbers = []
+        next_section_number = 1
 
         for (section_slug, section_structure) in chapter_sections_structure.items():
-
             if section_structure is None:
                 raise MissingRequiredFieldError(
                     self.structure_file_path,
@@ -58,8 +57,14 @@ class ChapterSectionsLoader(TranslatableModelLoader):
                     "section-number - value '{}' is invalid".format(section_number),
                     "section-number must be an integer value."
                 )
+            if section_number != next_section_number:
+                raise InvalidYAMLValueError(
+                    self.structure_file_path,
+                    "section-number - value '{}' is invalid".format(section_number),
+                    "section-numbers must be in sequential order. The next expected number was '{}'.".format(next_section_number)
+                )
 
-            section_numbers.append(section_number)
+            next_section_number += 1
 
             chapter_section_translations = self.get_blank_translation_dictionary()
 
@@ -102,13 +107,4 @@ class ChapterSectionsLoader(TranslatableModelLoader):
                 structure_filename=self.structure_file_path,
             ).load()
 
-        # assumes first section number is always 1
-        for counter, section_number in enumerate(section_numbers, 1):
-            if section_number != counter:
-                raise InvalidYAMLValueError(
-                    self.structure_file_path,
-                    "section-number - value '{}' is invalid".format(section_number),
-                    "section-numbers must be in sequential order. The next expected number was '{}'.".format(counter)
-                )
-
-        self.chapter.chapter_sections.filter(number__gt=max(section_numbers)).delete()
+        self.chapter.chapter_sections.filter(number__gte=next_section_number).delete()
