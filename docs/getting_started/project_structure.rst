@@ -53,7 +53,7 @@ the following directories:
 
   - This directory holds all the tests for the project.
 
--  ``utils/``
+- ``utils/``
 
   - Utility functions used throughout the application. One example would be custom
     converter templates for Verto.
@@ -101,7 +101,8 @@ The following directories are also required by the Django system:
 
 - ``staticfiles/``
 
-  - TODO: Explain this directory
+  - This is where static files are served to the different applications
+    inside the project.
 
 - ``templates/``
 

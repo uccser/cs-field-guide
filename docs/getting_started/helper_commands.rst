@@ -5,9 +5,9 @@ Helper Commands for Developing
 
   We assume by this point you have installed the project, checked the setup is working (see :ref:`installation-check-project-setup-works`), and also have a basic understanding of the :doc:`project structure <project_structure>`.
 
-The CS Unplugged project uses many systems (Django, Docker, Gulp, etc) to run, so we have written a script for running groups of commands for running the system while developing.
+The CS Field GUide project uses many systems (Django, Docker, Gulp, etc) to run, so we have written a script for running groups of commands for running the system while developing.
 
-The script is called ``dev`` and can be found in the ``cs-unplugged`` folder of the repository.
+The script is called ``dev`` and can be found in the ``cs-field-guide`` folder of the repository.
 To run this script, open a terminal window in the directory and enter the following command (you don't need to enter the ``$`` character, this shows the start of your terminal prompt):
 
 .. code-block:: bash
@@ -17,36 +17,29 @@ To run this script, open a terminal window in the directory and enter the follow
 Where ``[COMMAND]`` is a word from the list below:
 
 - :ref:`build`
-- :ref:`clean`
 - :ref:`collect_static`
 - :ref:`compilemessages`
-- :ref:`docs`
 - :ref:`end`
-- :ref:`flush`
+- :ref:`exec`
 - :ref:`help`
 - :ref:`logs`
+- :ref:`make_interactive_thumbnails`
 - :ref:`makemessages`
 - :ref:`makemigrations`
-- :ref:`makeresources`
-- :ref:`makeresourcethumbnails`
 - :ref:`migrate`
 - :ref:`reboot_django`
 - :ref:`rebuild_index`
 - :ref:`restart`
-- :ref:`shell`
 - :ref:`start`
 - :ref:`static`
-- :ref:`static_prod`
-- :ref:`static_scratch`
 - :ref:`style`
 - :ref:`test_backwards`
 - :ref:`test_coverage`
 - :ref:`test_specific`
 - :ref:`test_suite`
 - :ref:`update`
-- :ref:`updatedata`
-- :ref:`update_lite`
-- :ref:`wipe`
+- :ref:`update_data`
+- :ref:`update_static`
 
 All users of the project (content and technical developers) should become familiar with the following commands:
 
@@ -63,15 +56,6 @@ All users of the project (content and technical developers) should become famili
 ==============================================================================
 
 Running ``./dev build`` will build or rebuild the Docker images that are required for the CS Unplugged system.
-
------------------------------------------------------------------------------
-
-.. _clean:
-
-``clean``
-==============================================================================
-
-Running ``./dev clean`` deletes 'dangling' Docker images left over from builds, which will free up hard drive space.
 
 -----------------------------------------------------------------------------
 
@@ -96,15 +80,6 @@ You will need to run this command after each time you create your message file o
 
 -----------------------------------------------------------------------------
 
-.. _docs:
-
-``docs``
-==============================================================================
-
-Running ``./dev docs`` will remove any existing documentation and build a fresh copy of the documentation for CS Unplugged.
-
------------------------------------------------------------------------------
-
 .. _end:
 
 ``end``
@@ -114,12 +89,17 @@ Running ``./dev end`` will stop any containers which are currently running, this
 
 -----------------------------------------------------------------------------
 
-.. _flush:
+.. _exec:
 
-``flush``
+``exec``
 ==============================================================================
 
-Running ``./dev flush`` runs the Django ``flush`` command to flush the database.
+Running ``./dev exec`` allows you to run a command inside a container.
+This is commonly used to run a bash shell, allowing you to inspect
+what is going on inside the container.
+
+As an example, ``./dev exec django bash`` would be the equivalent to entering
+``docker compose run django bash``
 
 -----------------------------------------------------------------------------
 
@@ -143,6 +123,17 @@ The output is for all logs until the time the command was run, therefore success
 
 To follow logs as they output, enter ``docker compose logs --follow``.
 
+
+-----------------------------------------------------------------------------
+
+.. _make_interactive_thumbnails:
+
+``make_interactive_thumbnails``
+==============================================================================
+
+Running ``./dev make_interactive_thumbnails`` generates the thumbnails for
+the interactives.
+
 -----------------------------------------------------------------------------
 
 .. _makemessages:
@@ -162,24 +153,6 @@ Message files contain all available translation strings and how they should be r
 ==============================================================================
 
 Running ``./dev makemigrations`` runs the Django ``makemigrations`` command to create migration files.
-
------------------------------------------------------------------------------
-
-.. _makeresources:
-
-``makeresources``
-==============================================================================
-
-Running ``./dev makeresources`` runs the custom Django ``makeresources`` command to create static resource PDF files.
-
------------------------------------------------------------------------------
-
-.. _makeresourcethumbnails:
-
-``makeresourcethumbnails``
-==============================================================================
-
-Running ``./dev makeresourcethumbnails`` generates the thumbnails for each resource PDF.
 
 -----------------------------------------------------------------------------
 
@@ -224,17 +197,6 @@ More details for each command can be found on this page.
 
 -----------------------------------------------------------------------------
 
-.. _shell:
-
-``shell``
-==============================================================================
-
-Running ``./dev shell`` opens a bash terminal within the Django container (this requires the CS Unplugged system to be running).
-
-This is the equivalent to entering ``docker compose run django bash``.
-
------------------------------------------------------------------------------
-
 .. _start:
 
 ``start``
@@ -265,27 +227,6 @@ Once the development environment is operational, run the ``./dev update`` comman
 Running ``./dev static`` runs the commands for generating the static files for the website.
 
 If changes are made to the static files (for example, a new image is added) when the system is running, this command needs to be entered to view the new files on the website.
-
------------------------------------------------------------------------------
-
-.. _static_prod:
-
-``static_prod``
-==============================================================================
-
-Running ``./dev static_prod`` runs the commands for generating production static files for the website.
-This produces compressed SASS files without sourcemaps.
-
------------------------------------------------------------------------------
-
-.. _static_scratch:
-
-``static_scratch``
-==============================================================================
-
-Running ``./dev static_scratch`` runs the commands for generating scratch images for the website.
-
------------------------------------------------------------------------------
 
 .. _style:
 
@@ -358,35 +299,25 @@ If changes are made to the topics content when the system is running, this comma
 
 -----------------------------------------------------------------------------
 
-.. _updatedata:
+.. _update_data:
 
-``updatedata``
+``update_data``
 ==============================================================================
 
-Running ``./dev updatedata`` runs the custom ``updatedata`` command to load the topics content into the database.
+Running ``./dev update_data`` runs the custom ``update_data`` command to load the topics content into the database.
 
 -----------------------------------------------------------------------------
 
-.. _update_lite:
+.. _update_static:
 
-``update_lite``
+``update_static``
 ==============================================================================
 
-Running ``./dev update_lite`` only loads key content.
-Useful for development.
+Running ``./dev update_static`` generates and collects static files into the ``staticfiles/`` folder.
+This command is equivalent to running ``static`` and then ``collect_static``.
 
 -----------------------------------------------------------------------------
 
-.. _wipe:
-
-``wipe``
-==============================================================================
-
-Running ``./dev wipe`` delete all Docker containers and images on your computer.
-Once this command has be run, a full download and rebuild of images is required to run the system (can be triggered by the ``build`` or ``start`` commands).
-
------------------------------------------------------------------------------
-
-You now know the basic commands for using the CS Unplugged system.
+You now know the basic commands for using the CS Field Guide system.
 You are now ready to tackle the documentation for the area you wish to contribute on.
 Head back to the :doc:`documentation homepage <../index>` and choose the documentation related to the task you wish to contribute to.

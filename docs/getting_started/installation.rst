@@ -90,8 +90,12 @@ Step 6: Install Docker
 We use a system called `Docker`_ to run the CS Field Guide system, both on local
 machine for development, and also when deployed to production.
 
-If you are using Windows or Mac, we highly recommend using Docker Desktop in
-combination with the Windows Subsystem for Linux. See `here`_ for installation instructions.
+If you are using Windows, we highly recommend using Docker Desktop in
+combination with the Windows Subsystem for Linux. See `here`_ for 
+installation instructions.
+
+If you are using macOS, Docker Desktop would likely be your best bet, however
+we haven't tested the installation on macOS yet.
 
 If you are using Linux, it is possible to `install Docker Desktop`_, however it is often
 easier to install `Docker Engine`_ and `Docker Compose`_ individually.
@@ -151,7 +155,11 @@ of Brooklyn Nine-Nine on Netflix).
 After the helper script builds the system images, it will automatically start
 the system, and will let you know when the system is ready.
 You should then be able to open your preferred web browser to the URL
-``cs-field_guide.localhost`` and see the CS Unplugged homepage.
+``cs-field-guide.localhost`` and see the CS Field Guide homepage.
+
+If you are working on documentation, navigate to ``docs.cs-field-guide.localhost``.
+This is a live server, so any changes you make to the documentation should be
+visible on the webpage within a couple seconds of saving the file.
 
 Congratulations if you made it this far and everything is working,
 you're all set to contribute to the CS Field Guide project.
