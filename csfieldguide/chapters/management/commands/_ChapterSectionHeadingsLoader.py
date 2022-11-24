@@ -42,10 +42,11 @@ class ChapterSectionHeadingsLoader(TranslatableModelLoader):
             if content.heading_tree:
                 for (i, heading_node) in enumerate(content.heading_tree):
                     self.chapter_section.headings.update_or_create(
-                        slug=heading_node.title_slug,
+                        number=i,
                         defaults={
                             'name': heading_node.title,
                             'language': language,
-                            'number': i,
+                            'slug': heading_node.title_slug
                         }
                     )
+        self.chapter_section.headings.filter(number__gt=i).delete()
