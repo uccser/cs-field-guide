@@ -72,11 +72,11 @@ class Command(BaseCommand):
                     )
                 if chapter_number != next_chapter_number:
                     raise InvalidYAMLValueError(
-                    structure_file_path,
-                    "section-number - value '{}' is invalid".format(chapter_number),
-                    "section-numbers must be in sequential order. The next expected number was '{}'."
-                        .format(next_chapter_number)
-                )
+                        structure_file_path,
+                        "chapter-number - value '{}' is invalid".format(chapter_number),
+                        ("chapter-numbers must be in sequential order. The next expected number was '{}'."
+                            .format(next_chapter_number))
+                    )
 
                 next_chapter_number += 1
 

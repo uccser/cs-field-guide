@@ -165,7 +165,7 @@ class LoadChaptersCommandTest(BaseTestWithDB):
     @override_settings(
         CHAPTERS_CONTENT_BASE_PATH=os.path.join(CHAPTERS_PATH, "non-sequential-chapter-numbers")
     )
-    def test_loadchapters_chapters_valid(self, chapter_loader, glossary_loader):
+    def test_loadchapters_chapters_non_sequential(self, chapter_loader, glossary_loader):
         self.assertRaises(
             InvalidYAMLValueError,
             management.call_command,

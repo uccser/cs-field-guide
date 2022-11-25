@@ -1,15 +1,10 @@
 import os.path
 from unittest import mock
-from django.core.exceptions import ValidationError
 from tests.BaseTestWithDB import BaseTestWithDB
 from tests.chapters.ChaptersTestDataGenerator import ChaptersTestDataGenerator
 from chapters.management.commands._ChapterSectionsLoader import ChapterSectionsLoader
 from chapters.management.commands._ChapterSectionHeadingsLoader import ChapterSectionHeadingsLoader
-from chapters.models import Chapter, ChapterSection, ChapterSectionHeading
-from utils.errors.MissingRequiredFieldError import MissingRequiredFieldError
-from utils.errors.NoHeadingFoundInMarkdownFileError import NoHeadingFoundInMarkdownFileError
-from utils.errors.InvalidYAMLValueError import InvalidYAMLValueError
-from utils.errors.KeyNotFoundError import KeyNotFoundError
+from chapters.models import ChapterSection, ChapterSectionHeading
 
 
 class ChapterSectionHeadingsLoaderTest(BaseTestWithDB):
@@ -109,7 +104,7 @@ class ChapterSectionHeadingsLoaderTest(BaseTestWithDB):
             ]
         )
 
-        ## Now add the new heading while the previous one is in the database
+        # Now add the new heading while the previous one is in the database
         section_slug = "multiple-sections-section-2"
         chapter_section_loader = ChapterSectionsLoader(
             factory,
@@ -168,7 +163,7 @@ class ChapterSectionHeadingsLoaderTest(BaseTestWithDB):
             ]
         )
 
-        ## Now add the new heading while the previous one is in the database
+        # Now add the new heading while the previous one is in the database
         test_slug = "add-heading-middle"
         section_slug = "add-heading-middle"
         chapter_section_loader = ChapterSectionsLoader(
@@ -229,7 +224,7 @@ class ChapterSectionHeadingsLoaderTest(BaseTestWithDB):
             ]
         )
 
-        ## Now add the new heading while the previous one is in the database
+        # Now add the new heading while the previous one is in the database
         section_slug = "multiple-sections-section-1"
         chapter_section_loader = ChapterSectionsLoader(
             factory,

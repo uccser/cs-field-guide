@@ -53,7 +53,7 @@ class Chapter(TranslatableModel):
     """Model for chapter in database."""
 
     #  Auto-incrementing 'id' field is automatically set by Django
-    slug = models.SlugField() # This is set unique in the Meta child class
+    slug = models.SlugField()  # This is set unique in the Meta child class
     name = models.CharField(max_length=100, default="")
     number = models.SmallIntegerField(unique=True)
     introduction = models.TextField(default="")
