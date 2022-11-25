@@ -69,9 +69,9 @@ class ChaptersLoader(TranslatableModelLoader):
 
         # Create or update chapter object and save to the db
         chapter, created = Chapter.objects.update_or_create(
-            slug=self.chapter_slug,
+            number=self.chapter_number,
             defaults={
-                'number': self.chapter_number,
+                'slug': self.chapter_slug,
                 'icon': chapter_icon,
                 'video': video
             }
