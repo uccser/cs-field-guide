@@ -31,7 +31,7 @@ Most of thes are for languages, these contain localised Verto files of the diffe
 The last folder is the ``structure`` folder.
 This is used to describe how the chapters and sections are laid out and ordered.
 
-Here is a diagram of the full chapter structure we will be creating:
+Here is a diagram of the directory structure at the end of this quick start:
 
 .. raw:: html
   :file: ../_static/html_snippets/chapters_directory_structure.html
