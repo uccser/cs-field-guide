@@ -25,3 +25,4 @@ basic steps on how to use it, and our guidelines for your contributions.
     installation
     project_structure
     helper_commands
+    UCCSER Development Guide <https://uccser.github.io/>
