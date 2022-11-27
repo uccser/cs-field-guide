@@ -90,18 +90,14 @@ Step 6: Install Docker
 We use a system called `Docker`_ to run the CS Field Guide system, both on local
 machine for development, and also when deployed to production.
 
-If you are using Windows, we highly recommend using Docker Desktop in
-combination with the Windows Subsystem for Linux. See `here`_ for 
-installation instructions.
+Linux
+-----
 
-If you are using macOS, Docker Desktop would likely be your best bet, however
-we haven't tested the installation on macOS yet.
+While it is possible to `install Docker Desktop`_ on Linux,
+we recommend installing `Docker Engine`_ and `Docker Compose`_ individually.
 
-If you are using Linux, it is possible to `install Docker Desktop`_, however it is often
-easier to install `Docker Engine`_ and `Docker Compose`_ individually.
-
-For Docker Engine + Compose installations
------------------------------------------
+With these installed, for our dev script to work, you need to be able to manage docker
+as a non root user. See `these instructions`_ on how to do this.
 
 Once you have installed the software, run the following commands in a terminal
 to check Docker is working as intended (you don't need to enter the ``$``
@@ -110,14 +106,21 @@ character, this shows the start of your terminal prompt).
 .. code-block:: bash
 
     $ docker version
-    $ docke compose version
+    $ docker compose version
     $ docker run hello-world
 
-.. note::
+Windows
+-------
 
-    Depending on your operating system, if the above commands don't work you
-    may need to set Docker to be able to run without ``sudo``.
-    You will need to do this in order to use the ``dev`` helper script.
+If you are using Windows, we highly recommend using Docker Desktop in
+combination with the Windows Subsystem for Linux. See `here`_ for 
+installation instructions.
+
+Mac
+---
+
+If you are using macOS, Docker Desktop would likely be your best bet, however
+we haven't tested the installation on macOS yet.
 
 Step 7: Install Text Editor/IDE (optional)
 =================================================
@@ -181,5 +184,6 @@ you're all set to contribute to the CS Field Guide project.
 .. _Sublime Text: https://www.sublimetext.com/
 .. _here: https://docs.docker.com/desktop/windows/wsl/
 .. _install Docker Desktop: https://docs.docker.com/desktop/install/linux-install/
-.. _Docker Engine: https://docs.docker.com/engine/install/
-.. _Docker Compose: https://docs.docker.com/compose/install/linux/
+.. _Docker Engine: https://docs.docker.com/engine/install/#server
+.. _Docker Compose: https://docs.docker.com/compose/install/#scenario-two-install-the-compose-plugin
+.. _these instructions: https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user
