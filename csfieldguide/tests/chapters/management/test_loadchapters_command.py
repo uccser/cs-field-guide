@@ -153,3 +153,21 @@ class LoadChaptersCommandTest(BaseTestWithDB):
             management.call_command,
             "loadchapters"
         )
+
+    @mock.patch(
+        "chapters.management.commands._GlossaryTermsLoader.GlossaryTermsLoader.load",
+        return_value=True
+    )
+    @mock.patch(
+        "chapters.management.commands._ChaptersLoader.ChaptersLoader.load",
+        return_value=True
+    )
+    @override_settings(
+        CHAPTERS_CONTENT_BASE_PATH=os.path.join(CHAPTERS_PATH, "non-sequential-chapter-numbers")
+    )
+    def test_loadchapters_chapters_non_sequential(self, chapter_loader, glossary_loader):
+        self.assertRaises(
+            InvalidYAMLValueError,
+            management.call_command,
+            "loadchapters"
+        )
