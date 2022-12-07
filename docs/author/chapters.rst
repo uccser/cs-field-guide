@@ -103,6 +103,7 @@ A complete chapter application structure file with multiple chapters may look li
         chapter-number: 2
     glossary-folder: glossary
 
+.. _chapter-configuration-file:
 
 Chapter Configuration File
 ------------------------------------------------------------------------------
@@ -132,6 +133,8 @@ A complete chapter structure file may look like the following:
 
     icon: svg/introduction-icon.svg
     sections: sections/sections.yaml
+
+.. _chapter-sections-configuration-file:
 
 Chapter Sections Configuration File
 ------------------------------------------------------------------------------

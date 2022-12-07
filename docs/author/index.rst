@@ -7,6 +7,7 @@ The following pages are for those wanting to write or edit Computer Science Fiel
     :maxdepth: 1
     :caption: Contents
 
+    chapters_quick_start
     writing_guide
     understanding_configuration_files
     chapters
