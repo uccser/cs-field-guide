@@ -2,7 +2,6 @@
 
 from django.db import models
 from interactives.models import Interactive
-from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 from utils.TranslatableModel import TranslatableModel
 from django.urls import reverse
@@ -54,7 +53,7 @@ class Chapter(TranslatableModel):
     """Model for chapter in database."""
 
     #  Auto-incrementing 'id' field is automatically set by Django
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField()  # This is set unique in the Meta child class
     name = models.CharField(max_length=100, default="")
     number = models.SmallIntegerField(unique=True)
     introduction = models.TextField(default="")
@@ -104,6 +103,10 @@ class Chapter(TranslatableModel):
         verbose_name = _("chapter")
         verbose_name_plural = _("chapters")
 
+        constraints = [
+            models.UniqueConstraint(fields=["slug"], deferrable=models.Deferrable.DEFERRED, name="slug_deferred")
+        ]
+
 
 class ChapterSection(TranslatableModel):
     """Model for each section in a chapter in database."""
@@ -127,24 +130,6 @@ class ChapterSection(TranslatableModel):
             Heading of chapter section (str).
         """
         return self.name
-
-    def clean(self):
-        """Use to check for unique section numbers.
-
-        Raises:
-            ValidationError: when the section being added uses
-                an existing section number for this chapter.
-        """
-        # get all sections with same section number and chapter as new section being added
-        sections = ChapterSection.objects.filter(number=self.number, chapter=self.chapter)
-        # if already exists section with same number in same chapter, then throw error!
-        if len(sections) > 1:
-            raise ValidationError(('Section number must be unique per chapter.'))
-
-    def save(self, *args, **kwargs):
-        """Override save method to validate unique section numbers."""
-        super(ChapterSection, self).save(*args, **kwargs)
-        self.clean()
 
     class Meta:
         """Set consistent ordering of chapter sections."""

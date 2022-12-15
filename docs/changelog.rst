@@ -18,6 +18,39 @@ All notable changes to this project will be documented in this file.
 We have listed major changes for each release below.
 `All downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/>`__
 
+3.13.0
+==============================================================================
+
+**Release date:** 15th December 2022
+
+**Changelog:**
+
+- Add section about Shannon's Experiment to the Compression chapter.
+- Add more comprehensive Getting Started documentation.
+- Add an "Adding a chapter" section to the Author Documentation.
+- Update infrastructure to fix issues with local development on multi-user Linux machines.
+- Fix majority of loading bugs caused by the 3.12.6 release.
+- Core dependency changes:
+
+    - Update crowdin/github-action from 1.5.0 to 1.5.2
+    - Update decode-uri-component from 0.2.0 to 0.2.2
+    - Update dependabot/fetch-metadata from v1.3.4 to v1.3.5
+    - Update django-debug-toolbar from 3.7.0 to 3.8.1
+    - Update django-modeltranslation from 0.18.5 to 0.18.7
+    - Update engine.io from 6.2.0 to 6.2.1
+    - Update jquery from 3.6.1 to 3.6.2
+    - Update lxml from 4.9.1 to 4.9.2
+    - Update postcss from 8.4.18 to 8.4.20
+    - Update sass from 1.55.0 to 1.56.2
+    - Update selenium from 4.5.0 to 4.7.0
+    - Update socket.io-parser from 4.0.4 to 4.0.5
+    - Update sphinx-rtd-theme from 1.1.0 to 1.1.1
+    - Update yargs from 17.6.0 to 17.6.2
+
+- Interactive scene-editor dependency changes:
+
+    - Update three from 0.146.0 to 0.147.0
+
 3.12.6
 ==============================================================================
 
@@ -25,7 +58,7 @@ We have listed major changes for each release below.
 
 **Changelog:**
 
-- Update content rather than recreating it when `update_data` script is run.
+- Update content rather than recreating it when ``update_data`` script is run.
 - Dependency updates:
 
     - Update crowdin/github-action from 1.4.16 to 1.5.0.

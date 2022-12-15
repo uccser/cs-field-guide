@@ -3,6 +3,7 @@
 import os.path
 from django.core.management.base import BaseCommand
 from django.conf import settings
+from django.db import transaction
 from utils.BaseLoader import BaseLoader
 from utils.LoaderFactory import LoaderFactory
 from utils.errors.MissingRequiredFieldError import MissingRequiredFieldError
@@ -19,6 +20,7 @@ class Command(BaseCommand):
 
     help = "Converts Markdown files listed in structure file and stores"
 
+    @transaction.atomic
     def handle(self, *args, **options):
         """Automatically called when the loadchapters command is given."""
         factory = LoaderFactory()
@@ -51,6 +53,7 @@ class Command(BaseCommand):
                 "Application Structure"
             )
         else:
+            next_chapter_number = 1
             for chapter_slug in chapters:
                 chapter_structure_file = "{}.yaml".format(chapter_slug)
 
@@ -67,6 +70,16 @@ class Command(BaseCommand):
                         "chapter-number - value '{}' is invalid".format(chapter_number),
                         "chapter-number must be an integer value."
                     )
+                if chapter_number != next_chapter_number:
+                    raise InvalidYAMLValueError(
+                        structure_file_path,
+                        "chapter-number - value '{}' is invalid".format(chapter_number),
+                        ("chapter-numbers must be in sequential order. The next expected number was '{}'."
+                            .format(next_chapter_number))
+                    )
+
+                next_chapter_number += 1
+
                 factory.create_chapter_loader(
                     base_path=base_path,
                     content_path=chapter_slug,
