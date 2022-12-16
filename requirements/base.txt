@@ -15,7 +15,7 @@ django-inline-svg==0.1.1
 selenium==4.7.0
 
 # Markdown
-verto==1.0.1
+verto==1.1.0
 Pygments==2.13.0
 python-markdown-math==0.6
 
