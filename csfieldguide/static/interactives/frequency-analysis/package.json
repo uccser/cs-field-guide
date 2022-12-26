@@ -6,6 +6,6 @@
     "dependencies": {
         "chart.js": "2.7.2",
         "es5-shim": "4.6.7",
-        "es6-shim": "0.35.6"
+        "es6-shim": "0.35.7"
     }
 }
