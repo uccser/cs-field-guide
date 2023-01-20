@@ -3,6 +3,6 @@
     "version": "1.0.0",
     "private": true,
     "dependencies": {
-        "crypto-js": "3.1.9-1"
+        "crypto-js": "4.1.1"
     }
 }
