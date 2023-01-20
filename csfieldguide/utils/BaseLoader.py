@@ -189,7 +189,7 @@ class BaseLoader():
             raise CouldNotFindYAMLFileError(yaml_file_path)
 
         try:
-            yaml_contents = yaml.load(yaml_file)
+            yaml_contents = yaml.safe_load(yaml_file)
         except yaml.YAMLError:
             raise InvalidYAMLFileError(yaml_file_path)
 
