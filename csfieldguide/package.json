@@ -1,7 +1,7 @@
 {
     "name": "csfieldguide",
     "version": "1.0.0",
-    "main": "gulpfile.js",
+    "main": "gulpfile.mjs",
     "private": true,
     "dependencies": {},
     "devDependencies": {
