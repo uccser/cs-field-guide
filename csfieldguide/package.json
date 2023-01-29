@@ -10,12 +10,10 @@
         "bootstrap": "4.6.2",
         "browser-sync": "2.27.11",
         "browserify": "17.0.0",
-        "child_process": "1.0.2",
         "codemirror": "5.65.6",
         "cssnano": "5.1.14",
         "details-element-polyfill": "2.4.0",
         "fancy-log": "2.0.0",
-        "got": "11.8.2",
         "gulp": "4.0.2",
         "gulp-concat": "2.6.1",
         "gulp-dependents": "1.2.5",
@@ -42,7 +40,7 @@
         "yargs": "17.6.2"
     },
     "engines": {
-        "node": ">=8"
+        "node": ">=14.16"
     },
     "browserslist": [
         "last 2 versions"
