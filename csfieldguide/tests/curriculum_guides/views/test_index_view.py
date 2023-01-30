@@ -21,7 +21,8 @@ class IndexViewTest(BaseTestWithDB):
         self.assertEqual(HTTPStatus.OK, response.status_code)
         self.assertQuerysetEqual(
             response.context["curriculum_guides"],
-            ["<CurriculumGuide: CurriculumGuide 1>"]
+            ["<CurriculumGuide: CurriculumGuide 1>"],
+            transform=repr
         )
 
     def test_curriculum_guides_index_view_with_two_curriculum_guides(self):
@@ -37,7 +38,8 @@ class IndexViewTest(BaseTestWithDB):
             [
                 "<CurriculumGuide: CurriculumGuide 1>",
                 "<CurriculumGuide: CurriculumGuide 2>"
-            ]
+            ],
+            transform=repr
         )
 
     def test_curriculum_guides_index_view_with_three_curriculum_guides(self):
@@ -55,5 +57,6 @@ class IndexViewTest(BaseTestWithDB):
                 "<CurriculumGuide: CurriculumGuide 1>",
                 "<CurriculumGuide: CurriculumGuide 2>",
                 "<CurriculumGuide: CurriculumGuide 3>"
-            ]
+            ],
+            transform=repr
         )
