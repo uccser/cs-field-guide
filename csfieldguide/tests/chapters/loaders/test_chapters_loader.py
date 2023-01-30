@@ -33,7 +33,8 @@ class ChaptersLoaderTest(BaseTestWithDB):
         chapter_loader.load()
         self.assertQuerysetEqual(
             Chapter.objects.all(),
-            ["<Chapter: Chapter 1>"]
+            ["<Chapter: Chapter 1>"],
+            transform=repr
         )
         self.assertSetEqual(
             set(["en"]),
@@ -116,7 +117,8 @@ class ChaptersLoaderTest(BaseTestWithDB):
         chapter_loader.load()
         self.assertQuerysetEqual(
             Chapter.objects.all(),
-            ["<Chapter: Interactives>"]
+            ["<Chapter: Interactives>"],
+            transform=repr
         )
         self.assertEqual(
             list(Chapter.objects.get(slug=test_slug).interactives.order_by("slug")),

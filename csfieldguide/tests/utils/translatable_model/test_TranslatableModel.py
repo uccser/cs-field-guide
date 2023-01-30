@@ -45,6 +45,7 @@ class TranslatableModelTest(TestCase):
                     "<MockTranslatableModel: 2>",
                     "<MockTranslatableModel: 3>",
                 ],
+                transform=repr
             )
 
         with translation.override("de"):
@@ -58,6 +59,7 @@ class TranslatableModelTest(TestCase):
                 [
                     "<MockTranslatableModel: 1>",
                 ],
+                transform=repr
             )
             # Check two unavailable in German
             self.assertEqual(
@@ -70,4 +72,5 @@ class TranslatableModelTest(TestCase):
                     "<MockTranslatableModel: 2>",
                     "<MockTranslatableModel: 3>",
                 ],
+                transform=repr
             )

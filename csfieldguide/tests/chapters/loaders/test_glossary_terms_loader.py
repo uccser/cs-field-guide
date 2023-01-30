@@ -23,7 +23,8 @@ class GlossaryTermsLoaderTest(BaseTestWithDB):
         glossary_objects = GlossaryTerm.objects.all()
         self.assertQuerysetEqual(
             glossary_objects,
-            ["<GlossaryTerm: Term 1>"]
+            ["<GlossaryTerm: Term 1>"],
+            transform=repr
         )
 
     def test_multiple_files(self):
@@ -38,6 +39,7 @@ class GlossaryTermsLoaderTest(BaseTestWithDB):
                 "<GlossaryTerm: Term 2>",
                 "<GlossaryTerm: Term 3>"
             ],
+            transform=repr
         )
 
     def test_invalid_files(self):
@@ -47,7 +49,8 @@ class GlossaryTermsLoaderTest(BaseTestWithDB):
         glossary_objects = GlossaryTerm.objects.all()
         self.assertQuerysetEqual(
             glossary_objects,
-            ["<GlossaryTerm: Term 1>"]
+            ["<GlossaryTerm: Term 1>"],
+            transform=repr
         )
 
     def test_translation(self):

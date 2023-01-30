@@ -24,7 +24,8 @@ class InteractivesLoaderTest(BaseTestWithDB):
         interactive_loader.load()
         self.assertQuerysetEqual(
             Interactive.objects.all(),
-            ["<Interactive: Interactive Untranslated>"]
+            ["<Interactive: Interactive Untranslated>"],
+            transform=repr
         )
 
     def test_interactives_interactives_loader_multiple_languages(self):
@@ -36,7 +37,8 @@ class InteractivesLoaderTest(BaseTestWithDB):
         interactive_loader.load()
         self.assertQuerysetEqual(
             Interactive.objects.all(),
-            ["<Interactive: Interactive Multiple Languages>"]
+            ["<Interactive: Interactive Multiple Languages>"],
+            transform=repr
         )
         interactive = Interactive.objects.get(slug="interactive-multiple-languages")
         self.assertEqual(

@@ -49,7 +49,8 @@ class CheckRequiredFilesTest(BaseTestWithDB):
                 "<Interactive: Interactive 1>",
                 "<Interactive: Interactive 2>",
                 "<Interactive: Interactive 3>",
-            ]
+            ],
+            transform=repr
         )
 
     def test_check_interactives_invalid_interactive(self):
