@@ -41,7 +41,7 @@ class ChapterSectionHeadingsLoaderTest(BaseTestWithDB):
         self.assertQuerysetEqual(
             ChapterSectionHeading.objects.all(),
             ["<ChapterSectionHeading: This is a second level heading>"],
-            transfer=repr
+            transform=repr
         )
 
     def test_chapters_chapter_section_loader_multiple_headings(self):
