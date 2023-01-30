@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "private": true,
     "dependencies": {
-        "mathjs": "11.5.0",
+        "mathjs": "7.5.1",
         "sprintf-js": "1.1.2",
         "dragula": "3.7.3"
     }
