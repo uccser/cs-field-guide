@@ -1,4 +1,4 @@
-FROM node:14.20.0-buster
+FROM node:16.19.0-buster
 
 ARG DOCKER_UID=1000
 RUN usermod -u $DOCKER_UID node
