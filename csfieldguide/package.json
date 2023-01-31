@@ -27,7 +27,7 @@
         "gulp-sourcemaps": "3.0.0",
         "gulp-tap": "2.0.0",
         "gulp-terser": "2.1.0",
-        "iframe-resizer": "4.3.2",
+        "iframe-resizer": "4.3.3",
         "jquery": "3.6.3",
         "lity": "2.4.1",
         "multiple-select": "1.5.2",
