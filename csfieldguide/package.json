@@ -35,7 +35,7 @@
         "popper.js": "1.16.1",
         "postcss": "8.4.21",
         "postcss-flexbugs-fixes": "5.0.2",
-        "sass": "1.59.2",
+        "sass": "1.59.3",
         "vinyl-buffer": "1.0.1",
         "yargs": "17.7.1"
     },
