@@ -1,8 +1,9 @@
 /** Parts of this file are heavily adapted from https://github.com/mrdoob/three.js/blob/dev/examples/webgl_materials_envmaps.html */
 
-const THREE = require('three');
-const mathjs = require('mathjs');
-const OrbitControls = require('three-orbit-controls')(THREE);
+global.THREE = require('three');
+const { create, all } = require('mathjs');
+const mathjs = create(all, {});
+const OrbitControls = require('three/examples/js/controls/OrbitControls.js');
 const detector = require('../../../js/third-party/threejs/Detector.js');
 const sprintf = require('sprintf-js').sprintf;
 const urlParameters = require('../../../js/third-party/url-parameters.js');
@@ -204,7 +205,7 @@ function init() {
     container_element.appendChild( renderer.domElement );
 
     //
-    controls = new OrbitControls( camera, renderer.domElement );
+    controls = new THREE.OrbitControls( camera, renderer.domElement );
     controls.minDistance = 500;
     controls.maxDistance = SCENE_SIZE;
     controls.enablePan = false;
