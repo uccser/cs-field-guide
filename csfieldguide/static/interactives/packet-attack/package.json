@@ -3,6 +3,6 @@
     "version": "1.0.0",
     "private": true,
     "dependencies": {
-        "phaser": "3.55.2"
+        "phaser": "3.60.0"
     }
 }
