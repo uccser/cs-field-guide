@@ -5,7 +5,7 @@ django-bootstrap-breadcrumbs==0.9.2
 
 # Web serving
 gunicorn==20.1.0
-whitenoise==6.4.0
+whitenoise==6.5.0
 
 # Database APIs
 psycopg2==2.9.6
