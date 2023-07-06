@@ -20,7 +20,7 @@ Pygments==2.15.1
 python-markdown-math==0.6
 
 # XML Parsing
-lxml==4.9.2
+lxml==4.9.3
 cssselect==1.2.0
 
 # YAML Loading
