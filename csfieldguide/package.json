@@ -33,7 +33,7 @@
         "multiple-select": "1.6.0",
         "pixrem": "5.0.0",
         "popper.js": "1.16.1",
-        "postcss": "8.4.24",
+        "postcss": "8.4.25",
         "postcss-flexbugs-fixes": "5.0.2",
         "sass": "1.63.6",
         "vinyl-buffer": "1.0.1",
