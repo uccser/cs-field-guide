@@ -24,7 +24,7 @@ lxml==4.9.3
 cssselect==1.2.0
 
 # YAML Loading
-PyYAML==6.0
+PyYAML==6.0.1
 
 # I18n
 django-modeltranslation==0.18.11
