@@ -31,7 +31,7 @@ django-modeltranslation==0.18.11
 uniseg==0.7.2
 python-bidi==0.4.2
 django-bidi-utils==1.0
-django-statici18n==2.3.1
+django-statici18n==2.4.0
 
 # CORS
 django-cors-headers==3.14.0
