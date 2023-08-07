@@ -8,7 +8,7 @@ gunicorn==20.1.0
 whitenoise==6.5.0
 
 # Database APIs
-psycopg2==2.9.6
+psycopg2==2.9.7
 
 # Images
 django-inline-svg==0.1.1
