@@ -16,7 +16,7 @@ selenium==4.11.2
 
 # Markdown
 verto==1.1.1
-Pygments==2.15.1
+Pygments==2.16.1
 python-markdown-math==0.6
 
 # XML Parsing
