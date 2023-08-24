@@ -6,6 +6,6 @@
         "cytoscape": "3.26.0",
         "cytoscape-no-overlap": "1.0.1",
         "cytoscape-automove": "1.10.3",
-        "mathjs": "11.9.1"
+        "mathjs": "11.10.0"
     }
 }
