@@ -3,6 +3,6 @@
     "version": "1.0.0",
     "private": true,
     "dependencies": {
-        "mathjs": "11.10.1"
+        "mathjs": "11.11.0"
     }
 }
