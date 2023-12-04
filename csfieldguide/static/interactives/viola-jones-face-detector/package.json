@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "private": true,
     "dependencies": {
-        "interactjs": "1.10.23",
+        "interactjs": "1.10.24",
         "tracking": "1.1.3"
     }
 }
