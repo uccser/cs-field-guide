@@ -13,6 +13,7 @@ const pjson = JSON.parse(await readFile('./package.json'))
 // Plugins
 import autoprefixer from 'autoprefixer'
 import browserify from 'browserify'
+import babelify from 'babelify'
 import browserSync from 'browser-sync'
 const { reload } = browserSync.create()
 import buffer from 'vinyl-buffer'
@@ -171,7 +172,13 @@ function js() {
         .pipe(errorHandler(catchError))
         .pipe(sourcemaps.init())
         .pipe(tap(function (file) {
-            file.contents = browserify(file.path, { debug: true }).bundle().on('error', catchError);
+            file.contents = browserify(file.path, { debug: true })
+            .transform(babelify, {
+                presets: ["@babel/preset-env", {"sourceType": "unambiguous"}],
+                global: true
+              })
+              .bundle()
+              .on('error', catchError);
         }))
         .pipe(buffer())
         .pipe(gulpif(PRODUCTION, terser({ keep_fnames: true })))
