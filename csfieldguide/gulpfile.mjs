@@ -173,10 +173,16 @@ function js() {
         .pipe(sourcemaps.init())
         .pipe(tap(function (file) {
             file.contents = browserify(file.path, { debug: true })
-            .transform(babelify, {
-                presets: ["@babel/preset-env", {"sourceType": "unambiguous"}],
-                global: true
-              })
+            .transform(babelify, { 
+                // Node modules are switching to only ES modules, 
+                // browserify is not compatible with ES modules, 
+                // so transpile such node modules in the meantime.
+                presets: [
+                    "@babel/preset-env", {"sourceType": "unambiguous"} // If no exports, assume file is script.
+                ], 
+                global: true,
+                ignore: [/\/node_modules\/(?!three\/)/] // Only transpile three js (to be safe).
+              })                                        // Can do other node_modules if/when they break...
               .bundle()
               .on('error', catchError);
         }))
