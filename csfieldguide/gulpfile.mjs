@@ -173,18 +173,24 @@ function js() {
         .pipe(sourcemaps.init())
         .pipe(tap(function (file) {
             file.contents = browserify(file.path, { debug: true })
-            .transform(babelify, { 
-                // Node modules are switching to only ES modules, 
-                // browserify is not compatible with ES modules, 
-                // so transpile such node modules in the meantime.
-                presets: [
-                    "@babel/preset-env", {"sourceType": "unambiguous"} // If no exports, assume file is script.
-                ], 
-                global: true,
-                ignore: [/\/node_modules\/(?!three\/)/] // Only transpile three js (to be safe).
-              })                                        // Can do other node_modules if/when they break...
-              .bundle()
-              .on('error', catchError);
+                .transform(babelify, { 
+                    // Some node modules are switching to ES modules, 
+                    // browserify is not compatible with ES modules, 
+                    // so transpile such node modules in the meantime.
+                    // New modules can be written in ES2015+, making jQuery obsolete
+                    // and supporting older browsers easier.
+                    // Todo: replace browserify + gulp with
+                    // a more actively supported (and ES + CJS module supporting) tool,
+                    // (i.e. rollup, webpack, vite, etc.) to prevent transpiling dependencies.
+                    presets: [
+                        "@babel/preset-env", {"sourceType": "unambiguous"} 
+                        // If no exports or imports, assume file is script.
+                    ], 
+                    global: true,
+                    ignore: [/\/node_modules\/(?!three\/)/] // Only transpile three.js (to be safe).
+                })                                          // Can add other node_modules if/when they break...
+                .bundle()
+                .on('error', catchError);
         }))
         .pipe(buffer())
         .pipe(gulpif(PRODUCTION, terser({ keep_fnames: true })))
