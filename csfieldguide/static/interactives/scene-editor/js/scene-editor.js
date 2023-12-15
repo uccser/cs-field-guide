@@ -170,9 +170,9 @@ function init() {
     scene.background = new THREE.Color(0x000000);
 
     // Lights
-    var ambient = new THREE.AmbientLight( 0xffffff, 0.3 );
+    var ambient = new THREE.AmbientLight( 0xffffff, 0.9 );
     scene.add( ambient );
-    var sunlight = new THREE.DirectionalLight( 0xffffff, 1 )
+    var sunlight = new THREE.DirectionalLight( 0xffffff, 1 );
     sunlight.position.set(50, 100, 300); // Approximate vector towards sun in background image
     scene.add( sunlight );
 
