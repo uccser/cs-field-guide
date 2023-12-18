@@ -3,7 +3,8 @@
 global.THREE = require('three');
 const { create, all } = require('mathjs');
 const mathjs = create(all, {});
-const OrbitControls = require('three/examples/js/controls/OrbitControls.js');
+const { OrbitControls } = require('three/examples/jsm/controls/OrbitControls.js');
+
 const detector = require('../../../js/third-party/threejs/Detector.js');
 const sprintf = require('sprintf-js').sprintf;
 const urlParameters = require('../../../js/third-party/url-parameters.js');
@@ -169,9 +170,9 @@ function init() {
     scene.background = new THREE.Color(0x000000);
 
     // Lights
-    var ambient = new THREE.AmbientLight( 0xffffff, 0.3 );
+    var ambient = new THREE.AmbientLight( 0xffffff, 0.9 );
     scene.add( ambient );
-    var sunlight = new THREE.DirectionalLight( 0xffffff, 1 )
+    var sunlight = new THREE.DirectionalLight( 0xffffff, 1 );
     sunlight.position.set(50, 100, 300); // Approximate vector towards sun in background image
     scene.add( sunlight );
 
@@ -205,7 +206,7 @@ function init() {
     container_element.appendChild( renderer.domElement );
 
     //
-    controls = new THREE.OrbitControls( camera, renderer.domElement );
+    controls = new OrbitControls( camera, renderer.domElement );
     controls.minDistance = 500;
     controls.maxDistance = SCENE_SIZE;
     controls.enablePan = false;
@@ -391,7 +392,7 @@ function addObject(type, material, name) {
     var geometry;
     switch (type) {
         case "sphere":
-            geometry = new THREE.SphereBufferGeometry( 200, 48, 24 );
+            geometry = new THREE.SphereGeometry( 200, 48, 24 );
             object = new THREE.Mesh( geometry, material );
             scene.add( object );
             numSpheres += 1;
@@ -403,7 +404,7 @@ function addObject(type, material, name) {
             break;
 
         case "cube":
-            geometry = new THREE.BoxBufferGeometry(400, 400, 400 );
+            geometry = new THREE.BoxGeometry(400, 400, 400 );
             object = new THREE.Mesh( geometry, material );
             scene.add( object );
             numCubes += 1;
@@ -415,7 +416,7 @@ function addObject(type, material, name) {
             break;
 
         case "cone":
-            geometry = new THREE.ConeBufferGeometry( 200, 400, 32 );
+            geometry = new THREE.ConeGeometry( 200, 400, 32 );
             object = new THREE.Mesh( geometry, material );
             scene.add( object );
             numCones += 1;
@@ -719,21 +720,21 @@ function getMatrix(evalAsString) {
 
     } else {
         col0 = new THREE.Vector3(
-            mathjs.eval($('#matrix-row-0-col-0').val()),
-            mathjs.eval($('#matrix-row-1-col-0').val()),
-            mathjs.eval($('#matrix-row-2-col-0').val())
+            mathjs.evaluate($('#matrix-row-0-col-0').val()),
+            mathjs.evaluate($('#matrix-row-1-col-0').val()),
+            mathjs.evaluate($('#matrix-row-2-col-0').val())
         );
 
         col1 = new THREE.Vector3(
-            mathjs.eval($('#matrix-row-0-col-1').val()),
-            mathjs.eval($('#matrix-row-1-col-1').val()),
-            mathjs.eval($('#matrix-row-2-col-1').val())
+            mathjs.evaluate($('#matrix-row-0-col-1').val()),
+            mathjs.evaluate($('#matrix-row-1-col-1').val()),
+            mathjs.evaluate($('#matrix-row-2-col-1').val())
         );
 
         col2 = new THREE.Vector3(
-            mathjs.eval($('#matrix-row-0-col-2').val()),
-            mathjs.eval($('#matrix-row-1-col-2').val()),
-            mathjs.eval($('#matrix-row-2-col-2').val())
+            mathjs.evaluate($('#matrix-row-0-col-2').val()),
+            mathjs.evaluate($('#matrix-row-1-col-2').val()),
+            mathjs.evaluate($('#matrix-row-2-col-2').val())
             );
         }
 
@@ -753,9 +754,9 @@ function getVector(evalAsString) {
         ];
     }
     return [
-        mathjs.eval($('#vector-row-0').val()) * SCALE,
-        mathjs.eval($('#vector-row-1').val()) * SCALE,
-        mathjs.eval($('#vector-row-2').val()) * SCALE
+        mathjs.evaluate($('#vector-row-0').val()) * SCALE,
+        mathjs.evaluate($('#vector-row-1').val()) * SCALE,
+        mathjs.evaluate($('#vector-row-2').val()) * SCALE
     ];
 }
 
@@ -808,7 +809,7 @@ function validateInput(inputDiv) {
     input = $(inputDiv).val();
     var success = false;
     try {
-        inputEvaluated = mathjs.eval(input);
+        inputEvaluated = mathjs.evaluate(input);
         mathjs.number(inputEvaluated);
         success = true;
     }
