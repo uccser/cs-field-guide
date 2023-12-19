@@ -4,7 +4,7 @@ django-environ==0.11.2
 django-bootstrap-breadcrumbs==0.9.2
 
 # Web serving
-gunicorn==20.1.0
+gunicorn==21.2.0
 whitenoise==6.6.0
 
 # Database APIs
@@ -34,4 +34,4 @@ django-bidi-utils==1.0
 django-statici18n==2.4.0
 
 # CORS
-django-cors-headers==3.14.0
+django-cors-headers==4.3.1
