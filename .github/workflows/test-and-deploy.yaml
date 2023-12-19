@@ -148,7 +148,7 @@ jobs:
         run: tar czf static-files.tar.gz --directory csfieldguide/staticfiles/ .
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: static-files
           path: static-files.tar.gz
@@ -209,7 +209,7 @@ jobs:
         run: tar czf interactive-thumbnails.tar.gz --directory csfieldguide/build/img/interactives/thumbnails/ .
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: interactive-thumbnails-${{ matrix.language }}
           path: interactive-thumbnails.tar.gz
