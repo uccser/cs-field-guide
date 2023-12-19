@@ -210,7 +210,7 @@ $(document).ready(function() {
   });
 
   /** Updates best route graph to match the initial graph when a user drags a node on the initial graph */
-  cy.on('dragfreeon', 'nodes', function(evt) {
+  cy.on('dragfreeon', 'node', function(evt) {
     cy2.remove(cy2.elements());
     cy2.add(cy.elements().clone());
     setGraphOptions(cy2)
