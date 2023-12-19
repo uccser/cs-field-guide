@@ -36,9 +36,9 @@ def bool_to_yes_no(value, error_on_invalid=False):
     Raises:
         ValueError if value isn't "yes" or "no".
     """
-    if type(value) == bool and value:
+    if type(value) is bool and value:
         return "yes"
-    elif type(value) == bool:
+    elif type(value) is bool:
         return "no"
     elif error_on_invalid:
         raise ValueError("Expected True or False.")

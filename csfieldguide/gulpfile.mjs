@@ -13,6 +13,7 @@ const pjson = JSON.parse(await readFile('./package.json'))
 // Plugins
 import autoprefixer from 'autoprefixer'
 import browserify from 'browserify'
+import babelify from 'babelify'
 import browserSync from 'browser-sync'
 const { reload } = browserSync.create()
 import buffer from 'vinyl-buffer'
@@ -171,7 +172,25 @@ function js() {
         .pipe(errorHandler(catchError))
         .pipe(sourcemaps.init())
         .pipe(tap(function (file) {
-            file.contents = browserify(file.path, { debug: true }).bundle().on('error', catchError);
+            file.contents = browserify(file.path, { debug: true })
+                .transform(babelify, { 
+                    // Some node modules are switching to ES modules, 
+                    // browserify is not compatible with ES modules, 
+                    // so transpile such node modules in the meantime.
+                    // New modules can be written in ES2015+, making jQuery obsolete
+                    // and supporting older browsers easier.
+                    // Todo: replace browserify + gulp with
+                    // a more actively supported (and ES + CJS module supporting) tool,
+                    // (i.e. rollup, webpack, vite, etc.) to prevent transpiling dependencies.
+                    presets: [
+                        "@babel/preset-env", {"sourceType": "unambiguous"} 
+                        // If no exports or imports, assume file is script.
+                    ], 
+                    global: true,
+                    ignore: [/\/node_modules\/(?!three\/)/] // Only transpile three.js (to be safe).
+                })                                          // Can add other node_modules if/when they break...
+                .bundle()
+                .on('error', catchError);
         }))
         .pipe(buffer())
         .pipe(gulpif(PRODUCTION, terser({ keep_fnames: true })))
