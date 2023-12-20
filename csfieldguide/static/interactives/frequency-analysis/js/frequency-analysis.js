@@ -1,7 +1,4 @@
-"use strict";
-require('es5-shim');
-require('es6-shim');
-const Chart = require('chart.js');
+import Chart from 'chart.js/auto';
 
 const TextID = "#interactive-frequency-analysis-input";
 const ChartID = "#interactive-frequency-analysis-chart-display";
@@ -78,12 +75,12 @@ const drawChart = function(ctx, frequencies) {
             scaleFontSize: 16,
             responsive: true,
             scales: {
-                yAxes: [{
+                y: {
                     ticks: {
                         beginAtZero: true,
                         maxTicksLimit: 11
                     }
-                }]
+                }
             },
             legend : {
                 display: false

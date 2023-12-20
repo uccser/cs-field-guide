@@ -4,8 +4,6 @@
     "private": true,
     "description": "This is a simple frequency analysis chart",
     "dependencies": {
-        "chart.js": "2.7.2",
-        "es5-shim": "4.6.7",
-        "es6-shim": "0.35.8"
+        "chart.js": "4.4.1"
     }
 }
