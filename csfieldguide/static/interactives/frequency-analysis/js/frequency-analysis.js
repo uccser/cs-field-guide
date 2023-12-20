@@ -1,4 +1,3 @@
-
 import Chart from 'chart.js/auto';
 
 const TextID = "#interactive-frequency-analysis-input";
