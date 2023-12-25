@@ -4,7 +4,7 @@
     "private": true,
     "dependencies": {
         "mathjs": "12.2.1",
-        "three": "0.159.0",
+        "three": "0.160.0",
         "sprintf-js": "1.1.3"
     }
 }
