@@ -37,7 +37,7 @@ class IndexView(generic.ListView):
         context = super(IndexView, self).get_context_data(**kwargs)
         context["chapters"] = Chapter.objects.prefetch_related(
              Prefetch(
-                 'interactives', 
+                 'interactives',
                  queryset=Interactive.objects.filter(is_interactive=True))
         )
         return context
