@@ -1375,6 +1375,11 @@ msgstr ""
 msgid "Your image has been resized for this interactive to "
 msgstr ""
 
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:1156
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:1162
+msgid "Click to Zoom"
+msgstr ""
+
 #: static/interactives/python-interpreter/js/python-interpreter.js:5
 msgid "Welcome to computer programming, student"
 msgstr ""
