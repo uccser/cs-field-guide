@@ -10,4 +10,4 @@ class AboutURLTest(BaseTestWithDB):
 
     def test_appendices_valid_about_url(self):
         url = reverse("appendices:about")
-        self.assertEqual(url, "/en/appendices/about")
+        self.assertEqual(url, "/en/appendices/about/")
