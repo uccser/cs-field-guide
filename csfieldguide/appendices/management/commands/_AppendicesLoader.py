@@ -1,10 +1,13 @@
 """Custom loader for loading appendices."""
 
+from django.db import transaction
+from appendices.models import Appendix
 from utils.TranslatableModelLoader import TranslatableModelLoader
 from utils.errors.MissingRequiredFieldError import MissingRequiredFieldError
 from utils.errors.InvalidYAMLValueError import InvalidYAMLValueError
 from django.template.loader import get_template
 from django.template import TemplateDoesNotExist
+from django.urls import reverse, NoReverseMatch
 
 
 class AppendicesLoader(TranslatableModelLoader):
@@ -19,36 +22,67 @@ class AppendicesLoader(TranslatableModelLoader):
         super().__init__(**kwargs)
         self.factory = factory
 
-    def check_template(self, page_data, type):
-        """Check template in page_data is valid.
+    @transaction.atomic
+    def load(self):
+        """Load general pages.
 
-        Args:
-            page_data (dict): Dictionary of page data.
-            type (str): Name of type of page.
-
-        Returns:
-            A valid template as string.
-
-        Raises:
-            MissingRequiredFieldError: If template value not given.
-            InvalidYAMLValueError: If invalid template path given.
+        Raise:
+            MissingRequiredFieldError: when no object can be found with the matching
+                attribute.
         """
-        try:
-            template = page_data["template"]
-        except (TypeError, KeyError):
-            raise MissingRequiredFieldError(
-                self.structure_file_path,
-                [
+        general_pages = self.load_yaml_file(self.structure_file_path)
+
+        for (slug, page_data) in general_pages.items():
+            try:
+                name = page_data["name"]
+                template = page_data["template"]
+                url_name = page_data["url-name"]
+            except (TypeError, KeyError):
+                raise MissingRequiredFieldError(
+                    self.structure_file_path,
+                    [
+                        "name",
+                        "template",
+                        "url-name",
+                    ],
+                    "Appendix"
+                )
+
+            # Check template is valid
+            try:
+                get_template(template)
+            except TemplateDoesNotExist:
+                raise InvalidYAMLValueError(
+                    self.structure_file_path,
                     "template",
-                ],
-                type
+                    "A valid template file path"
+                )
+
+            # Check URL name is valid
+            try:
+                reverse(url_name)
+            except NoReverseMatch:
+                raise InvalidYAMLValueError(
+                    self.structure_file_path,
+                    "url-name",
+                    "A URL name listed in 'csfieldguide/appendices/urls.py'"
+                )
+
+            appendix_page, created = Appendix.objects.update_or_create(
+                slug=slug,
+                defaults={
+                    'name': name,
+                    'template': template,
+                    'url_name': url_name,
+                }
             )
-        try:
-            get_template(template)
-        except TemplateDoesNotExist:
-            raise InvalidYAMLValueError(
-                self.structure_file_path,
-                "template ({})".format(template),
-                "A valid template file path"
-            )
-        return template
+            appendix_page.save()
+            if created:
+                term = 'Created'
+            else:
+                term = 'Updated'
+            self.log(f'{term} general page: {name}')
+
+        Appendix.objects.exclude(slug__in=general_pages.keys()).delete()
+
+        self.log("All general pages loaded!\n")
