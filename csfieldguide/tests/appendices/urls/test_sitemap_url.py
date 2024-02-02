@@ -10,4 +10,4 @@ class SitemapURLTest(BaseTestWithDB):
 
     def test_appendices_valid_sitemap_url(self):
         url = reverse("appendices:sitemap")
-        self.assertEqual(url, "/en/appendices/sitemap")
+        self.assertEqual(url, "/en/appendices/sitemap/")
