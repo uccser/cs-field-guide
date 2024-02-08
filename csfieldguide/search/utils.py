@@ -7,7 +7,7 @@ from lxml.cssselect import CSSSelector
 from django.template.loader import render_to_string
 
 CONTENT_NOT_FOUND_ERROR_MESSAGE = ("General page requires content wrapped in "
-                                   "an element with ID 'general-page-content'")
+                                   "an element with ID 'content-container'")
 
 
 def concat_field_values(*args):

@@ -6,14 +6,15 @@ from tests.helpers import template_settings_for_test
 
 templates = template_settings_for_test("tests/search/utils/assets/templates/")
 
+
 @override_settings(TEMPLATES=templates)
 class GetTemplateTextTest(BaseTest):
 
     def test_valid_template(self):
-        template = 'valid.html'
+        template = "valid.html"
         result = get_template_text(template)
-        self.assertEqual(result, 'hello world')
+        self.assertEqual(result, "hello world")
 
     def test_invalid_template(self):
-        template = 'invalid.html'
+        template = "invalid.html"
         self.assertRaises(TemplateSyntaxError, get_template_text, template)
