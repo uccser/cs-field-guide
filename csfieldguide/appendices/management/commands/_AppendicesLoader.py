@@ -35,20 +35,18 @@ class AppendicesLoader(TranslatableModelLoader):
         for (slug, page_data) in general_pages.items():
             try:
                 name = page_data["name"]
-                template = page_data["template"]
-                url_name = page_data["url-name"]
+
             except (TypeError, KeyError):
                 raise MissingRequiredFieldError(
                     self.structure_file_path,
                     [
                         "name",
-                        "template",
-                        "url-name",
                     ],
                     "Appendix"
                 )
 
             # Check template is valid
+            template = f"appendices/{slug}.html"
             try:
                 get_template(template)
             except TemplateDoesNotExist:
@@ -59,6 +57,7 @@ class AppendicesLoader(TranslatableModelLoader):
                 )
 
             # Check URL name is valid
+            url_name = f"appendices:{slug}"
             try:
                 reverse(url_name)
             except NoReverseMatch:
