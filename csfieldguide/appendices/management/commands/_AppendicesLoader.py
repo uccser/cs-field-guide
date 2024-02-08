@@ -45,6 +45,7 @@ class AppendicesLoader(TranslatableModelLoader):
                 )
 
             # Check template is valid
+            template = f"appendices/{slug}.html"
             try:
                 get_template(template)
             except TemplateDoesNotExist:
@@ -55,6 +56,7 @@ class AppendicesLoader(TranslatableModelLoader):
                 )
 
             # Check URL name is valid
+            url_name = f"appendices:{slug}"
             url_name = f"appendices:{slug}"
             try:
                 reverse(url_name)
