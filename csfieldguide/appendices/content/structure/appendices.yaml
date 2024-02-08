@@ -1,17 +1,12 @@
 about:
-  name: About
   template: appendices/about.html
-  url-name: appendices:about
 
 contributors:
-  name: Contributors
   template: appendices/contributors.html
-  url-name: appendices:contributors
 
 sitemap:
-  name: Sitemap
   template: appendices/sitemap.html
-  url-name: appendices:sitemap
+
 
 # 'Releases' page should redirect to documentation.
 # 'Included Files' page should redirect to LICENSE.

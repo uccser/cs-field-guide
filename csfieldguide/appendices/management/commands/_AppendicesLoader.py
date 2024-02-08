@@ -34,16 +34,12 @@ class AppendicesLoader(TranslatableModelLoader):
 
         for (slug, page_data) in general_pages.items():
             try:
-                name = page_data["name"]
                 template = page_data["template"]
-                url_name = page_data["url-name"]
             except (TypeError, KeyError):
                 raise MissingRequiredFieldError(
                     self.structure_file_path,
                     [
-                        "name",
                         "template",
-                        "url-name",
                     ],
                     "Appendix"
                 )
@@ -59,6 +55,7 @@ class AppendicesLoader(TranslatableModelLoader):
                 )
 
             # Check URL name is valid
+            url_name = f"appendices:{slug}"
             try:
                 reverse(url_name)
             except NoReverseMatch:
@@ -67,6 +64,9 @@ class AppendicesLoader(TranslatableModelLoader):
                     "url-name",
                     "A URL name listed in 'csfieldguide/appendices/urls.py'"
                 )
+
+            # Get Title Case from kebab-case name
+            name = slug.title().replace('-', ' ')
 
             appendix_page, created = Appendix.objects.update_or_create(
                 slug=slug,
