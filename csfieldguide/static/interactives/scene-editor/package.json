@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "private": true,
     "dependencies": {
-        "mathjs": "12.3.2",
+        "mathjs": "12.4.0",
         "three": "0.161.0",
         "sprintf-js": "1.1.3"
     }
