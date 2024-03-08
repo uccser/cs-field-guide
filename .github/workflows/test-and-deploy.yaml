@@ -262,7 +262,7 @@ jobs:
             type=ref,event=branch,priority=2
 
       - name: Build and push Docker image
-        uses: docker/build-push-action@v5.1.0
+        uses: docker/build-push-action@v5.2.0
         with:
           file: ./infrastructure/production/django/Dockerfile
           context: .
