@@ -10,14 +10,20 @@ interface-usability:
 usability-heuristics:
   section-number: 4
 
-user-experience:
+mātāpono-māori:
   section-number: 5
 
-fitts-law:
- section-number: 6
+accessibility:
+  section-number: 6
 
-the-whole-story:
+user-experience:
   section-number: 7
 
+fitts-law:
+ section-number: 8
+
+the-whole-story:
+  section-number: 9
+
 further-reading:
-  section-number: 8
+  section-number: 10
