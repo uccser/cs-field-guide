@@ -1,0 +1,3 @@
+appendix-1:
+  template: appendices/about.html
+  # template: ../tests/appendices/loaders/assets/templates/appendices/appendix-1.html
