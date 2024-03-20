@@ -4,7 +4,7 @@
     "main": "gulpfile.mjs",
     "private": true,
     "devDependencies": {
-        "@babel/core": "^7.24.0",
+        "@babel/core": "^7.24.1",
         "@babel/preset-env": "^7.24.0",
         "ansi-colors": "4.1.3",
         "autoprefixer": "10.4.18",
