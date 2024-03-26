@@ -10,4 +10,4 @@ class ContributorsURLTest(BaseTestWithDB):
 
     def test_appendices_valid_contributors_url(self):
         url = reverse("appendices:contributors")
-        self.assertEqual(url, "/en/appendices/contributors")
+        self.assertEqual(url, "/en/appendices/contributors/")

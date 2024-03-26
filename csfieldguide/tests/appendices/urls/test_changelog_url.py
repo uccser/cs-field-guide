@@ -13,5 +13,6 @@ class ChangelogURLTest(BaseTestWithDB):
         self.assertRedirects(
             response,
             "https://cs-field-guide.readthedocs.io/en/latest/changelog.html",
-            fetch_redirect_response=False
+            fetch_redirect_response=False,
+            status_code=301
         )
