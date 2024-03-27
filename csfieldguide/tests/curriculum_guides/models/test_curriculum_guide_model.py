@@ -29,6 +29,7 @@ class CurriculumGuideModelTest(BaseTestWithDB):
             [
                 "<CurriculumGuide: CurriculumGuide 1>",
             ],
+            transform=repr
         )
 
     def test_curriculum_guides_curriculum_guide_model_two_curriculum_guides(self):
@@ -48,4 +49,5 @@ class CurriculumGuideModelTest(BaseTestWithDB):
                 "<CurriculumGuide: CurriculumGuide 1>",
                 "<CurriculumGuide: CurriculumGuide 2>"
             ],
+            transform=repr
         )

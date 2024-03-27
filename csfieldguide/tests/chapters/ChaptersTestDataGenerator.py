@@ -28,7 +28,7 @@ class ChaptersTestDataGenerator:
             Contents of a yaml file.
         """
         yaml_file = open(yaml_file_path, encoding="UTF-8").read()
-        return yaml.load(yaml_file)
+        return yaml.safe_load(yaml_file)
 
     def create_chapter(self, number, introduction=None):
         """Create Chapter object.

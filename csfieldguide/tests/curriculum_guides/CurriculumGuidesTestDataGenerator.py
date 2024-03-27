@@ -27,7 +27,7 @@ class CurriculumGuidesTestDataGenerator:
             Contents of a yaml file.
         """
         yaml_file = open(yaml_file_path, encoding="UTF-8").read()
-        return yaml.load(yaml_file)
+        return yaml.safe_load(yaml_file)
 
     def create_curriculum_guide(self, number, introduction=None):
         """Create CurriculumGuide object.

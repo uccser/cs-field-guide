@@ -156,9 +156,9 @@ function addMatrix() {
 function addVector() {
   // inputs get evaluated as math
   vectorArrayMath = [
-    [mathjs.eval($('#vector-row-0').val())],
-    [mathjs.eval($('#vector-row-1').val())],
-    [mathjs.eval($('#vector-row-2').val())]
+    [mathjs.evaluate($('#vector-row-0').val())],
+    [mathjs.evaluate($('#vector-row-1').val())],
+    [mathjs.evaluate($('#vector-row-2').val())]
   ];
   // inputs remain as strings for display
   vectorArrayString = [
@@ -236,21 +236,21 @@ function appendInput(type, inputHtml) {
 function getMatrix(evalAsMath) {
   if (evalAsMath){
     row0 = [
-      mathjs.eval($('#matrix-row-0-col-0').val()),
-      mathjs.eval($('#matrix-row-0-col-1').val()),
-      mathjs.eval($('#matrix-row-0-col-2').val()),
+      mathjs.evaluate($('#matrix-row-0-col-0').val()),
+      mathjs.evaluate($('#matrix-row-0-col-1').val()),
+      mathjs.evaluate($('#matrix-row-0-col-2').val()),
     ];
 
     row1 = [
-      mathjs.eval($('#matrix-row-1-col-0').val()),
-      mathjs.eval($('#matrix-row-1-col-1').val()),
-      mathjs.eval($('#matrix-row-1-col-2').val()),
+      mathjs.evaluate($('#matrix-row-1-col-0').val()),
+      mathjs.evaluate($('#matrix-row-1-col-1').val()),
+      mathjs.evaluate($('#matrix-row-1-col-2').val()),
     ];
 
     row2 = [
-      mathjs.eval($('#matrix-row-2-col-0').val()),
-      mathjs.eval($('#matrix-row-2-col-1').val()),
-      mathjs.eval($('#matrix-row-2-col-2').val()),
+      mathjs.evaluate($('#matrix-row-2-col-0').val()),
+      mathjs.evaluate($('#matrix-row-2-col-1').val()),
+      mathjs.evaluate($('#matrix-row-2-col-2').val()),
     ];
   } else {
     row0 = [
@@ -647,9 +647,9 @@ function updateEquation(eqtnDiv, orderIndex) {
   } else {
     // inputs get evaluated as math
     vectorArrayMath = [
-      [mathjs.eval($('#vector-row-0').val())],
-      [mathjs.eval($('#vector-row-1').val())],
-      [mathjs.eval($('#vector-row-2').val())]
+      [mathjs.evaluate($('#vector-row-0').val())],
+      [mathjs.evaluate($('#vector-row-1').val())],
+      [mathjs.evaluate($('#vector-row-2').val())]
     ];
     // inputs remain as strings for display
     vectorArrayString = [
@@ -685,7 +685,7 @@ function validateInput() {
   var input = $(this).val();
   var success = false;
   try {
-    inputEvaluated = mathjs.eval(input);
+    inputEvaluated = mathjs.evaluate(input);
     mathjs.number(inputEvaluated);
     success = true;
   }

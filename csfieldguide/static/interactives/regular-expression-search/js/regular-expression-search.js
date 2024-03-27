@@ -1,62 +1,62 @@
 // Regular expression search using CodeMirrors
 // Author: Jack Morgan
 
-var urlParameters = require('../../../js/third-party/url-parameters.js');
+const urlParameters = require('../../../js/third-party/url-parameters.js');
 const CodeMirror = require('codemirror');
+
+// Add RegEx syntax highlighting mode to Codemirror
+const _ = require('../../../js/codemirror-mode-regex.js');
 
 RegularExpressionSearch = {};
 
-$(document).ready(function () {
+// Save URL parameters (undefined if not available)
+var starting_regex = urlParameters.getUrlParameter('regex');
+var starting_text = urlParameters.getUrlParameter('text');
+var reference = urlParameters.getUrlParameter('reference');
 
-  // Save URL parameters (undefined if not available)
-  var starting_regex = urlParameters.getUrlParameter('regex');
-  var starting_text = urlParameters.getUrlParameter('text');
-  var reference = urlParameters.getUrlParameter('reference');
+// Create regex CodeMirror
+RegularExpressionSearch.regex = CodeMirror(document.getElementById('interactive-regular-expression-search-regex'),{
+  value: "",
+  mode: "regex",
+  scrollbarStyle: "null"
+});
 
-  // Create regex CodeMirror
-  RegularExpressionSearch.regex = CodeMirror(document.getElementById('interactive-regular-expression-search-regex'),{
-    value: "",
-    mode: "regex",
-    scrollbarStyle: "null"
+// Create search text CodeMirror
+RegularExpressionSearch.search_text = CodeMirror.fromTextArea(document.getElementById('interactive-regular-expression-search-text'),{
+  mode: "text"
   });
 
-  // Create search text CodeMirror
-  RegularExpressionSearch.search_text = CodeMirror.fromTextArea(document.getElementById('interactive-regular-expression-search-text'),{
-    mode: "text"
-    });
-
-  // If regex box is changed
-  RegularExpressionSearch.regex.on("change", function(){
-    processRegularExpression();
-  });
-
-  // If text box is changed
-  RegularExpressionSearch.search_text.on("change", function() {
-    processRegularExpression();
-  });
-
-  // Prevent new lines occuring in regex
-  RegularExpressionSearch.regex.on("beforeChange", function(cm, change) {
-    var newtext = change.text.join("").replace(/\n/g, "");
-    if (change.update) {
-      change.update(change.from, change.to, [newtext]);
-    }
-  });
-
-  // Process any given URL parameters
-  if (starting_regex) {
-    RegularExpressionSearch.regex.setValue(decodeURI(starting_regex));
-  }
-  if (starting_text) {
-    RegularExpressionSearch.search_text.setValue(decodeURI(starting_text));
-  }
-  if (reference == 'true') {
-    $('#quick-reference').collapse('show');
-  }
-
-  // Highlight inital regular expression
+// If regex box is changed
+RegularExpressionSearch.regex.on("change", function(){
   processRegularExpression();
 });
+
+// If text box is changed
+RegularExpressionSearch.search_text.on("change", function() {
+  processRegularExpression();
+});
+
+// Prevent new lines occuring in regex
+RegularExpressionSearch.regex.on("beforeChange", function(cm, change) {
+  var newtext = change.text.join("").replace(/\n/g, "");
+  if (change.update) {
+    change.update(change.from, change.to, [newtext]);
+  }
+});
+
+// Process any given URL parameters
+if (starting_regex) {
+  RegularExpressionSearch.regex.setValue(decodeURI(starting_regex));
+}
+if (starting_text) {
+  RegularExpressionSearch.search_text.setValue(decodeURI(starting_text));
+}
+if (reference == 'true') {
+  $('#quick-reference').collapse('show');
+}
+
+// Highlight inital regular expression
+processRegularExpression();
 
 
 // Find and highlight regex matches

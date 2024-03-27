@@ -33,5 +33,6 @@ class GlossaryModelTest(BaseTestWithDB):
                 "<GlossaryTerm: Glossary Term 1>",
                 "<GlossaryTerm: Glossary Term 2>"
             ],
-            ordered=False
+            ordered=False,
+            transform=repr
         )

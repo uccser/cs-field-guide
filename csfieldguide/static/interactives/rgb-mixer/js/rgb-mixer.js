@@ -34,8 +34,8 @@ $(document).ready(function () {
     $("#numeral-system").addClass('d-none');
     $("#pixelmania-logo").removeClass("d-none");
   }
-  $("input[id='hex-colour-code']").prop('checked', useHex);
-  $("input[id='dec-colour-code']").prop('checked', !useHex);
+  $("input[id='interactive-rgb-mixer-hex-colour-code']").prop('checked', useHex);
+  $("input[id='interactive-rgb-mixer-dec-colour-code']").prop('checked', !useHex);
 
   if ((urlParameters.getUrlParameter('hide-selector') || 'false') == 'true') {
     $("#numeral-system").addClass('d-none');
@@ -81,8 +81,8 @@ $(document).ready(function () {
 });
 
 
-$("input[name='colourCode']").click(function() {
-  var temp = $("input[name='colourCode']:checked").val() == 'hex';
+$("input[name='interactive-rgb-mixer-colourCode']").click(function() {
+  var temp = $("input[name='interactive-rgb-mixer-colourCode']:checked").val() == 'hex';
   if (temp != useHex) {
     useHex = temp;
     var r_val = $('#interactive-rgb-mixer-red-value').val() || 0;

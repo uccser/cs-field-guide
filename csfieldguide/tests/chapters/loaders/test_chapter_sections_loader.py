@@ -34,7 +34,8 @@ class ChapterSectionsLoaderTest(BaseTestWithDB):
         chapter_section_loader.load()
         self.assertQuerysetEqual(
             ChapterSection.objects.all(),
-            ["<ChapterSection: This is the section heading>"]
+            ["<ChapterSection: This is the section heading>"],
+            transform=repr
         )
 
     def test_chapters_chapter_section_loader_multiple_sections(self):
@@ -54,7 +55,8 @@ class ChapterSectionsLoaderTest(BaseTestWithDB):
             [
                 "<ChapterSection: This is the first section>",
                 "<ChapterSection: This is the second section>"
-            ]
+            ],
+            transform=repr
         )
 
     def test_chapters_chapter_section_loader_missing_section_data(self):
@@ -154,7 +156,8 @@ class ChapterSectionsLoaderTest(BaseTestWithDB):
         chapter_section_loader.load()
         self.assertQuerysetEqual(
             ChapterSection.objects.all(),
-            ["<ChapterSection: Interactives>"]
+            ["<ChapterSection: Interactives>"],
+            transform=repr
         )
         self.assertEqual(
             list(Chapter.objects.get(slug=chapter.slug).interactives.order_by("slug")),
@@ -162,7 +165,7 @@ class ChapterSectionsLoaderTest(BaseTestWithDB):
                 interactive1,
                 interactive2,
                 interactive3,
-            ]
+            ],
         )
 
     def test_chapters_chapter_section_loader_interactive_invalid(self):
@@ -211,7 +214,8 @@ class ChapterSectionsLoaderTest(BaseTestWithDB):
         chapter_section_loader.load()
         self.assertQuerysetEqual(
             ChapterSection.objects.all(),
-            ["<ChapterSection: This is the section heading>"]
+            ["<ChapterSection: This is the section heading>"],
+            transform=repr
         )
 
         # Now add the section once the previous one is in the database
@@ -229,7 +233,8 @@ class ChapterSectionsLoaderTest(BaseTestWithDB):
             [
                 "<ChapterSection: This is the section heading>",
                 "<ChapterSection: This is the added section heading>"
-            ]
+            ],
+            transform=repr
         )
 
     def test_chapters_chapter_section_loader_insert_middle_section(self):
@@ -249,7 +254,8 @@ class ChapterSectionsLoaderTest(BaseTestWithDB):
             [
                 "<ChapterSection: This is the first section>",
                 "<ChapterSection: This is the second section>"
-            ]
+            ],
+            transform=repr
         )
 
         # Now add the section to the middle now that the previous
@@ -269,7 +275,8 @@ class ChapterSectionsLoaderTest(BaseTestWithDB):
                 "<ChapterSection: This is the first section>",
                 "<ChapterSection: This is the middle section heading>",
                 "<ChapterSection: This is the second section>"
-            ]
+            ],
+            transform=repr
         )
 
     def test_chapters_chapter_section_loader_delete_middle_section(self):
@@ -290,7 +297,8 @@ class ChapterSectionsLoaderTest(BaseTestWithDB):
                 "<ChapterSection: This is the first section>",
                 "<ChapterSection: This is the middle section heading>",
                 "<ChapterSection: This is the second section>"
-            ]
+            ],
+            transform=repr
         )
 
         # Delete the middle section from the database
@@ -308,5 +316,6 @@ class ChapterSectionsLoaderTest(BaseTestWithDB):
             [
                 "<ChapterSection: This is the first section>",
                 "<ChapterSection: This is the second section>"
-            ]
+            ],
+            transform=repr
         )

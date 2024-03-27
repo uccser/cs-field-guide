@@ -29,6 +29,7 @@ class ChapterModelTest(BaseTestWithDB):
             [
                 "<Chapter: Chapter 1>",
             ],
+            transform=repr
         )
 
     def test_chapters_chapter_model_two_chapters(self):
@@ -49,4 +50,5 @@ class ChapterModelTest(BaseTestWithDB):
                 "<Chapter: Chapter 1>",
                 "<Chapter: Chapter 2>"
             ],
+            transform=repr
         )

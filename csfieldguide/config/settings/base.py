@@ -16,7 +16,7 @@ import logging.config
 # Add custom languages not provided by Django
 import django.conf.locale
 from django.conf import global_settings
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 from utils.get_git_sha import get_git_sha
 
 # cs-field-guide/csfieldguide/config/settings/base.py - 3 = csfieldguide/

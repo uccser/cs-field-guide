@@ -1,4 +1,4 @@
-const CHART = require('chart.js');
+import Chart from 'chart.js/auto';
 
 const MIN = 0;      // Numbers for data
 const MAX = 9;
@@ -141,8 +141,10 @@ function buildChart() {
   if (type == CHART_TYPES.GRID || type == CHART_TYPES.MAP) {
     buildGridChart();
   } else if (type == CHART_TYPES.BAR) {
+    $('#data-vis-game').removeClass('d-none'); // Must remove d-none before invoking chart.js
     buildBarChart();
   } else if (type == CHART_TYPES.PIE) {
+    $('#data-vis-game').removeClass('d-none'); // Must remove d-none before invoking chart.js
     buildPieChart();
   }
   $('#data-vis-game').removeClass('d-none');
@@ -194,7 +196,8 @@ function buildPieChart() {
   }
   canvas.attr('width', Math.min(600, 0.8 * $( window ).width())); // 600 is the value in the html
   canvas.attr('height', canvas.attr('width') / 2);
-  dataVis.chartPie = new CHART.Chart(canvas, {
+  canvas.removeClass('d-none');
+  dataVis.chartPie = new Chart(canvas, {
     type: 'pie',
     data: {
       labels: valueLabels,
@@ -204,10 +207,11 @@ function buildPieChart() {
       }]
     },
     options: {
+      animation: false,
       responsive: true,
       legend: {
         display: true,
-        position: 'right'
+        position: 'right',
       },
       title: {
         display: true,
@@ -215,7 +219,6 @@ function buildPieChart() {
       }
     }
   });
-  canvas.removeClass('d-none');
 }
 
 /**
@@ -234,7 +237,8 @@ function buildBarChart() {
   }
   canvas.attr('width', Math.min(800, 0.8 * $( window ).width())); // 800 is the value in the html
   canvas.attr('height', canvas.attr('width') / 2);
-  dataVis.chartBar = new CHART.Chart(canvas, {
+  canvas.removeClass('d-none');
+  dataVis.chartBar = new Chart(canvas, {
     type: 'bar',
     data: {
       labels: valueLabels,
@@ -245,6 +249,7 @@ function buildBarChart() {
       }]
     },
     options: {
+      animation: false,
       responsive: true,
       legend: {
         display: false
@@ -255,7 +260,6 @@ function buildBarChart() {
       }
     }
   });
- canvas.removeClass('d-none');
 }
 
 /**
@@ -270,7 +274,8 @@ function buildResultsChart() {
   }
   canvas.attr('width', Math.min(800, 0.8 * $( window ).width())); // 800 is the value in the html
   canvas.attr('height', canvas.attr('width') / 2);
-  dataVis.chartResults = new CHART.Chart(canvas, {
+  canvas.removeClass('d-none');
+  dataVis.chartResults = new Chart(canvas, {
     type: 'bar',
     data: {
       labels: valueLabels,
@@ -286,14 +291,14 @@ function buildResultsChart() {
         display: false
       },
       scales: {
-        yAxes: [{
+        y: {
           display: true,
           ticks: {
             beginAtZero: true,
             stepValue: 10,
             max: 100
           }
-        }]
+        }
       },
       title: {
         display: true,
@@ -301,7 +306,6 @@ function buildResultsChart() {
       }
     }
   });
- canvas.removeClass('d-none');
 }
 
 function populatePerformanceTable() {

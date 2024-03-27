@@ -41,5 +41,6 @@ class CurriculumGuideViewTest(BaseTestWithDB):
                 "<CurriculumGuideSection: Section 1>",
                 "<CurriculumGuideSection: Section 2>",
                 "<CurriculumGuideSection: Section 3>",
-            ]
+            ],
+            transform=repr
         )

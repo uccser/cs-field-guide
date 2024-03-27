@@ -38,6 +38,7 @@ class ChapterSectionModelTest(BaseTestWithDB):
             [
                 "<ChapterSection: Section 1>",
             ],
+            transform=repr
         )
 
     def test_chapters_chapter_section_model_two_chapters(self):
@@ -62,4 +63,5 @@ class ChapterSectionModelTest(BaseTestWithDB):
                 "<ChapterSection: Section 1>",
                 "<ChapterSection: Section 2>"
             ],
+            transform=repr
         )

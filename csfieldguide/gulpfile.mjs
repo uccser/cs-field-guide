@@ -2,36 +2,42 @@
 // Setup
 ////////////////////////////////
 
-// Gulp and package
-const { src, dest, parallel, series, watch, lastRun } = require('gulp')
-const pjson = require('./package.json')
+// Gulp
+import gulp from "gulp"
+const { src, dest, parallel, series, watch, lastRun } = gulp
+
+// Package
+import { readFile } from "node:fs/promises";
+const pjson = JSON.parse(await readFile('./package.json'))
 
 // Plugins
-const autoprefixer = require('autoprefixer')
-const browserify = require('browserify')
-const browserSync = require('browser-sync').create()
-const buffer = require('vinyl-buffer');
-const c = require('ansi-colors')
-const concat = require('gulp-concat')
-const cssnano = require('cssnano')
-const dependents = require('gulp-dependents')
-const errorHandler = require('gulp-error-handle')
-const filter = require('gulp-filter')
-const gulpif = require('gulp-if');
-const { hideBin } = require('yargs/helpers')
-const imagemin = require('gulp-imagemin')
-const log = require('fancy-log')
-const pixrem = require('pixrem')
-const postcss = require('gulp-postcss')
-const postcssFlexbugFixes = require('postcss-flexbugs-fixes')
-const reload = browserSync.reload
-const rename = require('gulp-rename')
-const sass = require('gulp-sass')(require('sass'));
-const sourcemaps = require('gulp-sourcemaps')
-const spawn = require('child_process').spawn
-const tap = require('gulp-tap')
-const terser = require('gulp-terser')
-const yargs = require('yargs/yargs')
+import autoprefixer from 'autoprefixer'
+import browserify from 'browserify'
+import babelify from 'babelify'
+import browserSync from 'browser-sync'
+const { reload } = browserSync.create()
+import buffer from 'vinyl-buffer'
+import c from 'ansi-colors'
+import concat from 'gulp-concat'
+import cssnano from 'cssnano'
+import dependents from 'gulp-dependents'
+import errorHandler from 'gulp-error-handle'
+import filter from 'gulp-filter'
+import gulpif from 'gulp-if'
+import { hideBin } from 'yargs/helpers'
+import imagemin from 'gulp-imagemin'
+import log from 'fancy-log'
+import pixrem from 'pixrem'
+import postcss from 'gulp-postcss'
+import postcssFlexbugFixes from 'postcss-flexbugs-fixes'
+import rename from 'gulp-rename'
+import dartSass from 'sass';
+import gulpSass from 'gulp-sass';
+const sass = gulpSass(dartSass);
+import sourcemaps from 'gulp-sourcemaps'
+import tap from 'gulp-tap'
+import terser from 'gulp-terser'
+import yargs from 'yargs/yargs'
 
 // Arguments
 const argv = yargs(hideBin(process.argv)).argv
@@ -39,13 +45,12 @@ const PRODUCTION = !!argv.production;
 
 // Relative paths function
 function pathsConfig(appName) {
-    this.app = `./${pjson.name}`
     const vendorsRoot = 'node_modules/'
     const staticSourceRoot = 'static/'
     const staticOutputRoot = 'build/'
 
     return {
-        app: this.app,
+        app: `./${pjson.name}`,
         // Source files
         bootstrap_source: `${vendorsRoot}bootstrap/scss`,
         images_source: `${staticSourceRoot}img`,
@@ -145,7 +150,7 @@ function scss() {
                 paths.bootstrap_source
             ],
             sourceComments: !PRODUCTION,
-        }).on('error', sass.logError))
+        }).on('error', error => { throw error }))
         .pipe(postcss(processCss))
         .pipe(sourcemaps.write())
         .pipe(gulpif(PRODUCTION, postcss(minifyCss))) // Minifies the result
@@ -160,13 +165,32 @@ function js() {
     const js_filter = filter(js_files_skip_optimisation, { restore: true })
     return src([
             `${paths.js_source}/**/*.js`,
+            `!${paths.js_source}/**/modules/**/*.js`,
             `!${paths.js_source}/**/node_modules/**/*.js`
         ], {since: lastRun(js)})
         .pipe(js_filter)
         .pipe(errorHandler(catchError))
         .pipe(sourcemaps.init())
         .pipe(tap(function (file) {
-            file.contents = browserify(file.path, { debug: true }).bundle().on('error', catchError);
+            file.contents = browserify(file.path, { debug: true })
+                .transform(babelify, { 
+                    // Some node modules are switching to ES modules, 
+                    // browserify is not compatible with ES modules, 
+                    // so transpile such node modules in the meantime.
+                    // New modules can be written in ES2015+, making jQuery obsolete
+                    // and supporting older browsers easier.
+                    // Todo: replace browserify + gulp with
+                    // a more actively supported (and ES + CJS module supporting) tool,
+                    // (i.e. rollup, webpack, vite, etc.) to prevent transpiling dependencies.
+                    presets: [
+                        "@babel/preset-env", {"sourceType": "unambiguous"} 
+                        // If no exports or imports, assume file is script.
+                    ], 
+                    global: true,
+                    ignore: [/\/node_modules\/(?!three\/)/] // Only transpile three.js (to be safe).
+                })                                          // Can add other node_modules if/when they break...
+                .bundle()
+                .on('error', catchError);
         }))
         .pipe(buffer())
         .pipe(gulpif(PRODUCTION, terser({ keep_fnames: true })))
@@ -223,7 +247,7 @@ function watchPaths() {
 }
 
 // Generate all assets
-const generateAssets = series(
+export const generateAssets = series(
     parallel(
         css,
         scss,
@@ -235,12 +259,13 @@ const generateAssets = series(
     ),
     js
 )
+generateAssets.displayName = "generate-assets";
 
-const dev = parallel(
+export const dev = parallel(
     // initBrowserSync,
     watchPaths
 )
+
 // TODO: Look at cleaning build folder
-exports["generate-assets"] = generateAssets
-exports["dev"] = dev
-exports.default = series(generateAssets, dev)
+
+export default series(generateAssets, dev);

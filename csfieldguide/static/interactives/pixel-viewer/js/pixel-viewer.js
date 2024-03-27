@@ -74,6 +74,15 @@ var colour_code_rep = 'rgb';
 $( document ).ready(function() {
   init_cache(300, MAX_HEIGHT);
 
+  // Enable tooltips.
+  $('[data-toggle="tooltip"]').tooltip();
+  // Hide tooltips 2 seconds after being shown.
+  $('[data-toggle="tooltip"]').on('shown.bs.tooltip', function () {
+    setTimeout(function() {
+      $('[data-toggle="tooltip"]').tooltip('hide');
+    }, 2000);
+  });
+
   if (searchParameters.has('image')){
     image_filename = searchParameters.get('image');
   }
@@ -178,6 +187,7 @@ $( document ).ready(function() {
         scroller.scrollTo(scroller_position_left, scroller_position_top);
         $("#pixel-viewer-interactive-loader").hide();
         $("#pixel-viewer-interactive-buttons").css({opacity: 0, visibility: "visible"}).animate({opacity: 1}, 'slow');
+        $(zoomInBtn).tooltip('show');
       }
     );
     $("#pixel-viewer-interactive-original-image").fadeOut(300);
@@ -1141,13 +1151,20 @@ if (searchParameters.has('no-pixel-fill')) {
 
 window.addEventListener("resize", reflow, false);
 
-document.querySelector("#pixel-viewer-interactive-zoom-in").addEventListener("click", function() {
+// Setup button tooltips.
+const zoomInBtn = document.querySelector("#pixel-viewer-interactive-zoom-in");
+zoomInBtn.title = gettext("Click to Zoom");
+zoomInBtn.addEventListener("click", function() {
   scroller.zoomBy(1.2, true);
 }, false);
 
-document.querySelector("#pixel-viewer-interactive-zoom-out").addEventListener("click", function() {
+zoomOutBtn = document.querySelector("#pixel-viewer-interactive-zoom-out");
+zoomOutBtn.title = gettext("Click to Zoom");
+zoomOutBtn.addEventListener("click", function() {
   scroller.zoomBy(0.8, true);
 }, false);
+// If user tries to zoom, show tooltips.
+window.addEventListener("resize", showTooltips, false);
 
 if ('ontouchstart' in window) {
 
@@ -1247,4 +1264,9 @@ function sum(array){
   return array.reduce(function(prev, curr, currI, arr){
     return prev + curr;
   });
+}
+
+function showTooltips() {
+  $(zoomInBtn).tooltip('show');
+  $(zoomOutBtn).tooltip('show');
 }

@@ -64,4 +64,5 @@ class ChapterSectionHeadingModelTest(BaseTestWithDB):
                 "<ChapterSectionHeading: Heading 1>",
                 "<ChapterSectionHeading: Heading 2>"
             ],
+            transform=repr
         )

@@ -15,7 +15,8 @@ class InteractiveModelTest(BaseTestWithDB):
         )
         self.assertQuerysetEqual(
             Interactive.objects.all(),
-            ["<Interactive: Interactive 1>"]
+            ["<Interactive: Interactive 1>"],
+            transform=repr
         )
 
     def test_interactives_interactive_model_two_interactives(self):
@@ -35,5 +36,6 @@ class InteractiveModelTest(BaseTestWithDB):
                 "<Interactive: Interactive 1>",
                 "<Interactive: Interactive 2>"
             ],
-            ordered=False
+            ordered=False,
+            transform=repr
         )
