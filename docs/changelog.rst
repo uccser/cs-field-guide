@@ -18,6 +18,173 @@ All notable changes to this project will be documented in this file.
 We have listed major changes for each release below.
 `All downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/>`__
 
+3.14.0
+==============================================================================
+
+**Release date:** 27th March 2024
+
+**Changelog:**
+
+- Add Usability principles relating to mātāpono Māori section to the HCI chapter.
+- Add accessibility section to the HCI chapter.
+- Add consistency conent to the HCI chapter.
+- Add mātanga section to Contributors page.
+- Add support for esm modules and es6+ syntax transpilation.
+- Add package-lock for all interactives.
+- Improve pixel viewer interactive's UI clarity.
+- Improve scene editor interactive's brightness.
+- Improve documentation.
+- Fix scene editor interactive.
+- Fix 'No interactives' note missing from interactives index page: software engineering.
+- Fix Regular Expression Search interactive doesn't show syntax highlighting.
+- Fix radio buttons for CMY/RGB colour mixers.
+- Fix link to tcpdump docs in Network Communication Protocols section.
+- Fix bug where user can remove all cities in City Trip interactive.
+- Allow translations of the stations in the Trainsylvania Map.
+- Remove animation on charts in data visualisation interactive.
+- Update Node image to latest LTS.
+- Core Python dependency changes:
+
+    - Update django from 3.2.16 to 4.2.11
+    - Update django-environ from 0.9.0 to 0.11.2
+    - Update gunicorn from 20.1.0 to 21.2.0
+    - Update whitenoise from 6.2.0 to 6.6.0
+    - Update psycopg2 from 2.9.5 to 2.9.9
+    - Update selenium from 4.7.0 to 4.18.1
+    - Update verto from 1.0.1 to 1.1.1
+    - Update Pygments from 2.13.0 to 2.17.2
+    - Update lxml from 4.9.2 to 4.9.4
+    - Update PyYAML from 5.4.1 to 6.0.1
+    - Update django-modeltranslation from 0.18.7 to 0.18.12
+    - Update uniseg from 0.7.2 to 0.8.0
+    - Update django-statici18n from 2.3.1 to 2.4.0
+    - Update django-cors-headers from 3.13.0 to 4.3.1
+    - Update django-debug-toolbar from 3.8.1 to 4.3.0
+    - Update flake8 from 4.0.1 to 7.0.0
+    - Update pydocstyle from 6.1.1 to 6.3.0
+    - Update coverage from 6.5.0 to 6.5.0
+
+- Core JS dependency changes:
+
+    - Add @babel/core 7.24.3
+    - Add @babel/preset-env 7.24.3
+    - Add babelify 10.0.0
+    - Update autoprefixer from 10.4.13 to 10.4.19
+    - Update browser-sync from 2.27.10 to 3.0.2
+    - Update cssnano from 5.1.14 to 6.1.2
+    - Update gulp-filter from 7.0.0 to 9.0.1
+    - Update gulp-imagemin from 7.1.0 to 9.0.0
+    - Update gulp-postcss from 9.0.1 to 10.0.0
+    - Update iframe-resizer from 4.3.2 to 4.3.9
+    - Update jquery from 3.6.2 to 3.7.1
+    - Update multiple-select from 1.5.2 to 1.7.0
+    - Update postcss from 8.4.20 to 8.4.38
+    - Update sass from 1.56.2 to 1.72.0
+    - Update yargs from 17.6.2 to 17.7.2
+    - Remove child_process
+    - Remove got
+
+- Github Action dependency changes:
+
+    - Update actions/checkout from 3 to 4
+    - Update actions/setup-python from 4 to 5
+    - Update actions/upload-artifact from 3 to 4
+    - Update actions/download-artifact from 3 to 4
+    - Update crowdin/github-action from 1.5.2 to 1.20.0
+    - Update codecov/codecov-action from 3 to 4
+    - Update dependabot/fetch-metadata from 1.3.5 to 2.0.0
+    - Update docker/login-action from 2.1.0 to 3.1.0
+    - Update docker/build-push-action from 3.2.0 to 5.3.0
+    - Update docker/metadata-action from 4 to 5
+
+- Interactive algorithm-timer dependency changes:
+
+    - Update mathjs from 5.5.0 to 12.4.1
+
+- Interactive bin-packing dependency changes:
+
+    - Update interactjs from 1.10.17 to 1.10.26
+
+- Interactive city-trip dependency changes:
+
+    - Update cytoscape from 3.23.0 to 3.28.1
+    - Update mathjs from 5.5.0 to 12.4.1
+
+- Interactive cmy-mixer dependency changes:
+
+    - Update nouislider from 13.1.5 to 15.7.1
+
+- Interactive colour-matcher dependency changes:
+
+    - Update nouislider from 13.1.5 to 15.7.1
+
+- Interactive data-bias dependency changes:
+
+    - Update nouislider from 13.1.5 to 15.7.1
+
+- Interactive data-visualisation dependency changes:
+
+    - Update chart.js from 2.9.1 to 4.4.2
+
+- Interactive frequency-analysis dependency changes:
+
+    - Update chart.js from 2.7.2 to 4.4.2
+    - Remove es5-shim
+    - Remove es6-shim
+
+- Interactive jpeg-compression dependency changes:
+
+    - Update interactjs from 1.10.17 to 1.10.26
+
+- Interactive matrix-simplifier dependency changes:
+
+    - Update mathjs from 6.0.3 to 12.4.1
+    - Update sprintf-js from 1.1.2 to 1.1.3
+
+- Interactive packet-attack dependency changes:
+
+    - Update phaser from 3.55.2 to 3.80.1
+
+- Interactive password-guesser dependency changes:
+
+    - Update crypto-js from 3.1.9-1 to 4.2.0
+
+- Interactive rgb-mixer dependency changes:
+
+    - Update nouislider from 13.1.5 to 15.7.1
+
+- Interactive rsa-decryption dependency changes:
+
+    - Update big-integer from 1.6.51 to 1.6.52
+
+- Interactive scene-editor dependency changes:
+
+    - Update mathjs from 6.0.3 to 12.4.1
+    - Update three from 0.147.0 to 0.162.0
+    - Update sprintf-js from 1.1.2 to 1.1.3
+    - Remove three-orbit-controls
+
+- Interactive training-ground dependency changes:
+
+    - Update nouislider from 13.1.5 to 15.7.1
+
+- Interactive unicode-binary dependency changes:
+
+    - Update string.fromcodepoint from 1.0.0 to 1.0.3
+
+- Interactive unicode-chars dependency changes:
+
+    - Update string.fromcodepoint from 1.0.0 to 1.0.3
+
+- Interactive viola-jones-face-detector dependency changes:
+
+    - Update interactjs from 1.10.17 to 1.10.26
+
+- Docs dependency changes:
+
+    - Update sphinx from 5.3.0 to 7.2.6
+    - Update sphinx-rtd-theme from 1.1.1 to 2.0.0
+
 3.13.0
 ==============================================================================
 
