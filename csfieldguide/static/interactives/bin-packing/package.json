@@ -3,6 +3,6 @@
     "version": "1.0.0",
     "private": true,
     "dependencies": {
-        "interactjs": "1.10.26"
+        "interactjs": "1.10.27"
     }
 }
