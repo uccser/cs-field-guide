@@ -55,6 +55,7 @@ class IndexViewTest(BaseTestWithDB):
         self.assertQuerysetEqual(
             response_chapters.get(slug="chapter-1").interactives.all(),
             ["<Interactive: Interactive 1>"],
+            transform=repr
         )
 
     def test_interactives_index_view_chapter_with_multiple_interactives(self):
@@ -78,6 +79,7 @@ class IndexViewTest(BaseTestWithDB):
                 "<Interactive: Interactive 2>",
                 "<Interactive: Interactive 3>",
             ],
+            transform=repr
         )
 
     def test_interactives_index_view_multiple_chapters_with_multiple_interactives(self):
@@ -106,6 +108,7 @@ class IndexViewTest(BaseTestWithDB):
                 "<Interactive: Interactive 2>",
                 "<Interactive: Interactive 3>",
             ],
+            transform=repr
         )
         self.assertQuerysetEqual(
             response_chapters.get(slug="chapter-2").interactives.all(),
@@ -113,4 +116,5 @@ class IndexViewTest(BaseTestWithDB):
                 "<Interactive: Interactive 4>",
                 "<Interactive: Interactive 5>",
             ],
+            transform=repr
         )

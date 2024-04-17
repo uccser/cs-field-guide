@@ -1375,6 +1375,11 @@ msgstr ""
 msgid "Your image has been resized for this interactive to "
 msgstr ""
 
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:1156
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:1162
+msgid "Click to Zoom"
+msgstr ""
+
 #: static/interactives/python-interpreter/js/python-interpreter.js:5
 msgid "Welcome to computer programming, student"
 msgstr ""
@@ -1673,46 +1678,59 @@ msgid_plural "Nathaniel chose %(num_sticks)s sticks."
 msgstr[0] ""
 msgstr[1] ""
 
+#: static/interactives/trainsylvania-map/js/trainsylvania-map.js:21
+msgid "Start"
+msgstr ""
+
+#: static/interactives/trainsylvania-map/js/trainsylvania-map.js:22
 #: static/interactives/trainsylvania-planner/js/trainsylvania-planner.js:6
 #: static/interactives/trainsylvania/js/trainsylvania.js:8
 msgid "Station 1: Airport"
 msgstr ""
 
+#: static/interactives/trainsylvania-map/js/trainsylvania-map.js:23
 #: static/interactives/trainsylvania-planner/js/trainsylvania-planner.js:7
 #: static/interactives/trainsylvania/js/trainsylvania.js:9
 msgid "Station 2: West"
 msgstr ""
 
+#: static/interactives/trainsylvania-map/js/trainsylvania-map.js:24
 #: static/interactives/trainsylvania-planner/js/trainsylvania-planner.js:8
 #: static/interactives/trainsylvania/js/trainsylvania.js:10
 msgid "Station 3: South"
 msgstr ""
 
+#: static/interactives/trainsylvania-map/js/trainsylvania-map.js:25
 #: static/interactives/trainsylvania-planner/js/trainsylvania-planner.js:9
 #: static/interactives/trainsylvania/js/trainsylvania.js:11
 msgid "Station 4: Central"
 msgstr ""
 
+#: static/interactives/trainsylvania-map/js/trainsylvania-map.js:26
 #: static/interactives/trainsylvania-planner/js/trainsylvania-planner.js:10
 #: static/interactives/trainsylvania/js/trainsylvania.js:12
 msgid "Station 5: Harbour"
 msgstr ""
 
+#: static/interactives/trainsylvania-map/js/trainsylvania-map.js:27
 #: static/interactives/trainsylvania-planner/js/trainsylvania-planner.js:11
 #: static/interactives/trainsylvania/js/trainsylvania.js:13
 msgid "Station 6: Factory"
 msgstr ""
 
+#: static/interactives/trainsylvania-map/js/trainsylvania-map.js:28
 #: static/interactives/trainsylvania-planner/js/trainsylvania-planner.js:12
 #: static/interactives/trainsylvania/js/trainsylvania.js:14
 msgid "Station 7: Midway"
 msgstr ""
 
+#: static/interactives/trainsylvania-map/js/trainsylvania-map.js:29
 #: static/interactives/trainsylvania-planner/js/trainsylvania-planner.js:13
 #: static/interactives/trainsylvania/js/trainsylvania.js:15
 msgid "Station 8: North"
 msgstr ""
 
+#: static/interactives/trainsylvania-map/js/trainsylvania-map.js:30
 #: static/interactives/trainsylvania-planner/js/trainsylvania-planner.js:14
 #: static/interactives/trainsylvania/js/trainsylvania.js:16
 msgid "Station 9: East"

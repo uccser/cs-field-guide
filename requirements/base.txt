@@ -1,37 +1,37 @@
 # Django
-django==3.2.16
-django-environ==0.9.0
+django==4.2.11
+django-environ==0.11.2
 django-bootstrap-breadcrumbs==0.9.2
 
 # Web serving
-gunicorn==20.1.0
-whitenoise==6.2.0
+gunicorn==21.2.0
+whitenoise==6.6.0
 
 # Database APIs
-psycopg2==2.9.5
+psycopg2==2.9.9
 
 # Images
 django-inline-svg==0.1.1
-selenium==4.7.0
+selenium==4.19.0
 
 # Markdown
-verto==1.0.1
-Pygments==2.13.0
+verto==1.1.1
+Pygments==2.17.2
 python-markdown-math==0.6
 
 # XML Parsing
-lxml==4.9.2
+lxml==4.9.4
 cssselect==1.2.0
 
 # YAML Loading
-PyYAML==5.4.1
+PyYAML==6.0.1
 
 # I18n
-django-modeltranslation==0.18.7
-uniseg==0.7.2
+django-modeltranslation==0.18.12
+uniseg==0.8.0
 python-bidi==0.4.2
 django-bidi-utils==1.0
-django-statici18n==2.3.1
+django-statici18n==2.4.0
 
 # CORS
-django-cors-headers==3.13.0
+django-cors-headers==4.3.1

@@ -30,7 +30,8 @@ class CurriculumGuidesLoaderTest(BaseTestWithDB):
         curriculum_guide_loader.load()
         self.assertQuerysetEqual(
             CurriculumGuide.objects.all(),
-            ["<CurriculumGuide: Curriculum Guide 1>"]
+            ["<CurriculumGuide: Curriculum Guide 1>"],
+            transform=repr
         )
         self.assertSetEqual(
             set(["en"]),

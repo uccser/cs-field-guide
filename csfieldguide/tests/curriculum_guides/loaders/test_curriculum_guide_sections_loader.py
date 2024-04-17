@@ -32,7 +32,8 @@ class CurriculumGuideSectionsLoaderTest(BaseTestWithDB):
         curriculum_guide_section_loader.load()
         self.assertQuerysetEqual(
             CurriculumGuideSection.objects.all(),
-            ["<CurriculumGuideSection: This is the section heading>"]
+            ["<CurriculumGuideSection: This is the section heading>"],
+            transform=repr
         )
 
     def test_curriculum_guides_curriculum_guide_section_loader_multiple_sections(self):
@@ -52,7 +53,8 @@ class CurriculumGuideSectionsLoaderTest(BaseTestWithDB):
             [
                 "<CurriculumGuideSection: This is the first section>",
                 "<CurriculumGuideSection: This is the second section>"
-            ]
+            ],
+            transform=repr
         )
 
     def test_curriculum_guides_curriculum_guide_section_loader_missing_section_data(self):

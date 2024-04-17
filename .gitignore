@@ -4,6 +4,9 @@ csfieldguide/build/**
 csfieldguide/staticfiles/**
 !csfieldguide/staticfiles/.keep
 
+# NPM
+node_modules/
+
 # Files for using HTTPS on local development
 infrastructure/local/traefik/certs/
 

@@ -26,8 +26,8 @@ CMY_Mixer.result = document.getElementById('interactive-cmy-mixer-result');
 
 $(document).ready(function () {
   useHex = (urlParameters.getUrlParameter('hex') || 'false') == 'true';
-  $("input[id='hex-colour-code']").prop('checked', useHex);
-  $("input[id='dec-colour-code']").prop('checked', !useHex);
+  $("input[id='interactive-cmy-mixer-hex-colour-code']").prop('checked', useHex);
+  $("input[id='interactive-cmy-mixer-dec-colour-code']").prop('checked', !useHex);
 
   if ((urlParameters.getUrlParameter('hide-selector') || 'false') == 'true') {
     $("#numeral-system").addClass('d-none');
@@ -68,8 +68,8 @@ $(document).ready(function () {
 });
 
 
-$("input[name='colourCode']").click(function() {
-  var temp = $("input[name='colourCode']:checked").val() == 'hex';
+$("input[name='interactive-cmy-mixer-colourCode']").click(function() {
+  var temp = $("input[name='interactive-cmy-mixer-colourCode']:checked").val() == 'hex';
   if (temp != useHex) {
     useHex = temp;
     var c_val = $('#interactive-cmy-mixer-cyan-value').val() || 0;

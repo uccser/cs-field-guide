@@ -1,5 +1,6 @@
 """Views for the interactives application."""
 
+from django.db.models import Prefetch
 from django.views import generic
 from django.http import HttpResponse, JsonResponse
 from django.urls import reverse
@@ -34,7 +35,11 @@ class IndexView(generic.ListView):
             Dictionary of context data.
         """
         context = super(IndexView, self).get_context_data(**kwargs)
-        context["chapters"] = Chapter.objects.prefetch_related('interactives')
+        context["chapters"] = Chapter.objects.prefetch_related(
+             Prefetch(
+                 'interactives',
+                 queryset=Interactive.objects.filter(is_interactive=True))
+        )
         return context
 
 

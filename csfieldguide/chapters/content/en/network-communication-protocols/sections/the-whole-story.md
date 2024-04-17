@@ -90,7 +90,7 @@ Think about the ratio of data to information (such as those in the header and fo
 
 # What does a packet trace look like?
 
-Here’s an example of a packet trace on our network [(using tcpdump on the mac)](http://support.apple.com/kb/HT3994)
+Here’s an example of a packet trace on our network [(using tcpdump on macOS)](https://developer.apple.com/documentation/network/recording_a_packet_trace)
 
 ```text
 00:55:18.540237 b8:e8:56:02:f8:3e > c4:a8:1d:17:a0:d3, ethertype IPv4 (0x0800), length 100: (tos 0x0, ttl 64, id 41564, offset 0, flags [none], proto UDP (17), length 86)

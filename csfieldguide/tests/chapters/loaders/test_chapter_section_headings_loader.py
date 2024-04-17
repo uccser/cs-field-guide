@@ -40,7 +40,8 @@ class ChapterSectionHeadingsLoaderTest(BaseTestWithDB):
         chapter_section_heading_loader.load()
         self.assertQuerysetEqual(
             ChapterSectionHeading.objects.all(),
-            ["<ChapterSectionHeading: This is a second level heading>"]
+            ["<ChapterSectionHeading: This is a second level heading>"],
+            transform=repr
         )
 
     def test_chapters_chapter_section_loader_multiple_headings(self):
@@ -71,7 +72,8 @@ class ChapterSectionHeadingsLoaderTest(BaseTestWithDB):
             [
                 "<ChapterSectionHeading: This is a second level heading>",
                 "<ChapterSectionHeading: This is another second level heading>"
-            ]
+            ],
+            transform=repr
         )
 
     def test_chapters_chapter_section_loader_added_heading(self):
@@ -101,7 +103,8 @@ class ChapterSectionHeadingsLoaderTest(BaseTestWithDB):
             ChapterSectionHeading.objects.all(),
             [
                 "<ChapterSectionHeading: This is a second level heading>",
-            ]
+            ],
+            transform=repr
         )
 
         # Now add the new heading while the previous one is in the database
@@ -129,7 +132,8 @@ class ChapterSectionHeadingsLoaderTest(BaseTestWithDB):
             [
                 "<ChapterSectionHeading: This is a second level heading>",
                 "<ChapterSectionHeading: This is another second level heading>"
-            ]
+            ],
+            transform=repr
         )
 
     def test_chapters_chapter_section_loader_added_middle(self):
@@ -160,7 +164,8 @@ class ChapterSectionHeadingsLoaderTest(BaseTestWithDB):
             [
                 "<ChapterSectionHeading: This is a second level heading>",
                 "<ChapterSectionHeading: This is another second level heading>"
-            ]
+            ],
+            transform=repr
         )
 
         # Now add the new heading while the previous one is in the database
@@ -190,7 +195,8 @@ class ChapterSectionHeadingsLoaderTest(BaseTestWithDB):
                 "<ChapterSectionHeading: This is a second level heading>",
                 "<ChapterSectionHeading: This heading was added in the middle>",
                 "<ChapterSectionHeading: This is another second level heading>"
-            ]
+            ],
+            transform=repr
         )
 
     def test_chapters_chapter_section_removed_heading(self):
@@ -221,7 +227,8 @@ class ChapterSectionHeadingsLoaderTest(BaseTestWithDB):
             [
                 "<ChapterSectionHeading: This is a second level heading>",
                 "<ChapterSectionHeading: This is another second level heading>"
-            ]
+            ],
+            transform=repr
         )
 
         # Now add the new heading while the previous one is in the database
@@ -248,5 +255,6 @@ class ChapterSectionHeadingsLoaderTest(BaseTestWithDB):
             ChapterSectionHeading.objects.all(),
             [
                 "<ChapterSectionHeading: This is a second level heading>",
-            ]
+            ],
+            transform=repr
         )
