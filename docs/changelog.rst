@@ -21,7 +21,7 @@ We have listed major changes for each release below.
 3.14.0
 ==============================================================================
 
-**Release date:** 27th March 2024
+**Release date:** 18th April 2024
 
 **Changelog:**
 
@@ -50,7 +50,7 @@ We have listed major changes for each release below.
     - Update gunicorn from 20.1.0 to 21.2.0
     - Update whitenoise from 6.2.0 to 6.6.0
     - Update psycopg2 from 2.9.5 to 2.9.9
-    - Update selenium from 4.7.0 to 4.18.1
+    - Update selenium from 4.7.0 to 4.19.0
     - Update verto from 1.0.1 to 1.1.1
     - Update Pygments from 2.13.0 to 2.17.2
     - Update lxml from 4.9.2 to 4.9.4
@@ -66,8 +66,8 @@ We have listed major changes for each release below.
 
 - Core JS dependency changes:
 
-    - Add @babel/core 7.24.3
-    - Add @babel/preset-env 7.24.3
+    - Add @babel/core 7.24.4
+    - Add @babel/preset-env 7.24.4
     - Add babelify 10.0.0
     - Update autoprefixer from 10.4.13 to 10.4.19
     - Update browser-sync from 2.27.10 to 3.0.2
@@ -79,7 +79,7 @@ We have listed major changes for each release below.
     - Update jquery from 3.6.2 to 3.7.1
     - Update multiple-select from 1.5.2 to 1.7.0
     - Update postcss from 8.4.20 to 8.4.38
-    - Update sass from 1.56.2 to 1.72.0
+    - Update sass from 1.56.2 to 1.75.0
     - Update yargs from 17.6.2 to 17.7.2
     - Remove child_process
     - Remove got
@@ -90,7 +90,7 @@ We have listed major changes for each release below.
     - Update actions/setup-python from 4 to 5
     - Update actions/upload-artifact from 3 to 4
     - Update actions/download-artifact from 3 to 4
-    - Update crowdin/github-action from 1.5.2 to 1.20.0
+    - Update crowdin/github-action from 1.5.2 to 1.20.2
     - Update codecov/codecov-action from 3 to 4
     - Update dependabot/fetch-metadata from 1.3.5 to 2.0.0
     - Update docker/login-action from 2.1.0 to 3.1.0
@@ -103,7 +103,7 @@ We have listed major changes for each release below.
 
 - Interactive bin-packing dependency changes:
 
-    - Update interactjs from 1.10.17 to 1.10.26
+    - Update interactjs from 1.10.17 to 1.10.27
 
 - Interactive city-trip dependency changes:
 
@@ -134,7 +134,7 @@ We have listed major changes for each release below.
 
 - Interactive jpeg-compression dependency changes:
 
-    - Update interactjs from 1.10.17 to 1.10.26
+    - Update interactjs from 1.10.17 to 1.10.27
 
 - Interactive matrix-simplifier dependency changes:
 
@@ -160,7 +160,7 @@ We have listed major changes for each release below.
 - Interactive scene-editor dependency changes:
 
     - Update mathjs from 6.0.3 to 12.4.1
-    - Update three from 0.147.0 to 0.162.0
+    - Update three from 0.147.0 to 0.163.0
     - Update sprintf-js from 1.1.2 to 1.1.3
     - Remove three-orbit-controls
 
@@ -178,7 +178,7 @@ We have listed major changes for each release below.
 
 - Interactive viola-jones-face-detector dependency changes:
 
-    - Update interactjs from 1.10.17 to 1.10.26
+    - Update interactjs from 1.10.17 to 1.10.27
 
 - Docs dependency changes:
 
