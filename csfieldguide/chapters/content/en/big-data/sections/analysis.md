@@ -73,7 +73,7 @@ Here are two prominent examples:
 - This is used for investigating social structures using networks.
 You can imagine how this works by thinking about the structure of Facebook.
 You and everyone else on Facebook are each an individual node, and two people are connected by an edge if they are Facebook friends.
-Together, these nodes and edges make a graph structure (a different type of [graph](https://en.wikipedia.org/wiki/Graph_(discrete_mathematics)) to the ones you normally see in maths) that can be analysed.
+Together, these nodes and edges make a graph structure (a different type of [graph](https://en.wikipedia.org/wiki/Graph_%28discrete_mathematics%29) to the ones you normally see in maths) that can be analysed.
 
 {image file-path="img/chapters/social-network-graph.png" caption="true" alt="Five circles with different names in them are shown with lines connecting each of them to illustrate that they are connected on social media. Each of these circles is then connected to several smaller circles, which represent other friends in their network."}
 

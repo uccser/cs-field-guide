@@ -19,4 +19,4 @@ Extra sections will eventually be added here to introduce some of them, but in t
 - [Longest path](https://en.wikipedia.org/wiki/Longest_path) (this is interesting because finding the longest path is intractable, yet finding the shortest path is tractable - the shortest path is calculated when a GPS device works out the shortest route to a destination.
   Also, a Hamiltonian problem can be reduced easily to longest path, showing the concept of reduction when one NP-complete problem is used to solve another).
   [Here's a song about it!](https://www.youtube.com/watch?feature=player_embedded&v=a3ww0gwEszo)
-- [The Battleship problem](https://en.wikipedia.org/wiki/Battleship_(puzzle))
+- [The Battleship problem](https://en.wikipedia.org/wiki/Battleship_%28puzzle%29)

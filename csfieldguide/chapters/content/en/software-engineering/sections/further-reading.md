@@ -6,7 +6,7 @@
 - [Wikipedia &ndash; Software crisis](https://en.wikipedia.org/wiki/Software_crisis)
 - [IEEE &ndash; Why software fails](http://spectrum.ieee.org/computing/software/why-software-fails)
 - [Wikipedia &ndash; Software design](https://en.wikipedia.org/wiki/Software_design)
-- [Wikipedia &ndash; Abstraction](https://en.wikipedia.org/wiki/Abstraction_(computer_science))
+- [Wikipedia &ndash; Abstraction](https://en.wikipedia.org/wiki/Abstraction_%28computer_science%29)
 - [Wikipedia &ndash; Software testing](https://en.wikipedia.org/wiki/Software_testing)
 - [Wikipedia &ndash; Software development process](https://en.wikipedia.org/wiki/Software_development_process)
 - [Wikipedia &ndash; Waterfall model](https://en.wikipedia.org/wiki/Waterfall_model)
