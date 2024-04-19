@@ -56,7 +56,7 @@ The original 7x7 cards that the computer laid out for you could be some kind of 
 Although they are laid out in a grid, on a computer the rows of bits would be stored or transmitted one after the other (as 8 lots of 8 bits).
 
 The extra cards you added are called *parity bits*.
-[Parity](https://en.wikipedia.org/wiki/Parity_(mathematics))
+[Parity](https://en.wikipedia.org/wiki/Parity_%28mathematics%29)
 simply means whether a number is even or odd (the word comes from the same root as "pair").
 By adding the extra cards in a way that ensured an even number of black cards in each row and column, you made it so that the rows and columns had what is called *even parity*.
 
