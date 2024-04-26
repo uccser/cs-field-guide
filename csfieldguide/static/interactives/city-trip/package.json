@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "private": true,
     "dependencies": {
-        "cytoscape": "3.29.1",
+        "cytoscape": "3.29.2",
         "cytoscape-no-overlap": "1.0.1",
         "cytoscape-automove": "1.10.3",
         "mathjs": "12.4.2"
