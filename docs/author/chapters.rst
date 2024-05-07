@@ -157,7 +157,7 @@ Chapter Sections Configuration File
     
     - **Optional fields:**
 
-    - ``slug:`` Override the chapter section's slug. (Use this to include macrons in URL.)
+    - ``slug:`` Override the chapter section's slug. Use this to include macrons in URL. (See mātāpono-māori chapter section for example use case.)
 
 A complete chapter application structure file with multiple chapters may look like the following:
 
