@@ -81,12 +81,14 @@ class ChapterSectionsLoader(TranslatableModelLoader):
                 if new_slug == section_slug:
                     raise InvalidYAMLValueError(
                         self.structure_file_path,
-                        f"slug - value {new_slug} is invalid. Must be different from default slug {section_slug}."
+                        f"slug - value {new_slug} is invalid.",
+                        f"Must be different from default slug {section_slug}."
                     )
                 if new_slug in used_slugs:
                     raise InvalidYAMLValueError(
                         self.structure_file_path,
-                        f"slug - value {new_slug} is invalid. Must be unique, {new_slug} has already been used."
+                        f"slug - value {new_slug} is invalid.",
+                        f"Must be unique, {new_slug} has already been used."
                     )
                 section_slug = new_slug
                 used_slugs.add(section_slug)
