@@ -10,8 +10,9 @@ interface-usability:
 usability-heuristics:
   section-number: 4
 
-mātāpono-māori:
+maataapono-maaori:
   section-number: 5
+  slug: mātāpono-māori
 
 accessibility:
   section-number: 6
