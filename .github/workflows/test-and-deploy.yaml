@@ -65,11 +65,11 @@ jobs:
         run: docker compose -f docker-compose.local.yml run --rm --user="root" django coverage xml -i
       - name: Upload coverage file
         uses: codecov/codecov-action@v4
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
         with:
           files: ./csfieldguide/coverage.xml
           verbose: true
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
   test-management:
     name: Tests - Management
@@ -83,11 +83,11 @@ jobs:
         run: docker compose -f docker-compose.local.yml run --rm --user="root" django coverage xml -i
       - name: Upload coverage file
         uses: codecov/codecov-action@v4
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
         with:
           files: ./csfieldguide/coverage.xml
           verbose: true
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
   test-style:
     name: Tests - Style
