@@ -61,8 +61,8 @@ class AppendicesLoader(TranslatableModelLoader):
             except NoReverseMatch:
                 raise InvalidYAMLValueError(
                     self.structure_file_path,
-                    "url-name",
-                    "A URL name listed in 'csfieldguide/appendices/urls.py'"
+                    f"<{slug}>",
+                    f"A URL name listed in 'csfieldguide/appendices/urls.py' matching '{url_name}'."
                 )
 
             # Get Title Case from kebab-case name
