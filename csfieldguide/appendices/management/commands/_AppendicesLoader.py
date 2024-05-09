@@ -29,6 +29,7 @@ class AppendicesLoader(TranslatableModelLoader):
         Raise:
             MissingRequiredFieldError: when no object can be found with the matching
                 attribute.
+            InvalidYAMLValueError: when invalid template path given or missing valid URL in urls.
         """
         appendix_pages = self.load_yaml_file(self.structure_file_path)
 
