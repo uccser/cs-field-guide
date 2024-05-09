@@ -24,15 +24,15 @@ class AppendicesLoader(TranslatableModelLoader):
 
     @transaction.atomic
     def load(self):
-        """Load general pages.
+        """Load appendices pages.
 
         Raise:
             MissingRequiredFieldError: when no object can be found with the matching
                 attribute.
         """
-        general_pages = self.load_yaml_file(self.structure_file_path)
+        appendix_pages = self.load_yaml_file(self.structure_file_path)
 
-        for (slug, page_data) in general_pages.items():
+        for (slug, page_data) in appendix_pages.items():
             try:
                 template = page_data["template"]
             except (TypeError, KeyError):
@@ -81,8 +81,8 @@ class AppendicesLoader(TranslatableModelLoader):
                 term = 'Created'
             else:
                 term = 'Updated'
-            self.log(f'{term} general page: {name}')
+            self.log(f'{term} appendix page: {name}')
 
-        Appendix.objects.exclude(slug__in=general_pages.keys()).delete()
+        Appendix.objects.exclude(slug__in=appendix_pages.keys()).delete()
 
-        self.log("All general pages loaded!\n")
+        self.log("All appendix pages loaded!\n")

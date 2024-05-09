@@ -6,7 +6,7 @@ from lxml.html import fromstring
 from lxml.cssselect import CSSSelector
 from django.template.loader import render_to_string
 
-CONTENT_NOT_FOUND_ERROR_MESSAGE = ("General page requires content wrapped in "
+CONTENT_NOT_FOUND_ERROR_MESSAGE = ("Appendix page requires content wrapped in "
                                    "an element with ID 'content-container'")
 
 
