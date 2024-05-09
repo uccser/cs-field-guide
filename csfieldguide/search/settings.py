@@ -1,5 +1,5 @@
 """Settings for the search application."""
-
+from appendices.models import Appendix
 from chapters.models import Chapter, ChapterSection, GlossaryTerm
 from interactives.models import Interactive
 from search.utils import get_search_model_types
@@ -26,6 +26,10 @@ SEARCH_CLASSES = [
         'class': Interactive,
         'boost': 0.7,
         'filter': {'is_interactive': True}
+    },
+    {
+        'class': Appendix,
+        'boost': 0.6,
     },
 ]
 SEARCH_PAGES = []

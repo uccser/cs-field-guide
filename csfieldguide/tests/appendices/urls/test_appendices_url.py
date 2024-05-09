@@ -9,5 +9,5 @@ class AppendicesURLTest(BaseTestWithDB):
         self.language = "en"
 
     def test_appendices_valid_index_url(self):
-        url = reverse("appendices:index")
-        self.assertEqual(url, "/en/appendices")
+        url = reverse("appendices:appendices")
+        self.assertEqual(url, "/en/appendices/")
