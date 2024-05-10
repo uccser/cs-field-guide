@@ -149,11 +149,15 @@ Chapter Sections Configuration File
 
 - **Required Fields:**
 
-  - ``<section-slug>:`` Key for the section.
+  - ``<section-slug>:`` Key for the section. Cannot contain macrons.
 
     - **Required Fields:**
 
       - ``section-number:`` Number order for the section in the chapter.
+    
+    - **Optional fields:**
+
+    - ``slug:`` Override the chapter section's slug. Use this to include macrons in URL. (See mātāpono-māori chapter section for example use case.)
 
 A complete chapter application structure file with multiple chapters may look like the following:
 

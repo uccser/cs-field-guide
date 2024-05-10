@@ -68,6 +68,8 @@ jobs:
         with:
           files: ./csfieldguide/coverage.xml
           verbose: true
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
   test-management:
     name: Tests - Management
@@ -84,6 +86,8 @@ jobs:
         with:
           files: ./csfieldguide/coverage.xml
           verbose: true
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
   test-style:
     name: Tests - Style

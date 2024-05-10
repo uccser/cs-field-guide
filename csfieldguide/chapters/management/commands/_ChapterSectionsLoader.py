@@ -34,6 +34,7 @@ class ChapterSectionsLoader(TranslatableModelLoader):
         """
         chapter_sections_structure = self.load_yaml_file(self.structure_file_path)
         next_section_number = 1
+        used_slugs = set()
 
         for (section_slug, section_structure) in chapter_sections_structure.items():
             if section_structure is None:
@@ -73,6 +74,24 @@ class ChapterSectionsLoader(TranslatableModelLoader):
             for language, content in content_translations.items():
                 chapter_section_translations[language]["content"] = content.html_string
                 chapter_section_translations[language]["name"] = content.title
+
+            # Override slug. Useful when macrons or other special chars wanted in slug.
+            new_slug = section_structure.get("slug", None)
+            if new_slug:
+                if new_slug == section_slug:
+                    raise InvalidYAMLValueError(
+                        self.structure_file_path,
+                        f"slug - value {new_slug} is invalid.",
+                        f"Must be different from default slug {section_slug}."
+                    )
+                if new_slug in used_slugs:
+                    raise InvalidYAMLValueError(
+                        self.structure_file_path,
+                        f"slug - value {new_slug} is invalid.",
+                        f"Must be unique, {new_slug} has already been used."
+                    )
+                section_slug = new_slug
+                used_slugs.add(section_slug)
 
             chapter_section, created = self.chapter.chapter_sections.update_or_create(
                 number=section_number,

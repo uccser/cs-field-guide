@@ -1,9 +1,13 @@
 """Search utility functions."""
 
 import copy
+from django.template.exceptions import TemplateSyntaxError
+from lxml.html import fromstring
+from lxml.cssselect import CSSSelector
+from django.template.loader import render_to_string
 
-CONTENT_NOT_FOUND_ERROR_MESSAGE = ("General page requires content wrapped in "
-                                   "an element with ID 'general-page-content'")
+CONTENT_NOT_FOUND_ERROR_MESSAGE = ("Appendix page requires content wrapped in "
+                                   "an element with ID 'content-container'")
 
 
 def concat_field_values(*args):
@@ -51,6 +55,25 @@ def get_search_model_id(model):
     module_name = model._meta.app_label.lower()
     class_name = model._meta.object_name.lower()
     return f'{module_name}.{class_name}'
+
+
+def get_template_text(template):
+    """Return text for indexing.
+
+    Args:
+        template (string): Path to template to get text from.
+
+    Returns:
+        String for indexing.
+    """
+    rendered = render_to_string(template, {"LANGUAGE_CODE": "en"})
+    html = fromstring(rendered)
+    selector = CSSSelector("#content-container")
+    try:
+        contents = selector(html)[0].text_content()
+    except IndexError:
+        raise TemplateSyntaxError(CONTENT_NOT_FOUND_ERROR_MESSAGE)
+    return contents
 
 
 def get_model_filter_options(search_model_types):

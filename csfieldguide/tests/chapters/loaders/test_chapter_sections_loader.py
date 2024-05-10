@@ -38,6 +38,58 @@ class ChapterSectionsLoaderTest(BaseTestWithDB):
             transform=repr
         )
 
+    def test_chapters_chapter_section_loader_single_section_with_slug(self):
+        test_slug = "single-section-slug"
+        chapter = self.test_data.create_chapter("1")
+        factory = mock.Mock()
+        chapter_section_loader = ChapterSectionsLoader(
+            factory,
+            chapter,
+            base_path=self.base_path,
+            content_path=test_slug,
+            structure_filename="{}.yaml".format(test_slug),
+        )
+        chapter_section_loader.load()
+        querryset = ChapterSection.objects.all()
+        self.assertQuerysetEqual(
+            querryset,
+            ["<ChapterSection: This is the section heading>"],
+            transform=repr
+        )
+        self.assertEqual(querryset[0].slug, 'new-slug')
+
+    def test_chapters_chapter_section_loader_single_section_with_invalid_slug(self):
+        test_slug = "single-section-invalid-slug"
+        chapter = self.test_data.create_chapter("1")
+        factory = mock.Mock()
+        chapter_section_loader = ChapterSectionsLoader(
+            factory,
+            chapter,
+            base_path=self.base_path,
+            content_path=test_slug,
+            structure_filename="{}.yaml".format(test_slug),
+        )
+        self.assertRaises(
+            InvalidYAMLValueError,
+            chapter_section_loader.load
+        )
+
+    def test_chapters_chapter_section_loader_multiple_sections_with_duplicate_slug(self):
+        test_slug = "multiple-sections-duplicate-slug"
+        chapter = self.test_data.create_chapter("1")
+        factory = mock.Mock()
+        chapter_section_loader = ChapterSectionsLoader(
+            factory,
+            chapter,
+            base_path=self.base_path,
+            content_path=test_slug,
+            structure_filename="{}.yaml".format(test_slug),
+        )
+        self.assertRaises(
+            InvalidYAMLValueError,
+            chapter_section_loader.load
+        )
+
     def test_chapters_chapter_section_loader_multiple_sections(self):
         test_slug = "multiple-sections"
         chapter = self.test_data.create_chapter("1")

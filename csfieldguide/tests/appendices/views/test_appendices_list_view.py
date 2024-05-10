@@ -10,7 +10,7 @@ class AppendicesListViewTest(BaseTestWithDB):
         self.language = "en"
 
     def test_appendices_list_view(self):
-        url = reverse("appendices:index")
+        url = reverse("appendices:appendices")
         response = self.client.get(url)
 
         self.assertEqual(HTTPStatus.OK, response.status_code)
