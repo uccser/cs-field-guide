@@ -18,6 +18,50 @@ All notable changes to this project will be documented in this file.
 We have listed major changes for each release below.
 `All downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/>`__
 
+3.15.0
+==============================================================================
+
+**Release date:** 10th May 2024
+
+**Changelog:**
+
+- Fix broken links containing ``)``
+- Add readthedocs yaml file
+- Add optional slug field to chapter sections to allow for slug overriding
+- Add codecov token to test and deploy workflow
+- Add appendix pages to search
+- Add tests for appendix model, utility functions and appendix loader
+- Existing tests for appendix app re-enabled and updated
+- Core Dependency changes:
+
+    - Update dependabot/fetch-metadata from 2.0.0 to 2.0.1
+    - Update sphinx from 7.2.6 to 7.3.7
+    - Update gunicorn from 21.2.0 to 22.0.0
+    - Update selenium from 4.19.0 to 4.20.0
+    - Update Pygments from 2.17.2 to 2.18.0
+    - Update xml from 4.9.4 to 5.2.1
+    - Update django-statici18n from 2.4.0 to 2.5.0
+    - Update coverage from 7.4.4 to 7.5.1
+    - Update @babel/core from 7.24.4 to 7.24.5
+    - Update @babel/preset-env from 7.24.4 to 7.24.5
+    - Update cssnano from 6.1.2 to 7.0.1
+    - Update gulp-imagemin from 9.0.0 to 9.1.0
+    - Update iframe-resizer from 4.3.9 to 4.3.11
+    - Update sass from 1.75.0 to 1.77.0
+
+- Interactive algorithm-timer Dependency changes:
+
+    - Update mathjs from 12.4.1 to 12.4.2
+
+- Interactive city-trip Dependency changes:
+
+    - Update mathjs from 12.4.1 to 12.4.2
+    - Update cytoscape from 3.28.1 to 3.29.2
+
+- Interactive matrix-simplifier Dependency changes:
+
+    - Update mathjs from 12.4.1 to 12.4.2
+
 3.14.0
 ==============================================================================
 
