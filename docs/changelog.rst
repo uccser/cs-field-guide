@@ -35,7 +35,6 @@ We have listed major changes for each release below.
     - Update selenium from 4.20.0 to 4.21.0
     - Update lxml from 5.2.1 to 5.2.2
     - Update django-modeltranslation from 0.18.12 to 0.18.13
-    - 
 
 - Interactive cmy-mixer Dependency changes:
 
