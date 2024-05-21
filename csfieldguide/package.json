@@ -29,7 +29,7 @@
         "gulp-sourcemaps": "3.0.0",
         "gulp-tap": "2.0.0",
         "gulp-terser": "2.1.0",
-        "iframe-resizer": "4.3.11",
+        "iframe-resizer": "4.4.0",
         "jquery": "3.7.1",
         "lity": "2.4.1",
         "multiple-select": "1.7.0",
@@ -37,7 +37,7 @@
         "popper.js": "1.16.1",
         "postcss": "8.4.38",
         "postcss-flexbugs-fixes": "5.0.2",
-        "sass": "1.77.0",
+        "sass": "1.77.2",
         "vinyl-buffer": "1.0.1",
         "yargs": "17.7.2"
     },

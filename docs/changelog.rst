@@ -18,6 +18,52 @@ All notable changes to this project will be documented in this file.
 We have listed major changes for each release below.
 `All downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/>`__
 
+3.15.1
+==============================================================================
+
+**Release date:** 22nd May 2024
+
+**Changelog:**
+
+- Update docker images to use debian bookworm
+- Update docker images to python 3.11
+- Core Dependency changes:
+
+    - Update crowdin/github-action from 1.20.2 to 1..20.4
+    - Update iframe-resizer from 4.3.11 to 4.4.0
+    - Update sass from 1.77.0 to 1.77.2
+    - Update selenium from 4.20.0 to 4.21.0
+    - Update lxml from 5.2.1 to 5.2.2
+    - Update django-modeltranslation from 0.18.12 to 0.18.13
+
+- Interactive cmy-mixer Dependency changes:
+
+    - Update nouislider from 15.7.1 to 15.7.2
+
+- Interactive colour-matcher Dependency changes:
+
+    - Update nouislider from 15.7.1 to 15.7.2
+
+- Interactive data-bias Dependency changes:
+
+    - Update nouislider from 15.7.1 to 15.7.2
+
+- Interactive data-visualisation Dependency changes:
+
+    - Update chart.js from 4.4.2 to 4.4.3
+
+- Interactive frequency-analysis Dependency changes:
+
+    - Update chart.js from 4.4.2 to 4.4.3
+
+- Interactive rgb-mixer Dependency changes:
+
+    - Update nouislider from 15.7.1 to 15.7.2
+
+- Interactive training-ground Dependency changes:
+
+    - Update nouislider from 15.7.1 to 15.7.2
+
 3.15.0
 ==============================================================================
 
