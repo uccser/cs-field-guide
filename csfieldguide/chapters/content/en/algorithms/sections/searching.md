@@ -21,7 +21,7 @@ Explaining these algorithms to students is likely to be easier now that they hav
 {panel end}
 
 Searching through collections of data is something computers have to do all the time.
-It happens every time you type in a search on Google, or when you type in a file name to search for on your computer.
+It happens every time you type in a search on Google, or when you type in a file name to search for on your computer, or when you pay at an EFTPOS machine and the system looks up your account number.
 Computers deal with such huge amounts of data that we need fast algorithms to help us find information quickly.
 
 Lets investigate searching with a game...
@@ -48,7 +48,7 @@ Searching Boxes - Part 2
 
 {interactive end}
 
-Now that you have played through the whole game (and hopefully found all of the target numbers!) you may have noticed that even though you had less lives in the second part of the game, and lots of boxes to search through, you were still able to find the target number. Why was this possible?
+Now that you have played through the whole game (and hopefully found all of the target numbers!) you may have noticed that even though you had fewer lives in the second part of the game, and lots of boxes to search through, you were still able to find the target number. Why was this possible?
 
 ## Linear search
 
@@ -63,7 +63,7 @@ In simpler terms, linear search algorithm is as follows:
 - Continue checking items until you find the one you are searching for.
 
 If you used this algorithm you might get lucky and find what you are looking for on your first go, but if you were really unlucky you might have to look through everything in your list before you found the right object!
-For a list of 10 items this means on average you would only have to look at 5 items to find what you were looking for, but for a list of 10000 you would have to look through on average 5000.
+For a list of 10 items this means on average you would only have to look at 5 items to find what you were looking for, but for a list of 10,000 you would have to look through on average 5,000.
 
 {panel type="curiosity"}
 
@@ -110,20 +110,21 @@ Informally, the binary search algorithm is as follows:
 
 - If it is what you are looking for then you are done.
 
-- If it is larger than the item you are looking for then you can ignore all the items in the list which are larger than that item (if the list is from smallest to largest this means you can ignore all the items to the right of the centre item).
+- If it is larger than the item you are looking for then you can ignore all the items in the list that are larger than that item (if the list is from smallest to largest this means you can ignore all the items to the right of the centre item).
 
-- If it is smaller then you can ignore all the items in the list which are smaller than that centre item.
+- If it is smaller then you can ignore all the items in the list that are smaller than that centre item.
 
 - Now repeat the algorithm on the remaining half of the list, checking the middle of the list and choosing one of the halves, until you find the item you are searching for.
 
 Binary search is a very powerful algorithm.
-If you had 1000 boxes to search through it would take you at most 10 checks for binary search to find something and linear search would take at most 1000 checks, but if you doubled the number of boxes to search through how would this change the number of checks made by binary search and linear search?
+If you had 1,000 boxes to search through it would take you at most 10 checks for binary search to find something and linear search would take at most 1,000 checks, but if you doubled the number of boxes to search through how would this change the number of checks made by binary search and linear search?
 
 {panel type="spoiler"}
 
 # How does doubling the number of boxes affect the number of checks required?
 
 The answer to the above question is that the maximum number of checks for linear search would double, but the maximum number for binary search would only increase by one.
+This is known as a logarithmic relationship, and you'll learn more about that in the [Complexity and Tractability chapter]('chapters:chapter' 'complexity-and-tractability').
 
 {panel end}
 
@@ -141,10 +142,8 @@ A Scratch implementation of linear and binary search can be downloaded below.
 
 {button-link link="files/linear-binary-search-scratch.zip" text="Download Scratch searching example" file="yes"}
 
-The following Python implementations of linear and binary search can be run in your browser:
+A Python implementations of linear and binary search can be downloaded below.
 
-{button-link link="https://repl.it/@uccser/linear-binary-search-python3" text="Python 3"}
-
-{button-link link="https://repl.it/@uccser/linear-binary-search-python2" text="Python 2"}
+{button-link link="files/linear-binary-search-python3.py" text="Download Python searching example" file="yes"}
 
 {panel end}

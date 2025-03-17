@@ -15,14 +15,16 @@ NUMBER_OF_REPEATED_EXPERIMENTS
 This is for Python version 3.
 Caitlin Duncan, January 2014
 Modified by Courtney Bracefield, June 2020
+Modified by Henry Hickman, May 2025
 """
 
 import time
 from random import randint
 
 # Each searching method will be evaluated for lists of the following sizes
+# Increase the number in NUMBER_OF_KEYS to get a feel of how efficient each algorithm is
 NUMBER_OF_KEYS = [10, 1000]
-# The experiments will be repeated this many times
+# The experiments will be repeated this many times, useful for averaging results
 NUMBER_OF_REPEATED_EXPERIMENTS = 10
 
 
@@ -51,9 +53,11 @@ def binary_search_count(list_of_keys, search_key):
             high = middle - 1
         elif list_of_keys[middle] < search_key:
             low = middle + 1
+            # An additional comparison is done if the first fails
             key_comparisons_made += 1
         else:
-            # increment here because the previous comparison was unsuccessful
+            # Even though we add one here, it's not actually a key
+            # comparison, as the else runs by default
             key_comparisons_made += 1
             return key_comparisons_made
     return 0
