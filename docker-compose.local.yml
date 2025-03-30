@@ -15,8 +15,10 @@ services:
             - ./infrastructure/local/postgres/.envs
         command: /start
         networks:
-            - uccser-development-stack
             - backend
+
+        ports:
+            - "8000:8000"
         labels:
             # General labels
             - "traefik.enable=true"
@@ -105,8 +107,6 @@ services:
         image: ghcr.io/uccser/local-docs-image:latest
         volumes:
             - ./docs:/docs:z
-        networks:
-            - uccser-development-stack
         labels:
             # General labels
             - "traefik.enable=true"
