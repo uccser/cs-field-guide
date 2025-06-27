@@ -35,7 +35,11 @@ function run() {
         height: 600,
         backgroundColor: '#AAAAAA',
         parent: 'interactive-packet-attack',
-        scene: gameScene
+        scene: gameScene,
+        audio: {
+            noAudio: true
+        },
+
     }
 
     var skip = urlParameters.getUrlParameter('start');
