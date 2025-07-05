@@ -9,7 +9,7 @@ More material on the many intractable problems that exist is yet to be written, 
 {panel end}
 
 There are thousands of problems like the TSP for which no tractable solution is known.
-Extra sections will eventually be added here to introduce some of them, but in the meantime, if you are keen you might like to explore some of these problems:
+A few examples are:
 
 - [Map and graph colouring](http://csunplugged.org/graph-colouring) (these can be reduced to a timetabling problem and vice versa, showing how NP-complete problems can relate to each other)
 - [The knapsack problem](https://en.wikipedia.org/wiki/Knapsack_problem)

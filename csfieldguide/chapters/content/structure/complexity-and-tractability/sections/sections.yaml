@@ -1,26 +1,29 @@
 whats-the-big-picture:
   section-number: 1
 
-algorithms-problems-and-speed-limits:
+complexity:
   section-number: 2
 
-complexity:
+big-oh-notation:
   section-number: 3
 
-tractability:
+polynomial-time:
   section-number: 4
 
-the-travelling-salesman-problem:
+tractability:
   section-number: 5
 
-bin-packing-problem:
+the-travelling-salesman-problem:
   section-number: 6
 
-other-intractable-problems:
+bin-packing-problem:
   section-number: 7
 
-the-whole-story:
+other-intractable-problems:
   section-number: 8
 
-further-reading:
+the-whole-story:
   section-number: 9
+
+further-reading:
+  section-number: 10

@@ -19,12 +19,14 @@ NUMBER_OF_REPEATED_EXPERIMENTS
 This is for Python version 3.
 Tim Bell, August 2012
 Modified by Courtney Bracefield, June 2020
+Modified by Henry Hickman, May 2025
 """
 
 from random import shuffle
 import time
 
 # Each sorting method will be evaluated for lists of the following sizes
+# Increase the number in NUMBER_OF_KEYS to get a feel of how efficient each algorithm is
 NUMBER_OF_KEYS = [10, 1000]
 # The experiments will be repeated this many times
 NUMBER_OF_REPEATED_EXPERIMENTS = 10
@@ -35,6 +37,7 @@ def selection_sort_count(sample_list):
     Perform min selection sort on values in sample_list.
 
     Returns the number of comparisons required.
+    Note how this always returns the same number of comparisons. What's the formula?
     """
     key_comparisons_made = 0
     for i in range(0, len(sample_list) - 1):

@@ -49,7 +49,7 @@ master_doc = "index"
 
 # General information about the project.
 project = "Computer Science Field Guide"
-copyright = "2017 University of Canterbury Computer Science Education Research Group"
+copyright = "University of Canterbury Computer Science Education Research Group"
 author = "University of Canterbury Computer Science Education Research Group"
 
 # The version info for the project you're documenting, acts as replacement for
