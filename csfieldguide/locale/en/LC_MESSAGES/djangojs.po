@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-06 01:24+0000\n"
+"POT-Creation-Date: 2025-07-05 23:05+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -308,6 +308,10 @@ msgstr ""
 msgid "Exclamation point"
 msgstr ""
 
+#: static/interactives/cfg-parsing-challenge/js/cfg-parsing-challenge.js:151
+msgid "The recursion depth in the URL is too high so it was ignored."
+msgstr ""
+
 #: static/interactives/cfg-parsing-challenge/js/cfg-parsing-challenge.js:354
 msgid "Example %(currentExample)s of %(totalExamples)s"
 msgstr ""
@@ -329,6 +333,10 @@ msgstr ""
 
 #: static/interactives/cfg-parsing-challenge/js/cfg-parsing-challenge.js:699
 msgid "This link will open the default version of this interactive:"
+msgstr ""
+
+#: static/interactives/cfg-parsing-challenge/js/cfg-parsing-challenge.js:708
+msgid "This link will open the interactive with your set productions:"
 msgstr ""
 
 #: static/interactives/checksum-calculator-gtin-13/js/checksum-calculator-gtin-13.js:20
@@ -449,11 +457,11 @@ msgid ""
 "visualisations."
 msgstr ""
 
-#: static/interactives/data-visualisation/js/data-visualisation.js:242
+#: static/interactives/data-visualisation/js/data-visualisation.js:246
 msgid "Occurences"
 msgstr ""
 
-#: static/interactives/data-visualisation/js/data-visualisation.js:278
+#: static/interactives/data-visualisation/js/data-visualisation.js:283
 msgid "Success (%)"
 msgstr ""
 
@@ -495,6 +503,16 @@ msgstr ""
 msgid "You still have tiles to reveal!"
 msgstr ""
 
+#: static/interactives/dictionary-compression/js/dictionary-compression.js:9
+#: static/interactives/lzss-compression/js/lzss-compression.js:6
+#: static/interactives/lzw-compression/js/lzw-compression.js:3
+msgid ""
+"Pease porridge hot, pease porridge cold,\n"
+"Pease porridge in the pot, nine days old;\n"
+"Some like it hot, some like it cold,\n"
+"Some like it in the pot, nine days old."
+msgstr ""
+
 #: static/interactives/dictionary-compression/js/dictionary-compression.js:137
 msgid "%(percent_coded)s% of text compressed using 1 reference."
 msgid_plural ""
@@ -516,7 +534,7 @@ msgid_plural "You have found %(combos)s combinations."
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/interactives/frequency-analysis/js/frequency-analysis.js:66
+#: static/interactives/frequency-analysis/js/frequency-analysis.js:63
 msgid "Character Frequency"
 msgstr ""
 
@@ -577,6 +595,30 @@ msgstr[1] ""
 
 #: static/interactives/lzss-compression/js/lzss-compression.js:64
 msgid "Approximate encoded size:"
+msgstr ""
+
+#: static/interactives/lzw-compression/js/lzw-compression.js:7
+msgid ""
+"Twinkle, twinkle, little star,\n"
+"How I wonder what you are!\n"
+"Up above the world so high,\n"
+"Like a diamond in the sky.\n"
+"When this blazing sun is gone,\n"
+"When he nothing shines upon,\n"
+"Then you show your little light,\n"
+"Twinkle, twinkle, through the night.\n"
+"Then the traveller in the dark\n"
+"Thanks you for your tiny spark;\n"
+"He could not see where to go,\n"
+"If you did not twinkle so.\n"
+"In the dark blue sky you keep,\n"
+"And often through my curtains peep,\n"
+"For you never shut your eye\n"
+"Till the sun is in the sky.\n"
+"As your bright and tiny spark\n"
+"Lights the traveller in the dark,\n"
+"Though I know not what you are,\n"
+"Twinkle, twinkle, little star."
 msgstr ""
 
 #: static/interactives/matrix-simplifier/js/matrix-simplifier.js:11
@@ -717,12 +759,12 @@ msgstr ""
 msgid "Not Branching"
 msgstr ""
 
-#: static/interactives/nfa-guesser/js/nfa-guesser.js:75
-#: static/interactives/nfa-guesser/js/nfa-guesser.js:93
+#: static/interactives/nfa-guesser/js/nfa-guesser.js:73
+#: static/interactives/nfa-guesser/js/nfa-guesser.js:91
 msgid "Correct"
 msgstr ""
 
-#: static/interactives/nfa-guesser/js/nfa-guesser.js:79
+#: static/interactives/nfa-guesser/js/nfa-guesser.js:77
 msgid "Incorrect"
 msgstr ""
 
@@ -936,35 +978,35 @@ msgstr ""
 msgid "Or refresh the page if you want to start from the beginning"
 msgstr ""
 
-#: static/interactives/parity/js/parity.js:34
+#: static/interactives/parity/js/parity.js:55
 msgid "Correct: Every row and column has even parity (of black squares)"
 msgstr ""
 
-#: static/interactives/parity/js/parity.js:37
+#: static/interactives/parity/js/parity.js:58
 msgid "Incorrect: Not every row and column has even parity (of black squares)"
 msgstr ""
 
-#: static/interactives/parity/js/parity.js:96
+#: static/interactives/parity/js/parity.js:121
 msgid "Your parity bits weren't set correctly, try starting again."
 msgstr ""
 
-#: static/interactives/parity/js/parity.js:101
+#: static/interactives/parity/js/parity.js:126
 msgid "Correct! You spotted the flipped bit!"
 msgstr ""
 
-#: static/interactives/parity/js/parity.js:105
+#: static/interactives/parity/js/parity.js:130
 msgid "That's not the flipped bit!"
 msgstr ""
 
-#: static/interactives/parity/js/parity.js:157
+#: static/interactives/parity/js/parity.js:184
 msgid "Setting Parity"
 msgstr ""
 
-#: static/interactives/parity/js/parity.js:169
+#: static/interactives/parity/js/parity.js:198
 msgid "Detect the Error"
 msgstr ""
 
-#: static/interactives/parity/js/parity.js:282
+#: static/interactives/parity/js/parity.js:323
 msgid "Please enter a value between 1 and 20"
 msgstr ""
 
@@ -1202,11 +1244,11 @@ msgstr ""
 msgid "toothbrush"
 msgstr ""
 
-#: static/interactives/pixel-viewer/js/pixel-viewer.js:181
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:202
 msgid "Colour Threshold Interactive"
 msgstr ""
 
-#: static/interactives/pixel-viewer/js/pixel-viewer.js:182
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:203
 msgid ""
 "Create an expression to threshold the image. Any pixels that match the     "
 "expression you come up with will be turned white, and everything else will "
@@ -1215,11 +1257,11 @@ msgid ""
 "of similar colour in the image?"
 msgstr ""
 
-#: static/interactives/pixel-viewer/js/pixel-viewer.js:189
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:210
 msgid "Threshold Interactive"
 msgstr ""
 
-#: static/interactives/pixel-viewer/js/pixel-viewer.js:189
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:210
 msgid ""
 "The image has been converted to greyscale by taking the average of the red, "
 "blue and green values for      each pixel. Choose a threshold between 0 and "
@@ -1227,11 +1269,11 @@ msgid ""
 "regions and edges."
 msgstr ""
 
-#: static/interactives/pixel-viewer/js/pixel-viewer.js:197
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:218
 msgid "Picture Blurring Interactive"
 msgstr ""
 
-#: static/interactives/pixel-viewer/js/pixel-viewer.js:197
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:218
 msgid ""
 "Experiment with using different blurs to try process the noise. The mean "
 "blur will take the mean values of the pixels surrounding,      the median "
@@ -1245,11 +1287,11 @@ msgid ""
 "blur, zooming or scrolling and       then reapplying the blur."
 msgstr ""
 
-#: static/interactives/pixel-viewer/js/pixel-viewer.js:211
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:232
 msgid "Edge Detection Interactive"
 msgstr ""
 
-#: static/interactives/pixel-viewer/js/pixel-viewer.js:211
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:232
 msgid ""
 "Find an edge in the graph and zoom right in. What information could a "
 "computer use from the values of the pixels surrounding the edge to find "
@@ -1264,39 +1306,39 @@ msgid ""
 "if you apply multiple grids?"
 msgstr ""
 
-#: static/interactives/pixel-viewer/js/pixel-viewer.js:221
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:242
 msgid "Brightness Interactive"
 msgstr ""
 
-#: static/interactives/pixel-viewer/js/pixel-viewer.js:221
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:242
 msgid ""
 "The image has been converted to greyscale by taking the average of the red, "
 "blue and green values for      each pixel."
 msgstr ""
 
-#: static/interactives/pixel-viewer/js/pixel-viewer.js:248
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:269
 msgid "Number of grids:"
 msgstr ""
 
-#: static/interactives/pixel-viewer/js/pixel-viewer.js:274
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:295
 msgid "Apply grids"
 msgstr ""
 
-#: static/interactives/pixel-viewer/js/pixel-viewer.js:281
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:302
 msgid "Restore Image"
 msgstr ""
 
-#: static/interactives/pixel-viewer/js/pixel-viewer.js:287
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:308
 msgid ""
 "Try adding a threshold to the picture once the transformation has taken "
 "place to highlight the edges you find."
 msgstr ""
 
-#: static/interactives/pixel-viewer/js/pixel-viewer.js:292
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:313
 msgid "Apply grids and Threshold"
 msgstr ""
 
-#: static/interactives/pixel-viewer/js/pixel-viewer.js:304
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:325
 msgid ""
 "Sometimes images have noise, and applying a blur can be a helpful way to "
 "preprocess  an image that contains noise before using other Computer Vision "
@@ -1305,78 +1347,78 @@ msgid ""
 "Perhaps you have a noisy image that you could upload yourself?"
 msgstr ""
 
-#: static/interactives/pixel-viewer/js/pixel-viewer.js:308
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:329
 msgid "Amount of noise to add (%): "
 msgstr ""
 
-#: static/interactives/pixel-viewer/js/pixel-viewer.js:315
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:336
 msgid "Add noise"
 msgstr ""
 
-#: static/interactives/pixel-viewer/js/pixel-viewer.js:320
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:341
 msgid "Remove noise"
 msgstr ""
 
-#: static/interactives/pixel-viewer/js/pixel-viewer.js:324
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:345
 msgid ""
 "<span id='freeze-warning'>Warning:</span> The 'add noise'  button will "
 "freeze the interactive while it is performing calculations"
 msgstr ""
 
-#: static/interactives/pixel-viewer/js/pixel-viewer.js:335
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:356
 msgid "Type of blur:"
 msgstr ""
 
-#: static/interactives/pixel-viewer/js/pixel-viewer.js:357
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:378
 msgid "Apply blur"
 msgstr ""
 
-#: static/interactives/pixel-viewer/js/pixel-viewer.js:364
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:385
 msgid "Remove blur"
 msgstr ""
 
-#: static/interactives/pixel-viewer/js/pixel-viewer.js:372
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:393
 msgid ""
 "Note: The 'AND' operator will always be evaluated before the 'OR' operator."
 msgstr ""
 
-#: static/interactives/pixel-viewer/js/pixel-viewer.js:401
-#: static/interactives/pixel-viewer/js/pixel-viewer.js:417
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:422
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:438
 msgid "Apply Threshold"
 msgstr ""
 
-#: static/interactives/pixel-viewer/js/pixel-viewer.js:405
-#: static/interactives/pixel-viewer/js/pixel-viewer.js:421
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:426
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:442
 msgid "Remove Threshold"
 msgstr ""
 
-#: static/interactives/pixel-viewer/js/pixel-viewer.js:430
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:451
 msgid "Greyscale or rgb:"
 msgstr ""
 
-#: static/interactives/pixel-viewer/js/pixel-viewer.js:444
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:465
 msgid "Grid size:"
 msgstr ""
 
-#: static/interactives/pixel-viewer/js/pixel-viewer.js:458
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:479
 msgid "Threshold: "
 msgstr ""
 
-#: static/interactives/pixel-viewer/js/pixel-viewer.js:563
-#: static/interactives/pixel-viewer/js/pixel-viewer.js:575
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:584
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:596
 msgid "Use absolute value of result: "
 msgstr ""
 
-#: static/interactives/pixel-viewer/js/pixel-viewer.js:902
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:923
 msgid "Or choose from the following supplied images:"
 msgstr ""
 
-#: static/interactives/pixel-viewer/js/pixel-viewer.js:997
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:1018
 msgid "Your image has been resized for this interactive to "
 msgstr ""
 
-#: static/interactives/pixel-viewer/js/pixel-viewer.js:1156
-#: static/interactives/pixel-viewer/js/pixel-viewer.js:1162
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:1165
+#: static/interactives/pixel-viewer/js/pixel-viewer.js:1171
 msgid "Click to Zoom"
 msgstr ""
 
@@ -1384,11 +1426,11 @@ msgstr ""
 msgid "Welcome to computer programming, student"
 msgstr ""
 
-#: static/interactives/qr-code-generator/js/qr-code-generator.js:106
+#: static/interactives/qr-code-generator/js/qr-code-generator.js:110
 msgid "Hide changed bits"
 msgstr ""
 
-#: static/interactives/qr-code-generator/js/qr-code-generator.js:108
+#: static/interactives/qr-code-generator/js/qr-code-generator.js:112
 msgid "Show changed bits"
 msgstr ""
 
@@ -1514,31 +1556,31 @@ msgstr ""
 msgid "You have a different number of lines than lines in the grid!"
 msgstr ""
 
-#: static/interactives/scene-editor/js/scene-editor.js:97
+#: static/interactives/scene-editor/js/scene-editor.js:99
 msgid "Transformation:"
 msgstr ""
 
-#: static/interactives/scene-editor/js/scene-editor.js:101
+#: static/interactives/scene-editor/js/scene-editor.js:103
 msgid "Translation:"
 msgstr ""
 
-#: static/interactives/scene-editor/js/scene-editor.js:108
+#: static/interactives/scene-editor/js/scene-editor.js:110
 msgid "Multiple matrices and vectors:"
 msgstr ""
 
-#: static/interactives/scene-editor/js/scene-editor.js:398
+#: static/interactives/scene-editor/js/scene-editor.js:400
 msgid "Sphere "
 msgstr ""
 
-#: static/interactives/scene-editor/js/scene-editor.js:410
+#: static/interactives/scene-editor/js/scene-editor.js:412
 msgid "Cube "
 msgstr ""
 
-#: static/interactives/scene-editor/js/scene-editor.js:422
+#: static/interactives/scene-editor/js/scene-editor.js:424
 msgid "Cone "
 msgstr ""
 
-#: static/interactives/scene-editor/js/scene-editor.js:434
+#: static/interactives/scene-editor/js/scene-editor.js:436
 msgid "Teapot "
 msgstr ""
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-06 01:24+0000\n"
+"POT-Creation-Date: 2025-07-05 23:05+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,27 +17,39 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: chapters/models.py:49
+#: appendices/models.py:12 templates/appendices/base.html:10
+msgid "Appendix"
+msgstr ""
+
+#: appendices/models.py:53
+msgid "appendix"
+msgstr ""
+
+#: appendices/models.py:54
+msgid "appendices"
+msgstr ""
+
+#: chapters/models.py:48
 msgid "glossary term"
 msgstr ""
 
-#: chapters/models.py:50
+#: chapters/models.py:49
 msgid "glossary terms"
 msgstr ""
 
-#: chapters/models.py:104
+#: chapters/models.py:103
 msgid "chapter"
 msgstr ""
 
-#: chapters/models.py:105
+#: chapters/models.py:104
 msgid "chapters"
 msgstr ""
 
-#: chapters/models.py:153
+#: chapters/models.py:138
 msgid "chapter section"
 msgstr ""
 
-#: chapters/models.py:154
+#: chapters/models.py:139
 msgid "chapter sections"
 msgstr ""
 
@@ -77,14 +89,14 @@ msgstr ""
 msgid "Home page"
 msgstr ""
 
-#: templates/404.html:24 templates/base.html:93 templates/base.html:98
-#: templates/base.html:234
+#: templates/404.html:24 templates/base.html:98 templates/base.html:103
+#: templates/base.html:239
 msgid "Search"
 msgstr ""
 
 #: templates/appendices/about.html:6 templates/appendices/about.html:10
 #: templates/appendices/contributors.html:6 templates/appendices/index.html:17
-#: templates/appendices/sitemap.html:57 templates/base.html:189
+#: templates/appendices/sitemap.html:57 templates/base.html:194
 #: templates/general/index.html:36
 msgid "About"
 msgstr ""
@@ -114,10 +126,10 @@ msgstr ""
 
 #: templates/appendices/about.html:27
 msgid ""
-"This guide is licenced under a <a target=\"_blank\" rel=\"noopener noreferrer"
-"\" href=\"http://creativecommons.org/licenses/by-sa/4.0/\">Creative Commons "
-"Attribution-ShareAlike licence</a>, which means that you are welcome to take "
-"copies and modify them.\n"
+"This guide is licenced under a <a target=\"_blank\" rel=\"noopener "
+"noreferrer\" href=\"http://creativecommons.org/licenses/by-sa/4.0/"
+"\">Creative Commons Attribution-ShareAlike licence</a>, which means that you "
+"are welcome to take copies and modify them.\n"
 "    If you do make improvements, we ask that you share those, and "
 "acknowledge this guide by linking back to our web site.\n"
 "    You can give away the guide (or any derivatives), use it for teaching, "
@@ -126,10 +138,11 @@ msgstr ""
 
 #: templates/appendices/about.html:33
 msgid ""
-"The Computer Science Field Guide has been developed by the <a target=\"_blank"
-"\" rel=\"noopener noreferrer\" href=\"http://www.cosc.canterbury.ac.nz/"
-"research/RG/CSE/\">University of Canterbury Computer Science Education "
-"Research Group</a>, and has been funded by various generous groups.\n"
+"The Computer Science Field Guide has been developed by the <a "
+"target=\"_blank\" rel=\"noopener noreferrer\" href=\"http://www.cosc."
+"canterbury.ac.nz/research/RG/CSE/\">University of Canterbury Computer "
+"Science Education Research Group</a>, and has been funded by various "
+"generous groups.\n"
 "    A list of supporters is available above the footer of this page, and we "
 "welcome donations to support further work on the guide.\n"
 "    You can contact us at <a href=\"mailto:csse-education-"
@@ -138,10 +151,10 @@ msgstr ""
 
 #: templates/appendices/about.html:39
 msgid ""
-"If you are a teacher (or involved in education), you can join the <a target="
-"\"_blank\" rel=\"noopener noreferrer\" href=\"https://groups.google.com/"
-"forum/?fromgroups#!forum/csfg-teachers\">CSFG teachers group</a> to receive "
-"updates.\n"
+"If you are a teacher (or involved in education), you can join the <a "
+"target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://groups.google."
+"com/forum/?fromgroups#!forum/csfg-teachers\">CSFG teachers group</a> to "
+"receive updates.\n"
 "    You can access the teacher's version on the guide by using the link in "
 "the page footer."
 msgstr ""
@@ -156,12 +169,8 @@ msgstr ""
 
 #: templates/appendices/base.html:6 templates/appendices/index.html:6
 #: templates/appendices/index.html:10 templates/appendices/sitemap.html:54
-#: templates/base.html:86
+#: templates/base.html:91
 msgid "Appendices"
-msgstr ""
-
-#: templates/appendices/base.html:10
-msgid "Appendix"
 msgstr ""
 
 #: templates/appendices/contributors.html:10 templates/appendices/index.html:32
@@ -189,163 +198,167 @@ msgid "Project Manager"
 msgstr ""
 
 #: templates/appendices/contributors.html:23
-msgid "Software Development"
+msgid "Mātanga"
 msgstr ""
 
-#: templates/appendices/contributors.html:25
-msgid "Technical Lead"
-msgstr ""
-
-#: templates/appendices/contributors.html:32
-msgid "Interactive Development"
-msgstr ""
-
-#: templates/appendices/contributors.html:51
+#: templates/appendices/contributors.html:34
 msgid "Writers"
 msgstr ""
 
-#: templates/appendices/contributors.html:53
+#: templates/appendices/contributors.html:36
 msgid ""
 "Formal Languages, Compression, Human Computer Interaction, and Coding "
 "Introduction"
 msgstr ""
 
-#: templates/appendices/contributors.html:54
+#: templates/appendices/contributors.html:37
 msgid ""
 "NCEA Assessment Guides, Programming Languages, Data Representation, "
 "Compression, Encryption, Error Control, Artificial Intelligence, and "
 "Complexity and Tractability"
 msgstr ""
 
-#: templates/appendices/contributors.html:55
+#: templates/appendices/contributors.html:38
 msgid "Algorithms"
 msgstr ""
 
-#: templates/appendices/contributors.html:56
-#: templates/appendices/contributors.html:95
+#: templates/appendices/contributors.html:39
+#: templates/appendices/contributors.html:109
 msgid "Network Communication Protocols"
 msgstr ""
 
-#: templates/appendices/contributors.html:57
-#: templates/appendices/contributors.html:93
+#: templates/appendices/contributors.html:40
+#: templates/appendices/contributors.html:107
 msgid "Computer Vision"
 msgstr ""
 
-#: templates/appendices/contributors.html:58
+#: templates/appendices/contributors.html:41
 msgid "Computer Vision (Depth)"
 msgstr ""
 
-#: templates/appendices/contributors.html:59
-#: templates/appendices/contributors.html:62
+#: templates/appendices/contributors.html:42
+#: templates/appendices/contributors.html:45
 msgid "Computer Graphics"
 msgstr ""
 
-#: templates/appendices/contributors.html:60
-#: templates/appendices/contributors.html:61
-#: templates/appendices/contributors.html:85
+#: templates/appendices/contributors.html:43
+#: templates/appendices/contributors.html:44
+#: templates/appendices/contributors.html:99
 msgid "Software Engineering"
 msgstr ""
 
-#: templates/appendices/contributors.html:63
+#: templates/appendices/contributors.html:46
 msgid "Human Computer Interaction, Compression"
 msgstr ""
 
-#: templates/appendices/contributors.html:66
+#: templates/appendices/contributors.html:49
+msgid "Software Development"
+msgstr ""
+
+#: templates/appendices/contributors.html:51
+msgid "Technical Lead"
+msgstr ""
+
+#: templates/appendices/contributors.html:60
+msgid "Interactive Development"
+msgstr ""
+
+#: templates/appendices/contributors.html:80
 msgid "Editors"
 msgstr ""
 
-#: templates/appendices/contributors.html:76
+#: templates/appendices/contributors.html:90
 msgid "Advisors"
 msgstr ""
 
-#: templates/appendices/contributors.html:84
+#: templates/appendices/contributors.html:98
 msgid ""
 "Artificial Intelligence, Complexity and Tractability, Data Representation, "
 "Compression, Error Control, and Encryption"
 msgstr ""
 
-#: templates/appendices/contributors.html:86
-#: templates/appendices/contributors.html:87
-#: templates/appendices/contributors.html:88
-#: templates/appendices/contributors.html:89
+#: templates/appendices/contributors.html:100
+#: templates/appendices/contributors.html:101
+#: templates/appendices/contributors.html:102
+#: templates/appendices/contributors.html:103
 msgid "Curriculum (NCEA)"
 msgstr ""
 
-#: templates/appendices/contributors.html:90
-#: templates/appendices/contributors.html:91
+#: templates/appendices/contributors.html:104
+#: templates/appendices/contributors.html:105
 msgid "Curriculum (AP-CSP)"
 msgstr ""
 
-#: templates/appendices/contributors.html:92
+#: templates/appendices/contributors.html:106
 msgid "Computer Graphics, Computer Vision"
 msgstr ""
 
-#: templates/appendices/contributors.html:94
+#: templates/appendices/contributors.html:108
 msgid "Network Communication Protocols, Encryption"
 msgstr ""
 
-#: templates/appendices/contributors.html:96
+#: templates/appendices/contributors.html:110
 msgid "Formal Languages"
 msgstr ""
 
-#: templates/appendices/contributors.html:97
+#: templates/appendices/contributors.html:111
 msgid "Programming Languages"
 msgstr ""
 
-#: templates/appendices/contributors.html:98
-#: templates/appendices/contributors.html:99
+#: templates/appendices/contributors.html:112
+#: templates/appendices/contributors.html:113
 msgid "Runestone Interactive"
 msgstr ""
 
-#: templates/appendices/contributors.html:108
+#: templates/appendices/contributors.html:122
 msgid "Translators"
 msgstr ""
 
-#: templates/appendices/contributors.html:110
+#: templates/appendices/contributors.html:124
 msgid ""
 "Translators are listed on our Crowdin page <a href=\"https://crowdin.com/"
 "project/cs-field-guide\">here"
 msgstr ""
 
-#: templates/appendices/contributors.html:113
+#: templates/appendices/contributors.html:127
 msgid "Other"
 msgstr ""
 
-#: templates/appendices/contributors.html:115
+#: templates/appendices/contributors.html:129
 msgid "Research"
 msgstr ""
 
-#: templates/appendices/contributors.html:117
+#: templates/appendices/contributors.html:131
 msgid "Interactive games and related material"
 msgstr ""
 
-#: templates/appendices/contributors.html:118
+#: templates/appendices/contributors.html:132
 msgid "Video production"
 msgstr ""
 
-#: templates/appendices/contributors.html:119
+#: templates/appendices/contributors.html:133
 msgid "Formal languages material"
 msgstr ""
 
-#: templates/appendices/contributors.html:120
+#: templates/appendices/contributors.html:134
 msgid "Illustrations"
 msgstr ""
 
-#: templates/appendices/contributors.html:123
+#: templates/appendices/contributors.html:137
 msgid "Community Contributors"
 msgstr ""
 
-#: templates/appendices/contributors.html:157
+#: templates/appendices/contributors.html:174
 msgid ""
-"<strong>Note:</strong> If there is an error in the list, please contact <a "
-"href=\"mailto:jack.morgan@canterbury.ac.nz\">Jack Morgan</a>"
+"<strong>Note:</strong> If there is an error in the list, please raise an "
+"issue on the GitHub repository."
 msgstr ""
 
-#: templates/appendices/contributors.html:159
+#: templates/appendices/contributors.html:176
 msgid "Acknowledgements"
 msgstr ""
 
-#: templates/appendices/contributors.html:161
+#: templates/appendices/contributors.html:178
 msgid ""
 "This project has grown out of a partnership for an international field guide "
 "to computing.\n"
@@ -360,7 +373,7 @@ msgid ""
 "both led by Peter Denning."
 msgstr ""
 
-#: templates/appendices/contributors.html:167
+#: templates/appendices/contributors.html:184
 msgid ""
 "Funding for this online textbook has been provided by our sponsors listed at "
 "the end of this page.\n"
@@ -376,7 +389,7 @@ msgid ""
 "University</a>, UK."
 msgstr ""
 
-#: templates/appendices/contributors.html:174
+#: templates/appendices/contributors.html:191
 msgid ""
 "Partial funding for the US field guide project was provided by the US "
 "National Science Foundation under Grant No. 0938809."
@@ -391,19 +404,19 @@ msgid "Changelog"
 msgstr ""
 
 #: templates/appendices/index.html:37 templates/appendices/sitemap.html:37
-#: templates/base.html:83 templates/base.html:204
+#: templates/base.html:88 templates/base.html:209
 #: templates/curriculum_guides/index.html:12 templates/general/index.html:66
 msgid "Curriculum Guides"
 msgstr ""
 
 #: templates/appendices/index.html:42 templates/appendices/sitemap.html:66
-#: templates/base.html:239 templates/chapters/glossary.html:6
+#: templates/base.html:244 templates/chapters/glossary.html:6
 #: templates/chapters/glossary.html:10
 msgid "Glossary"
 msgstr ""
 
 #: templates/appendices/index.html:47 templates/appendices/sitemap.html:69
-#: templates/base.html:199 templates/general/index.html:81
+#: templates/base.html:204 templates/general/index.html:81
 #: templates/interactives/index.html:8 templates/interactives/index.html:12
 msgid "Interactives"
 msgstr ""
@@ -422,8 +435,8 @@ msgstr ""
 msgid "Computer Science Field Guide"
 msgstr ""
 
-#: templates/appendices/sitemap.html:20 templates/base.html:80
-#: templates/base.html:194 templates/chapters/index.html:8
+#: templates/appendices/sitemap.html:20 templates/base.html:85
+#: templates/base.html:199 templates/chapters/index.html:8
 #: templates/chapters/index.html:12 templates/general/index.html:51
 msgid "Chapters"
 msgstr ""
@@ -434,85 +447,85 @@ msgid ""
 "computer science"
 msgstr ""
 
-#: templates/base.html:53
+#: templates/base.html:58
 msgid "Language"
 msgstr ""
 
-#: templates/base.html:68
+#: templates/base.html:73
 msgid "Beta"
 msgstr ""
 
-#: templates/base.html:166
+#: templates/base.html:171
 msgid ""
 "Looking for something for primary schools? Check out <a target=\"_blank\" "
 "rel=\"noopener noreferrer\" href=\"http://www.csunplugged.org/\">CS "
 "Unplugged</a>."
 msgstr ""
 
-#: templates/base.html:178
+#: templates/base.html:183
 msgid ""
 "The Computer Science Field Guide is an online interactive resource for high "
 "school students learning about computer science."
 msgstr ""
 
-#: templates/base.html:185
+#: templates/base.html:190
 msgid "Useful Links"
 msgstr ""
 
-#: templates/base.html:210
+#: templates/base.html:215
 msgid "Community"
 msgstr ""
 
-#: templates/base.html:214
+#: templates/base.html:219
 msgid "Twitter"
 msgstr ""
 
-#: templates/base.html:219
+#: templates/base.html:224
 msgid "YouTube"
 msgstr ""
 
-#: templates/base.html:224
+#: templates/base.html:229
 msgid "GitHub"
 msgstr ""
 
-#: templates/base.html:230
+#: templates/base.html:235
 msgid "Help"
 msgstr ""
 
-#: templates/base.html:244
+#: templates/base.html:249
 msgid "Feedback"
 msgstr ""
 
-#: templates/base.html:253 templates/general/index.html:101
+#: templates/base.html:258 templates/general/index.html:101
 msgid "Switch to student mode"
 msgstr ""
 
-#: templates/base.html:257 templates/general/index.html:107
+#: templates/base.html:262 templates/general/index.html:107
 msgid "Switch to teacher mode"
 msgstr ""
 
-#: templates/base.html:283
+#: templates/base.html:288
 msgid ""
-"The Computer Science Field Guide material is open source on <a target="
-"\"_blank\" rel=\"noopener noreferrer\" href=\"https://github.com/uccser/cs-"
-"field-guide\">GitHub</a>, and this website's content is shared under a <a "
-"target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://creativecommons."
-"org/licenses/by-sa/4.0/\">Creative Commons Attribution-ShareAlike 4.0 "
-"International license</a>. The Computer Science Field Guide is a project by "
-"the <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"http://www.cosc."
-"canterbury.ac.nz/research/RG/CSE/\">Computer Science Education Research "
-"Group</a> at the <a target=\"_blank\" rel=\"noopener noreferrer\" href="
-"\"http://www.canterbury.ac.nz/\">University of Canterbury</a>, New Zealand. "
-"Icons provided generously by <a target=\"_blank\" rel=\"noopener noreferrer"
-"\" href=\"https://icons8.com/\">icons8</a>."
+"The Computer Science Field Guide material is open source on <a "
+"target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://github.com/"
+"uccser/cs-field-guide\">GitHub</a>, and this website's content is shared "
+"under a <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://"
+"creativecommons.org/licenses/by-sa/4.0/\">Creative Commons Attribution-"
+"ShareAlike 4.0 International license</a>. The Computer Science Field Guide "
+"is a project by the <a target=\"_blank\" rel=\"noopener noreferrer\" "
+"href=\"http://www.cosc.canterbury.ac.nz/research/RG/CSE/\">Computer Science "
+"Education Research Group</a> at the <a target=\"_blank\" rel=\"noopener "
+"noreferrer\" href=\"http://www.canterbury.ac.nz/\">University of Canterbury</"
+"a>, New Zealand. Icons provided generously by <a target=\"_blank\" "
+"rel=\"noopener noreferrer\" href=\"https://icons8.com/\">icons8</a>."
 msgstr ""
 
-#: templates/base.html:314
+#: templates/base.html:319
 #, python-format
 msgid "This definition is not available in %(language)s, sorry!"
 msgstr ""
 
-#: templates/base.html:321 templates/interactives/cfg-parsing-challenge.html:83
+#: templates/base.html:326 templates/interactives/cfg-parsing-challenge.html:83
 #: templates/interactives/matrix-simplifier.html:172
 #: templates/interactives/matrix-simplifier.html:201
 msgid "Close"
@@ -1509,8 +1522,8 @@ msgstr ""
 #: templates/interactives/cmy-mixer.html:19
 msgid ""
 "<strong>Magenta</strong> - Currently set to <input id=\"interactive-cmy-"
-"mixer-magenta-value\" value=127 class=\"form-control w-auto d-inline\" size="
-"\"3\">"
+"mixer-magenta-value\" value=127 class=\"form-control w-auto d-inline\" "
+"size=\"3\">"
 msgstr ""
 
 #: templates/interactives/cmy-mixer.html:23
@@ -1984,7 +1997,7 @@ msgstr ""
 
 #: templates/interactives/distance-from-stereo-images.html:47
 #: templates/interactives/distance-from-stereo-images.html:56
-#: templates/interactives/pixel-viewer.html:88
+#: templates/interactives/pixel-viewer.html:116
 #: templates/interactives/viola-jones-face-detector.html:29
 msgid "Choose file"
 msgstr ""
@@ -2018,12 +2031,12 @@ msgid ""
 "\n"
 "\t\t\t\t\t<div id=\"packageSourceIP\"> Source IP: <span id=\"sourceIP\"></"
 "span> </div>\n"
-"\t\t\t\t\t<div id=\"packageDestinationIP\">Destination IP: <span id="
-"\"destinationIP\"></span></div>\n"
-"\t\t\t\t\t<div id=\"packageSourcePort\">Source Port: <span id=\"sourcePort"
-"\"></span></div>\n"
-"\t\t\t\t\t<div id=\"packageDestinationPort\">Destination Port: <span id="
-"\"destinationPort\"></span></div>\n"
+"\t\t\t\t\t<div id=\"packageDestinationIP\">Destination IP: <span "
+"id=\"destinationIP\"></span></div>\n"
+"\t\t\t\t\t<div id=\"packageSourcePort\">Source Port: <span "
+"id=\"sourcePort\"></span></div>\n"
+"\t\t\t\t\t<div id=\"packageDestinationPort\">Destination Port: <span "
+"id=\"destinationPort\"></span></div>\n"
 "\t\t\t\t\t<button id=\"restart\" class=\"firewall-button\">\n"
 "\t\t\t\t\t\tRestart\n"
 "\t\t\t\t\t</button>\n"
@@ -2075,8 +2088,8 @@ msgid ""
 "\n"
 "        Once you have finished, a table below will show your results.\n"
 "        Save this data so you can analyse your experiment.\n"
-"        Instructions on what to do with the data are in the <a href="
-"\"%(fitts_law_section)s\">Fitt's Law section</a>.\n"
+"        Instructions on what to do with the data are in the <a "
+"href=\"%(fitts_law_section)s\">Fitt's Law section</a>.\n"
 "        "
 msgstr ""
 
@@ -2189,8 +2202,8 @@ msgstr ""
 
 #: templates/interactives/fsa-washing-machine.html:10
 msgid ""
-"Current state: <span id=\"interactive-fsa-washing-machine-current-state-text"
-"\"></span>"
+"Current state: <span id=\"interactive-fsa-washing-machine-current-state-"
+"text\"></span>"
 msgstr ""
 
 #: templates/interactives/fsa-washing-machine.html:28
@@ -2618,9 +2631,9 @@ msgstr ""
 
 #: templates/interactives/mips-assembler.html:86
 msgid ""
-"This simplified Javascript sandbox is based on the work of <a target=\"_blank"
-"\" rel=\"noopener noreferrer\" href=\"https://github.com/alanhogan/online-"
-"mips-assembler\">Alan J. Hogan</a>."
+"This simplified Javascript sandbox is based on the work of <a "
+"target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://github.com/"
+"alanhogan/online-mips-assembler\">Alan J. Hogan</a>."
 msgstr ""
 
 #: templates/interactives/mips-assembler.html:93
@@ -2758,8 +2771,9 @@ msgstr ""
 #, python-format
 msgid ""
 "\n"
-"        Enter the assembled MIPS code from the <a href=\"%(assembler_link)s"
-"\" target=\"_blank\">MIPS Assembler</a> interactive to run it.<br>\n"
+"        Enter the assembled MIPS code from the <a "
+"href=\"%(assembler_link)s\" target=\"_blank\">MIPS Assembler</a> interactive "
+"to run it.<br>\n"
 "        Enter only the assembled hexadecimal values, no other assembler "
 "output.<br>\n"
 "        <strong>Note:</strong> Only a subset of MIPS is implemented, "
@@ -3038,7 +3052,7 @@ msgstr ""
 msgid "Start Over"
 msgstr ""
 
-#: templates/interactives/parity.html:81
+#: templates/interactives/parity.html:82
 msgid "<strong>Confusation</strong><br>Please wait"
 msgstr ""
 
@@ -3105,9 +3119,9 @@ msgstr ""
 msgid ""
 "The remaining passwords are all in English, if applicable.\n"
 "          These next few are all simple words, some of which you might find "
-"in a dictionary or <a target=\"_blank\" rel=\"noopener noreferrer\" href="
-"\"https://en.wikipedia.org/wiki/List_of_the_most_common_passwords\">list of "
-"the most common passwords</a>:"
+"in a dictionary or <a target=\"_blank\" rel=\"noopener noreferrer\" "
+"href=\"https://en.wikipedia.org/wiki/"
+"List_of_the_most_common_passwords\">list of the most common passwords</a>:"
 msgstr ""
 
 #: templates/interactives/password-guesser.html:72
@@ -3373,92 +3387,96 @@ msgstr ""
 msgid "Toothbrush"
 msgstr ""
 
-#: templates/interactives/pixel-viewer.html:10
+#: templates/interactives/pixel-viewer.html:22
 msgid "Zoom In"
 msgstr ""
 
-#: templates/interactives/pixel-viewer.html:13
+#: templates/interactives/pixel-viewer.html:37
 msgid "Zoom Out"
 msgstr ""
 
-#: templates/interactives/pixel-viewer.html:16
+#: templates/interactives/pixel-viewer.html:40
 msgid "Toggle Menu"
 msgstr ""
 
-#: templates/interactives/pixel-viewer.html:26
+#: templates/interactives/pixel-viewer.html:50
 msgid "Pixel Viewer Interactive"
 msgstr ""
 
-#: templates/interactives/pixel-viewer.html:28
+#: templates/interactives/pixel-viewer.html:52
 msgid ""
 "This interactive allows you to see the pixels of an image, and details about "
 "those pixels. <strong>Click Zoom\n"
 "                        In</strong> to see details about individual pixels."
 msgstr ""
 
-#: templates/interactives/pixel-viewer.html:34
+#: templates/interactives/pixel-viewer.html:58
 msgid ""
 "This interactive works best on a desktop browser, due to the heavy "
 "performance load."
 msgstr ""
 
-#: templates/interactives/pixel-viewer.html:38
+#: templates/interactives/pixel-viewer.html:62
 msgid "Options"
 msgstr ""
 
-#: templates/interactives/pixel-viewer.html:41
+#: templates/interactives/pixel-viewer.html:65
 msgid "Show pixel background"
 msgstr ""
 
-#: templates/interactives/pixel-viewer.html:44
+#: templates/interactives/pixel-viewer.html:68
 msgid "Colour code: "
 msgstr ""
 
-#: templates/interactives/pixel-viewer.html:47
+#: templates/interactives/pixel-viewer.html:71
 msgid "Decimal (separate RGB)"
 msgstr ""
 
-#: templates/interactives/pixel-viewer.html:51
+#: templates/interactives/pixel-viewer.html:75
 msgid "Hexadecimal (separate RGB)"
 msgstr ""
 
-#: templates/interactives/pixel-viewer.html:55
+#: templates/interactives/pixel-viewer.html:79
 msgid "Hexadecimal (web colour)"
 msgstr ""
 
-#: templates/interactives/pixel-viewer.html:59
+#: templates/interactives/pixel-viewer.html:83
 msgid "Brightness (average)"
 msgstr ""
 
-#: templates/interactives/pixel-viewer.html:64
+#: templates/interactives/pixel-viewer.html:87
+msgid "Binary (seperate RGB)"
+msgstr ""
+
+#: templates/interactives/pixel-viewer.html:92
 msgid "Reload with a different configuration"
 msgstr ""
 
-#: templates/interactives/pixel-viewer.html:68
+#: templates/interactives/pixel-viewer.html:96
 msgid "Default"
 msgstr ""
 
-#: templates/interactives/pixel-viewer.html:70
+#: templates/interactives/pixel-viewer.html:98
 msgid "Colour Threshold"
 msgstr ""
 
-#: templates/interactives/pixel-viewer.html:72
+#: templates/interactives/pixel-viewer.html:100
 msgid "Greyscale Threshold"
 msgstr ""
 
-#: templates/interactives/pixel-viewer.html:74
+#: templates/interactives/pixel-viewer.html:102
 msgid "Blur"
 msgstr ""
 
-#: templates/interactives/pixel-viewer.html:76
+#: templates/interactives/pixel-viewer.html:104
 msgid "Edge Detection"
 msgstr ""
 
-#: templates/interactives/pixel-viewer.html:82
+#: templates/interactives/pixel-viewer.html:110
 msgid "Upload your own image"
 msgstr ""
 
-#: templates/interactives/pixel-viewer.html:83
+#: templates/interactives/pixel-viewer.html:111
 msgid ""
 "Either drag and drop an image onto this page, or click the button below to "
 "load your own image into\n"
@@ -3466,14 +3484,14 @@ msgid ""
 "performance."
 msgstr ""
 
-#: templates/interactives/pixel-viewer.html:98
+#: templates/interactives/pixel-viewer.html:126
 msgid ""
 "You can save an image of this interactive by right clicking on the zoomed "
 "image and clicking \"Save\n"
 "                    image as...\" (Chrome/Firefox)."
 msgstr ""
 
-#: templates/interactives/pixel-viewer.html:105
+#: templates/interactives/pixel-viewer.html:133
 msgid "Copyright information"
 msgstr ""
 
@@ -4447,8 +4465,8 @@ msgid ""
 "UDP_encapsulation.svg\" target=\"_blank\">this image by Cburnett</a><br>\n"
 "    Licenced under the <a href=\"https://en.wikipedia.org/wiki/"
 "Creative_Commons\" target=\"_blank\">Creative Commons</a> <a href=\"https://"
-"creativecommons.org/licenses/by-sa/3.0/deed.en\" target=\"_blank"
-"\">Attribution-Share Alike 3.0 Unported</a> licence\n"
+"creativecommons.org/licenses/by-sa/3.0/deed.en\" "
+"target=\"_blank\">Attribution-Share Alike 3.0 Unported</a> licence\n"
 "    "
 msgstr ""
 
