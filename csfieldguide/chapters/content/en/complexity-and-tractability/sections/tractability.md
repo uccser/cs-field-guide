@@ -16,16 +16,16 @@ If you are interested, you can download the spreadsheet here to do the calculati
 {panel end}
 
 There's a very simple rule that computer scientists use to decide if an algorithm is tractable or not, based on the complexity (estimated number of steps) of the algorithm.
-Essentially, if the algorithm takes an exponential amount of time or worse for an input of size *n*, it is labelled as intractable.
+Essentially, if the algorithm takes an exponential amount of time or worse for an input of size \(n\), it is labelled as intractable.
 This simple rule is a bit crude, but it's widely used and provides useful guidance.
-Note that a factorial amount of time, *n!*, is intractable because it's bigger than an exponential function.
+Note that a factorial amount of time, \(n!\), is intractable because it's bigger than an exponential function.
 
 To see what this means, let's consider how long various algorithms might take to run.
 The following interactive will do the calculations for you to estimate how long an algorithm might take to run.
-You can choose if the running time is exponential (that is, \( 2^n \), which is the time required for the Towers of Hanoi problem with *n* disks), or factorial (that is, \( n! \), which is the time required for checking all possible routes a travelling salesman would make to visit *n* places other than the starting point).
+You can choose if the running time is exponential (that is, \( 2^n \), which is the time required for the Towers of Hanoi problem with \(n\) disks), or factorial (that is, \( n! \), which is the time required for checking all possible routes a travelling salesperson would make to visit \(n\) places other than the starting point).
 You can use the interactive below to calculate the time.
 
-For example, try choosing the factorial time for the TSP, and put in 20 for the value of *n* (i.e. this is to check all possible travelling salesman visits to 20 places).
+For example, try choosing the factorial time for the TSP, and put in 20 for the value of \(n\) (i.e. this is to check all possible travelling salesperson visits to 20 places).
 Press the return or tab key to update the calculation.
 The calculator will show a large number of seconds that the program will take to run; you can change the units to years to see how long this would be.
 
@@ -66,11 +66,11 @@ That's still too much computing power to be practical, but it's starting to get 
 
 {panel end}
 
-The interactive above estimates the amount of time taken for various algorithms to run given *n* values to be processed.
+The interactive above estimates the amount of time taken for various algorithms to run given \(n\) values to be processed.
 Let's assume that we have a *very* fast computer, faster than any that exist.
 Try putting in the assumption that the computer can do a million million (1,000,000,000,000) steps per second.
-Is that achievable?
-But what if you add just two more locations to the problem (i.e. n=22 instead of n=20)?
+Is a solution achievable?
+But what if you add just two more locations to the problem (i.e. \(n\)=22 instead of \(n\)=20)?
 
 {panel type="teacher-note"}
 
@@ -83,9 +83,9 @@ The main point is that even if you get a massively fast bank of computers that c
 {panel end}
 
 Now, consider an algorithm that has a complexity of \( n^2 \) (there are lots that take roughly this number of steps, including selection sort which was mentioned earlier).
-Type in a value of 1,000,000 for *n*  to see how long it might take to sort a million items on a single processor (keep the number of steps per second at 1,000,000,000,000, but set the number of processors to just 1) &ndash; it should show that it will only take about 1 second on our hypothetical very fast machine.
-Now put in 10 million for *n* &ndash; although it's sorting a list 10 times as big, it takes more than 10 times as long, and will now take a matter of minutes rather than seconds.
-At what value of *n* does the amount of time become out of the question &ndash; that is, how large would the problem need to be for it to take years to finish?
+Type in a value of 1,000,000 for \(n\)  to see how long it might take to sort a million items on a single processor (keep the number of steps per second at 1,000,000,000,000, but set the number of processors to just 1) &ndash; it should show that it will only take about 1 second on our hypothetical very fast machine.
+Now put in 10 million for \(n\) &ndash; although it's sorting a list 10 times as big, it takes more than 10 times as long, and will now take a matter of minutes rather than seconds.
+At what value of \(n\) does the amount of time become out of the question &ndash; that is, how large would the problem need to be for it to take years to finish?
 Is anyone ever likely to be sorting this many values &ndash; for example, what if for some reason you were sorting the name of every person in the world, or every base in the human genome?
 
 {panel type="teacher-note"}
@@ -113,7 +113,7 @@ A million is nothing near the population of the world, or even a lot of countrie
 
 {panel end}
 
-Now try the same when the number of steps is \( 2^n \), but start with a value of 10 for *n* , then try 30, 40 , 50 and so on.
+Now try the same when the number of steps is \( 2^n \), but start with a value of 10 for \(n\) , then try 30, 40 , 50 and so on.
 You'll probably find that for an input of about 70 items it will take an unreasonable amount of time.
 Is it much worse for 80 items?
 
@@ -153,15 +153,18 @@ Note that algorithms that take a factorial amount of time (\( n! \), or \( 1 \ti
 
 Essentially any algorithm that tries out all combinations of the input will inevitably be intractable because the number of combinations is likely to be exponential or factorial.
 Thus an important point is that it's usually not going to work to design a system that just tries out all possible solutions to see which is the best.
+These algorithms are sometimes called "brute force" - they are simple, and will give the answer, but can take a ridiculous amount of time.
 
 Although we've provided \( n^6 \) as an example of a tractable time, nearly all algorithms you're likely to encounter will be \( n^3 \) and better, or  \( 2^n \) and worse &ndash; only very specialised ones fall in the gap between those.
 So there's a big gulf between tractable and intractable problems, and trying to grapple with it is one of the biggest problems in computer science!
+
+## Aren't computers getting exponentially faster?
 
 What about Moore's law, which says that computing power is increasing exponentially?
 Perhaps that means that if we wait a while, computers will be able to solve problems that are currently intractable?
 Unfortunately this argument is wrong; intractable problems are also exponential, and so the rate of improvement due to Moore's law means that it will only allow for slightly larger intractable problems to be solved.
 For example, if computing speed is doubling every 18 months (an optimistic view of Moore's law), and we have an intractable problem that takes \( 2^n \) operations to solve (many take longer than this), then in 18 months we will be able to solve a problem that's just one item bigger.
-For example, if you can solve an exponential time problem for 50 items (50 countries on a map to colour, 50 cities for a salesman to tour, or 50 rings on a Towers of Hanoi problem) in 24 hours, then in 18 months you can expect to buy a computer that could solve it for 51 items at best!
+For example, if you can solve an exponential time problem for 50 items (50 countries on a map to colour, 50 cities for a salesperson to tour, or 50 rings on a Towers of Hanoi problem) in 24 hours, then in 18 months you can expect to buy a computer that could solve it for 51 items at best!
 And in 20 years you're likely to be able to get a computer that could solve for 55 items in one day.
 You're going to have to be more than patient if you want Moore's law to help out here &ndash; you have to be prepared to wait for decades for a small improvement!
 

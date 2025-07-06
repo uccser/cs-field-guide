@@ -4,6 +4,6 @@
     "private": true,
     "description": "This is a simple frequency analysis chart",
     "dependencies": {
-        "chart.js": "4.4.3"
+        "chart.js": "4.5.0"
     }
 }

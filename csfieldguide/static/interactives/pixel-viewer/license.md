@@ -2,7 +2,7 @@ IMAGE PERMISSIONS
 ----------------------------------------------------------------------------
 
 These images were taken by Jack Morgan and are used with his permission.
-Email: jack.morgan@canterbury.ac.nz
+Email: jackmorgannz@gmail.com
 
 - `coloured-roof-small.png`
 - `lake.png`

@@ -25,6 +25,7 @@ The interactive has the following optional parameters to configure the interacti
   - `rgb-hex` - Shows the colour of the pixel in RGB format using Hexadecimal.
   - `hex` - Shows the colour of the pixel in Hexadecimal format.
   - `brightness` - Shows the brightness (i.e greyscale value) of the pixel as a value up to 255.
+  - `binary` - Show the colour of the pixel in RGB format using Binary.  
 
 - `image` - Filename of image to use (for example `arnold.jpg`).
 - `picturepicker` - Displays a set of pictures available for using.

@@ -8,7 +8,7 @@ The original interactive has been completely rewritten for the v2.0 of the Compu
 
 ## Licences
 
-Images for Trainsylvania were created by [Jack Morgan](mailto:jack.morgan@canterbury.ac.nz) and are freely available under this project's license.
+Images for Trainsylvania were created by [Jack Morgan](mailto:jackmorgannz@gmail.com) and are freely available under this project's license.
 
 ## Future Plans
 

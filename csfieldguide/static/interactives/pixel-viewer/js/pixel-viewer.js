@@ -139,6 +139,8 @@ $( document ).ready(function() {
     $("input[id='rgb-hex-colour-code']").prop('checked', true);
   } else if (colour_code_rep == 'hex') {
     $("input[id='hex-colour-code']").prop('checked', true);
+  } else if (colour_code_rep == 'binary') {
+    $("input[id='binary-colour-code']").prop('checked', true);
   } else if (colour_code_rep == 'brightness') {
     $("input[id='brightness-colour-code']").prop('checked', true);
   } else {
@@ -1112,6 +1114,9 @@ var paint = function(row, col, left, top, width, height, zoom) {
       for (var i = 0; i < cell_lines.length; i++) {
         if (colour_code_rep == 'rgb-hex') { // Shows colour codes in RGB using Hexadecimal
           value = componentToHex(pixelData[i])
+        } else if (colour_code_rep == 'binary'){
+            context.font = (7 * zoom).toFixed(2) + 'px Consolas, Courier New, monospace';
+            value = decTobinary(pixelData[i])
         } else { // Shows colour codes in RGB using Decimal
           value = pixelData[i]
         }
@@ -1129,6 +1134,10 @@ function componentToHex(c) {
 
 function rgbToHex(r, g, b) {
   return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+}
+
+function decTobinary(dec){
+    return (dec >>> 0).toString(2).padStart(8, '0');
 }
 
 var rect = container.getBoundingClientRect();

@@ -18,6 +18,63 @@ All notable changes to this project will be documented in this file.
 We have listed major changes for each release below.
 `All downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/>`__
 
+3.16.0
+==============================================================================
+
+**Release date:** 6th July 2025
+
+**Changelog:**
+
+- Update 'Complexity and tractability' chapter:
+  - Add section on 'Asymptotic Complexity (Big-O notation)'.
+  - Add section on 'Polynomial Time and Non-polynomial Time'.
+  - Rewrite section 'Algorithms, problems, and speed limits' to 'Best, Worst, and Average Case Complexity'.
+  - Remove outdated project 'The craypots problem'.
+  - Various text and formatting improvements.
+- Update 'Algorithms' chapter:
+  - Remove section on 'What makes an algorithm?'.
+  - Add links to relevant 'Complexity and tractability' chapter sections.
+  - Various text and formatting improvements.
+- Add binary values to Pixel Viewer interactive.
+- Fix bug which prevented Packet Attack interactive from loading.
+- Remove dependabot PRs.
+- Update CI workflows to use the latest runners.
+- Deleted deprecated csfg script.
+- Remove year value from copyright as it has no legal significance.
+- Fix issue in Gulp pipeline regarding ESM modules.
+
+- Core dependency changes:
+
+  - Update @babel/core from 7.24.5 to 7.27.7
+  - Update @babel/preset-env from 7.24.5 to 7.27.2
+  - Update autoprefixer from 10.4.19 to 10.4.21
+  - Update browser-sync from 3.0.2 to 3.0.4
+  - Update browserify from 17.0.0 to 17.0.1
+  - Update cssnano from 7.0.1 to 7.0.7
+  - Update gulp-rename from 2.0.0 to 2.1.0
+  - Update iframe-resizer from 4.4.0 to 4.4.5
+  - Update postcss from 8.4.38 to 8.5.6
+  - Update sass from 1.77.2 to 1.89.2
+  - Update django from 4.2.11 to 4.2.22
+  - Update django-environ from 0.11.2 to 0.12.0
+  - Update whitenoise from 6.6.0 to 6.9.0
+  - Update psycopg2 from 2.9.9 to 2.9.10
+  - Update selenium from 4.21.0 to 4.33.0
+  - Update Pygments from 2.18.0 to 2.19.2
+  - Update lxml from 5.2.2 to 5.4.0
+  - Update cssselect from 1.2.0 to 1.3.0
+  - Update PyYAML from 6.0.1 to 6.0.2
+  - Update django-modeltranslation from 0.18.13 to 0.19.15
+  - Update uniseg from 0.8.0 to 0.10.0
+  - Update python-bidi from 0.4.2 to 0.6.6
+  - Update django-statici18n from 2.5.0 to 2.6.0
+  - Update django-cors-headers from 4.3.1 to 4.7.0
+  - Update django-debug-toolbar from 4.3.0 to 4.4.6
+  - Update flake8 from 7.0.0 to 7.3.0
+  - Update coverage from 7.5.1 to 7.9.1
+
+- Various interactives dependency updates.
+
 3.15.1
 ==============================================================================
 

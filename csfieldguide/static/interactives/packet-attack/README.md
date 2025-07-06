@@ -1,6 +1,6 @@
 # Packet Attack Interactive
 
-**Original Author:** Sam Jarman  
+**Original Author:** Sam Jarman
 **Modified By:** Jack Morgan, Alasdair Smith
 
 This interactive is created for illustrating network issues to the user.
@@ -57,8 +57,6 @@ The licence for this is listed in the LICENCE-THIRD-PARTY file, with a full copy
 
 All image assets created for Packet Attack, including sprites and backgrounds, are found in the `packet-attack/assets/` directory.
 These were created by Jack Morgan and Alasdair Smith, and are freely available under the project's MIT Licence.
-
-Email: jack.morgan@canterbury.ac.nz
 
 ## Known Issues
 

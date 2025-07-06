@@ -10,19 +10,20 @@ Sorting algorithms are useful to study because they illustrate many of the key i
 
 {panel end}
 
-Sorting is another very important area of algorithms.
+Sorting is another very important area to study in algorithms.
 Computers often have to sort large amounts of data into order based on some attribute of that data, such as sorting a list of files by their name or size, or emails by the date they were received, or a customer list according to people's names.
 Most of the time this is done to make searching easier.
-For example you might have a large amount of data and each piece of data could be someone's name and their phone number.
+For example, you might have a large amount of data and each piece of data could be someone's name and their phone number.
 If you want to search for someone by name it would help to first have the data sorted alphabetically according to everyones names, but if you then wanted to search for a phone number it would be more useful to have the data sorted according to people's phone numbers.
 
-Like searching there are many different sorting algorithms, but some take much longer than others.
+Like searching, there are many different sorting algorithms, but some take much longer than others.
 In this section you will be introduced to two slower algorithms and one much better one.
 
 ## Scales interactive
 
 Throughout this section you can use the sorting interactive to test out the algorithms we talk about.
-When you're using it make sure you take note of the comparisons at the bottom of the screen, each time you compare two boxes the algorithm is making 'one comparison' so the total number of comparisons you have to make with each algorithm is the cost of that algorithm for the 8 boxes.
+When you're using it make sure you take note of the comparisons at the bottom of the screen. 
+Each time you compare two boxes the algorithm is making 'one comparison' so the total number of comparisons you have to make with each algorithm is the cost of that algorithm for the 8 boxes.
 
 Use the scales to compare the boxes (you can only compare two boxes at a time) and then arrange them along the bottom of the screen.
 Arrange them so that the lightest box is on the far left and the heaviest is on the far right.
@@ -58,9 +59,7 @@ After finding the lightest box simply repeat the process again with the remainin
 If you keep repeating this process you will eventually find you have placed each box into order.
 Try sorting the whole group of boxes in the scales interactive into order using this method and count how many comparisons you have to make.
 
-Tip: Start by moving all the boxes to the right of the screen and then once you have found the lightest box place it to the far right (if you want to find the heaviest first instead then move them all to the left).
-
-If you record how many comparisons you had to make each time to find the next lightest box you might notice a pattern (hint: finding the lightest  should take 7 comparisons, and then finding the second lightest should take 6 comparisons…).
+If you record how many comparisons you had to make each time to find the next lightest box you might notice a pattern (hint: finding the lightest of 8 boxes should take 7 comparisons, and then finding the second lightest should take 6 comparisons…).
 If you can see the pattern then how many comparisons do you think it would take to then sort 9 boxes into order?
 What about 20? If you knew how many comparisons it would take to sort 1000 boxes, then how many more comparisons would it take to sort 1001 instead?
 
@@ -106,7 +105,7 @@ The selection sort algorithm can be described as follows:
 - Next find the smallest item in the remaining list, remove it and place it into your sorted list beside the item you previously put to the side.
 - Repeat this process until all items have been selected and moved into their correct position in the sorted list.
 
-You can swap the word 'smallest' for 'largest' and the algorithm will still work, as long as you are consistent it doesn't matter if you are looking for the smallest or the largest item each time.
+You can swap the word 'smallest' for 'largest' and the algorithm will still work; as long as you are consistent it doesn't matter if you are looking for the smallest or the largest item each time.
 
 ## Insertion sort
 
@@ -123,8 +122,7 @@ This algorithm works by removing each box from the original group of boxes and i
 Like selection sort, it is very intuitive and people often perform it when they are sorting objects themselves, like cards in their hands.
 
 Try this with the scales interactive.
-Start by moving all the boxes to one side of the screen, this is your original, and unsorted, group.
-Now choose a box at random and place that on the other side of the screen, this is the start of your sorted group.
+Choose a box at random and place that on the left of the screen; this is the start of your sorted group.
 
 To insert another box into the sorted group, compare it to the box that is already in the sorted group and then arrange these two boxes in the correct order.
 Then to add the next box compare it to these boxes (depending on the weight of the box you might only have to compare it to one!) and then arrange these three boxes in the correct order.
@@ -142,14 +140,14 @@ Insertion sort can be described with informal instructions as follows:
 
 People often perform this when they physically sort items.
 It can also be a very useful algorithm to use if you already have a sorted set of data and want to add a new piece of data into the set.
-For example if you owned a library and purchased a new book you wouldn't do a selection sort on the entire library just to place this new book, you would simply insert the new book in its correct place.
+For example, if you owned a library and purchased a new book you wouldn't do a selection sort on the entire library just to place this new book, you would simply insert the new book in its correct place.
 
 ## Quicksort
 
 Insertion and selection sort may seem like logical ways to sort things into order, but they both take far too many comparisons when they are used for large amounts of data.
 Remember computers often have to search through HUGE amounts of data, so even if they use a good searching algorithm like binary search to look through their data, if they use a bad sorting algorithm to first sort that data into order then finding anything will take far too long!
 
-A much better sorting algorithm is {glossary-link term="quicksort"}quicksort{glossary-link end}! (the name is a bit of a giveaway)
+A much better sorting algorithm is {glossary-link term="quicksort"}quicksort{glossary-link end} (the name is a bit of a giveaway)! 
 
 {interactive slug="sorting-algorithms" type="whole-page" text="true" parameters="method=quick"}
 
@@ -186,7 +184,7 @@ Eventually each subgroup will contain only one item and at this stage the items 
 
 # Code to run selection sort and quicksort for yourself
 
-The following files will run selection sort and quicksort in various languages; you can use them to generate random lists of values and measure how long they take to be sorted.
+The following files will run selection sort and quicksort in Scratch and Python; you can use them to generate random lists of values and measure how long they take to be sorted.
 Note how long these take for various amounts of input (*n*), and show it in a table or graph.
 You should notice that the time taken by quicksort is quite different to that taken by selection sort.
 
@@ -194,11 +192,9 @@ A Scratch implementation of selection sort and quicksort can be downloaded below
 
 {button-link link="files/selection-quicksort-scratch.zip" text="Download Scratch sorting example" file="yes"}
 
-The following Python implementations of selection sort and quicksort can be run in your browser:
+A Python implementations of selection sort and quicksort can be downloaded below.
 
-{button-link link="https://repl.it/@uccser/selection-quicksort-python3" text="Python 3"}
-
-{button-link link="https://repl.it/@uccser/selection-quicksort-python2" text="Python 2"}
+{button-link link="files/selection-quicksort-python3.py" text="Download Python searching example" file="yes"}
 
 {panel end}
 

@@ -3,6 +3,6 @@
     "version": "1.0.0",
     "private": true,
     "dependencies": {
-        "big.js": "6.2.1"
+        "big.js": "6.2.2"
     }
 }
