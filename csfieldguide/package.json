@@ -48,7 +48,7 @@
         "last 2 versions"
     ],
     "scripts": {
-        "dev": "gulp",
+        "dev": "gulp --no-experimental-require-module",
         "generate-assets": "gulp generate-assets --no-experimental-require-module",
         "build": "gulp generate-assets --production --no-experimental-require-module"
     }
