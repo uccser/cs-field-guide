@@ -329,6 +329,9 @@ SVG_DIRS = [os.path.join(str(ROOT_DIR.path("staticfiles")), "svg")]
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 X_FRAME_OPTIONS = "SAMEORIGIN"
 
+# Required for youtube embeds to work
+SECURE_REFERRER_POLICY = "strict-origin-when-cross-origin"
+
 CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:8000",
     "http://localhost:8000",
