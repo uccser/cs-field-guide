@@ -58,3 +58,21 @@ jobs:
         pull_request_labels: 'internationalization'
         pull_request_base_branch_name: develop
         config: crowdin.yaml
+
+    - name: Download Te Reo Māori translations
+      uses: crowdin/github-action@v1.20.4
+      with:
+        upload_sources: false
+        download_translations: true
+        download_language: 'mi'
+        skip_untranslated_files: true
+        export_only_approved: true
+        push_translations: true
+        commit_message: 'Update Te Reo Māori Crowdin translations by Github Action'
+        localization_branch_name: translation-mi
+        create_pull_request: true
+        pull_request_title: 'Update Te Reo Māori language translations'
+        pull_request_body: 'This pull request will add/update Te Reo Māori language files from Crowdin.'
+        pull_request_labels: 'internationalization'
+        pull_request_base_branch_name: develop
+        config: crowdin.yaml
