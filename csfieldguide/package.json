@@ -30,7 +30,7 @@
         "gulp-tap": "2.0.0",
         "gulp-terser": "2.1.0",
         "iframe-resizer": "5.5.9",
-        "jquery": "3.7.1",
+        "jquery": "4.0.0",
         "lity": "2.4.1",
         "multiple-select": "1.7.0",
         "pixrem": "5.0.0",
