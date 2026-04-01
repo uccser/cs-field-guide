@@ -12,7 +12,7 @@ psycopg2==2.9.11
 
 # Images
 django-inline-svg==0.1.1
-selenium==4.33.0
+selenium==4.41.0
 
 # Markdown
 verto==1.2.0
