@@ -13,7 +13,7 @@
         "browser-sync": "3.0.4",
         "browserify": "17.0.1",
         "codemirror": "5.65.6",
-        "cssnano": "7.0.7",
+        "cssnano": "7.1.4",
         "details-element-polyfill": "2.4.0",
         "fancy-log": "2.0.0",
         "gulp": "4.0.2",
