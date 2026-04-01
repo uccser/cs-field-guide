@@ -16,7 +16,7 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
 
     - name: Upload or update source files to Crowdin
       uses: crowdin/github-action@v1.20.4
