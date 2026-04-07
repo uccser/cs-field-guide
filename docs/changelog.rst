@@ -18,6 +18,56 @@ All notable changes to this project will be documented in this file.
 We have listed major changes for each release below.
 `All downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/>`__
 
+3.17.0
+==============================================================================
+
+**Release date:** 8th April 2026
+
+**Changelog:**
+
+- Start initial work on Te Reo Māori translations.
+- Fix broken YouTube embeds.
+- Fix bug that that broke the Gulp pipeline on newer Node 20 and 22 versions.
+
+- Core dependency changes:
+
+  - Update @babel/core from 7.27.7 to 7.29.0.
+  - Update @babel/preset-env from 7.27.2 to 7.29.2.
+  - Update actions/checkout from 4 to 6.
+  - Update actions/setup-python from 5 to 6.
+  - Update autoprefixer from 10.4.21 to 10.4.27.
+  - Update cipher-base from 1.0.4 to 1.0.6.
+  - Update codecov/codecov-action from 4 to 6.
+  - Update coverage from 7.9.1 to 7.13.5.
+  - Update crowdin/github-action from 1.20.4 to 2.16.0.
+  - Update cssnano from 7.0.7 to 7.1.4.
+  - Update cssselect from 1.3.0 to 1.4.0.
+  - Update django from 4.2.22 to 4.2.29.
+  - Update django-cors-headers from 4.7.0 to 4.9.0.
+  - Update django-debug-toolbar from 4.4.6 to 6.2.0.
+  - Update django-environ from 0.12.0 to 0.13.0.
+  - Update django-statici18n from 2.6.0 to 2.7.1.
+  - Update docker/build-push-action from 5.4.0 to 7.0.0.
+  - Update docker/login-action from 3.4.0 to 4.1.0.
+  - Update docker/metadata-action from 5 to 6.
+  - Update gulp-imagemin from 9.1.0 to 9.2.0.
+  - Update gunicorn from 22.0.0 to 25.3.0.
+  - Update iframe-resizer from 4.4.5 to 5.5.9.
+  - Update lodash from 4.17.21 to 4.17.23.
+  - Update lxml from 5.4.0 to 6.0.2.
+  - Update picomatch from 2.3.1 to 2.3.2.
+  - Update postcss from 8.5.6 to 8.5.8.
+  - Update psycopg2 from 2.9.10 to 2.9.11.
+  - Update pygments from 2.19.2 to 2.20.0.
+  - Update python-bidi from 0.6.6 to 0.6.7.
+  - Update pyyaml from 6.0.2 to 6.0.3.
+  - Update sass from 1.89.2 to 1.99.0.
+  - Update selenium from 4.33.0 to 4.41.0.
+  - Update sha.js from 2.4.11 to 2.4.12.
+  - Update uniseg from 0.10.0 to 0.10.1.
+  - Update verto from 1.1.1 to 1.2.0.
+  - Update whitenoise from 6.9.0 to 6.12.0.
+
 3.16.0
 ==============================================================================
 
