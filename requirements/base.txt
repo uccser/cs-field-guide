@@ -1,5 +1,5 @@
 # Django
-django==4.2.29
+django==4.2.30
 django-environ==0.13.0
 django-bootstrap-breadcrumbs==0.9.2
 
