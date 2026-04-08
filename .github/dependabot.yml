@@ -1,0 +1,32 @@
+# To get started with Dependabot version updates, you'll need to specify which
+# package ecosystems to update and where the package manifests are located.
+# Please see the documentation for all configuration options:
+# https://help.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
+
+version: 2
+updates:
+  - package-ecosystem: "docker"
+    directories:
+      - "/infrastructure/**/*"
+    schedule:
+      interval: "daily"
+    open-pull-requests-limit: 999
+  - package-ecosystem: "npm"
+    directory: "/csfieldguide/"
+    schedule:
+      interval: "daily"
+    open-pull-requests-limit: 999
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    open-pull-requests-limit: 999
+    ignore:
+    # Ignore updates to Django package until LTS version
+      - dependency-name: "django"
+        versions: ["4.0.*", "4.1.*", "5.0.*", "5.1.*", "6.0.*", "6.1.*", "7.0.*", "7.1.*"]
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    open-pull-requests-limit: 999

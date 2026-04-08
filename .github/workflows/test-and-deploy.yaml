@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: Create Docker network
         run: docker network create uccser-development-stack
         # Required for the node service
@@ -32,7 +32,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: Create Docker network
         run: docker network create uccser-development-stack
         # Required for the node service
@@ -58,13 +58,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: Run general tests
         run: ./dev ci test_general
       - name: Create coverage file
         run: docker compose -f docker-compose.local.yml run --rm --user="root" django coverage xml -i
       - name: Upload coverage file
-        uses: codecov/codecov-action@v4
+        uses: codecov/codecov-action@v6
         with:
           files: ./csfieldguide/coverage.xml
           verbose: true
@@ -76,13 +76,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: Run management tests
         run: ./dev ci test_management
       - name: Create coverage file
         run: docker compose -f docker-compose.local.yml run --rm --user="root" django coverage xml -i
       - name: Upload coverage file
-        uses: codecov/codecov-action@v4
+        uses: codecov/codecov-action@v6
         with:
           files: ./csfieldguide/coverage.xml
           verbose: true
@@ -94,7 +94,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: Run style tests
         run: ./dev ci style
 
@@ -103,9 +103,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: Setup Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: '3.x'
       - name: Install dependencies
@@ -131,7 +131,7 @@ jobs:
     ]
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Create Docker network
         run: docker network create uccser-development-stack
@@ -182,7 +182,7 @@ jobs:
     ]
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Create Docker network
         run: docker network create uccser-development-stack
@@ -232,7 +232,7 @@ jobs:
     ]
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Download all workflow run artifacts
         uses: actions/download-artifact@v4
@@ -250,7 +250,7 @@ jobs:
           ls artifacts/interactive-thumbnails-*/interactive-thumbnails.tar.gz | xargs -n1 tar -xz --directory csfieldguide/staticfiles/img/interactives/thumbnails --file
 
       - name: Log in to ${{ env.REGISTRY }}
-        uses: docker/login-action@v3.4.0
+        uses: docker/login-action@v4.1.0
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
@@ -258,7 +258,7 @@ jobs:
 
       - name: Setup Docker metadata
         id: meta
-        uses: docker/metadata-action@v5
+        uses: docker/metadata-action@v6
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
@@ -266,7 +266,7 @@ jobs:
             type=ref,event=branch,priority=2
 
       - name: Build and push Docker image
-        uses: docker/build-push-action@v5.4.0
+        uses: docker/build-push-action@v7.0.0
         with:
           file: ./infrastructure/production/django/Dockerfile
           context: .
