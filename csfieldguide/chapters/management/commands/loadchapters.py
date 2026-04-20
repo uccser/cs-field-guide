@@ -8,6 +8,7 @@ from utils.BaseLoader import BaseLoader
 from utils.LoaderFactory import LoaderFactory
 from utils.errors.MissingRequiredFieldError import MissingRequiredFieldError
 from utils.errors.InvalidYAMLValueError import InvalidYAMLValueError
+from chapters.models import Chapter
 
 
 class Command(BaseCommand):
@@ -86,6 +87,10 @@ class Command(BaseCommand):
                     chapter_number=chapter_number,
                     structure_filename=chapter_structure_file,
                 ).load()
+
+            _, result = Chapter.objects.exclude(slug__in=chapters.keys()).delete()
+            if result.get("chapters.Chapter", 0) > 0:
+                base_loader.log("Deleted {} chapters.".format(result["chapters.Chapter"]))
 
             base_loader.log("All chapters loaded!")
             base_loader.log("")
