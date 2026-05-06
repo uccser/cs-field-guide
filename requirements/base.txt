@@ -29,7 +29,7 @@ PyYAML==6.0.3
 # I18n
 django-modeltranslation==0.19.15
 uniseg==0.10.1
-python-bidi==0.6.7
+python-bidi==0.6.9
 django-bidi-utils==1.0
 django-statici18n==2.7.1
 
